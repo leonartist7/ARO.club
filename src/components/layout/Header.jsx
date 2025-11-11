@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search, User, Trophy, MapPin } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-react';
 import Button from '../ui/Button';
-import { useStore } from '../../store/useStore';
+import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../ui/Avatar';
 
 const navigation = [
@@ -17,10 +17,21 @@ const navigation = [
  */
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
-  const { currentUser, isTeacher } = useStore();
+  const navigate = useNavigate();
+  const { user, profile, signOut } = useAuth();
 
   const isActive = (path) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -60,27 +71,78 @@ export default function Header() {
               </Button>
             </Link>
 
-            {currentUser ? (
-              <>
-                <Link to={isTeacher ? '/dashboard' : '/profile'}>
-                  <Button variant="ghost" size="sm">
-                    <Avatar
-                      src={currentUser.photo}
-                      alt={currentUser.name}
-                      name={currentUser.name}
-                      size="sm"
-                    />
-                  </Button>
-                </Link>
-              </>
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="flex items-center gap-2 p-1 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Avatar
+                    src={profile?.photo}
+                    alt={profile?.name || 'User'}
+                    name={profile?.name || 'User'}
+                    size="sm"
+                  />
+                </button>
+
+                {/* User Dropdown Menu */}
+                {userMenuOpen && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setUserMenuOpen(false)}
+                    ></div>
+                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <p className="text-sm font-semibold text-gray-900">
+                          {profile?.name || 'User'}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                      </div>
+                      <Link
+                        to="/profile"
+                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <User className="w-4 h-4" />
+                        My Profile
+                      </Link>
+                      {profile?.is_teacher && (
+                        <Link
+                          to="/dashboard"
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <Settings className="w-4 h-4" />
+                          Teacher Dashboard
+                        </Link>
+                      )}
+                      <button
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          handleSignOut();
+                        }}
+                        className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Sign Out
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             ) : (
               <>
-                <Button variant="outline" size="sm">
-                  Sign In
-                </Button>
-                <Button variant="primary" size="sm">
-                  Sign Up
-                </Button>
+                <Link to="/login">
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="primary" size="sm">
+                    Sign Up
+                  </Button>
+                </Link>
               </>
             )}
           </div>
@@ -120,22 +182,46 @@ export default function Header() {
               >
                 🏆 Leaderboard
               </Link>
-              {currentUser ? (
-                <Link
-                  to={isTeacher ? '/dashboard' : '/profile'}
-                  className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Profile
-                </Link>
+              {user ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    My Profile
+                  </Link>
+                  {profile?.is_teacher && (
+                    <Link
+                      to="/dashboard"
+                      className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Teacher Dashboard
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      handleSignOut();
+                    }}
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 text-left"
+                  >
+                    Sign Out
+                  </button>
+                </>
               ) : (
                 <div className="flex flex-col gap-2 pt-2">
-                  <Button variant="outline" size="sm">
-                    Sign In
-                  </Button>
-                  <Button variant="primary" size="sm">
-                    Sign Up
-                  </Button>
+                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" size="sm" fullWidth>
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="primary" size="sm" fullWidth>
+                      Sign Up
+                    </Button>
+                  </Link>
                 </div>
               )}
             </div>

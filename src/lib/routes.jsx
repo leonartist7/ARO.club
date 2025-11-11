@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 // Pages (lazy loaded for better performance)
 import { lazy } from 'react';
@@ -18,6 +19,12 @@ const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
 const FAQPage = lazy(() => import('../pages/FAQPage'));
 const ContactPage = lazy(() => import('../pages/ContactPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+
+// Auth Pages
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const SignupPage = lazy(() => import('../pages/SignupPage'));
+const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage'));
+const AuthCallbackPage = lazy(() => import('../pages/AuthCallbackPage'));
 
 /**
  * App routes configuration
@@ -45,11 +52,19 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <StudentProfilePage />,
+        element: (
+          <ProtectedRoute>
+            <StudentProfilePage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'dashboard',
-        element: <TeacherDashboardPage />,
+        element: (
+          <ProtectedRoute>
+            <TeacherDashboardPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'map',
@@ -78,6 +93,22 @@ export const router = createBrowserRouter([
       {
         path: 'contact',
         element: <ContactPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'signup',
+        element: <SignupPage />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: 'auth/callback',
+        element: <AuthCallbackPage />,
       },
       {
         path: '*',
