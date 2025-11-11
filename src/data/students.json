@@ -1,0 +1,253 @@
+[
+  {
+    "id": "s1",
+    "name": "Emma Thompson",
+    "email": "emma.thompson@example.com",
+    "photo": "https://i.pravatar.cc/300?img=1",
+    "bio": "Language enthusiast and travel blogger. Learning French to finally understand Amélie without subtitles!",
+    "memberSince": "2025-03-15",
+    "points": 340,
+    "level": 3,
+    "levelName": "Cultural Connector",
+    "badges": ["first-booking", "early-bird", "polyglot"],
+    "languagesLearning": [
+      { "code": "fr", "level": "intermediate", "progress": 65 },
+      { "code": "es", "level": "beginner", "progress": 30 },
+      { "code": "it", "level": "beginner", "progress": 20 }
+    ],
+    "stats": {
+      "totalExperiences": 17,
+      "citiesVisited": 3,
+      "teachersMet": 8,
+      "reviewsWritten": 12
+    },
+    "upcomingBookings": ["exp1", "exp6", "exp22"],
+    "pastBookings": ["exp2", "exp3", "exp7", "exp13", "exp14"],
+    "favoriteTeachers": ["t1", "t2", "t6"]
+  },
+  {
+    "id": "s2",
+    "name": "James Chen",
+    "email": "james.chen@example.com",
+    "photo": "https://i.pravatar.cc/300?img=13",
+    "bio": "Tech professional learning Japanese for business. Anime got me interested, work keeps me motivated!",
+    "memberSince": "2025-04-20",
+    "points": 520,
+    "level": 4,
+    "levelName": "Conversation Master",
+    "badges": ["first-booking", "early-bird", "polyglot", "review-master"],
+    "languagesLearning": [
+      { "code": "ja", "level": "intermediate", "progress": 55 },
+      { "code": "zh", "level": "advanced", "progress": 85 }
+    ],
+    "stats": {
+      "totalExperiences": 26,
+      "citiesVisited": 2,
+      "teachersMet": 6,
+      "reviewsWritten": 18
+    },
+    "upcomingBookings": ["exp3", "exp15"],
+    "pastBookings": ["exp1", "exp7", "exp20", "exp21", "exp34"],
+    "favoriteTeachers": ["t3", "t12", "t15"]
+  },
+  {
+    "id": "s3",
+    "name": "Maria Garcia",
+    "email": "maria.garcia@example.com",
+    "photo": "https://i.pravatar.cc/300?img=5",
+    "bio": "Foodie and culture lover from Miami. Learning Spanish and Portuguese to connect with my roots!",
+    "memberSince": "2025-02-10",
+    "points": 890,
+    "level": 4,
+    "levelName": "Conversation Master",
+    "badges": ["first-booking", "early-bird", "polyglot", "globe-trotter", "review-master"],
+    "languagesLearning": [
+      { "code": "es", "level": "advanced", "progress": 90 },
+      { "code": "pt", "level": "intermediate", "progress": 60 }
+    ],
+    "stats": {
+      "totalExperiences": 45,
+      "citiesVisited": 6,
+      "teachersMet": 12,
+      "reviewsWritten": 28
+    },
+    "upcomingBookings": ["exp2", "exp25"],
+    "pastBookings": ["exp5", "exp9", "exp13", "exp14", "exp19", "exp35"],
+    "favoriteTeachers": ["t2", "t5", "t10", "t13"]
+  },
+  {
+    "id": "s4",
+    "name": "Alex Kim",
+    "email": "alex.kim@example.com",
+    "photo": "https://i.pravatar.cc/300?img=14",
+    "bio": "Anime and manga superfan. Learning Japanese so I can read manga without waiting for translations!",
+    "memberSince": "2025-05-05",
+    "points": 670,
+    "level": 4,
+    "levelName": "Conversation Master",
+    "badges": ["first-booking", "early-bird", "polyglot", "weekend-warrior"],
+    "languagesLearning": [
+      { "code": "ja", "level": "intermediate", "progress": 70 },
+      { "code": "ko", "level": "beginner", "progress": 35 }
+    ],
+    "stats": {
+      "totalExperiences": 34,
+      "citiesVisited": 2,
+      "teachersMet": 5,
+      "reviewsWritten": 22
+    },
+    "upcomingBookings": ["exp3", "exp15", "exp34"],
+    "pastBookings": ["exp7", "exp20", "exp28"],
+    "favoriteTeachers": ["t3", "t12"]
+  },
+  {
+    "id": "s5",
+    "name": "Sarah Johnson",
+    "email": "sarah.j@example.com",
+    "photo": "https://i.pravatar.cc/300?img=9",
+    "bio": "Fashion designer exploring global trends. Languages open doors to authentic cultural experiences!",
+    "memberSince": "2025-01-20",
+    "points": 1240,
+    "level": 5,
+    "levelName": "Polyglot Pro",
+    "badges": ["first-booking", "early-bird", "polyglot", "globe-trotter", "social-butterfly", "review-master", "culture-vulture"],
+    "languagesLearning": [
+      { "code": "fr", "level": "advanced", "progress": 88 },
+      { "code": "it", "level": "intermediate", "progress": 62 },
+      { "code": "ja", "level": "intermediate", "progress": 58 },
+      { "code": "ko", "level": "beginner", "progress": 40 }
+    ],
+    "stats": {
+      "totalExperiences": 62,
+      "citiesVisited": 8,
+      "teachersMet": 18,
+      "reviewsWritten": 45
+    },
+    "upcomingBookings": ["exp1", "exp3", "exp17"],
+    "pastBookings": ["exp2", "exp6", "exp14", "exp22", "exp28"],
+    "favoriteTeachers": ["t1", "t3", "t4", "t6", "t11"]
+  },
+  {
+    "id": "s6",
+    "name": "David Rodriguez",
+    "email": "david.r@example.com",
+    "photo": "https://i.pravatar.cc/300?img=12",
+    "bio": "Salsa dancer and Latin music lover. Learning Spanish to understand the lyrics and connect with the culture!",
+    "memberSince": "2025-06-01",
+    "points": 180,
+    "level": 2,
+    "levelName": "Language Enthusiast",
+    "badges": ["first-booking", "early-bird"],
+    "languagesLearning": [
+      { "code": "es", "level": "intermediate", "progress": 45 }
+    ],
+    "stats": {
+      "totalExperiences": 9,
+      "citiesVisited": 2,
+      "teachersMet": 3,
+      "reviewsWritten": 6
+    },
+    "upcomingBookings": ["exp5", "exp25"],
+    "pastBookings": ["exp2", "exp13", "exp19"],
+    "favoriteTeachers": ["t2", "t13"]
+  },
+  {
+    "id": "s7",
+    "name": "Rachel Park",
+    "email": "rachel.park@example.com",
+    "photo": "https://i.pravatar.cc/300?img=23",
+    "bio": "K-drama addict and Korean beauty enthusiast. Learning Korean to watch dramas without subtitles and understand K-beauty ingredients!",
+    "memberSince": "2025-04-10",
+    "points": 420,
+    "level": 3,
+    "levelName": "Cultural Connector",
+    "badges": ["first-booking", "early-bird", "weekend-warrior"],
+    "languagesLearning": [
+      { "code": "ko", "level": "intermediate", "progress": 68 }
+    ],
+    "stats": {
+      "totalExperiences": 21,
+      "citiesVisited": 1,
+      "teachersMet": 2,
+      "reviewsWritten": 15
+    },
+    "upcomingBookings": ["exp4", "exp10", "exp17"],
+    "pastBookings": ["exp30"],
+    "favoriteTeachers": ["t4", "t14"]
+  },
+  {
+    "id": "s8",
+    "name": "Michael Costa",
+    "email": "michael.costa@example.com",
+    "photo": "https://i.pravatar.cc/300?img=33",
+    "bio": "Music producer exploring global sounds. Learning Portuguese for fado and bossa nova!",
+    "memberSince": "2025-03-25",
+    "points": 310,
+    "level": 3,
+    "levelName": "Cultural Connector",
+    "badges": ["first-booking", "early-bird", "polyglot"],
+    "languagesLearning": [
+      { "code": "pt", "level": "intermediate", "progress": 50 },
+      { "code": "es", "level": "beginner", "progress": 25 }
+    ],
+    "stats": {
+      "totalExperiences": 15,
+      "citiesVisited": 3,
+      "teachersMet": 5,
+      "reviewsWritten": 10
+    },
+    "upcomingBookings": ["exp9", "exp27"],
+    "pastBookings": ["exp19", "exp35"],
+    "favoriteTeachers": ["t5", "t10"]
+  },
+  {
+    "id": "s9",
+    "name": "Jessica Lee",
+    "email": "jessica.lee@example.com",
+    "photo": "https://i.pravatar.cc/300?img=26",
+    "bio": "Food blogger and culinary explorer. Using language learning as an excuse to eat amazing food around the world!",
+    "memberSince": "2025-02-15",
+    "points": 780,
+    "level": 4,
+    "levelName": "Conversation Master",
+    "badges": ["first-booking", "early-bird", "polyglot", "globe-trotter", "review-master"],
+    "languagesLearning": [
+      { "code": "ko", "level": "intermediate", "progress": 65 },
+      { "code": "ja", "level": "beginner", "progress": 40 },
+      { "code": "es", "level": "intermediate", "progress": 55 }
+    ],
+    "stats": {
+      "totalExperiences": 39,
+      "citiesVisited": 5,
+      "teachersMet": 11,
+      "reviewsWritten": 25
+    },
+    "upcomingBookings": ["exp10", "exp25"],
+    "pastBookings": ["exp2", "exp7", "exp21", "exp30"],
+    "favoriteTeachers": ["t2", "t4", "t12", "t13"]
+  },
+  {
+    "id": "s10",
+    "name": "Tom Wilson",
+    "email": "tom.wilson@example.com",
+    "photo": "https://i.pravatar.cc/300?img=11",
+    "bio": "Chef learning Japanese to master authentic ramen and sushi techniques. Food is a universal language!",
+    "memberSince": "2025-05-20",
+    "points": 260,
+    "level": 3,
+    "levelName": "Cultural Connector",
+    "badges": ["first-booking", "early-bird"],
+    "languagesLearning": [
+      { "code": "ja", "level": "beginner", "progress": 48 }
+    ],
+    "stats": {
+      "totalExperiences": 13,
+      "citiesVisited": 1,
+      "teachersMet": 3,
+      "reviewsWritten": 8
+    },
+    "upcomingBookings": ["exp7", "exp20"],
+    "pastBookings": ["exp3", "exp21"],
+    "favoriteTeachers": ["t3", "t12"]
+  }
+]
