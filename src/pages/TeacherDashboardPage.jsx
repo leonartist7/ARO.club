@@ -23,6 +23,8 @@ import { Card, CardBody } from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
 import Avatar from '../components/ui/Avatar';
+import EarningsChart from '../components/features/EarningsChart';
+import BookingRequests from '../components/features/BookingRequests';
 import teachersData from '../data/teachers.json';
 import experiencesData from '../data/experiences.json';
 import reviewsData from '../data/reviews.json';
@@ -285,6 +287,29 @@ export default function TeacherDashboardPage() {
                 <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
                   <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
                 </div>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
+
+        {/* Earnings Chart & Booking Requests Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* Earnings Chart */}
+          <Card>
+            <CardBody>
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Earnings Overview</h2>
+              <EarningsChart experiences={allExperiences} />
+            </CardBody>
+          </Card>
+
+          {/* Booking Requests */}
+          <Card>
+            <CardBody>
+              <h2 className="text-xl font-bold text-gray-900 mb-6">
+                Pending Booking Requests
+              </h2>
+              <div className="max-h-96 overflow-y-auto">
+                <BookingRequests />
               </div>
             </CardBody>
           </Card>
