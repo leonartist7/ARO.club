@@ -24,6 +24,7 @@ import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
 import TeacherCard from '../components/features/TeacherCard';
+import EditProfileModal from '../components/features/EditProfileModal';
 import studentsData from '../data/students.json';
 import experiencesData from '../data/experiences.json';
 import teachersData from '../data/teachers.json';
@@ -34,7 +35,8 @@ import { useAuth } from '../contexts/AuthContext';
 
 export default function StudentProfilePage() {
   const [activeTab, setActiveTab] = useState('overview');
-  const { profile, loading } = useAuth();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const { profile, loading, updateProfile } = useAuth();
 
   // Use Supabase profile if available, fallback to mock data
   const student = profile || studentsData[0];
@@ -97,6 +99,16 @@ export default function StudentProfilePage() {
   const favoriteTeachers = teachersData.filter((teacher) =>
     favoriteTeacherIds.includes(teacher.id)
   );
+
+  // Handle profile save
+  const handleSaveProfile = async (updatedData) => {
+    // If using Supabase, update profile
+    if (updateProfile) {
+      await updateProfile(updatedData);
+    }
+    // For mock data, just log (will persist when connected to Supabase)
+    console.log('Profile updated:', updatedData);
+  };
 
   // Mobile tab content
   const tabs = [
@@ -168,7 +180,7 @@ export default function StudentProfilePage() {
               variant="secondary"
               size="md"
               icon={<Edit2 className="w-4 h-4" />}
-              onClick={() => alert('Edit profile feature coming soon!')}
+              onClick={() => setIsEditModalOpen(true)}
               className="self-start"
             >
               Edit Profile
@@ -497,6 +509,14 @@ export default function StudentProfilePage() {
           )}
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      <EditProfileModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        profile={student}
+        onSave={handleSaveProfile}
+      />
     </motion.div>
   );
 }
