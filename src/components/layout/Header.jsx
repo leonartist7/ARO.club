@@ -26,10 +26,13 @@ export default function Header() {
 
   const handleSignOut = async () => {
     try {
+      setUserMenuOpen(false);
+      setMobileMenuOpen(false);
       await signOut();
       navigate('/');
     } catch (error) {
       console.error('Error signing out:', error);
+      alert('Failed to sign out. Please try again.');
     }
   };
 
@@ -118,10 +121,7 @@ export default function Header() {
                         </Link>
                       )}
                       <button
-                        onClick={() => {
-                          setUserMenuOpen(false);
-                          handleSignOut();
-                        }}
+                        onClick={handleSignOut}
                         className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
                       >
                         <LogOut className="w-4 h-4" />
@@ -201,10 +201,7 @@ export default function Header() {
                     </Link>
                   )}
                   <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      handleSignOut();
-                    }}
+                    onClick={handleSignOut}
                     className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 text-left"
                   >
                     Sign Out
