@@ -26,8 +26,28 @@ export default function LeaderboardPage() {
   // Current user (first student)
   const currentUserId = studentsData[0].id;
 
+  // Filter students by time period
+  // Note: This is a mock implementation. In production, points would have timestamps
+  // and we'd filter based on when they were earned via Supabase query
+  const getFilteredStudents = () => {
+    let filtered = [...studentsData];
+
+    if (activeFilter === 'week') {
+      // Mock: Show only students with points > 100 (simulating recent activity)
+      // In production: Filter by points earned in last 7 days
+      filtered = filtered.filter(s => s.points > 100);
+    } else if (activeFilter === 'month') {
+      // Mock: Show only students with points > 50 (simulating monthly activity)
+      // In production: Filter by points earned in last 30 days
+      filtered = filtered.filter(s => s.points > 50);
+    }
+    // 'all-time' shows everyone
+
+    return filtered;
+  };
+
   // Sort students by points
-  const rankedStudents = [...studentsData].sort((a, b) => b.points - a.points);
+  const rankedStudents = getFilteredStudents().sort((a, b) => b.points - a.points);
 
   // Top 3 for podium
   const topThree = rankedStudents.slice(0, 3);
@@ -39,11 +59,12 @@ export default function LeaderboardPage() {
   const currentUserRank = rankedStudents.findIndex((s) => s.id === currentUserId) + 1;
   const currentUser = rankedStudents.find((s) => s.id === currentUserId);
 
-  // Community stats
-  const totalPoints = studentsData.reduce((sum, s) => sum + s.points, 0);
-  const totalExperiences = studentsData.reduce((sum, s) => sum + s.stats.totalExperiences, 0);
-  const totalBadgesEarned = studentsData.reduce((sum, s) => sum + s.badges.length, 0);
-  const avgPointsPerUser = Math.round(totalPoints / studentsData.length);
+  // Community stats (based on filtered data)
+  const filteredStudents = getFilteredStudents();
+  const totalPoints = filteredStudents.reduce((sum, s) => sum + s.points, 0);
+  const totalExperiences = filteredStudents.reduce((sum, s) => sum + s.stats.totalExperiences, 0);
+  const totalBadgesEarned = filteredStudents.reduce((sum, s) => sum + s.badges.length, 0);
+  const avgPointsPerUser = filteredStudents.length > 0 ? Math.round(totalPoints / filteredStudents.length) : 0;
 
   const filters = [
     { id: 'all-time', label: 'All Time' },
@@ -68,8 +89,15 @@ export default function LeaderboardPage() {
             <h1 className="text-4xl font-display font-bold text-gray-900">Leaderboard</h1>
           </div>
           <p className="text-gray-600 text-lg">
-            Compete with learners worldwide and climb the ranks!
+            {activeFilter === 'all-time' && 'Compete with learners worldwide and climb the ranks!'}
+            {activeFilter === 'month' && 'Top performers this month'}
+            {activeFilter === 'week' && 'Top performers this week'}
           </p>
+          {activeFilter !== 'all-time' && (
+            <p className="text-sm text-gray-500 mt-2">
+              Showing learners with recent activity
+            </p>
+          )}
         </div>
 
         {/* Filters */}
