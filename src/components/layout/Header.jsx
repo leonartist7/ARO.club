@@ -4,6 +4,7 @@ import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-
 import Button from '../ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../ui/Avatar';
+import NotificationCenter from '../features/NotificationCenter';
 
 const navigation = [
   { name: 'Explore', href: '/explore' },
@@ -70,6 +71,8 @@ export default function Header() {
                 Leaderboard
               </Button>
             </Link>
+
+            {user && <NotificationCenter />}
 
             {user ? (
               <div className="relative">
