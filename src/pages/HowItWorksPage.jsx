@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
+import VideoPlayer from '../components/ui/VideoPlayer';
 
 export default function HowItWorksPage() {
   const steps = [
@@ -211,7 +212,7 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* Video Placeholder */}
+      {/* Video Section */}
       <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-8">
@@ -222,19 +223,17 @@ export default function HowItWorksPage() {
               Watch how TongueConnect brings language learning to life
             </p>
           </div>
-          <Card className="max-w-4xl mx-auto">
-            <CardBody className="p-0">
-              <div className="aspect-video bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🎬</div>
-                  <p className="text-gray-600 font-medium">Video Coming Soon</p>
-                  <p className="text-gray-500 text-sm">
-                    See real students learning in real situations
-                  </p>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
+          <div className="max-w-4xl mx-auto">
+            <VideoPlayer
+              // videoUrl="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+              // thumbnail="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg"
+              title="TongueConnect Introduction"
+              placeholder="Video Coming Soon"
+            />
+            <p className="text-center text-sm text-gray-500 mt-4">
+              See real students learning in real situations
+            </p>
+          </div>
         </div>
       </div>
 

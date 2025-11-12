@@ -11,6 +11,8 @@ import {
   HelpCircle,
   MessageCircle,
   Globe,
+  AlertCircle,
+  Loader2,
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
@@ -23,20 +25,72 @@ export default function ContactPage() {
     subject: '',
     message: '',
   });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock submission
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    setError('');
+
+    // Validation
+    if (!formData.name.trim()) {
+      setError('Please enter your name');
+      return;
+    }
+
+    if (!formData.email.trim() || !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    if (!formData.subject.trim()) {
+      setError('Please enter a subject');
+      return;
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 20) {
+      setError('Message must be at least 20 characters');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // In production, would call Supabase:
+      // await supabase.from('contact_messages').insert([{
+      //   name: formData.name.trim(),
+      //   email: formData.email.trim(),
+      //   subject: formData.subject.trim(),
+      //   message: formData.message.trim(),
+      //   status: 'unread',
+      //   created_at: new Date().toISOString()
+      // }]);
+
+      console.log('Contact form submitted:', formData);
+
+      setSubmitted(true);
+
+      // Reset after 4 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 4000);
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setError('Failed to send message. Please try again or email us directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error when user types
+    if (error) setError('');
   };
 
   return (
@@ -93,6 +147,18 @@ export default function ContactPage() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Error Message */}
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
+                      >
+                        <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-red-700">{error}</p>
+                      </motion.div>
+                    )}
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -103,6 +169,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={(e) => handleChange('name', e.target.value)}
                           placeholder="John Doe"
+                          disabled={loading}
                           required
                         />
                       </div>
@@ -116,6 +183,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={(e) => handleChange('email', e.target.value)}
                           placeholder="john@example.com"
+                          disabled={loading}
                           required
                         />
                       </div>
@@ -130,6 +198,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={(e) => handleChange('subject', e.target.value)}
                         placeholder="How can we help you?"
+                        disabled={loading}
                         required
                       />
                     </div>
@@ -143,8 +212,9 @@ export default function ContactPage() {
                         onChange={(e) => handleChange('message', e.target.value)}
                         placeholder="Tell us more about your inquiry..."
                         rows={6}
+                        disabled={loading}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-gray-50 disabled:text-gray-500"
                       />
                     </div>
 
@@ -152,10 +222,19 @@ export default function ContactPage() {
                       type="submit"
                       variant="primary"
                       size="lg"
-                      icon={<Send className="w-5 h-5" />}
+                      disabled={loading}
+                      loading={loading}
+                      icon={!loading ? <Send className="w-5 h-5" /> : undefined}
                       className="w-full sm:w-auto"
                     >
-                      Send Message
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                          Sending...
+                        </>
+                      ) : (
+                        'Send Message'
+                      )}
                     </Button>
                   </form>
                 )}
