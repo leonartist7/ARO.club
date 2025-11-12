@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import { router } from './lib/routes';
 import { AuthProvider } from './contexts/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
@@ -14,10 +15,12 @@ const PageLoader = () => (
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <Suspense fallback={<PageLoader />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Suspense fallback={<PageLoader />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
