@@ -6,6 +6,7 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
+import ContactTeacherModal from '../components/features/ContactTeacherModal';
 import experiencesData from '../data/experiences.json';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
@@ -16,6 +17,7 @@ import { useState } from 'react';
 export default function TeacherProfilePage() {
   const { id } = useParams();
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const teacher = teachersData.find((t) => t.id === id);
 
@@ -380,7 +382,7 @@ export default function TeacherProfilePage() {
                   size="lg"
                   className="w-full"
                   icon={<MessageCircle className="w-5 h-5" />}
-                  onClick={() => alert('Messaging feature coming soon!')}
+                  onClick={() => setIsContactModalOpen(true)}
                 >
                   Contact {teacher.name.split(' ')[0]}
                 </Button>
@@ -413,6 +415,13 @@ export default function TeacherProfilePage() {
           </div>
         </div>
       </div>
+
+      {/* Contact Teacher Modal */}
+      <ContactTeacherModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        teacher={teacher}
+      />
     </motion.div>
   );
 }
