@@ -5,6 +5,7 @@ import Button from '../ui/Button';
 import Input from '../ui/Input';
 import Avatar from '../ui/Avatar';
 import { Card, CardBody } from '../ui/Card';
+import ImageUpload from '../ui/ImageUpload';
 
 export default function EditProfileModal({ isOpen, onClose, profile, onSave }) {
   const [formData, setFormData] = useState({
@@ -50,19 +51,11 @@ export default function EditProfileModal({ isOpen, onClose, profile, onSave }) {
     }
   };
 
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Create preview URL
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          photo: reader.result,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
+  const handlePhotoUpload = (file, previewUrl) => {
+    setFormData({
+      ...formData,
+      photo: previewUrl,
+    });
   };
 
   return (
@@ -121,46 +114,15 @@ export default function EditProfileModal({ isOpen, onClose, profile, onSave }) {
                     {/* Form */}
                     <form onSubmit={handleSubmit} className="space-y-6">
                       {/* Photo Upload */}
-                      <div className="flex flex-col items-center gap-4">
-                        <Avatar
-                          src={formData.photo}
-                          alt={formData.name}
-                          name={formData.name}
-                          size="2xl"
+                      <div>
+                        <ImageUpload
+                          onUpload={handlePhotoUpload}
+                          currentImage={formData.photo}
+                          maxSizeMB={5}
+                          aspectRatio="1/1"
+                          label="Profile Photo"
+                          acceptedFormats={['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/gif']}
                         />
-                        <div className="flex gap-3">
-                          <label htmlFor="photo-upload">
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              icon={<Upload className="w-4 h-4" />}
-                              onClick={() => document.getElementById('photo-upload').click()}
-                            >
-                              Change Photo
-                            </Button>
-                          </label>
-                          <input
-                            id="photo-upload"
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoUpload}
-                            className="hidden"
-                          />
-                          {formData.photo && (
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setFormData({ ...formData, photo: '' })}
-                            >
-                              Remove
-                            </Button>
-                          )}
-                        </div>
-                        <p className="text-xs text-gray-500">
-                          JPG, PNG or GIF. Max 5MB.
-                        </p>
                       </div>
 
                       {/* Name */}
