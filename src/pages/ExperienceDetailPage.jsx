@@ -6,6 +6,7 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
+import ReviewForm from '../components/features/ReviewForm';
 import experiencesData from '../data/experiences.json';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
@@ -18,6 +19,7 @@ export default function ExperienceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
 
   const experience = experiencesData.find((exp) => exp.id === id);
 
@@ -70,6 +72,14 @@ export default function ExperienceDetailPage() {
     } else {
       alert('Share link: ' + window.location.href);
     }
+  };
+
+  const handleReviewSubmit = async (reviewData) => {
+    // This will be connected to Supabase later
+    // For now, just log and close the form
+    console.log('Review submitted:', reviewData);
+    // In production, would call:
+    // await supabase.from('reviews').insert([reviewData]);
   };
 
   return (
@@ -244,6 +254,43 @@ export default function ExperienceDetailPage() {
                 </div>
               </CardBody>
             </Card>
+
+            {/* Write a Review Button */}
+            {!showReviewForm && (
+              <Card>
+                <CardBody>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">
+                        Attended this experience?
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Share your experience with others
+                      </p>
+                    </div>
+                    <Button
+                      variant="primary"
+                      onClick={() => setShowReviewForm(true)}
+                      icon={<Star className="w-4 h-4" />}
+                    >
+                      Write a Review
+                    </Button>
+                  </div>
+                </CardBody>
+              </Card>
+            )}
+
+            {/* Review Form */}
+            {showReviewForm && (
+              <ReviewForm
+                experienceId={id}
+                teacherId={teacher?.id}
+                experienceName={experience.title}
+                onSubmit={handleReviewSubmit}
+                onCancel={() => setShowReviewForm(false)}
+                isModal={false}
+              />
+            )}
 
             {/* Reviews */}
             {experienceReviews.length > 0 && (
