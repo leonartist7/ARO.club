@@ -16,6 +16,7 @@ import {
   Heart,
   Lock,
   CheckCircle2,
+  Loader2,
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
@@ -29,44 +30,72 @@ import teachersData from '../data/teachers.json';
 import { BADGE_DEFINITIONS, LANGUAGES } from '../data/constants';
 import { formatDate } from '../utils/date';
 import { getLevelFromPoints, getProgressToNextLevel } from '../utils/helpers';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function StudentProfilePage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const { profile, loading } = useAuth();
 
-  // Use first student as current user
-  const student = studentsData[0];
+  // Use Supabase profile if available, fallback to mock data
+  const student = profile || studentsData[0];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
+      </div>
+    );
+  }
 
   // Get level info
-  const levelInfo = getLevelFromPoints(student.points);
-  const progressInfo = getProgressToNextLevel(student.points);
+  const levelInfo = getLevelFromPoints(student.points || 0);
+  const progressInfo = getProgressToNextLevel(student.points || 0);
 
-  // Get earned and locked badges
+  // Get earned and locked badges - safely handle missing data
+  const studentBadges = student.badges || [];
   const earnedBadges = BADGE_DEFINITIONS.filter((badge) =>
-    student.badges.includes(badge.id)
+    studentBadges.includes(badge.id)
   );
   const lockedBadges = BADGE_DEFINITIONS.filter(
-    (badge) => !student.badges.includes(badge.id)
+    (badge) => !studentBadges.includes(badge.id)
   );
 
-  // Get languages with metadata
-  const languagesLearning = student.languagesLearning.map((lang) => ({
-    ...lang,
-    ...LANGUAGES.find((l) => l.code === lang.code),
-  }));
+  // Safely get stats - handle both snake_case and camelCase
+  const stats = student.stats || {
+    totalExperiences: 0,
+    citiesVisited: 0,
+    teachersMet: 0,
+    reviewsWritten: 0,
+  };
 
-  // Get upcoming experiences
+  // Get languages with metadata - safely handle missing or malformed data
+  const languagesLearning = (student.languages_learning || student.languagesLearning || [])
+    .map((lang) => {
+      const languageData = LANGUAGES.find((l) => l.code === lang.code);
+      if (!languageData) return null; // Skip if language not found
+      return {
+        ...lang,
+        ...languageData,
+      };
+    })
+    .filter(Boolean); // Remove null entries
+
+  // Get upcoming experiences - handle both snake_case and camelCase
+  const upcomingBookings = student.upcoming_bookings || student.upcomingBookings || [];
   const upcomingExperiences = experiencesData
-    .filter((exp) => student.upcomingBookings.includes(exp.id))
+    .filter((exp) => upcomingBookings.includes(exp.id))
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  // Get past experiences
+  // Get past experiences - handle both snake_case and camelCase
+  const pastBookings = student.past_bookings || student.pastBookings || [];
   const pastExperiences = experiencesData
-    .filter((exp) => student.pastBookings.includes(exp.id))
+    .filter((exp) => pastBookings.includes(exp.id))
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Get favorite teachers
+  // Get favorite teachers - handle both snake_case and camelCase
+  const favoriteTeacherIds = student.favorite_teachers || student.favoriteTeachers || [];
   const favoriteTeachers = teachersData.filter((teacher) =>
-    student.favoriteTeachers.includes(teacher.id)
+    favoriteTeacherIds.includes(teacher.id)
   );
 
   // Mobile tab content
@@ -113,7 +142,7 @@ export default function StudentProfilePage() {
               <div className="flex items-center gap-2 text-white/80 mb-4">
                 <Calendar className="w-4 h-4" />
                 <span className="text-sm">
-                  Member since {formatDate(student.memberSince, 'MMMM yyyy')}
+                  Member since {formatDate(student.member_since || student.memberSince || new Date(), 'MMMM yyyy')}
                 </span>
               </div>
 
@@ -121,7 +150,7 @@ export default function StudentProfilePage() {
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-1">
                   <Trophy className="w-4 h-4" />
-                  <span className="font-medium">{student.points}</span> points
+                  <span className="font-medium">{student.points || 0}</span> points
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4" />
@@ -129,7 +158,7 @@ export default function StudentProfilePage() {
                 </div>
                 <div className="flex items-center gap-1">
                   <BookOpen className="w-4 h-4" />
-                  <span className="font-medium">{student.stats.totalExperiences}</span> experiences
+                  <span className="font-medium">{stats.totalExperiences}</span> experiences
                 </div>
               </div>
             </div>
@@ -196,7 +225,7 @@ export default function StudentProfilePage() {
                   {/* Points and Level */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-3xl font-bold text-gray-900">{student.points}</p>
+                      <p className="text-3xl font-bold text-gray-900">{student.points || 0}</p>
                       <p className="text-sm text-gray-600">Total Points</p>
                     </div>
                     <div className="text-right">
@@ -343,7 +372,7 @@ export default function StudentProfilePage() {
                   <div className="bg-primary-50 rounded-lg p-4">
                     <BookOpen className="w-5 h-5 text-primary-500 mb-2" />
                     <p className="text-2xl font-bold text-gray-900">
-                      {student.stats.totalExperiences}
+                      {stats.totalExperiences}
                     </p>
                     <p className="text-xs text-gray-600">Experiences</p>
                   </div>
@@ -351,7 +380,7 @@ export default function StudentProfilePage() {
                   <div className="bg-secondary-50 rounded-lg p-4">
                     <MapPin className="w-5 h-5 text-secondary-500 mb-2" />
                     <p className="text-2xl font-bold text-gray-900">
-                      {student.stats.citiesVisited}
+                      {stats.citiesVisited}
                     </p>
                     <p className="text-xs text-gray-600">Cities</p>
                   </div>
@@ -359,7 +388,7 @@ export default function StudentProfilePage() {
                   <div className="bg-purple-50 rounded-lg p-4">
                     <Users className="w-5 h-5 text-purple-500 mb-2" />
                     <p className="text-2xl font-bold text-gray-900">
-                      {student.stats.teachersMet}
+                      {stats.teachersMet}
                     </p>
                     <p className="text-xs text-gray-600">Teachers</p>
                   </div>
@@ -367,7 +396,7 @@ export default function StudentProfilePage() {
                   <div className="bg-yellow-50 rounded-lg p-4">
                     <MessageSquare className="w-5 h-5 text-yellow-600 mb-2" />
                     <p className="text-2xl font-bold text-gray-900">
-                      {student.stats.reviewsWritten}
+                      {stats.reviewsWritten}
                     </p>
                     <p className="text-xs text-gray-600">Reviews</p>
                   </div>
@@ -376,12 +405,14 @@ export default function StudentProfilePage() {
             </Card>
 
             {/* Bio */}
-            <Card>
-              <CardBody>
-                <h3 className="font-semibold text-gray-900 mb-2">About</h3>
-                <p className="text-sm text-gray-700 leading-relaxed">{student.bio}</p>
-              </CardBody>
-            </Card>
+            {student.bio && (
+              <Card>
+                <CardBody>
+                  <h3 className="font-semibold text-gray-900 mb-2">About</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed">{student.bio}</p>
+                </CardBody>
+              </Card>
+            )}
           </div>
         </div>
 
