@@ -1,0 +1,316 @@
+[
+  {
+    "id": "lesson-1",
+    "title": "Basic Greetings",
+    "description": "Learn essential greetings in your target language",
+    "language": "French",
+    "difficulty": "beginner",
+    "category": "vocabulary",
+    "icon": "👋",
+    "points_reward": 10,
+    "duration_minutes": 10,
+    "order_index": 1,
+    "is_locked": false,
+    "unlock_requirements": {},
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "Welcome!",
+          "body": "Let's learn basic French greetings. These are essential phrases you'll use every day!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "Bonjour", "back": "Hello / Good morning"},
+            {"front": "Bonsoir", "back": "Good evening"},
+            {"front": "Salut", "back": "Hi (informal)"},
+            {"front": "Au revoir", "back": "Goodbye"},
+            {"front": "À bientôt", "back": "See you soon"}
+          ]
+        }
+      },
+      {
+        "type": "quiz",
+        "data": {
+          "question": "How do you say 'Hello' in French?",
+          "options": ["Bonjour", "Bonsoir", "Salut", "Merci"],
+          "correct": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-2",
+    "title": "Numbers 1-10",
+    "description": "Master counting from 1 to 10",
+    "language": "French",
+    "difficulty": "beginner",
+    "category": "vocabulary",
+    "icon": "🔢",
+    "points_reward": 10,
+    "duration_minutes": 12,
+    "order_index": 2,
+    "is_locked": false,
+    "unlock_requirements": {},
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "French Numbers",
+          "body": "Numbers are fundamental. Let's learn 1-10 in French!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "un", "back": "1"},
+            {"front": "deux", "back": "2"},
+            {"front": "trois", "back": "3"},
+            {"front": "quatre", "back": "4"},
+            {"front": "cinq", "back": "5"},
+            {"front": "six", "back": "6"},
+            {"front": "sept", "back": "7"},
+            {"front": "huit", "back": "8"},
+            {"front": "neuf", "back": "9"},
+            {"front": "dix", "back": "10"}
+          ]
+        }
+      },
+      {
+        "type": "quiz",
+        "data": {
+          "question": "What is 'cinq' in English?",
+          "options": ["3", "4", "5", "6"],
+          "correct": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-3",
+    "title": "Common Phrases",
+    "description": "Essential phrases for daily conversation",
+    "language": "French",
+    "difficulty": "beginner",
+    "category": "conversation",
+    "icon": "💬",
+    "points_reward": 15,
+    "duration_minutes": 15,
+    "order_index": 3,
+    "is_locked": true,
+    "unlock_requirements": {
+      "requiredLessons": ["lesson-1"],
+      "minPoints": 10
+    },
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "Useful Phrases",
+          "body": "These phrases will help you navigate daily situations in French!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "S'il vous plaît", "back": "Please (formal)"},
+            {"front": "Merci", "back": "Thank you"},
+            {"front": "De rien", "back": "You're welcome"},
+            {"front": "Excusez-moi", "back": "Excuse me"},
+            {"front": "Pardon", "back": "Sorry"},
+            {"front": "Comment allez-vous?", "back": "How are you? (formal)"},
+            {"front": "Ça va?", "back": "How's it going? (informal)"}
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-4",
+    "title": "Present Tense Verbs",
+    "description": "Learn to conjugate common verbs in present tense",
+    "language": "French",
+    "difficulty": "intermediate",
+    "category": "grammar",
+    "icon": "📝",
+    "points_reward": 20,
+    "duration_minutes": 20,
+    "order_index": 4,
+    "is_locked": true,
+    "unlock_requirements": {
+      "requiredLessons": ["lesson-3"],
+      "minPoints": 35
+    },
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "Present Tense",
+          "body": "Learn how to conjugate regular -er, -ir, and -re verbs in the present tense."
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "je parle", "back": "I speak"},
+            {"front": "tu parles", "back": "you speak (informal)"},
+            {"front": "il/elle parle", "back": "he/she speaks"},
+            {"front": "nous parlons", "back": "we speak"},
+            {"front": "vous parlez", "back": "you speak (formal/plural)"},
+            {"front": "ils/elles parlent", "back": "they speak"}
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-5",
+    "title": "French Culture & Cuisine",
+    "description": "Explore French food culture and dining etiquette",
+    "language": "French",
+    "difficulty": "beginner",
+    "category": "culture",
+    "icon": "🥐",
+    "points_reward": 15,
+    "duration_minutes": 18,
+    "order_index": 5,
+    "is_locked": true,
+    "unlock_requirements": {
+      "requiredLessons": ["lesson-2"],
+      "minPoints": 20
+    },
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "La Cuisine Française",
+          "body": "French cuisine is world-renowned. Learn about classic dishes and dining customs!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "le croissant", "back": "a crescent-shaped pastry"},
+            {"front": "la baguette", "back": "a long, thin loaf of bread"},
+            {"front": "le fromage", "back": "cheese"},
+            {"front": "le vin", "back": "wine"},
+            {"front": "les escargots", "back": "snails"},
+            {"front": "la ratatouille", "back": "vegetable stew"}
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-6",
+    "title": "Spanish Basics",
+    "description": "Start your Spanish journey with basic phrases",
+    "language": "Spanish",
+    "difficulty": "beginner",
+    "category": "vocabulary",
+    "icon": "🌮",
+    "points_reward": 10,
+    "duration_minutes": 10,
+    "order_index": 6,
+    "is_locked": false,
+    "unlock_requirements": {},
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "¡Hola!",
+          "body": "Welcome to Spanish! Let's learn your first words."
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "Hola", "back": "Hello"},
+            {"front": "Adiós", "back": "Goodbye"},
+            {"front": "Gracias", "back": "Thank you"},
+            {"front": "Por favor", "back": "Please"},
+            {"front": "¿Cómo estás?", "back": "How are you?"}
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-7",
+    "title": "Japanese Hiragana",
+    "description": "Learn the first Japanese writing system",
+    "language": "Japanese",
+    "difficulty": "beginner",
+    "category": "vocabulary",
+    "icon": "🗾",
+    "points_reward": 25,
+    "duration_minutes": 25,
+    "order_index": 7,
+    "is_locked": false,
+    "unlock_requirements": {},
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "Introduction to Hiragana",
+          "body": "Hiragana is one of the three Japanese writing systems. Let's start with the vowels!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "あ", "back": "a"},
+            {"front": "い", "back": "i"},
+            {"front": "う", "back": "u"},
+            {"front": "え", "back": "e"},
+            {"front": "お", "back": "o"}
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "lesson-8",
+    "title": "Korean Hangul",
+    "description": "Master the Korean alphabet",
+    "language": "Korean",
+    "difficulty": "beginner",
+    "category": "vocabulary",
+    "icon": "🇰🇷",
+    "points_reward": 20,
+    "duration_minutes": 20,
+    "order_index": 8,
+    "is_locked": false,
+    "unlock_requirements": {},
+    "content": [
+      {
+        "type": "text",
+        "data": {
+          "title": "Hangul Basics",
+          "body": "Hangul is the Korean alphabet. It's logical and easy to learn!"
+        }
+      },
+      {
+        "type": "flashcard",
+        "data": {
+          "cards": [
+            {"front": "ㄱ", "back": "g/k"},
+            {"front": "ㄴ", "back": "n"},
+            {"front": "ㄷ", "back": "d/t"},
+            {"front": "ㅏ", "back": "a"},
+            {"front": "ㅓ", "back": "eo"}
+          ]
+        }
+      }
+    ]
+  }
+]

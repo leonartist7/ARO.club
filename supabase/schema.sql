@@ -136,6 +136,96 @@ CREATE TABLE user_badges (
 );
 
 -- ============================================
+-- LESSONS TABLE
+-- ============================================
+CREATE TABLE lessons (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title TEXT NOT NULL,
+  description TEXT,
+  language TEXT NOT NULL,
+  difficulty TEXT NOT NULL CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
+  category TEXT NOT NULL, -- grammar, vocabulary, conversation, culture
+  icon TEXT, -- emoji or icon name
+  points_reward INTEGER DEFAULT 10,
+  duration_minutes INTEGER DEFAULT 15,
+  content JSONB NOT NULL DEFAULT '[]', -- [{type: 'text|quiz|flashcard|audio', data: {...}}]
+  order_index INTEGER DEFAULT 0,
+  is_locked BOOLEAN DEFAULT FALSE,
+  unlock_requirements JSONB DEFAULT '{}', -- {requiredLessons: [], minPoints: 0}
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER LESSON PROGRESS TABLE
+-- ============================================
+CREATE TABLE user_lesson_progress (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  lesson_id UUID REFERENCES lessons(id) ON DELETE CASCADE,
+  status TEXT DEFAULT 'not_started' CHECK (status IN ('not_started', 'in_progress', 'completed')),
+  progress_percentage INTEGER DEFAULT 0 CHECK (progress_percentage >= 0 AND progress_percentage <= 100),
+  score INTEGER, -- quiz/test score
+  time_spent_minutes INTEGER DEFAULT 0,
+  last_accessed_at TIMESTAMP WITH TIME ZONE,
+  completed_at TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (user_id, lesson_id)
+);
+
+-- ============================================
+-- HOME OBJECTS TABLE (Items for 3D Home)
+-- ============================================
+CREATE TABLE home_objects (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  description TEXT,
+  category TEXT NOT NULL, -- furniture, decoration, plant, lighting, electronics, fun
+  icon TEXT, -- emoji or icon identifier
+  model_type TEXT NOT NULL, -- primitive shape: box, sphere, cylinder, or custom
+  model_config JSONB NOT NULL DEFAULT '{}', -- {color, size, geometry, etc.}
+  price_points INTEGER DEFAULT 0, -- 0 means free/earned
+  earn_requirement JSONB, -- {type: 'lesson_complete', lessonId: 'xxx'} or {type: 'achievement', points: 100}
+  is_unlocked_by_default BOOLEAN DEFAULT FALSE,
+  fun_fact TEXT, -- educational tidbit shown when interacting
+  interactive_message TEXT, -- message shown when tapped
+  rarity TEXT DEFAULT 'common' CHECK (rarity IN ('common', 'rare', 'epic', 'legendary')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER INVENTORY TABLE (Objects owned by user)
+-- ============================================
+CREATE TABLE user_inventory (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  object_id UUID REFERENCES home_objects(id) ON DELETE CASCADE,
+  acquired_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  acquisition_method TEXT, -- 'purchase', 'earned', 'reward', 'gift'
+  PRIMARY KEY (user_id, object_id)
+);
+
+-- ============================================
+-- USER HOME CUSTOMIZATION TABLE (Placed objects)
+-- ============================================
+CREATE TABLE user_home_customization (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  object_id UUID REFERENCES home_objects(id) ON DELETE CASCADE,
+  position_x DECIMAL DEFAULT 0,
+  position_y DECIMAL DEFAULT 0,
+  position_z DECIMAL DEFAULT 0,
+  rotation_x DECIMAL DEFAULT 0,
+  rotation_y DECIMAL DEFAULT 0,
+  rotation_z DECIMAL DEFAULT 0,
+  scale DECIMAL DEFAULT 1.0,
+  is_visible BOOLEAN DEFAULT TRUE,
+  custom_name TEXT, -- user can rename objects
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
 -- INDEXES for Performance
 -- ============================================
 CREATE INDEX idx_experiences_teacher ON experiences(teacher_id);
@@ -148,6 +238,14 @@ CREATE INDEX idx_bookings_experience ON bookings(experience_id);
 CREATE INDEX idx_reviews_teacher ON reviews(teacher_id);
 CREATE INDEX idx_reviews_experience ON reviews(experience_id);
 CREATE INDEX idx_teachers_user ON teachers(user_id);
+CREATE INDEX idx_lessons_language ON lessons(language);
+CREATE INDEX idx_lessons_difficulty ON lessons(difficulty);
+CREATE INDEX idx_lessons_order ON lessons(order_index);
+CREATE INDEX idx_user_lesson_progress_user ON user_lesson_progress(user_id);
+CREATE INDEX idx_user_lesson_progress_lesson ON user_lesson_progress(lesson_id);
+CREATE INDEX idx_home_objects_category ON home_objects(category);
+CREATE INDEX idx_user_inventory_user ON user_inventory(user_id);
+CREATE INDEX idx_user_home_customization_user ON user_home_customization(user_id);
 
 -- ============================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
@@ -251,6 +349,69 @@ CREATE POLICY "Users can earn badges"
   ON user_badges FOR INSERT
   WITH CHECK (user_id = auth.uid());
 
+-- Lessons: Public read
+ALTER TABLE lessons ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Lessons are viewable by everyone"
+  ON lessons FOR SELECT
+  USING (true);
+
+-- User Lesson Progress: Users can manage own progress
+ALTER TABLE user_lesson_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own lesson progress"
+  ON user_lesson_progress FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create own lesson progress"
+  ON user_lesson_progress FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own lesson progress"
+  ON user_lesson_progress FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- Home Objects: Public read
+ALTER TABLE home_objects ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Home objects are viewable by everyone"
+  ON home_objects FOR SELECT
+  USING (true);
+
+-- User Inventory: Users can manage own inventory
+ALTER TABLE user_inventory ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own inventory"
+  ON user_inventory FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can add to own inventory"
+  ON user_inventory FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can remove from own inventory"
+  ON user_inventory FOR DELETE
+  USING (user_id = auth.uid());
+
+-- User Home Customization: Users can manage own home
+ALTER TABLE user_home_customization ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own home customization"
+  ON user_home_customization FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create home customization"
+  ON user_home_customization FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update home customization"
+  ON user_home_customization FOR UPDATE
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can delete home customization"
+  ON user_home_customization FOR DELETE
+  USING (user_id = auth.uid());
+
 -- ============================================
 -- FUNCTIONS
 -- ============================================
@@ -287,6 +448,26 @@ CREATE TRIGGER update_bookings_updated_at
 
 CREATE TRIGGER update_reviews_updated_at
   BEFORE UPDATE ON reviews
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_lessons_updated_at
+  BEFORE UPDATE ON lessons
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_lesson_progress_updated_at
+  BEFORE UPDATE ON user_lesson_progress
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_home_objects_updated_at
+  BEFORE UPDATE ON home_objects
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_home_customization_updated_at
+  BEFORE UPDATE ON user_home_customization
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 

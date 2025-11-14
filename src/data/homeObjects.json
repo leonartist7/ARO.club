@@ -1,0 +1,324 @@
+[
+  {
+    "id": "obj-desk",
+    "name": "Study Desk",
+    "description": "A comfortable desk for language learning",
+    "category": "furniture",
+    "icon": "🪑",
+    "model_type": "box",
+    "model_config": {
+      "color": "#8B4513",
+      "width": 2,
+      "height": 0.8,
+      "depth": 1
+    },
+    "price_points": 0,
+    "earn_requirement": null,
+    "is_unlocked_by_default": true,
+    "fun_fact": "Did you know? Studies show that having a dedicated study space improves learning outcomes by 30%!",
+    "interactive_message": "Your study desk - where the magic happens!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-chair",
+    "name": "Comfy Chair",
+    "description": "A cozy chair for long study sessions",
+    "category": "furniture",
+    "icon": "💺",
+    "model_type": "box",
+    "model_config": {
+      "color": "#4A4A4A",
+      "width": 0.8,
+      "height": 1.2,
+      "depth": 0.8
+    },
+    "price_points": 0,
+    "earn_requirement": null,
+    "is_unlocked_by_default": true,
+    "fun_fact": "Ergonomic seating can improve focus and reduce fatigue during study sessions!",
+    "interactive_message": "Take a seat and get comfortable!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-bookshelf",
+    "name": "Language Bookshelf",
+    "description": "Store your language learning materials",
+    "category": "furniture",
+    "icon": "📚",
+    "model_type": "box",
+    "model_config": {
+      "color": "#CD853F",
+      "width": 1.5,
+      "height": 2,
+      "depth": 0.4
+    },
+    "price_points": 50,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Reading in your target language, even children's books, significantly improves vocabulary retention!",
+    "interactive_message": "Your growing collection of language resources!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-plant-small",
+    "name": "Lucky Bamboo",
+    "description": "A small bamboo plant for positive energy",
+    "category": "plant",
+    "icon": "🎋",
+    "model_type": "cylinder",
+    "model_config": {
+      "color": "#228B22",
+      "radius": 0.15,
+      "height": 0.6
+    },
+    "price_points": 25,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Indoor plants can improve air quality and reduce stress, creating a better learning environment!",
+    "interactive_message": "Your lucky bamboo brings good fortune to your studies!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-globe",
+    "name": "World Globe",
+    "description": "Explore the countries where your target languages are spoken",
+    "category": "decoration",
+    "icon": "🌍",
+    "model_type": "sphere",
+    "model_config": {
+      "color": "#4169E1",
+      "radius": 0.4
+    },
+    "price_points": 100,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "There are over 7,000 languages spoken worldwide! French is spoken in 29 countries.",
+    "interactive_message": "The world is waiting for you to explore!",
+    "rarity": "rare"
+  },
+  {
+    "id": "obj-lamp",
+    "name": "Study Lamp",
+    "description": "Illuminate your learning journey",
+    "category": "lighting",
+    "icon": "💡",
+    "model_type": "cylinder",
+    "model_config": {
+      "color": "#FFD700",
+      "radius": 0.2,
+      "height": 0.8
+    },
+    "price_points": 75,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Proper lighting reduces eye strain and can improve reading comprehension!",
+    "interactive_message": "Let there be light for your studies!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-flag-france",
+    "name": "French Flag",
+    "description": "Show your love for French language and culture",
+    "category": "decoration",
+    "icon": "🇫🇷",
+    "model_type": "box",
+    "model_config": {
+      "color": "#0055A4",
+      "width": 0.6,
+      "height": 0.4,
+      "depth": 0.05
+    },
+    "price_points": 0,
+    "earn_requirement": {
+      "type": "lesson_complete",
+      "lessonId": "lesson-1"
+    },
+    "is_unlocked_by_default": false,
+    "fun_fact": "The French flag is called 'le drapeau tricolore' - the tricolor flag!",
+    "interactive_message": "Vive la France! You earned this by completing a French lesson!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-flag-spain",
+    "name": "Spanish Flag",
+    "description": "Celebrate Spanish language and culture",
+    "category": "decoration",
+    "icon": "🇪🇸",
+    "model_type": "box",
+    "model_config": {
+      "color": "#AA151B",
+      "width": 0.6,
+      "height": 0.4,
+      "depth": 0.05
+    },
+    "price_points": 0,
+    "earn_requirement": {
+      "type": "lesson_complete",
+      "lessonId": "lesson-6"
+    },
+    "is_unlocked_by_default": false,
+    "fun_fact": "Spanish is the second most spoken language in the world by number of native speakers!",
+    "interactive_message": "¡Olé! You earned this flag by learning Spanish!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-computer",
+    "name": "Language Learning PC",
+    "description": "Your digital language learning companion",
+    "category": "electronics",
+    "icon": "💻",
+    "model_type": "box",
+    "model_config": {
+      "color": "#C0C0C0",
+      "width": 0.8,
+      "height": 0.6,
+      "depth": 0.05
+    },
+    "price_points": 150,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Digital language learning tools can accelerate vocabulary acquisition by up to 40%!",
+    "interactive_message": "Your high-tech learning station!",
+    "rarity": "rare"
+  },
+  {
+    "id": "obj-trophy-gold",
+    "name": "Golden Trophy",
+    "description": "Ultimate achievement award",
+    "category": "decoration",
+    "icon": "🏆",
+    "model_type": "cylinder",
+    "model_config": {
+      "color": "#FFD700",
+      "radius": 0.25,
+      "height": 0.5
+    },
+    "price_points": 0,
+    "earn_requirement": {
+      "type": "achievement",
+      "points": 500
+    },
+    "is_unlocked_by_default": false,
+    "fun_fact": "You've reached an impressive milestone! Keep up the amazing work!",
+    "interactive_message": "Your golden trophy - proof of your dedication!",
+    "rarity": "legendary"
+  },
+  {
+    "id": "obj-coffee-mug",
+    "name": "Language Learner's Mug",
+    "description": "Fuel your studies with your favorite beverage",
+    "category": "decoration",
+    "icon": "☕",
+    "model_type": "cylinder",
+    "model_config": {
+      "color": "#FFFFFF",
+      "radius": 0.15,
+      "height": 0.25
+    },
+    "price_points": 30,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Coffee is consumed in 193 different ways around the world - each culture has its unique style!",
+    "interactive_message": "Time for a study break with your favorite drink!",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-poster-eiffel",
+    "name": "Eiffel Tower Poster",
+    "description": "Dream of Paris while you study French",
+    "category": "decoration",
+    "icon": "🗼",
+    "model_type": "box",
+    "model_config": {
+      "color": "#87CEEB",
+      "width": 0.8,
+      "height": 1.2,
+      "depth": 0.02
+    },
+    "price_points": 40,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "The Eiffel Tower was only meant to stand for 20 years! It was built in 1889 for the World's Fair.",
+    "interactive_message": "Paris is calling! The Eiffel Tower stands 330 meters tall.",
+    "rarity": "common"
+  },
+  {
+    "id": "obj-cat",
+    "name": "Study Buddy Cat",
+    "description": "A friendly feline companion to keep you company",
+    "category": "fun",
+    "icon": "🐱",
+    "model_type": "sphere",
+    "model_config": {
+      "color": "#FFA500",
+      "radius": 0.3
+    },
+    "price_points": 200,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Did you know? In Japanese, cats say 'nyan' (にゃん), in French 'miaou', and in Korean '야옹' (yaong)!",
+    "interactive_message": "Meow! Your study buddy is here to support you!",
+    "rarity": "epic"
+  },
+  {
+    "id": "obj-rainbow",
+    "name": "Rainbow Arc",
+    "description": "A colorful reminder of your diverse language journey",
+    "category": "fun",
+    "icon": "🌈",
+    "model_type": "box",
+    "model_config": {
+      "color": "#FF69B4",
+      "width": 2,
+      "height": 1,
+      "depth": 0.1
+    },
+    "price_points": 0,
+    "earn_requirement": {
+      "type": "achievement",
+      "completedLessons": 5
+    },
+    "is_unlocked_by_default": false,
+    "fun_fact": "Just like a rainbow has many colors, multilingualism opens up a colorful world of opportunities!",
+    "interactive_message": "You've completed 5 lessons! Every language adds a new color to your life!",
+    "rarity": "epic"
+  },
+  {
+    "id": "obj-guitar",
+    "name": "Acoustic Guitar",
+    "description": "Play music from around the world",
+    "category": "fun",
+    "icon": "🎸",
+    "model_type": "box",
+    "model_config": {
+      "color": "#8B4513",
+      "width": 0.4,
+      "height": 1.2,
+      "depth": 0.2
+    },
+    "price_points": 300,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Music and language learning use similar brain pathways! Learning songs can help you remember vocabulary.",
+    "interactive_message": "Strum away and practice pronunciation through song!",
+    "rarity": "epic"
+  },
+  {
+    "id": "obj-zen-stone",
+    "name": "Zen Balance Stones",
+    "description": "Find peace and focus in your learning",
+    "category": "decoration",
+    "icon": "🪨",
+    "model_type": "sphere",
+    "model_config": {
+      "color": "#808080",
+      "radius": 0.2
+    },
+    "price_points": 60,
+    "earn_requirement": null,
+    "is_unlocked_by_default": false,
+    "fun_fact": "Meditation and mindfulness can improve language learning by enhancing focus and memory!",
+    "interactive_message": "Balance your mind, balance your learning journey.",
+    "rarity": "rare"
+  }
+]

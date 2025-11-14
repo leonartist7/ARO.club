@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-react';
+import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings, BookOpen, Home } from 'lucide-react';
 import Button from '../ui/Button';
 import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../ui/Avatar';
 
 const navigation = [
   { name: 'Explore', href: '/explore' },
+  { name: 'Lessons', href: '/lessons', icon: BookOpen },
+  { name: 'My Home', href: '/my-home', icon: Home },
   { name: 'Map View', href: '/map' },
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'For Teachers', href: '/for-teachers' },
