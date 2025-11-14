@@ -41,10 +41,10 @@ export default function Header() {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl font-display font-bold gradient-text"
+            className="flex items-center gap-2 text-2xl font-display font-bold text-gray-900 hover:text-primary-500 transition-colors"
           >
-            <span className="text-3xl">👅</span>
-            TongueConnect
+            <span className="text-3xl">🌍</span>
+            Langgie
           </Link>
 
           {/* Desktop Navigation */}

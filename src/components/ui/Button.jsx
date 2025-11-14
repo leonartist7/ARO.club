@@ -1,11 +1,11 @@
 import { cn } from '../../utils/cn';
 
 const buttonVariants = {
-  primary: 'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700',
-  secondary: 'bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700',
-  outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 active:bg-primary-100',
+  primary: 'bg-primary-500 text-gray-900 font-bold hover:bg-primary-600 active:bg-primary-700 shadow-md hover:shadow-premium active:scale-95',
+  secondary: 'bg-success-400 text-white font-bold hover:bg-success-500 active:bg-success-600 shadow-md hover:shadow-success active:scale-95',
+  outline: 'border-2 border-primary-500 text-primary-600 font-semibold hover:bg-primary-50 active:bg-primary-100 hover:shadow-md',
   ghost: 'text-gray-700 hover:bg-gray-100 active:bg-gray-200',
-  danger: 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700',
+  danger: 'bg-error-500 text-white font-bold hover:bg-error-600 active:bg-error-700 shadow-md active:scale-95',
 };
 
 const buttonSizes = {
@@ -31,10 +31,10 @@ export default function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
+        'inline-flex items-center justify-center gap-2 rounded-xl font-medium',
         'transition-all duration-200 ease-in-out',
         'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-        'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none',
+        'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
         buttonVariants[variant],
         buttonSizes[size],
         className

@@ -132,7 +132,7 @@ export default function SignupPage() {
               <UserPlus className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
-              Join TongueConnect
+              Join Langgie
             </h1>
             <p className="text-gray-600">
               Start learning languages through real experiences

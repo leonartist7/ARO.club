@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
           >
             <TrendingUp className="w-16 h-16 mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-              How TongueConnect Works
+              How Langgie Works
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
               Learning a language has never been this easy—or this fun. Here's how to get
@@ -157,7 +157,7 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-              Why Choose TongueConnect?
+              Why Choose Langgie?
             </h2>
             <p className="text-gray-600 text-lg">
               We're not just another language app. Here's what makes us different:
@@ -220,14 +220,14 @@ export default function HowItWorksPage() {
               See It In Action
             </h2>
             <p className="text-gray-600">
-              Watch how TongueConnect brings language learning to life
+              Watch how Langgie brings language learning to life
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
             <VideoPlayer
               // videoUrl="https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
               // thumbnail="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg"
-              title="TongueConnect Introduction"
+              title="Langgie Introduction"
               placeholder="Video Coming Soon"
             />
             <p className="text-center text-sm text-gray-500 mt-4">

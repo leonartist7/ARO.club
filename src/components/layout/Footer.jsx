@@ -38,14 +38,13 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-2 text-2xl font-display font-bold text-white mb-4"
+              className="flex items-center gap-2 text-2xl font-display font-bold text-white mb-4 hover:text-primary-500 transition-colors"
             >
-              <span className="text-3xl">👅</span>
-              TongueConnect
+              <span className="text-3xl">🌍</span>
+              Langgie
             </Link>
             <p className="text-sm mb-6 max-w-xs">
-              Connect with locals, learn languages naturally, and experience authentic
-              cultural moments in cities around the world.
+              Learn languages through fun, immersive experiences with locals around the world. Level up your skills naturally!
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -113,7 +112,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm">
-            © {new Date().getFullYear()} TongueConnect. All rights reserved.
+            © {new Date().getFullYear()} Langgie. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <Link to="#" className="hover:text-white transition-colors">
