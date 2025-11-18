@@ -6,8 +6,10 @@ import { Card, CardBody } from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { CITIES, LANGUAGES } from '../data/constants';
 import experiencesData from '../data/experiences.json';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function MapViewPage() {
+  const { t } = useLanguage();
   // Count experiences per city
   const cityStats = CITIES.map((city) => ({
     ...city,
@@ -32,11 +34,10 @@ export default function MapViewPage() {
           >
             <Globe className="w-16 h-16 mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-              Explore the World
+              {t('mapView.title')}
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Discover language learning experiences in cities around the globe. Choose your
-              destination and start your cultural journey.
+              {t('mapView.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -62,10 +63,10 @@ export default function MapViewPage() {
               <div className="text-center z-10">
                 <MapPin className="w-16 h-16 text-gray-500 mx-auto mb-4" />
                 <p className="text-gray-700 font-bold text-lg mb-2">
-                  Interactive Map Coming Soon!
+                  {t('mapView.mapComingSoon')}
                 </p>
                 <p className="text-gray-600">
-                  Browse cities below to find experiences in your chosen destination
+                  {t('mapView.mapSubtitle')}
                 </p>
               </div>
             </div>
@@ -77,10 +78,10 @@ export default function MapViewPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">
-            Available Cities
+            {t('mapView.availableCities')}
           </h2>
           <p className="text-gray-600">
-            We're in {cityStats.length} cities worldwide with hundreds of experiences
+            {t('mapView.weAreIn')} {cityStats.length} {t('mapView.citiesDescription')}
           </p>
         </div>
 
@@ -110,14 +111,14 @@ export default function MapViewPage() {
                           </div>
                         </div>
                         <Badge variant="primary" size="sm">
-                          {city.count} experiences
+                          {city.count} {t('mapView.experiencesLabel').toLowerCase()}
                         </Badge>
                       </div>
 
                       {/* Languages Available */}
                       <div className="mb-4">
                         <p className="text-xs font-semibold text-gray-600 mb-2">
-                          Languages Available:
+                          {t('mapView.languagesAvailable')}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {cityLanguages.map((lang) => (
@@ -135,7 +136,7 @@ export default function MapViewPage() {
                       {/* CTA */}
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <span className="text-primary-600 font-medium text-sm">
-                          Explore {city.name}
+                          {t('mapView.exploreCity')} {city.name}
                         </span>
                         <ArrowRight className="w-4 h-4 text-primary-600" />
                       </div>
@@ -154,21 +155,21 @@ export default function MapViewPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">{cityStats.length}+</p>
-              <p className="text-gray-600 text-sm">Cities</p>
+              <p className="text-gray-600 text-sm">{t('mapView.citiesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">{experiencesData.length}+</p>
-              <p className="text-gray-600 text-sm">Experiences</p>
+              <p className="text-gray-600 text-sm">{t('mapView.experiencesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">
                 {[...new Set(experiencesData.map((e) => e.language))].length}+
               </p>
-              <p className="text-gray-600 text-sm">Languages</p>
+              <p className="text-gray-600 text-sm">{t('mapView.languagesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">100+</p>
-              <p className="text-gray-600 text-sm">Teachers</p>
+              <p className="text-gray-600 text-sm">{t('mapView.teachersLabel')}</p>
             </div>
           </div>
         </div>
@@ -180,11 +181,10 @@ export default function MapViewPage() {
           <CardBody className="text-center py-12 text-white">
             <Globe className="w-12 h-12 mx-auto mb-4" />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Don't See Your City?
+              {t('mapView.dontSeeCity')}
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              We're expanding to new cities every month. Request your city or become a teacher
-              to help us launch there!
+              {t('mapView.dontSeeCityDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
@@ -193,7 +193,7 @@ export default function MapViewPage() {
                   size="lg"
                   className="bg-white text-primary-600 hover:bg-gray-50"
                 >
-                  Request a City
+                  {t('mapView.requestCity')}
                 </Button>
               </Link>
               <Link to="/for-teachers">
@@ -202,7 +202,7 @@ export default function MapViewPage() {
                   size="lg"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Become a Teacher
+                  {t('mapView.becomeTeacher')}
                 </Button>
               </Link>
             </div>

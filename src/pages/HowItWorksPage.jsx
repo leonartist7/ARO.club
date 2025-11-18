@@ -13,71 +13,73 @@ import {
   Heart,
   TrendingUp,
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
 
 export default function HowItWorksPage() {
+  const { t } = useLanguage();
   const steps = [
     {
-      number: '01',
+      number: t('howItWorks.step1.number'),
       icon: <Search className="w-8 h-8" />,
-      title: 'Browse Experiences',
-      description: 'Explore hundreds of language learning experiences in cities worldwide. Filter by language, location, skill level, and activity type.',
-      details: ['Search by city or language', 'Filter by price and availability', 'Read reviews from other learners'],
+      title: t('howItWorks.step1.title'),
+      description: t('howItWorks.step1.description'),
+      details: [t('howItWorks.step1.detail1'), t('howItWorks.step1.detail2'), t('howItWorks.step1.detail3')],
     },
     {
-      number: '02',
+      number: t('howItWorks.step2.number'),
       icon: <Calendar className="w-8 h-8" />,
-      title: 'Book Your Spot',
-      description: 'Found the perfect experience? Book your spot instantly. Bring a friend and save 15% with our couple discount!',
-      details: ['Secure instant booking', '15% couple discount available', 'Flexible cancellation policy'],
+      title: t('howItWorks.step2.title'),
+      description: t('howItWorks.step2.description'),
+      details: [t('howItWorks.step2.detail1'), t('howItWorks.step2.detail2'), t('howItWorks.step2.detail3')],
     },
     {
-      number: '03',
+      number: t('howItWorks.step3.number'),
       icon: <Users className="w-8 h-8" />,
-      title: 'Meet & Learn',
-      description: 'Show up and immerse yourself! Meet your teacher and fellow learners for an unforgettable language learning experience.',
-      details: ['Small groups (max 8 people)', 'Native speaker teachers', 'Real-world practice'],
+      title: t('howItWorks.step3.title'),
+      description: t('howItWorks.step3.description'),
+      details: [t('howItWorks.step3.detail1'), t('howItWorks.step3.detail2'), t('howItWorks.step3.detail3')],
     },
     {
-      number: '04',
+      number: t('howItWorks.step4.number'),
       icon: <Star className="w-8 h-8" />,
-      title: 'Earn & Share',
-      description: 'Complete experiences to earn points, unlock badges, and climb the leaderboard. Share your review to help others!',
-      details: ['Earn points for each experience', 'Unlock achievement badges', 'Build your language portfolio'],
+      title: t('howItWorks.step4.title'),
+      description: t('howItWorks.step4.description'),
+      details: [t('howItWorks.step4.detail1'), t('howItWorks.step4.detail2'), t('howItWorks.step4.detail3')],
     },
   ];
 
   const features = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: 'Verified Teachers',
-      description: 'All teachers are verified native speakers with teaching experience.',
+      title: t('howItWorks.feature1Title'),
+      description: t('howItWorks.feature1Description'),
     },
     {
       icon: <CreditCard className="w-6 h-6" />,
-      title: 'Secure Payments',
-      description: 'Your payment information is encrypted and secure.',
+      title: t('howItWorks.feature2Title'),
+      description: t('howItWorks.feature2Description'),
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
-      title: '24/7 Support',
-      description: 'Our support team is always here to help you.',
+      title: t('howItWorks.feature3Title'),
+      description: t('howItWorks.feature3Description'),
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      title: 'Community Focused',
-      description: 'Join a global community of language learners.',
+      title: t('howItWorks.feature4Title'),
+      description: t('howItWorks.feature4Description'),
     },
   ];
 
   const benefits = [
-    { text: 'Learn from native speakers in real situations', icon: '✓' },
-    { text: 'Small group sizes for personalized attention', icon: '✓' },
-    { text: 'Immersive cultural experiences, not just lessons', icon: '✓' },
-    { text: 'Flexible scheduling around your life', icon: '✓' },
-    { text: 'Affordable prices with couple discounts', icon: '✓' },
-    { text: 'Earn points and badges as you progress', icon: '✓' },
+    { text: t('howItWorks.benefit1'), icon: '✓' },
+    { text: t('howItWorks.benefit2'), icon: '✓' },
+    { text: t('howItWorks.benefit3'), icon: '✓' },
+    { text: t('howItWorks.benefit4'), icon: '✓' },
+    { text: t('howItWorks.benefit5'), icon: '✓' },
+    { text: t('howItWorks.benefit6'), icon: '✓' },
   ];
 
   return (
@@ -97,11 +99,10 @@ export default function HowItWorksPage() {
           >
             <TrendingUp className="w-16 h-16 mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-              How Conversa Works
+              {t('howItWorks.title')}
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Learning a language has never been this easy—or this fun. Here's how to get
-              started on your language learning journey.
+              {t('howItWorks.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -156,10 +157,10 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-              Why Choose Conversa?
+              {t('howItWorks.whyChoose')}
             </h2>
             <p className="text-gray-600 text-lg">
-              We're not just another language app. Here's what makes us different:
+              {t('howItWorks.whyChooseSubtitle')}
             </p>
           </div>
 
@@ -186,7 +187,7 @@ export default function HowItWorksPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
-            Built for Your Success
+            {t('howItWorks.builtForSuccess')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
@@ -216,10 +217,10 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-8">
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
-              See It In Action
+              {t('howItWorks.seeInAction')}
             </h2>
             <p className="text-gray-600">
-              Watch how Conversa brings language learning to life
+              {t('howItWorks.seeInActionSubtitle')}
             </p>
           </div>
           <Card className="max-w-4xl mx-auto">
@@ -227,9 +228,9 @@ export default function HowItWorksPage() {
               <div className="aspect-video bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🎬</div>
-                  <p className="text-gray-600 font-medium">Video Coming Soon</p>
+                  <p className="text-gray-600 font-medium">{t('howItWorks.videoComingSoon')}</p>
                   <p className="text-gray-500 text-sm">
-                    See real students learning in real situations
+                    {t('howItWorks.videoSubtitle')}
                   </p>
                 </div>
               </div>
@@ -243,11 +244,10 @@ export default function HowItWorksPage() {
         <Card className="bg-gradient-to-br from-primary-500 to-secondary-500">
           <CardBody className="text-center py-12 text-white">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Ready to Start Learning?
+              {t('howItWorks.readyToStart')}
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of learners discovering languages through real experiences.
-              Your adventure starts today!
+              {t('howItWorks.readyToStartDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/explore">
@@ -257,7 +257,7 @@ export default function HowItWorksPage() {
                   icon={<ArrowRight className="w-5 h-5" />}
                   className="bg-white text-primary-600 hover:bg-gray-50"
                 >
-                  Browse Experiences
+                  {t('howItWorks.browseExperiences')}
                 </Button>
               </Link>
               <Link to="/for-teachers">
@@ -266,7 +266,7 @@ export default function HowItWorksPage() {
                   size="lg"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Become a Teacher
+                  {t('howItWorks.becomeTeacher')}
                 </Button>
               </Link>
             </div>
