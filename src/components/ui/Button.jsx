@@ -6,6 +6,7 @@ const buttonVariants = {
   outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-900/20 dark:active:bg-primary-900/30',
   ghost: 'text-gray-700 hover:bg-gray-100 active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600',
   danger: 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 dark:active:bg-red-800',
+  glass: 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 text-gray-900 dark:text-gray-100 hover:bg-white/90 dark:hover:bg-gray-800/90 active:bg-white dark:active:bg-gray-800 shadow-lg',
 };
 
 const buttonSizes = {

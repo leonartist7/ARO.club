@@ -3,13 +3,16 @@ import { cn } from '../../utils/cn';
 /**
  * Card component for containing content
  */
-export function Card({ children, className, hover = false, ...props }) {
+export function Card({ children, className, hover = false, glass = false, ...props }) {
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden',
-        'border border-transparent dark:border-gray-700',
-        hover && 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+        glass
+          ? 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50'
+          : 'bg-white dark:bg-gray-800 border border-transparent dark:border-gray-700',
+        'rounded-xl shadow-md overflow-hidden',
+        hover && 'transition-all duration-300 hover:shadow-2xl hover:-translate-y-1',
+        glass && hover && 'hover:bg-white/90 dark:hover:bg-gray-800/90',
         className
       )}
       {...props}

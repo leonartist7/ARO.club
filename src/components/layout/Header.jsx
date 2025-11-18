@@ -35,7 +35,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm transition-colors">
+    <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-lg border-b border-gray-200/20 dark:border-gray-700/30 transition-colors">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -95,7 +95,7 @@ export default function Header() {
                       className="fixed inset-0 z-10"
                       onClick={() => setUserMenuOpen(false)}
                     ></div>
-                    <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-20">
+                    <div className="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 py-2 z-20">
                       <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                         <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                           {currentUser?.name || 'User'}
