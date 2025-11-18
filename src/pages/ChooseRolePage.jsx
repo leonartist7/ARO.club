@@ -360,36 +360,22 @@ const ChooseRolePage = () => {
         </div>
       </motion.div>
 
-      {/* Central divider line with glow effect */}
+      {/* Choose your journey - centered */}
       <motion.div
-        className="absolute inset-y-0 left-1/2 w-px -ml-px pointer-events-none z-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 text-center pointer-events-none"
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{
-          opacity: hoveredSide ? 0.4 : 0.6,
-          scaleY: hoveredSide ? 0.95 : 1,
+          opacity: 1,
+          scale: [1, 1.05, 1],
         }}
-        transition={{ duration: 0.4 }}
+        transition={{
+          opacity: { duration: 1, delay: 0.3 },
+          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+        }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white to-transparent" />
-        <div className="absolute inset-0 bg-white blur-sm" />
-      </motion.div>
-
-      {/* Conversa logo at top */}
-      <motion.div
-        className="absolute top-6 md:top-10 left-1/2 -translate-x-1/2 z-30 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <motion.h1
-          className="text-3xl md:text-5xl font-bold text-white font-heading drop-shadow-2xl mb-2"
-          animate={{
-            scale: [1, 1.02, 1],
-          }}
-          transition={{ duration: 3, repeat: Infinity }}
-        >
-          Conversa
-        </motion.h1>
-        <p className="text-white/80 text-sm md:text-base font-medium drop-shadow-lg">Choose your journey</p>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-heading drop-shadow-2xl px-8">
+          Choose your journey
+        </h1>
       </motion.div>
 
       {/* Back to home link */}
