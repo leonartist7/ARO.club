@@ -163,7 +163,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-secondary-700 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-secondary-700 bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden border border-white/50"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -309,7 +309,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-accent-700 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-accent-700 bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden border border-white/50"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}

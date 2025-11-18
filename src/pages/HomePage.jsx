@@ -102,7 +102,7 @@ export default function HomePage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-              className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg mb-6"
+              className="inline-flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg px-4 py-2 rounded-full shadow-xl border border-gray-200/50 dark:border-gray-700/50 mb-6"
             >
               <Sparkles className="w-5 h-5 text-primary-500 animate-pulse-soft" />
               <span className="text-sm font-semibold text-gray-900 dark:text-white">Join 10,000+ happy learners!</span>
@@ -127,7 +127,7 @@ export default function HomePage() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-gray-800 rounded-3xl p-3 shadow-2xl border-4 border-primary-300 dark:border-primary-900/50 hover:border-primary-500 dark:hover:border-primary-700 transition-all duration-300"
+                className="flex flex-col sm:flex-row gap-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl p-3 shadow-2xl border-4 border-primary-300/70 dark:border-primary-900/60 hover:border-primary-500 dark:hover:border-primary-700 transition-all duration-300"
               >
                 <div className="flex-1 flex items-center gap-3 px-4">
                   <Search className="w-6 h-6 text-primary-500" />
@@ -183,7 +183,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-800 dark:to-gray-800 rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-primary-200 dark:border-gray-700"
+                className="bg-gradient-to-br from-white/80 via-white/70 to-white/80 dark:from-gray-800/80 dark:to-gray-800/70 backdrop-blur-lg rounded-3xl p-6 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200/50 dark:border-gray-700/50"
               >
                 <stat.icon className={`w-10 h-10 mx-auto mb-3 ${stat.color} animate-bounce-gentle`} />
                 <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-secondary-800 bg-clip-text text-transparent mb-2">
