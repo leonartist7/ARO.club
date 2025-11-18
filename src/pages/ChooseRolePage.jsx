@@ -82,9 +82,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('student')}
       >
-        {/* Gradient Background - Duolingo Yellow */}
+        {/* Gradient Background - Vibrant Yellow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-primary-500 via-primary-400 to-primary-600"
+          className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-700"
           animate={{
             opacity: hoveredSide === 'student' ? 1 : 0.95,
             scale: hoveredSide === 'student' ? 1.02 : 1,
@@ -228,9 +228,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('teacher')}
       >
-        {/* Gradient Background - Duolingo Green */}
+        {/* Gradient Background - Vibrant Orange */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-secondary-600 via-secondary-500 to-secondary-700"
+          className="absolute inset-0 bg-gradient-to-br from-secondary-400 via-secondary-500 to-secondary-800"
           animate={{
             opacity: hoveredSide === 'teacher' ? 1 : 0.95,
             scale: hoveredSide === 'teacher' ? 1.02 : 1,

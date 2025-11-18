@@ -85,9 +85,9 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-300/30 dark:bg-primary-600/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute top-60 -left-40 w-96 h-96 bg-secondary-300/30 dark:bg-secondary-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-accent-300/20 dark:bg-accent-600/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-400/40 dark:bg-primary-600/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute top-60 -left-40 w-96 h-96 bg-secondary-400/40 dark:bg-secondary-600/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-accent-400/30 dark:bg-accent-600/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
@@ -110,7 +110,7 @@ export default function HomePage() {
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-display font-extrabold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-500 via-secondary-500 to-secondary-700 bg-clip-text text-transparent">
                 {t('home.hero.title')}
               </span>
               <br />
@@ -127,7 +127,7 @@ export default function HomePage() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-gray-800 rounded-3xl p-3 shadow-2xl border-4 border-primary-200 dark:border-primary-900/50 hover:border-primary-400 dark:hover:border-primary-700 transition-all duration-300"
+                className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-gray-800 rounded-3xl p-3 shadow-2xl border-4 border-primary-300 dark:border-primary-900/50 hover:border-primary-500 dark:hover:border-primary-700 transition-all duration-300"
               >
                 <div className="flex-1 flex items-center gap-3 px-4">
                   <Search className="w-6 h-6 text-primary-500" />
@@ -141,7 +141,7 @@ export default function HomePage() {
                 </div>
                 <Button
                   type="submit"
-                  className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                  className="bg-gradient-to-r from-primary-500 via-secondary-500 to-secondary-700 hover:from-primary-600 hover:via-secondary-600 hover:to-secondary-800 text-white font-bold text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
                   {t('home.hero.browseButton')}
@@ -183,10 +183,10 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-800 rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-primary-100 dark:border-gray-700"
+                className="bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-800 dark:to-gray-800 rounded-3xl p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-primary-200 dark:border-gray-700"
               >
                 <stat.icon className={`w-10 h-10 mx-auto mb-3 ${stat.color} animate-bounce-gentle`} />
-                <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-secondary-800 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
                 <div className="text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</div>
@@ -264,7 +264,7 @@ export default function HomePage() {
               >
                 <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-100 dark:border-gray-700 h-full">
                   {/* Step number badge */}
-                  <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                  <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-primary-500 via-secondary-500 to-secondary-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
                     {index + 1}
                   </div>
 
@@ -279,7 +279,7 @@ export default function HomePage() {
 
                 {/* Connector line (except last item) */}
                 {index < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary-300 to-secondary-300 dark:from-primary-700 dark:to-secondary-700"></div>
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary-400 to-secondary-500 dark:from-primary-700 dark:to-secondary-700"></div>
                 )}
               </motion.div>
             ))}
@@ -321,7 +321,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <Link to="/explore">
-              <Button className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+              <Button className="bg-gradient-to-r from-primary-500 via-secondary-500 to-secondary-700 hover:from-primary-600 hover:via-secondary-600 hover:to-secondary-800 text-white font-bold text-lg px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                 <TrendingUp className="w-6 h-6 mr-2" />
                 {t('common.viewAll')} →
               </Button>
@@ -339,7 +339,7 @@ export default function HomePage() {
 
       {/* CTA Section - Premium Banner */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-secondary-500 to-secondary-800"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -366,7 +366,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/explore">
-                <Button className="bg-white text-primary-600 hover:bg-gray-50 font-bold text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <Button className="bg-white text-secondary-700 hover:bg-gray-50 font-bold text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                   <Sparkles className="w-6 h-6 mr-2" />
                   {t('home.cta.browseButton')}
                 </Button>
