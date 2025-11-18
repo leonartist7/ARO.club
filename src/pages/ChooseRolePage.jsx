@@ -82,9 +82,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('student')}
       >
-        {/* Gradient Background - Vibrant Yellow */}
+        {/* Gradient Background - Vibrant Orange */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-700"
+          className="absolute inset-0 bg-gradient-to-br from-secondary-400 via-secondary-500 to-secondary-800"
           animate={{
             opacity: hoveredSide === 'student' ? 1 : 0.95,
             scale: hoveredSide === 'student' ? 1.02 : 1,
@@ -163,7 +163,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-primary-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-secondary-700 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -228,9 +228,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('teacher')}
       >
-        {/* Gradient Background - Vibrant Orange */}
+        {/* Gradient Background - Vibrant Green */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-secondary-400 via-secondary-500 to-secondary-800"
+          className="absolute inset-0 bg-gradient-to-br from-accent-400 via-accent-500 to-accent-800"
           animate={{
             opacity: hoveredSide === 'teacher' ? 1 : 0.95,
             scale: hoveredSide === 'teacher' ? 1.02 : 1,
@@ -309,7 +309,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-secondary-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-accent-700 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -362,9 +362,9 @@ const ChooseRolePage = () => {
         </div>
       </motion.div>
 
-      {/* Choose your journey - centered horizontally, positioned up */}
+      {/* Choose your journey - centered in the middle */}
       <motion.div
-        className="absolute top-16 md:top-20 left-1/2 -translate-x-1/2 z-30 text-center pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 text-center pointer-events-none"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{
           opacity: 1,
