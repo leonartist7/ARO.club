@@ -82,9 +82,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('student')}
       >
-        {/* Gradient Background */}
+        {/* Gradient Background - Duolingo Yellow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-teal-600 via-teal-500 to-cyan-500"
+          className="absolute inset-0 bg-gradient-to-br from-primary-500 via-primary-400 to-primary-600"
           animate={{
             opacity: hoveredSide === 'student' ? 1 : 0.95,
             scale: hoveredSide === 'student' ? 1.02 : 1,
@@ -163,7 +163,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-teal-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-primary-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -228,9 +228,9 @@ const ChooseRolePage = () => {
         onMouseLeave={() => setHoveredSide(null)}
         onClick={() => handleRoleSelect('teacher')}
       >
-        {/* Gradient Background */}
+        {/* Gradient Background - Duolingo Green */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-red-500"
+          className="absolute inset-0 bg-gradient-to-br from-secondary-600 via-secondary-500 to-secondary-700"
           animate={{
             opacity: hoveredSide === 'teacher' ? 1 : 0.95,
             scale: hoveredSide === 'teacher' ? 1.02 : 1,
@@ -309,7 +309,7 @@ const ChooseRolePage = () => {
 
             {/* Button */}
             <motion.button
-              className="relative px-8 py-4 text-base md:text-lg font-semibold text-orange-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
+              className="relative px-8 py-4 text-base md:text-lg font-semibold text-secondary-600 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
