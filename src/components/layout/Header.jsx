@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-react';
 import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
-import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../ui/Avatar';
+import { useStore } from '../../store/useStore';
 
 const navigation = [
   { name: 'Explore', href: '/explore' },
@@ -21,17 +21,14 @@ export default function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, profile, signOut } = useAuth();
+  const currentUser = useStore((state) => state.currentUser);
+  const setCurrentUser = useStore((state) => state.setCurrentUser);
 
   const isActive = (path) => location.pathname === path;
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      navigate('/');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+  const handleSignOut = () => {
+    setCurrentUser(null);
+    navigate('/');
   };
 
   return (
@@ -73,16 +70,16 @@ export default function Header() {
               </Button>
             </Link>
 
-            {user ? (
+            {currentUser ? (
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="flex items-center gap-2 p-1 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <Avatar
-                    src={profile?.photo}
-                    alt={profile?.name || 'User'}
-                    name={profile?.name || 'User'}
+                    src={currentUser?.photo}
+                    alt={currentUser?.name || 'User'}
+                    name={currentUser?.name || 'User'}
                     size="sm"
                   />
                 </button>
@@ -97,9 +94,9 @@ export default function Header() {
                     <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-20">
                       <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                         <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                          {profile?.name || 'User'}
+                          {currentUser?.name || 'User'}
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{currentUser?.email}</p>
                       </div>
                       <Link
                         to="/profile"
@@ -109,7 +106,7 @@ export default function Header() {
                         <User className="w-4 h-4" />
                         My Profile
                       </Link>
-                      {profile?.is_teacher && (
+                      {currentUser?.isTeacher && (
                         <Link
                           to="/dashboard"
                           className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -135,14 +132,9 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <Link to="/login">
-                  <Button variant="outline" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/signup">
+                <Link to="/choose-role">
                   <Button variant="primary" size="sm">
-                    Sign Up
+                    Get Started
                   </Button>
                 </Link>
               </>
@@ -187,7 +179,7 @@ export default function Header() {
               >
                 🏆 Leaderboard
               </Link>
-              {user ? (
+              {currentUser ? (
                 <>
                   <Link
                     to="/profile"
@@ -196,7 +188,7 @@ export default function Header() {
                   >
                     My Profile
                   </Link>
-                  {profile?.is_teacher && (
+                  {currentUser?.isTeacher && (
                     <Link
                       to="/dashboard"
                       className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -217,14 +209,9 @@ export default function Header() {
                 </>
               ) : (
                 <div className="flex flex-col gap-2 pt-2">
-                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/choose-role" onClick={() => setMobileMenuOpen(false)}>
                     <Button variant="primary" size="sm" fullWidth>
-                      Sign Up
+                      Get Started
                     </Button>
                   </Link>
                 </div>

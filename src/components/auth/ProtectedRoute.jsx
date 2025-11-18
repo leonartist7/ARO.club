@@ -1,21 +1,13 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useStore } from '../../store/useStore';
 
 export default function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
+  const currentUser = useStore((state) => state.currentUser);
   const location = useLocation();
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    // Redirect to login page but save the location they were trying to go to
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!currentUser) {
+    // Redirect to choose role page but save the location they were trying to go to
+    return <Navigate to="/choose-role" state={{ from: location }} replace />;
   }
 
   return children;

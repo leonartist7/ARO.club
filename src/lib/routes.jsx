@@ -24,6 +24,7 @@ const ContactPage = lazy(() => import('../pages/ContactPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 // Auth Pages
+const ChooseRolePage = lazy(() => import('../pages/ChooseRolePage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const SignupPage = lazy(() => import('../pages/SignupPage'));
 const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage'));
@@ -63,6 +64,14 @@ export const router = createBrowserRouter([
       },
       {
         path: 'dashboard',
+        element: (
+          <ProtectedRoute>
+            <TeacherDashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'teacher/dashboard',
         element: (
           <ProtectedRoute>
             <TeacherDashboardPage />
@@ -111,7 +120,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <LoginPage />,
+        element: <ChooseRolePage />,
+      },
+      {
+        path: 'choose-role',
+        element: <ChooseRolePage />,
       },
       {
         path: 'signup',
