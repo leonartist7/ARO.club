@@ -48,9 +48,11 @@ export const translations = {
         cities: 'Cities Worldwide',
       },
       featured: 'Featured Experiences',
+      featuredSubtitle: 'Discover handpicked experiences from our community of expert teachers',
       recentlyViewed: 'Recently Viewed',
       howItWorks: {
         title: 'How It Works',
+        subtitle: 'Get started in four simple steps',
         step1: {
           title: 'Browse Experiences',
           description: 'Explore unique language learning experiences in cities around the world',
@@ -69,16 +71,10 @@ export const translations = {
         },
       },
       cta: {
-        student: {
-          title: 'Ready to Start Learning?',
-          description: 'Join thousands of language learners worldwide',
-          button: 'Find Experiences',
-        },
-        teacher: {
-          title: 'Share Your Language',
-          description: 'Become a teacher and create unique cultural experiences',
-          button: 'Become a Teacher',
-        },
+        title: 'Ready to Start Your Journey?',
+        description: 'Join thousands of language learners connecting with locals and making real progress',
+        browseButton: 'Browse Experiences',
+        teachButton: 'Become a Teacher',
       },
     },
 
@@ -92,11 +88,24 @@ export const translations = {
       skillLevel: 'Skill Level',
       priceRange: 'Price Range',
       sortBy: 'Sort By',
+      sortByDate: 'Sort by Date',
+      sortByPriceLow: 'Price: Low to High',
+      sortByPriceHigh: 'Price: High to Low',
+      sortByPopularity: 'Most Popular',
       clearFilters: 'Clear Filters',
+      reset: 'Reset',
       saveSearch: 'Save Search',
       results: 'experiences found',
+      showing: 'Showing',
+      experience: 'experience',
+      experiences: 'experiences',
       noResults: 'No experiences found',
+      noResultsDescription: 'Try adjusting your filters or search query',
       advancedFilters: 'Advanced Filters',
+      activeFilters: 'Active filters:',
+      allLanguages: 'All Languages',
+      allCities: 'All Cities',
+      allLevels: 'All Levels',
     },
 
     // Experience Card
@@ -158,6 +167,33 @@ export const translations = {
       arabic: 'Arabic',
       russian: 'Russian',
     },
+
+    // Footer
+    footer: {
+      description: 'Connect with locals, learn languages naturally, and experience authentic cultural moments in cities around the world.',
+      company: {
+        title: 'Company',
+        aboutUs: 'About Us',
+        howItWorks: 'How It Works',
+        forTeachers: 'For Teachers',
+        faq: 'FAQ',
+      },
+      explore: {
+        title: 'Explore',
+        browseExperiences: 'Browse Experiences',
+        mapView: 'Map View',
+        leaderboard: 'Leaderboard',
+      },
+      support: {
+        title: 'Support',
+        contactUs: 'Contact Us',
+        helpCenter: 'Help Center',
+      },
+      copyright: 'All rights reserved.',
+      privacyPolicy: 'Privacy Policy',
+      termsOfService: 'Terms of Service',
+      cookiePolicy: 'Cookie Policy',
+    },
   },
 
   fr: {
@@ -209,9 +245,11 @@ export const translations = {
         cities: 'Villes dans le Monde',
       },
       featured: 'Expériences en Vedette',
+      featuredSubtitle: 'Découvrez des expériences sélectionnées par notre communauté d\'enseignants experts',
       recentlyViewed: 'Vues Récemment',
       howItWorks: {
         title: 'Comment Ça Marche',
+        subtitle: 'Commencez en quatre étapes simples',
         step1: {
           title: 'Parcourir les Expériences',
           description: 'Explorez des expériences uniques dans des villes du monde entier',
@@ -230,16 +268,10 @@ export const translations = {
         },
       },
       cta: {
-        student: {
-          title: 'Prêt à Commencer?',
-          description: 'Rejoignez des milliers d\'apprenants dans le monde',
-          button: 'Trouver des Expériences',
-        },
-        teacher: {
-          title: 'Partagez Votre Langue',
-          description: 'Devenez enseignant et créez des expériences culturelles uniques',
-          button: 'Devenir Enseignant',
-        },
+        title: 'Prêt à Commencer Votre Voyage?',
+        description: 'Rejoignez des milliers d\'apprenants qui se connectent avec les locaux et font de vrais progrès',
+        browseButton: 'Parcourir les Expériences',
+        teachButton: 'Devenir Enseignant',
       },
     },
 
@@ -253,11 +285,24 @@ export const translations = {
       skillLevel: 'Niveau',
       priceRange: 'Gamme de Prix',
       sortBy: 'Trier Par',
+      sortByDate: 'Trier par Date',
+      sortByPriceLow: 'Prix: Bas à Élevé',
+      sortByPriceHigh: 'Prix: Élevé à Bas',
+      sortByPopularity: 'Plus Populaires',
       clearFilters: 'Effacer les Filtres',
+      reset: 'Réinitialiser',
       saveSearch: 'Sauvegarder la Recherche',
       results: 'expériences trouvées',
+      showing: 'Affichage de',
+      experience: 'expérience',
+      experiences: 'expériences',
       noResults: 'Aucune expérience trouvée',
+      noResultsDescription: 'Essayez d\'ajuster vos filtres ou votre recherche',
       advancedFilters: 'Filtres Avancés',
+      activeFilters: 'Filtres actifs:',
+      allLanguages: 'Toutes les Langues',
+      allCities: 'Toutes les Villes',
+      allLevels: 'Tous Niveaux',
     },
 
     // Experience Card
@@ -319,6 +364,33 @@ export const translations = {
       arabic: 'Arabe',
       russian: 'Russe',
     },
+
+    // Footer
+    footer: {
+      description: 'Connectez-vous avec les locaux, apprenez les langues naturellement et vivez des moments culturels authentiques dans les villes du monde entier.',
+      company: {
+        title: 'Entreprise',
+        aboutUs: 'À Propos',
+        howItWorks: 'Comment Ça Marche',
+        forTeachers: 'Pour Enseignants',
+        faq: 'FAQ',
+      },
+      explore: {
+        title: 'Explorer',
+        browseExperiences: 'Parcourir les Expériences',
+        mapView: 'Vue Carte',
+        leaderboard: 'Classement',
+      },
+      support: {
+        title: 'Support',
+        contactUs: 'Nous Contacter',
+        helpCenter: 'Centre d\'Aide',
+      },
+      copyright: 'Tous droits réservés.',
+      privacyPolicy: 'Politique de Confidentialité',
+      termsOfService: 'Conditions d\'Utilisation',
+      cookiePolicy: 'Politique des Cookies',
+    },
   },
 
   es: {
@@ -370,9 +442,11 @@ export const translations = {
         cities: 'Ciudades en el Mundo',
       },
       featured: 'Experiencias Destacadas',
+      featuredSubtitle: 'Descubre experiencias seleccionadas de nuestra comunidad de profesores expertos',
       recentlyViewed: 'Vistas Recientemente',
       howItWorks: {
         title: 'Cómo Funciona',
+        subtitle: 'Comienza en cuatro simples pasos',
         step1: {
           title: 'Explorar Experiencias',
           description: 'Explora experiencias únicas de aprendizaje en ciudades de todo el mundo',
@@ -391,16 +465,10 @@ export const translations = {
         },
       },
       cta: {
-        student: {
-          title: '¿Listo para Comenzar?',
-          description: 'Únete a miles de estudiantes de idiomas en todo el mundo',
-          button: 'Encontrar Experiencias',
-        },
-        teacher: {
-          title: 'Comparte Tu Idioma',
-          description: 'Conviértete en profesor y crea experiencias culturales únicas',
-          button: 'Ser Profesor',
-        },
+        title: '¿Listo para Comenzar Tu Viaje?',
+        description: 'Únete a miles de estudiantes que se conectan con locales y logran un progreso real',
+        browseButton: 'Explorar Experiencias',
+        teachButton: 'Ser Profesor',
       },
     },
 
@@ -414,11 +482,24 @@ export const translations = {
       skillLevel: 'Nivel',
       priceRange: 'Rango de Precio',
       sortBy: 'Ordenar Por',
+      sortByDate: 'Ordenar por Fecha',
+      sortByPriceLow: 'Precio: Bajo a Alto',
+      sortByPriceHigh: 'Precio: Alto a Bajo',
+      sortByPopularity: 'Más Popular',
       clearFilters: 'Limpiar Filtros',
+      reset: 'Restablecer',
       saveSearch: 'Guardar Búsqueda',
       results: 'experiencias encontradas',
+      showing: 'Mostrando',
+      experience: 'experiencia',
+      experiences: 'experiencias',
       noResults: 'No se encontraron experiencias',
+      noResultsDescription: 'Intenta ajustar tus filtros o búsqueda',
       advancedFilters: 'Filtros Avanzados',
+      activeFilters: 'Filtros activos:',
+      allLanguages: 'Todos los Idiomas',
+      allCities: 'Todas las Ciudades',
+      allLevels: 'Todos los Niveles',
     },
 
     // Experience Card
@@ -479,6 +560,33 @@ export const translations = {
       korean: 'Coreano',
       arabic: 'Árabe',
       russian: 'Ruso',
+    },
+
+    // Footer
+    footer: {
+      description: 'Conéctate con locales, aprende idiomas de forma natural y experimenta momentos culturales auténticos en ciudades de todo el mundo.',
+      company: {
+        title: 'Empresa',
+        aboutUs: 'Sobre Nosotros',
+        howItWorks: 'Cómo Funciona',
+        forTeachers: 'Para Profesores',
+        faq: 'FAQ',
+      },
+      explore: {
+        title: 'Explorar',
+        browseExperiences: 'Explorar Experiencias',
+        mapView: 'Vista de Mapa',
+        leaderboard: 'Clasificación',
+      },
+      support: {
+        title: 'Soporte',
+        contactUs: 'Contáctanos',
+        helpCenter: 'Centro de Ayuda',
+      },
+      copyright: 'Todos los derechos reservados.',
+      privacyPolicy: 'Política de Privacidad',
+      termsOfService: 'Términos de Servicio',
+      cookiePolicy: 'Política de Cookies',
     },
   },
 };

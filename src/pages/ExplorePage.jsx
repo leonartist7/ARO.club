@@ -10,11 +10,13 @@ import SaveSearchButton from '../components/SaveSearchButton';
 import SavedSearchesList from '../components/SavedSearchesList';
 import experiencesData from '../data/experiences.json';
 import { LANGUAGES, CITIES, SKILL_LEVELS } from '../data/constants';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /**
  * Explore Page with filters, search, and sort
  */
 export default function ExplorePage() {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -219,10 +221,10 @@ export default function ExplorePage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-2">
-            Explore Experiences
+            {t('explore.title')}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Discover language learning experiences in cities around the world
+            {t('home.hero.subtitle')}
           </p>
         </div>
 
@@ -231,7 +233,7 @@ export default function ExplorePage() {
           <div className="flex-1">
             <Input
               leftIcon={<Search className="w-4 h-4" />}
-              placeholder="Search experiences..."
+              placeholder={t('explore.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -240,10 +242,10 @@ export default function ExplorePage() {
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             options={[
-              { value: 'date', label: 'Sort by Date' },
-              { value: 'price-low', label: 'Price: Low to High' },
-              { value: 'price-high', label: 'Price: High to Low' },
-              { value: 'popularity', label: 'Most Popular' },
+              { value: 'date', label: t('explore.sortByDate') },
+              { value: 'price-low', label: t('explore.sortByPriceLow') },
+              { value: 'price-high', label: t('explore.sortByPriceHigh') },
+              { value: 'popularity', label: t('explore.sortByPopularity') },
             ]}
             className="w-full sm:w-48"
           />
@@ -253,7 +255,7 @@ export default function ExplorePage() {
             icon={<SlidersHorizontal className="w-4 h-4" />}
             className="sm:hidden"
           >
-            Filters {activeFiltersCount > 0 && `(${activeFiltersCount})`}
+            {t('explore.filters')} {activeFiltersCount > 0 && `(${activeFiltersCount})`}
           </Button>
         </div>
 
@@ -273,14 +275,14 @@ export default function ExplorePage() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                   <Filter className="w-5 h-5" />
-                  Filters
+                  {t('explore.filters')}
                 </h2>
                 {activeFiltersCount > 0 && (
                   <button
                     onClick={resetFilters}
                     className="text-sm text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300"
                   >
-                    Reset
+                    {t('explore.reset')}
                   </button>
                 )}
               </div>
@@ -288,14 +290,14 @@ export default function ExplorePage() {
               <div className="space-y-6">
                 {/* Language Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Language
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t('explore.language')}
                   </label>
                   <Select
                     value={selectedLanguage}
                     onChange={(e) => setSelectedLanguage(e.target.value)}
                     options={[
-                      { value: '', label: 'All Languages' },
+                      { value: '', label: t('explore.allLanguages') },
                       ...LANGUAGES.map((lang) => ({
                         value: lang.code,
                         label: `${lang.flag} ${lang.name}`,
@@ -306,14 +308,14 @@ export default function ExplorePage() {
 
                 {/* City Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    City
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t('explore.city')}
                   </label>
                   <Select
                     value={selectedCity}
                     onChange={(e) => setSelectedCity(e.target.value)}
                     options={[
-                      { value: '', label: 'All Cities' },
+                      { value: '', label: t('explore.allCities') },
                       ...CITIES.map((city) => ({
                         value: city.id,
                         label: `${city.flag} ${city.name}`,
@@ -324,14 +326,14 @@ export default function ExplorePage() {
 
                 {/* Skill Level Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Skill Level
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t('explore.skillLevel')}
                   </label>
                   <Select
                     value={selectedSkillLevel}
                     onChange={(e) => setSelectedSkillLevel(e.target.value)}
                     options={[
-                      { value: '', label: 'All Levels' },
+                      { value: '', label: t('explore.allLevels') },
                       ...SKILL_LEVELS.map((level) => ({
                         value: level.value,
                         label: level.label,
@@ -342,8 +344,8 @@ export default function ExplorePage() {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Price Range
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {t('explore.priceRange')}
                   </label>
                   <div className="space-y-2">
                     <input
@@ -375,7 +377,7 @@ export default function ExplorePage() {
             {/* Active Filters */}
             {activeFiltersCount > 0 && (
               <div className="mb-6 flex flex-wrap items-center gap-2">
-                <span className="text-sm text-gray-600">Active filters:</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{t('explore.activeFilters')}</span>
                 {selectedLanguage && (
                   <Badge variant="primary">
                     {LANGUAGES.find((l) => l.code === selectedLanguage)?.name}
@@ -413,8 +415,8 @@ export default function ExplorePage() {
             )}
 
             {/* Results Count */}
-            <div className="mb-6 text-sm text-gray-600">
-              Showing {filteredExperiences.length} {filteredExperiences.length === 1 ? 'experience' : 'experiences'}
+            <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
+              {t('explore.showing')} {filteredExperiences.length} {filteredExperiences.length === 1 ? t('explore.experience') : t('explore.experiences')}
             </div>
 
             {/* Experience Grid */}
@@ -427,14 +429,14 @@ export default function ExplorePage() {
             ) : (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  No experiences found
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {t('explore.noResults')}
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  Try adjusting your filters or search query
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {t('explore.noResultsDescription')}
                 </p>
                 <Button variant="primary" onClick={resetFilters}>
-                  Reset Filters
+                  {t('explore.clearFilters')}
                 </Button>
               </div>
             )}

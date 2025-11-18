@@ -6,55 +6,57 @@ import RecentlyViewed from '../components/RecentlyViewed';
 import { motion } from 'framer-motion';
 import experiencesData from '../data/experiences.json';
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const featuredExperiences = experiencesData.filter((exp) => exp.featured).slice(0, 6);
-
-const stats = [
-  { number: '50,000+', label: 'Experiences Booked' },
-  { number: '10,000+', label: 'Happy Learners' },
-  { number: '500+', label: 'Expert Teachers' },
-  { number: '50+', label: 'Cities Worldwide' },
-];
-
-const howItWorks = [
-  {
-    icon: Search,
-    title: 'Browse Experiences',
-    description: 'Discover unique language learning experiences in cities around the world.',
-  },
-  {
-    icon: Calendar,
-    title: 'Book Your Spot',
-    description: 'Reserve your place in small groups (4-6 people) for authentic interactions.',
-  },
-  {
-    icon: Users,
-    title: 'Learn & Connect',
-    description: 'Practice with locals in real-world settings like cafés, markets, and tours.',
-  },
-  {
-    icon: Trophy,
-    title: 'Earn Points & Badges',
-    description: 'Level up your language skills and collect achievements as you learn.',
-  },
-];
-
-const languages = [
-  { flag: '🇫🇷', name: 'French' },
-  { flag: '🇪🇸', name: 'Spanish' },
-  { flag: '🇯🇵', name: 'Japanese' },
-  { flag: '🇰🇷', name: 'Korean' },
-  { flag: '🇮🇹', name: 'Italian' },
-  { flag: '🇩🇪', name: 'German' },
-  { flag: '🇵🇹', name: 'Portuguese' },
-  { flag: '🇨🇳', name: 'Mandarin' },
-];
 
 /**
  * HomePage component
  */
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useLanguage();
+
+  const stats = [
+    { number: '50,000+', label: t('home.stats.experiences') },
+    { number: '10,000+', label: t('home.stats.learners') },
+    { number: '500+', label: t('home.stats.teachers') },
+    { number: '50+', label: t('home.stats.cities') },
+  ];
+
+  const howItWorks = [
+    {
+      icon: Search,
+      title: t('home.howItWorks.step1.title'),
+      description: t('home.howItWorks.step1.description'),
+    },
+    {
+      icon: Calendar,
+      title: t('home.howItWorks.step2.title'),
+      description: t('home.howItWorks.step2.description'),
+    },
+    {
+      icon: Users,
+      title: t('home.howItWorks.step3.title'),
+      description: t('home.howItWorks.step3.description'),
+    },
+    {
+      icon: Trophy,
+      title: t('home.howItWorks.step4.title'),
+      description: t('home.howItWorks.step4.description'),
+    },
+  ];
+
+  const languages = [
+    { flag: '🇫🇷', name: t('languages.french') },
+    { flag: '🇪🇸', name: t('languages.spanish') },
+    { flag: '🇯🇵', name: t('languages.japanese') },
+    { flag: '🇰🇷', name: t('languages.korean') },
+    { flag: '🇮🇹', name: t('languages.italian') },
+    { flag: '🇩🇪', name: t('languages.german') },
+    { flag: '🇵🇹', name: t('languages.portuguese') },
+    { flag: '🇨🇳', name: t('languages.mandarin') },
+  ];
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -74,13 +76,12 @@ export default function HomePage() {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-              Learn Languages
+              {t('home.hero.title')}
               <br />
-              Through Real Experiences
+              <span className="text-white/95">{t('home.hero.titleHighlight')}</span>
             </h1>
             <p className="text-lg md:text-xl mb-8 text-white/90">
-              Join small group sessions with local teachers in cafés, markets, and cultural
-              spots. Make friends, earn points, and actually speak the language.
+              {t('home.hero.subtitle')}
             </p>
 
             {/* Search Bar */}
@@ -90,14 +91,14 @@ export default function HomePage() {
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Search by language, city, or activity..."
+                    placeholder={t('explore.search')}
                     className="flex-1 py-3 outline-none text-gray-900 placeholder:text-gray-400"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
                 <Button type="submit" variant="primary" size="lg" className="whitespace-nowrap">
-                  Explore Experiences
+                  {t('home.hero.browseButton')}
                 </Button>
               </div>
             </form>
@@ -156,10 +157,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
-              Featured Experiences
+              {t('home.featured')}
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Hand-picked experiences from our most-loved teachers around the world
+              {t('home.featuredSubtitle')}
             </p>
           </div>
 
@@ -172,7 +173,7 @@ export default function HomePage() {
           <div className="text-center">
             <Link to="/explore">
               <Button variant="primary" size="lg">
-                View All Experiences
+                {t('common.viewAll')}
               </Button>
             </Link>
           </div>
@@ -186,11 +187,11 @@ export default function HomePage() {
       <section className="py-16 bg-white dark:bg-gray-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-              How It Works
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
+              {t('home.howItWorks.title')}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Four simple steps to start your language learning adventure
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              {t('home.howItWorks.subtitle')}
             </p>
           </div>
 
@@ -207,8 +208,8 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <step.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -216,7 +217,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link to="/how-it-works">
               <Button variant="outline" size="lg">
-                Learn More
+                {t('common.learnMore')}
               </Button>
             </Link>
           </div>
@@ -228,20 +229,20 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Heart className="w-16 h-16 mx-auto mb-6 opacity-90" />
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-            Ready to Start Your Journey?
+            {t('home.cta.title')}
           </h2>
           <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto">
-            Join thousands of language learners connecting with locals and making real progress
+            {t('home.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/explore">
               <Button variant="secondary" size="lg" className="bg-white text-primary-500 hover:bg-gray-100">
-                Browse Experiences
+                {t('home.cta.browseButton')}
               </Button>
             </Link>
             <Link to="/for-teachers">
               <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                Become a Teacher
+                {t('home.cta.teachButton')}
               </Button>
             </Link>
           </div>
