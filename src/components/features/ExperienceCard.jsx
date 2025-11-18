@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Users, Star } from 'lucide-react';
+import { MapPin, Clock, Users, Star, Eye } from 'lucide-react';
 import { Card } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Avatar from '../ui/Avatar';
+import FavoriteButton from '../ui/FavoriteButton';
+import QuickViewModal from '../QuickViewModal';
 import { formatPrice, getSpotsLeft, isAlmostFull } from '../../utils/helpers';
 import { formatDate, formatTime } from '../../utils/date';
 import { LANGUAGES, CITIES } from '../../data/constants';
@@ -12,40 +15,60 @@ import teachersData from '../../data/teachers.json';
  * Experience card component for displaying experience information
  */
 export default function ExperienceCard({ experience, compact = false }) {
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const teacher = teachersData.find((t) => t.id === experience.teacherId);
   const city = CITIES.find((c) => c.id === experience.cityId);
   const language = LANGUAGES.find((l) => l.code === experience.language);
   const spotsLeft = getSpotsLeft(experience.maxCapacity, experience.bookedSpots);
   const almostFull = isAlmostFull(experience.maxCapacity, experience.bookedSpots);
 
+  const handleQuickView = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsQuickViewOpen(true);
+  };
+
   return (
-    <Link to={`/experience/${experience.id}`}>
-      <Card hover className="h-full flex flex-col">
-        {/* Image */}
-        <div className="relative h-48 overflow-hidden">
-          <img
-            src={experience.image}
-            alt={experience.title}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-          />
-          {experience.featured && (
-            <div className="absolute top-3 left-3">
-              <Badge variant="warning" icon={<Star className="w-3 h-3 fill-current" />}>
-                Featured
-              </Badge>
+    <>
+      <Link to={`/experience/${experience.id}`}>
+        <Card hover className="h-full flex flex-col">
+          {/* Image */}
+          <div className="relative h-48 overflow-hidden group">
+            <img
+              src={experience.image}
+              alt={experience.title}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
+            {experience.featured && (
+              <div className="absolute top-3 left-3">
+                <Badge variant="warning" icon={<Star className="w-3 h-3 fill-current" />}>
+                  Featured
+                </Badge>
+              </div>
+            )}
+            {almostFull && spotsLeft > 0 && (
+              <div className="absolute top-3 right-3">
+                <Badge variant="danger">Almost Full!</Badge>
+              </div>
+            )}
+            {spotsLeft === 0 && (
+              <div className="absolute top-3 right-3">
+                <Badge variant="default">Sold Out</Badge>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button
+                onClick={handleQuickView}
+                className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-md hover:shadow-lg"
+                aria-label="Quick view"
+              >
+                <Eye className="w-4 h-4 text-gray-900" />
+              </button>
+              <FavoriteButton experienceId={experience.id} size="sm" />
             </div>
-          )}
-          {almostFull && spotsLeft > 0 && (
-            <div className="absolute top-3 right-3">
-              <Badge variant="danger">Almost Full!</Badge>
-            </div>
-          )}
-          {spotsLeft === 0 && (
-            <div className="absolute top-3 right-3">
-              <Badge variant="default">Sold Out</Badge>
-            </div>
-          )}
-        </div>
+          </div>
 
         {/* Content */}
         <div className="p-4 flex-1 flex flex-col">
@@ -123,5 +146,13 @@ export default function ExperienceCard({ experience, compact = false }) {
         </div>
       </Card>
     </Link>
+
+    {/* Quick View Modal */}
+    <QuickViewModal
+      experience={experience}
+      isOpen={isQuickViewOpen}
+      onClose={() => setIsQuickViewOpen(false)}
+    />
+  </>
   );
 }

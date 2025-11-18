@@ -28,7 +28,12 @@
     ],
     "included": ["Welcome drink", "Learning materials", "Photo opportunities"],
     "tags": ["beginner-friendly", "culture", "food"],
-    "featured": true
+    "featured": true,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "morning"
   },
   {
     "id": "exp2",
@@ -59,7 +64,12 @@
     ],
     "included": ["3 tapas tastings", "Drink included", "Walking tour"],
     "tags": ["food", "culture", "walking"],
-    "featured": true
+    "featured": true,
+    "accessible": false,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "both",
+    "timeOfDay": "evening"
   },
   {
     "id": "exp3",
@@ -90,7 +100,12 @@
     ],
     "included": ["Vintage shop visits", "Photo spots", "Crepe tasting"],
     "tags": ["fashion", "youth-culture", "anime"],
-    "featured": true
+    "featured": true,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "outdoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp4",
@@ -121,7 +136,12 @@
     ],
     "included": ["Coffee/tea", "K-drama scene scripts", "Photo opportunities"],
     "tags": ["k-drama", "cafe", "beginner-friendly"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp5",
@@ -152,7 +172,12 @@
     ],
     "included": ["Dance lesson", "Welcome drink", "Music playlist"],
     "tags": ["dance", "music", "social"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening"
   },
   {
     "id": "exp6",
@@ -183,7 +208,12 @@
     ],
     "included": ["Wine glass", "Poetry selections", "Notebook"],
     "tags": ["literature", "wine", "advanced"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening"
   },
   {
     "id": "exp7",
@@ -214,7 +244,12 @@
     ],
     "included": ["All ingredients", "Recipe book", "Your ramen to eat"],
     "tags": ["cooking", "food", "hands-on"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "morning"
   },
   {
     "id": "exp8",
@@ -245,7 +280,12 @@
     ],
     "included": ["Co-working space tour", "Coffee", "Networking"],
     "tags": ["business", "tech", "professional"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "both",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp9",
@@ -276,7 +316,12 @@
     ],
     "included": ["Live fado performance", "Portuguese wine", "Appetizers"],
     "tags": ["music", "culture", "evening"],
-    "featured": true
+    "featured": true,
+    "accessible": false,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening"
   },
   {
     "id": "exp10",
@@ -307,7 +352,12 @@
     ],
     "included": ["5 food tastings", "Market guide", "Recipe cards"],
     "tags": ["food", "market", "evening"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "outdoor",
+    "timeOfDay": "evening"
   },
   {
     "id": "exp11",
@@ -338,7 +388,12 @@
     ],
     "included": ["Calligraphy supplies", "Practice sheets", "Your artwork"],
     "tags": ["art", "writing", "culture"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp12",
@@ -369,7 +424,12 @@
     ],
     "included": ["Tea and pastries", "Book excerpts", "Reading list"],
     "tags": ["literature", "advanced", "culture"],
-    "featured": false
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp13",

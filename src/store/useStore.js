@@ -93,4 +93,33 @@ export const useStore = create((set, get) => ({
       ),
     })),
   clearNotifications: () => set({ notifications: [] }),
+
+  // Advanced Filters (for state management - can be used later for SSR or persistence)
+  advancedFilters: {
+    weekend: false,
+    accessible: false,
+    petFriendly: false,
+    foodIncluded: false,
+    indoorOutdoor: 'all',
+    groupSize: 'all',
+    timeOfDay: [],
+    experienceTypes: [],
+  },
+  setAdvancedFilter: (key, value) =>
+    set((state) => ({
+      advancedFilters: { ...state.advancedFilters, [key]: value },
+    })),
+  resetAdvancedFilters: () =>
+    set({
+      advancedFilters: {
+        weekend: false,
+        accessible: false,
+        petFriendly: false,
+        foodIncluded: false,
+        indoorOutdoor: 'all',
+        groupSize: 'all',
+        timeOfDay: [],
+        experienceTypes: [],
+      },
+    }),
 }));

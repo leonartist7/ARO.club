@@ -1,25 +1,34 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Users, Star, Calendar, Heart, Share2, ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
+import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import experiencesData from '../data/experiences.json';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES } from '../data/constants';
 import { formatPrice, calculateCouplePrice, getDiscountAmount, getSpotsLeft, calculateAverageRating } from '../utils/helpers';
 import { formatDate, formatTime, getDayOfWeek } from '../utils/date';
-import { useState } from 'react';
 
 export default function ExperienceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToRecentlyViewed } = useRecentlyViewed();
   const [showAllReviews, setShowAllReviews] = useState(false);
 
   const experience = experiencesData.find((exp) => exp.id === id);
+
+  // Track recently viewed on mount
+  useEffect(() => {
+    if (experience) {
+      addToRecentlyViewed(experience.id);
+    }
+  }, [experience?.id, addToRecentlyViewed]);
 
   if (!experience) {
     return (

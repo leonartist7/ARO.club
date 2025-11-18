@@ -13,6 +13,8 @@ const StudentProfilePage = lazy(() => import('../pages/StudentProfilePage'));
 const TeacherDashboardPage = lazy(() => import('../pages/TeacherDashboardPage'));
 const MapViewPage = lazy(() => import('../pages/MapViewPage'));
 const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage'));
+const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
+const RecentlyViewedPage = lazy(() => import('../pages/RecentlyViewedPage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const HowItWorksPage = lazy(() => import('../pages/HowItWorksPage'));
 const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
@@ -73,6 +75,14 @@ export const router = createBrowserRouter([
       {
         path: 'leaderboard',
         element: <LeaderboardPage />,
+      },
+      {
+        path: 'favorites',
+        element: <FavoritesPage />,
+      },
+      {
+        path: 'recently-viewed',
+        element: <RecentlyViewedPage />,
       },
       {
         path: 'about',

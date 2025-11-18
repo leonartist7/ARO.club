@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Search, MapPin, Calendar, Users, Star, Globe, Trophy, Heart } from 'lucide-react';
 import Button from '../components/ui/Button';
 import ExperienceCard from '../components/features/ExperienceCard';
+import RecentlyViewed from '../components/RecentlyViewed';
 import { motion } from 'framer-motion';
 import experiencesData from '../data/experiences.json';
 import { useState } from 'react';
@@ -151,13 +152,13 @@ export default function HomePage() {
       </section>
 
       {/* Featured Experiences */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
               Featured Experiences
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Hand-picked experiences from our most-loved teachers around the world
             </p>
           </div>
@@ -178,8 +179,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Recently Viewed */}
+      <RecentlyViewed />
+
       {/* How It Works */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
