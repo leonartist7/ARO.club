@@ -1,8 +1,8 @@
-# 👅 TongueConnect
+# 👅 Conversa
 
 **Learn languages through real experiences with local teachers in cities around the world.**
 
-TongueConnect connects language learners with local teachers for small group (4-6 people) experiences in authentic settings like cafés, markets, walking tours, and cultural activities.
+Conversa connects language learners with local teachers for small group (4-6 people) experiences in authentic settings like cafés, markets, walking tours, and cultural activities.
 
 ---
 
@@ -161,6 +161,6 @@ MIT License - see LICENSE file for details
 
 ## 🎯 Vision
 
-TongueConnect makes language learning social, practical, and fun. We connect curious learners with passionate local teachers for authentic cultural experiences that actually improve fluency.
+Conversa makes language learning social, practical, and fun. We connect curious learners with passionate local teachers for authentic cultural experiences that actually improve fluency.
 
 **Learn a language. Make friends. Experience the world.** 🌍✨

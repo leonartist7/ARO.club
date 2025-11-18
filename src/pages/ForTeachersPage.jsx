@@ -131,7 +131,7 @@ export default function ForTeachersPage() {
       {/* Benefits Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
-          Why Teach with TongueConnect?
+          Why Teach with Conversa?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => (

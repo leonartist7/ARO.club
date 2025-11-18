@@ -1,6 +1,6 @@
-# TongueConnect MVP - Setup Guide
+# Conversa MVP - Setup Guide
 
-This guide will help you complete the setup of your TongueConnect MVP with Supabase authentication and database.
+This guide will help you complete the setup of your Conversa MVP with Supabase authentication and database.
 
 ## ✅ Completed
 

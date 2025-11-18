@@ -1,5 +1,5 @@
 -- ============================================
--- TongueConnect Database Schema
+-- Conversa Database Schema
 -- ============================================
 -- Run this in Supabase SQL Editor
 -- ============================================
@@ -316,5 +316,5 @@ CREATE TRIGGER on_auth_user_created
 -- ============================================
 DO $$
 BEGIN
-  RAISE NOTICE 'TongueConnect database schema created successfully!';
+  RAISE NOTICE 'Conversa database schema created successfully!';
 END $$;

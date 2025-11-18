@@ -1,6 +1,6 @@
 # 🏗️ PROJECT ARCHITECTURE & BUILD DOCUMENTATION
 
-**Project:** TongueConnect MVP
+**Project:** Conversa MVP
 **Purpose:** Language learning platform connecting students with local teachers
 **Status:** Foundation complete (~40%), ready for backend integration
 **Tech Stack:** React 18 + Vite + Tailwind CSS v3 + Zustand + React Router
@@ -28,7 +28,7 @@
 ## 🎯 PROJECT OVERVIEW
 
 ### Concept
-TongueConnect is an Airbnb-style marketplace for group language learning experiences. Teachers host in-person sessions (4-6 people) in cafés, markets, tours, etc. Students browse, book, and pay. Platform includes gamification (points, badges, levels).
+Conversa is an Airbnb-style marketplace for group language learning experiences. Teachers host in-person sessions (4-6 people) in cafés, markets, tours, etc. Students browse, book, and pay. Platform includes gamification (points, badges, levels).
 
 ### Business Model
 - Students pay $12-25 per experience
@@ -142,7 +142,7 @@ Mock Data (JSON) → Pages → Components → UI
 ## 📁 COMPLETE FILE STRUCTURE
 
 ```
-/Tonguee
+/Conversa
 ├── .git/                          # Git repository
 ├── node_modules/                  # Dependencies (ignored)
 ├── public/                        # Static assets

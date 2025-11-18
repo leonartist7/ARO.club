@@ -1,5 +1,5 @@
 -- ============================================
--- TongueConnect Database Schema - CLEAN INSTALL
+-- Conversa Database Schema - CLEAN INSTALL
 -- ============================================
 -- This will DROP all existing tables and recreate them
 -- WARNING: This will DELETE all data in these tables!
@@ -337,7 +337,7 @@ CREATE TRIGGER on_auth_user_created
 -- ============================================
 DO $$
 BEGIN
-  RAISE NOTICE '✅ TongueConnect database schema created successfully!';
+  RAISE NOTICE '✅ Conversa database schema created successfully!';
   RAISE NOTICE '📊 Tables: profiles, teachers, experiences, bookings, reviews, user_badges';
   RAISE NOTICE '🔒 Row Level Security: ENABLED on all tables';
   RAISE NOTICE '⚡ Auto-profile creation: ENABLED for new signups';

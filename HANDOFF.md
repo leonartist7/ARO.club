@@ -89,7 +89,7 @@
 
 #### ✅ **Layout Components**
 - **Header:**
-  - Logo with TongueConnect branding
+  - Logo with Conversa branding
   - Desktop navigation (Explore, Map View, How It Works, For Teachers)
   - Leaderboard link
   - Sign In/Sign Up buttons (UI only - no auth yet)
@@ -164,7 +164,7 @@
 ## 📁 PROJECT STRUCTURE
 
 ```
-/Tonguee
+/Conversa
 ├── src/
 │   ├── components/
 │   │   ├── features/          # Domain-specific components
@@ -547,7 +547,7 @@
 **Steps:**
 1. Push your code to GitHub (already done!)
 2. Go to [vercel.com](https://vercel.com) and sign in with GitHub
-3. Import your `Tonguee` repository
+3. Import your `Conversa` repository
 4. Vercel will auto-detect Vite configuration
 5. Add environment variables in Vercel dashboard:
    - `VITE_SUPABASE_URL`
@@ -631,7 +631,7 @@
 #### 8. **SEO Optimization**
 **Steps:**
 1. Update `index.html`:
-   - Meaningful title: "TongueConnect | Learn Languages Through Real Experiences"
+   - Meaningful title: "Conversa | Learn Languages Through Real Experiences"
    - Meta description
    - Favicon (replace vite.svg)
 2. Add Open Graph tags for social sharing

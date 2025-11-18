@@ -44,7 +44,7 @@ export default function Header() {
             className="flex items-center gap-2 text-2xl font-display font-bold gradient-text"
           >
             <span className="text-3xl">👅</span>
-            TongueConnect
+            Conversa
           </Link>
 
           {/* Desktop Navigation */}

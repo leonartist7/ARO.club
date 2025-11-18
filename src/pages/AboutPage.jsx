@@ -86,7 +86,7 @@ export default function AboutPage() {
               Our Mission: Connect the World Through Language
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
-              TongueConnect was born from a simple idea: the best way to learn a language is
+              Conversa was born from a simple idea: the best way to learn a language is
               by living it. We connect language learners with native speakers for real,
               immersive experiences in cities around the world.
             </p>
@@ -133,14 +133,14 @@ export default function AboutPage() {
                 speaking with locals in real situations.
               </p>
               <p>
-                That night, over tapas and wine, they dreamed up TongueConnect: a platform that
+                That night, over tapas and wine, they dreamed up Conversa: a platform that
                 would make language learning feel less like studying and more like exploring.
                 They imagined cooking classes in French, market tours in Spanish, and coffee
                 chats in Japanese—all led by passionate locals who loved sharing their language
                 and culture.
               </p>
               <p>
-                Today, TongueConnect operates in over 15 cities worldwide, connecting thousands
+                Today, Conversa operates in over 15 cities worldwide, connecting thousands
                 of language learners with local teachers for unforgettable experiences. Our
                 community includes everyone from complete beginners taking their first steps to
                 advanced learners perfecting their accent—all united by curiosity and a love of
