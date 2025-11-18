@@ -11,6 +11,8 @@ const ExperienceDetailPage = lazy(() => import('../pages/ExperienceDetailPage'))
 const TeacherProfilePage = lazy(() => import('../pages/TeacherProfilePage'));
 const StudentProfilePage = lazy(() => import('../pages/StudentProfilePage'));
 const TeacherDashboardPage = lazy(() => import('../pages/TeacherDashboardPage'));
+const StudentDashboard = lazy(() => import('../pages/StudentDashboard'));
+const CharacterBuilder = lazy(() => import('../pages/CharacterBuilder'));
 const MapViewPage = lazy(() => import('../pages/MapViewPage'));
 const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage'));
 const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
@@ -75,6 +77,22 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <TeacherDashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'student-dashboard',
+        element: (
+          <ProtectedRoute>
+            <StudentDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'character-builder',
+        element: (
+          <ProtectedRoute>
+            <CharacterBuilder />
           </ProtectedRoute>
         ),
       },
