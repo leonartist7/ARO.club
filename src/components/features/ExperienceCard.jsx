@@ -5,6 +5,8 @@ import { Card } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Avatar from '../ui/Avatar';
 import FavoriteButton from '../ui/FavoriteButton';
+import SpotCounter from '../ui/SpotCounter';
+import CompareButton from '../ui/CompareButton';
 import QuickViewModal from '../QuickViewModal';
 import { formatPrice, getSpotsLeft, isAlmostFull } from '../../utils/helpers';
 import { formatDate, formatTime } from '../../utils/date';
@@ -128,20 +130,38 @@ export default function ExperienceCard({ experience, compact = false }) {
             </div>
           </div>
 
+          {/* Spot Counter */}
+          <div className="mb-3">
+            <SpotCounter
+              spotsLeft={spotsLeft}
+              totalSpots={experience.maxCapacity}
+              variant="compact"
+            />
+          </div>
+
           {/* Footer */}
-          <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between">
-            <div>
-              <div className="text-2xl font-bold text-primary-500">
-                {formatPrice(experience.price)}
+          <div className="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-2xl font-bold text-primary-500">
+                  {formatPrice(experience.price)}
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">per person</div>
               </div>
-              <div className="text-xs text-gray-500">per person</div>
-            </div>
-            <div className="text-right">
-              <div className="text-sm font-medium text-secondary-600">
-                {formatPrice(experience.price * 1.7)} for 2
+              <div className="text-right">
+                <div className="text-sm font-medium text-secondary-600 dark:text-secondary-400">
+                  {formatPrice(experience.price * 1.7)} for 2
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Save 15%!</div>
               </div>
-              <div className="text-xs text-gray-500">Save 15%!</div>
             </div>
+
+            {/* Compare Button */}
+            <CompareButton
+              experienceId={experience.id}
+              size="sm"
+              className="w-full"
+            />
           </div>
         </div>
       </Card>

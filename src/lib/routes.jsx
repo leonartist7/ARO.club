@@ -15,6 +15,7 @@ const MapViewPage = lazy(() => import('../pages/MapViewPage'));
 const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage'));
 const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
 const RecentlyViewedPage = lazy(() => import('../pages/RecentlyViewedPage'));
+const ComparePage = lazy(() => import('../pages/ComparePage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const HowItWorksPage = lazy(() => import('../pages/HowItWorksPage'));
 const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: 'recently-viewed',
         element: <RecentlyViewedPage />,
+      },
+      {
+        path: 'compare',
+        element: <ComparePage />,
       },
       {
         path: 'about',

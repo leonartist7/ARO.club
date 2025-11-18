@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Users, Star, Calendar, Heart, Share2, ChevronLeft } from 'lucide-react';
+import { MapPin, Clock, Users, Star, Calendar, Heart, ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Button from '../components/ui/Button';
@@ -7,19 +7,32 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
+import CalendarAvailability from '../components/CalendarAvailability';
+import SpotCounter from '../components/ui/SpotCounter';
+import ShareButton from '../components/ShareButton';
+import ReviewHelpfulness from '../components/ReviewHelpfulness';
+import SocialProof from '../components/ui/SocialProof';
+import BookingProtection from '../components/ui/BookingProtection';
+import RecentlyBooked from '../components/ui/RecentlyBooked';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
+import { useStore } from '../store/useStore';
 import experiencesData from '../data/experiences.json';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES } from '../data/constants';
 import { formatPrice, calculateCouplePrice, getDiscountAmount, getSpotsLeft, calculateAverageRating } from '../utils/helpers';
 import { formatDate, formatTime, getDayOfWeek } from '../utils/date';
+import { getExperienceShareText } from '../utils/shareUtils';
 
 export default function ExperienceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToRecentlyViewed } = useRecentlyViewed();
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const [reviewSortBy, setReviewSortBy] = useState('recent'); // 'recent', 'highest', 'lowest', 'helpful'
+
+  // Module 3: Selected date state
+  const { selectedDate, setSelectedDate } = useStore();
 
   const experience = experiencesData.find((exp) => exp.id === id);
 
@@ -63,22 +76,41 @@ export default function ExperienceDetailPage() {
   const isSoldOut = spotsLeft === 0;
   const isAlmostFull = spotsLeft <= 2 && spotsLeft > 0;
 
-  const visibleReviews = showAllReviews ? experienceReviews : experienceReviews.slice(0, 5);
+  // Sort reviews
+  const sortedReviews = [...experienceReviews].sort((a, b) => {
+    switch (reviewSortBy) {
+      case 'highest':
+        return b.rating - a.rating;
+      case 'lowest':
+        return a.rating - b.rating;
+      case 'helpful':
+        return (b.helpfulCount || 0) - (a.helpfulCount || 0);
+      case 'recent':
+      default:
+        return new Date(b.date) - new Date(a.date);
+    }
+  });
 
-  const handleBooking = () => {
-    alert('Booking feature coming soon! This will integrate with Stripe for payments.');
+  const visibleReviews = showAllReviews ? sortedReviews : sortedReviews.slice(0, 5);
+
+  // Module 3: Get spots for selected date or default
+  const getCurrentSpots = () => {
+    if (selectedDate && experience.spotsAvailableByDate) {
+      const dateString = new Date(selectedDate).toISOString().split('T')[0];
+      return experience.spotsAvailableByDate[dateString] || spotsLeft;
+    }
+    return spotsLeft;
   };
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: experience.title,
-        text: experience.description,
-        url: window.location.href,
-      });
-    } else {
-      alert('Share link: ' + window.location.href);
-    }
+  const currentSpots = getCurrentSpots();
+
+  // Generate share text
+  const shareText = getExperienceShareText(experience, city, language);
+  const shareUrl = window.location.href;
+
+  const handleBooking = () => {
+    const bookingDate = selectedDate || experience.date;
+    alert(`Booking for ${formatDate(bookingDate)}. Payment integration coming soon!`);
   };
 
   return (
@@ -106,12 +138,13 @@ export default function ExperienceDetailPage() {
         </button>
 
         {/* Share Button */}
-        <button
-          onClick={handleShare}
-          className="absolute top-6 right-6 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
-        >
-          <Share2 className="w-6 h-6 text-gray-900" />
-        </button>
+        <div className="absolute top-6 right-6">
+          <ShareButton
+            url={shareUrl}
+            title={experience.title}
+            text={shareText}
+          />
+        </div>
 
         {/* Status Badges */}
         <div className="absolute bottom-6 left-6 flex gap-2">
@@ -223,28 +256,59 @@ export default function ExperienceDetailPage() {
               </CardBody>
             </Card>
 
+            {/* Calendar Availability */}
+            {experience.availableDates && experience.availableDates.length > 0 && (
+              <Card>
+                <CardBody>
+                  <CalendarAvailability
+                    availableDates={experience.availableDates}
+                    spotsAvailableByDate={experience.spotsAvailableByDate}
+                    selectedDate={selectedDate}
+                    onDateSelect={setSelectedDate}
+                  />
+
+                  {/* Social Proof Indicators */}
+                  {experience.viewingCount > 10 && (
+                    <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
+                      <SocialProof
+                        viewingCount={experience.viewingCount}
+                        variant="viewing"
+                      />
+                      {experience.recentBookingCount > 0 && (
+                        <SocialProof
+                          recentBookingCount={experience.recentBookingCount}
+                          variant="booked"
+                        />
+                      )}
+                      <RecentlyBooked />
+                    </div>
+                  )}
+                </CardBody>
+              </Card>
+            )}
+
             {/* Location */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">
                   Location
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">{experience.location.venue}</p>
-                      <p className="text-gray-600">{experience.location.address}</p>
-                      <p className="text-sm text-gray-500">{city?.name}, {city?.country}</p>
+                      <p className="font-medium text-gray-900 dark:text-white">{experience.location.venue}</p>
+                      <p className="text-gray-600 dark:text-gray-400">{experience.location.address}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-500">{city?.name}, {city?.country}</p>
                     </div>
                   </div>
 
                   {/* Map Placeholder */}
-                  <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                  <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
                     <div className="text-center p-6">
                       <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                      <p className="text-gray-600 font-medium mb-1">Interactive Map Coming Soon</p>
-                      <p className="text-sm text-gray-500">Google Maps integration requires API key</p>
+                      <p className="text-gray-600 dark:text-gray-300 font-medium mb-1">Interactive Map Coming Soon</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Google Maps integration requires API key</p>
                       <p className="text-xs text-gray-400 mt-2">
                         Location: {experience.location.lat}, {experience.location.lng}
                       </p>
@@ -259,22 +323,39 @@ export default function ExperienceDetailPage() {
               <Card>
                 <CardBody>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-display font-bold text-gray-900">
+                    <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
                       Reviews ({experienceReviews.length})
                     </h2>
                     <div className="flex items-center gap-2">
                       <Star className="w-5 h-5 fill-yellow-400 stroke-yellow-400" />
-                      <span className="text-xl font-bold text-gray-900">{averageRating}</span>
+                      <span className="text-xl font-bold text-gray-900 dark:text-white">{averageRating}</span>
                     </div>
+                  </div>
+
+                  {/* Sort Options */}
+                  <div className="mb-6">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+                      Sort by:
+                    </label>
+                    <select
+                      value={reviewSortBy}
+                      onChange={(e) => setReviewSortBy(e.target.value)}
+                      className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    >
+                      <option value="recent">Most Recent</option>
+                      <option value="highest">Highest Rating</option>
+                      <option value="lowest">Lowest Rating</option>
+                      <option value="helpful">Most Helpful</option>
+                    </select>
                   </div>
 
                   <div className="space-y-6">
                     {visibleReviews.map((review) => (
                       <div
                         key={review.id}
-                        className="border-b border-gray-100 last:border-0 pb-6 last:pb-0"
+                        className="border-b border-gray-100 dark:border-gray-700 last:border-0 pb-6 last:pb-0"
                       >
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-start gap-3 mb-4">
                           <Avatar
                             src={review.studentPhoto}
                             alt={review.studentName}
@@ -283,7 +364,7 @@ export default function ExperienceDetailPage() {
                           />
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-1">
-                              <p className="font-medium text-gray-900">{review.studentName}</p>
+                              <p className="font-medium text-gray-900 dark:text-white">{review.studentName}</p>
                               <div className="flex items-center gap-1">
                                 {[...Array(5)].map((_, i) => (
                                   <Star
@@ -291,16 +372,23 @@ export default function ExperienceDetailPage() {
                                     className={`w-4 h-4 ${
                                       i < review.rating
                                         ? 'fill-yellow-400 stroke-yellow-400'
-                                        : 'stroke-gray-300'
+                                        : 'stroke-gray-300 dark:stroke-gray-600'
                                     }`}
                                   />
                                 ))}
                               </div>
                             </div>
-                            <p className="text-sm text-gray-500 mb-2">{formatDate(review.date)}</p>
-                            <p className="text-gray-700">{review.comment}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{formatDate(review.date)}</p>
+                            <p className="text-gray-700 dark:text-gray-300">{review.comment}</p>
                           </div>
                         </div>
+
+                        {/* Review Helpfulness */}
+                        <ReviewHelpfulness
+                          reviewId={review.id}
+                          initialHelpfulCount={review.helpfulCount}
+                          initialNotHelpfulCount={review.notHelpfulCount}
+                        />
                       </div>
                     ))}
                   </div>
@@ -324,13 +412,21 @@ export default function ExperienceDetailPage() {
           <div className="lg:col-span-1">
             <Card className="sticky top-24">
               <CardBody>
+                {/* Spot Counter */}
+                <SpotCounter
+                  spotsLeft={currentSpots}
+                  totalSpots={experience.maxCapacity}
+                  variant="default"
+                  className="mb-6"
+                />
+
                 {/* Price */}
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2 mb-3">
                     <span className="text-4xl font-bold text-primary-500">
                       {formatPrice(experience.price)}
                     </span>
-                    <span className="text-gray-600">/ person</span>
+                    <span className="text-gray-600 dark:text-gray-400">/ person</span>
                   </div>
 
                   {/* Couple Discount */}
@@ -368,18 +464,21 @@ export default function ExperienceDetailPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 text-gray-700">
+                  <div className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
                     <Users className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-medium">
-                        {isSoldOut ? 'Sold Out' : `${spotsLeft} spots left`}
+                        {currentSpots === 0 ? 'Sold Out' : `${currentSpots} spots left`}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         Max {experience.maxCapacity} people
                       </p>
                     </div>
                   </div>
                 </div>
+
+                {/* Booking Protection */}
+                <BookingProtection className="mb-6" />
 
                 {/* Actions */}
                 <div className="space-y-3">
@@ -387,10 +486,10 @@ export default function ExperienceDetailPage() {
                     variant="primary"
                     size="lg"
                     className="w-full"
-                    disabled={isSoldOut}
+                    disabled={currentSpots === 0}
                     onClick={handleBooking}
                   >
-                    {isSoldOut ? 'Sold Out' : 'Book Now'}
+                    {currentSpots === 0 ? 'Sold Out' : selectedDate ? 'Book Selected Date' : 'Book Now'}
                   </Button>
 
                   <Button
@@ -403,10 +502,6 @@ export default function ExperienceDetailPage() {
                     Save for Later
                   </Button>
                 </div>
-
-                <p className="text-xs text-center text-gray-500 mt-4">
-                  Free cancellation up to 24 hours before
-                </p>
               </CardBody>
             </Card>
           </div>
