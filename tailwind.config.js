@@ -8,28 +8,28 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#FFF5F2',
-          100: '#FFE8E0',
-          200: '#FFD1C2',
-          300: '#FFB39A',
-          400: '#FF8D66',
-          500: '#FF6B35', // Main coral orange
-          600: '#E65520',
-          700: '#C24316',
-          800: '#9E3714',
-          900: '#7A2D11',
+          50: '#FFFBEA',   // Very light yellow
+          100: '#FFF3C4',  // Light yellow
+          200: '#FFE680',  // Lighter yellow
+          300: '#FFD93D',  // Medium yellow
+          400: '#FFC107',  // Bright yellow
+          500: '#FFB300',  // Main vibrant yellow (brand color)
+          600: '#F59E00',  // Golden yellow
+          700: '#CC8400',  // Deep gold
+          800: '#A36A00',  // Bronze
+          900: '#7A5000',  // Dark bronze
         },
         secondary: {
-          50: '#F0FFFE',
-          100: '#D4FFFD',
-          200: '#AAFFFA',
-          300: '#76FFF7',
-          400: '#3EEEE8',
-          500: '#20B2AA', // Main teal
-          600: '#1A8F89',
-          700: '#15706C',
-          800: '#115956',
-          900: '#0D4644',
+          50: '#FFF4ED',   // Very light orange
+          100: '#FFE4D1',  // Light peach
+          200: '#FFC499',  // Light orange
+          300: '#FFA366',  // Medium orange
+          400: '#FF8333',  // Bright orange
+          500: '#FF6600',  // Main vibrant orange (for gradients)
+          600: '#E65C00',  // Deep orange
+          700: '#CC5200',  // Dark orange
+          800: '#993D00',  // Very dark orange
+          900: '#662900',  // Almost brown
         },
       },
       fontFamily: {
