@@ -362,9 +362,9 @@ const ChooseRolePage = () => {
         </div>
       </motion.div>
 
-      {/* Choose your journey - centered in the middle */}
+      {/* Choose your journey - below navigation bar */}
       <motion.div
-        className="absolute top-1/2 inset-x-0 -translate-y-1/2 z-30 text-center pointer-events-none"
+        className="absolute top-20 md:top-24 inset-x-0 z-30 text-center pointer-events-none"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{
           opacity: 1,
