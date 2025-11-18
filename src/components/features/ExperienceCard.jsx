@@ -12,11 +12,13 @@ import { formatPrice, getSpotsLeft, isAlmostFull } from '../../utils/helpers';
 import { formatDate, formatTime } from '../../utils/date';
 import { LANGUAGES, CITIES } from '../../data/constants';
 import teachersData from '../../data/teachers.json';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 /**
  * Experience card component for displaying experience information
  */
 export default function ExperienceCard({ experience, compact = false }) {
+  const { t } = useLanguage();
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const teacher = teachersData.find((t) => t.id === experience.teacherId);
   const city = CITIES.find((c) => c.id === experience.cityId);
@@ -44,18 +46,18 @@ export default function ExperienceCard({ experience, compact = false }) {
             {experience.featured && (
               <div className="absolute top-3 left-3">
                 <Badge variant="warning" icon={<Star className="w-3 h-3 fill-current" />}>
-                  Featured
+                  {t('experienceCard.featured')}
                 </Badge>
               </div>
             )}
             {almostFull && spotsLeft > 0 && (
               <div className="absolute top-3 right-3">
-                <Badge variant="danger">Almost Full!</Badge>
+                <Badge variant="danger">{t('experienceCard.almostFull')}</Badge>
               </div>
             )}
             {spotsLeft === 0 && (
               <div className="absolute top-3 right-3">
-                <Badge variant="default">Sold Out</Badge>
+                <Badge variant="default">{t('experienceCard.soldOut')}</Badge>
               </div>
             )}
 
@@ -125,7 +127,7 @@ export default function ExperienceCard({ experience, compact = false }) {
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 flex-shrink-0" />
               <span>
-                {spotsLeft > 0 ? `${spotsLeft} spots left` : 'Sold out'}
+                {spotsLeft > 0 ? `${spotsLeft} ${t('experienceCard.spotsLeft')}` : t('experienceCard.soldOut')}
               </span>
             </div>
           </div>
@@ -146,13 +148,13 @@ export default function ExperienceCard({ experience, compact = false }) {
                 <div className="text-2xl font-bold text-primary-500">
                   {formatPrice(experience.price)}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">per person</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{t('experienceCard.perPerson')}</div>
               </div>
               <div className="text-right">
                 <div className="text-sm font-medium text-secondary-600 dark:text-secondary-400">
-                  {formatPrice(experience.price * 1.7)} for 2
+                  {formatPrice(experience.price * 1.7)} {t('experienceCard.for2')}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">Save 15%!</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{t('experienceCard.save15')}</div>
               </div>
             </div>
 
