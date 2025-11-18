@@ -17,10 +17,12 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ChooseRolePage = () => {
   const navigate = useNavigate();
   const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const { t } = useLanguage();
   const [hoveredSide, setHoveredSide] = useState(null);
 
   const handleRoleSelect = (role) => {
@@ -145,7 +147,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.4 }}
             >
-              I'm a Student
+              {t('roleSelection.studentTitle')}
             </motion.h2>
 
             {/* Description */}
@@ -156,7 +158,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.4 }}
             >
-              Discover amazing language experiences and connect with local teachers
+              {t('roleSelection.studentDescription')}
             </motion.p>
 
             {/* Button */}
@@ -167,7 +169,7 @@ const ChooseRolePage = () => {
               transition={{ duration: 0.2 }}
             >
               <span className="relative z-10 flex items-center gap-2">
-                Start Learning
+                {t('roleSelection.startLearning')}
                 <motion.span
                   animate={{ x: hoveredSide === 'student' ? [0, 4, 0] : 0 }}
                   transition={{ duration: 0.6, repeat: Infinity }}
@@ -195,7 +197,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.3 }}
             >
-              {hoveredSide === 'student' && ['Browse Experiences', 'Book Sessions', 'Earn Badges'].map(
+              {hoveredSide === 'student' && [t('roleSelection.browseExperiences'), t('roleSelection.bookSessions'), t('roleSelection.earnBadges')].map(
                 (feature, index) => (
                   <motion.div
                     key={feature}
@@ -291,7 +293,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.4 }}
             >
-              I'm a Teacher
+              {t('roleSelection.teacherTitle')}
             </motion.h2>
 
             {/* Description */}
@@ -302,7 +304,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.4 }}
             >
-              Share your expertise and create unique cultural experiences
+              {t('roleSelection.teacherDescription')}
             </motion.p>
 
             {/* Button */}
@@ -313,7 +315,7 @@ const ChooseRolePage = () => {
               transition={{ duration: 0.2 }}
             >
               <span className="relative z-10 flex items-center gap-2">
-                Start Teaching
+                {t('roleSelection.startTeaching')}
                 <motion.span
                   animate={{ x: hoveredSide === 'teacher' ? [0, 4, 0] : 0 }}
                   transition={{ duration: 0.6, repeat: Infinity }}
@@ -341,7 +343,7 @@ const ChooseRolePage = () => {
               }}
               transition={{ duration: 0.3 }}
             >
-              {hoveredSide === 'teacher' && ['Create Experiences', 'Manage Bookings', 'Build Community'].map(
+              {hoveredSide === 'teacher' && [t('roleSelection.createExperiences'), t('roleSelection.manageBookings'), t('roleSelection.buildCommunity')].map(
                 (feature, index) => (
                   <motion.div
                     key={feature}
@@ -374,7 +376,7 @@ const ChooseRolePage = () => {
         }}
       >
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-heading drop-shadow-2xl px-8">
-          Choose your journey
+          {t('roleSelection.chooseYourJourney')}
         </h1>
       </motion.div>
 
@@ -389,7 +391,7 @@ const ChooseRolePage = () => {
           onClick={() => navigate('/')}
           className="text-white/70 hover:text-white text-xs md:text-sm transition-colors underline underline-offset-4"
         >
-          Back to Home
+          {t('nav.backToHome')}
         </button>
       </motion.div>
     </div>

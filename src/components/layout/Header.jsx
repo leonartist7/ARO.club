@@ -3,14 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-react';
 import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
+import LanguageToggle from '../ui/LanguageToggle';
 import Avatar from '../ui/Avatar';
 import { useStore } from '../../store/useStore';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const navigation = [
-  { name: 'Explore', href: '/explore' },
-  { name: 'Map View', href: '/map' },
-  { name: 'How It Works', href: '/how-it-works' },
-  { name: 'For Teachers', href: '/for-teachers' },
+  { name: 'nav.explore', href: '/explore' },
+  { name: 'nav.mapView', href: '/map' },
+  { name: 'nav.howItWorks', href: '/how-it-works' },
+  { name: 'nav.forTeachers', href: '/for-teachers' },
 ];
 
 /**
@@ -23,6 +25,7 @@ export default function Header() {
   const navigate = useNavigate();
   const currentUser = useStore((state) => state.currentUser);
   const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const { t } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
 
@@ -56,17 +59,18 @@ export default function Header() {
                     : 'text-gray-700 dark:text-gray-300 hover:text-primary-500'
                 }`}
               >
-                {item.name}
+                {t(item.name)}
               </Link>
             ))}
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <Link to="/leaderboard">
               <Button variant="ghost" size="sm" icon={<Trophy className="w-4 h-4" />}>
-                Leaderboard
+                {t('nav.leaderboard')}
               </Button>
             </Link>
 
@@ -104,7 +108,7 @@ export default function Header() {
                         onClick={() => setUserMenuOpen(false)}
                       >
                         <User className="w-4 h-4" />
-                        My Profile
+                        {t('nav.myProfile')}
                       </Link>
                       {currentUser?.isTeacher && (
                         <Link
@@ -113,7 +117,7 @@ export default function Header() {
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Settings className="w-4 h-4" />
-                          Teacher Dashboard
+                          {t('nav.teacherDashboard')}
                         </Link>
                       )}
                       <button
@@ -124,7 +128,7 @@ export default function Header() {
                         className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left"
                       >
                         <LogOut className="w-4 h-4" />
-                        Sign Out
+                        {t('nav.signOut')}
                       </button>
                     </div>
                   </>
@@ -134,7 +138,7 @@ export default function Header() {
               <>
                 <Link to="/choose-role">
                   <Button variant="primary" size="sm">
-                    Get Started
+                    {t('nav.getStarted')}
                   </Button>
                 </Link>
               </>
@@ -143,6 +147,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               type="button"
@@ -169,7 +174,7 @@ export default function Header() {
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.name}
+                  {t(item.name)}
                 </Link>
               ))}
               <Link
@@ -177,7 +182,7 @@ export default function Header() {
                 className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                🏆 Leaderboard
+                🏆 {t('nav.leaderboard')}
               </Link>
               {currentUser ? (
                 <>
@@ -186,7 +191,7 @@ export default function Header() {
                     className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    My Profile
+                    {t('nav.myProfile')}
                   </Link>
                   {currentUser?.isTeacher && (
                     <Link
@@ -194,7 +199,7 @@ export default function Header() {
                       className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Teacher Dashboard
+                      {t('nav.teacherDashboard')}
                     </Link>
                   )}
                   <button
@@ -204,14 +209,14 @@ export default function Header() {
                     }}
                     className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 text-left"
                   >
-                    Sign Out
+                    {t('nav.signOut')}
                   </button>
                 </>
               ) : (
                 <div className="flex flex-col gap-2 pt-2">
                   <Link to="/choose-role" onClick={() => setMobileMenuOpen(false)}>
                     <Button variant="primary" size="sm" fullWidth>
-                      Get Started
+                      {t('nav.getStarted')}
                     </Button>
                   </Link>
                 </div>
