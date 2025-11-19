@@ -31,6 +31,11 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const SignupPage = lazy(() => import('../pages/SignupPage'));
 const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage'));
 const AuthCallbackPage = lazy(() => import('../pages/AuthCallbackPage'));
+const StudentOnboarding = lazy(() => import('../pages/StudentOnboarding'));
+const TeacherOnboarding = lazy(() => import('../pages/TeacherOnboarding'));
+const GamesPage = lazy(() => import('../pages/GamesPage'));
+const ShopPage = lazy(() => import('../pages/ShopPage'));
+const ChatPage = lazy(() => import('../pages/ChatPage'));
 
 /**
  * App routes configuration
@@ -105,6 +110,30 @@ export const router = createBrowserRouter([
         element: <LeaderboardPage />,
       },
       {
+        path: 'games',
+        element: (
+          <ProtectedRoute>
+            <GamesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'shop',
+        element: (
+          <ProtectedRoute>
+            <ShopPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'chat',
+        element: (
+          <ProtectedRoute>
+            <ChatPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: 'favorites',
         element: <FavoritesPage />,
       },
@@ -155,6 +184,22 @@ export const router = createBrowserRouter([
       {
         path: 'auth/callback',
         element: <AuthCallbackPage />,
+      },
+      {
+        path: 'onboarding/student',
+        element: (
+          <ProtectedRoute>
+            <StudentOnboarding />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'onboarding/teacher',
+        element: (
+          <ProtectedRoute>
+            <TeacherOnboarding />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '*',
