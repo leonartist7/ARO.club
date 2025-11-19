@@ -2,14 +2,17 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, User, Trophy, MapPin, LogOut, Settings } from 'lucide-react';
 import Button from '../ui/Button';
-import { useAuth } from '../../contexts/AuthContext';
+import ThemeToggle from '../ui/ThemeToggle';
+import LanguageToggle from '../ui/LanguageToggle';
 import Avatar from '../ui/Avatar';
+import { useStore } from '../../store/useStore';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const navigation = [
-  { name: 'Explore', href: '/explore' },
-  { name: 'Map View', href: '/map' },
-  { name: 'How It Works', href: '/how-it-works' },
-  { name: 'For Teachers', href: '/for-teachers' },
+  { name: 'nav.explore', href: '/explore' },
+  { name: 'nav.mapView', href: '/map' },
+  { name: 'nav.howItWorks', href: '/how-it-works' },
+  { name: 'nav.forTeachers', href: '/for-teachers' },
 ];
 
 /**
@@ -20,21 +23,19 @@ export default function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, profile, signOut } = useAuth();
+  const currentUser = useStore((state) => state.currentUser);
+  const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const { t } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      navigate('/');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+  const handleSignOut = () => {
+    setCurrentUser(null);
+    navigate('/');
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-lg border-b border-gray-200/20 dark:border-gray-700/30 transition-colors">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -43,7 +44,7 @@ export default function Header() {
             className="flex items-center gap-2 text-2xl font-display font-bold gradient-text"
           >
             <span className="text-3xl">👅</span>
-            TongueConnect
+            Conversa
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,32 +56,34 @@ export default function Header() {
                 className={`text-sm font-medium transition-colors ${
                   isActive(item.href)
                     ? 'text-primary-500'
-                    : 'text-gray-700 hover:text-primary-500'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-500'
                 }`}
               >
-                {item.name}
+                {t(item.name)}
               </Link>
             ))}
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageToggle />
+            <ThemeToggle />
             <Link to="/leaderboard">
               <Button variant="ghost" size="sm" icon={<Trophy className="w-4 h-4" />}>
-                Leaderboard
+                {t('nav.leaderboard')}
               </Button>
             </Link>
 
-            {user ? (
+            {currentUser ? (
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 p-1 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-2 p-1 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <Avatar
-                    src={profile?.photo}
-                    alt={profile?.name || 'User'}
-                    name={profile?.name || 'User'}
+                    src={currentUser?.photo}
+                    alt={currentUser?.name || 'User'}
+                    name={currentUser?.name || 'User'}
                     size="sm"
                   />
                 </button>
@@ -92,29 +95,29 @@ export default function Header() {
                       className="fixed inset-0 z-10"
                       onClick={() => setUserMenuOpen(false)}
                     ></div>
-                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
-                      <div className="px-4 py-3 border-b border-gray-100">
-                        <p className="text-sm font-semibold text-gray-900">
-                          {profile?.name || 'User'}
+                    <div className="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 py-2 z-20">
+                      <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                          {currentUser?.name || 'User'}
                         </p>
-                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{currentUser?.email}</p>
                       </div>
                       <Link
                         to="/profile"
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                         onClick={() => setUserMenuOpen(false)}
                       >
                         <User className="w-4 h-4" />
-                        My Profile
+                        {t('nav.myProfile')}
                       </Link>
-                      {profile?.is_teacher && (
+                      {currentUser?.isTeacher && (
                         <Link
                           to="/dashboard"
-                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Settings className="w-4 h-4" />
-                          Teacher Dashboard
+                          {t('nav.teacherDashboard')}
                         </Link>
                       )}
                       <button
@@ -122,10 +125,10 @@ export default function Header() {
                           setUserMenuOpen(false);
                           handleSignOut();
                         }}
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                        className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left"
                       >
                         <LogOut className="w-4 h-4" />
-                        Sign Out
+                        {t('nav.signOut')}
                       </button>
                     </div>
                   </>
@@ -133,14 +136,9 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <Link to="/login">
-                  <Button variant="outline" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/signup">
+                <Link to="/choose-role">
                   <Button variant="primary" size="sm">
-                    Sign Up
+                    {t('nav.getStarted')}
                   </Button>
                 </Link>
               </>
@@ -148,18 +146,22 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <button
-            type="button"
-            className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+            <button
+              type="button"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
+          <div className="md:hidden py-4 border-t border-gray-100 dark:border-gray-700">
             <div className="flex flex-col gap-2">
               {navigation.map((item) => (
                 <Link
@@ -167,37 +169,37 @@ export default function Header() {
                   to={item.href}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'bg-primary-50 text-primary-500'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-500'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.name}
+                  {t(item.name)}
                 </Link>
               ))}
               <Link
                 to="/leaderboard"
-                className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                🏆 Leaderboard
+                🏆 {t('nav.leaderboard')}
               </Link>
-              {user ? (
+              {currentUser ? (
                 <>
                   <Link
                     to="/profile"
-                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    My Profile
+                    {t('nav.myProfile')}
                   </Link>
-                  {profile?.is_teacher && (
+                  {currentUser?.isTeacher && (
                     <Link
                       to="/dashboard"
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Teacher Dashboard
+                      {t('nav.teacherDashboard')}
                     </Link>
                   )}
                   <button
@@ -205,21 +207,16 @@ export default function Header() {
                       setMobileMenuOpen(false);
                       handleSignOut();
                     }}
-                    className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 text-left"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 text-left"
                   >
-                    Sign Out
+                    {t('nav.signOut')}
                   </button>
                 </>
               ) : (
                 <div className="flex flex-col gap-2 pt-2">
-                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/choose-role" onClick={() => setMobileMenuOpen(false)}>
                     <Button variant="primary" size="sm" fullWidth>
-                      Sign Up
+                      {t('nav.getStarted')}
                     </Button>
                   </Link>
                 </div>

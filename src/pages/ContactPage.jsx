@@ -175,10 +175,10 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium text-gray-900">Email</p>
                       <a
-                        href="mailto:support@tongueconnect.com"
+                        href="mailto:support@conversa.com"
                         className="text-gray-600 hover:text-primary-600 text-sm"
                       >
-                        support@tongueconnect.com
+                        support@conversa.com
                       </a>
                     </div>
                   </div>
@@ -255,7 +255,7 @@ export default function ContactPage() {
                     to="/how-it-works"
                     className="block text-primary-600 hover:text-primary-700 hover:underline"
                   >
-                    Learn how TongueConnect works
+                    Learn how Conversa works
                   </Link>
                   <Link
                     to="/for-teachers"

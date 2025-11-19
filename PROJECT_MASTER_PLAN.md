@@ -1,6 +1,6 @@
 # 📋 PROJECT MASTER PLAN
 
-> **Project:** TongueConnect - Language Learning Experience Marketplace
+> **Project:** Conversa - Language Learning Experience Marketplace
 > **Status:** ~40% Complete - Foundation built, backend integration needed
 > **Last Updated:** 2025-11-12
 
@@ -8,7 +8,7 @@
 
 ## 🎯 PROJECT DESCRIPTION
 
-TongueConnect is an **Airbnb-style marketplace** for group language learning experiences. Students discover and book immersive language learning sessions led by native speakers in real-world cultural settings (cafés, walking tours, cooking classes, etc.). Teachers create and manage experiences while students earn gamification points and badges.
+Conversa is an **Airbnb-style marketplace** for group language learning experiences. Students discover and book immersive language learning sessions led by native speakers in real-world cultural settings (cafés, walking tours, cooking classes, etc.). Teachers create and manage experiences while students earn gamification points and badges.
 
 **Key Value Props:**
 - Learn languages through immersive cultural experiences
@@ -53,7 +53,7 @@ TongueConnect is an **Airbnb-style marketplace** for group language learning exp
 
 ### Folder Structure
 ```
-/home/user/Tonguee/
+/home/user/Conversa/
 ├── public/                     # Static assets
 ├── supabase/                   # Database schema (320 lines)
 │   └── schema.sql              # Complete DB structure with RLS

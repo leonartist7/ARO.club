@@ -4,9 +4,9 @@ Copy this entire section and paste it into a new Claude Code session to complete
 
 ---
 
-# TongueConnect - Complete Remaining Pages Build
+# Conversa - Complete Remaining Pages Build
 
-I need you to build all the remaining placeholder pages for TongueConnect, a language learning marketplace. You have full context in the repository's documentation files.
+I need you to build all the remaining placeholder pages for Conversa, a language learning marketplace. You have full context in the repository's documentation files.
 
 ## 📚 REQUIRED READING FIRST
 

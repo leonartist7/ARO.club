@@ -1,23 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
-
-const footerLinks = {
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'For Teachers', href: '/for-teachers' },
-    { name: 'FAQ', href: '/faq' },
-  ],
-  explore: [
-    { name: 'Browse Experiences', href: '/explore' },
-    { name: 'Map View', href: '/map' },
-    { name: 'Leaderboard', href: '/leaderboard' },
-  ],
-  support: [
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'Help Center', href: '/faq' },
-  ],
-};
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const socialLinks = [
   { name: 'Facebook', icon: Facebook, href: '#' },
@@ -30,6 +13,25 @@ const socialLinks = [
  * Footer component
  */
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = {
+    company: [
+      { name: t('footer.company.aboutUs'), href: '/about' },
+      { name: t('footer.company.howItWorks'), href: '/how-it-works' },
+      { name: t('footer.company.forTeachers'), href: '/for-teachers' },
+      { name: t('footer.company.faq'), href: '/faq' },
+    ],
+    explore: [
+      { name: t('footer.explore.browseExperiences'), href: '/explore' },
+      { name: t('footer.explore.mapView'), href: '/map' },
+      { name: t('footer.explore.leaderboard'), href: '/leaderboard' },
+    ],
+    support: [
+      { name: t('footer.support.contactUs'), href: '/contact' },
+      { name: t('footer.support.helpCenter'), href: '/faq' },
+    ],
+  };
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -41,11 +43,10 @@ export default function Footer() {
               className="flex items-center gap-2 text-2xl font-display font-bold text-white mb-4"
             >
               <span className="text-3xl">👅</span>
-              TongueConnect
+              Conversa
             </Link>
             <p className="text-sm mb-6 max-w-xs">
-              Connect with locals, learn languages naturally, and experience authentic
-              cultural moments in cities around the world.
+              {t('footer.description')}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -63,7 +64,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.company.title')}</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -79,7 +80,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-4">Explore</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.explore.title')}</h3>
             <ul className="space-y-2">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
@@ -95,7 +96,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-4">Support</h3>
+            <h3 className="text-white font-semibold mb-4">{t('footer.support.title')}</h3>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
@@ -113,17 +114,17 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm">
-            © {new Date().getFullYear()} TongueConnect. All rights reserved.
+            © {new Date().getFullYear()} Conversa. {t('footer.copyright')}
           </p>
           <div className="flex gap-6 text-sm">
             <Link to="#" className="hover:text-white transition-colors">
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </Link>
             <Link to="#" className="hover:text-white transition-colors">
-              Terms of Service
+              {t('footer.termsOfService')}
             </Link>
             <Link to="#" className="hover:text-white transition-colors">
-              Cookie Policy
+              {t('footer.cookiePolicy')}
             </Link>
           </div>
         </div>

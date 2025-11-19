@@ -26,9 +26,58 @@
       "Understanding Parisian culture",
       "French café etiquette"
     ],
-    "included": ["Welcome drink", "Learning materials", "Photo opportunities"],
-    "tags": ["beginner-friendly", "culture", "food"],
-    "featured": true
+    "included": [
+      "Welcome drink",
+      "Learning materials",
+      "Photo opportunities"
+    ],
+    "tags": [
+      "beginner-friendly",
+      "culture",
+      "food"
+    ],
+    "featured": true,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "morning",
+    "availableDates": [
+      "2025-11-24",
+      "2025-12-02",
+      "2025-12-09",
+      "2025-12-10",
+      "2025-12-11",
+      "2025-12-14",
+      "2025-12-15",
+      "2025-12-17",
+      "2025-12-18",
+      "2025-12-22",
+      "2025-12-23",
+      "2026-01-05",
+      "2026-01-06",
+      "2026-01-10",
+      "2026-01-15"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-24": 2,
+      "2025-12-02": 5,
+      "2025-12-09": 3,
+      "2025-12-10": 2,
+      "2025-12-11": 6,
+      "2025-12-14": 3,
+      "2025-12-15": 5,
+      "2025-12-17": 5,
+      "2025-12-18": 4,
+      "2025-12-22": 4,
+      "2025-12-23": 4,
+      "2026-01-05": 4,
+      "2026-01-06": 1,
+      "2026-01-10": 5,
+      "2026-01-15": 5
+    },
+    "viewingCount": 5,
+    "recentBookingCount": 1
   },
   {
     "id": "exp2",
@@ -57,9 +106,56 @@
       "Barcelona history and architecture",
       "Catalan vs Spanish differences"
     ],
-    "included": ["3 tapas tastings", "Drink included", "Walking tour"],
-    "tags": ["food", "culture", "walking"],
-    "featured": true
+    "included": [
+      "3 tapas tastings",
+      "Drink included",
+      "Walking tour"
+    ],
+    "tags": [
+      "food",
+      "culture",
+      "walking"
+    ],
+    "featured": true,
+    "accessible": false,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "both",
+    "timeOfDay": "evening",
+    "availableDates": [
+      "2025-11-19",
+      "2025-11-19",
+      "2025-11-22",
+      "2025-11-25",
+      "2025-12-02",
+      "2025-12-13",
+      "2025-12-20",
+      "2025-12-22",
+      "2025-12-22",
+      "2025-12-23",
+      "2025-12-26",
+      "2026-01-03",
+      "2026-01-06",
+      "2026-01-09",
+      "2026-01-11"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-19": 4,
+      "2025-11-22": 3,
+      "2025-11-25": 4,
+      "2025-12-02": 2,
+      "2025-12-13": 4,
+      "2025-12-20": 5,
+      "2025-12-22": 2,
+      "2025-12-23": 3,
+      "2025-12-26": 4,
+      "2026-01-03": 5,
+      "2026-01-06": 5,
+      "2026-01-09": 5,
+      "2026-01-11": 3
+    },
+    "viewingCount": 17,
+    "recentBookingCount": 2
   },
   {
     "id": "exp3",
@@ -88,9 +184,57 @@
       "Fashion vocabulary",
       "Understanding Japanese youth culture"
     ],
-    "included": ["Vintage shop visits", "Photo spots", "Crepe tasting"],
-    "tags": ["fashion", "youth-culture", "anime"],
-    "featured": true
+    "included": [
+      "Vintage shop visits",
+      "Photo spots",
+      "Crepe tasting"
+    ],
+    "tags": [
+      "fashion",
+      "youth-culture",
+      "anime"
+    ],
+    "featured": true,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "outdoor",
+    "timeOfDay": "afternoon",
+    "availableDates": [
+      "2025-11-20",
+      "2025-11-22",
+      "2025-11-27",
+      "2025-12-06",
+      "2025-12-08",
+      "2025-12-12",
+      "2025-12-17",
+      "2025-12-25",
+      "2026-01-02",
+      "2026-01-05",
+      "2026-01-05",
+      "2026-01-06",
+      "2026-01-07",
+      "2026-01-10",
+      "2026-01-15"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-20": 4,
+      "2025-11-22": 4,
+      "2025-11-27": 5,
+      "2025-12-06": 5,
+      "2025-12-08": 4,
+      "2025-12-12": 3,
+      "2025-12-17": 2,
+      "2025-12-25": 2,
+      "2026-01-02": 5,
+      "2026-01-05": 3,
+      "2026-01-06": 2,
+      "2026-01-07": 2,
+      "2026-01-10": 1,
+      "2026-01-15": 5
+    },
+    "viewingCount": 14,
+    "recentBookingCount": 10
   },
   {
     "id": "exp4",
@@ -119,9 +263,56 @@
       "Understanding Korean honorifics",
       "Korean dating culture and expressions"
     ],
-    "included": ["Coffee/tea", "K-drama scene scripts", "Photo opportunities"],
-    "tags": ["k-drama", "cafe", "beginner-friendly"],
-    "featured": false
+    "included": [
+      "Coffee/tea",
+      "K-drama scene scripts",
+      "Photo opportunities"
+    ],
+    "tags": [
+      "k-drama",
+      "cafe",
+      "beginner-friendly"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon",
+    "availableDates": [
+      "2025-11-20",
+      "2025-11-20",
+      "2025-12-06",
+      "2025-12-10",
+      "2025-12-11",
+      "2025-12-13",
+      "2025-12-16",
+      "2025-12-18",
+      "2025-12-19",
+      "2025-12-25",
+      "2025-12-30",
+      "2026-01-02",
+      "2026-01-05",
+      "2026-01-05",
+      "2026-01-07"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-20": 2,
+      "2025-12-06": 4,
+      "2025-12-10": 1,
+      "2025-12-11": 1,
+      "2025-12-13": 6,
+      "2025-12-16": 4,
+      "2025-12-18": 5,
+      "2025-12-19": 1,
+      "2025-12-25": 3,
+      "2025-12-30": 1,
+      "2026-01-02": 3,
+      "2026-01-05": 5,
+      "2026-01-07": 3
+    },
+    "viewingCount": 18,
+    "recentBookingCount": 4
   },
   {
     "id": "exp5",
@@ -150,9 +341,57 @@
       "Latin American culture",
       "Social Spanish phrases"
     ],
-    "included": ["Dance lesson", "Welcome drink", "Music playlist"],
-    "tags": ["dance", "music", "social"],
-    "featured": false
+    "included": [
+      "Dance lesson",
+      "Welcome drink",
+      "Music playlist"
+    ],
+    "tags": [
+      "dance",
+      "music",
+      "social"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening",
+    "availableDates": [
+      "2025-11-25",
+      "2025-11-28",
+      "2025-12-02",
+      "2025-12-05",
+      "2025-12-05",
+      "2025-12-06",
+      "2025-12-10",
+      "2025-12-14",
+      "2025-12-16",
+      "2025-12-21",
+      "2025-12-27",
+      "2026-01-01",
+      "2026-01-09",
+      "2026-01-11",
+      "2026-01-16"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-25": 2,
+      "2025-11-28": 8,
+      "2025-12-02": 1,
+      "2025-12-05": 6,
+      "2025-12-06": 5,
+      "2025-12-10": 4,
+      "2025-12-14": 1,
+      "2025-12-16": 6,
+      "2025-12-21": 4,
+      "2025-12-27": 6,
+      "2026-01-01": 2,
+      "2026-01-09": 7,
+      "2026-01-11": 6,
+      "2026-01-16": 3
+    },
+    "viewingCount": 24,
+    "recentBookingCount": 3
   },
   {
     "id": "exp6",
@@ -181,9 +420,57 @@
       "Understanding French literary culture",
       "Wine appreciation vocabulary"
     ],
-    "included": ["Wine glass", "Poetry selections", "Notebook"],
-    "tags": ["literature", "wine", "advanced"],
-    "featured": false
+    "included": [
+      "Wine glass",
+      "Poetry selections",
+      "Notebook"
+    ],
+    "tags": [
+      "literature",
+      "wine",
+      "advanced"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening",
+    "availableDates": [
+      "2025-11-19",
+      "2025-11-27",
+      "2025-12-11",
+      "2025-12-17",
+      "2025-12-20",
+      "2025-12-22",
+      "2025-12-25",
+      "2025-12-28",
+      "2025-12-31",
+      "2025-12-31",
+      "2026-01-04",
+      "2026-01-05",
+      "2026-01-09",
+      "2026-01-14",
+      "2026-01-16"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-19": 2,
+      "2025-11-27": 5,
+      "2025-12-11": 4,
+      "2025-12-17": 1,
+      "2025-12-20": 3,
+      "2025-12-22": 2,
+      "2025-12-25": 2,
+      "2025-12-28": 5,
+      "2025-12-31": 5,
+      "2026-01-04": 4,
+      "2026-01-05": 5,
+      "2026-01-09": 5,
+      "2026-01-14": 5,
+      "2026-01-16": 3
+    },
+    "viewingCount": 10,
+    "recentBookingCount": 6
   },
   {
     "id": "exp7",
@@ -212,9 +499,57 @@
       "Ingredient names in Japanese",
       "Japanese kitchen etiquette"
     ],
-    "included": ["All ingredients", "Recipe book", "Your ramen to eat"],
-    "tags": ["cooking", "food", "hands-on"],
-    "featured": false
+    "included": [
+      "All ingredients",
+      "Recipe book",
+      "Your ramen to eat"
+    ],
+    "tags": [
+      "cooking",
+      "food",
+      "hands-on"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "morning",
+    "availableDates": [
+      "2025-11-19",
+      "2025-11-23",
+      "2025-11-24",
+      "2025-11-26",
+      "2025-11-26",
+      "2025-11-28",
+      "2025-12-01",
+      "2025-12-07",
+      "2025-12-10",
+      "2025-12-22",
+      "2025-12-23",
+      "2025-12-25",
+      "2026-01-03",
+      "2026-01-07",
+      "2026-01-13"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-19": 2,
+      "2025-11-23": 2,
+      "2025-11-24": 3,
+      "2025-11-26": 1,
+      "2025-11-28": 3,
+      "2025-12-01": 2,
+      "2025-12-07": 1,
+      "2025-12-10": 4,
+      "2025-12-22": 4,
+      "2025-12-23": 4,
+      "2025-12-25": 3,
+      "2026-01-03": 2,
+      "2026-01-07": 4,
+      "2026-01-13": 4
+    },
+    "viewingCount": 10,
+    "recentBookingCount": 6
   },
   {
     "id": "exp8",
@@ -243,9 +578,56 @@
       "Professional communication",
       "Berlin startup culture"
     ],
-    "included": ["Co-working space tour", "Coffee", "Networking"],
-    "tags": ["business", "tech", "professional"],
-    "featured": false
+    "included": [
+      "Co-working space tour",
+      "Coffee",
+      "Networking"
+    ],
+    "tags": [
+      "business",
+      "tech",
+      "professional"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "both",
+    "timeOfDay": "afternoon",
+    "availableDates": [
+      "2025-11-29",
+      "2025-12-05",
+      "2025-12-06",
+      "2025-12-06",
+      "2025-12-07",
+      "2025-12-13",
+      "2025-12-15",
+      "2025-12-16",
+      "2025-12-20",
+      "2025-12-23",
+      "2025-12-25",
+      "2025-12-27",
+      "2025-12-27",
+      "2025-12-29",
+      "2026-01-09"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-29": 5,
+      "2025-12-05": 4,
+      "2025-12-06": 4,
+      "2025-12-07": 4,
+      "2025-12-13": 5,
+      "2025-12-15": 3,
+      "2025-12-16": 3,
+      "2025-12-20": 2,
+      "2025-12-23": 5,
+      "2025-12-25": 2,
+      "2025-12-27": 1,
+      "2025-12-29": 4,
+      "2026-01-09": 4
+    },
+    "viewingCount": 14,
+    "recentBookingCount": 8
   },
   {
     "id": "exp9",
@@ -274,9 +656,58 @@
       "The concept of 'saudade'",
       "Lisbon history and culture"
     ],
-    "included": ["Live fado performance", "Portuguese wine", "Appetizers"],
-    "tags": ["music", "culture", "evening"],
-    "featured": true
+    "included": [
+      "Live fado performance",
+      "Portuguese wine",
+      "Appetizers"
+    ],
+    "tags": [
+      "music",
+      "culture",
+      "evening"
+    ],
+    "featured": true,
+    "accessible": false,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "evening",
+    "availableDates": [
+      "2025-11-23",
+      "2025-11-28",
+      "2025-11-30",
+      "2025-12-01",
+      "2025-12-09",
+      "2025-12-17",
+      "2025-12-23",
+      "2025-12-25",
+      "2025-12-28",
+      "2025-12-31",
+      "2026-01-05",
+      "2026-01-08",
+      "2026-01-10",
+      "2026-01-11",
+      "2026-01-16"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-23": 5,
+      "2025-11-28": 3,
+      "2025-11-30": 6,
+      "2025-12-01": 2,
+      "2025-12-09": 5,
+      "2025-12-17": 1,
+      "2025-12-23": 1,
+      "2025-12-25": 6,
+      "2025-12-28": 6,
+      "2025-12-31": 6,
+      "2026-01-05": 1,
+      "2026-01-08": 3,
+      "2026-01-10": 2,
+      "2026-01-11": 5,
+      "2026-01-16": 3
+    },
+    "viewingCount": 15,
+    "recentBookingCount": 4
   },
   {
     "id": "exp10",
@@ -305,9 +736,57 @@
       "Bargaining in Korean",
       "Understanding Korean street food"
     ],
-    "included": ["5 food tastings", "Market guide", "Recipe cards"],
-    "tags": ["food", "market", "evening"],
-    "featured": false
+    "included": [
+      "5 food tastings",
+      "Market guide",
+      "Recipe cards"
+    ],
+    "tags": [
+      "food",
+      "market",
+      "evening"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "outdoor",
+    "timeOfDay": "evening",
+    "availableDates": [
+      "2025-11-22",
+      "2025-11-23",
+      "2025-11-23",
+      "2025-11-24",
+      "2025-12-01",
+      "2025-12-09",
+      "2025-12-12",
+      "2025-12-15",
+      "2025-12-17",
+      "2025-12-20",
+      "2026-01-03",
+      "2026-01-05",
+      "2026-01-07",
+      "2026-01-08",
+      "2026-01-17"
+    ],
+    "spotsAvailableByDate": {
+      "2025-11-22": 2,
+      "2025-11-23": 1,
+      "2025-11-24": 2,
+      "2025-12-01": 5,
+      "2025-12-09": 6,
+      "2025-12-12": 2,
+      "2025-12-15": 2,
+      "2025-12-17": 5,
+      "2025-12-20": 3,
+      "2026-01-03": 5,
+      "2026-01-05": 3,
+      "2026-01-07": 1,
+      "2026-01-08": 6,
+      "2026-01-17": 4
+    },
+    "viewingCount": 14,
+    "recentBookingCount": 4
   },
   {
     "id": "exp11",
@@ -336,9 +815,22 @@
       "Arabic letter connections",
       "Cultural context of Arabic script"
     ],
-    "included": ["Calligraphy supplies", "Practice sheets", "Your artwork"],
-    "tags": ["art", "writing", "culture"],
-    "featured": false
+    "included": [
+      "Calligraphy supplies",
+      "Practice sheets",
+      "Your artwork"
+    ],
+    "tags": [
+      "art",
+      "writing",
+      "culture"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": false,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp12",
@@ -367,9 +859,22 @@
       "Discussion and analysis skills",
       "Russian cultural context"
     ],
-    "included": ["Tea and pastries", "Book excerpts", "Reading list"],
-    "tags": ["literature", "advanced", "culture"],
-    "featured": false
+    "included": [
+      "Tea and pastries",
+      "Book excerpts",
+      "Reading list"
+    ],
+    "tags": [
+      "literature",
+      "advanced",
+      "culture"
+    ],
+    "featured": false,
+    "accessible": true,
+    "petFriendly": false,
+    "foodIncluded": true,
+    "indoorOutdoor": "indoor",
+    "timeOfDay": "afternoon"
   },
   {
     "id": "exp13",
@@ -398,8 +903,16 @@
       "Gaudí's life and work",
       "Catalan modernism"
     ],
-    "included": ["Walking tour", "Entry tickets", "Photo opportunities"],
-    "tags": ["architecture", "culture", "walking"],
+    "included": [
+      "Walking tour",
+      "Entry tickets",
+      "Photo opportunities"
+    ],
+    "tags": [
+      "architecture",
+      "culture",
+      "walking"
+    ],
     "featured": true
   },
   {
@@ -429,8 +942,16 @@
       "Italian family traditions",
       "Wine pairing basics"
     ],
-    "included": ["All ingredients", "Wine tasting", "Your pasta lunch"],
-    "tags": ["cooking", "food", "hands-on"],
+    "included": [
+      "All ingredients",
+      "Wine tasting",
+      "Your pasta lunch"
+    ],
+    "tags": [
+      "cooking",
+      "food",
+      "hands-on"
+    ],
     "featured": false
   },
   {
@@ -460,8 +981,16 @@
       "Understanding sound effects",
       "Japanese pop culture references"
     ],
-    "included": ["Shop visits", "Manga samples", "Arcade time"],
-    "tags": ["anime", "manga", "pop-culture"],
+    "included": [
+      "Shop visits",
+      "Manga samples",
+      "Arcade time"
+    ],
+    "tags": [
+      "anime",
+      "manga",
+      "pop-culture"
+    ],
     "featured": false
   },
   {
@@ -491,8 +1020,16 @@
       "Cheese and wine basics",
       "French culinary culture"
     ],
-    "included": ["Market samples", "Shopping list", "Recipe cards"],
-    "tags": ["food", "market", "morning"],
+    "included": [
+      "Market samples",
+      "Shopping list",
+      "Recipe cards"
+    ],
+    "tags": [
+      "food",
+      "market",
+      "morning"
+    ],
     "featured": false
   },
   {
@@ -522,8 +1059,16 @@
       "Understanding product ingredients",
       "Korean skincare routines"
     ],
-    "included": ["Store visits", "Sample products", "Beauty tips"],
-    "tags": ["beauty", "shopping", "k-beauty"],
+    "included": [
+      "Store visits",
+      "Sample products",
+      "Beauty tips"
+    ],
+    "tags": [
+      "beauty",
+      "shopping",
+      "k-beauty"
+    ],
     "featured": true
   },
   {
@@ -553,8 +1098,16 @@
       "Beer culture terminology",
       "German intellectual traditions"
     ],
-    "included": ["Beer", "Pretzels", "Discussion topics"],
-    "tags": ["philosophy", "beer", "advanced"],
+    "included": [
+      "Beer",
+      "Pretzels",
+      "Discussion topics"
+    ],
+    "tags": [
+      "philosophy",
+      "beer",
+      "advanced"
+    ],
     "featured": false
   },
   {
@@ -584,8 +1137,16 @@
       "Dance instructions in Spanish",
       "Buenos Aires culture"
     ],
-    "included": ["Tango lesson", "Welcome drink", "Live music"],
-    "tags": ["dance", "music", "culture"],
+    "included": [
+      "Tango lesson",
+      "Welcome drink",
+      "Live music"
+    ],
+    "tags": [
+      "dance",
+      "music",
+      "culture"
+    ],
     "featured": false
   },
   {
@@ -615,8 +1176,16 @@
       "Zen philosophy concepts",
       "Japanese aesthetics (wabi-sabi)"
     ],
-    "included": ["Full tea ceremony", "Traditional sweets", "Matcha"],
-    "tags": ["culture", "tea", "traditional"],
+    "included": [
+      "Full tea ceremony",
+      "Traditional sweets",
+      "Matcha"
+    ],
+    "tags": [
+      "culture",
+      "tea",
+      "traditional"
+    ],
     "featured": true
   },
   {
@@ -646,8 +1215,16 @@
       "Chinese ingredients names",
       "Dumpling folding techniques"
     ],
-    "included": ["All ingredients", "Dumplings to eat", "Recipe card"],
-    "tags": ["cooking", "food", "hands-on"],
+    "included": [
+      "All ingredients",
+      "Dumplings to eat",
+      "Recipe card"
+    ],
+    "tags": [
+      "cooking",
+      "food",
+      "hands-on"
+    ],
     "featured": false
   },
   {
@@ -677,8 +1254,16 @@
       "Hidden Parisian locations",
       "Street photography etiquette"
     ],
-    "included": ["Photo spots map", "Editing tips", "Your best shots printed"],
-    "tags": ["photography", "art", "walking"],
+    "included": [
+      "Photo spots map",
+      "Editing tips",
+      "Your best shots printed"
+    ],
+    "tags": [
+      "photography",
+      "art",
+      "walking"
+    ],
     "featured": false
   },
   {
@@ -708,8 +1293,16 @@
       "Spanish games and activities",
       "Barcelona beach culture"
     ],
-    "included": ["Picnic snacks", "Beach games", "Sunset views"],
-    "tags": ["beach", "casual", "outdoor"],
+    "included": [
+      "Picnic snacks",
+      "Beach games",
+      "Sunset views"
+    ],
+    "tags": [
+      "beach",
+      "casual",
+      "outdoor"
+    ],
     "featured": false
   },
   {
@@ -739,8 +1332,16 @@
       "Russian intellectual culture",
       "Complex sentence structures"
     ],
-    "included": ["Chess sets", "Hot tea", "Strategy guide"],
-    "tags": ["chess", "games", "outdoor"],
+    "included": [
+      "Chess sets",
+      "Hot tea",
+      "Strategy guide"
+    ],
+    "tags": [
+      "chess",
+      "games",
+      "outdoor"
+    ],
     "featured": false
   },
   {
@@ -770,8 +1371,16 @@
       "Ordering like a local",
       "CDMX culture and history"
     ],
-    "included": ["6 food tastings", "Agua fresca", "Market tour"],
-    "tags": ["food", "street-food", "evening"],
+    "included": [
+      "6 food tastings",
+      "Agua fresca",
+      "Market tour"
+    ],
+    "tags": [
+      "food",
+      "street-food",
+      "evening"
+    ],
     "featured": true
   },
   {
@@ -801,8 +1410,16 @@
       "Berlin's transformation",
       "German reunification story"
     ],
-    "included": ["Walking tour", "Museum entry", "Historical photos"],
-    "tags": ["history", "culture", "walking"],
+    "included": [
+      "Walking tour",
+      "Museum entry",
+      "Historical photos"
+    ],
+    "tags": [
+      "history",
+      "culture",
+      "walking"
+    ],
     "featured": false
   },
   {
@@ -832,8 +1449,16 @@
       "Lisbon neighborhoods",
       "Photography terms in Portuguese"
     ],
-    "included": ["Tram ticket", "Wine at sunset", "Photo guide"],
-    "tags": ["sunset", "photography", "walking"],
+    "included": [
+      "Tram ticket",
+      "Wine at sunset",
+      "Photo guide"
+    ],
+    "tags": [
+      "sunset",
+      "photography",
+      "walking"
+    ],
     "featured": true
   },
   {
@@ -863,8 +1488,16 @@
       "Understanding Japanese fashion trends",
       "Tokyo street culture"
     ],
-    "included": ["Fashion district tour", "Style guide", "Shopping tips"],
-    "tags": ["fashion", "shopping", "youth-culture"],
+    "included": [
+      "Fashion district tour",
+      "Style guide",
+      "Shopping tips"
+    ],
+    "tags": [
+      "fashion",
+      "shopping",
+      "youth-culture"
+    ],
     "featured": false
   },
   {
@@ -894,8 +1527,16 @@
       "French pastry culture",
       "Macaron troubleshooting"
     ],
-    "included": ["All ingredients", "Recipe book", "Your macarons"],
-    "tags": ["cooking", "baking", "hands-on"],
+    "included": [
+      "All ingredients",
+      "Recipe book",
+      "Your macarons"
+    ],
+    "tags": [
+      "cooking",
+      "baking",
+      "hands-on"
+    ],
     "featured": false
   },
   {
@@ -925,8 +1566,16 @@
       "Korean history",
       "Understanding hanbok and traditions"
     ],
-    "included": ["Walking tour", "Traditional tea", "Photo spots"],
-    "tags": ["culture", "history", "traditional"],
+    "included": [
+      "Walking tour",
+      "Traditional tea",
+      "Photo spots"
+    ],
+    "tags": [
+      "culture",
+      "history",
+      "traditional"
+    ],
     "featured": false
   },
   {
@@ -956,8 +1605,16 @@
       "Team communication in Spanish",
       "Quick thinking in Spanish"
     ],
-    "included": ["Trivia game", "Welcome drink", "Prizes"],
-    "tags": ["trivia", "games", "social"],
+    "included": [
+      "Trivia game",
+      "Welcome drink",
+      "Prizes"
+    ],
+    "tags": [
+      "trivia",
+      "games",
+      "social"
+    ],
     "featured": false
   },
   {
@@ -977,7 +1634,7 @@
     "location": {
       "venue": "Sankt Oberholz",
       "address": "Rosenthaler Str. 72A, 10119",
-      "lat": 52.5290,
+      "lat": 52.529,
       "lng": 13.4015
     },
     "image": "https://images.unsplash.com/photo-1514894780323-062dea5d5c49?w=800",
@@ -987,8 +1644,16 @@
       "German humor and culture",
       "Informal German language"
     ],
-    "included": ["Coffee/tea", "Comic samples", "Reading list"],
-    "tags": ["comics", "reading", "cafe"],
+    "included": [
+      "Coffee/tea",
+      "Comic samples",
+      "Reading list"
+    ],
+    "tags": [
+      "comics",
+      "reading",
+      "cafe"
+    ],
     "featured": false
   },
   {
@@ -1018,8 +1683,16 @@
       "Colors and patterns in Portuguese",
       "Portuguese artistic traditions"
     ],
-    "included": ["All art supplies", "Your tile to keep", "Museum guide"],
-    "tags": ["art", "hands-on", "culture"],
+    "included": [
+      "All art supplies",
+      "Your tile to keep",
+      "Museum guide"
+    ],
+    "tags": [
+      "art",
+      "hands-on",
+      "culture"
+    ],
     "featured": false
   },
   {
@@ -1040,7 +1713,7 @@
       "venue": "Karaoke Kan Shibuya",
       "address": "30-8 Udagawacho, Shibuya-ku",
       "lat": 35.6617,
-      "lng": 139.6980
+      "lng": 139.698
     },
     "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
     "whatYoullLearn": [
@@ -1049,8 +1722,16 @@
       "J-pop and anime song culture",
       "Entertainment vocabulary"
     ],
-    "included": ["Private room", "Drink vouchers", "Song lyrics book"],
-    "tags": ["karaoke", "music", "social"],
+    "included": [
+      "Private room",
+      "Drink vouchers",
+      "Song lyrics book"
+    ],
+    "tags": [
+      "karaoke",
+      "music",
+      "social"
+    ],
     "featured": true
   },
   {
@@ -1080,8 +1761,16 @@
       "Latin American literary traditions",
       "Discussion and debate skills"
     ],
-    "included": ["Book excerpts", "Coffee", "Reading recommendations"],
-    "tags": ["literature", "reading", "advanced"],
+    "included": [
+      "Book excerpts",
+      "Coffee",
+      "Reading recommendations"
+    ],
+    "tags": [
+      "literature",
+      "reading",
+      "advanced"
+    ],
     "featured": false
   }
 ]

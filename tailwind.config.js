@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -8,28 +9,40 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#FFF5F2',
-          100: '#FFE8E0',
-          200: '#FFD1C2',
-          300: '#FFB39A',
-          400: '#FF8D66',
-          500: '#FF6B35', // Main coral orange
-          600: '#E65520',
-          700: '#C24316',
-          800: '#9E3714',
-          900: '#7A2D11',
+          50: '#FFFEF0',
+          100: '#FFF9C2',
+          200: '#FFF38A',
+          300: '#FFED52',
+          400: '#FFE71F',
+          500: '#FDD835', // Vibrant bright yellow (main brand)
+          600: '#FBC02D',
+          700: '#F9A825',
+          800: '#F57F17',
+          900: '#F57C00',
         },
         secondary: {
-          50: '#F0FFFE',
-          100: '#D4FFFD',
-          200: '#AAFFFA',
-          300: '#76FFF7',
-          400: '#3EEEE8',
-          500: '#20B2AA', // Main teal
-          600: '#1A8F89',
-          700: '#15706C',
-          800: '#115956',
-          900: '#0D4644',
+          50: '#FFF3E0',
+          100: '#FFE0B2',
+          200: '#FFCC80',
+          300: '#FFB74D',
+          400: '#FFA726',
+          500: '#FF9800', // Vibrant orange
+          600: '#FB8C00',
+          700: '#F57C00',
+          800: '#EF6C00',
+          900: '#E65100',
+        },
+        accent: {
+          50: '#E8F5E9',
+          100: '#C8E6C9',
+          200: '#A5D6A7',
+          300: '#81C784',
+          400: '#66BB6A',
+          500: '#4CAF50', // Vibrant green
+          600: '#43A047',
+          700: '#388E3C',
+          800: '#2E7D32',
+          900: '#1B5E20',
         },
       },
       fontFamily: {
@@ -41,6 +54,14 @@ export default {
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
         'scale-in': 'scaleIn 0.3s ease-out',
+        'shimmer': 'shimmer 2s infinite',
+        'slide-in-right': 'slideInRight 0.3s ease-out',
+        'slide-out-right': 'slideOutRight 0.2s ease-in',
+        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+        'wiggle': 'wiggle 1s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'pulse-soft': 'pulseSoft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pop': 'pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
       keyframes: {
         fadeIn: {
@@ -58,6 +79,39 @@ export default {
         scaleIn: {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        slideOutRight: {
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(100%)', opacity: '0' },
+        },
+        bounceGentle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        pulseSoft: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
+        pop: {
+          '0%': { transform: 'scale(0.8)' },
+          '50%': { transform: 'scale(1.1)' },
+          '100%': { transform: 'scale(1)' },
         },
       },
     },

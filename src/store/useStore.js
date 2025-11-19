@@ -93,4 +93,50 @@ export const useStore = create((set, get) => ({
       ),
     })),
   clearNotifications: () => set({ notifications: [] }),
+
+  // Advanced Filters (for state management - can be used later for SSR or persistence)
+  advancedFilters: {
+    weekend: false,
+    accessible: false,
+    petFriendly: false,
+    foodIncluded: false,
+    indoorOutdoor: 'all',
+    groupSize: 'all',
+    timeOfDay: [],
+    experienceTypes: [],
+  },
+  setAdvancedFilter: (key, value) =>
+    set((state) => ({
+      advancedFilters: { ...state.advancedFilters, [key]: value },
+    })),
+  resetAdvancedFilters: () =>
+    set({
+      advancedFilters: {
+        weekend: false,
+        accessible: false,
+        petFriendly: false,
+        foodIncluded: false,
+        indoorOutdoor: 'all',
+        groupSize: 'all',
+        timeOfDay: [],
+        experienceTypes: [],
+      },
+    }),
+
+  // Module 3: Advanced Booking & Social Features
+
+  // Selected date for booking
+  selectedDate: null,
+  setSelectedDate: (date) => set({ selectedDate: date }),
+
+  // Spot tracking (for simulated real-time updates)
+  spotsAvailable: {},
+  updateSpots: (experienceId, spots) =>
+    set((state) => ({
+      spotsAvailable: {
+        ...state.spotsAvailable,
+        [experienceId]: spots,
+      },
+    })),
+  resetSpots: () => set({ spotsAvailable: {} }),
 }));

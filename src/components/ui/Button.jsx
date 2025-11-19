@@ -1,11 +1,12 @@
 import { cn } from '../../utils/cn';
 
 const buttonVariants = {
-  primary: 'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700',
-  secondary: 'bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700',
-  outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 active:bg-primary-100',
-  ghost: 'text-gray-700 hover:bg-gray-100 active:bg-gray-200',
-  danger: 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700',
+  primary: 'bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700 dark:bg-primary-600 dark:hover:bg-primary-700 dark:active:bg-primary-800',
+  secondary: 'bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700 dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:active:bg-secondary-800',
+  outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-900/20 dark:active:bg-primary-900/30',
+  ghost: 'text-gray-700 hover:bg-gray-100 active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600',
+  danger: 'bg-red-500 text-white hover:bg-red-600 active:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 dark:active:bg-red-800',
+  glass: 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 text-gray-900 dark:text-gray-100 hover:bg-white/90 dark:hover:bg-gray-800/90 active:bg-white dark:active:bg-gray-800 shadow-lg',
 };
 
 const buttonSizes = {
@@ -34,6 +35,8 @@ export default function Button({
         'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
         'transition-all duration-200 ease-in-out',
         'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+        'dark:focus:ring-primary-400 dark:focus:ring-offset-gray-900',
+        'focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none',
         buttonVariants[variant],
         buttonSizes[size],

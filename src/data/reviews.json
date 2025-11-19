@@ -8,7 +8,8 @@
     "rating": 5,
     "date": "2025-10-28",
     "comment": "Sophie was absolutely wonderful! The café she chose was charming, and I learned so much practical French. Her teaching style is relaxed yet effective. Can't wait to book another session!",
-    "helpful": 12
+    "helpfulCount": 12,
+    "notHelpfulCount": 2
   },
   {
     "id": "r2",
@@ -19,7 +20,8 @@
     "rating": 5,
     "comment": "Perfect for beginners! Sophie made me feel comfortable speaking French even though I was nervous. The croissants were amazing too! 🥐",
     "date": "2025-10-25",
-    "helpful": 8
+    "helpfulCount": 8,
+    "notHelpfulCount": 0
   },
   {
     "id": "r3",
@@ -30,7 +32,8 @@
     "rating": 5,
     "comment": "Carlos is fantastic! His knowledge of Barcelona and Spanish cuisine is incredible. We visited three amazing tapas bars and I practiced ordering in Spanish at each one. Highly recommend!",
     "date": "2025-10-20",
-    "helpful": 15
+    "helpfulCount": 15,
+    "notHelpfulCount": 4
   },
   {
     "id": "r4",
@@ -41,7 +44,8 @@
     "rating": 5,
     "comment": "As an anime fan, this was a dream experience! Yuki taught me so much practical Japanese that I can actually use. The vintage shops were incredible. Worth every yen!",
     "date": "2025-10-22",
-    "helpful": 20
+    "helpfulCount": 20,
+    "notHelpfulCount": 4
   },
   {
     "id": "r5",
@@ -52,7 +56,8 @@
     "rating": 5,
     "comment": "Yuki is the best teacher! She made Japanese feel approachable and fun. Loved exploring Harajuku with someone who knows all the cool spots.",
     "date": "2025-10-18",
-    "helpful": 11
+    "helpfulCount": 11,
+    "notHelpfulCount": 1
   },
   {
     "id": "r6",
@@ -63,7 +68,8 @@
     "rating": 5,
     "comment": "This experience was everything I hoped for! Ji-woo is so patient and enthusiastic. We practiced K-drama phrases and I can finally understand some scenes without subtitles!",
     "date": "2025-10-15",
-    "helpful": 18
+    "helpfulCount": 18,
+    "notHelpfulCount": 1
   },
   {
     "id": "r7",
@@ -74,7 +80,8 @@
     "rating": 4,
     "comment": "Great energy and fun atmosphere! I'm not much of a dancer but Miguel made it easy and enjoyable. My Spanish improved and I learned some salsa moves. Win-win!",
     "date": "2025-10-10",
-    "helpful": 7
+    "helpfulCount": 7,
+    "notHelpfulCount": 2
   },
   {
     "id": "r8",
@@ -85,7 +92,8 @@
     "rating": 5,
     "comment": "Intellectually stimulating and beautifully executed. Pierre's passion for French poetry is contagious. The wine selection was perfect. A must for literature lovers!",
     "date": "2025-10-12",
-    "helpful": 9
+    "helpfulCount": 9,
+    "notHelpfulCount": 3
   },
   {
     "id": "r9",
@@ -96,7 +104,8 @@
     "rating": 5,
     "comment": "Incredible experience! Sakura is an amazing teacher and the ramen we made was restaurant-quality. Learned tons of Japanese cooking vocabulary. My friends were impressed when I made it at home!",
     "date": "2025-10-08",
-    "helpful": 14
+    "helpfulCount": 14,
+    "notHelpfulCount": 0
   },
   {
     "id": "r10",
@@ -107,7 +116,8 @@
     "rating": 5,
     "comment": "Perfect for professionals! Hans showed us Berlin's innovative startup scene while teaching business German. Very practical and inspiring.",
     "date": "2025-10-05",
-    "helpful": 10
+    "helpfulCount": 10,
+    "notHelpfulCount": 0
   },
   {
     "id": "r11",
@@ -118,7 +128,8 @@
     "rating": 5,
     "comment": "Isabel's voice is beautiful and her teaching is even better. I finally understand what saudade means! The fado performance was emotional and unforgettable.",
     "date": "2025-10-03",
-    "helpful": 16
+    "helpfulCount": 16,
+    "notHelpfulCount": 1
   },
   {
     "id": "r12",
@@ -129,7 +140,8 @@
     "rating": 5,
     "comment": "Best food tour ever! Min-ji is so knowledgeable about Korean street food. Tried tteokbokki, hotteok, and bindaetteok while learning Korean. My taste buds and brain are both happy!",
     "date": "2025-09-30",
-    "helpful": 19
+    "helpfulCount": 19,
+    "notHelpfulCount": 4
   },
   {
     "id": "r13",
@@ -140,7 +152,8 @@
     "rating": 5,
     "comment": "Layla made Arabic accessible and beautiful. The calligraphy workshop was therapeutic and educational. I'm keeping my artwork framed in my office!",
     "date": "2025-09-28",
-    "helpful": 13
+    "helpfulCount": 13,
+    "notHelpfulCount": 0
   },
   {
     "id": "r14",
@@ -151,7 +164,8 @@
     "rating": 5,
     "comment": "Dmitri's knowledge of Russian literature is profound. We had fascinating discussions about Dostoevsky over chess. Challenging but rewarding!",
     "date": "2025-09-25",
-    "helpful": 8
+    "helpfulCount": 8,
+    "notHelpfulCount": 4
   },
   {
     "id": "r15",
@@ -162,7 +176,8 @@
     "rating": 5,
     "comment": "Carlos brought Gaudí's architecture to life! Learned so much Spanish architectural vocabulary while being amazed by the buildings. Sagrada Familia was breathtaking.",
     "date": "2025-09-22",
-    "helpful": 17
+    "helpfulCount": 17,
+    "notHelpfulCount": 3
   },
   {
     "id": "r16",
@@ -173,7 +188,8 @@
     "rating": 5,
     "comment": "Elena is a culinary goddess! Making fresh pasta while learning Italian was pure joy. The wine pairing lesson was an unexpected bonus. Delizioso!",
     "date": "2025-09-20",
-    "helpful": 12
+    "helpfulCount": 12,
+    "notHelpfulCount": 4
   },
   {
     "id": "r17",
@@ -184,7 +200,8 @@
     "rating": 5,
     "comment": "Yuki knows Akihabara like the back of her hand! Found so many rare manga and learned tons of otaku vocabulary. Paradise for anime fans learning Japanese!",
     "date": "2025-09-18",
-    "helpful": 21
+    "helpfulCount": 21,
+    "notHelpfulCount": 3
   },
   {
     "id": "r18",
@@ -195,7 +212,8 @@
     "rating": 5,
     "comment": "Min-ji is a K-beauty expert! Learned all the Korean terms for my skincare routine and discovered amazing products. My skin and Korean both improved!",
     "date": "2025-09-15",
-    "helpful": 22
+    "helpfulCount": 22,
+    "notHelpfulCount": 3
   },
   {
     "id": "r19",
@@ -206,7 +224,8 @@
     "rating": 4,
     "comment": "Beautiful experience! The fado music was touching and Isabel explained the lyrics and cultural context perfectly. Only wish it was longer!",
     "date": "2025-09-12",
-    "helpful": 6
+    "helpfulCount": 6,
+    "notHelpfulCount": 2
   },
   {
     "id": "r20",
@@ -217,7 +236,8 @@
     "rating": 5,
     "comment": "Loved every minute! Carlos is funny, knowledgeable, and passionate about Barcelona. The tapas were incredible and my Spanish ordering skills leveled up!",
     "date": "2025-09-10",
-    "helpful": 14
+    "helpfulCount": 14,
+    "notHelpfulCount": 4
   },
   {
     "id": "r21",
@@ -228,7 +248,8 @@
     "rating": 5,
     "comment": "Profound and peaceful. Sakura's tea ceremony was a meditation in language learning. Understanding keigo and Japanese formality made so much more sense after this.",
     "date": "2025-09-08",
-    "helpful": 15
+    "helpfulCount": 15,
+    "notHelpfulCount": 0
   },
   {
     "id": "r22",
@@ -239,7 +260,8 @@
     "rating": 5,
     "comment": "Thomas made learning Mandarin fun and practical! Making dumplings while practicing Chinese was genius. Plus, the dumplings were delicious!",
     "date": "2025-09-05",
-    "helpful": 11
+    "helpfulCount": 11,
+    "notHelpfulCount": 1
   },
   {
     "id": "r23",
@@ -250,7 +272,8 @@
     "rating": 5,
     "comment": "Architecture lover's dream! Carlos explained Gaudí's work brilliantly in Spanish. Park Güell was magical. This experience motivated me to continue learning Spanish.",
     "date": "2025-09-03",
-    "helpful": 9
+    "helpfulCount": 9,
+    "notHelpfulCount": 0
   },
   {
     "id": "r24",
@@ -261,7 +284,8 @@
     "rating": 5,
     "comment": "¡Increíble! Miguel showed us the real CDMX through food. Learned authentic Mexican slang and ate the best tacos of my life. My stomach and Spanish both thank you!",
     "date": "2025-08-30",
-    "helpful": 18
+    "helpfulCount": 18,
+    "notHelpfulCount": 0
   },
   {
     "id": "r25",
@@ -272,7 +296,8 @@
     "rating": 5,
     "comment": "Magical sunset experience! Isabel took us to the most beautiful viewpoints in Lisbon. Practicing Portuguese while watching the golden hour was perfection.",
     "date": "2025-08-28",
-    "helpful": 13
+    "helpfulCount": 13,
+    "notHelpfulCount": 1
   },
   {
     "id": "r26",
@@ -283,7 +308,8 @@
     "rating": 5,
     "comment": "So much fun! Singing in Japanese really helped my pronunciation. Yuki was encouraging and we laughed so much. Best way to learn Japanese!",
     "date": "2025-08-25",
-    "helpful": 16
+    "helpfulCount": 16,
+    "notHelpfulCount": 0
   },
   {
     "id": "r27",
@@ -294,7 +320,8 @@
     "rating": 5,
     "comment": "Living my K-drama fantasy! Ji-woo made learning Korean romantic phrases fun and practical. The café was straight out of a drama scene!",
     "date": "2025-08-22",
-    "helpful": 14
+    "helpfulCount": 14,
+    "notHelpfulCount": 1
   },
   {
     "id": "r28",
@@ -305,7 +332,8 @@
     "rating": 4,
     "comment": "Sophie is a great teacher! The café atmosphere was perfect for learning. Only downside was it ended too quickly - wished it was 3 hours instead of 2!",
     "date": "2025-08-20",
-    "helpful": 7
+    "helpfulCount": 7,
+    "notHelpfulCount": 4
   },
   {
     "id": "r29",
@@ -316,7 +344,8 @@
     "rating": 5,
     "comment": "Hands-on and delicious! Sakura taught us proper Japanese cooking terms and techniques. The ramen was authentic and amazing. Taking the recipe home was a great touch!",
     "date": "2025-08-18",
-    "helpful": 12
+    "helpfulCount": 12,
+    "notHelpfulCount": 2
   },
   {
     "id": "r30",
@@ -327,7 +356,8 @@
     "rating": 5,
     "comment": "Elena's passion for Italian cuisine and language shines through! Made the best pasta I've ever tasted while learning Italian cooking vocabulary. Magnifico!",
     "date": "2025-08-15",
-    "helpful": 10
+    "helpfulCount": 10,
+    "notHelpfulCount": 4
   },
   {
     "id": "r31",
@@ -338,7 +368,8 @@
     "rating": 5,
     "comment": "Gwangjang Market at night is incredible! Min-ji knew all the best vendors and taught us how to order like locals. Ate so much delicious food!",
     "date": "2025-08-12",
-    "helpful": 15
+    "helpfulCount": 15,
+    "notHelpfulCount": 0
   },
   {
     "id": "r32",
@@ -349,7 +380,8 @@
     "rating": 5,
     "comment": "Perfect for J-fashion lovers! Yuki showed us hidden vintage shops and taught modern Japanese slang. Harajuku was even cooler with a local guide!",
     "date": "2025-08-10",
-    "helpful": 17
+    "helpfulCount": 17,
+    "notHelpfulCount": 0
   },
   {
     "id": "r33",
@@ -360,7 +392,8 @@
     "rating": 5,
     "comment": "Fado touches the soul! Isabel's voice and teaching both moved me. Understanding Portuguese through music was a beautiful experience.",
     "date": "2025-08-08",
-    "helpful": 11
+    "helpfulCount": 11,
+    "notHelpfulCount": 2
   },
   {
     "id": "r34",
@@ -371,7 +404,8 @@
     "rating": 5,
     "comment": "Barcelona's Gothic Quarter is stunning! Carlos made the tapas tour educational and fun. Learned food vocabulary and discovered amazing restaurants!",
     "date": "2025-08-05",
-    "helpful": 13
+    "helpfulCount": 13,
+    "notHelpfulCount": 4
   },
   {
     "id": "r35",
@@ -382,7 +416,8 @@
     "rating": 5,
     "comment": "Miguel is hilarious and knows the best street food! Coyoacán market was amazing. My Mexican Spanish improved so much in just one night!",
     "date": "2025-08-03",
-    "helpful": 19
+    "helpfulCount": 19,
+    "notHelpfulCount": 2
   },
   {
     "id": "r36",
@@ -393,7 +428,8 @@
     "rating": 5,
     "comment": "Hans is brilliant! Perfect for anyone interested in tech and business German. Berlin's startup scene is inspiring and I learned practical business vocabulary.",
     "date": "2025-08-01",
-    "helpful": 8
+    "helpfulCount": 8,
+    "notHelpfulCount": 2
   },
   {
     "id": "r37",
@@ -404,7 +440,8 @@
     "rating": 5,
     "comment": "Serene and enlightening. Sakura's tea ceremony was a window into Japanese culture and formality. The matcha was perfect and the learning environment was peaceful.",
     "date": "2025-07-30",
-    "helpful": 14
+    "helpfulCount": 14,
+    "notHelpfulCount": 3
   },
   {
     "id": "r38",
@@ -415,7 +452,8 @@
     "rating": 5,
     "comment": "Sophie creates a welcoming learning environment! The café was charming and my confidence in speaking French improved dramatically. Merci beaucoup!",
     "date": "2025-07-28",
-    "helpful": 9
+    "helpfulCount": 9,
+    "notHelpfulCount": 0
   },
   {
     "id": "r39",
@@ -426,7 +464,8 @@
     "rating": 5,
     "comment": "K-beauty heaven! Min-ji explained everything in Korean and English. Myeongdong was overwhelming but she guided us perfectly. Got amazing skincare and language skills!",
     "date": "2025-07-25",
-    "helpful": 20
+    "helpfulCount": 20,
+    "notHelpfulCount": 4
   },
   {
     "id": "r40",
@@ -437,7 +476,8 @@
     "rating": 5,
     "comment": "Otaku paradise! Yuki found rare manga I've been searching for and taught me all the Japanese I need to read it. Akihabara with a guide is essential!",
     "date": "2025-07-22",
-    "helpful": 16
+    "helpfulCount": 16,
+    "notHelpfulCount": 2
   },
   {
     "id": "r41",
@@ -448,7 +488,8 @@
     "rating": 5,
     "comment": "Best karaoke night ever! Singing J-pop songs while learning Japanese pronunciation was brilliant. Yuki made everyone feel comfortable even if they can't sing!",
     "date": "2025-07-20",
-    "helpful": 12
+    "helpfulCount": 12,
+    "notHelpfulCount": 4
   },
   {
     "id": "r42",
@@ -459,7 +500,8 @@
     "rating": 5,
     "comment": "Dream come true for K-drama fans! Ji-woo is so sweet and patient. Practiced all my favorite drama phrases and the café was Instagram-perfect!",
     "date": "2025-07-18",
-    "helpful": 15
+    "helpfulCount": 15,
+    "notHelpfulCount": 0
   },
   {
     "id": "r43",
@@ -470,7 +512,8 @@
     "rating": 5,
     "comment": "Lisbon at sunset is magical! Isabel's tour of the miradouros was perfectly timed. Golden hour photography while learning Portuguese was perfection.",
     "date": "2025-07-15",
-    "helpful": 11
+    "helpfulCount": 11,
+    "notHelpfulCount": 4
   },
   {
     "id": "r44",
@@ -481,7 +524,8 @@
     "rating": 5,
     "comment": "Gaudí's work is mind-blowing! Carlos explained the architecture in Spanish so well. Sagrada Familia and Park Güell were highlights of my trip!",
     "date": "2025-07-12",
-    "helpful": 10
+    "helpfulCount": 10,
+    "notHelpfulCount": 0
   },
   {
     "id": "r45",
@@ -492,7 +536,8 @@
     "rating": 5,
     "comment": "Ramen workshop was fantastic! Sakura is a patient teacher and the ramen we made was restaurant-quality. Learned so much Japanese cooking vocabulary!",
     "date": "2025-07-10",
-    "helpful": 13
+    "helpfulCount": 13,
+    "notHelpfulCount": 0
   },
   {
     "id": "r46",
@@ -503,7 +548,8 @@
     "rating": 5,
     "comment": "Night market magic! Min-ji showed us authentic Korean street food and taught us how to order everything. Tteokbokki at Gwangjang is the best!",
     "date": "2025-07-08",
-    "helpful": 14
+    "helpfulCount": 14,
+    "notHelpfulCount": 1
   },
   {
     "id": "r47",
@@ -514,7 +560,8 @@
     "rating": 4,
     "comment": "Great tapas and great Spanish practice! Carlos is enthusiastic and knows Barcelona inside out. The Gothic Quarter at night is beautiful.",
     "date": "2025-07-05",
-    "helpful": 8
+    "helpfulCount": 8,
+    "notHelpfulCount": 3
   },
   {
     "id": "r48",
@@ -525,7 +572,8 @@
     "rating": 5,
     "comment": "Isabel's voice gave me chills! Understanding fado lyrics in Portuguese added so much depth to the experience. Alfama at night is romantic and perfect.",
     "date": "2025-07-03",
-    "helpful": 12
+    "helpfulCount": 12,
+    "notHelpfulCount": 0
   },
   {
     "id": "r49",
@@ -536,7 +584,8 @@
     "rating": 5,
     "comment": "¡Muy auténtico! Miguel took us to places tourists never find. The street food was incredible and my Mexican Spanish vocabulary exploded!",
     "date": "2025-07-01",
-    "helpful": 17
+    "helpfulCount": 17,
+    "notHelpfulCount": 1
   },
   {
     "id": "r50",
@@ -547,6 +596,7 @@
     "rating": 5,
     "comment": "Perfect Parisian morning! Sophie is knowledgeable, friendly, and made speaking French feel natural. The café setting removed all pressure. Loved it!",
     "date": "2025-06-28",
-    "helpful": 9
+    "helpfulCount": 9,
+    "notHelpfulCount": 1
   }
 ]

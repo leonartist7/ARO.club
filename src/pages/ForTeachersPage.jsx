@@ -14,79 +14,81 @@ import {
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function ForTeachersPage() {
+  const { t } = useLanguage();
   const benefits = [
     {
       icon: <DollarSign className="w-8 h-8" />,
-      title: 'Earn Extra Income',
-      description: 'Set your own prices and schedule. Earn money sharing your language and culture.',
-      stats: 'Avg. $40/hour',
+      title: t('forTeachers.benefit1Title'),
+      description: t('forTeachers.benefit1Description'),
+      stats: t('forTeachers.benefit1Stats'),
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      title: 'Flexible Schedule',
-      description: 'Choose when and how often you teach. Work around your existing commitments.',
-      stats: 'Your schedule, your rules',
+      title: t('forTeachers.benefit2Title'),
+      description: t('forTeachers.benefit2Description'),
+      stats: t('forTeachers.benefit2Stats'),
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Small Groups',
-      description: 'Teach intimate groups of 4-8 students. More personal, more impactful.',
-      stats: 'Max 8 students',
+      title: t('forTeachers.benefit3Title'),
+      description: t('forTeachers.benefit3Description'),
+      stats: t('forTeachers.benefit3Stats'),
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: 'Global Reach',
-      description: 'Connect with learners from around the world who want to learn your language.',
-      stats: '100+ countries',
+      title: t('forTeachers.benefit4Title'),
+      description: t('forTeachers.benefit4Description'),
+      stats: t('forTeachers.benefit4Stats'),
     },
   ];
 
   const steps = [
     {
       number: '1',
-      title: 'Apply Online',
-      description: 'Fill out our simple application form. Tell us about your language skills and teaching experience.',
+      title: t('forTeachers.step1Title'),
+      description: t('forTeachers.step1Description'),
     },
     {
       number: '2',
-      title: 'Get Verified',
-      description: 'We verify your identity and language proficiency. Most applications are reviewed within 48 hours.',
+      title: t('forTeachers.step2Title'),
+      description: t('forTeachers.step2Description'),
     },
     {
       number: '3',
-      title: 'Create Experiences',
-      description: 'Design unique language learning experiences. Cooking classes, walking tours, coffee chats—you choose!',
+      title: t('forTeachers.step3Title'),
+      description: t('forTeachers.step3Description'),
     },
     {
       number: '4',
-      title: 'Start Teaching',
-      description: 'Students book your experiences and you get paid. It\'s that simple.',
+      title: t('forTeachers.step4Title'),
+      description: t('forTeachers.step4Description'),
     },
   ];
 
   const requirements = [
-    'Native or fluent speaker of the language you want to teach',
-    'Passion for sharing your language and culture',
-    'Reliable internet connection for communication',
-    'Ability to create engaging, interactive experiences',
-    'Available to teach at least 2 sessions per month',
-    'Must be 18 years or older',
+    t('forTeachers.req1'),
+    t('forTeachers.req2'),
+    t('forTeachers.req3'),
+    t('forTeachers.req4'),
+    t('forTeachers.req5'),
+    t('forTeachers.req6'),
   ];
 
   const faqs = [
     {
-      q: 'Do I need teaching experience?',
-      a: 'Not required! While teaching experience helps, we value enthusiasm and cultural knowledge. We provide resources to help you create great experiences.',
+      q: t('forTeachers.faq1Q'),
+      a: t('forTeachers.faq1A'),
     },
     {
-      q: 'How much can I earn?',
-      a: 'Teachers typically earn $30-60 per hour depending on location, experience, and demand. You set your own prices.',
+      q: t('forTeachers.faq2Q'),
+      a: t('forTeachers.faq2A'),
     },
     {
-      q: 'What if I need to cancel?',
-      a: 'Life happens! You can cancel up to 48 hours before a session with no penalty. Last-minute cancellations may affect your rating.',
+      q: t('forTeachers.faq3Q'),
+      a: t('forTeachers.faq3A'),
     },
   ];
 
@@ -108,11 +110,10 @@ export default function ForTeachersPage() {
             >
               <Award className="w-16 h-16 mx-auto mb-6" />
               <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                Teach Your Language, Share Your Culture
+                {t('forTeachers.title')}
               </h1>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Turn your language skills into income. Join thousands of teachers worldwide
-                helping students learn through real experiences.
+                {t('forTeachers.subtitle')}
               </p>
               <Link to="/teacher-dashboard">
                 <Button
@@ -120,7 +121,7 @@ export default function ForTeachersPage() {
                   size="lg"
                   className="bg-white text-primary-600 hover:bg-gray-50"
                 >
-                  Apply to Teach
+                  {t('forTeachers.applyToTeach')}
                 </Button>
               </Link>
             </motion.div>
@@ -131,7 +132,7 @@ export default function ForTeachersPage() {
       {/* Benefits Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
-          Why Teach with TongueConnect?
+          {t('forTeachers.whyTeach')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => (
@@ -160,7 +161,7 @@ export default function ForTeachersPage() {
       <div className="bg-white py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
-            How to Get Started
+            {t('forTeachers.howToStart')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {steps.map((step, index) => (
@@ -190,7 +191,7 @@ export default function ForTeachersPage() {
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle className="w-8 h-8 text-primary-500" />
                 <h2 className="text-2xl font-display font-bold text-gray-900">
-                  Teacher Requirements
+                  {t('forTeachers.requirements')}
                 </h2>
               </div>
               <ul className="space-y-3">
@@ -216,30 +217,30 @@ export default function ForTeachersPage() {
       <div className="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
-            Teacher Success Stories
+            {t('forTeachers.successStories')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
-                name: 'Sophie Laurent',
-                location: 'Paris, France',
+                name: t('forTeachers.story1Name'),
+                location: t('forTeachers.story1Location'),
                 emoji: '👩‍🍳',
-                quote: 'I teach French through cooking classes. It\'s amazing to see students learn while making croissants!',
-                earnings: '$2,400/month',
+                quote: t('forTeachers.story1Quote'),
+                earnings: t('forTeachers.story1Earnings'),
               },
               {
-                name: 'Carlos Martinez',
-                location: 'Barcelona, Spain',
+                name: t('forTeachers.story2Name'),
+                location: t('forTeachers.story2Location'),
                 emoji: '🎸',
-                quote: 'Teaching Spanish through flamenco and tapas tours is my passion. Students love the cultural immersion.',
-                earnings: '$3,100/month',
+                quote: t('forTeachers.story2Quote'),
+                earnings: t('forTeachers.story2Earnings'),
               },
               {
-                name: 'Yuki Sato',
-                location: 'Tokyo, Japan',
+                name: t('forTeachers.story3Name'),
+                location: t('forTeachers.story3Location'),
                 emoji: '🍜',
-                quote: 'I combine Japanese lessons with ramen tours. It\'s the perfect way to share my culture!',
-                earnings: '$2,800/month',
+                quote: t('forTeachers.story3Quote'),
+                earnings: t('forTeachers.story3Earnings'),
               },
             ].map((story, index) => (
               <motion.div
@@ -276,7 +277,7 @@ export default function ForTeachersPage() {
       {/* FAQs */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl font-display font-bold text-gray-900 mb-8 text-center">
-          Common Questions
+          {t('forTeachers.commonQuestions')}
         </h2>
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
@@ -297,7 +298,7 @@ export default function ForTeachersPage() {
         </div>
         <div className="text-center mt-8">
           <Link to="/faq" className="text-primary-600 hover:text-primary-700 font-medium">
-            View all FAQs →
+            {t('forTeachers.viewAllFaqs')}
           </Link>
         </div>
       </div>
@@ -308,11 +309,10 @@ export default function ForTeachersPage() {
           <CardBody className="text-center py-12 text-white">
             <Heart className="w-12 h-12 mx-auto mb-4" />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Ready to Start Teaching?
+              {t('forTeachers.readyToTeach')}
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join our global community of teachers. Share your language, earn income, and
-              make a difference in students' lives.
+              {t('forTeachers.readyToTeachDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/teacher-dashboard">
@@ -321,7 +321,7 @@ export default function ForTeachersPage() {
                   size="lg"
                   className="bg-white text-primary-600 hover:bg-gray-50"
                 >
-                  Apply Now
+                  {t('forTeachers.applyNow')}
                 </Button>
               </Link>
               <Link to="/contact">
@@ -330,7 +330,7 @@ export default function ForTeachersPage() {
                   size="lg"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Contact Us
+                  {t('forTeachers.contactUs')}
                 </Button>
               </Link>
             </div>

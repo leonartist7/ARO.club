@@ -11,8 +11,13 @@ const ExperienceDetailPage = lazy(() => import('../pages/ExperienceDetailPage'))
 const TeacherProfilePage = lazy(() => import('../pages/TeacherProfilePage'));
 const StudentProfilePage = lazy(() => import('../pages/StudentProfilePage'));
 const TeacherDashboardPage = lazy(() => import('../pages/TeacherDashboardPage'));
+const StudentDashboard = lazy(() => import('../pages/StudentDashboard'));
+const CharacterBuilder = lazy(() => import('../pages/CharacterBuilder'));
 const MapViewPage = lazy(() => import('../pages/MapViewPage'));
 const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage'));
+const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
+const RecentlyViewedPage = lazy(() => import('../pages/RecentlyViewedPage'));
+const ComparePage = lazy(() => import('../pages/ComparePage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const HowItWorksPage = lazy(() => import('../pages/HowItWorksPage'));
 const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
@@ -21,6 +26,7 @@ const ContactPage = lazy(() => import('../pages/ContactPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 // Auth Pages
+const ChooseRolePage = lazy(() => import('../pages/ChooseRolePage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const SignupPage = lazy(() => import('../pages/SignupPage'));
 const ForgotPasswordPage = lazy(() => import('../pages/ForgotPasswordPage'));
@@ -67,12 +73,48 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: 'teacher/dashboard',
+        element: (
+          <ProtectedRoute>
+            <TeacherDashboardPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'student-dashboard',
+        element: (
+          <ProtectedRoute>
+            <StudentDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'character-builder',
+        element: (
+          <ProtectedRoute>
+            <CharacterBuilder />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: 'map',
         element: <MapViewPage />,
       },
       {
         path: 'leaderboard',
         element: <LeaderboardPage />,
+      },
+      {
+        path: 'favorites',
+        element: <FavoritesPage />,
+      },
+      {
+        path: 'recently-viewed',
+        element: <RecentlyViewedPage />,
+      },
+      {
+        path: 'compare',
+        element: <ComparePage />,
       },
       {
         path: 'about',
@@ -96,7 +138,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <LoginPage />,
+        element: <ChooseRolePage />,
+      },
+      {
+        path: 'choose-role',
+        element: <ChooseRolePage />,
       },
       {
         path: 'signup',

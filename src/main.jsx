@@ -4,6 +4,9 @@ import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import { router } from './lib/routes';
 import { AuthProvider } from './contexts/AuthContext';
+import { FavoritesProvider } from './contexts/FavoritesContext';
+import { RecentlyViewedProvider } from './contexts/RecentlyViewedContext';
+import { SavedSearchesProvider } from './contexts/SavedSearchesContext';
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
@@ -15,9 +18,15 @@ const PageLoader = () => (
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <Suspense fallback={<PageLoader />}>
-        <RouterProvider router={router} />
-      </Suspense>
+      <FavoritesProvider>
+        <RecentlyViewedProvider>
+          <SavedSearchesProvider>
+            <Suspense fallback={<PageLoader />}>
+              <RouterProvider router={router} />
+            </Suspense>
+          </SavedSearchesProvider>
+        </RecentlyViewedProvider>
+      </FavoritesProvider>
     </AuthProvider>
   </StrictMode>
 );
