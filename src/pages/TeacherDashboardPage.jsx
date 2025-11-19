@@ -30,8 +30,10 @@ import { LANGUAGES, CITIES, SKILL_LEVELS, EXPERIENCE_TYPES } from '../data/const
 import { formatDate } from '../utils/date';
 import { formatPrice } from '../utils/helpers';
 import { useStore } from '../store/useStore';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function TeacherDashboardPage() {
+  const { t } = useLanguage();
   const {
     isTeacher,
     teacherExperiences,
@@ -103,9 +105,9 @@ export default function TeacherDashboardPage() {
   const avgRating = currentTeacher.rating;
 
   const tabs = [
-    { id: 'upcoming', label: 'Upcoming', count: upcomingExperiences.length },
-    { id: 'past', label: 'Past', count: pastExperiences.length },
-    { id: 'drafts', label: 'Drafts', count: draftExperiences.length },
+    { id: 'upcoming', label: t('teacherDashboard.tabs.upcoming'), count: upcomingExperiences.length },
+    { id: 'past', label: t('teacherDashboard.tabs.past'), count: pastExperiences.length },
+    { id: 'drafts', label: t('teacherDashboard.tabs.drafts'), count: draftExperiences.length },
   ];
 
   const handleInputChange = (field, value) => {
@@ -154,7 +156,7 @@ export default function TeacherDashboardPage() {
   };
 
   const handleDelete = (id) => {
-    if (confirm('Are you sure you want to delete this experience?')) {
+    if (confirm(t('teacherDashboard.messages.deleteConfirm'))) {
       deleteTeacherExperience(id);
     }
   };
@@ -188,12 +190,12 @@ export default function TeacherDashboardPage() {
         <Card className="max-w-md">
           <CardBody className="text-center py-12">
             <AlertCircle className="w-16 h-16 text-primary-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Teacher Access Only</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('teacherDashboard.accessOnly.title')}</h2>
             <p className="text-gray-600 mb-6">
-              This dashboard is only accessible to registered teachers.
+              {t('teacherDashboard.accessOnly.message')}
             </p>
             <Link to="/for-teachers">
-              <Button variant="primary">Become a Teacher</Button>
+              <Button variant="primary">{t('teacherDashboard.accessOnly.button')}</Button>
             </Link>
           </CardBody>
         </Card>
@@ -220,10 +222,10 @@ export default function TeacherDashboardPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
-              Teacher Dashboard
+              {t('teacherDashboard.title')}
             </h1>
             <p className="text-gray-600">
-              Welcome back, {currentTeacher.name.split(' ')[0]}!
+              {t('teacherDashboard.welcomeBack')}, {currentTeacher.name.split(' ')[0]}!
             </p>
           </div>
           <Button
@@ -234,7 +236,7 @@ export default function TeacherDashboardPage() {
               setShowCreateModal(true);
             }}
           >
-            Create Experience
+            {t('teacherDashboard.createExperience')}
           </Button>
         </div>
 
@@ -244,11 +246,11 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Total Earnings</p>
+                  <p className="text-sm text-gray-600 mb-1">{t('teacherDashboard.stats.totalEarnings')}</p>
                   <p className="text-3xl font-bold text-gray-900">
                     {formatPrice(totalEarnings)}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">From upcoming sessions</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('teacherDashboard.stats.fromUpcomingSessions')}</p>
                 </div>
                 <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
                   <DollarSign className="w-6 h-6 text-primary-500" />
@@ -261,9 +263,9 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Total Sessions</p>
+                  <p className="text-sm text-gray-600 mb-1">{t('teacherDashboard.stats.totalSessions')}</p>
                   <p className="text-3xl font-bold text-gray-900">{totalSessions}</p>
-                  <p className="text-xs text-gray-500 mt-1">All time</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('teacherDashboard.stats.allTime')}</p>
                 </div>
                 <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-secondary-500" />
@@ -276,10 +278,10 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Average Rating</p>
+                  <p className="text-sm text-gray-600 mb-1">{t('teacherDashboard.stats.averageRating')}</p>
                   <p className="text-3xl font-bold text-gray-900">{avgRating}</p>
                   <p className="text-xs text-gray-500 mt-1">
-                    From {teacherReviews.length} reviews
+                    {t('teacherDashboard.stats.fromReviews').replace('{count}', teacherReviews.length)}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -293,7 +295,7 @@ export default function TeacherDashboardPage() {
         {/* My Experiences Section */}
         <Card className="mb-8">
           <CardBody>
-            <h2 className="text-xl font-bold text-gray-900 mb-6">My Experiences</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">{t('teacherDashboard.myExperiences')}</h2>
 
             {/* Tabs */}
             <div className="flex overflow-x-auto border-b border-gray-200 mb-6">
@@ -332,7 +334,7 @@ export default function TeacherDashboardPage() {
                           </h3>
                           {experience.status === 'draft' && (
                             <Badge variant="secondary" size="sm">
-                              Draft
+                              {t('teacherDashboard.status.draft')}
                             </Badge>
                           )}
                         </div>
@@ -357,7 +359,9 @@ export default function TeacherDashboardPage() {
                             {formatPrice(experience.price)}
                           </span>
                           <span className="text-gray-500">
-                            {experience.bookedSpots || 0} / {experience.maxCapacity} booked
+                            {t('teacherDashboard.experienceInfo.booked')
+                              .replace('{booked}', experience.bookedSpots || 0)
+                              .replace('{capacity}', experience.maxCapacity)}
                           </span>
                         </div>
                       </div>
@@ -366,7 +370,7 @@ export default function TeacherDashboardPage() {
                         {experience.source === 'json' && (
                           <Link to={`/experience/${experience.id}`}>
                             <Button variant="outline" size="sm" icon={<Eye className="w-4 h-4" />}>
-                              View
+                              {t('teacherDashboard.actions.view')}
                             </Button>
                           </Link>
                         )}
@@ -377,7 +381,7 @@ export default function TeacherDashboardPage() {
                             icon={<CheckCircle className="w-4 h-4" />}
                             onClick={() => handlePublish(experience.id)}
                           >
-                            Publish
+                            {t('teacherDashboard.actions.publish')}
                           </Button>
                         )}
                         {canEdit && (
@@ -388,7 +392,7 @@ export default function TeacherDashboardPage() {
                               icon={<Edit2 className="w-4 h-4" />}
                               onClick={() => handleEdit(experience)}
                             >
-                              Edit
+                              {t('teacherDashboard.actions.edit')}
                             </Button>
                             <Button
                               variant="outline"
@@ -397,7 +401,7 @@ export default function TeacherDashboardPage() {
                               onClick={() => handleDelete(experience.id)}
                               className="text-red-600 hover:text-red-700 hover:border-red-300"
                             >
-                              Delete
+                              {t('teacherDashboard.actions.delete')}
                             </Button>
                           </>
                         )}
@@ -410,8 +414,8 @@ export default function TeacherDashboardPage() {
               <div className="text-center py-12">
                 <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 mb-4">
-                  No {activeTab} experiences yet
-                  {activeTab === 'drafts' && '. Create one to get started!'}
+                  {t('teacherDashboard.messages.noExperiences').replace('{tab}', tabs.find(tab => tab.id === activeTab)?.label.toLowerCase() || activeTab)}
+                  {activeTab === 'drafts' && t('teacherDashboard.messages.createToStart')}
                 </p>
                 {activeTab === 'drafts' && (
                   <Button
@@ -421,7 +425,7 @@ export default function TeacherDashboardPage() {
                       setShowCreateModal(true);
                     }}
                   >
-                    Create Experience
+                    {t('teacherDashboard.createExperience')}
                   </Button>
                 )}
               </div>
@@ -432,7 +436,7 @@ export default function TeacherDashboardPage() {
         {/* Recent Reviews */}
         <Card>
           <CardBody>
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Reviews</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">{t('teacherDashboard.recentReviews')}</h2>
             {teacherReviews.length > 0 ? (
               <div className="space-y-4">
                 {teacherReviews.slice(0, 5).map((review) => (
@@ -470,7 +474,7 @@ export default function TeacherDashboardPage() {
             ) : (
               <div className="text-center py-8">
                 <Star className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600">No reviews yet</p>
+                <p className="text-gray-600">{t('teacherDashboard.messages.noReviews')}</p>
               </div>
             )}
           </CardBody>
@@ -487,7 +491,7 @@ export default function TeacherDashboardPage() {
           >
             <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-gray-900">
-                {editingExperience ? 'Edit Experience' : 'Create Experience'}
+                {editingExperience ? t('teacherDashboard.modal.editTitle') : t('teacherDashboard.modal.createTitle')}
               </h2>
               <button
                 onClick={() => {
@@ -503,25 +507,25 @@ export default function TeacherDashboardPage() {
             <form onSubmit={handleSubmit} className="p-6 space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Experience Title *
+                  {t('teacherDashboard.modal.titleLabel')} {t('teacherDashboard.modal.required')}
                 </label>
                 <Input
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
-                  placeholder="e.g., French Cooking Class in Montmartre"
+                  placeholder={t('teacherDashboard.modal.titlePlaceholder')}
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Description *
+                  {t('teacherDashboard.modal.descriptionLabel')} {t('teacherDashboard.modal.required')}
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder="Describe what students will learn and do..."
+                  placeholder={t('teacherDashboard.modal.descriptionPlaceholder')}
                   rows={4}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
@@ -531,14 +535,14 @@ export default function TeacherDashboardPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Language *
+                    {t('teacherDashboard.modal.languageLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Select
                     value={formData.language}
                     onChange={(e) => handleInputChange('language', e.target.value)}
                     required
                   >
-                    <option value="">Select language</option>
+                    <option value="">{t('teacherDashboard.modal.languageSelect')}</option>
                     {LANGUAGES.map((lang) => (
                       <option key={lang.code} value={lang.code}>
                         {lang.flag} {lang.name}
@@ -549,14 +553,14 @@ export default function TeacherDashboardPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    City *
+                    {t('teacherDashboard.modal.cityLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Select
                     value={formData.city}
                     onChange={(e) => handleInputChange('city', e.target.value)}
                     required
                   >
-                    <option value="">Select city</option>
+                    <option value="">{t('teacherDashboard.modal.citySelect')}</option>
                     {CITIES.map((city) => (
                       <option key={city.id} value={city.id}>
                         {city.flag} {city.name}
@@ -569,14 +573,14 @@ export default function TeacherDashboardPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Skill Level *
+                    {t('teacherDashboard.modal.skillLevelLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Select
                     value={formData.skillLevel}
                     onChange={(e) => handleInputChange('skillLevel', e.target.value)}
                     required
                   >
-                    <option value="">Select level</option>
+                    <option value="">{t('teacherDashboard.modal.skillLevelSelect')}</option>
                     {SKILL_LEVELS.map((level) => (
                       <option key={level.value} value={level.value}>
                         {level.label}
@@ -587,14 +591,14 @@ export default function TeacherDashboardPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Experience Type *
+                    {t('teacherDashboard.modal.typeLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Select
                     value={formData.type}
                     onChange={(e) => handleInputChange('type', e.target.value)}
                     required
                   >
-                    <option value="">Select type</option>
+                    <option value="">{t('teacherDashboard.modal.typeSelect')}</option>
                     {EXPERIENCE_TYPES.map((type) => (
                       <option key={type.value} value={type.value}>
                         {type.icon} {type.label}
@@ -607,7 +611,7 @@ export default function TeacherDashboardPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Price (USD) *
+                    {t('teacherDashboard.modal.priceLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Input
                     type="number"
@@ -622,7 +626,7 @@ export default function TeacherDashboardPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Max Capacity *
+                    {t('teacherDashboard.modal.maxCapacityLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Input
                     type="number"
@@ -637,7 +641,7 @@ export default function TeacherDashboardPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Duration (hrs) *
+                    {t('teacherDashboard.modal.durationLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Input
                     type="number"
@@ -654,7 +658,7 @@ export default function TeacherDashboardPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Date *
+                    {t('teacherDashboard.modal.dateLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Input
                     type="date"
@@ -666,7 +670,7 @@ export default function TeacherDashboardPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Time *
+                    {t('teacherDashboard.modal.timeLabel')} {t('teacherDashboard.modal.required')}
                   </label>
                   <Input
                     type="time"
@@ -679,13 +683,13 @@ export default function TeacherDashboardPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location *
+                  {t('teacherDashboard.modal.locationLabel')} {t('teacherDashboard.modal.required')}
                 </label>
                 <Input
                   type="text"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
-                  placeholder="e.g., 123 Main St, or Meet at Central Park entrance"
+                  placeholder={t('teacherDashboard.modal.locationPlaceholder')}
                   required
                 />
               </div>
@@ -700,10 +704,10 @@ export default function TeacherDashboardPage() {
                   }}
                   className="flex-1"
                 >
-                  Cancel
+                  {t('teacherDashboard.actions.cancel')}
                 </Button>
                 <Button type="submit" variant="primary" className="flex-1">
-                  {editingExperience ? 'Update Experience' : 'Create Experience'}
+                  {editingExperience ? t('teacherDashboard.modal.updateButton') : t('teacherDashboard.modal.createButton')}
                 </Button>
               </div>
             </form>
