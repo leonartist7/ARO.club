@@ -8,10 +8,9 @@ import Avatar from '../ui/Avatar';
 const navigation = [
   { name: 'Explore', href: '/explore' },
   { name: 'Lessons', href: '/lessons', icon: BookOpen },
+  { name: 'Learning Paths', href: '/learning-paths' },
+  { name: 'Study Rooms', href: '/study-rooms' },
   { name: 'My Home', href: '/my-home', icon: Home },
-  { name: 'Map View', href: '/map' },
-  { name: 'How It Works', href: '/how-it-works' },
-  { name: 'For Teachers', href: '/for-teachers' },
 ];
 
 /**
@@ -67,9 +66,15 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/leaderboard">
+            <Link to="/my-dashboard">
+              <Button variant="ghost" size="sm">
+                Dashboard
+              </Button>
+            </Link>
+
+            <Link to="/achievements">
               <Button variant="ghost" size="sm" icon={<Trophy className="w-4 h-4" />}>
-                Leaderboard
+                Achievements
               </Button>
             </Link>
 
@@ -178,11 +183,18 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                to="/leaderboard"
+                to="/my-dashboard"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                🏆 Leaderboard
+                📊 Dashboard
+              </Link>
+              <Link
+                to="/achievements"
+                className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                🏆 Achievements
               </Link>
               {user ? (
                 <>

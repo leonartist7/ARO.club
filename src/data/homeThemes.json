@@ -1,0 +1,125 @@
+[
+  {
+    "id": "theme-default",
+    "name": "Classic Study",
+    "description": "A clean and simple study environment",
+    "preview_image": null,
+    "background_color": "#e8f4f8",
+    "floor_color": "#d0d0d0",
+    "wall_color": "#f5f5f5",
+    "lighting_preset": "bright",
+    "price_points": 0,
+    "is_premium": false,
+    "unlock_requirement": null
+  },
+  {
+    "id": "theme-cozy",
+    "name": "Cozy Library",
+    "description": "Warm and inviting like a traditional library",
+    "preview_image": null,
+    "background_color": "#8B4513",
+    "floor_color": "#654321",
+    "wall_color": "#DEB887",
+    "lighting_preset": "warm",
+    "price_points": 100,
+    "is_premium": false,
+    "unlock_requirement": {
+      "type": "lessons_completed",
+      "value": 5
+    }
+  },
+  {
+    "id": "theme-modern",
+    "name": "Modern Minimalist",
+    "description": "Sleek and contemporary design",
+    "preview_image": null,
+    "background_color": "#2C3E50",
+    "floor_color": "#34495E",
+    "wall_color": "#ECF0F1",
+    "lighting_preset": "cool",
+    "price_points": 150,
+    "is_premium": false,
+    "unlock_requirement": {
+      "type": "points",
+      "value": 200
+    }
+  },
+  {
+    "id": "theme-nature",
+    "name": "Nature Retreat",
+    "description": "Bring the outdoors inside",
+    "preview_image": null,
+    "background_color": "#90EE90",
+    "floor_color": "#8FBC8F",
+    "wall_color": "#F0FFF0",
+    "lighting_preset": "bright",
+    "price_points": 200,
+    "is_premium": false,
+    "unlock_requirement": {
+      "type": "streak",
+      "value": 7
+    }
+  },
+  {
+    "id": "theme-ocean",
+    "name": "Ocean Breeze",
+    "description": "Calm and serene like the sea",
+    "preview_image": null,
+    "background_color": "#1E90FF",
+    "floor_color": "#4682B4",
+    "wall_color": "#E0FFFF",
+    "lighting_preset": "cool",
+    "price_points": 250,
+    "is_premium": false,
+    "unlock_requirement": {
+      "type": "points",
+      "value": 500
+    }
+  },
+  {
+    "id": "theme-sunset",
+    "name": "Golden Sunset",
+    "description": "Warm hues inspired by sunset",
+    "preview_image": null,
+    "background_color": "#FF6347",
+    "floor_color": "#CD5C5C",
+    "wall_color": "#FFE4B5",
+    "lighting_preset": "warm",
+    "price_points": 300,
+    "is_premium": true,
+    "unlock_requirement": {
+      "type": "premium"
+    }
+  },
+  {
+    "id": "theme-space",
+    "name": "Space Station",
+    "description": "Study among the stars",
+    "preview_image": null,
+    "background_color": "#000033",
+    "floor_color": "#1C1C1C",
+    "wall_color": "#2F4F4F",
+    "lighting_preset": "dramatic",
+    "price_points": 500,
+    "is_premium": true,
+    "unlock_requirement": {
+      "type": "premium"
+    }
+  },
+  {
+    "id": "theme-cherry-blossom",
+    "name": "Cherry Blossom",
+    "description": "Inspired by Japanese sakura season",
+    "preview_image": null,
+    "background_color": "#FFB7C5",
+    "floor_color": "#FFC0CB",
+    "wall_color": "#FFF0F5",
+    "lighting_preset": "warm",
+    "price_points": 350,
+    "is_premium": false,
+    "unlock_requirement": {
+      "type": "achievement",
+      "achievement_id": "multilingual"
+    }
+  }
+]

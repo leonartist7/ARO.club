@@ -226,6 +226,214 @@ CREATE TABLE user_home_customization (
 );
 
 -- ============================================
+-- LEARNING PATHS TABLE (Structured Courses)
+-- ============================================
+CREATE TABLE learning_paths (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title TEXT NOT NULL,
+  description TEXT,
+  language TEXT NOT NULL,
+  difficulty TEXT NOT NULL CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
+  icon TEXT,
+  estimated_hours INTEGER DEFAULT 10,
+  total_points INTEGER DEFAULT 0,
+  lesson_ids TEXT[] DEFAULT '{}', -- Array of lesson IDs in order
+  is_premium BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER LEARNING PATH PROGRESS TABLE
+-- ============================================
+CREATE TABLE user_learning_path_progress (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  path_id UUID REFERENCES learning_paths(id) ON DELETE CASCADE,
+  status TEXT DEFAULT 'not_started' CHECK (status IN ('not_started', 'in_progress', 'completed')),
+  current_lesson_index INTEGER DEFAULT 0,
+  progress_percentage INTEGER DEFAULT 0,
+  started_at TIMESTAMP WITH TIME ZONE,
+  completed_at TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (user_id, path_id)
+);
+
+-- ============================================
+-- DAILY CHALLENGES TABLE
+-- ============================================
+CREATE TABLE daily_challenges (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title TEXT NOT NULL,
+  description TEXT,
+  challenge_type TEXT NOT NULL, -- complete_lessons, earn_points, practice_streak, quiz_perfect
+  target_value INTEGER DEFAULT 1,
+  points_reward INTEGER DEFAULT 20,
+  expires_at DATE NOT NULL,
+  icon TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER CHALLENGE PROGRESS TABLE
+-- ============================================
+CREATE TABLE user_challenge_progress (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  challenge_id UUID REFERENCES daily_challenges(id) ON DELETE CASCADE,
+  current_value INTEGER DEFAULT 0,
+  status TEXT DEFAULT 'in_progress' CHECK (status IN ('in_progress', 'completed', 'expired')),
+  completed_at TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (user_id, challenge_id)
+);
+
+-- ============================================
+-- USER STREAKS TABLE
+-- ============================================
+CREATE TABLE user_streaks (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE PRIMARY KEY,
+  current_streak INTEGER DEFAULT 0,
+  longest_streak INTEGER DEFAULT 0,
+  last_activity_date DATE,
+  total_study_days INTEGER DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- ACHIEVEMENTS TABLE
+-- ============================================
+CREATE TABLE achievements (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT,
+  icon TEXT,
+  category TEXT, -- learning, social, streak, collection
+  requirement_type TEXT NOT NULL, -- streak, lessons_completed, points, friends, etc.
+  requirement_value INTEGER,
+  points_reward INTEGER DEFAULT 0,
+  rarity TEXT DEFAULT 'common' CHECK (rarity IN ('common', 'rare', 'epic', 'legendary')),
+  unlock_message TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER ACHIEVEMENTS TABLE
+-- ============================================
+CREATE TABLE user_achievements (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  achievement_id TEXT REFERENCES achievements(id) ON DELETE CASCADE,
+  earned_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (user_id, achievement_id)
+);
+
+-- ============================================
+-- FRIENDS TABLE
+-- ============================================
+CREATE TABLE friendships (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  friend_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'accepted', 'rejected', 'blocked')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE (user_id, friend_id)
+);
+
+-- ============================================
+-- STUDY ROOMS TABLE (Virtual Study Spaces)
+-- ============================================
+CREATE TABLE study_rooms (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  description TEXT,
+  host_user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  max_participants INTEGER DEFAULT 6,
+  is_public BOOLEAN DEFAULT TRUE,
+  room_code TEXT UNIQUE,
+  theme TEXT DEFAULT 'modern', -- modern, cozy, library, cafe
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- STUDY ROOM PARTICIPANTS TABLE
+-- ============================================
+CREATE TABLE study_room_participants (
+  room_id UUID REFERENCES study_rooms(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  joined_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  left_at TIMESTAMP WITH TIME ZONE,
+  is_active BOOLEAN DEFAULT TRUE,
+  PRIMARY KEY (room_id, user_id)
+);
+
+-- ============================================
+-- USER ANALYTICS TABLE
+-- ============================================
+CREATE TABLE user_analytics (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE PRIMARY KEY,
+  total_study_time_minutes INTEGER DEFAULT 0,
+  lessons_completed_count INTEGER DEFAULT 0,
+  average_quiz_score DECIMAL DEFAULT 0,
+  favorite_language TEXT,
+  most_active_day TEXT, -- monday, tuesday, etc.
+  total_points_earned INTEGER DEFAULT 0,
+  best_streak INTEGER DEFAULT 0,
+  achievements_count INTEGER DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- NOTIFICATIONS TABLE
+-- ============================================
+CREATE TABLE notifications (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  type TEXT NOT NULL, -- achievement, friend_request, challenge, streak, lesson
+  related_id TEXT, -- ID of related entity (achievement_id, friend_id, etc.)
+  icon TEXT,
+  is_read BOOLEAN DEFAULT FALSE,
+  action_url TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- HOME THEMES TABLE
+-- ============================================
+CREATE TABLE home_themes (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  description TEXT,
+  preview_image TEXT,
+  background_color TEXT DEFAULT '#e0e0e0',
+  floor_color TEXT DEFAULT '#cccccc',
+  wall_color TEXT DEFAULT '#f5f5f5',
+  lighting_preset TEXT DEFAULT 'bright', -- bright, warm, cool, dramatic
+  price_points INTEGER DEFAULT 0,
+  is_premium BOOLEAN DEFAULT FALSE,
+  unlock_requirement JSONB,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- ============================================
+-- USER HOME THEMES TABLE
+-- ============================================
+CREATE TABLE user_home_themes (
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  theme_id UUID REFERENCES home_themes(id) ON DELETE CASCADE,
+  is_active BOOLEAN DEFAULT FALSE,
+  acquired_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  PRIMARY KEY (user_id, theme_id)
+);
+
+-- ============================================
 -- INDEXES for Performance
 -- ============================================
 CREATE INDEX idx_experiences_teacher ON experiences(teacher_id);
@@ -246,6 +454,20 @@ CREATE INDEX idx_user_lesson_progress_lesson ON user_lesson_progress(lesson_id);
 CREATE INDEX idx_home_objects_category ON home_objects(category);
 CREATE INDEX idx_user_inventory_user ON user_inventory(user_id);
 CREATE INDEX idx_user_home_customization_user ON user_home_customization(user_id);
+CREATE INDEX idx_learning_paths_language ON learning_paths(language);
+CREATE INDEX idx_user_learning_path_progress_user ON user_learning_path_progress(user_id);
+CREATE INDEX idx_daily_challenges_expires ON daily_challenges(expires_at);
+CREATE INDEX idx_user_challenge_progress_user ON user_challenge_progress(user_id);
+CREATE INDEX idx_achievements_category ON achievements(category);
+CREATE INDEX idx_friendships_user ON friendships(user_id);
+CREATE INDEX idx_friendships_friend ON friendships(friend_id);
+CREATE INDEX idx_friendships_status ON friendships(status);
+CREATE INDEX idx_study_rooms_active ON study_rooms(is_active);
+CREATE INDEX idx_study_rooms_host ON study_rooms(host_user_id);
+CREATE INDEX idx_study_room_participants_room ON study_room_participants(room_id);
+CREATE INDEX idx_notifications_user ON notifications(user_id);
+CREATE INDEX idx_notifications_read ON notifications(is_read);
+CREATE INDEX idx_home_themes_premium ON home_themes(is_premium);
 
 -- ============================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
@@ -412,6 +634,188 @@ CREATE POLICY "Users can delete home customization"
   ON user_home_customization FOR DELETE
   USING (user_id = auth.uid());
 
+-- Learning Paths: Public read
+ALTER TABLE learning_paths ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Learning paths are viewable by everyone"
+  ON learning_paths FOR SELECT
+  USING (true);
+
+-- User Learning Path Progress: Users manage own progress
+ALTER TABLE user_learning_path_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own learning path progress"
+  ON user_learning_path_progress FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create own learning path progress"
+  ON user_learning_path_progress FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own learning path progress"
+  ON user_learning_path_progress FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- Daily Challenges: Public read
+ALTER TABLE daily_challenges ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Daily challenges are viewable by everyone"
+  ON daily_challenges FOR SELECT
+  USING (true);
+
+-- User Challenge Progress: Users manage own progress
+ALTER TABLE user_challenge_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own challenge progress"
+  ON user_challenge_progress FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create own challenge progress"
+  ON user_challenge_progress FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own challenge progress"
+  ON user_challenge_progress FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- User Streaks: Users manage own streaks
+ALTER TABLE user_streaks ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own streaks"
+  ON user_streaks FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create own streaks"
+  ON user_streaks FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own streaks"
+  ON user_streaks FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- Achievements: Public read
+ALTER TABLE achievements ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Achievements are viewable by everyone"
+  ON achievements FOR SELECT
+  USING (true);
+
+-- User Achievements: Users manage own achievements
+ALTER TABLE user_achievements ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own achievements"
+  ON user_achievements FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can earn achievements"
+  ON user_achievements FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+-- Friendships: Users can view and manage own friendships
+ALTER TABLE friendships ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own friendships"
+  ON friendships FOR SELECT
+  USING (user_id = auth.uid() OR friend_id = auth.uid());
+
+CREATE POLICY "Users can create friend requests"
+  ON friendships FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own friendships"
+  ON friendships FOR UPDATE
+  USING (user_id = auth.uid() OR friend_id = auth.uid());
+
+CREATE POLICY "Users can delete own friendships"
+  ON friendships FOR DELETE
+  USING (user_id = auth.uid() OR friend_id = auth.uid());
+
+-- Study Rooms: Public read active rooms, users manage own
+ALTER TABLE study_rooms ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Active study rooms are viewable by everyone"
+  ON study_rooms FOR SELECT
+  USING (is_active = true OR host_user_id = auth.uid());
+
+CREATE POLICY "Users can create study rooms"
+  ON study_rooms FOR INSERT
+  WITH CHECK (host_user_id = auth.uid());
+
+CREATE POLICY "Hosts can update own rooms"
+  ON study_rooms FOR UPDATE
+  USING (host_user_id = auth.uid());
+
+CREATE POLICY "Hosts can delete own rooms"
+  ON study_rooms FOR DELETE
+  USING (host_user_id = auth.uid());
+
+-- Study Room Participants: Users manage own participation
+ALTER TABLE study_room_participants ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Room participants are viewable"
+  ON study_room_participants FOR SELECT
+  USING (true);
+
+CREATE POLICY "Users can join rooms"
+  ON study_room_participants FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own participation"
+  ON study_room_participants FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- User Analytics: Users view own analytics
+ALTER TABLE user_analytics ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own analytics"
+  ON user_analytics FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can create own analytics"
+  ON user_analytics FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own analytics"
+  ON user_analytics FOR UPDATE
+  USING (user_id = auth.uid());
+
+-- Notifications: Users view own notifications
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own notifications"
+  ON notifications FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can update own notifications"
+  ON notifications FOR UPDATE
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can delete own notifications"
+  ON notifications FOR DELETE
+  USING (user_id = auth.uid());
+
+-- Home Themes: Public read
+ALTER TABLE home_themes ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Home themes are viewable by everyone"
+  ON home_themes FOR SELECT
+  USING (true);
+
+-- User Home Themes: Users manage own themes
+ALTER TABLE user_home_themes ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own themes"
+  ON user_home_themes FOR SELECT
+  USING (user_id = auth.uid());
+
+CREATE POLICY "Users can add themes"
+  ON user_home_themes FOR INSERT
+  WITH CHECK (user_id = auth.uid());
+
+CREATE POLICY "Users can update own themes"
+  ON user_home_themes FOR UPDATE
+  USING (user_id = auth.uid());
+
 -- ============================================
 -- FUNCTIONS
 -- ============================================
@@ -468,6 +872,41 @@ CREATE TRIGGER update_home_objects_updated_at
 
 CREATE TRIGGER update_user_home_customization_updated_at
   BEFORE UPDATE ON user_home_customization
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_learning_paths_updated_at
+  BEFORE UPDATE ON learning_paths
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_learning_path_progress_updated_at
+  BEFORE UPDATE ON user_learning_path_progress
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_challenge_progress_updated_at
+  BEFORE UPDATE ON user_challenge_progress
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_streaks_updated_at
+  BEFORE UPDATE ON user_streaks
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_friendships_updated_at
+  BEFORE UPDATE ON friendships
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_study_rooms_updated_at
+  BEFORE UPDATE ON study_rooms
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_user_analytics_updated_at
+  BEFORE UPDATE ON user_analytics
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 

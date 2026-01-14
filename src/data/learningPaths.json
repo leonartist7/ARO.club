@@ -1,0 +1,98 @@
+[
+  {
+    "id": "path-french-basics",
+    "title": "French Fundamentals",
+    "description": "Master the basics of French language from greetings to essential conversation skills",
+    "language": "French",
+    "difficulty": "beginner",
+    "icon": "🇫🇷",
+    "estimated_hours": 5,
+    "total_points": 50,
+    "lesson_ids": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"],
+    "is_premium": false
+  },
+  {
+    "id": "path-spanish-starter",
+    "title": "Spanish for Beginners",
+    "description": "Start your Spanish journey with confidence",
+    "language": "Spanish",
+    "difficulty": "beginner",
+    "icon": "🇪🇸",
+    "estimated_hours": 3,
+    "total_points": 30,
+    "lesson_ids": ["lesson-6"],
+    "is_premium": false
+  },
+  {
+    "id": "path-japanese-intro",
+    "title": "Introduction to Japanese",
+    "description": "Learn Hiragana and basic Japanese expressions",
+    "language": "Japanese",
+    "difficulty": "beginner",
+    "icon": "🇯🇵",
+    "estimated_hours": 4,
+    "total_points": 25,
+    "lesson_ids": ["lesson-7"],
+    "is_premium": false
+  },
+  {
+    "id": "path-korean-basics",
+    "title": "Korean Language Basics",
+    "description": "Master Hangul and essential Korean phrases",
+    "language": "Korean",
+    "difficulty": "beginner",
+    "icon": "🇰🇷",
+    "estimated_hours": 4,
+    "total_points": 20,
+    "lesson_ids": ["lesson-8"],
+    "is_premium": false
+  },
+  {
+    "id": "path-french-advanced",
+    "title": "Advanced French Mastery",
+    "description": "Take your French to the next level with advanced grammar and conversation",
+    "language": "French",
+    "difficulty": "advanced",
+    "icon": "🎓",
+    "estimated_hours": 15,
+    "total_points": 200,
+    "lesson_ids": [],
+    "is_premium": true
+  },
+  {
+    "id": "path-business-english",
+    "title": "Business English Essentials",
+    "description": "Professional English for the workplace",
+    "language": "English",
+    "difficulty": "intermediate",
+    "icon": "💼",
+    "estimated_hours": 10,
+    "total_points": 150,
+    "lesson_ids": [],
+    "is_premium": true
+  },
+  {
+    "id": "path-travel-phrases",
+    "title": "Travel Phrases Pack",
+    "description": "Essential phrases for traveling in multiple languages",
+    "language": "Multiple",
+    "difficulty": "beginner",
+    "icon": "✈️",
+    "estimated_hours": 6,
+    "total_points": 80,
+    "lesson_ids": [],
+    "is_premium": false
+  },
+  {
+    "id": "path-conversational-mastery",
+    "title": "Conversational Fluency",
+    "description": "Become confident in everyday conversations",
+    "language": "French",
+    "difficulty": "intermediate",
+    "icon": "💬",
+    "estimated_hours": 12,
+    "total_points": 180,
+    "lesson_ids": [],
+    "is_premium": true
+  }
+]

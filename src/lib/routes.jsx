@@ -16,6 +16,10 @@ const LeaderboardPage = lazy(() => import('../pages/LeaderboardPage'));
 const LessonsPage = lazy(() => import('../pages/LessonsPage'));
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage'));
 const MyHomePage = lazy(() => import('../pages/MyHomePage'));
+const DashboardPageNew = lazy(() => import('../pages/DashboardPage'));
+const LearningPathsPage = lazy(() => import('../pages/LearningPathsPage'));
+const StudyRoomsPage = lazy(() => import('../pages/StudyRoomsPage'));
+const AchievementsPage = lazy(() => import('../pages/AchievementsPage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const HowItWorksPage = lazy(() => import('../pages/HowItWorksPage'));
 const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
@@ -88,6 +92,22 @@ export const router = createBrowserRouter([
       {
         path: 'my-home',
         element: <MyHomePage />,
+      },
+      {
+        path: 'my-dashboard',
+        element: <DashboardPageNew />,
+      },
+      {
+        path: 'learning-paths',
+        element: <LearningPathsPage />,
+      },
+      {
+        path: 'study-rooms',
+        element: <StudyRoomsPage />,
+      },
+      {
+        path: 'achievements',
+        element: <AchievementsPage />,
       },
       {
         path: 'about',
