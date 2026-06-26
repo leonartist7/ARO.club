@@ -12,10 +12,10 @@ export default function CharacterBuilder() {
 
   // Mock user data - in real app, fetch from backend
   const [userPoints, setUserPoints] = useState(1250);
-  const [selectedCharacter, setSelectedCharacter] = useState('owl');
+  const [selectedCharacter, setSelectedCharacter] = useState('coco');
   const [selectedCategory, setSelectedCategory] = useState('characters');
   const [ownedItems, setOwnedItems] = useState({
-    characters: ['owl'],
+    characters: ['coco'],
     hats: [],
     glasses: [],
     accessories: ['fire'],
@@ -23,7 +23,7 @@ export default function CharacterBuilder() {
   });
 
   const [equipped, setEquipped] = useState({
-    character: 'owl',
+    character: 'coco',
     hat: null,
     glasses: null,
     accessory: 'fire',

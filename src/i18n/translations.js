@@ -222,7 +222,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'How Conversa Works',
+      title: 'How Tonguee Works',
       subtitle: "Learning a language has never been this easy—or this fun. Here's how to get started on your language learning journey.",
       step1: {
         number: '01',
@@ -256,7 +256,7 @@ export const translations = {
         detail2: 'Unlock achievement badges',
         detail3: 'Build your language portfolio',
       },
-      whyChoose: 'Why Choose Conversa?',
+      whyChoose: 'Why Choose Tonguee?',
       whyChooseSubtitle: "We're not just another language app. Here's what makes us different:",
       benefit1: 'Learn from native speakers in real situations',
       benefit2: 'Small group sizes for personalized attention',
@@ -274,7 +274,7 @@ export const translations = {
       feature4Title: 'Community Focused',
       feature4Description: 'Join a global community of language learners.',
       seeInAction: 'See It In Action',
-      seeInActionSubtitle: 'Watch how Conversa brings language learning to life',
+      seeInActionSubtitle: 'Watch how Tonguee brings language learning to life',
       videoComingSoon: 'Video Coming Soon',
       videoSubtitle: 'See real students learning in real situations',
       readyToStart: 'Ready to Start Learning?',
@@ -288,7 +288,7 @@ export const translations = {
       title: 'Teach Your Language, Share Your Culture',
       subtitle: 'Turn your language skills into income. Join thousands of teachers worldwide helping students learn through real experiences.',
       applyToTeach: 'Apply to Teach',
-      whyTeach: 'Why Teach with Conversa?',
+      whyTeach: 'Why Teach with Tonguee?',
       benefit1Title: 'Earn Extra Income',
       benefit1Description: 'Set your own prices and schedule. Earn money sharing your language and culture.',
       benefit1Stats: 'Avg. $40/hour',
@@ -568,7 +568,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'Comment Conversa Fonctionne',
+      title: 'Comment Tonguee Fonctionne',
       subtitle: 'Apprendre une langue n\'a jamais été aussi facile—ou aussi amusant. Voici comment commencer votre parcours d\'apprentissage des langues.',
       step1: {
         number: '01',
@@ -602,7 +602,7 @@ export const translations = {
         detail2: 'Débloquer des badges de réussite',
         detail3: 'Construire votre portfolio linguistique',
       },
-      whyChoose: 'Pourquoi Choisir Conversa?',
+      whyChoose: 'Pourquoi Choisir Tonguee?',
       whyChooseSubtitle: 'Nous ne sommes pas qu\'une autre application de langue. Voici ce qui nous rend différents:',
       benefit1: 'Apprendre avec des locuteurs natifs dans des situations réelles',
       benefit2: 'Petits groupes pour une attention personnalisée',
@@ -620,7 +620,7 @@ export const translations = {
       feature4Title: 'Axé sur la Communauté',
       feature4Description: 'Rejoignez une communauté mondiale d\'apprenants.',
       seeInAction: 'Voyez en Action',
-      seeInActionSubtitle: 'Regardez comment Conversa donne vie à l\'apprentissage des langues',
+      seeInActionSubtitle: 'Regardez comment Tonguee donne vie à l\'apprentissage des langues',
       videoComingSoon: 'Vidéo Bientôt Disponible',
       videoSubtitle: 'Voir de vrais étudiants apprendre dans des situations réelles',
       readyToStart: 'Prêt à Commencer l\'Apprentissage?',
@@ -634,7 +634,7 @@ export const translations = {
       title: 'Enseignez Votre Langue, Partagez Votre Culture',
       subtitle: 'Transformez vos compétences linguistiques en revenus. Rejoignez des milliers d\'enseignants dans le monde aidant les étudiants à apprendre par des expériences réelles.',
       applyToTeach: 'Postuler pour Enseigner',
-      whyTeach: 'Pourquoi Enseigner avec Conversa?',
+      whyTeach: 'Pourquoi Enseigner avec Tonguee?',
       benefit1Title: 'Gagner un Revenu Supplémentaire',
       benefit1Description: 'Définissez vos propres prix et horaires. Gagnez de l\'argent en partageant votre langue et culture.',
       benefit1Stats: 'Moy. 40$/heure',
@@ -914,7 +914,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'Cómo Funciona Conversa',
+      title: 'Cómo Funciona Tonguee',
       subtitle: 'Aprender un idioma nunca ha sido tan fácil—o tan divertido. Aquí te mostramos cómo comenzar tu viaje de aprendizaje de idiomas.',
       step1: {
         number: '01',
@@ -948,7 +948,7 @@ export const translations = {
         detail2: 'Desbloquea insignias de logros',
         detail3: 'Construye tu portafolio de idiomas',
       },
-      whyChoose: '¿Por Qué Elegir Conversa?',
+      whyChoose: '¿Por Qué Elegir Tonguee?',
       whyChooseSubtitle: 'No somos solo otra aplicación de idiomas. Esto es lo que nos hace diferentes:',
       benefit1: 'Aprender con hablantes nativos en situaciones reales',
       benefit2: 'Grupos pequeños para atención personalizada',
@@ -966,7 +966,7 @@ export const translations = {
       feature4Title: 'Enfocado en la Comunidad',
       feature4Description: 'Únete a una comunidad global de estudiantes de idiomas.',
       seeInAction: 'Míralo en Acción',
-      seeInActionSubtitle: 'Mira cómo Conversa da vida al aprendizaje de idiomas',
+      seeInActionSubtitle: 'Mira cómo Tonguee da vida al aprendizaje de idiomas',
       videoComingSoon: 'Video Próximamente',
       videoSubtitle: 'Ver estudiantes reales aprendiendo en situaciones reales',
       readyToStart: '¿Listo para Comenzar a Aprender?',
@@ -980,7 +980,7 @@ export const translations = {
       title: 'Enseña Tu Idioma, Comparte Tu Cultura',
       subtitle: 'Convierte tus habilidades lingüísticas en ingresos. Únete a miles de profesores en todo el mundo ayudando a estudiantes a aprender a través de experiencias reales.',
       applyToTeach: 'Postular para Enseñar',
-      whyTeach: '¿Por Qué Enseñar con Conversa?',
+      whyTeach: '¿Por Qué Enseñar con Tonguee?',
       benefit1Title: 'Gana Ingresos Extras',
       benefit1Description: 'Establece tus propios precios y horario. Gana dinero compartiendo tu idioma y cultura.',
       benefit1Stats: 'Prom. $40/hora',

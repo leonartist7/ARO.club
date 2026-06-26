@@ -43,7 +43,7 @@ export default function Footer() {
               className="flex items-center gap-2 text-2xl font-display font-bold text-white mb-4"
             >
               <span className="text-3xl">👅</span>
-              Conversa
+              Tonguee
             </Link>
             <p className="text-sm mb-6 max-w-xs">
               {t('footer.description')}
@@ -114,7 +114,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm">
-            © {new Date().getFullYear()} Conversa. {t('footer.copyright')}
+            © {new Date().getFullYear()} Tonguee. {t('footer.copyright')}
           </p>
           <div className="flex gap-6 text-sm">
             <Link to="#" className="hover:text-white transition-colors">

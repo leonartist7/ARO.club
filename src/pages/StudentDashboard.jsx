@@ -37,7 +37,7 @@ export default function StudentDashboard() {
     completedLessons: 23,
     totalHours: 12,
     rank: 'Gold',
-    selectedCharacter: 'owl',
+    selectedCharacter: 'coco',
     equippedHat: null,
     equippedGlasses: null,
     equippedAccessory: 'fire',

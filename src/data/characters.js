@@ -2,10 +2,10 @@
 
 export const characters = [
   {
-    id: 'owl',
-    name: 'Duo the Owl',
-    emoji: '🦉',
-    baseColor: '#4CAF50',
+    id: 'coco',
+    name: 'Coco the Chameleon',
+    emoji: '🦎',
+    baseColor: '#20B2AA',
     unlocked: true,
     cost: 0,
   },
