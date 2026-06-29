@@ -1,14 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw, Trash2 } from 'lucide-react';
-import { getAllBookings, deleteBooking } from '../../lib/admin';
+import { getAllBookings, deleteBooking, ADMIN_PAGE_SIZE } from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
 import { formatPrice } from '../../utils/helpers';
 
-const PAGE_SIZE = 20;
 const STATUS_VARIANT = {
   confirmed: 'success',
   pending: 'warning',
@@ -23,11 +22,12 @@ export default function AdminBookingsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
 
-  const load = useCallback(async (p = page) => {
+  const load = useCallback(async (p) => {
     setLoading(true);
     setError(null);
-    const { data, count, error: err } = await getAllBookings(p, PAGE_SIZE);
+    const { data, count, error: err } = await getAllBookings(p, ADMIN_PAGE_SIZE);
     if (err) {
       setError('Failed to load bookings.');
     } else {
@@ -35,19 +35,25 @@ export default function AdminBookingsPage() {
       setTotal(count ?? 0);
     }
     setLoading(false);
-  }, [page]);
+  }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(page); }, [load, page]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this booking? This cannot be undone.')) return;
     setDeleting(id);
+    setDeleteError(null);
     const { error: err } = await deleteBooking(id);
-    if (!err) setBookings((prev) => prev.filter((b) => b.id !== id));
+    if (err) {
+      setDeleteError(`Failed to delete booking: ${err.message}`);
+    } else {
+      setBookings((prev) => prev.filter((b) => b.id !== id));
+      setTotal((n) => n - 1);
+    }
     setDeleting(null);
   };
 
-  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const totalPages = Math.ceil(total / ADMIN_PAGE_SIZE);
 
   return (
     <div className="space-y-6">
@@ -64,6 +70,12 @@ export default function AdminBookingsPage() {
           Refresh
         </Button>
       </div>
+
+      {deleteError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {deleteError}
+        </p>
+      )}
 
       {loading ? (
         <div className="flex justify-center py-20">
@@ -140,14 +152,14 @@ export default function AdminBookingsPage() {
                   variant="ghost"
                   disabled={page <= 1}
                   icon={<ChevronLeft className="h-4 w-4" />}
-                  onClick={() => { setPage(page - 1); load(page - 1); }}
+                  onClick={() => setPage((p) => p - 1)}
                 />
                 <Button
                   size="sm"
                   variant="ghost"
                   disabled={page >= totalPages}
                   icon={<ChevronRight className="h-4 w-4" />}
-                  onClick={() => { setPage(page + 1); load(page + 1); }}
+                  onClick={() => setPage((p) => p + 1)}
                 />
               </div>
             </div>

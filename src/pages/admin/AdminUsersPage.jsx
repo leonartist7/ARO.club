@@ -1,14 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ShieldCheck, ShieldOff, RefreshCw } from 'lucide-react';
-import { getAllUsers, updateUserAdminFlag } from '../../lib/admin';
+import { getAllUsers, updateUserAdminFlag, ADMIN_PAGE_SIZE } from '../../lib/admin';
 import Avatar from '../../components/ui/Avatar';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
-
-const PAGE_SIZE = 20;
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
@@ -17,11 +15,12 @@ export default function AdminUsersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [toggling, setToggling] = useState(null);
+  const [toggleError, setToggleError] = useState(null);
 
-  const load = useCallback(async (p = page) => {
+  const load = useCallback(async (p) => {
     setLoading(true);
     setError(null);
-    const { data, count, error: err } = await getAllUsers(p, PAGE_SIZE);
+    const { data, count, error: err } = await getAllUsers(p, ADMIN_PAGE_SIZE);
     if (err) {
       setError('Failed to load users.');
     } else {
@@ -29,14 +28,17 @@ export default function AdminUsersPage() {
       setTotal(count ?? 0);
     }
     setLoading(false);
-  }, [page]);
+  }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(page); }, [load, page]);
 
   const toggleAdmin = async (user) => {
     setToggling(user.id);
+    setToggleError(null);
     const { error: err } = await updateUserAdminFlag(user.id, !user.is_admin);
-    if (!err) {
+    if (err) {
+      setToggleError(`Failed to update ${user.name}: ${err.message}`);
+    } else {
       setUsers((prev) =>
         prev.map((u) => u.id === user.id ? { ...u, is_admin: !u.is_admin } : u)
       );
@@ -44,7 +46,7 @@ export default function AdminUsersPage() {
     setToggling(null);
   };
 
-  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const totalPages = Math.ceil(total / ADMIN_PAGE_SIZE);
 
   return (
     <div className="space-y-6">
@@ -61,6 +63,12 @@ export default function AdminUsersPage() {
           Refresh
         </Button>
       </div>
+
+      {toggleError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {toggleError}
+        </p>
+      )}
 
       {loading ? (
         <div className="flex justify-center py-20">
@@ -94,11 +102,7 @@ export default function AdminUsersPage() {
                   >
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <Avatar
-                          src={u.photo}
-                          name={u.name}
-                          size="sm"
-                        />
+                        <Avatar src={u.photo} name={u.name} size="sm" />
                         <span className="font-medium text-gray-900 dark:text-gray-100">
                           {u.name}
                         </span>
@@ -141,7 +145,6 @@ export default function AdminUsersPage() {
             </table>
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -153,14 +156,14 @@ export default function AdminUsersPage() {
                   variant="ghost"
                   disabled={page <= 1}
                   icon={<ChevronLeft className="h-4 w-4" />}
-                  onClick={() => { setPage(page - 1); load(page - 1); }}
+                  onClick={() => setPage((p) => p - 1)}
                 />
                 <Button
                   size="sm"
                   variant="ghost"
                   disabled={page >= totalPages}
                   icon={<ChevronRight className="h-4 w-4" />}
-                  onClick={() => { setPage(page + 1); load(page + 1); }}
+                  onClick={() => setPage((p) => p + 1)}
                 />
               </div>
             </div>

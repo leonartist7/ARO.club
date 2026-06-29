@@ -1,34 +1,14 @@
 import { supabase } from './supabase';
 
-const PAGE_SIZE = 20;
+export const ADMIN_PAGE_SIZE = 20;
 
 export async function getAdminStats() {
-  const [users, experiences, bookings] = await Promise.all([
-    supabase.from('profiles').select('id', { count: 'exact', head: true }),
-    supabase.from('experiences').select('id', { count: 'exact', head: true }),
-    supabase.from('bookings').select('total_price', { count: 'exact' }),
-  ]);
-
-  const error = users.error || experiences.error || bookings.error;
+  const { data, error } = await supabase.rpc('get_admin_stats');
   if (error) return { data: null, error };
-
-  const revenue = (bookings.data ?? []).reduce(
-    (sum, b) => sum + (b.total_price ?? 0),
-    0
-  );
-
-  return {
-    data: {
-      totalUsers: users.count ?? 0,
-      totalExperiences: experiences.count ?? 0,
-      totalBookings: bookings.count ?? 0,
-      totalRevenue: revenue,
-    },
-    error: null,
-  };
+  return { data, error: null };
 }
 
-export async function getAllUsers(page = 1, limit = PAGE_SIZE) {
+export async function getAllUsers(page = 1, limit = ADMIN_PAGE_SIZE) {
   const from = (page - 1) * limit;
   return supabase
     .from('profiles')
@@ -48,7 +28,7 @@ export async function updateUserAdminFlag(userId, isAdmin) {
     .single();
 }
 
-export async function getAllExperiences(page = 1, limit = PAGE_SIZE) {
+export async function getAllExperiences(page = 1, limit = ADMIN_PAGE_SIZE) {
   const from = (page - 1) * limit;
   return supabase
     .from('experiences')
@@ -70,7 +50,7 @@ export async function updateExperienceStatus(id, status) {
     .single();
 }
 
-export async function getAllBookings(page = 1, limit = PAGE_SIZE) {
+export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE) {
   const from = (page - 1) * limit;
   return supabase
     .from('bookings')

@@ -1,11 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import AdminRoute from '../components/auth/AdminRoute';
 import AdminLayout from '../components/admin/AdminLayout';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+const AdminPageLoader = () => (
+  <div className="flex items-center justify-center h-64">
+    <LoadingSpinner size="lg" />
+  </div>
+);
 
 // Pages (lazy loaded for better performance)
-import { lazy } from 'react';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ExplorePage = lazy(() => import('../pages/ExplorePage'));
@@ -219,7 +226,9 @@ export const router = createBrowserRouter([
     path: '/admin',
     element: (
       <AdminRoute>
-        <AdminLayout />
+        <Suspense fallback={<AdminPageLoader />}>
+          <AdminLayout />
+        </Suspense>
       </AdminRoute>
     ),
     children: [

@@ -49,7 +49,7 @@ function SidebarNav({ onClose }) {
         </NavLink>
       ))}
 
-      <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+      <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-700">
         <Link
           to="/"
           className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"

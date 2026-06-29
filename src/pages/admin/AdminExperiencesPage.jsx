@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
-import { getAllExperiences, updateExperienceStatus } from '../../lib/admin';
+import { getAllExperiences, updateExperienceStatus, ADMIN_PAGE_SIZE } from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import Select from '../../components/ui/Select';
@@ -9,7 +9,6 @@ import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
 import { formatPrice } from '../../utils/helpers';
 
-const PAGE_SIZE = 20;
 const STATUS_VARIANT = {
   published: 'success',
   draft: 'warning',
@@ -24,11 +23,12 @@ export default function AdminExperiencesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [updating, setUpdating] = useState(null);
+  const [updateError, setUpdateError] = useState(null);
 
-  const load = useCallback(async (p = page) => {
+  const load = useCallback(async (p) => {
     setLoading(true);
     setError(null);
-    const { data, count, error: err } = await getAllExperiences(p, PAGE_SIZE);
+    const { data, count, error: err } = await getAllExperiences(p, ADMIN_PAGE_SIZE);
     if (err) {
       setError('Failed to load experiences.');
     } else {
@@ -36,14 +36,17 @@ export default function AdminExperiencesPage() {
       setTotal(count ?? 0);
     }
     setLoading(false);
-  }, [page]);
+  }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(page); }, [load, page]);
 
   const changeStatus = async (id, status) => {
     setUpdating(id);
+    setUpdateError(null);
     const { error: err } = await updateExperienceStatus(id, status);
-    if (!err) {
+    if (err) {
+      setUpdateError(`Failed to update status: ${err.message}`);
+    } else {
       setExperiences((prev) =>
         prev.map((e) => e.id === id ? { ...e, status } : e)
       );
@@ -51,7 +54,7 @@ export default function AdminExperiencesPage() {
     setUpdating(null);
   };
 
-  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const totalPages = Math.ceil(total / ADMIN_PAGE_SIZE);
 
   return (
     <div className="space-y-6">
@@ -68,6 +71,12 @@ export default function AdminExperiencesPage() {
           Refresh
         </Button>
       </div>
+
+      {updateError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {updateError}
+        </p>
+      )}
 
       {loading ? (
         <div className="flex justify-center py-20">
@@ -147,14 +156,14 @@ export default function AdminExperiencesPage() {
                   variant="ghost"
                   disabled={page <= 1}
                   icon={<ChevronLeft className="h-4 w-4" />}
-                  onClick={() => { setPage(page - 1); load(page - 1); }}
+                  onClick={() => setPage((p) => p - 1)}
                 />
                 <Button
                   size="sm"
                   variant="ghost"
                   disabled={page >= totalPages}
                   icon={<ChevronRight className="h-4 w-4" />}
-                  onClick={() => { setPage(page + 1); load(page + 1); }}
+                  onClick={() => setPage((p) => p + 1)}
                 />
               </div>
             </div>
