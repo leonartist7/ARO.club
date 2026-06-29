@@ -1,0 +1,172 @@
+import { useEffect, useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, ShieldCheck, ShieldOff, RefreshCw } from 'lucide-react';
+import { getAllUsers, updateUserAdminFlag } from '../../lib/admin';
+import Avatar from '../../components/ui/Avatar';
+import Badge from '../../components/ui/Badge';
+import Button from '../../components/ui/Button';
+import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import { formatDate } from '../../utils/date';
+
+const PAGE_SIZE = 20;
+
+export default function AdminUsersPage() {
+  const [users, setUsers] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [toggling, setToggling] = useState(null);
+
+  const load = useCallback(async (p = page) => {
+    setLoading(true);
+    setError(null);
+    const { data, count, error: err } = await getAllUsers(p, PAGE_SIZE);
+    if (err) {
+      setError('Failed to load users.');
+    } else {
+      setUsers(data ?? []);
+      setTotal(count ?? 0);
+    }
+    setLoading(false);
+  }, [page]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const toggleAdmin = async (user) => {
+    setToggling(user.id);
+    const { error: err } = await updateUserAdminFlag(user.id, !user.is_admin);
+    if (!err) {
+      setUsers((prev) =>
+        prev.map((u) => u.id === user.id ? { ...u, is_admin: !u.is_admin } : u)
+      );
+    }
+    setToggling(null);
+  };
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-gray-100">
+          Users <span className="text-gray-400 font-normal text-lg">({total})</span>
+        </h1>
+        <Button
+          variant="ghost"
+          size="sm"
+          icon={<RefreshCw className="h-4 w-4" />}
+          onClick={() => load(page)}
+        >
+          Refresh
+        </Button>
+      </div>
+
+      {loading ? (
+        <div className="flex justify-center py-20">
+          <LoadingSpinner size="lg" />
+        </div>
+      ) : error ? (
+        <div className="text-center py-20 text-red-500">{error}</div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+        >
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">User</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Email</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Role</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Points</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Joined</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((u) => (
+                  <tr
+                    key={u.id}
+                    className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
+                  >
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <Avatar
+                          src={u.photo}
+                          name={u.name}
+                          size="sm"
+                        />
+                        <span className="font-medium text-gray-900 dark:text-gray-100">
+                          {u.name}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{u.email}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex flex-wrap gap-1">
+                        {u.is_admin && <Badge variant="danger" size="sm">Admin</Badge>}
+                        {u.is_teacher && <Badge variant="secondary" size="sm">Teacher</Badge>}
+                        {!u.is_admin && !u.is_teacher && (
+                          <Badge variant="default" size="sm">Student</Badge>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-gray-600 dark:text-gray-300">
+                      {(u.points ?? 0).toLocaleString()}
+                    </td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                      {u.created_at ? formatDate(u.created_at) : '—'}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Button
+                        size="sm"
+                        variant={u.is_admin ? 'danger' : 'outline'}
+                        loading={toggling === u.id}
+                        icon={
+                          u.is_admin
+                            ? <ShieldOff className="h-3.5 w-3.5" />
+                            : <ShieldCheck className="h-3.5 w-3.5" />
+                        }
+                        onClick={() => toggleAdmin(u)}
+                      >
+                        {u.is_admin ? 'Revoke admin' : 'Grant admin'}
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-gray-700">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Page {page} of {totalPages}
+              </p>
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  disabled={page <= 1}
+                  icon={<ChevronLeft className="h-4 w-4" />}
+                  onClick={() => { setPage(page - 1); load(page - 1); }}
+                />
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  disabled={page >= totalPages}
+                  icon={<ChevronRight className="h-4 w-4" />}
+                  onClick={() => { setPage(page + 1); load(page + 1); }}
+                />
+              </div>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </div>
+  );
+}

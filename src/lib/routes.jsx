@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
+import AdminRoute from '../components/auth/AdminRoute';
+import AdminLayout from '../components/admin/AdminLayout';
 
 // Pages (lazy loaded for better performance)
 import { lazy } from 'react';
@@ -36,6 +38,12 @@ const TeacherOnboarding = lazy(() => import('../pages/TeacherOnboarding'));
 const GamesPage = lazy(() => import('../pages/GamesPage'));
 const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ChatPage = lazy(() => import('../pages/ChatPage'));
+
+// Admin pages
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'));
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminExperiencesPage = lazy(() => import('../pages/admin/AdminExperiencesPage'));
+const AdminBookingsPage = lazy(() => import('../pages/admin/AdminBookingsPage'));
 
 /**
  * App routes configuration
@@ -204,6 +212,32 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFoundPage />,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <AdminDashboardPage />,
+      },
+      {
+        path: 'users',
+        element: <AdminUsersPage />,
+      },
+      {
+        path: 'experiences',
+        element: <AdminExperiencesPage />,
+      },
+      {
+        path: 'bookings',
+        element: <AdminBookingsPage />,
       },
     ],
   },
