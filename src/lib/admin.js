@@ -8,15 +8,20 @@ export async function getAdminStats() {
   return { data, error: null };
 }
 
-export async function getAllUsers(page = 1, limit = ADMIN_PAGE_SIZE) {
+export async function getAllUsers(page = 1, limit = ADMIN_PAGE_SIZE, search = '') {
   const from = (page - 1) * limit;
-  return supabase
+  let q = supabase
     .from('profiles')
     .select('id, name, email, photo, is_admin, is_teacher, points, created_at', {
       count: 'exact',
     })
     .order('created_at', { ascending: false })
     .range(from, from + limit - 1);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) {
+    q = q.or(`name.ilike.%${safe}%,email.ilike.%${safe}%`);
+  }
+  return q;
 }
 
 export async function updateUserAdminFlag(userId, isAdmin) {
@@ -65,5 +70,31 @@ export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE) {
 }
 
 export async function deleteBooking(id) {
-  return supabase.from('bookings').delete().eq('id', id);
+  return supabase.from('bookings').delete().eq('id', id).select('id');
+}
+
+export async function updateBookingStatus(id, status) {
+  return supabase
+    .from('bookings')
+    .update({ status })
+    .eq('id', id)
+    .select()
+    .single();
+}
+
+export async function getAllReviews(page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('reviews')
+    .select(
+      `id, rating, comment, student_name, created_at,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function deleteReview(id) {
+  return supabase.from('reviews').delete().eq('id', id).select('id');
 }

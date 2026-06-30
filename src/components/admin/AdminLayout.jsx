@@ -5,6 +5,7 @@ import {
   Users,
   BookOpen,
   CalendarCheck,
+  Star,
   Menu,
   X,
   ExternalLink,
@@ -17,6 +18,7 @@ const navItems = [
   { to: '/admin/users',       label: 'Users',        icon: Users },
   { to: '/admin/experiences', label: 'Experiences',  icon: BookOpen },
   { to: '/admin/bookings',    label: 'Bookings',     icon: CalendarCheck },
+  { to: '/admin/reviews',     label: 'Reviews',      icon: Star },
 ];
 
 function SidebarNav({ onClose }) {

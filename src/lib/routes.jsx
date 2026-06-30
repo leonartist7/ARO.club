@@ -51,6 +51,7 @@ const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
 const AdminExperiencesPage = lazy(() => import('../pages/admin/AdminExperiencesPage'));
 const AdminBookingsPage = lazy(() => import('../pages/admin/AdminBookingsPage'));
+const AdminReviewsPage = lazy(() => import('../pages/admin/AdminReviewsPage'));
 
 /**
  * App routes configuration
@@ -247,6 +248,10 @@ export const router = createBrowserRouter([
       {
         path: 'bookings',
         element: <AdminBookingsPage />,
+      },
+      {
+        path: 'reviews',
+        element: <AdminReviewsPage />,
       },
     ],
   },

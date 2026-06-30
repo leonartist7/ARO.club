@@ -1,10 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ShieldCheck, ShieldOff, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShieldCheck, ShieldOff, RefreshCw, Search } from 'lucide-react';
 import { getAllUsers, updateUserAdminFlag, ADMIN_PAGE_SIZE } from '../../lib/admin';
 import Avatar from '../../components/ui/Avatar';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
 
@@ -12,15 +13,17 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [toggling, setToggling] = useState(null);
   const [toggleError, setToggleError] = useState(null);
 
-  const load = useCallback(async (p) => {
+  const load = useCallback(async (p, q = '') => {
     setLoading(true);
     setError(null);
-    const { data, count, error: err } = await getAllUsers(p, ADMIN_PAGE_SIZE);
+    const { data, count, error: err } = await getAllUsers(p, ADMIN_PAGE_SIZE, q);
     if (err) {
       setError('Failed to load users.');
     } else {
@@ -30,7 +33,16 @@ export default function AdminUsersPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(page); }, [load, page]);
+  // Debounce search: reset page and update debouncedSearch in one batch
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setPage(1);
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(t);
+  }, [search]);
+
+  useEffect(() => { load(page, debouncedSearch); }, [load, page, debouncedSearch]);
 
   const toggleAdmin = async (user) => {
     setToggling(user.id);
@@ -58,11 +70,19 @@ export default function AdminUsersPage() {
           variant="ghost"
           size="sm"
           icon={<RefreshCw className="h-4 w-4" />}
-          onClick={() => load(page)}
+          onClick={() => load(page, debouncedSearch)}
         >
           Refresh
         </Button>
       </div>
+
+      <Input
+        placeholder="Search by name or email…"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        leftIcon={<Search className="h-4 w-4" />}
+        wrapperClassName="max-w-sm"
+      />
 
       {toggleError && (
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
@@ -95,7 +115,13 @@ export default function AdminUsersPage() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((u) => (
+                {users.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-4 py-8 text-center text-gray-400">
+                      {debouncedSearch ? 'No users match your search' : 'No users yet'}
+                    </td>
+                  </tr>
+                ) : users.map((u) => (
                   <tr
                     key={u.id}
                     className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"

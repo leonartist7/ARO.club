@@ -85,3 +85,131 @@ Rendered as the parent element for all `/admin/*` routes. Contains:
 - `src/pages/admin/AdminExperiencesPage.jsx` – paginated experience table
   with status badge and publish/cancel toggle.
 - `src/pages/admin/AdminBookingsPage.jsx` – paginated bookings table.
+
+---
+
+## Phase A – Completion Status
+
+All five tasks implemented and shipped in two commits on `claude/phase-a-tasks-tzg5ub`:
+
+| Task | Status | Notes |
+|------|--------|-------|
+| A1 – SQL migration | ✅ | `supabase/migrations/20260629_admin.sql`; both RPCs restricted to `authenticated` |
+| A2 – Admin helper module | ✅ | `src/lib/admin.js`; revenue via `get_admin_stats()` RPC |
+| A3 – AdminRoute guard | ✅ | Unauthenticated → `/choose-role`; non-admin → `/404` |
+| A4 – Admin layout | ✅ | Desktop sidebar + mobile drawer; `ADMIN_PAGE_SIZE` exported constant |
+| A5 – Dashboard + 3 sub-pages | ✅ | Users, Experiences, Bookings with pagination and mutation error banners |
+
+**Known gap carried into Phase B**: Phase A added `SELECT` and one `UPDATE` (profiles) policy for
+admins, but never added `UPDATE` on `experiences` or `DELETE/UPDATE` on `bookings`. Those mutations
+exist in the helper module but would fail RLS in production.
+
+---
+
+## Phase B – Admin Content Moderation
+
+Builds on the Phase A foundation. Goal: make existing mutations actually work in production (missing
+RLS policies), add reviews moderation, add booking status management, and add user search.
+All code reuses existing UI components and follows the exact same patterns established in Phase A.
+
+---
+
+### B1 – Admin mutation policies (SQL)
+
+**File:** `supabase/migrations/20260630_admin_phase_b.sql`
+
+Policies missing from Phase A that cause silent RLS failures:
+
+| Table | Operation | Policy name |
+|-------|-----------|-------------|
+| `experiences` | UPDATE | `Admins can update any experience` |
+| `bookings` | UPDATE | `Admins can update any booking` |
+| `bookings` | DELETE | `Admins can delete any booking` |
+| `reviews` | DELETE | `Admins can delete any review` |
+| `teachers` | UPDATE | `Admins can update any teacher` |
+
+All `UPDATE` policies include `WITH CHECK (is_admin())` so a mid-request privilege drop cannot
+sneak through.
+
+---
+
+### B2 – New admin helper functions
+
+**File:** `src/lib/admin.js` (extend existing)
+
+| Export | Purpose |
+|--------|---------|
+| `getAllReviews(page, limit)` | Paginated reviews with `student_name`, `rating`, `comment`, experience title |
+| `deleteReview(id)` | Hard-delete a review |
+| `updateBookingStatus(id, status)` | Change a booking's status field |
+| `getAllUsers(page, limit, search)` | Extend existing function with optional `search` param (filters name/email via `.ilike`) |
+
+---
+
+### B3 – Admin Reviews page
+
+**File:** `src/pages/admin/AdminReviewsPage.jsx`
+
+Route: `/admin/reviews` — same pagination pattern as the other three admin pages.
+
+Table columns: Student name · Experience title · Rating (star icons) · Comment (truncated) · Date · Delete button.
+
+Delete uses `window.confirm` and shows `deleteError` banner on failure (same as BookingsPage).
+
+---
+
+### B4 – Booking status management
+
+**File:** `src/pages/admin/AdminBookingsPage.jsx` (extend)
+
+Add a `Select` dropdown per booking row (same `Select` component as ExperiencesPage uses) that
+calls `updateBookingStatus(id, status)`. A separate `updating`/`updateError` state pair tracks
+the in-flight mutation — independent of the existing `deleting`/`deleteError` pair.
+
+---
+
+### B5 – User search
+
+**File:** `src/pages/admin/AdminUsersPage.jsx` (extend)
+
+Add a debounced search `Input` (300 ms) above the table. When the query changes the debounce
+callback resets `page` to 1 and updates `debouncedSearch` in a single `setTimeout` so only one
+`useEffect` fires. The `load` callback accepts an optional `q` parameter passed through to
+`getAllUsers`.
+
+---
+
+## Phase B – Completion Status
+
+All five tasks implemented and shipped on `claude/phase-a-tasks-tzg5ub`.
+
+| Task | Status |
+|------|--------|
+| B1 – SQL mutation policies | ✅ |
+| B2 – Helper functions | ✅ |
+| B3 – AdminReviewsPage | ✅ |
+| B4 – Booking status change | ✅ |
+| B5 – User search | ✅ |
+
+---
+
+## Phase C – Handoff Notes (for next agent)
+
+**Codebase state after Phase B:**
+- Admin panel has 5 pages: Dashboard, Users, Experiences, Bookings, Reviews
+- Every admin mutation now has a corresponding RLS policy
+- `src/lib/admin.js` exports 10 functions; all follow `{ data, error }` return shape
+- Sidebar nav lives in `src/components/admin/AdminLayout.jsx` → `navItems` array
+
+**Recommended Phase C tasks:**
+1. **Teacher verification workflow** – `teachers.verified` column exists but no UI. Admin should be
+   able to open a teacher detail modal/page and toggle `verified`. Requires joining
+   `profiles → teachers` on `user_id` (teachers table has `user_id` FK).
+2. **Bulk actions** – checkbox column on Users/Experiences/Bookings tables; bulk delete or bulk
+   status change with a single RPC call.
+3. **Revenue chart** – replace the static stat card with a time-series chart (e.g. Recharts)
+   grouped by week. Needs a new `get_revenue_over_time()` RPC or a Supabase view.
+4. **Admin audit log** – append-only `admin_events` table recording which admin did what and when;
+   display on Dashboard as a scrollable feed.
+5. **Real-time subscription** – `supabase.channel()` on `bookings` and `reviews` to push badge
+   counts to the sidebar nav items without a manual Refresh click.

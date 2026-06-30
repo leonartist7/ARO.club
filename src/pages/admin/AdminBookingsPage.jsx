@@ -1,9 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw, Trash2 } from 'lucide-react';
-import { getAllBookings, deleteBooking, ADMIN_PAGE_SIZE } from '../../lib/admin';
+import { getAllBookings, deleteBooking, updateBookingStatus, ADMIN_PAGE_SIZE } from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
+import Select from '../../components/ui/Select';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
 import { formatPrice } from '../../utils/helpers';
@@ -23,6 +24,8 @@ export default function AdminBookingsPage() {
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState(null);
   const [deleteError, setDeleteError] = useState(null);
+  const [updating, setUpdating] = useState(null);
+  const [updateError, setUpdateError] = useState(null);
 
   const load = useCallback(async (p) => {
     setLoading(true);
@@ -39,16 +42,34 @@ export default function AdminBookingsPage() {
 
   useEffect(() => { load(page); }, [load, page]);
 
+  const handleStatusChange = async (id, status) => {
+    setUpdating(id);
+    setUpdateError(null);
+    const { error: err } = await updateBookingStatus(id, status);
+    if (err) {
+      setUpdateError(`Failed to update status: ${err.message}`);
+    } else {
+      setBookings((prev) =>
+        prev.map((b) => b.id === id ? { ...b, status } : b)
+      );
+    }
+    setUpdating(null);
+  };
+
   const handleDelete = async (id) => {
+    setDeleteError(null);
     if (!window.confirm('Delete this booking? This cannot be undone.')) return;
     setDeleting(id);
-    setDeleteError(null);
-    const { error: err } = await deleteBooking(id);
+    const { data, error: err } = await deleteBooking(id);
     if (err) {
       setDeleteError(`Failed to delete booking: ${err.message}`);
+    } else if (!data?.length) {
+      setDeleteError('Booking not found or already deleted.');
     } else {
+      const isLastOnPage = bookings.length === 1;
       setBookings((prev) => prev.filter((b) => b.id !== id));
       setTotal((n) => n - 1);
+      if (isLastOnPage && page > 1) setPage((p) => p - 1);
     }
     setDeleting(null);
   };
@@ -70,6 +91,12 @@ export default function AdminBookingsPage() {
           Refresh
         </Button>
       </div>
+
+      {updateError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {updateError}
+        </p>
+      )}
 
       {deleteError && (
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
@@ -98,11 +125,18 @@ export default function AdminBookingsPage() {
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Amount</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
+                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Change</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((b) => (
+                {bookings.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                      No bookings yet
+                    </td>
+                  </tr>
+                ) : bookings.map((b) => (
                   <tr
                     key={b.id}
                     className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
@@ -123,6 +157,20 @@ export default function AdminBookingsPage() {
                     </td>
                     <td className="px-4 py-3 text-gray-500 dark:text-gray-400 whitespace-nowrap">
                       {b.booking_date ? formatDate(b.booking_date) : '—'}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Select
+                        value={b.status}
+                        disabled={updating === b.id}
+                        onChange={(e) => handleStatusChange(b.id, e.target.value)}
+                        className="text-xs py-1"
+                        options={[
+                          { value: 'pending', label: 'Pending' },
+                          { value: 'confirmed', label: 'Confirmed' },
+                          { value: 'cancelled', label: 'Cancelled' },
+                          { value: 'completed', label: 'Completed' },
+                        ]}
+                      />
                     </td>
                     <td className="px-4 py-3">
                       <Button
