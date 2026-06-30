@@ -7,6 +7,7 @@ import {
   CalendarCheck,
   Star,
   GraduationCap,
+  ScrollText,
   Menu,
   X,
   ExternalLink,
@@ -114,6 +115,7 @@ export default function AdminLayout() {
     { to: '/admin/experiences', label: 'Experiences',  icon: BookOpen },
     { to: '/admin/bookings',    label: 'Bookings',     icon: CalendarCheck, badge: badges.bookings },
     { to: '/admin/reviews',     label: 'Reviews',      icon: Star, badge: badges.reviews },
+    { to: '/admin/audit',       label: 'Audit Log',    icon: ScrollText },
   ];
 
   return (

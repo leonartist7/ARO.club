@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw, Search } from 'lucide-react';
 import {
   getAllExperiences,
   updateExperienceStatus,
@@ -10,8 +10,10 @@ import {
 } from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 import Select from '../../components/ui/Select';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import SortHeader from '../../components/admin/SortHeader';
 import { formatDate } from '../../utils/date';
 import { formatPrice } from '../../utils/helpers';
 
@@ -29,6 +31,8 @@ const STATUS_OPTIONS = [
   { value: 'completed', label: 'Completed' },
 ];
 
+const STATUS_FILTER_OPTIONS = [{ value: '', label: 'All statuses' }, ...STATUS_OPTIONS];
+
 export default function AdminExperiencesPage() {
   const [experiences, setExperiences] = useState([]);
   const [total, setTotal] = useState(0);
@@ -41,12 +45,17 @@ export default function AdminExperiencesPage() {
   const [bulkStatus, setBulkStatus] = useState('cancelled');
   const [bulkWorking, setBulkWorking] = useState(false);
   const [bulkError, setBulkError] = useState(null);
+  const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [sortBy, setSortBy] = useState('created_at');
+  const [asc, setAsc] = useState(false);
 
-  const load = useCallback(async (p) => {
+  const load = useCallback(async (p, opts) => {
     setLoading(true);
     setError(null);
     setSelected(new Set());
-    const { data, count, error: err } = await getAllExperiences(p, ADMIN_PAGE_SIZE);
+    const { data, count, error: err } = await getAllExperiences(p, ADMIN_PAGE_SIZE, opts);
     if (err) {
       setError('Failed to load experiences.');
     } else {
@@ -56,7 +65,35 @@ export default function AdminExperiencesPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(page); }, [load, page]);
+  // Debounce free-text search; reset to page 1 in the same batch.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setPage(1);
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(t);
+  }, [search]);
+
+  useEffect(() => {
+    load(page, { search: debouncedSearch, status: statusFilter, sortBy, asc });
+  }, [load, page, debouncedSearch, statusFilter, sortBy, asc]);
+
+  const handleSort = (col) => {
+    setPage(1);
+    if (sortBy === col) {
+      setAsc((a) => !a);
+    } else {
+      setSortBy(col);
+      setAsc(false);
+    }
+  };
+
+  const handleStatusFilter = (e) => {
+    setPage(1);
+    setStatusFilter(e.target.value);
+  };
+
+  const currentOpts = { search: debouncedSearch, status: statusFilter, sortBy, asc };
 
   const changeStatus = async (id, status) => {
     setUpdating(id);
@@ -127,10 +164,27 @@ export default function AdminExperiencesPage() {
           variant="ghost"
           size="sm"
           icon={<RefreshCw className="h-4 w-4" />}
-          onClick={() => load(page)}
+          onClick={() => load(page, currentOpts)}
         >
           Refresh
         </Button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-3">
+        <Input
+          placeholder="Search by title or city…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          leftIcon={<Search className="h-4 w-4" />}
+          wrapperClassName="max-w-xs flex-1"
+        />
+        <Select
+          value={statusFilter}
+          onChange={handleStatusFilter}
+          options={STATUS_FILTER_OPTIONS}
+          wrapperClassName="w-44"
+        />
       </div>
 
       {/* Bulk action bar */}
@@ -190,10 +244,10 @@ export default function AdminExperiencesPage() {
                       className="rounded border-gray-300 text-primary-500 focus:ring-primary-500"
                     />
                   </th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Title</th>
+                  <SortHeader label="Title" col="title" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Teacher</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Price</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
+                  <SortHeader label="Price" col="price" sortBy={sortBy} asc={asc} onSort={handleSort} />
+                  <SortHeader label="Date" col="date" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Change</th>
                 </tr>

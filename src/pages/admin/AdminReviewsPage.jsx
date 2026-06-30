@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, RefreshCw, Star, Trash2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw, Search, Star, Trash2 } from 'lucide-react';
 import {
   getAllReviews,
   deleteReview,
@@ -9,7 +9,9 @@ import {
   ADMIN_PAGE_SIZE,
 } from '../../lib/admin';
 import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import SortHeader from '../../components/admin/SortHeader';
 import { formatDate } from '../../utils/date';
 
 function RatingStars({ rating }) {
@@ -40,12 +42,16 @@ export default function AdminReviewsPage() {
   const [selected, setSelected] = useState(new Set());
   const [bulkWorking, setBulkWorking] = useState(false);
   const [bulkError, setBulkError] = useState(null);
+  const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [sortBy, setSortBy] = useState('created_at');
+  const [asc, setAsc] = useState(false);
 
-  const load = useCallback(async (p) => {
+  const load = useCallback(async (p, opts) => {
     setLoading(true);
     setError(null);
     setSelected(new Set());
-    const { data, count, error: err } = await getAllReviews(p, ADMIN_PAGE_SIZE);
+    const { data, count, error: err } = await getAllReviews(p, ADMIN_PAGE_SIZE, opts);
     if (err) {
       setError('Failed to load reviews.');
     } else {
@@ -55,7 +61,29 @@ export default function AdminReviewsPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(page); }, [load, page]);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setPage(1);
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(t);
+  }, [search]);
+
+  useEffect(() => {
+    load(page, { search: debouncedSearch, sortBy, asc });
+  }, [load, page, debouncedSearch, sortBy, asc]);
+
+  const handleSort = (col) => {
+    setPage(1);
+    if (sortBy === col) {
+      setAsc((a) => !a);
+    } else {
+      setSortBy(col);
+      setAsc(false);
+    }
+  };
+
+  const currentOpts = { search: debouncedSearch, sortBy, asc };
 
   const handleDelete = async (id) => {
     setDeleteError(null);
@@ -128,10 +156,21 @@ export default function AdminReviewsPage() {
           variant="ghost"
           size="sm"
           icon={<RefreshCw className="h-4 w-4" />}
-          onClick={() => load(page)}
+          onClick={() => load(page, currentOpts)}
         >
           Refresh
         </Button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-3">
+        <Input
+          placeholder="Search by student or comment…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          leftIcon={<Search className="h-4 w-4" />}
+          wrapperClassName="max-w-xs flex-1"
+        />
       </div>
 
       {/* Bulk action bar */}
@@ -192,9 +231,9 @@ export default function AdminReviewsPage() {
                   </th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Student</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Experience</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Rating</th>
+                  <SortHeader label="Rating" col="rating" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Comment</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
+                  <SortHeader label="Date" col="created_at" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Actions</th>
                 </tr>
               </thead>

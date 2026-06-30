@@ -49,10 +49,13 @@ const ChatPage = lazy(() => import('../pages/ChatPage'));
 // Admin pages
 const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
 const AdminTeachersPage = lazy(() => import('../pages/admin/AdminTeachersPage'));
+const AdminTeacherDetailPage = lazy(() => import('../pages/admin/AdminTeacherDetailPage'));
 const AdminExperiencesPage = lazy(() => import('../pages/admin/AdminExperiencesPage'));
 const AdminBookingsPage = lazy(() => import('../pages/admin/AdminBookingsPage'));
 const AdminReviewsPage = lazy(() => import('../pages/admin/AdminReviewsPage'));
+const AdminAuditPage = lazy(() => import('../pages/admin/AdminAuditPage'));
 
 /**
  * App routes configuration
@@ -243,8 +246,16 @@ export const router = createBrowserRouter([
         element: <AdminUsersPage />,
       },
       {
+        path: 'users/:id',
+        element: <AdminUserDetailPage />,
+      },
+      {
         path: 'teachers',
         element: <AdminTeachersPage />,
+      },
+      {
+        path: 'teachers/:id',
+        element: <AdminTeacherDetailPage />,
       },
       {
         path: 'experiences',
@@ -257,6 +268,10 @@ export const router = createBrowserRouter([
       {
         path: 'reviews',
         element: <AdminReviewsPage />,
+      },
+      {
+        path: 'audit',
+        element: <AdminAuditPage />,
       },
     ],
   },

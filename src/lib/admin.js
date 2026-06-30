@@ -33,17 +33,25 @@ export async function updateUserAdminFlag(userId, isAdmin) {
     .single();
 }
 
-export async function getAllExperiences(page = 1, limit = ADMIN_PAGE_SIZE) {
+const EXPERIENCE_SORT_COLS = ['created_at', 'date', 'price', 'title'];
+
+export async function getAllExperiences(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { search = '', status = '', sortBy = 'created_at', asc = false } = opts;
   const from = (page - 1) * limit;
-  return supabase
+  const sortCol = EXPERIENCE_SORT_COLS.includes(sortBy) ? sortBy : 'created_at';
+  let q = supabase
     .from('experiences')
     .select(
       `id, title, language, city, status, price, date, created_at,
        teacher:teachers(name)`,
       { count: 'exact' }
     )
-    .order('created_at', { ascending: false })
+    .order(sortCol, { ascending: asc })
     .range(from, from + limit - 1);
+  if (status) q = q.eq('status', status);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) q = q.or(`title.ilike.%${safe}%,city.ilike.%${safe}%`);
+  return q;
 }
 
 export async function updateExperienceStatus(id, status) {
@@ -55,9 +63,13 @@ export async function updateExperienceStatus(id, status) {
     .single();
 }
 
-export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE) {
+const BOOKING_SORT_COLS = ['booking_date', 'total_price', 'status'];
+
+export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { status = '', sortBy = 'booking_date', asc = false } = opts;
   const from = (page - 1) * limit;
-  return supabase
+  const sortCol = BOOKING_SORT_COLS.includes(sortBy) ? sortBy : 'booking_date';
+  let q = supabase
     .from('bookings')
     .select(
       `id, total_price, status, payment_status, booking_date,
@@ -65,8 +77,10 @@ export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE) {
        experience:experiences(title)`,
       { count: 'exact' }
     )
-    .order('booking_date', { ascending: false })
+    .order(sortCol, { ascending: asc })
     .range(from, from + limit - 1);
+  if (status) q = q.eq('status', status);
+  return q;
 }
 
 export async function deleteBooking(id) {
@@ -82,17 +96,24 @@ export async function updateBookingStatus(id, status) {
     .single();
 }
 
-export async function getAllReviews(page = 1, limit = ADMIN_PAGE_SIZE) {
+const REVIEW_SORT_COLS = ['created_at', 'rating'];
+
+export async function getAllReviews(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { search = '', sortBy = 'created_at', asc = false } = opts;
   const from = (page - 1) * limit;
-  return supabase
+  const sortCol = REVIEW_SORT_COLS.includes(sortBy) ? sortBy : 'created_at';
+  let q = supabase
     .from('reviews')
     .select(
       `id, rating, comment, student_name, created_at,
        experience:experiences(title)`,
       { count: 'exact' }
     )
-    .order('created_at', { ascending: false })
+    .order(sortCol, { ascending: asc })
     .range(from, from + limit - 1);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) q = q.or(`student_name.ilike.%${safe}%,comment.ilike.%${safe}%`);
+  return q;
 }
 
 export async function deleteReview(id) {
@@ -175,4 +196,85 @@ export async function logAdminEvent(action, tableName, recordId = null, details 
     p_record_id: recordId || undefined,
     p_details: details || undefined,
   });
+}
+
+export async function getAdminEventsPaged(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { action = '', table = '' } = opts;
+  const from = (page - 1) * limit;
+  let q = supabase
+    .from('admin_events')
+    .select(
+      `id, action, table_name, record_id, details, created_at,
+       admin:profiles!admin_id(name, email)`,
+      { count: 'exact' }
+    )
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+  if (action) q = q.eq('action', action);
+  if (table) q = q.eq('table_name', table);
+  return q;
+}
+
+// ── Detail views (D1) ─────────────────────────────────────────────────────────
+
+export async function getUserById(id) {
+  return supabase
+    .from('profiles')
+    .select(
+      'id, name, email, photo, bio, is_admin, is_teacher, points, level, level_name, created_at'
+    )
+    .eq('id', id)
+    .single();
+}
+
+export async function getBookingsByStudent(studentId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('bookings')
+    .select(
+      `id, total_price, status, payment_status, booking_date,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .eq('student_id', studentId)
+    .order('booking_date', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function getReviewsByStudent(studentId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('reviews')
+    .select(
+      `id, rating, comment, created_at,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .eq('student_id', studentId)
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function getTeacherById(id) {
+  return supabase
+    .from('teachers')
+    .select(
+      `id, user_id, name, email, photo, bio, tagline, languages, specialties,
+       verified, verification_date, rating, total_reviews, total_sessions,
+       hourly_rate, created_at`
+    )
+    .eq('id', id)
+    .single();
+}
+
+export async function getExperiencesByTeacher(teacherId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('experiences')
+    .select('id, title, language, city, status, price, date, created_at', {
+      count: 'exact',
+    })
+    .eq('teacher_id', teacherId)
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
 }

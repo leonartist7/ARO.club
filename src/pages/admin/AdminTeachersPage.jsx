@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw, ShieldCheck, ShieldOff } from 'lucide-react';
 import {
@@ -112,8 +113,13 @@ export default function AdminTeachersPage() {
                     key={t.id}
                     className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
                   >
-                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
-                      {t.name}
+                    <td className="px-4 py-3 font-medium">
+                      <Link
+                        to={`/admin/teachers/${t.id}`}
+                        className="text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400 hover:underline"
+                      >
+                        {t.name}
+                      </Link>
                     </td>
                     <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{t.email}</td>
                     <td className="px-4 py-3 text-gray-600 dark:text-gray-300">

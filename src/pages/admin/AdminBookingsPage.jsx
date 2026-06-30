@@ -13,6 +13,7 @@ import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import Select from '../../components/ui/Select';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import SortHeader from '../../components/admin/SortHeader';
 import { formatDate } from '../../utils/date';
 import { formatPrice } from '../../utils/helpers';
 
@@ -22,6 +23,14 @@ const STATUS_VARIANT = {
   cancelled: 'danger',
   completed: 'secondary',
 };
+
+const STATUS_FILTER_OPTIONS = [
+  { value: '',          label: 'All statuses' },
+  { value: 'pending',   label: 'Pending' },
+  { value: 'confirmed', label: 'Confirmed' },
+  { value: 'cancelled', label: 'Cancelled' },
+  { value: 'completed', label: 'Completed' },
+];
 
 export default function AdminBookingsPage() {
   const [bookings, setBookings] = useState([]);
@@ -36,12 +45,15 @@ export default function AdminBookingsPage() {
   const [selected, setSelected] = useState(new Set());
   const [bulkWorking, setBulkWorking] = useState(false);
   const [bulkError, setBulkError] = useState(null);
+  const [statusFilter, setStatusFilter] = useState('');
+  const [sortBy, setSortBy] = useState('booking_date');
+  const [asc, setAsc] = useState(false);
 
-  const load = useCallback(async (p) => {
+  const load = useCallback(async (p, opts) => {
     setLoading(true);
     setError(null);
     setSelected(new Set());
-    const { data, count, error: err } = await getAllBookings(p, ADMIN_PAGE_SIZE);
+    const { data, count, error: err } = await getAllBookings(p, ADMIN_PAGE_SIZE, opts);
     if (err) {
       setError('Failed to load bookings.');
     } else {
@@ -51,7 +63,26 @@ export default function AdminBookingsPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(page); }, [load, page]);
+  useEffect(() => {
+    load(page, { status: statusFilter, sortBy, asc });
+  }, [load, page, statusFilter, sortBy, asc]);
+
+  const handleSort = (col) => {
+    setPage(1);
+    if (sortBy === col) {
+      setAsc((a) => !a);
+    } else {
+      setSortBy(col);
+      setAsc(false);
+    }
+  };
+
+  const handleStatusFilter = (e) => {
+    setPage(1);
+    setStatusFilter(e.target.value);
+  };
+
+  const currentOpts = { status: statusFilter, sortBy, asc };
 
   const handleStatusChange = async (id, status) => {
     setUpdating(id);
@@ -139,10 +170,20 @@ export default function AdminBookingsPage() {
           variant="ghost"
           size="sm"
           icon={<RefreshCw className="h-4 w-4" />}
-          onClick={() => load(page)}
+          onClick={() => load(page, currentOpts)}
         >
           Refresh
         </Button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-3">
+        <Select
+          value={statusFilter}
+          onChange={handleStatusFilter}
+          options={STATUS_FILTER_OPTIONS}
+          wrapperClassName="w-44"
+        />
       </div>
 
       {/* Bulk action bar */}
@@ -208,9 +249,9 @@ export default function AdminBookingsPage() {
                   </th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Student</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Experience</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Amount</th>
+                  <SortHeader label="Amount" col="total_price" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
+                  <SortHeader label="Date" col="booking_date" sortBy={sortBy} asc={asc} onSort={handleSort} />
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Change</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Actions</th>
                 </tr>

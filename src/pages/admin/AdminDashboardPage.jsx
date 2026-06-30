@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Users,
-  BookOpen,
-  CalendarCheck,
-  DollarSign,
-  RefreshCw,
-  Trash2,
-  RefreshCcw,
-  ShieldCheck,
-  ShieldOff,
-} from 'lucide-react';
+import { Users, BookOpen, CalendarCheck, DollarSign, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   getAdminStats,
@@ -19,6 +9,7 @@ import {
   getRevenueOverTime,
   getAdminEvents,
 } from '../../lib/admin';
+import { actionMeta } from '../../lib/auditMeta';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
@@ -38,15 +29,6 @@ const BOOKING_STATUS_VARIANT = {
   pending: 'warning',
   cancelled: 'danger',
   completed: 'secondary',
-};
-
-const ACTION_META = {
-  delete:              { icon: Trash2,      color: 'text-red-500',   label: 'Deleted' },
-  bulk_delete:         { icon: Trash2,      color: 'text-red-500',   label: 'Bulk deleted' },
-  update_status:       { icon: RefreshCcw,  color: 'text-blue-500',  label: 'Updated status' },
-  bulk_update_status:  { icon: RefreshCcw,  color: 'text-blue-500',  label: 'Bulk updated status' },
-  verify:              { icon: ShieldCheck, color: 'text-green-500', label: 'Verified teacher' },
-  unverify:            { icon: ShieldOff,   color: 'text-yellow-500',label: 'Unverified teacher' },
 };
 
 function StatCard({ icon: Icon, label, value, color }) {
@@ -229,13 +211,16 @@ export default function AdminDashboardPage() {
             <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Audit Log
             </h2>
+            <Link to="/admin/audit" className="text-sm text-primary-500 hover:underline">
+              View all
+            </Link>
           </div>
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
             <div className="divide-y divide-gray-100 dark:divide-gray-700/50 max-h-72 overflow-y-auto">
               {auditEvents.length === 0 ? (
                 <p className="px-4 py-8 text-center text-sm text-gray-400">No admin activity yet</p>
               ) : auditEvents.map((ev) => {
-                const meta = ACTION_META[ev.action] ?? { icon: RefreshCcw, color: 'text-gray-400', label: ev.action };
+                const meta = actionMeta(ev.action);
                 const Icon = meta.icon;
                 return (
                   <div key={ev.id} className="flex items-start gap-3 px-4 py-3">

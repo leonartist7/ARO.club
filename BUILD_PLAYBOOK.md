@@ -344,3 +344,67 @@ errors for JSX-only lowercase identifiers (`motion`) and destructured component 
 **Model guidance:** D1–D4 and D7 are straightforward pattern extensions — Sonnet is
 fine. D5 (settings schema design) and D6 (Stripe refund + Edge Function, money-handling)
 warrant Opus for the design/security judgment.
+
+---
+
+## Phase D – Admin Depth (implemented)
+
+Chose the "Admin depth" theme: drill-down detail views, a dedicated audit log page, and
+table filtering/sorting. No new dependencies or SQL — all built on the existing data
+layer and RLS.
+
+### D1 – Drill-down detail views
+
+- **Pages:** `AdminUserDetailPage.jsx` (`/admin/users/:id`) and `AdminTeacherDetailPage.jsx`
+  (`/admin/teachers/:id`).
+- User detail: profile header (avatar, role badges, points/level/joined) + paginated
+  **bookings** and **reviews** sub-tables.
+- Teacher detail: profile header (languages, specialties, rating/sessions) + **verify/
+  unverify** toggle (logs an audit event) + paginated **experiences** sub-table.
+- Row names on the Users and Teachers list pages are now `<Link>`s to the detail routes.
+- **Lib:** `getUserById`, `getBookingsByStudent`, `getReviewsByStudent`, `getTeacherById`,
+  `getExperiencesByTeacher`.
+- **Shared infra:** `usePagedList(fetcher)` hook (`src/pages/admin/usePagedList.js`) drives
+  each paginated sub-list with a stable `useCallback` fetcher; `Pager`
+  (`src/components/admin/Pager.jsx`) is the extracted pagination footer.
+
+### D2 – Dedicated audit log page
+
+- **Page:** `AdminAuditPage.jsx` at `/admin/audit` — paginated table with **action** and
+  **table** filter dropdowns; added to the sidebar nav (`ScrollText` icon). Dashboard feed
+  now links here via "View all".
+- **Lib:** `getAdminEventsPaged(page, limit, { action, table })`.
+- **Shared infra:** action icon/label map extracted from the dashboard into
+  `src/lib/auditMeta.js` (`actionMeta()`), now used by both the dashboard feed and the page.
+
+### D3 – Table filtering & sorting
+
+- **Experiences:** title/city search (debounced, injection-safe) + status filter +
+  sortable Title/Price/Date columns.
+- **Bookings:** status filter + sortable Amount/Date columns (no free-text column to search).
+- **Reviews:** student/comment search + sortable Rating/Date columns.
+- **Lib:** `getAllExperiences`/`getAllBookings`/`getAllReviews` gained an optional `opts`
+  arg (`{ search, status, sortBy, asc }`) with a server-side sort-column whitelist; existing
+  callers (incl. dashboard) are unaffected by the backward-compatible signature.
+- **Shared infra:** `SortHeader` (`src/components/admin/SortHeader.jsx`) — clickable header
+  cell that toggles direction / switches column.
+
+### Phase D – Completion Status
+
+| Task | Status |
+|------|--------|
+| D1 – Drill-down detail views (user + teacher) | ✅ |
+| D2 – Dedicated audit log page | ✅ |
+| D3 – Table filtering & sorting | ✅ |
+
+**Deferred to a future phase:** D4 (dashboard date-range control), D5 (platform settings),
+D6 (Stripe refund workflow), D7 (lint cleanup — add `eslint-plugin-react`). `npm run build`
+is clean; `npm run lint` still reports the pre-existing JSX-only-identifier noise documented
+in the Phase C hardening note.
+
+**Codebase state after Phase D:**
+- Admin panel: 7 nav pages (Dashboard, Users, Teachers, Experiences, Bookings, Reviews,
+  Audit Log) + 2 detail routes (`/admin/users/:id`, `/admin/teachers/:id`).
+- New shared admin building blocks: `usePagedList` hook, `Pager`, `SortHeader`,
+  `auditMeta`. Reuse these for future detail/list pages instead of re-inlining.
+- No schema change in Phase D — Phase C migration remains the latest SQL to apply.

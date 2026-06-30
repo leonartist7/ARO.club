@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ShieldCheck, ShieldOff, RefreshCw, Search } from 'lucide-react';
 import { getAllUsers, updateUserAdminFlag, ADMIN_PAGE_SIZE } from '../../lib/admin';
@@ -129,9 +130,12 @@ export default function AdminUsersPage() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <Avatar src={u.photo} name={u.name} size="sm" />
-                        <span className="font-medium text-gray-900 dark:text-gray-100">
+                        <Link
+                          to={`/admin/users/${u.id}`}
+                          className="font-medium text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400 hover:underline"
+                        >
                           {u.name}
-                        </span>
+                        </Link>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{u.email}</td>
