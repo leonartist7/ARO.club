@@ -117,10 +117,12 @@ export default function AdminBookingsPage() {
       setBulkError('No bookings were deleted (RLS may have blocked the action).');
     } else {
       const deleted = new Set(data.map((r) => r.id));
-      setBookings((prev) => prev.filter((b) => !deleted.has(b.id)));
+      const nextRows = bookings.filter((b) => !deleted.has(b.id));
+      setBookings(nextRows);
       setTotal((n) => Math.max(0, n - deleted.size));
       logAdminEvent('bulk_delete', 'bookings', null, { ids, count: deleted.size });
       setSelected(new Set());
+      if (nextRows.length === 0 && page > 1) setPage((p) => p - 1);
     }
     setBulkWorking(false);
   };

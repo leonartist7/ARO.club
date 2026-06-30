@@ -69,7 +69,6 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [badges, setBadges] = useState({ bookings: 0, reviews: 0 });
   const location = useLocation();
-  const channelRef = useRef(null);
 
   useEffect(() => {
     getPendingBookingsCount().then(({ count }) => {
@@ -96,8 +95,7 @@ export default function AdminLayout() {
       )
       .subscribe();
 
-    channelRef.current = ch;
-    return () => { ch.unsubscribe(); };
+    return () => { supabase.removeChannel(ch); };
   }, []);
 
   // Clear badge when admin navigates to the relevant section

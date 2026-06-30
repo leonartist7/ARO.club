@@ -106,10 +106,12 @@ export default function AdminReviewsPage() {
       setBulkError('No reviews were deleted (RLS may have blocked the action).');
     } else {
       const deleted = new Set(data.map((r) => r.id));
-      setReviews((prev) => prev.filter((r) => !deleted.has(r.id)));
+      const nextRows = reviews.filter((r) => !deleted.has(r.id));
+      setReviews(nextRows);
       setTotal((n) => Math.max(0, n - deleted.size));
       logAdminEvent('bulk_delete', 'reviews', null, { ids, count: deleted.size });
       setSelected(new Set());
+      if (nextRows.length === 0 && page > 1) setPage((p) => p - 1);
     }
     setBulkWorking(false);
   };

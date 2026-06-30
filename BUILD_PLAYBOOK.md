@@ -278,3 +278,69 @@ All five tasks implemented and shipped on `claude/phase-a-tasks-tzg5ub`.
 | C3 – Revenue chart (SVG, no extra dep) | ✅ |
 | C4 – Admin audit log | ✅ |
 | C5 – Real-time sidebar badge counts | ✅ |
+
+---
+
+## Phase C – Validation & Hardening (post-implementation review)
+
+A second review pass caught and fixed the following before sign-off:
+
+1. **Real-time would never fire (C5 blocker).** Supabase `postgres_changes` only
+   delivers events for tables in the `supabase_realtime` publication, which is empty
+   by default. Added idempotent `ALTER PUBLICATION supabase_realtime ADD TABLE
+   bookings / reviews` to `20260630_admin_phase_c.sql`. **The badges do nothing until
+   this migration is applied.**
+2. **`SECURITY DEFINER` RPC privilege leak.** `get_revenue_over_time` and
+   `log_admin_event` were granted to all `authenticated` users with no guard — any
+   logged-in user could read platform revenue or forge audit-log rows. Both now
+   `RAISE insufficient_privilege` unless `is_admin()`. The pre-existing
+   `get_admin_stats` had the same hole and was hardened the same way.
+3. **`useRef` runtime crash in `AdminLayout`.** A leftover `channelRef` used `useRef`
+   after its import was removed. `esbuild`/`vite build` does not flag undefined
+   identifiers, so the build passed but the component would throw at render. Removed
+   the unused ref; channel cleanup now uses `supabase.removeChannel(ch)`.
+4. **Bulk-delete empty-page edge case.** Deleting every row on the last page (Bookings
+   / Reviews) left the admin stranded on an empty page. Now mirrors the single-delete
+   path: pages back when the page empties and `page > 1`.
+
+**Known pre-existing (not Phase C):** `npm run lint` reports ~9 `no-unused-vars`
+errors for JSX-only lowercase identifiers (`motion`) and destructured component props
+(`Icon`). Root cause: `eslint.config.js` omits `eslint-plugin-react`, so
+`react/jsx-uses-vars` is inactive. The same errors exist on untouched files
+(`HomePage.jsx`). `npm run build` is clean — lint has never gated this repo. Fixing it
+(add `eslint-plugin-react`) is a repo-wide cleanup, deferred to Phase D.
+
+---
+
+## Phase D – Handoff Notes (for next agent)
+
+**Codebase state after Phase C:**
+- Admin panel has 6 pages: Dashboard, Users, Teachers, Experiences, Bookings, Reviews
+- `src/lib/admin.js` exports ~18 functions, all `{ data, error }` shape
+- SQL: `20260629_admin.sql` (A) → `20260630_admin_phase_b.sql` (B) →
+  `20260630_admin_phase_c.sql` (C). Run in that order. Phase C also hardens
+  `get_admin_stats` and wires Realtime.
+- Audit log writes go through `logAdminEvent(action, table, id, details)` after every
+  mutation; the dashboard reads the last 15 via `getAdminEvents`.
+- Real-time badges live in `AdminLayout` via one `supabase.channel('admin-live')`.
+
+**Candidate Phase D tasks (pick a coherent theme):**
+1. **Drill-down detail views** – click a user → their bookings/reviews; click a teacher
+   → their experiences + verification history. New routes `/admin/users/:id`,
+   `/admin/teachers/:id`.
+2. **Dedicated audit log page** – `/admin/audit` with pagination + filter by action/
+   table/admin (dashboard only shows 15). `getAdminEvents` already paginates trivially.
+3. **Table filtering & sorting** – extend Phase B user search to Experiences/Bookings/
+   Reviews; add status filter + date range; clickable column sort.
+4. **Dashboard date-range control** – the `get_revenue_over_time(weeks)` RPC already
+   takes a param; expose 4/8/12/26-week toggle on the chart.
+5. **Platform settings table** – `app_settings` (commission %, feature flags) with an
+   `/admin/settings` editor; admin-only RLS.
+6. **Refund workflow** – `bookings.payment_status` exists; add refund action that calls
+   a Stripe Edge Function and logs an audit event.
+7. **Lint cleanup** – add `eslint-plugin-react` + `react/jsx-uses-vars` so
+   `npm run lint` passes (see hardening note above).
+
+**Model guidance:** D1–D4 and D7 are straightforward pattern extensions — Sonnet is
+fine. D5 (settings schema design) and D6 (Stripe refund + Edge Function, money-handling)
+warrant Opus for the design/security judgment.

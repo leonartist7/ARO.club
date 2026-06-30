@@ -118,7 +118,7 @@ export default function AdminTeachersPage() {
                     <td className="px-4 py-3 text-gray-600 dark:text-gray-300">{t.email}</td>
                     <td className="px-4 py-3 text-gray-600 dark:text-gray-300">
                       {Array.isArray(t.languages) && t.languages.length > 0
-                        ? t.languages.map((l) => l.code ?? l).join(', ')
+                        ? t.languages.map((l) => l.name ?? l.code ?? l).join(', ')
                         : '—'}
                     </td>
                     <td className="px-4 py-3">
