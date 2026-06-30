@@ -1,7 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw, Star, Trash2 } from 'lucide-react';
-import { getAllReviews, deleteReview, ADMIN_PAGE_SIZE } from '../../lib/admin';
+import {
+  getAllReviews,
+  deleteReview,
+  bulkDeleteReviews,
+  logAdminEvent,
+  ADMIN_PAGE_SIZE,
+} from '../../lib/admin';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import { formatDate } from '../../utils/date';
@@ -31,10 +37,14 @@ export default function AdminReviewsPage() {
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState(null);
   const [deleteError, setDeleteError] = useState(null);
+  const [selected, setSelected] = useState(new Set());
+  const [bulkWorking, setBulkWorking] = useState(false);
+  const [bulkError, setBulkError] = useState(null);
 
   const load = useCallback(async (p) => {
     setLoading(true);
     setError(null);
+    setSelected(new Set());
     const { data, count, error: err } = await getAllReviews(p, ADMIN_PAGE_SIZE);
     if (err) {
       setError('Failed to load reviews.');
@@ -61,8 +71,47 @@ export default function AdminReviewsPage() {
       setReviews((prev) => prev.filter((r) => r.id !== id));
       setTotal((n) => n - 1);
       if (isLastOnPage && page > 1) setPage((p) => p - 1);
+      logAdminEvent('delete', 'reviews', id);
     }
     setDeleting(null);
+  };
+
+  const allSelected = reviews.length > 0 && reviews.every((r) => selected.has(r.id));
+
+  const toggleAll = () => {
+    if (allSelected) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(reviews.map((r) => r.id)));
+    }
+  };
+
+  const toggleOne = (id) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const handleBulkDelete = async () => {
+    const ids = [...selected];
+    setBulkError(null);
+    if (!window.confirm(`Delete ${ids.length} review(s)? This cannot be undone.`)) return;
+    setBulkWorking(true);
+    const { data, error: err } = await bulkDeleteReviews(ids);
+    if (err) {
+      setBulkError(`Bulk delete failed: ${err.message}`);
+    } else if (!data?.length) {
+      setBulkError('No reviews were deleted (RLS may have blocked the action).');
+    } else {
+      const deleted = new Set(data.map((r) => r.id));
+      setReviews((prev) => prev.filter((r) => !deleted.has(r.id)));
+      setTotal((n) => Math.max(0, n - deleted.size));
+      logAdminEvent('bulk_delete', 'reviews', null, { ids, count: deleted.size });
+      setSelected(new Set());
+    }
+    setBulkWorking(false);
   };
 
   const totalPages = Math.ceil(total / ADMIN_PAGE_SIZE);
@@ -83,9 +132,35 @@ export default function AdminReviewsPage() {
         </Button>
       </div>
 
+      {/* Bulk action bar */}
+      {selected.size > 0 && (
+        <div className="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-2">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {selected.size} selected
+          </span>
+          <Button
+            size="sm"
+            variant="danger"
+            loading={bulkWorking}
+            icon={<Trash2 className="h-3.5 w-3.5" />}
+            onClick={handleBulkDelete}
+          >
+            Delete all
+          </Button>
+          <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
+            Clear
+          </Button>
+        </div>
+      )}
+
       {deleteError && (
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
           {deleteError}
+        </p>
+      )}
+      {bulkError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {bulkError}
         </p>
       )}
 
@@ -105,6 +180,14 @@ export default function AdminReviewsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
+                  <th className="px-4 py-3">
+                    <input
+                      type="checkbox"
+                      checked={allSelected}
+                      onChange={toggleAll}
+                      className="rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+                    />
+                  </th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Student</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Experience</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Rating</th>
@@ -116,45 +199,53 @@ export default function AdminReviewsPage() {
               <tbody>
                 {reviews.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-4 py-8 text-center text-gray-400">
+                    <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
                       No reviews yet
                     </td>
                   </tr>
-                ) : (
-                  reviews.map((r) => (
-                    <tr
-                      key={r.id}
-                      className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
-                    >
-                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">
-                        {r.student_name ?? '—'}
-                      </td>
-                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
-                        {r.experience?.title ?? '—'}
-                      </td>
-                      <td className="px-4 py-3">
-                        <RatingStars rating={r.rating} />
-                      </td>
-                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
-                        {r.comment}
-                      </td>
-                      <td className="px-4 py-3 text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                        {r.created_at ? formatDate(r.created_at) : '—'}
-                      </td>
-                      <td className="px-4 py-3">
-                        <Button
-                          size="sm"
-                          variant="danger"
-                          loading={deleting === r.id}
-                          icon={<Trash2 className="h-3.5 w-3.5" />}
-                          onClick={() => handleDelete(r.id)}
-                        >
-                          Delete
-                        </Button>
-                      </td>
-                    </tr>
-                  ))
-                )}
+                ) : reviews.map((r) => (
+                  <tr
+                    key={r.id}
+                    className={`border-b border-gray-100 dark:border-gray-700/50 last:border-0 ${
+                      selected.has(r.id) ? 'bg-red-50/30 dark:bg-red-900/10' : ''
+                    }`}
+                  >
+                    <td className="px-4 py-3">
+                      <input
+                        type="checkbox"
+                        checked={selected.has(r.id)}
+                        onChange={() => toggleOne(r.id)}
+                        className="rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+                      />
+                    </td>
+                    <td className="px-4 py-3 text-gray-900 dark:text-gray-100">
+                      {r.student_name ?? '—'}
+                    </td>
+                    <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+                      {r.experience?.title ?? '—'}
+                    </td>
+                    <td className="px-4 py-3">
+                      <RatingStars rating={r.rating} />
+                    </td>
+                    <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+                      {r.comment}
+                    </td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                      {r.created_at ? formatDate(r.created_at) : '—'}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Button
+                        size="sm"
+                        variant="danger"
+                        loading={deleting === r.id}
+                        icon={<Trash2 className="h-3.5 w-3.5" />}
+                        onClick={() => handleDelete(r.id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

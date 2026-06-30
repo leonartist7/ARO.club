@@ -98,3 +98,81 @@ export async function getAllReviews(page = 1, limit = ADMIN_PAGE_SIZE) {
 export async function deleteReview(id) {
   return supabase.from('reviews').delete().eq('id', id).select('id');
 }
+
+export async function bulkDeleteReviews(ids) {
+  return supabase.from('reviews').delete().in('id', ids).select('id');
+}
+
+// ── Experiences bulk (C2) ─────────────────────────────────────────────────────
+
+export async function bulkUpdateExperienceStatus(ids, status) {
+  return supabase.from('experiences').update({ status }).in('id', ids).select('id');
+}
+
+// ── Bookings bulk (C2) ────────────────────────────────────────────────────────
+
+export async function bulkDeleteBookings(ids) {
+  return supabase.from('bookings').delete().in('id', ids).select('id');
+}
+
+// ── Pending count for real-time badge (C5) ────────────────────────────────────
+
+export async function getPendingBookingsCount() {
+  const { count, error } = await supabase
+    .from('bookings')
+    .select('id', { count: 'exact', head: true })
+    .eq('status', 'pending');
+  return { count: count ?? 0, error };
+}
+
+// ── Teachers (C1) ─────────────────────────────────────────────────────────────
+
+export async function getAllTeachers(page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('teachers')
+    .select('id, name, email, verified, bio, languages, specialties, created_at', {
+      count: 'exact',
+    })
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function updateTeacherVerified(id, verified) {
+  return supabase
+    .from('teachers')
+    .update({ verified })
+    .eq('id', id)
+    .select('id, verified')
+    .single();
+}
+
+// ── Revenue chart (C3) ────────────────────────────────────────────────────────
+
+export async function getRevenueOverTime(weeks = 8) {
+  const { data, error } = await supabase.rpc('get_revenue_over_time', { weeks });
+  if (error) return { data: null, error };
+  return { data, error: null };
+}
+
+// ── Audit log (C4) ────────────────────────────────────────────────────────────
+
+export async function getAdminEvents(limit = 20) {
+  return supabase
+    .from('admin_events')
+    .select(
+      `id, action, table_name, record_id, details, created_at,
+       admin:profiles!admin_id(name, email)`
+    )
+    .order('created_at', { ascending: false })
+    .limit(limit);
+}
+
+export async function logAdminEvent(action, tableName, recordId = null, details = null) {
+  return supabase.rpc('log_admin_event', {
+    p_action: action,
+    p_table_name: tableName,
+    p_record_id: recordId || undefined,
+    p_details: details || undefined,
+  });
+}

@@ -193,23 +193,88 @@ All five tasks implemented and shipped on `claude/phase-a-tasks-tzg5ub`.
 
 ---
 
-## Phase C – Handoff Notes (for next agent)
+## Phase C – Admin Enhancements
 
-**Codebase state after Phase B:**
-- Admin panel has 5 pages: Dashboard, Users, Experiences, Bookings, Reviews
-- Every admin mutation now has a corresponding RLS policy
-- `src/lib/admin.js` exports 10 functions; all follow `{ data, error }` return shape
-- Sidebar nav lives in `src/components/admin/AdminLayout.jsx` → `navItems` array
+Builds on Phase B. Adds teacher verification, bulk actions, revenue chart, audit log, and real-time badges.
 
-**Recommended Phase C tasks:**
-1. **Teacher verification workflow** – `teachers.verified` column exists but no UI. Admin should be
-   able to open a teacher detail modal/page and toggle `verified`. Requires joining
-   `profiles → teachers` on `user_id` (teachers table has `user_id` FK).
-2. **Bulk actions** – checkbox column on Users/Experiences/Bookings tables; bulk delete or bulk
-   status change with a single RPC call.
-3. **Revenue chart** – replace the static stat card with a time-series chart (e.g. Recharts)
-   grouped by week. Needs a new `get_revenue_over_time()` RPC or a Supabase view.
-4. **Admin audit log** – append-only `admin_events` table recording which admin did what and when;
-   display on Dashboard as a scrollable feed.
-5. **Real-time subscription** – `supabase.channel()` on `bookings` and `reviews` to push badge
-   counts to the sidebar nav items without a manual Refresh click.
+---
+
+### C1 – Teacher verification workflow
+
+**File:** `src/pages/admin/AdminTeachersPage.jsx` (new)  
+**Lib:** `getAllTeachers`, `updateTeacherVerified` added to `src/lib/admin.js`
+
+Paginated table of all teachers with `verified` badge (Verified / Pending) and a toggle button per row.
+Toggle calls `updateTeacherVerified(id, !verified)` then fires `logAdminEvent('verify'/'unverify', 'teachers', id)`.
+Route: `/admin/teachers` — wired in `src/lib/routes.jsx`.
+
+---
+
+### C2 – Bulk actions
+
+**Files:** `AdminExperiencesPage.jsx`, `AdminBookingsPage.jsx`, `AdminReviewsPage.jsx` (extended)  
+**Lib:** `bulkUpdateExperienceStatus`, `bulkDeleteBookings`, `bulkDeleteReviews` added to `src/lib/admin.js`
+
+Checkbox column (col 0) with header "select all" toggle. When any row is selected a bulk action bar
+appears:
+- **Experiences** – inline status `<Select>` + "Apply to all" → `bulkUpdateExperienceStatus(ids, status)`
+- **Bookings** – "Delete all" → `bulkDeleteBookings(ids)`
+- **Reviews** – "Delete all" → `bulkDeleteReviews(ids)`
+
+All three use `.in('id', ids)` PostgREST filter (no extra RPC needed). Check `!data?.length` for silent RLS failures.
+Selection is cleared on page load and after each successful bulk operation.
+
+---
+
+### C3 – Revenue chart
+
+**Files:** `src/components/admin/RevenueChart.jsx` (new), `AdminDashboardPage.jsx` (extended)  
+**SQL:** `get_revenue_over_time(weeks int DEFAULT 8)` RPC in `20260630_admin_phase_c.sql`
+
+Pure SVG bar chart (no third-party lib). Each bar represents one ISO week; height is proportional to
+`SUM(total_price)` for that week from the `bookings` table. Revenue value shown above each bar; week
+label (`Mon DD`) shown below. Empty bars rendered in gray for weeks with zero revenue.
+
+---
+
+### C4 – Admin audit log
+
+**SQL:** `admin_events` table + `log_admin_event(action, table_name, record_id, details)` SECURITY DEFINER
+function in `20260630_admin_phase_c.sql`.
+
+Application-level logging: after each successful mutation (delete/update_status/verify/unverify/bulk_*)
+the page calls `logAdminEvent(action, tableName, recordId, details)` which fires `supabase.rpc('log_admin_event', ...)`.
+The SECURITY DEFINER function bypasses RLS so inserts always succeed even without an INSERT policy on the table.
+
+`AdminDashboardPage` fetches the last 15 events via `getAdminEvents(15)` and displays them as a scrollable
+feed with icons keyed to action type.
+
+---
+
+### C5 – Real-time sidebar badges
+
+**File:** `src/components/admin/AdminLayout.jsx` (extended)  
+**Lib:** `getPendingBookingsCount` added to `src/lib/admin.js`
+
+On mount, `AdminLayout` fetches the initial pending-booking count and subscribes to a Supabase Realtime
+channel (`admin-live`) that listens for `INSERT` on `bookings` and `reviews`:
+- New `pending` booking → increments the Bookings badge
+- New review → increments the Reviews badge
+
+Navigating to `/admin/bookings` or `/admin/reviews` clears the respective badge. Channel is cleaned up
+on unmount. `SidebarNav` is defined outside `AdminLayout` and receives `items` as a prop to avoid
+unnecessary remounts when badge state updates.
+
+---
+
+## Phase C – Completion Status
+
+All five tasks implemented and shipped on `claude/phase-a-tasks-tzg5ub`.
+
+| Task | Status |
+|------|--------|
+| C1 – Teacher verification page | ✅ |
+| C2 – Bulk actions (Experiences/Bookings/Reviews) | ✅ |
+| C3 – Revenue chart (SVG, no extra dep) | ✅ |
+| C4 – Admin audit log | ✅ |
+| C5 – Real-time sidebar badge counts | ✅ |

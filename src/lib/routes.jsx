@@ -49,6 +49,7 @@ const ChatPage = lazy(() => import('../pages/ChatPage'));
 // Admin pages
 const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminTeachersPage = lazy(() => import('../pages/admin/AdminTeachersPage'));
 const AdminExperiencesPage = lazy(() => import('../pages/admin/AdminExperiencesPage'));
 const AdminBookingsPage = lazy(() => import('../pages/admin/AdminBookingsPage'));
 const AdminReviewsPage = lazy(() => import('../pages/admin/AdminReviewsPage'));
@@ -240,6 +241,10 @@ export const router = createBrowserRouter([
       {
         path: 'users',
         element: <AdminUsersPage />,
+      },
+      {
+        path: 'teachers',
+        element: <AdminTeachersPage />,
       },
       {
         path: 'experiences',

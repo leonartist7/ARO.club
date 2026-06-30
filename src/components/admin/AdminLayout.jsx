@@ -1,27 +1,22 @@
-import { useState } from 'react';
-import { Outlet, NavLink, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Outlet, NavLink, Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
   Users,
   BookOpen,
   CalendarCheck,
   Star,
+  GraduationCap,
   Menu,
   X,
   ExternalLink,
   ShieldCheck,
 } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { supabase } from '../../lib/supabase';
+import { getPendingBookingsCount } from '../../lib/admin';
 
-const navItems = [
-  { to: '/admin',             label: 'Dashboard',   icon: LayoutDashboard, end: true },
-  { to: '/admin/users',       label: 'Users',        icon: Users },
-  { to: '/admin/experiences', label: 'Experiences',  icon: BookOpen },
-  { to: '/admin/bookings',    label: 'Bookings',     icon: CalendarCheck },
-  { to: '/admin/reviews',     label: 'Reviews',      icon: Star },
-];
-
-function SidebarNav({ onClose }) {
+function SidebarNav({ items, onClose }) {
   return (
     <nav className="flex flex-col gap-1 p-4">
       <div className="flex items-center gap-2 px-3 py-4 mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -31,7 +26,7 @@ function SidebarNav({ onClose }) {
         </span>
       </div>
 
-      {navItems.map(({ to, label, icon: Icon, end }) => (
+      {items.map(({ to, label, icon: Icon, end, badge }) => (
         <NavLink
           key={to}
           to={to}
@@ -47,7 +42,12 @@ function SidebarNav({ onClose }) {
           }
         >
           <Icon className="h-4 w-4 flex-shrink-0" />
-          {label}
+          <span className="flex-1">{label}</span>
+          {badge > 0 && (
+            <span className="ml-auto min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[10px] font-bold">
+              {badge > 99 ? '99+' : badge}
+            </span>
+          )}
         </NavLink>
       ))}
 
@@ -67,12 +67,62 @@ function SidebarNav({ onClose }) {
 
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [badges, setBadges] = useState({ bookings: 0, reviews: 0 });
+  const location = useLocation();
+  const channelRef = useRef(null);
+
+  useEffect(() => {
+    getPendingBookingsCount().then(({ count }) => {
+      setBadges((prev) => ({ ...prev, bookings: count }));
+    });
+
+    const ch = supabase
+      .channel('admin-live')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'bookings' },
+        (payload) => {
+          if (payload.new?.status === 'pending') {
+            setBadges((prev) => ({ ...prev, bookings: prev.bookings + 1 }));
+          }
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'reviews' },
+        () => {
+          setBadges((prev) => ({ ...prev, reviews: prev.reviews + 1 }));
+        }
+      )
+      .subscribe();
+
+    channelRef.current = ch;
+    return () => { ch.unsubscribe(); };
+  }, []);
+
+  // Clear badge when admin navigates to the relevant section
+  useEffect(() => {
+    if (location.pathname === '/admin/bookings') {
+      setBadges((prev) => ({ ...prev, bookings: 0 }));
+    } else if (location.pathname === '/admin/reviews') {
+      setBadges((prev) => ({ ...prev, reviews: 0 }));
+    }
+  }, [location.pathname]);
+
+  const navItems = [
+    { to: '/admin',             label: 'Dashboard',   icon: LayoutDashboard, end: true },
+    { to: '/admin/users',       label: 'Users',        icon: Users },
+    { to: '/admin/teachers',    label: 'Teachers',     icon: GraduationCap },
+    { to: '/admin/experiences', label: 'Experiences',  icon: BookOpen },
+    { to: '/admin/bookings',    label: 'Bookings',     icon: CalendarCheck, badge: badges.bookings },
+    { to: '/admin/reviews',     label: 'Reviews',      icon: Star, badge: badges.reviews },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-56 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 fixed inset-y-0 left-0">
-        <SidebarNav />
+        <SidebarNav items={navItems} />
       </aside>
 
       {/* Mobile sidebar overlay */}
@@ -96,7 +146,7 @@ export default function AdminLayout() {
         >
           <X className="h-5 w-5" />
         </button>
-        <SidebarNav onClose={() => setSidebarOpen(false)} />
+        <SidebarNav items={navItems} onClose={() => setSidebarOpen(false)} />
       </aside>
 
       {/* Main content */}

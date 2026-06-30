@@ -1,15 +1,28 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Users, BookOpen, CalendarCheck, DollarSign, RefreshCw } from 'lucide-react';
+import {
+  Users,
+  BookOpen,
+  CalendarCheck,
+  DollarSign,
+  RefreshCw,
+  Trash2,
+  RefreshCcw,
+  ShieldCheck,
+  ShieldOff,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   getAdminStats,
   getAllExperiences,
   getAllBookings,
+  getRevenueOverTime,
+  getAdminEvents,
 } from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import RevenueChart from '../../components/admin/RevenueChart';
 import { formatPrice } from '../../utils/helpers';
 import { formatDate } from '../../utils/date';
 
@@ -25,6 +38,15 @@ const BOOKING_STATUS_VARIANT = {
   pending: 'warning',
   cancelled: 'danger',
   completed: 'secondary',
+};
+
+const ACTION_META = {
+  delete:              { icon: Trash2,      color: 'text-red-500',   label: 'Deleted' },
+  bulk_delete:         { icon: Trash2,      color: 'text-red-500',   label: 'Bulk deleted' },
+  update_status:       { icon: RefreshCcw,  color: 'text-blue-500',  label: 'Updated status' },
+  bulk_update_status:  { icon: RefreshCcw,  color: 'text-blue-500',  label: 'Bulk updated status' },
+  verify:              { icon: ShieldCheck, color: 'text-green-500', label: 'Verified teacher' },
+  unverify:            { icon: ShieldOff,   color: 'text-yellow-500',label: 'Unverified teacher' },
 };
 
 function StatCard({ icon: Icon, label, value, color }) {
@@ -49,16 +71,20 @@ export default function AdminDashboardPage() {
   const [stats, setStats] = useState(null);
   const [experiences, setExperiences] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [revenueData, setRevenueData] = useState([]);
+  const [auditEvents, setAuditEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const load = async () => {
     setLoading(true);
     setError(null);
-    const [statsRes, expRes, bookRes] = await Promise.all([
+    const [statsRes, expRes, bookRes, revenueRes, eventsRes] = await Promise.all([
       getAdminStats(),
       getAllExperiences(1, 5),
       getAllBookings(1, 5),
+      getRevenueOverTime(8),
+      getAdminEvents(15),
     ]);
 
     if (statsRes.error || expRes.error || bookRes.error) {
@@ -67,6 +93,8 @@ export default function AdminDashboardPage() {
       setStats(statsRes.data);
       setExperiences(expRes.data ?? []);
       setBookings(bookRes.data ?? []);
+      setRevenueData(revenueRes.data ?? []);
+      setAuditEvents(eventsRes.data ?? []);
     }
     setLoading(false);
   };
@@ -126,44 +154,54 @@ export default function AdminDashboardPage() {
         />
       </div>
 
-      {/* Recent experiences */}
+      {/* Revenue chart */}
       <section>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Recent Experiences
+            Revenue — last 8 weeks
           </h2>
-          <Link
-            to="/admin/experiences"
-            className="text-sm text-primary-500 hover:underline"
-          >
-            View all
-          </Link>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Title</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Teacher</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
-                  <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {experiences.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="px-4 py-8 text-center text-gray-400">
-                      No experiences yet
-                    </td>
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+          <RevenueChart data={revenueData} />
+        </div>
+      </section>
+
+      {/* Recent experiences + audit log side by side on wide screens */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        {/* Recent experiences */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              Recent Experiences
+            </h2>
+            <Link to="/admin/experiences" className="text-sm text-primary-500 hover:underline">
+              View all
+            </Link>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
+                    <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Title</th>
+                    <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Teacher</th>
+                    <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
+                    <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
                   </tr>
-                ) : (
-                  experiences.map((exp) => (
+                </thead>
+                <tbody>
+                  {experiences.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="px-4 py-8 text-center text-gray-400">
+                        No experiences yet
+                      </td>
+                    </tr>
+                  ) : experiences.map((exp) => (
                     <tr
                       key={exp.id}
                       className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
                     >
-                      <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100 max-w-xs truncate">
+                      <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100 max-w-[10rem] truncate">
                         {exp.title}
                       </td>
                       <td className="px-4 py-3 text-gray-600 dark:text-gray-300">
@@ -178,13 +216,47 @@ export default function AdminDashboardPage() {
                         {exp.date ? formatDate(exp.date) : '—'}
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Audit log feed */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              Audit Log
+            </h2>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="divide-y divide-gray-100 dark:divide-gray-700/50 max-h-72 overflow-y-auto">
+              {auditEvents.length === 0 ? (
+                <p className="px-4 py-8 text-center text-sm text-gray-400">No admin activity yet</p>
+              ) : auditEvents.map((ev) => {
+                const meta = ACTION_META[ev.action] ?? { icon: RefreshCcw, color: 'text-gray-400', label: ev.action };
+                const Icon = meta.icon;
+                return (
+                  <div key={ev.id} className="flex items-start gap-3 px-4 py-3">
+                    <Icon className={`h-4 w-4 mt-0.5 flex-shrink-0 ${meta.color}`} />
+                    <div className="min-w-0">
+                      <p className="text-sm text-gray-800 dark:text-gray-200">
+                        <span className="font-medium">{meta.label}</span>
+                        {' on '}
+                        <span className="font-medium">{ev.table_name}</span>
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {ev.admin?.name ?? ev.admin?.email ?? 'Unknown admin'} · {ev.created_at ? formatDate(ev.created_at) : '—'}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
 
       {/* Recent bookings */}
       <section>
@@ -192,10 +264,7 @@ export default function AdminDashboardPage() {
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             Recent Bookings
           </h2>
-          <Link
-            to="/admin/bookings"
-            className="text-sm text-primary-500 hover:underline"
-          >
+          <Link to="/admin/bookings" className="text-sm text-primary-500 hover:underline">
             View all
           </Link>
         </div>
@@ -217,29 +286,27 @@ export default function AdminDashboardPage() {
                       No bookings yet
                     </td>
                   </tr>
-                ) : (
-                  bookings.map((b) => (
-                    <tr
-                      key={b.id}
-                      className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
-                    >
-                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">
-                        {b.student?.name ?? b.student?.email ?? '—'}
-                      </td>
-                      <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
-                        {b.experience?.title ?? '—'}
-                      </td>
-                      <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
-                        {formatPrice(b.total_price ?? 0)}
-                      </td>
-                      <td className="px-4 py-3">
-                        <Badge variant={BOOKING_STATUS_VARIANT[b.status] ?? 'default'} size="sm">
-                          {b.status}
-                        </Badge>
-                      </td>
-                    </tr>
-                  ))
-                )}
+                ) : bookings.map((b) => (
+                  <tr
+                    key={b.id}
+                    className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
+                  >
+                    <td className="px-4 py-3 text-gray-900 dark:text-gray-100">
+                      {b.student?.name ?? b.student?.email ?? '—'}
+                    </td>
+                    <td className="px-4 py-3 text-gray-600 dark:text-gray-300 max-w-xs truncate">
+                      {b.experience?.title ?? '—'}
+                    </td>
+                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                      {formatPrice(b.total_price ?? 0)}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge variant={BOOKING_STATUS_VARIANT[b.status] ?? 'default'} size="sm">
+                        {b.status}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

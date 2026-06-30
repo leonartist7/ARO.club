@@ -1,7 +1,14 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, RefreshCw, Trash2 } from 'lucide-react';
-import { getAllBookings, deleteBooking, updateBookingStatus, ADMIN_PAGE_SIZE } from '../../lib/admin';
+import {
+  getAllBookings,
+  deleteBooking,
+  bulkDeleteBookings,
+  updateBookingStatus,
+  logAdminEvent,
+  ADMIN_PAGE_SIZE,
+} from '../../lib/admin';
 import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import Select from '../../components/ui/Select';
@@ -26,10 +33,14 @@ export default function AdminBookingsPage() {
   const [deleteError, setDeleteError] = useState(null);
   const [updating, setUpdating] = useState(null);
   const [updateError, setUpdateError] = useState(null);
+  const [selected, setSelected] = useState(new Set());
+  const [bulkWorking, setBulkWorking] = useState(false);
+  const [bulkError, setBulkError] = useState(null);
 
   const load = useCallback(async (p) => {
     setLoading(true);
     setError(null);
+    setSelected(new Set());
     const { data, count, error: err } = await getAllBookings(p, ADMIN_PAGE_SIZE);
     if (err) {
       setError('Failed to load bookings.');
@@ -52,6 +63,7 @@ export default function AdminBookingsPage() {
       setBookings((prev) =>
         prev.map((b) => b.id === id ? { ...b, status } : b)
       );
+      logAdminEvent('update_status', 'bookings', id, { status });
     }
     setUpdating(null);
   };
@@ -70,8 +82,47 @@ export default function AdminBookingsPage() {
       setBookings((prev) => prev.filter((b) => b.id !== id));
       setTotal((n) => n - 1);
       if (isLastOnPage && page > 1) setPage((p) => p - 1);
+      logAdminEvent('delete', 'bookings', id);
     }
     setDeleting(null);
+  };
+
+  const allSelected = bookings.length > 0 && bookings.every((b) => selected.has(b.id));
+
+  const toggleAll = () => {
+    if (allSelected) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(bookings.map((b) => b.id)));
+    }
+  };
+
+  const toggleOne = (id) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const handleBulkDelete = async () => {
+    const ids = [...selected];
+    setBulkError(null);
+    if (!window.confirm(`Delete ${ids.length} booking(s)? This cannot be undone.`)) return;
+    setBulkWorking(true);
+    const { data, error: err } = await bulkDeleteBookings(ids);
+    if (err) {
+      setBulkError(`Bulk delete failed: ${err.message}`);
+    } else if (!data?.length) {
+      setBulkError('No bookings were deleted (RLS may have blocked the action).');
+    } else {
+      const deleted = new Set(data.map((r) => r.id));
+      setBookings((prev) => prev.filter((b) => !deleted.has(b.id)));
+      setTotal((n) => Math.max(0, n - deleted.size));
+      logAdminEvent('bulk_delete', 'bookings', null, { ids, count: deleted.size });
+      setSelected(new Set());
+    }
+    setBulkWorking(false);
   };
 
   const totalPages = Math.ceil(total / ADMIN_PAGE_SIZE);
@@ -92,15 +143,40 @@ export default function AdminBookingsPage() {
         </Button>
       </div>
 
+      {/* Bulk action bar */}
+      {selected.size > 0 && (
+        <div className="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-2">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {selected.size} selected
+          </span>
+          <Button
+            size="sm"
+            variant="danger"
+            loading={bulkWorking}
+            icon={<Trash2 className="h-3.5 w-3.5" />}
+            onClick={handleBulkDelete}
+          >
+            Delete all
+          </Button>
+          <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
+            Clear
+          </Button>
+        </div>
+      )}
+
       {updateError && (
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
           {updateError}
         </p>
       )}
-
       {deleteError && (
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
           {deleteError}
+        </p>
+      )}
+      {bulkError && (
+        <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-4 py-2">
+          {bulkError}
         </p>
       )}
 
@@ -120,6 +196,14 @@ export default function AdminBookingsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
+                  <th className="px-4 py-3">
+                    <input
+                      type="checkbox"
+                      checked={allSelected}
+                      onChange={toggleAll}
+                      className="rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+                    />
+                  </th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Student</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Experience</th>
                   <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Amount</th>
@@ -132,15 +216,25 @@ export default function AdminBookingsPage() {
               <tbody>
                 {bookings.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-4 py-8 text-center text-gray-400">
+                    <td colSpan={8} className="px-4 py-8 text-center text-gray-400">
                       No bookings yet
                     </td>
                   </tr>
                 ) : bookings.map((b) => (
                   <tr
                     key={b.id}
-                    className="border-b border-gray-100 dark:border-gray-700/50 last:border-0"
+                    className={`border-b border-gray-100 dark:border-gray-700/50 last:border-0 ${
+                      selected.has(b.id) ? 'bg-red-50/30 dark:bg-red-900/10' : ''
+                    }`}
                   >
+                    <td className="px-4 py-3">
+                      <input
+                        type="checkbox"
+                        checked={selected.has(b.id)}
+                        onChange={() => toggleOne(b.id)}
+                        className="rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+                      />
+                    </td>
                     <td className="px-4 py-3 text-gray-900 dark:text-gray-100">
                       {b.student?.name ?? b.student?.email ?? '—'}
                     </td>
@@ -165,7 +259,7 @@ export default function AdminBookingsPage() {
                         onChange={(e) => handleStatusChange(b.id, e.target.value)}
                         className="text-xs py-1"
                         options={[
-                          { value: 'pending', label: 'Pending' },
+                          { value: 'pending',   label: 'Pending' },
                           { value: 'confirmed', label: 'Confirmed' },
                           { value: 'cancelled', label: 'Cancelled' },
                           { value: 'completed', label: 'Completed' },
