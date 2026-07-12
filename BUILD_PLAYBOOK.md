@@ -61,10 +61,11 @@ Trust & Quality Engine foundation: `supabase/trust-engine.sql` (admin role, `tea
 ### Phase B — Brand identity + master UX  *(Opus designs → Sonnet builds)*
 **Goal:** production-grade, cohesive core funnel. **DoD:** Home, Explore, Experience Detail, Teacher Profile rebuilt to the Opus spec; design tokens applied; WCAG AA; light+dark.
 
-- **B0 — DESIGN (🟪 O·hi, do first):** Opus produces `DESIGN_SYSTEM.md` = color/spacing/type tokens (light+dark), component states, Coco usage, and a **layout spec per hero page** (hierarchy, sections, responsive, empty/loading states). No code — just the spec.
+- **B0 — DESIGN (🟪 O·hi, ✅ done):** `DESIGN_SYSTEM.md` (tokens, a11y, components, hero-page specs) + `DESIGN_EXECUTION_PLAN.md` (creative concept, component library, gamification language, page-by-page specs for **every** remaining screen, batched DP1–DP10).
 - **B1 (🟦 S·hi):** apply tokens to `tailwind.config.js`; align `src/components/ui/*` to spec.
 - **B2 (🟦 S·hi):** rebuild `HomePage`, `ExplorePage`, `ExperienceDetailPage`, `TeacherProfilePage` to the B0 layout specs.
 - **B3 (🟦 S·lo):** accessibility pass (focus states, ARIA, keyboard) — `SkipToContent` already exists.
+- **B4+ (🟦):** execute `DESIGN_EXECUTION_PLAN.md` batches **DP1–DP10** in order (global shell → component library → gamification → learner → teacher → admin → marketing → auth → delight moments → QA sweep). One DP = one PR; kickoff prompt in that doc §10.
 
 **Kickoff (Sonnet, after B0 spec exists):** "Read `DESIGN_SYSTEM.md` + Phase B. Implement B1–B3 to match the spec pixel-intent; reuse components; build + `/code-review`."
 
