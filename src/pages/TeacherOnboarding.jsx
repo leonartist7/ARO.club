@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
+import { getOrCreateDraft, updateApplication, submitApplication } from '../lib/teacherApplications';
 import { Check, X } from 'lucide-react';
 import Button from '../components/ui/Button';
 
@@ -127,7 +128,9 @@ export default function TeacherOnboarding() {
   const handleComplete = async () => {
     setLoading(true);
     try {
-      // Update profile with onboarding data
+      // Save profile onboarding data. NOTE: we do NOT create a live `teachers`
+      // row or set verified — the teacher only goes live after an admin
+      // approves their application (see the Trust & Quality Engine).
       const { error: profileError } = await supabase
         .from('profiles')
         .update({
@@ -136,7 +139,6 @@ export default function TeacherOnboarding() {
           avatar,
           bio,
           experience_types: selectedExperiences,
-          is_teacher: true,
           onboarding_completed: true,
           points: 100, // Welcome bonus
         })
@@ -144,35 +146,24 @@ export default function TeacherOnboarding() {
 
       if (profileError) throw profileError;
 
-      // Create teacher profile
-      const { error: teacherError } = await supabase
-        .from('teachers')
-        .insert({
-          user_id: user.id,
-          name,
-          email: user.email,
-          languages: selectedLanguages.map(code => ({
-            code,
-            name: LANGUAGES.find(l => l.code === code)?.name,
-            proficiency: 'native'
-          })),
-          specialties: selectedExperiences,
-          bio,
-          verified: false,
-        });
+      // Create + submit a teacher application for human review.
+      const draft = await getOrCreateDraft(user.id, { display_name: name });
+      await updateApplication(draft.id, {
+        display_name: name,
+        bio,
+        languages: selectedLanguages.map((code) => ({
+          code,
+          name: LANGUAGES.find((l) => l.code === code)?.name,
+          proficiency: 'native',
+        })),
+        experience_types: selectedExperiences,
+        teaches_in_person: true,
+        agreed_to_standards: true,
+      });
+      await submitApplication(draft.id);
 
-      if (teacherError) throw teacherError;
-
-      // Award welcome achievement
-      await supabase
-        .from('user_achievements')
-        .insert({
-          user_id: user.id,
-          achievement_id: 'welcome_bonus',
-        });
-
-      // Navigate to teacher dashboard
-      navigate('/teacher/dashboard');
+      // Go to the application status page to add portfolio + track review.
+      navigate('/teacher/application');
     } catch (error) {
       console.error('Error completing onboarding:', error);
       alert('Error saving your profile. Please try again.');
@@ -496,8 +487,12 @@ export default function TeacherOnboarding() {
                 >
                   🎉
                 </motion.div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-4">You're Ready to Teach!</h2>
-                <p className="text-xl text-gray-600 mb-8">Welcome bonus: +100 points 🌟</p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">Ready to Submit!</h2>
+                <p className="text-xl text-gray-600 mb-2">Welcome bonus: +100 points 🌟</p>
+                <p className="text-base text-gray-500 mb-8">
+                  Next: add your portfolio (intro video + ID) and our team will personally verify you
+                  before you go live.
+                </p>
 
                 <div className="bg-white rounded-2xl p-6 mb-8 text-left">
                   <h3 className="font-bold text-lg mb-4">Your Profile</h3>
@@ -514,7 +509,7 @@ export default function TeacherOnboarding() {
                   disabled={loading}
                   className="w-full py-4 text-xl"
                 >
-                  {loading ? 'Saving...' : 'Start Teaching!'}
+                  {loading ? 'Submitting...' : 'Submit for Verification'}
                 </Button>
               </motion.div>
             )}

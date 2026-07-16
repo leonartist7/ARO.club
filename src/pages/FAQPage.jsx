@@ -22,12 +22,12 @@ export default function FAQPage() {
   const faqs = [
     {
       category: 'general',
-      question: 'What is Conversa?',
-      answer: 'Conversa is a platform that connects language learners with native speakers for immersive, real-world language learning experiences. Instead of traditional classes, you learn through activities like cooking classes, walking tours, coffee chats, and more—all led by local teachers in cities worldwide.',
+      question: 'What is Tonguee?',
+      answer: 'Tonguee is a platform that connects language learners with native speakers for immersive, real-world language learning experiences. Instead of traditional classes, you learn through activities like cooking classes, walking tours, coffee chats, and more—all led by local teachers in cities worldwide.',
     },
     {
       category: 'general',
-      question: 'How is Conversa different from language apps or traditional classes?',
+      question: 'How is Tonguee different from language apps or traditional classes?',
       answer: 'We focus on real-world immersion and cultural experiences. You\'re not just memorizing vocabulary—you\'re using the language in authentic situations with native speakers. Plus, our small group sizes (max 8 people) ensure personalized attention.',
     },
     {
@@ -62,7 +62,7 @@ export default function FAQPage() {
     },
     {
       category: 'teachers',
-      question: 'How do I become a teacher on Conversa?',
+      question: 'How do I become a teacher on Tonguee?',
       answer: 'Visit our "For Teachers" page and click "Apply to Teach." You\'ll need to be a native or fluent speaker, pass our verification process, and create your first experience. Most applications are reviewed within 48 hours.',
     },
     {
@@ -131,7 +131,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Got questions? We've got answers. Find everything you need to know about Conversa.
+              Got questions? We've got answers. Find everything you need to know about Tonguee.
             </p>
           </motion.div>
         </div>

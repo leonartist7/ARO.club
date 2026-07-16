@@ -60,14 +60,14 @@ export const getEmailShareUrl = (subject, body) => {
  * Generate share text for an experience
  */
 export const getExperienceShareText = (experience, city, language) => {
-  return `Check out this ${language?.name} experience in ${city?.name} on Conversa! "${experience.title}"`;
+  return `Check out this ${language?.name} experience in ${city?.name} on Tonguee! "${experience.title}"`;
 };
 
 /**
  * Generate share text for a teacher profile
  */
 export const getTeacherShareText = (teacher, language) => {
-  return `Meet ${teacher.name}, a ${language?.name} teacher on Conversa!`;
+  return `Meet ${teacher.name}, a ${language?.name} teacher on Tonguee!`;
 };
 
 /**

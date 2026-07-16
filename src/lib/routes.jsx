@@ -37,6 +37,11 @@ const GamesPage = lazy(() => import('../pages/GamesPage'));
 const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ChatPage = lazy(() => import('../pages/ChatPage'));
 
+// Teacher application + Admin (Trust & Quality Engine)
+const TeacherApplicationStatus = lazy(() => import('../pages/teacher/TeacherApplicationStatus'));
+const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
+const ApplicationReview = lazy(() => import('../pages/admin/ApplicationReview'));
+
 /**
  * App routes configuration
  */
@@ -198,6 +203,30 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <TeacherOnboarding />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'teacher/application',
+        element: (
+          <ProtectedRoute>
+            <TeacherApplicationStatus />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'admin',
+        element: (
+          <ProtectedRoute requireRole="admin">
+            <AdminDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'admin/applications/:id',
+        element: (
+          <ProtectedRoute requireRole="admin">
+            <ApplicationReview />
           </ProtectedRoute>
         ),
       },

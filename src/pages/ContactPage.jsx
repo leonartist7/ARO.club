@@ -255,7 +255,7 @@ export default function ContactPage() {
                     to="/how-it-works"
                     className="block text-primary-600 hover:text-primary-700 hover:underline"
                   >
-                    Learn how Conversa works
+                    Learn how Tonguee works
                   </Link>
                   <Link
                     to="/for-teachers"
