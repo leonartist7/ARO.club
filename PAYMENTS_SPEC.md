@@ -1,6 +1,6 @@
 # 💳 TONGUEE — PAYMENTS & PAYOUTS SPEC (C0, Opus-authored)
 
-> **For the Sonnet 4.6 implementer (Phase C).** This is the money architecture: Stripe Checkout + Connect Express, escrow-style hold, payout release, refunds, and the data model. Implement C1–C4 against it **in Stripe test mode**. Follow the data model exactly; if anything is ambiguous, stop and ask rather than guess. **Opus spot-reviews the final PR before merge.**
+> **For the implementing agent (Phase C).** This is the money architecture: Stripe Checkout + Connect Express, escrow-style hold, payout release, refunds, and the data model. **Read `AGENTS.md` first — it is the operating contract.** Implement C1–C4 against it **in Stripe test mode**. Follow the data model exactly; if anything is ambiguous, stop and ask rather than guess. **The director reviews the final PR before merge — mandatory; do not merge without it.**
 >
 > Builds on the schema already in `supabase/schema.sql` (`bookings`, `experiences`, `teachers`) and the Trust Engine in `supabase/trust-engine.sql`.
 
@@ -144,7 +144,7 @@ Computed against time-to-start `Δ = experience_start - now`:
 
 ---
 
-## 7. Security checklist (Opus will verify these in review)
+## 7. Security checklist (the director verifies every box in review)
 - [ ] Webhook signature verified; events deduped via `stripe_events`.
 - [ ] All amounts computed server-side from DB; client sends only ids/quantities.
 - [ ] Idempotency keys on session creation, transfers, refunds.
@@ -167,11 +167,11 @@ Experience $20.00, couple (×2, 15% existing discount): `original = 4000¢`, `di
 
 ---
 
-## 10. C-phase implementation checklist (for the Sonnet chat)
-- **C0 (this doc):** done — Opus.
+## 10. C-phase implementation checklist (for the implementing agent)
+- **C0 (this doc):** done — director-authored.
 - **C1 🟦 S·hi:** add `@tanstack/react-query` + provider in `src/main.jsx`; replace mock-JSON reads (`src/data/experiences.json`, `teachers.json`) with Supabase queries via hooks (`useExperiences`, `useExperience`, `useTeacher`). Keep verified-only (RLS already enforces). Apply `supabase/payments.sql`.
 - **C2 🟦 S·hi:** `create-checkout-session` + `stripe-webhook` functions; wire **"Book now"** on `ExperienceDetailPage` (per DESIGN_SYSTEM §8.3) → session → redirect; `BookingConfirmation` + `MyBookings` pages; reuse booking fields.
 - **C3 🟦 S·hi:** Connect onboarding (`connect-create-account`/`connect-onboarding-link`) surfaced in Teacher Dashboard; `release-due-payouts` cron; payout status UI.
 - **C4 🟦 S·lo:** QR ticket (`qrcode`) + teacher check-in; cancellation-policy selector on Create Experience + refund preview on cancel.
 - **Verify (test mode):** `stripe listen` → webhook; pay with `4242 4242 4242 4242`; confirm booking flips to paid+held and spots increment; simulate completion + run cron → Transfer appears in Stripe test dashboard; test each refund tier; reversal after transfer.
-- Finish: `npm run build` + `/code-review`; **request Opus review before merge** (money + security).
+- Finish: `npm run build` + `npm run lint` + the `AGENTS.md §6` Self-Review Protocol; **request director review before merge** (money + security).

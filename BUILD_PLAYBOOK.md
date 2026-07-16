@@ -1,28 +1,28 @@
-# 🛠️ TONGUEE — BUILD PLAYBOOK (model-routed, for a fresh Sonnet 4.6 chat)
+# 🛠️ TONGUEE — BUILD PLAYBOOK (work-routed, for any implementing agent)
 
-> **Purpose:** an execution guide a brand-new chat can open and run with **Sonnet 4.6**, escalating to **Opus 4.8** only where design/architecture/taste lives. Optimized for tokens: default to Sonnet, pay for Opus only where it changes the outcome.
+> **Purpose:** the execution guide a brand-new agent session can open and run. Work is routed by *kind*: mechanical implementation (🟦) is executed by the implementing agent against written specs; taste/architecture/money decisions (🟪) are already authored by the director as spec docs and are never re-decided by the implementer. **Read `AGENTS.md` first — it is the operating contract (rules, self-review, delivery).**
 >
-> **The full "why" lives in `VISION.md`** (same repo). This doc is the "how + who builds what."
+> **The full "why" lives in `VISION.md`** (same repo). This doc is the "how + what builds in what order."
 
 ---
 
-## 0. The one rule that saves the most tokens
+## 0. The one rule that protects quality
 
-> **Opus designs the spec → Sonnet builds to the spec.**
-> When a task needs taste or an irreversible decision (visual system, page layout, data model, payments/escrow, security), use **Opus 4.8** to produce a short written **spec artifact** (a `.md`). Then a fresh **Sonnet 4.6** chat implements that spec mechanically. Never make Opus hand-write boilerplate; never make Sonnet invent architecture or visual identity.
+> **The director designs the spec → the agent builds to the spec.**
+> When a task needs taste or an irreversible decision (visual system, page layout, data model, payments/escrow, security), a written **spec artifact** (a `.md`) is authored first at director tier. The implementing agent then builds that spec mechanically and faithfully. The specs in this repo: `DESIGN_SYSTEM.md`, `DESIGN_EXECUTION_PLAN.md`, `PAYMENTS_SPEC.md`. Never invent architecture or visual identity inside an implementation session — if a needed decision has no spec, stop and ask (`AGENTS.md §5`).
 
-## 1. Model routing rubric (Balanced)
+## 1. Work-routing rubric
 
-| Tag | Model · thinking | Use for |
-|-----|------------------|---------|
-| 🟦 **S·lo** | Sonnet 4.6, normal | Mechanical, single-file, fully specified: CRUD pages, forms, list/detail, copy, static/legal/marketing pages, lint/test fixes, renames, wiring a documented lib. |
-| 🟦 **S·hi** | Sonnet 4.6, extended thinking | Multi-file features & integrations where the design is settled but correctness matters: Supabase migrations from a spec, Stripe wiring, mock-JSON→Supabase migration, notifications, e2e tests. |
-| 🟪 **O·hi** | Opus 4.8, high/max | Produces a spec, doesn't implement: visual design system & page layouts, data-model/architecture for a new domain, payments/escrow/refund modeling, security/RLS design & audits, pricing/subscription strategy, any ambiguous tradeoff. |
-| 🟪 **O-review** | Opus 4.8, high | Spot-review ONLY of money + security PRs before merge (Balanced setting). Everything else Sonnet self-reviews via `/code-review`. |
+| Tag | Meaning | Covers |
+|-----|---------|--------|
+| 🟦 **S·lo** | Mechanical implementation, small blast radius | Single-file, fully specified work: CRUD pages, forms, list/detail, copy, static/legal/marketing pages, lint/test fixes, renames, wiring a documented lib. |
+| 🟦 **S·hi** | Mechanical implementation, multi-file / correctness-critical — slow down, verify twice | Supabase migrations from a spec, Stripe wiring, mock-JSON→Supabase migration, notifications, e2e tests. |
+| 🟪 **O·hi** | Judgment/spec tier — already authored as a `.md`; the implementer never re-decides these | Visual design system & page layouts, data-model/architecture for a new domain, payments/escrow/refund modeling, security/RLS design & audits, pricing strategy. |
+| 🟪 **O-review** | Director review gate — mandatory review before merge | Money + security PRs (Phase C, any RLS change). Everything else: the agent self-reviews via `AGENTS.md §6`. |
 
-**Escalation test (when unsure):** *Does this need taste, novel architecture, or an irreversible/security/money decision?* If no → Sonnet. If yes → Opus writes the spec first.
+**Escalation test (when unsure):** *Does this need taste, novel architecture, or an irreversible/security/money decision?* If no → implement. If yes → it must already be in a spec; if it isn't, stop and ask the director.
 
-## 2. Token-efficiency operating rules (for the implementing chat)
+## 2. Token-efficiency operating rules (for the implementing agent)
 
 - Read `BUILD_PLAYBOOK.md` + `VISION.md` + only the **files named in the task**. Do **not** re-explore the whole repo.
 - **Reuse, don't reinvent.** Components: `src/components/ui/*` (Button, Card, Badge, Input, Select, Avatar, Toast, Skeleton…). Utils: `src/utils/cn.js`, `date.js`, `helpers.js`. Data libs already built: `src/lib/admin.js`, `src/lib/teacherApplications.js`. Auth: `src/contexts/AuthContext.jsx` (`useAuth`). DB client: `src/lib/supabase.js`.
@@ -42,7 +42,7 @@ Trust & Quality Engine foundation: `supabase/trust-engine.sql` (admin role, `tea
 
 ## 5. THE BUILD — phased, model-tagged
 
-> Near-term phases (A–C) are written as ready-to-execute task lists. Later phases (D–G) are outlines to expand when reached. Each phase = one PR; finish with `/code-review` (Sonnet) and, for 🟪 money/security items, an Opus spot-review.
+> Near-term phases (A–C) are written as ready-to-execute task lists. Later phases (D–G) are outlines to expand when reached. Each phase = one PR; finish with the Self-Review Protocol (`AGENTS.md §6`) and, for 🟪 money/security items, a mandatory director review before merge.
 
 ### Phase A — Finish the Trust Engine  *(mostly Sonnet)*
 **Goal:** the verification loop is complete and teachers/learners feel it. **DoD:** applicants get emailed on every status change; admin can suspend/feature teachers and read the audit log; verified-tier badges show on teacher surfaces.
@@ -55,8 +55,8 @@ Trust & Quality Engine foundation: `supabase/trust-engine.sql` (admin role, `tea
 | A4 | Verified-tier **badges** on `TeacherCard` + `TeacherProfilePage` (🟢 Verified / 🔵 Pro / 🟣 Elite) | 🟦 S·lo | `src/components/features/TeacherCard.jsx`, `src/pages/TeacherProfilePage.jsx` |
 | A5 | Add the new admin routes | 🟦 S·lo | `src/lib/routes.jsx` (`requireRole="admin"`) |
 
-**Kickoff prompt (paste into a new Sonnet 4.6 chat):**
-> "Read `BUILD_PLAYBOOK.md` Phase A and `src/lib/admin.js`. Implement tasks A1–A5 exactly as specified, reusing existing UI components and the `is_admin()` RLS. One PR. Run `npm run build` + `/code-review` before finishing. Don't touch the already-shipped files except as listed."
+**Kickoff prompt (paste into a fresh agent session):**
+> "You are the implementation engineer for Tonguee. Read `AGENTS.md` fully and follow it as a contract. Then read `BUILD_PLAYBOOK.md` Phase A and `src/lib/admin.js`. Implement tasks A1–A5 exactly as specified, reusing existing UI components and the `is_admin()` RLS. One PR. Pass the `AGENTS.md §6` Self-Review Protocol before delivering. Don't touch the already-shipped files except as listed."
 
 ### Phase B — Brand identity + master UX  *(Opus designs → Sonnet builds)*
 **Goal:** production-grade, cohesive core funnel. **DoD:** Home, Explore, Experience Detail, Teacher Profile rebuilt to the Opus spec; design tokens applied; WCAG AA; light+dark.
@@ -67,18 +67,18 @@ Trust & Quality Engine foundation: `supabase/trust-engine.sql` (admin role, `tea
 - **B3 (🟦 S·lo):** accessibility pass (focus states, ARIA, keyboard) — `SkipToContent` already exists.
 - **B4+ (🟦):** execute `DESIGN_EXECUTION_PLAN.md` batches **DP1–DP10** in order (global shell → component library → gamification → learner → teacher → admin → marketing → auth → delight moments → QA sweep). One DP = one PR; kickoff prompt in that doc §10.
 
-**Kickoff (Sonnet, after B0 spec exists):** "Read `DESIGN_SYSTEM.md` + Phase B. Implement B1–B3 to match the spec pixel-intent; reuse components; build + `/code-review`."
+**Kickoff (after B0 spec exists):** "You are the implementation engineer for Tonguee. Read `AGENTS.md`, then `DESIGN_SYSTEM.md` + Phase B. Implement B1–B3 to match the spec pixel-intent; reuse components; pass the `AGENTS.md §6` Self-Review Protocol."
 
 ### Phase C — Booking + payments + payouts  *(Opus architects money → Sonnet wires)*
 **Goal:** end-to-end paid booking and teacher payout. **DoD:** test-mode Stripe booking → attended → payout; cancellation tiers; QR ticket.
 
-- **C0 — ARCHITECTURE (🟪 O·hi, do first):** Opus writes `PAYMENTS_SPEC.md` = Stripe Checkout + Connect Express flow, escrow/payout-hold-until-completion, refund/cancellation tiers, the booking/payout data model, and edge-function endpoints. **(Opus spot-reviews the final PR.)**
+- **C0 — ARCHITECTURE (🟪 O·hi, ✅ done):** `PAYMENTS_SPEC.md` = Stripe Checkout + Connect Express flow, escrow/payout-hold-until-completion, refund/cancellation tiers, the booking/payout data model, and edge-function endpoints. **(The director spot-reviews the final PR — mandatory.)**
 - **C1 (🟦 S·hi):** migrate marketplace off mock JSON (`src/data/experiences.json`, `teachers.json`) to Supabase queries + **React Query** (add dep).
 - **C2 (🟦 S·hi):** Stripe Checkout booking flow (reuse schema's `stripe_payment_id`, `payment_status`, discount fields) — `ExperienceDetailPage` + new `BookingPage`/`MyBookings`.
 - **C3 (🟦 S·hi):** Stripe Connect Express payouts + completion hold (edge functions).
 - **C4 (🟦 S·lo):** QR ticket + check-in; cancellation-tier UI.
 
-**Kickoff (Sonnet, after C0):** "Read `PAYMENTS_SPEC.md` + Phase C. Implement C1–C4 in Stripe **test mode**; follow the spec's data model exactly; flag anything ambiguous instead of guessing. Build + `/code-review`; request Opus review before merge."
+**Kickoff (after C0):** "You are the implementation engineer for Tonguee. Read `AGENTS.md`, then `PAYMENTS_SPEC.md` + Phase C. Implement C1–C4 in Stripe **test mode**; follow the spec's data model exactly; flag anything ambiguous instead of guessing. Pass the `AGENTS.md §6` Self-Review Protocol; **director review required before merge**."
 
 ### Phase D — Engagement depth *(outline — expand when reached)*
 🟪 O·hi specs: warm-up/loop UX, **teacher gamification** model, Passport, Memory-Postcard generator, Buddy-matching UX. 🟦 S·hi/S·lo implement: game question bank wiring, points/streak ledger, teacher stats, Passport page, postcard generator, buddy matching. **DoD:** game→booking + post-experience loops live and measured.

@@ -1,8 +1,8 @@
 # 🎨 TONGUEE — DESIGN SYSTEM (B0 spec, Opus-authored)
 
-> **For the Sonnet 4.6 implementer (Phase B).** This is the source of truth for tokens, components, mascot, and hero-page layouts. Implement B1–B3 against it. It's a *spec*, not code to copy verbatim — but the token block in §2 is drop-in ready.
+> **For the implementing agent (Phase B).** This is the source of truth for tokens, components, mascot, and hero-page layouts. Implement B1–B3 against it. It's a *spec*, not code to copy verbatim — but the token block in §2 is drop-in ready.
 >
-> **Routing reminder:** B0 (this doc) = Opus. B1 (tokens), B2 (page rebuilds), B3 (a11y) = Sonnet.
+> **Routing reminder:** B0 (this doc) = director-authored spec. B1 (tokens), B2 (page rebuilds), B3 (a11y) = implementation. **Read `AGENTS.md` before starting — it is the operating contract.**
 
 ---
 
@@ -175,9 +175,9 @@ States: skeleton; `EmptyState` if no upcoming.
 
 ---
 
-## 9. B-phase implementation checklist (for the Sonnet chat)
+## 9. B-phase implementation checklist (for the implementing agent)
 - **B1:** paste §2 colors into `tailwind.config.js`; set Button `primary` to 600/700 (§5); recolor `index.css` if needed; sweep `src/components/ui/*` for hardcoded old colors → tokens; verify dark pairings (§2 table). `npm run build`.
 - **B2:** rebuild the 4 pages to §8; verified-tier badges (§6) on teacher surfaces; Coco poses (§7) in hero/empty states.
 - **B3:** a11y pass (§3) — focus rings, ARIA, reduced-motion guards, contrast check, 44px targets. `SkipToContent` already wired.
-- Finish: `npm run build` + `npm run lint` + `/code-review`. One PR.
+- Finish: `npm run build` + `npm run lint` + the `AGENTS.md §6` Self-Review Protocol. One PR.
 - **Out of scope for B:** real booking/payments (Phase C), data migration off mock JSON (C1).

@@ -1,10 +1,10 @@
 # 🎨 TONGUEE — DESIGN EXECUTION PLAN
 
-> **What this is:** the complete creative + execution plan to make the entire MVP look stunning and feel alive. It sits on top of `DESIGN_SYSTEM.md` (tokens, a11y rules, foundations, the 4 hero-page specs) and `BUILD_PLAYBOOK.md` (feature phases). This document covers **how every screen looks, moves, and delights** — batched into work packages (DP1–DP10) that separate model chats can execute independently.
+> **What this is:** the complete creative + execution plan to make the entire MVP look stunning and feel alive. It sits on top of `DESIGN_SYSTEM.md` (tokens, a11y rules, foundations, the 4 hero-page specs) and `BUILD_PLAYBOOK.md` (feature phases). This document covers **how every screen looks, moves, and delights** — batched into work packages (DP1–DP10) that separate agent sessions can execute independently.
 >
-> **Routing:** this doc is the design authority (authored at Opus tier). Every DP below is 🟦 **Sonnet-tier implementation** against these specs. **Prerequisite:** apply the `DESIGN_SYSTEM.md §2` token swap (playbook Phase B1) before any DP — all polish below assumes those tokens exist.
+> **Routing:** this doc is the design authority (director-authored). Every DP below is 🟦 **implementation-tier work** against these specs — execute, don't redesign. **Read `AGENTS.md` first — it is the operating contract.** **Prerequisite:** apply the `DESIGN_SYSTEM.md §2` token swap (playbook Phase B1) before any DP — all polish below assumes those tokens exist.
 >
-> **How to use:** open a fresh chat, paste the kickoff prompt from §10 with the DP number. One DP = one focused PR.
+> **How to use:** open a fresh agent session, paste the kickoff prompt from §10 with the DP number. One DP = one focused PR.
 
 ---
 
@@ -171,9 +171,9 @@ Every DP's acceptance includes: correct dark pairings for every surface (`DESIGN
 | **DP9** | Signature moments (§4): Confetti, QRTicket, Memory Postcard, celebrations wired into flows | new `ui/*` + flow hooks | DP2–DP4 |
 | **DP10** | Global sweep: every empty/loading/error state, dark-mode QA, a11y audit | app-wide | all |
 
-**Kickoff prompt (paste into a fresh implementation chat):**
+**Kickoff prompt (paste into a fresh agent session):**
 
-> Read `DESIGN_EXECUTION_PLAN.md` (section for DP‹N›), `DESIGN_SYSTEM.md`, and the files named in the DP row. Implement DP‹N› exactly to spec: reuse/extend `src/components/ui/*`, keep everything theme-aware, accessible, and reduced-motion safe. Don't redesign — execute the spec. Verify with `npm run build`, then run `/code-review`. Ship as one PR.
+> You are the implementation engineer for Tonguee. Read `AGENTS.md` fully and follow it as a contract. Then read `DESIGN_EXECUTION_PLAN.md` (section for DP‹N›), `DESIGN_SYSTEM.md`, and the files named in the DP row. Implement DP‹N› exactly to spec: reuse/extend `src/components/ui/*`, keep everything theme-aware, accessible, and reduced-motion safe. Don't redesign — execute the spec. Score every touched screen against §11, pass the `AGENTS.md §6` Self-Review Protocol, and ship as one PR.
 
 ---
 
