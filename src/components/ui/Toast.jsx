@@ -5,44 +5,36 @@ import { cn } from '../../utils/cn';
 const toastConfig = {
   success: {
     icon: CheckCircle,
-    bgColor: 'bg-green-50 dark:bg-green-900/20',
-    borderColor: 'border-green-200 dark:border-green-800',
-    iconColor: 'text-green-500 dark:text-green-400',
-    textColor: 'text-green-900 dark:text-green-100',
-    progressColor: 'bg-green-500 dark:bg-green-400',
+    surface: 'bg-white dark:bg-gray-900 border-success-500/30',
+    orb: 'bg-success-50 dark:bg-success-500/15 text-success-700 dark:text-success-500',
+    text: 'text-gray-900 dark:text-gray-50',
+    progress: 'bg-success-500',
   },
   error: {
     icon: XCircle,
-    bgColor: 'bg-red-50 dark:bg-red-900/20',
-    borderColor: 'border-red-200 dark:border-red-800',
-    iconColor: 'text-red-500 dark:text-red-400',
-    textColor: 'text-red-900 dark:text-red-100',
-    progressColor: 'bg-red-500 dark:bg-red-400',
+    surface: 'bg-white dark:bg-gray-900 border-danger-500/30',
+    orb: 'bg-danger-50 dark:bg-danger-500/15 text-danger-700 dark:text-danger-500',
+    text: 'text-gray-900 dark:text-gray-50',
+    progress: 'bg-danger-500',
   },
   warning: {
     icon: AlertTriangle,
-    bgColor: 'bg-yellow-50 dark:bg-yellow-900/20',
-    borderColor: 'border-yellow-200 dark:border-yellow-800',
-    iconColor: 'text-yellow-500 dark:text-yellow-400',
-    textColor: 'text-yellow-900 dark:text-yellow-100',
-    progressColor: 'bg-yellow-500 dark:bg-yellow-400',
+    surface: 'bg-white dark:bg-gray-900 border-accent-500/40',
+    orb: 'bg-accent-50 dark:bg-accent-500/15 text-accent-700 dark:text-accent-500',
+    text: 'text-gray-900 dark:text-gray-50',
+    progress: 'bg-accent-500',
   },
   info: {
     icon: Info,
-    bgColor: 'bg-blue-50 dark:bg-blue-900/20',
-    borderColor: 'border-blue-200 dark:border-blue-800',
-    iconColor: 'text-blue-500 dark:text-blue-400',
-    textColor: 'text-blue-900 dark:text-blue-100',
-    progressColor: 'bg-blue-500 dark:bg-blue-400',
+    surface: 'bg-white dark:bg-gray-900 border-secondary-500/30',
+    orb: 'bg-secondary-50 dark:bg-secondary-500/15 text-secondary-700 dark:text-secondary-300',
+    text: 'text-gray-900 dark:text-gray-50',
+    progress: 'bg-secondary-500',
   },
 };
 
 /**
- * Toast notification component
- * - Animated entry/exit (slide in from top-right)
- * - Colored by type (success, error, warning, info)
- * - Close button
- * - Progress bar showing auto-dismiss countdown
+ * Toast ? brand sticker look: rounded-2xl, icon orb, coral/teal/gold by type.
  */
 export default function Toast({ message, type = 'info', duration = 5000, onClose }) {
   const [isExiting, setIsExiting] = useState(false);
@@ -59,48 +51,46 @@ export default function Toast({ message, type = 'info', duration = 5000, onClose
       const elapsed = Date.now() - startTime;
       const remaining = Math.max(0, 100 - (elapsed / duration) * 100);
       setProgress(remaining);
-
-      if (remaining === 0) {
-        clearInterval(interval);
-      }
-    }, 16); // ~60fps
+      if (remaining === 0) clearInterval(interval);
+    }, 16);
 
     return () => clearInterval(interval);
   }, [duration]);
 
   const handleClose = () => {
     setIsExiting(true);
-    setTimeout(() => {
-      onClose();
-    }, 200); // Match animation duration
+    setTimeout(() => onClose(), 200);
   };
 
   return (
     <div
       className={cn(
-        'min-w-[320px] max-w-md rounded-lg border shadow-lg overflow-hidden',
-        config.bgColor,
-        config.borderColor,
-        isExiting ? 'animate-slide-out-right' : 'animate-slide-in-right'
+        'min-w-[320px] max-w-md rounded-2xl border shadow-xl overflow-hidden',
+        config.surface,
+        isExiting ? 'animate-slide-out-right' : 'animate-slide-in-right motion-reduce:animate-none'
       )}
       role="alert"
       aria-live="assertive"
     >
-      {/* Main Content */}
       <div className="p-4 flex items-start gap-3">
-        {/* Icon */}
-        <Icon className={cn('w-5 h-5 flex-shrink-0 mt-0.5', config.iconColor)} />
+        <span
+          className={cn(
+            'flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center',
+            config.orb
+          )}
+        >
+          <Icon className="w-5 h-5" aria-hidden="true" />
+        </span>
 
-        {/* Message */}
-        <p className={cn('flex-1 text-sm font-medium', config.textColor)}>{message}</p>
+        <p className={cn('flex-1 text-sm font-medium pt-2', config.text)}>{message}</p>
 
-        {/* Close Button */}
         <button
+          type="button"
           onClick={handleClose}
           className={cn(
-            'flex-shrink-0 p-1 rounded-md transition-colors',
-            'hover:bg-black/10 dark:hover:bg-white/10',
-            config.textColor
+            'flex-shrink-0 p-2 min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg transition-colors',
+            'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500'
           )}
           aria-label="Close notification"
         >
@@ -108,11 +98,10 @@ export default function Toast({ message, type = 'info', duration = 5000, onClose
         </button>
       </div>
 
-      {/* Progress Bar */}
       {duration > 0 && (
-        <div className="h-1 bg-black/10 dark:bg-white/10">
+        <div className="h-1 bg-gray-100 dark:bg-gray-800">
           <div
-            className={cn('h-full transition-all duration-75 ease-linear', config.progressColor)}
+            className={cn('h-full transition-all duration-75 ease-linear', config.progress)}
             style={{ width: `${progress}%` }}
           />
         </div>
