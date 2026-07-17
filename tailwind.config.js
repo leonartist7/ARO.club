@@ -7,43 +7,51 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
+            colors: {
+        // PRIMARY — Coral (CTAs, brand). Use 600/700 for fills w/ white text (AA).
         primary: {
-          50: '#FFFEF0',
-          100: '#FFF9C2',
-          200: '#FFF38A',
-          300: '#FFED52',
-          400: '#FFE71F',
-          500: '#FDD835', // Vibrant bright yellow (main brand)
-          600: '#FBC02D',
-          700: '#F9A825',
-          800: '#F57F17',
-          900: '#F57C00',
+          50: '#FFF3EE',
+          100: '#FFE2D6',
+          200: '#FFC4AD',
+          300: '#FF9E78',
+          400: '#FF8453',
+          500: '#FF6B35', // brand reference (logo, large surfaces >=24px)
+          600: '#F25A22', // interactive fill + white bold text (AA-large)
+          700: '#CC4517', // text-on-white safe / small buttons
+          800: '#A2360F',
+          900: '#7A2810',
         },
+        // SECONDARY — Teal (trust, links, secondary actions)
         secondary: {
-          50: '#FFF3E0',
-          100: '#FFE0B2',
-          200: '#FFCC80',
-          300: '#FFB74D',
-          400: '#FFA726',
-          500: '#FF9800', // Vibrant orange
-          600: '#FB8C00',
-          700: '#F57C00',
-          800: '#EF6C00',
-          900: '#E65100',
+          50: '#E9FBF9',
+          100: '#C7F4F0',
+          200: '#94E9E2',
+          300: '#5BD8CF',
+          400: '#2FC3B9',
+          500: '#20B2AA', // brand reference
+          600: '#199089', // interactive fill w/ white text
+          700: '#15726D', // text-on-white safe
+          800: '#115A56',
+          900: '#0D4744',
         },
+        // ACCENT — Sunny gold (GAMIFICATION ONLY)
         accent: {
-          50: '#E8F5E9',
-          100: '#C8E6C9',
-          200: '#A5D6A7',
-          300: '#81C784',
-          400: '#66BB6A',
-          500: '#4CAF50', // Vibrant green
-          600: '#43A047',
-          700: '#388E3C',
-          800: '#2E7D32',
-          900: '#1B5E20',
+          50: '#FFF8E6',
+          100: '#FFEDBF',
+          200: '#FFDD85',
+          300: '#FFCB47',
+          400: '#FFBC24',
+          500: '#FFB020', // gamification highlight
+          600: '#E0930C',
+          700: '#B87100', // text-on-white safe
+          800: '#8F5700',
+          900: '#6B4100',
         },
+        // SEMANTIC
+        success: { 50: '#ECFDF3', 500: '#16A34A', 700: '#15803D' },
+        warning: { 50: '#FFFBEB', 500: '#F59E0B', 700: '#B45309' },
+        danger: { 50: '#FEF2F2', 500: '#EF4444', 700: '#B91C1C' },
+        info: { 50: '#EFF6FF', 500: '#3B82F6', 700: '#1D4ED8' },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

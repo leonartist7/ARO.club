@@ -99,7 +99,7 @@ export default function LanguageToggle() {
 
               {/* Decorative border */}
               <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-primary-500 to-orange-500"
+                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary-500 via-primary-500 to-primary-600"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.3, delay: 0.2 }}

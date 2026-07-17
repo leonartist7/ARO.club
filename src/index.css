@@ -41,3 +41,15 @@
     text-wrap: balance;
   }
 }
+
+
+/* Reduced motion: stop looping brand animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-bounce-gentle,
+  .animate-wiggle,
+  .animate-pulse-soft,
+  .animate-pulse {
+    animation: none !important;
+  }
+}

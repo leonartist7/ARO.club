@@ -2,27 +2,23 @@ import { Eye, Zap, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
-/**
- * Social Proof Component
- * Shows viewing/booking indicators to build trust
- */
 export default function SocialProof({
   viewingCount,
   recentBookingCount,
   lastBookedHoursAgo,
-  variant = 'viewing', // 'viewing', 'booked', 'last-booked'
+  variant = 'viewing',
   className
 }) {
   const getIcon = () => {
     switch (variant) {
       case 'viewing':
-        return <Eye className="w-4 h-4 text-blue-500" />;
+        return <Eye className="w-4 h-4 text-info-500" aria-hidden="true" />;
       case 'booked':
-        return <Zap className="w-4 h-4 text-orange-500" />;
+        return <Zap className="w-4 h-4 text-primary-600" aria-hidden="true" />;
       case 'last-booked':
-        return <Clock className="w-4 h-4 text-green-500" />;
+        return <Clock className="w-4 h-4 text-success-500" aria-hidden="true" />;
       default:
-        return <Eye className="w-4 h-4 text-blue-500" />;
+        return <Eye className="w-4 h-4 text-info-500" aria-hidden="true" />;
     }
   };
 
@@ -42,11 +38,11 @@ export default function SocialProof({
   const getColor = () => {
     switch (variant) {
       case 'viewing':
-        return 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800';
+        return 'bg-info-50 dark:bg-info-500/10 text-info-700 dark:text-info-500 border-info-500/30';
       case 'booked':
-        return 'bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-800';
+        return 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 border-primary-200 dark:border-primary-800';
       case 'last-booked':
-        return 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800';
+        return 'bg-success-50 dark:bg-success-500/10 text-success-700 dark:text-success-500 border-success-500/30';
       default:
         return 'bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700';
     }
