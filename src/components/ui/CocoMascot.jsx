@@ -1,4 +1,4 @@
-﻿import { cn } from '../../utils/cn';
+import { cn } from '../../utils/cn';
 
 const sizeClasses = {
   sm: 'w-12 h-12 text-2xl',
@@ -7,19 +7,15 @@ const sizeClasses = {
   xl: 'w-32 h-32 text-6xl',
 };
 
+// idle/wave/think stay still — no looping float
 const poseAnim = {
-  idle: 'animate-float',
-  wave: 'animate-bounce-gentle',
-  cheer: 'animate-pop animate-bounce-gentle',
+  idle: '',
+  wave: '',
+  cheer: 'animate-pop',
   think: '',
-  point: 'animate-wiggle',
+  point: '',
 };
 
-/**
- * Coco the Chameleon — brand mascot (placeholder until custom art).
- * Poses: idle | wave | cheer | think | point
- * Never use on admin, checkout, legal, or safety screens.
- */
 export default function CocoMascot({
   pose = 'idle',
   size = 'md',
@@ -32,7 +28,7 @@ export default function CocoMascot({
       aria-label={label}
       className={cn(
         'inline-flex items-center justify-center rounded-full',
-        'bg-gradient-to-br from-primary-500 to-secondary-500',
+        'bg-primary-500 text-gray-900',
         'shadow-md select-none',
         sizeClasses[size] || sizeClasses.md,
         poseAnim[pose] || '',

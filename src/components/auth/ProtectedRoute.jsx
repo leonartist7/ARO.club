@@ -26,7 +26,7 @@ export default function ProtectedRoute({ children, requireRole }) {
   }
 
   if (!user) {
-    return <Navigate to="/choose-role" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (requireRole && profile?.role !== requireRole) {

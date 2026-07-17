@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import CocoMascot from '../ui/CocoMascot';
 
 const socialLinks = [
   { name: 'Facebook', icon: Facebook, href: '#' },
@@ -37,14 +36,14 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800">
       {/* Trust strip */}
-      <div className="bg-secondary-50 dark:bg-secondary-900/30 border-b border-secondary-100 dark:border-secondary-800/50">
+      <div className="bg-primary-50 dark:bg-primary-900/20 border-b border-primary-100 dark:border-primary-900/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium text-secondary-700 dark:text-secondary-300 text-center">
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium text-primary-800 dark:text-primary-200 text-center">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" aria-hidden="true" />
               {t('footer.trustVerified')}
             </span>
-            <span className="hidden sm:inline text-secondary-300 dark:text-secondary-700" aria-hidden="true">
+            <span className="hidden sm:inline text-primary-300 dark:text-primary-700" aria-hidden="true">
               ?
             </span>
             <span className="inline-flex items-center gap-1.5">
@@ -60,10 +59,10 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-2 text-2xl font-display font-bold mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              className="flex items-center gap-2 text-2xl font-display font-bold mb-4 text-primary-600 dark:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
-              <CocoMascot pose="idle" size="sm" className="!w-9 !h-9 !text-lg" />
-              <span className="gradient-text">Tonguee</span>
+              <span className="text-2xl" aria-hidden="true">🦎</span>
+              Tonguee
             </Link>
             <p className="text-sm mb-6 max-w-xs text-gray-500 dark:text-gray-400">
               {t('footer.description')}

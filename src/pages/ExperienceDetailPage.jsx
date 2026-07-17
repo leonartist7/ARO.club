@@ -1,6 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Users, Star, Calendar, Heart, ChevronLeft, MessageCircle } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
@@ -58,7 +57,6 @@ function getWarmupPhrases(experience) {
 export default function ExperienceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const reduceMotion = useReducedMotion();
   const { addToRecentlyViewed } = useRecentlyViewed();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewSortBy, setReviewSortBy] = useState('recent');
@@ -139,10 +137,6 @@ export default function ExperienceDetailPage() {
   const displayPrice = bookingForTwo ? couplePrice : experience.price;
   const shareText = getExperienceShareText(experience, city, language);
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-
-  const motionProps = reduceMotion
-    ? {}
-    : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.4 } };
 
   const BookingCard = ({ className }) => (
     <Card className={cn('shadow-xl', className)}>
@@ -260,7 +254,7 @@ export default function ExperienceDetailPage() {
   );
 
   return (
-    <motion.div {...motionProps} className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-28 lg:pb-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-28 lg:pb-12">
       <div className="relative h-[320px] md:h-[420px] bg-gray-900">
         <img src={experience.image} alt={experience.title} className="w-full h-full object-cover opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -331,7 +325,7 @@ export default function ExperienceDetailPage() {
                         </div>
                       </div>
                     </Link>
-                    <Link to="/chat">
+                    <Link to="/login" state={{ from: { pathname: "/chat" } }}>
                       <Button variant="outline" size="md" icon={<MessageCircle className="w-4 h-4" />}>
                         Message
                       </Button>
@@ -554,6 +548,6 @@ export default function ExperienceDetailPage() {
           </Button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -178,7 +178,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <ChooseRolePage />,
+        element: <LoginPage />,
       },
       {
         path: 'choose-role',

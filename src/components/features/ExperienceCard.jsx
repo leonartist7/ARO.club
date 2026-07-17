@@ -41,7 +41,7 @@ export default function ExperienceCard({ experience, compact = false }) {
             <img
               src={experience.image}
               alt={experience.title}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+              className="w-full h-full object-cover"
             />
             {experience.featured && (
               <div className="absolute top-3 left-3">
@@ -88,13 +88,13 @@ export default function ExperienceCard({ experience, compact = false }) {
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
             {experience.title}
           </h3>
 
           {/* Description */}
           {!compact && (
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
               {experience.description}
             </p>
           )}
@@ -103,10 +103,10 @@ export default function ExperienceCard({ experience, compact = false }) {
           <div className="flex items-center gap-2 mb-3">
             <Avatar src={teacher?.photo} alt={teacher?.name} size="sm" name={teacher?.name} />
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
+              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                 {teacher?.name}
               </p>
-              <div className="flex items-center gap-1 text-xs text-gray-500">
+              <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                 <Star className="w-3 h-3 fill-yellow-400 stroke-yellow-400" />
                 <span>{teacher?.rating}</span>
                 <span>({teacher?.totalReviews})</span>
@@ -115,7 +115,7 @@ export default function ExperienceCard({ experience, compact = false }) {
           </div>
 
           {/* Details */}
-          <div className="space-y-1.5 mb-3 text-sm text-gray-600">
+          <div className="space-y-1.5 mb-3 text-sm text-gray-600 dark:text-gray-300">
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 flex-shrink-0" />
               <span className="truncate">{city?.name}, {city?.country}</span>
@@ -145,16 +145,16 @@ export default function ExperienceCard({ experience, compact = false }) {
           <div className="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <div className="text-2xl font-bold text-primary-500">
+                <div className="text-2xl font-bold text-primary-700 dark:text-primary-300">
                   {formatPrice(experience.price)}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">{t('experienceCard.perPerson')}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400">{t('experienceCard.perPerson')}</div>
               </div>
               <div className="text-right">
                 <div className="text-sm font-medium text-secondary-600 dark:text-secondary-400">
                   {formatPrice(experience.price * 1.7)} {t('experienceCard.for2')}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">{t('experienceCard.save15')}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400">{t('experienceCard.save15')}</div>
               </div>
             </div>
 
