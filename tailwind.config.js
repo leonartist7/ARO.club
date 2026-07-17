@@ -7,34 +7,34 @@ export default {
   ],
   theme: {
     extend: {
-                  colors: {
-        // PRIMARY — Warm yellow (brand CTAs). Use 600/700 for fills w/ white text.
+      colors: {
+        // PRIMARY — Warm brand yellow (visible, not neon flash)
         primary: {
           50: '#FFFBEB',
           100: '#FEF3C7',
           200: '#FDE68A',
           300: '#FCD34D',
           400: '#F5C518',
-          500: '#EAB308', // brand yellow
-          600: '#CA8A04', // interactive fill + white text
-          700: '#A16207', // text-on-white safe
+          500: '#EAB308',
+          600: '#CA8A04',
+          700: '#A16207',
           800: '#854D0E',
           900: '#713F12',
         },
-        // SECONDARY — Soft amber (supporting, not a teal gradient partner)
+        // SECONDARY — Soft charcoal for supporting UI (no teal gradient pair)
         secondary: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F59E0B',
-          600: '#D97706',
-          700: '#B45309',
-          800: '#9A3412',
-          900: '#7C2D12',
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
         },
-        // ACCENT — Soft gold (gamification only)
+        // ACCENT — Gold for gamification only
         accent: {
           50: '#FFFBEB',
           100: '#FEF3C7',
@@ -71,10 +71,7 @@ export default {
         'pop': 'pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
+        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
