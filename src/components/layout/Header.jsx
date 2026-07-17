@@ -79,10 +79,10 @@ export default function Header() {
           {/* Brand */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl font-display font-bold text-primary-600 dark:text-primary-400 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            className="flex items-center gap-2 text-2xl font-display font-bold gradient-text shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
           >
             <span
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary-500 text-lg shadow-sm"
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-lg shadow-sm"
               aria-hidden="true"
             >
               🦎

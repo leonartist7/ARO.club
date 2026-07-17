@@ -28,7 +28,7 @@ export default function CocoMascot({
       aria-label={label}
       className={cn(
         'inline-flex items-center justify-center rounded-full',
-        'bg-primary-500 text-gray-900',
+        'bg-gradient-to-br from-primary-500 to-secondary-500 text-gray-900',
         'shadow-md select-none',
         sizeClasses[size] || sizeClasses.md,
         poseAnim[pose] || '',

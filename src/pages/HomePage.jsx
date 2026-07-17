@@ -33,7 +33,7 @@ export default function HomePage() {
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
             {t('home.hero.title')}{' '}
-            <span className="text-primary-600 dark:text-primary-400">{t('home.hero.titleHighlight')}</span>
+            <span className="gradient-text">{t('home.hero.titleHighlight')}</span>
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto">
             {t('home.hero.subtitle')}
@@ -126,7 +126,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-primary-50 dark:bg-primary-900/20 border-t border-primary-100 dark:border-primary-900/40">
+      <section className="py-16 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-t border-primary-100 dark:border-primary-900/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
           <h2 className="text-3xl font-display font-bold text-gray-900 dark:text-white mb-3">
             {t('home.forTeachers.title')}

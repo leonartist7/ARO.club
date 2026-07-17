@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800">
       {/* Trust strip */}
-      <div className="bg-primary-50 dark:bg-primary-900/20 border-b border-primary-100 dark:border-primary-900/40">
+      <div className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-b border-primary-100 dark:border-primary-900/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium text-primary-800 dark:text-primary-200 text-center">
             <span className="inline-flex items-center gap-1.5">
@@ -59,7 +59,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-2 text-2xl font-display font-bold mb-4 text-primary-600 dark:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              className="flex items-center gap-2 text-2xl font-display font-bold mb-4 gradient-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
               <span className="text-2xl" aria-hidden="true">🦎</span>
               Tonguee
