@@ -19,9 +19,9 @@ export default function FavoriteButton({ experienceId, size = 'default', classNa
   const favorited = isFavorite(experienceId);
 
   const sizeClasses = {
-    sm: 'p-1.5',
-    default: 'p-2',
-    lg: 'p-3',
+    sm: 'p-2 min-w-11 min-h-11 inline-flex items-center justify-center',
+    default: 'p-2.5 min-w-11 min-h-11 inline-flex items-center justify-center',
+    lg: 'p-3 min-w-11 min-h-11 inline-flex items-center justify-center',
   };
 
   const iconSizes = {

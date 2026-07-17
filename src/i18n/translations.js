@@ -34,12 +34,19 @@ export const translations = {
     // Home Page
     home: {
       hero: {
-        title: 'Learn Languages Through',
-        titleHighlight: 'Cultural Immersion',
-        subtitle: 'Connect with local teachers for authentic, small-group experiences in amazing destinations',
-        browseButton: 'Browse Experiences',
+        title: "Don't just learn it.",
+        titleHighlight: 'Live it.',
+        subtitle: 'Real conversations with hand-verified teachers — in cafés, markets, and neighborhoods around the world.',
+        browseButton: 'Find an experience',
+        teachButton: 'Become a teacher',
+        searchPlaceholder: 'City or language…',
         howItWorksButton: 'How It Works',
+        learnCard: 'Learn',
+        learnCardDesc: 'Warm up with games',
+        liveCard: 'Live',
+        liveCardDesc: 'Meet at a real café',
       },
+      trustStrip: 'Every teacher hand-verified by a human',
       languages: 'Popular Languages',
       stats: {
         experiences: 'Experiences',
@@ -48,8 +55,31 @@ export const translations = {
         cities: 'Cities Worldwide',
       },
       featured: 'Featured Experiences',
-      featuredSubtitle: 'Discover handpicked experiences from our community of expert teachers',
+      featuredSubtitle: 'Handpicked tables from verified teachers',
+      featuredEmpty: 'No featured experiences yet — explore the full menu.',
+      seeAll: 'See all',
       recentlyViewed: 'Recently Viewed',
+      loop: {
+        title: 'The Loop',
+        subtitle: 'Learn → Live → Belong',
+        learn: {
+          title: 'Learn',
+          description: 'Warm up phrases and games before you go.',
+        },
+        live: {
+          title: 'Live',
+          description: 'Show up. Speak. Share a real table with a local.',
+        },
+        belong: {
+          title: 'Belong',
+          description: 'Earn streaks, friends, and the courage to keep going.',
+        },
+      },
+      forTeachers: {
+        title: 'Teach what you love. Earn on your terms.',
+        description: 'Join hand-verified teachers hosting tables worldwide. Apply once — we review every human.',
+        cta: 'Apply to teach',
+      },
       howItWorks: {
         title: 'How It Works',
         subtitle: 'Get started in four simple steps',
@@ -73,7 +103,7 @@ export const translations = {
       cta: {
         title: 'Ready to Start Your Journey?',
         description: 'Join thousands of language learners connecting with locals and making real progress',
-        browseButton: 'Browse Experiences',
+        browseButton: 'Find an experience',
         teachButton: 'Become a Teacher',
       },
     },
@@ -106,6 +136,13 @@ export const translations = {
       allLanguages: 'All Languages',
       allCities: 'All Cities',
       allLevels: 'All Levels',
+      mapView: 'Map view',
+      chips: {
+        weekend: 'This weekend',
+        online: 'Online',
+        buddy: 'With a buddy',
+        brave: 'Brave-o-meter',
+      },
     },
 
     // Experience Card
@@ -380,12 +417,19 @@ export const translations = {
     // Home Page
     home: {
       hero: {
-        title: 'Apprenez les Langues par',
-        titleHighlight: "l'Immersion Culturelle",
-        subtitle: 'Connectez-vous avec des enseignants locaux pour des expériences authentiques en petits groupes',
-        browseButton: 'Parcourir les Expériences',
+        title: 'Ne l\'apprenez pas seulement.',
+        titleHighlight: 'Vivez-le.',
+        subtitle: 'De vraies conversations avec des enseignants vérifiés — cafés, marchés et quartiers du monde entier.',
+        browseButton: 'Trouver une expérience',
+        teachButton: 'Devenir enseignant',
+        searchPlaceholder: 'Ville ou langue…',
         howItWorksButton: 'Comment Ça Marche',
+        learnCard: 'Apprendre',
+        learnCardDesc: 'Échauffez-vous avec des jeux',
+        liveCard: 'Vivre',
+        liveCardDesc: 'Rendez-vous au café',
       },
+      trustStrip: 'Chaque enseignant est vérifié par un humain',
       languages: 'Langues Populaires',
       stats: {
         experiences: 'Expériences',
@@ -394,8 +438,22 @@ export const translations = {
         cities: 'Villes dans le Monde',
       },
       featured: 'Expériences en Vedette',
-      featuredSubtitle: 'Découvrez des expériences sélectionnées par notre communauté d\'enseignants experts',
+      featuredSubtitle: 'Tables sélectionnées par des enseignants vérifiés',
+      featuredEmpty: 'Pas encore d\'expériences en vedette — explorez le menu complet.',
+      seeAll: 'Voir tout',
       recentlyViewed: 'Vues Récemment',
+      loop: {
+        title: 'La Boucle',
+        subtitle: 'Apprendre → Vivre → Appartenir',
+        learn: { title: 'Apprendre', description: 'Échauffez phrases et jeux avant d\'y aller.' },
+        live: { title: 'Vivre', description: 'Présentez-vous. Parlez. Partagez une vraie table.' },
+        belong: { title: 'Appartenir', description: 'Gagnez des séries, des amis et le courage de continuer.' },
+      },
+      forTeachers: {
+        title: 'Enseignez ce que vous aimez. Gagnez à votre rythme.',
+        description: 'Rejoignez des enseignants vérifiés partout dans le monde. Une candidature — nous examinons chaque humain.',
+        cta: 'Postuler pour enseigner',
+      },
       howItWorks: {
         title: 'Comment Ça Marche',
         subtitle: 'Commencez en quatre étapes simples',
@@ -452,6 +510,13 @@ export const translations = {
       allLanguages: 'Toutes les Langues',
       allCities: 'Toutes les Villes',
       allLevels: 'Tous Niveaux',
+      mapView: 'Vue carte',
+      chips: {
+        weekend: 'Ce week-end',
+        online: 'En ligne',
+        buddy: 'Avec un ami',
+        brave: 'Brave-o-mètre',
+      },
     },
 
     // Experience Card
@@ -726,12 +791,19 @@ export const translations = {
     // Home Page
     home: {
       hero: {
-        title: 'Aprende Idiomas a Través de la',
-        titleHighlight: 'Inmersión Cultural',
-        subtitle: 'Conéctate con profesores locales para experiencias auténticas en grupos pequeños',
-        browseButton: 'Explorar Experiencias',
+        title: 'No solo lo aprendas.',
+        titleHighlight: 'Vívelo.',
+        subtitle: 'Conversaciones reales con profesores verificados — cafés, mercados y barrios del mundo.',
+        browseButton: 'Encontrar una experiencia',
+        teachButton: 'Ser profesor',
+        searchPlaceholder: 'Ciudad o idioma…',
         howItWorksButton: 'Cómo Funciona',
+        learnCard: 'Aprender',
+        learnCardDesc: 'Calienta con juegos',
+        liveCard: 'Vivir',
+        liveCardDesc: 'Encuentro en un café real',
       },
+      trustStrip: 'Cada profesor es verificado por un humano',
       languages: 'Idiomas Populares',
       stats: {
         experiences: 'Experiencias',
@@ -740,8 +812,22 @@ export const translations = {
         cities: 'Ciudades en el Mundo',
       },
       featured: 'Experiencias Destacadas',
-      featuredSubtitle: 'Descubre experiencias seleccionadas de nuestra comunidad de profesores expertos',
+      featuredSubtitle: 'Mesas seleccionadas de profesores verificados',
+      featuredEmpty: 'Aún no hay experiencias destacadas — explora el menú completo.',
+      seeAll: 'Ver todo',
       recentlyViewed: 'Vistas Recientemente',
+      loop: {
+        title: 'El Bucle',
+        subtitle: 'Aprender → Vivir → Pertenecer',
+        learn: { title: 'Aprender', description: 'Calienta frases y juegos antes de ir.' },
+        live: { title: 'Vivir', description: 'Aparece. Habla. Comparte una mesa real.' },
+        belong: { title: 'Pertenecer', description: 'Gana rachas, amigos y el valor de seguir.' },
+      },
+      forTeachers: {
+        title: 'Enseña lo que amas. Gana a tu ritmo.',
+        description: 'Únete a profesores verificados en todo el mundo. Una solicitud — revisamos a cada humano.',
+        cta: 'Solicitar para enseñar',
+      },
       howItWorks: {
         title: 'Cómo Funciona',
         subtitle: 'Comienza en cuatro simples pasos',
@@ -798,6 +884,13 @@ export const translations = {
       allLanguages: 'Todos los Idiomas',
       allCities: 'Todas las Ciudades',
       allLevels: 'Todos los Niveles',
+      mapView: 'Vista mapa',
+      chips: {
+        weekend: 'Este fin de semana',
+        online: 'En línea',
+        buddy: 'Con un amigo',
+        brave: 'Brave-o-metro',
+      },
     },
 
     // Experience Card

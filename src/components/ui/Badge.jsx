@@ -1,13 +1,13 @@
 import { cn } from '../../utils/cn';
 
 const badgeVariants = {
-  default: 'bg-gray-100 text-gray-700 border-gray-200',
-  primary: 'bg-primary-100 text-primary-700 border-primary-200',
-  secondary: 'bg-secondary-100 text-secondary-700 border-secondary-200',
-  success: 'bg-green-100 text-green-700 border-green-200',
-  warning: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-  danger: 'bg-red-100 text-red-700 border-red-200',
-  info: 'bg-blue-100 text-blue-700 border-blue-200',
+  default: 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700',
+  primary: 'bg-primary-100 text-primary-700 border-primary-200 dark:bg-primary-900/30 dark:text-primary-300 dark:border-primary-800',
+  secondary: 'bg-secondary-100 text-secondary-700 border-secondary-200 dark:bg-secondary-900/30 dark:text-secondary-300 dark:border-secondary-800',
+  success: 'bg-success-50 text-success-700 border-success-500/30 dark:bg-success-500/10 dark:text-success-500 dark:border-success-500/30',
+  warning: 'bg-warning-50 text-warning-700 border-warning-500/30 dark:bg-warning-500/10 dark:text-warning-500 dark:border-warning-500/30',
+  danger: 'bg-danger-50 text-danger-700 border-danger-500/30 dark:bg-danger-500/10 dark:text-danger-500 dark:border-danger-500/30',
+  info: 'bg-info-50 text-info-700 border-info-500/30 dark:bg-info-500/10 dark:text-info-500 dark:border-info-500/30',
 };
 
 const badgeSizes = {
@@ -16,9 +16,6 @@ const badgeSizes = {
   lg: 'px-3 py-1.5 text-base',
 };
 
-/**
- * Badge component for labels, tags, and status indicators
- */
 export default function Badge({
   children,
   variant = 'default',
@@ -37,7 +34,7 @@ export default function Badge({
       )}
       {...props}
     >
-      {icon && <span className="flex-shrink-0">{icon}</span>}
+      {icon && <span className="flex-shrink-0" aria-hidden="true">{icon}</span>}
       {children}
     </span>
   );

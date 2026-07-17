@@ -3,7 +3,10 @@
     "id": "t1",
     "name": "Sophie Dubois",
     "bio": "Native Parisian who loves sharing the beauty of French language and culture. Former high school teacher turned cultural experience designer.",
-    "languages": ["fr", "en"],
+    "languages": [
+      "fr",
+      "en"
+    ],
     "cityId": "paris",
     "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
     "rating": 4.9,
@@ -11,20 +14,38 @@
     "totalSessions": 145,
     "memberSince": "2023-01-15",
     "about": "After 12 years of teaching French literature in lycée, I discovered my true passion: connecting people through language in authentic, real-world settings. I believe the best way to learn a language is through conversation, laughter, and shared experiences. When I'm not hosting sessions, you'll find me at poetry readings in Montmartre or hunting for the perfect croissant.",
-    "specialties": ["Conversational French", "French Literature", "Parisian Culture"],
-    "certifications": ["DELF Examiner", "Certified French Teacher"],
+    "specialties": [
+      "Conversational French",
+      "French Literature",
+      "Parisian Culture"
+    ],
+    "certifications": [
+      "DELF Examiner",
+      "Certified French Teacher"
+    ],
     "hourlyRate": 75,
     "responseTime": "within 2 hours",
     "languages_spoken": [
-      {"code": "fr", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "fr",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "verified",
+    "introVideo": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
   },
   {
     "id": "t2",
     "name": "Carlos Mendoza",
     "bio": "Barcelona local and passionate foodie. I combine Spanish lessons with culinary adventures through the city's best tapas bars.",
-    "languages": ["es", "ca"],
+    "languages": [
+      "es",
+      "ca"
+    ],
     "cityId": "barcelona",
     "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
     "rating": 4.8,
@@ -32,42 +53,78 @@
     "totalSessions": 112,
     "memberSince": "2023-03-20",
     "about": "¡Hola! I grew up in the Gothic Quarter and know every hidden corner of this magical city. My philosophy is simple: language learning should taste good! I've spent years perfecting my paella recipe and my teaching methods. Whether we're ordering pintxos in Catalan or discussing Gaudí in Spanish, you'll leave each session both full and fluent.",
-    "specialties": ["Spanish Cuisine Vocabulary", "Catalan Language", "Barcelona History"],
-    "certifications": ["DELE Examiner"],
+    "specialties": [
+      "Spanish Cuisine Vocabulary",
+      "Catalan Language",
+      "Barcelona History"
+    ],
+    "certifications": [
+      "DELE Examiner"
+    ],
     "hourlyRate": 70,
     "responseTime": "within 3 hours",
     "languages_spoken": [
-      {"code": "es", "level": "native"},
-      {"code": "ca", "level": "native"},
-      {"code": "en", "level": "intermediate"}
-    ]
+      {
+        "code": "es",
+        "level": "native"
+      },
+      {
+        "code": "ca",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "intermediate"
+      }
+    ],
+    "tier": "pro"
   },
   {
     "id": "t3",
     "name": "Yuki Tanaka",
     "bio": "Tokyo-based manga artist who teaches Japanese through pop culture, anime, and street art tours in Harajuku and Akihabara.",
-    "languages": ["ja", "en"],
+    "languages": [
+      "ja",
+      "en"
+    ],
     "cityId": "tokyo",
     "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
-    "rating": 5.0,
+    "rating": 5,
     "totalReviews": 156,
     "totalSessions": 178,
     "memberSince": "2022-11-10",
     "about": "こんにちは! I've been drawing manga professionally for 8 years and teaching Japanese for 5. I believe traditional textbooks miss the heart of modern Japanese culture. My sessions incorporate anime, video games, street fashion, and contemporary slang - the Japanese you'll actually hear in Tokyo. Plus, I'll show you all the best hidden otaku shops!",
-    "specialties": ["Modern Japanese Slang", "Anime & Manga Culture", "Tokyo Street Culture"],
-    "certifications": ["Japanese Language Teaching Certificate"],
+    "specialties": [
+      "Modern Japanese Slang",
+      "Anime & Manga Culture",
+      "Tokyo Street Culture"
+    ],
+    "certifications": [
+      "Japanese Language Teaching Certificate"
+    ],
     "hourlyRate": 85,
     "responseTime": "within 1 hour",
     "languages_spoken": [
-      {"code": "ja", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "ja",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "elite",
+    "introVideo": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
   },
   {
     "id": "t4",
     "name": "Ji-woo Kim",
     "bio": "K-pop dance instructor and Korean language enthusiast. Learn Korean while exploring Seoul's trendiest neighborhoods and cafes.",
-    "languages": ["ko", "en"],
+    "languages": [
+      "ko",
+      "en"
+    ],
     "cityId": "seoul",
     "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
     "rating": 4.9,
@@ -75,20 +132,36 @@
     "totalSessions": 156,
     "memberSince": "2023-02-05",
     "about": "안녕하세요! I've choreographed for several K-pop groups and have a deep love for Korean language and culture. My sessions are energetic, fun, and perfect for K-drama fans who want to understand without subtitles. We'll explore Gangnam, Hongdae, and Insadong while practicing practical Korean you can use immediately.",
-    "specialties": ["K-pop Korean", "Korean Dramas", "Seoul Youth Culture"],
-    "certifications": ["TOPIK Level 6"],
+    "specialties": [
+      "K-pop Korean",
+      "Korean Dramas",
+      "Seoul Youth Culture"
+    ],
+    "certifications": [
+      "TOPIK Level 6"
+    ],
     "hourlyRate": 80,
     "responseTime": "within 2 hours",
     "languages_spoken": [
-      {"code": "ko", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "ko",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "verified"
   },
   {
     "id": "t5",
     "name": "Maria Silva",
     "bio": "Brazilian journalist and storyteller. I teach Portuguese through the rich traditions of samba, bossa nova, and Brazilian literature.",
-    "languages": ["pt", "es"],
+    "languages": [
+      "pt",
+      "es"
+    ],
     "cityId": "buenos-aires",
     "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400",
     "rating": 4.7,
@@ -96,21 +169,40 @@
     "totalSessions": 102,
     "memberSince": "2023-04-12",
     "about": "Olá! I moved from Rio to Buenos Aires to cover South American politics, but fell in love with teaching Portuguese to curious travelers. My sessions blend language with music, dance, and stories from Brazil's diverse regions. Whether you want to samba in Rio or discuss Machado de Assis, I'll make Portuguese come alive.",
-    "specialties": ["Brazilian Portuguese", "Latin Music", "South American Culture"],
-    "certifications": ["Celpe-Bras Examiner"],
+    "specialties": [
+      "Brazilian Portuguese",
+      "Latin Music",
+      "South American Culture"
+    ],
+    "certifications": [
+      "Celpe-Bras Examiner"
+    ],
     "hourlyRate": 65,
     "responseTime": "within 4 hours",
     "languages_spoken": [
-      {"code": "pt", "level": "native"},
-      {"code": "es", "level": "fluent"},
-      {"code": "en", "level": "intermediate"}
-    ]
+      {
+        "code": "pt",
+        "level": "native"
+      },
+      {
+        "code": "es",
+        "level": "fluent"
+      },
+      {
+        "code": "en",
+        "level": "intermediate"
+      }
+    ],
+    "tier": "pro"
   },
   {
     "id": "t6",
     "name": "Elena Rossi",
     "bio": "Italian chef and wine sommelier. Learn Italian while making fresh pasta and discovering Roman culinary secrets.",
-    "languages": ["it", "en"],
+    "languages": [
+      "it",
+      "en"
+    ],
     "cityId": "paris",
     "photo": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400",
     "rating": 4.9,
@@ -118,21 +210,41 @@
     "totalSessions": 128,
     "memberSince": "2022-12-01",
     "about": "Ciao! I left my family's trattoria in Rome to study sommelier in Paris, but Italy never left my heart. My sessions are a feast for all senses - we'll practice Italian while preparing regional dishes, learning about wine regions, and discussing the art of la dolce vita. Bring your appetite for food and language!",
-    "specialties": ["Italian Cuisine", "Wine Vocabulary", "Italian Culture"],
-    "certifications": ["CILS Certification", "Sommelier Level 2"],
+    "specialties": [
+      "Italian Cuisine",
+      "Wine Vocabulary",
+      "Italian Culture"
+    ],
+    "certifications": [
+      "CILS Certification",
+      "Sommelier Level 2"
+    ],
     "hourlyRate": 90,
     "responseTime": "within 3 hours",
     "languages_spoken": [
-      {"code": "it", "level": "native"},
-      {"code": "en", "level": "fluent"},
-      {"code": "fr", "level": "intermediate"}
-    ]
+      {
+        "code": "it",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      },
+      {
+        "code": "fr",
+        "level": "intermediate"
+      }
+    ],
+    "tier": "verified"
   },
   {
     "id": "t7",
     "name": "Hans Müller",
     "bio": "Berlin tech entrepreneur and history buff. Explore German language through the lens of innovation, philosophy, and Berlin's complex past.",
-    "languages": ["de", "en"],
+    "languages": [
+      "de",
+      "en"
+    ],
     "cityId": "berlin",
     "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
     "rating": 4.6,
@@ -140,41 +252,73 @@
     "totalSessions": 85,
     "memberSince": "2023-05-18",
     "about": "Guten Tag! I co-founded a startup here in Berlin and discovered I love teaching German to other entrepreneurs and creatives. My sessions explore Berlin's incredible transformation, from historical sites to cutting-edge tech hubs. We'll practice German in co-working spaces, museums, and the city's legendary beer gardens.",
-    "specialties": ["Business German", "Tech Vocabulary", "German History"],
-    "certifications": ["Goethe-Zertifikat C2"],
+    "specialties": [
+      "Business German",
+      "Tech Vocabulary",
+      "German History"
+    ],
+    "certifications": [
+      "Goethe-Zertifikat C2"
+    ],
     "hourlyRate": 85,
     "responseTime": "within 5 hours",
     "languages_spoken": [
-      {"code": "de", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "de",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "elite"
   },
   {
     "id": "t8",
     "name": "Layla Hassan",
     "bio": "Egyptian-American artist teaching Arabic through calligraphy, poetry, and Middle Eastern culture in New York's diverse neighborhoods.",
-    "languages": ["ar", "en"],
+    "languages": [
+      "ar",
+      "en"
+    ],
     "cityId": "new-york",
     "photo": "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400",
-    "rating": 5.0,
+    "rating": 5,
     "totalReviews": 93,
     "totalSessions": 98,
     "memberSince": "2023-01-30",
     "about": "مرحبا! I grew up between Cairo and Brooklyn, and I'm passionate about demystifying Arabic for English speakers. Through calligraphy workshops, Arabic music, and cultural deep-dives, I'll show you that Arabic is beautiful, logical, and more accessible than you think. We'll explore Little Egypt and sample the best koshari in NYC!",
-    "specialties": ["Arabic Calligraphy", "Middle Eastern Culture", "Egyptian Dialect"],
-    "certifications": ["Arabic Language Teaching Certificate"],
+    "specialties": [
+      "Arabic Calligraphy",
+      "Middle Eastern Culture",
+      "Egyptian Dialect"
+    ],
+    "certifications": [
+      "Arabic Language Teaching Certificate"
+    ],
     "hourlyRate": 80,
     "responseTime": "within 2 hours",
     "languages_spoken": [
-      {"code": "ar", "level": "native"},
-      {"code": "en", "level": "native"}
-    ]
+      {
+        "code": "ar",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "native"
+      }
+    ],
+    "tier": "pro"
   },
   {
     "id": "t9",
     "name": "Dmitri Volkov",
     "bio": "Russian literature professor and chess master. Learn Russian through Dostoevsky, Chekhov, and strategic thinking in London's parks.",
-    "languages": ["ru", "en"],
+    "languages": [
+      "ru",
+      "en"
+    ],
     "cityId": "london",
     "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400",
     "rating": 4.8,
@@ -182,20 +326,37 @@
     "totalSessions": 78,
     "memberSince": "2023-06-22",
     "about": "Здравствуйте! I moved from St. Petersburg to teach Russian literature at King's College. My sessions combine language learning with Russia's rich literary tradition and chess strategy. We'll discuss Tolstoy over tea, practice cases through Pushkin's poetry, and play chess in Hyde Park. Russian is complex, but beautifully so.",
-    "specialties": ["Russian Literature", "Advanced Grammar", "Chess Vocabulary"],
-    "certifications": ["PhD in Russian Literature", "ТРКИ Level 3"],
+    "specialties": [
+      "Russian Literature",
+      "Advanced Grammar",
+      "Chess Vocabulary"
+    ],
+    "certifications": [
+      "PhD in Russian Literature",
+      "ТРКИ Level 3"
+    ],
     "hourlyRate": 75,
     "responseTime": "within 4 hours",
     "languages_spoken": [
-      {"code": "ru", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "ru",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "verified"
   },
   {
     "id": "t10",
     "name": "Isabel Costa",
     "bio": "Lisbon-born fado singer teaching Portuguese through music, poetry, and the melancholic beauty of Portuguese culture.",
-    "languages": ["pt", "en"],
+    "languages": [
+      "pt",
+      "en"
+    ],
     "cityId": "lisbon",
     "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
     "rating": 4.9,
@@ -203,20 +364,36 @@
     "totalSessions": 118,
     "memberSince": "2022-10-15",
     "about": "Olá! I've been performing fado in Alfama for 15 years and teaching Portuguese for 7. I believe language carries emotion, and Portuguese is full of 'saudade' - that beautiful melancholic longing. We'll learn through fado lyrics, Fernando Pessoa's poetry, and wandering Lisbon's azulejo-covered streets. Prepare to fall in love with Portuguese!",
-    "specialties": ["European Portuguese", "Portuguese Music", "Lisbon Culture"],
-    "certifications": ["CAPLE Advanced Certificate"],
+    "specialties": [
+      "European Portuguese",
+      "Portuguese Music",
+      "Lisbon Culture"
+    ],
+    "certifications": [
+      "CAPLE Advanced Certificate"
+    ],
     "hourlyRate": 70,
     "responseTime": "within 2 hours",
     "languages_spoken": [
-      {"code": "pt", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "pt",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "pro"
   },
   {
     "id": "t11",
     "name": "Pierre Lefevre",
     "bio": "Parisian photographer and flâneur. Experience French through street photography walks and conversations at hidden Parisian gems.",
-    "languages": ["fr", "en"],
+    "languages": [
+      "fr",
+      "en"
+    ],
     "cityId": "paris",
     "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
     "rating": 4.7,
@@ -224,41 +401,75 @@
     "totalSessions": 94,
     "memberSince": "2023-03-08",
     "about": "Bonjour! I'm a street photographer who's walked every arrondissement of Paris at every hour. My sessions are visual poetry - we'll practice French while capturing the city's light, discussing composition, and discovering secret passages and courtyards tourists never see. Bring your camera and your curiosity!",
-    "specialties": ["Visual Arts Vocabulary", "Paris Hidden Gems", "Photography French"],
-    "certifications": ["Professional Photographer", "FLE Teacher"],
+    "specialties": [
+      "Visual Arts Vocabulary",
+      "Paris Hidden Gems",
+      "Photography French"
+    ],
+    "certifications": [
+      "Professional Photographer",
+      "FLE Teacher"
+    ],
     "hourlyRate": 78,
     "responseTime": "within 3 hours",
     "languages_spoken": [
-      {"code": "fr", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "fr",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "verified"
   },
   {
     "id": "t12",
     "name": "Sakura Yamamoto",
     "bio": "Tea ceremony master and zen practitioner. Learn Japanese through mindfulness, traditional arts, and the philosophy of wabi-sabi.",
-    "languages": ["ja", "en"],
+    "languages": [
+      "ja",
+      "en"
+    ],
     "cityId": "tokyo",
     "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
-    "rating": 5.0,
+    "rating": 5,
     "totalReviews": 142,
     "totalSessions": 165,
     "memberSince": "2022-09-20",
     "about": "こんにちは。I teach Japanese the traditional way - with patience, presence, and tea. As a certified tea ceremony master, I believe language learning is a meditative practice. We'll study keigo (honorific language), practice calligraphy, discuss Zen philosophy, and find beauty in imperfection. Slow down and truly learn.",
-    "specialties": ["Japanese Tea Ceremony", "Keigo & Formal Language", "Traditional Culture"],
-    "certifications": ["Tea Ceremony Master", "Japanese Cultural Ambassador"],
+    "specialties": [
+      "Japanese Tea Ceremony",
+      "Keigo & Formal Language",
+      "Traditional Culture"
+    ],
+    "certifications": [
+      "Tea Ceremony Master",
+      "Japanese Cultural Ambassador"
+    ],
     "hourlyRate": 95,
     "responseTime": "within 6 hours",
     "languages_spoken": [
-      {"code": "ja", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "ja",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "elite"
   },
   {
     "id": "t13",
     "name": "Miguel Rodriguez",
     "bio": "Mexican street food vendor turned cultural guide. Learn Spanish through tacos, lucha libre, and the vibrant chaos of CDMX.",
-    "languages": ["es", "en"],
+    "languages": [
+      "es",
+      "en"
+    ],
     "cityId": "mexico-city",
     "photo": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400",
     "rating": 4.8,
@@ -266,20 +477,36 @@
     "totalSessions": 109,
     "memberSince": "2023-02-14",
     "about": "¡Qué onda! I ran a taco stand in La Condesa for years before becoming a cultural guide. My Spanish lessons are spicy, loud, and unforgettable. We'll navigate markets like locals, order street food like pros, and I'll teach you the Mexican Spanish you won't find in textbooks. Warning: you'll leave hungry and fluent!",
-    "specialties": ["Mexican Spanish", "Street Food Culture", "CDMX Slang"],
-    "certifications": ["Cultural Tourism Guide"],
+    "specialties": [
+      "Mexican Spanish",
+      "Street Food Culture",
+      "CDMX Slang"
+    ],
+    "certifications": [
+      "Cultural Tourism Guide"
+    ],
     "hourlyRate": 60,
     "responseTime": "within 3 hours",
     "languages_spoken": [
-      {"code": "es", "level": "native"},
-      {"code": "en", "level": "intermediate"}
-    ]
+      {
+        "code": "es",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "intermediate"
+      }
+    ],
+    "tier": "verified"
   },
   {
     "id": "t14",
     "name": "Min-ji Park",
     "bio": "Korean beauty and skincare expert. Learn Korean while discovering K-beauty secrets in Seoul's trendiest districts.",
-    "languages": ["ko", "en"],
+    "languages": [
+      "ko",
+      "en"
+    ],
     "cityId": "seoul",
     "photo": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400",
     "rating": 4.9,
@@ -287,20 +514,37 @@
     "totalSessions": 134,
     "memberSince": "2022-11-28",
     "about": "안녕하세요! I worked at Amorepacific before starting my own beauty blog. My sessions are perfect for K-beauty enthusiasts - we'll practice Korean while shopping in Myeongdong, learning skincare routines, and discussing Korean beauty culture. You'll master Korean skincare vocabulary and achieve glass skin and fluency!",
-    "specialties": ["K-Beauty Vocabulary", "Shopping Korean", "Modern Korean Culture"],
-    "certifications": ["Licensed Aesthetician", "Korean Language Teacher"],
+    "specialties": [
+      "K-Beauty Vocabulary",
+      "Shopping Korean",
+      "Modern Korean Culture"
+    ],
+    "certifications": [
+      "Licensed Aesthetician",
+      "Korean Language Teacher"
+    ],
     "hourlyRate": 82,
     "responseTime": "within 1 hour",
     "languages_spoken": [
-      {"code": "ko", "level": "native"},
-      {"code": "en", "level": "fluent"}
-    ]
+      {
+        "code": "ko",
+        "level": "native"
+      },
+      {
+        "code": "en",
+        "level": "fluent"
+      }
+    ],
+    "tier": "pro"
   },
   {
     "id": "t15",
     "name": "Thomas Anderson",
     "bio": "American expat and Mandarin translator living in NYC. Teaching Chinese through business, tech culture, and Chinese-American communities.",
-    "languages": ["zh", "en"],
+    "languages": [
+      "zh",
+      "en"
+    ],
     "cityId": "new-york",
     "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400",
     "rating": 4.6,
@@ -308,13 +552,27 @@
     "totalSessions": 88,
     "memberSince": "2023-04-05",
     "about": "你好! After living in Beijing for 8 years, I moved back to NYC as a Mandarin translator. I specialize in teaching Chinese to busy professionals who need practical language skills for business. We'll practice in Chinatown, Flushing, and Sunset Park - experiencing authentic Chinese-American culture while building your Mandarin foundation.",
-    "specialties": ["Business Mandarin", "Simplified Characters", "Tech Industry Chinese"],
-    "certifications": ["HSK 6", "Professional Translator"],
+    "specialties": [
+      "Business Mandarin",
+      "Simplified Characters",
+      "Tech Industry Chinese"
+    ],
+    "certifications": [
+      "HSK 6",
+      "Professional Translator"
+    ],
     "hourlyRate": 88,
     "responseTime": "within 2 hours",
     "languages_spoken": [
-      {"code": "en", "level": "native"},
-      {"code": "zh", "level": "fluent"}
-    ]
+      {
+        "code": "en",
+        "level": "native"
+      },
+      {
+        "code": "zh",
+        "level": "fluent"
+      }
+    ],
+    "tier": "verified"
   }
 ]

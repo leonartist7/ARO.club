@@ -70,8 +70,8 @@ export default function ErrorState({
     >
       {/* Icon */}
       <div className="mb-4">
-        <div className="w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center">
-          <Icon className="w-8 h-8 text-red-600 dark:text-red-400" />
+        <div className="w-16 h-16 bg-danger-50 dark:bg-danger-500/10 rounded-full flex items-center justify-center">
+          <Icon className="w-8 h-8 text-danger-700 dark:text-danger-500" />
         </div>
       </div>
 
