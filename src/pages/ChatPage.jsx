@@ -5,6 +5,8 @@ import { supabase } from '../lib/supabase';
 import { Send, Search, ArrowLeft, MoreVertical } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
+import { MOCK_CONVERSATIONS, mockMessagesFor } from '../data/conversations';
+import { usePlayerStore } from '../store/usePlayerStore';
 
 export default function ChatPage() {
   const [conversations, setConversations] = useState([]);
@@ -15,12 +17,17 @@ export default function ChatPage() {
   const [sending, setSending] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const messagesEndRef = useRef(null);
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
+  const recordActivity = usePlayerStore((state) => state.recordActivity);
+  const completeQuest = usePlayerStore((state) => state.completeQuest);
 
   useEffect(() => {
     loadConversations();
 
-    // Subscribe to new conversations
+    // Realtime only makes sense with a real session. Without one the page
+    // runs on seed threads instead of dereferencing a null user.
+    if (!user?.id) return;
+
     const conversationSubscription = supabase
       .channel('conversations')
       .on('postgres_changes', {
@@ -41,6 +48,8 @@ export default function ChatPage() {
   useEffect(() => {
     if (selectedConversation) {
       loadMessages(selectedConversation.id);
+
+      if (!user?.id) return;
 
       // Subscribe to new messages in this conversation
       const messageSubscription = supabase
@@ -71,6 +80,13 @@ export default function ChatPage() {
   };
 
   const loadConversations = async () => {
+    // No session - run the UI on seed threads so chat stays designable.
+    if (!user?.id) {
+      setConversations(MOCK_CONVERSATIONS);
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('conversations')
@@ -103,6 +119,11 @@ export default function ChatPage() {
   };
 
   const loadMessages = async (conversationId) => {
+    if (!user?.id) {
+      setMessages(mockMessagesFor(conversationId));
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('messages')
@@ -129,6 +150,29 @@ export default function ChatPage() {
     if (!newMessage.trim() || !selectedConversation) return;
 
     setSending(true);
+
+    // Local mode: append straight to the thread and count it toward the
+    // social badges in the player store.
+    if (!user?.id) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `local-${Date.now()}`,
+          conversation_id: selectedConversation.id,
+          sender_id: 'me',
+          message_text: newMessage.trim(),
+          message_type: 'text',
+          read: true,
+          created_at: new Date().toISOString(),
+        },
+      ]);
+      recordActivity('conversationsStarted');
+      completeQuest('message-teacher');
+      setNewMessage('');
+      setSending(false);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('messages')

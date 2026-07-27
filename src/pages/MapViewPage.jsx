@@ -87,9 +87,9 @@ export default function MapViewPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {cityStats.map((city, index) => {
-            const cityLanguages = city.languages.map((langCode) =>
-              LANGUAGES.find((l) => l.code === langCode)
-            );
+            const cityLanguages = (city.languages ?? [])
+              .map((langCode) => LANGUAGES.find((l) => l.code === langCode))
+              .filter(Boolean);
 
             return (
               <motion.div

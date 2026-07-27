@@ -34,9 +34,11 @@ export default function TeacherProfilePage() {
   }
 
   const city = CITIES.find((c) => c.id === teacher.cityId);
-  const teacherLanguages = teacher.languages.map((code) =>
-    LANGUAGES.find((l) => l.code === code)
-  );
+  // Drop codes we have no metadata for - English isn't in LANGUAGES, and an
+  // undefined entry blows up when the badge reads `.flag`.
+  const teacherLanguages = (teacher.languages ?? [])
+    .map((code) => LANGUAGES.find((l) => l.code === code))
+    .filter(Boolean);
 
   const teacherExperiences = experiencesData
     .filter((exp) => exp.teacherId === id)

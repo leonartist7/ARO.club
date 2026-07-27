@@ -103,11 +103,14 @@ export default function NotFoundPage() {
                 Browse Experiences
               </Button>
             </Link>
-            <button onClick={() => navigate(-1)}>
-              <Button variant="outline" size="lg" icon={<ArrowLeft className="w-5 h-5" />}>
-                Go Back
-              </Button>
-            </button>
+            <Button
+              variant="outline"
+              size="lg"
+              icon={<ArrowLeft className="w-5 h-5" />}
+              onClick={() => navigate(-1)}
+            >
+              Go Back
+            </Button>
           </motion.div>
 
           {/* Quick Links */}

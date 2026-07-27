@@ -27,12 +27,14 @@ export default function Button({
   disabled = false,
   loading = false,
   icon = null,
+  fullWidth = false,
   ...props
 }) {
   return (
     <button
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
+        fullWidth && 'w-full',
         'transition-all duration-200 ease-in-out',
         'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
         'dark:focus:ring-primary-400 dark:focus:ring-offset-gray-900',

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { usePlayerStore } from '../store/usePlayerStore';
 import { supabase } from '../lib/supabase';
 import { Check, X } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -95,7 +96,8 @@ export default function TeacherOnboarding() {
   const [bio, setBio] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user, updateProfile } = useAuth();
+  const { user } = useAuth();
+  const completeOnboarding = usePlayerStore((state) => state.completeOnboarding);
 
   const handleSwipe = (direction, isLanguage = false) => {
     if (direction === 'right') {
@@ -126,59 +128,61 @@ export default function TeacherOnboarding() {
 
   const handleComplete = async () => {
     setLoading(true);
-    try {
-      // Update profile with onboarding data
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({
-          name,
-          user_type: 'teacher',
-          avatar,
-          bio,
-          experience_types: selectedExperiences,
-          is_teacher: true,
-          onboarding_completed: true,
-          points: 100, // Welcome bonus
-        })
-        .eq('id', user.id);
 
-      if (profileError) throw profileError;
+    // The local player store is the source of truth, so onboarding always
+    // completes - even with no backend attached.
+    completeOnboarding({
+      name: name.trim() || 'Teacher',
+      languages: selectedLanguages,
+      interests: selectedExperiences,
+      avatar,
+      bio,
+      welcomeBonus: 100,
+    });
 
-      // Create teacher profile
-      const { error: teacherError } = await supabase
-        .from('teachers')
-        .insert({
+    // Mirror to Supabase when there's a real session. Best effort: a failure
+    // here must never trap the teacher on the last onboarding step.
+    if (user?.id) {
+      try {
+        await supabase
+          .from('profiles')
+          .update({
+            name,
+            user_type: 'teacher',
+            avatar,
+            bio,
+            experience_types: selectedExperiences,
+            is_teacher: true,
+            onboarding_completed: true,
+            points: 100, // Welcome bonus
+          })
+          .eq('id', user.id);
+
+        await supabase.from('teachers').insert({
           user_id: user.id,
           name,
           email: user.email,
-          languages: selectedLanguages.map(code => ({
+          languages: selectedLanguages.map((code) => ({
             code,
-            name: LANGUAGES.find(l => l.code === code)?.name,
-            proficiency: 'native'
+            name: LANGUAGES.find((l) => l.code === code)?.name,
+            proficiency: 'native',
           })),
           specialties: selectedExperiences,
           bio,
           verified: false,
         });
 
-      if (teacherError) throw teacherError;
-
-      // Award welcome achievement
-      await supabase
-        .from('user_achievements')
-        .insert({
+        await supabase.from('user_achievements').insert({
           user_id: user.id,
           achievement_id: 'welcome_bonus',
         });
-
-      // Navigate to teacher dashboard
-      navigate('/teacher/dashboard');
-    } catch (error) {
-      console.error('Error completing onboarding:', error);
-      alert('Error saving your profile. Please try again.');
-    } finally {
-      setLoading(false);
+      } catch (error) {
+        console.error('Could not sync onboarding to Supabase:', error);
+      }
     }
+
+    setLoading(false);
+    navigate('/teacher/dashboard');
   };
 
   const progress = (step / 6) * 100;
@@ -272,12 +276,14 @@ export default function TeacherOnboarding() {
                 <div className="flex justify-center gap-4 mt-8">
                   <button
                     onClick={() => handleSwipe('left', true)}
+                    aria-label="Skip this language"
                     className="w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <X className="w-8 h-8" />
                   </button>
                   <button
                     onClick={() => handleSwipe('right', true)}
+                    aria-label="Add this language"
                     className="w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <Check className="w-8 h-8" />
@@ -335,12 +341,14 @@ export default function TeacherOnboarding() {
                 <div className="flex justify-center gap-4 mt-8">
                   <button
                     onClick={() => handleSwipe('left')}
+                    aria-label="Skip this experience type"
                     className="w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <X className="w-8 h-8" />
                   </button>
                   <button
                     onClick={() => handleSwipe('right')}
+                    aria-label="Add this experience type"
                     className="w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <Check className="w-8 h-8" />

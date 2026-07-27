@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
+import { usePlayerStore } from '../store/usePlayerStore';
+import { getQuestions } from '../data/questions';
+import studentsData from '../data/students.json';
 import { Trophy, Zap, Volume2, Flame, Star, Clock, Target, Award } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
@@ -69,21 +72,25 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
   }, [timeLeft, showFeedback]);
 
   const loadQuestions = async () => {
+    // The bundled bank keeps the game playable with no backend attached.
+    // Supabase overrides it whenever the table actually has content.
+    let loaded = getQuestions(language, 10);
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('questions')
         .select('*')
         .eq('language', language)
         .eq('question_type', 'translation')
         .limit(10);
 
-      if (error) throw error;
-      setQuestions(data || []);
+      if (data?.length) loaded = data;
     } catch (error) {
-      console.error('Error loading questions:', error);
-    } finally {
-      setLoading(false);
+      console.error('Using the local question bank:', error);
     }
+
+    setQuestions(loaded);
+    setLoading(false);
   };
 
   const handleAnswer = (answer) => {
@@ -220,32 +227,24 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
   }, [timeLeft, showFeedback]);
 
   const loadQuestions = async () => {
+    // The bundled bank keeps the game playable with no backend attached.
+    // Supabase overrides it whenever the table actually has content.
+    let loaded = getQuestions(language, 20);
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('questions')
         .select('*')
         .eq('language', language)
-        .eq('question_type', 'multiple_choice')
         .limit(20);
 
-      if (error) throw error;
-
-      // If no specific multiple_choice questions, use translation questions
-      if (!data || data.length === 0) {
-        const { data: backupData } = await supabase
-          .from('questions')
-          .select('*')
-          .eq('language', language)
-          .limit(20);
-        setQuestions(backupData || []);
-      } else {
-        setQuestions(data);
-      }
+      if (data?.length) loaded = data;
     } catch (error) {
-      console.error('Error loading questions:', error);
-    } finally {
-      setLoading(false);
+      console.error('Using the local question bank:', error);
     }
+
+    setQuestions(loaded);
+    setLoading(false);
   };
 
   const handleAnswer = (answer) => {
@@ -390,36 +389,42 @@ export default function GamesPage() {
   const [gameResults, setGameResults] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
+
+  const earnPoints = usePlayerStore((state) => state.earnPoints);
+  const awardBadge = usePlayerStore((state) => state.awardBadge);
+  const completeQuest = usePlayerStore((state) => state.completeQuest);
+  const points = usePlayerStore((state) => state.points);
+  const streak = usePlayerStore((state) => state.streak);
+  const playerLanguages = usePlayerStore((state) => state.languages);
 
   useEffect(() => {
     loadLeaderboard();
-    checkDailyStreak();
   }, []);
 
   const loadLeaderboard = async () => {
+    // Rank the seed students against the live player so the board is
+    // populated and the player's own position is real, backend or not.
+    const localBoard = [...studentsData]
+      .map((student) => ({ name: student.name, points: student.points, avatar: student.photo }))
+      .concat({ name: 'You', points, avatar: null })
+      .sort((a, b) => b.points - a.points);
+
+    setLeaderboard(localBoard.slice(0, 10));
+    setUserRank(localBoard.findIndex((entry) => entry.name === 'You') + 1);
+
+    if (!user?.id) return;
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('profiles')
         .select('name, points, level, avatar')
         .order('points', { ascending: false })
         .limit(10);
 
-      if (error) throw error;
-      setLeaderboard(data || []);
-
-      // Find user rank
-      if (user) {
-        const { data: allUsers } = await supabase
-          .from('profiles')
-          .select('id, points')
-          .order('points', { ascending: false });
-
-        const rank = allUsers?.findIndex(u => u.id === user.id) + 1;
-        setUserRank(rank);
-      }
+      if (data?.length) setLeaderboard(data);
     } catch (error) {
-      console.error('Error loading leaderboard:', error);
+      console.error('Using the local leaderboard:', error);
     }
   };
 
@@ -450,96 +455,71 @@ export default function GamesPage() {
     const accuracy = totalQuestions > 0 ? (score / totalQuestions) * 100 : 0;
     const pointsEarned = Math.floor((accuracy / 100) * game.points);
 
-    try {
-      // Save game session
-      await supabase.from('game_sessions').insert({
-        user_id: user.id,
-        game_type: selectedGame,
-        score,
-        points_earned: pointsEarned,
-        accuracy,
-      });
+    // The player store is the source of truth, so a finished run always counts
+    // - and the points are spendable in the shop immediately.
+    const result = earnPoints(pointsEarned, { games: 1 });
+    completeQuest('play-game');
 
-      // Update user points
-      const { data: currentProfile } = await supabase
-        .from('profiles')
-        .select('points')
-        .eq('id', user.id)
-        .single();
-
-      await supabase
-        .from('profiles')
-        .update({ points: (currentProfile?.points || 0) + pointsEarned })
-        .eq('id', user.id);
-
-      // Check for achievements
-      checkAchievements();
-
-      setGameResults({ score, totalQuestions, pointsEarned, accuracy });
-      setShowResults(true);
-    } catch (error) {
-      console.error('Error saving game results:', error);
+    if (accuracy === 100 && totalQuestions > 0) {
+      awardBadge('perfect-score');
+      completeQuest('perfect-round');
     }
-  };
 
-  const checkAchievements = async () => {
-    try {
-      // Check if first game achievement
-      const { data: sessions } = await supabase
-        .from('game_sessions')
-        .select('id')
-        .eq('user_id', user.id);
+    // Little "how did you find this" unlocks.
+    const hour = new Date().getHours();
+    if (hour < 4) awardBadge('night-owl');
+    else if (hour < 7) awardBadge('early-riser');
 
-      if (sessions?.length === 1) {
-        await supabase.from('user_achievements').insert({
+    setGameResults({
+      score,
+      totalQuestions,
+      pointsEarned: result.pointsGained,
+      accuracy,
+      leveledUp: result.leveledUp,
+      level: result.level,
+      badgesUnlocked: result.badgesUnlocked,
+    });
+    setShowResults(true);
+
+    // Mirror to Supabase when a real session exists - best effort only.
+    if (user?.id) {
+      try {
+        await supabase.from('game_sessions').insert({
           user_id: user.id,
-          achievement_id: 'first_game',
+          game_type: selectedGame,
+          score,
+          points_earned: pointsEarned,
+          accuracy,
         });
+      } catch (error) {
+        console.error('Could not sync the game session:', error);
       }
-
-      // Check if played all game types
-      const { data: gameTypes } = await supabase
-        .from('game_sessions')
-        .select('game_type')
-        .eq('user_id', user.id);
-
-      const uniqueGames = [...new Set(gameTypes?.map(g => g.game_type))];
-      if (uniqueGames.length >= 4) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'game_master',
-        });
-      }
-    } catch (error) {
-      console.error('Error checking achievements:', error);
     }
   };
 
   const handleClaimDailyStreak = async () => {
     try {
-      await supabase.from('game_sessions').insert({
-        user_id: user.id,
-        game_type: 'daily_streak',
+      const result = earnPoints(200);
+
+      setGameResults({
         score: 1,
-        points_earned: 200,
+        totalQuestions: 1,
+        pointsEarned: result.pointsGained,
+        accuracy: 100,
+        leveledUp: result.leveledUp,
+        level: result.level,
+        badgesUnlocked: result.badgesUnlocked,
       });
-
-      const { data: currentProfile } = await supabase
-        .from('profiles')
-        .select('points, streak')
-        .eq('id', user.id)
-        .single();
-
-      await supabase
-        .from('profiles')
-        .update({
-          points: (currentProfile?.points || 0) + 200,
-          last_active: new Date().toISOString().split('T')[0],
-        })
-        .eq('id', user.id);
-
-      setGameResults({ score: 1, totalQuestions: 1, pointsEarned: 200, accuracy: 100 });
       setShowResults(true);
+
+      if (user?.id) {
+        await supabase.from('game_sessions').insert({
+          user_id: user.id,
+          game_type: 'daily_streak',
+          score: 1,
+          points_earned: 200,
+        });
+      }
     } catch (error) {
       console.error('Error claiming daily streak:', error);
     }
@@ -636,13 +616,13 @@ export default function GamesPage() {
               {selectedGame === 'word_match' && (
                 <WordMatchGame
                   onComplete={handleGameComplete}
-                  language={profile?.languages_learning?.[0] || 'Spanish'}
+                  language={playerLanguages[0] || 'es'}
                 />
               )}
               {selectedGame === 'speed_quiz' && (
                 <SpeedQuizGame
                   onComplete={handleGameComplete}
-                  language={profile?.languages_learning?.[0] || 'Spanish'}
+                  language={playerLanguages[0] || 'es'}
                 />
               )}
               {selectedGame === 'listening_challenge' && (
@@ -665,19 +645,19 @@ export default function GamesPage() {
         </div>
 
         {/* User Stats */}
-        {profile && (
+        {
           <div className="grid grid-cols-3 gap-4 mb-8">
             <Card>
               <CardBody className="text-center p-4">
                 <div className="text-3xl mb-2">⭐</div>
-                <div className="text-2xl font-bold text-yellow-600">{profile.points}</div>
+                <div className="text-2xl font-bold text-yellow-600">{points}</div>
                 <div className="text-sm text-gray-600">Points</div>
               </CardBody>
             </Card>
             <Card>
               <CardBody className="text-center p-4">
                 <div className="text-3xl mb-2">🔥</div>
-                <div className="text-2xl font-bold text-orange-600">{profile.streak || 0}</div>
+                <div className="text-2xl font-bold text-orange-600">{streak}</div>
                 <div className="text-sm text-gray-600">Day Streak</div>
               </CardBody>
             </Card>
@@ -689,7 +669,7 @@ export default function GamesPage() {
               </CardBody>
             </Card>
           </div>
-        )}
+        }
 
         {/* Game Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">

@@ -12,6 +12,13 @@ export const translations = {
       myProfile: 'My Profile',
       teacherDashboard: 'Teacher Dashboard',
       signOut: 'Sign Out',
+      home: 'Home',
+      games: 'Games',
+      shop: 'Shop',
+      chat: 'Chat',
+      character: 'Character',
+      points: 'points',
+      dayStreak: 'day streak',
     },
 
     // Role Selection
@@ -358,6 +365,13 @@ export const translations = {
       myProfile: 'Mon Profil',
       teacherDashboard: 'Tableau de Bord',
       signOut: 'Déconnexion',
+      home: 'Accueil',
+      games: 'Jeux',
+      shop: 'Boutique',
+      chat: 'Messages',
+      character: 'Personnage',
+      points: 'points',
+      dayStreak: 'jours de suite',
     },
 
     // Role Selection
@@ -704,6 +718,13 @@ export const translations = {
       myProfile: 'Mi Perfil',
       teacherDashboard: 'Panel de Profesor',
       signOut: 'Cerrar Sesión',
+      home: 'Inicio',
+      games: 'Juegos',
+      shop: 'Tienda',
+      chat: 'Mensajes',
+      character: 'Personaje',
+      points: 'puntos',
+      dayStreak: 'días seguidos',
     },
 
     // Role Selection

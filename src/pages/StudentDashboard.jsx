@@ -19,47 +19,44 @@ import {
 } from 'lucide-react';
 import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { useStore } from '../store/useStore';
-import { dailyQuests, badges } from '../data/characters';
+import { usePlayerStore, usePlayerLevel } from '../store/usePlayerStore';
+import { characters, accessories } from '../data/characters';
+import { BADGES, getBadge } from '../data/gamification';
 import { useLanguage } from '../contexts/LanguageContext';
 
+/** Find the emoji for an equipped item in any accessory slot. */
+const accessoryEmoji = (slot, id) =>
+  id ? accessories[slot]?.find((item) => item.id === id)?.emoji : null;
+
 export default function StudentDashboard() {
-  const currentUser = useStore((state) => state.currentUser);
   const { t } = useLanguage();
 
-  // Mock user stats - in real app, fetch from backend
-  const [userStats, setUserStats] = useState({
-    points: 1250,
-    streak: 7,
-    level: 5,
-    xp: 350,
-    xpToNextLevel: 500,
-    completedLessons: 23,
-    totalHours: 12,
-    rank: 'Gold',
-    selectedCharacter: 'owl',
-    equippedHat: null,
-    equippedGlasses: null,
-    equippedAccessory: 'fire',
-    background: 'beach',
-  });
+  // Everything below comes from the one player store, so these numbers match
+  // the header, the shop and the profile exactly.
+  const user = usePlayerStore((state) => state.user);
+  const points = usePlayerStore((state) => state.points);
+  const streak = usePlayerStore((state) => state.streak);
+  const bestStreak = usePlayerStore((state) => state.bestStreak);
+  const earnedBadges = usePlayerStore((state) => state.badges);
+  const equipped = usePlayerStore((state) => state.equipped);
+  const completedQuests = usePlayerStore((state) => state.completedQuests);
+  const stats = usePlayerStore((state) => state.stats);
+  const todaysQuests = usePlayerStore((state) => state.todaysQuests);
+  const completeQuest = usePlayerStore((state) => state.completeQuest);
 
-  const [completedQuests, setCompletedQuests] = useState([]);
-  const [earnedBadges, setEarnedBadges] = useState(['first_lesson', 'week_streak']);
+  const level = usePlayerLevel();
+  const quests = todaysQuests();
 
-  const completeQuest = (questId) => {
-    if (!completedQuests.includes(questId)) {
-      const quest = dailyQuests.find(q => q.id === questId);
-      setCompletedQuests([...completedQuests, questId]);
-      setUserStats(prev => ({ ...prev, points: prev.points + quest.reward }));
-    }
-  };
+  const character = characters.find((c) => c.id === equipped.character) ?? characters[0];
+  const hatEmoji = accessoryEmoji('hats', equipped.hat);
+  const glassesEmoji = accessoryEmoji('glasses', equipped.glasses);
+  const accessoryIcon = accessoryEmoji('accessories', equipped.accessory);
 
-  // Character display with accessories
+  // Character display with whatever the player actually owns and equipped
   const CharacterDisplay = () => (
     <div className="relative">
       <motion.div
-        className="text-9xl filter drop-shadow-2xl"
+        className="text-8xl sm:text-9xl filter drop-shadow-2xl"
         animate={{
           y: [0, -10, 0],
         }}
@@ -69,24 +66,35 @@ export default function StudentDashboard() {
           ease: "easeInOut"
         }}
       >
-        🦉
+        {character.emoji}
       </motion.div>
 
       {/* Equipped accessories */}
-      {userStats.equippedHat && (
+      {hatEmoji && (
         <motion.div
-          className="absolute -top-8 left-1/2 -translate-x-1/2 text-4xl"
+          className="absolute -top-6 left-1/2 -translate-x-1/2 text-4xl"
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 200 }}
         >
-          👑
+          {hatEmoji}
         </motion.div>
       )}
 
-      {userStats.equippedAccessory && (
+      {glassesEmoji && (
         <motion.div
-          className="absolute -right-4 top-1/2 -translate-y-1/2 text-3xl"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 text-3xl"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200 }}
+        >
+          {glassesEmoji}
+        </motion.div>
+      )}
+
+      {accessoryIcon && (
+        <motion.div
+          className="absolute -right-2 top-1/2 -translate-y-1/2 text-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 10, -10, 0],
@@ -96,7 +104,7 @@ export default function StudentDashboard() {
             repeat: Infinity,
           }}
         >
-          🔥
+          {accessoryIcon}
         </motion.div>
       )}
     </div>
@@ -113,7 +121,7 @@ export default function StudentDashboard() {
           className="mb-8"
         >
           <h1 className="text-4xl md:text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent mb-2">
-            Welcome back, {currentUser?.name || 'Student'}! 👋
+            Welcome back, {user?.name || 'Student'}! 👋
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
             Ready to continue your learning journey?
@@ -139,30 +147,34 @@ export default function StudentDashboard() {
                   <CharacterDisplay />
 
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
-                    Duo the Owl
+                    {character.name}
                   </h3>
 
-                  <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="flex items-center justify-center gap-2 mb-1">
                     <Star className="w-5 h-5 text-primary-500 fill-primary-500" />
                     <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-                      Level {userStats.level}
+                      Level {level.level}
                     </span>
                   </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{level.name}</p>
 
-                  {/* XP Progress */}
+                  {/* Progress to the next level */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      <span>{userStats.xp} XP</span>
-                      <span>{userStats.xpToNextLevel} XP</span>
+                      <span>{points} pts</span>
+                      <span>{level.nextThreshold} pts</span>
                     </div>
                     <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
                         className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
                         initial={{ width: 0 }}
-                        animate={{ width: `${(userStats.xp / userStats.xpToNextLevel) * 100}%` }}
+                        animate={{ width: `${level.percentage}%` }}
                         transition={{ duration: 1, delay: 0.5 }}
                       />
                     </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {level.pointsNeeded} points to level {level.level + 1}
+                    </p>
                   </div>
 
                   <Link to="/character-builder">
@@ -187,7 +199,7 @@ export default function StudentDashboard() {
                     <div className="text-center p-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-xl">
                       <Trophy className="w-8 h-8 text-primary-600 mx-auto mb-2" />
                       <div className="text-3xl font-bold text-primary-600 mb-1">
-                        {userStats.points}
+                        {points}
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">
                         Total Points
@@ -197,7 +209,7 @@ export default function StudentDashboard() {
                     <div className="text-center p-4 bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/20 dark:to-secondary-800/20 rounded-xl">
                       <Flame className="w-8 h-8 text-secondary-600 mx-auto mb-2" />
                       <div className="text-3xl font-bold text-secondary-600 mb-1">
-                        {userStats.streak}
+                        {streak}
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">
                         Day Streak
@@ -229,22 +241,28 @@ export default function StudentDashboard() {
                   </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Lessons</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Games played</span>
                       <span className="font-semibold text-gray-900 dark:text-white">
-                        {userStats.completedLessons}
+                        {stats.gamesPlayed}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Hours</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Experiences</span>
                       <span className="font-semibold text-gray-900 dark:text-white">
-                        {userStats.totalHours}h
+                        {stats.experiencesBooked}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Best streak</span>
+                      <span className="font-semibold text-gray-900 dark:text-white">
+                        {bestStreak} days
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600 dark:text-gray-400">Rank</span>
                       <span className="font-semibold text-primary-600 flex items-center gap-1">
                         <Crown className="w-4 h-4" />
-                        {userStats.rank}
+                        {level.name}
                       </span>
                     </div>
                   </div>
@@ -275,7 +293,7 @@ export default function StudentDashboard() {
                   </div>
 
                   <div className="space-y-3">
-                    {dailyQuests.slice(0, 3).map((quest, index) => {
+                    {quests.map((quest, index) => {
                       const isCompleted = completedQuests.includes(quest.id);
 
                       return (
@@ -292,7 +310,7 @@ export default function StudentDashboard() {
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="text-3xl">{quest.emoji}</div>
+                              <div className="text-3xl">{quest.icon}</div>
                               <div>
                                 <h4 className="font-semibold text-gray-900 dark:text-white">
                                   {quest.name}
@@ -343,15 +361,18 @@ export default function StudentDashboard() {
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                       <Award className="w-6 h-6 text-primary-500" />
                       Achievements
+                      <span className="text-base font-medium text-gray-500 dark:text-gray-400">
+                        {earnedBadges.length}/{BADGES.length}
+                      </span>
                     </h2>
-                    <Link to="/achievements" className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center gap-1">
+                    <Link to="/profile" className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center gap-1">
                       View All
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
-                    {badges.slice(0, 10).map((badge, index) => {
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 sm:gap-4">
+                    {BADGES.slice(0, 10).map((badge, index) => {
                       const isEarned = earnedBadges.includes(badge.id);
 
                       return (
@@ -368,7 +389,7 @@ export default function StudentDashboard() {
                           whileHover={{ scale: 1.05 }}
                         >
                           <div className={`text-3xl mb-1 ${!isEarned && 'grayscale'}`}>
-                            {badge.emoji}
+                            {badge.icon}
                           </div>
                           <div className="text-xs font-medium text-center text-gray-700 dark:text-gray-300 line-clamp-2">
                             {badge.name}

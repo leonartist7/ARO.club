@@ -10,9 +10,12 @@ import { LANGUAGES, CITIES } from '../../data/constants';
  */
 export default function TeacherCard({ teacher }) {
   const city = CITIES.find((c) => c.id === teacher.cityId);
-  const languages = teacher.languages.map((code) =>
-    LANGUAGES.find((l) => l.code === code)
-  );
+
+  // Teachers list codes we don't have metadata for (English isn't in
+  // LANGUAGES), so drop unknown ones rather than rendering `undefined.flag`.
+  const languages = (teacher.languages ?? [])
+    .map((code) => LANGUAGES.find((l) => l.code === code))
+    .filter(Boolean);
 
   return (
     <Link to={`/teacher/${teacher.id}`}>
