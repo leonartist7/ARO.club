@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import EmptyState from '../components/ui/EmptyState';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import teachersData from '../data/teachers.json';
 import { LANGUAGES, CITIES } from '../data/constants';
 import { formatPrice, getSpotsLeft } from '../utils/helpers';

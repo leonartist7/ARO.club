@@ -6,7 +6,7 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES } from '../data/constants';

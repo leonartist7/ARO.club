@@ -1,6 +1,16 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Users, Star, Calendar, Heart, ChevronLeft } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import {
+  MapPin,
+  Clock,
+  Users,
+  Star,
+  Calendar,
+  Heart,
+  ChevronLeft,
+  CheckCircle2,
+  Sparkles,
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
@@ -16,7 +26,9 @@ import BookingProtection from '../components/ui/BookingProtection';
 import RecentlyBooked from '../components/ui/RecentlyBooked';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { useStore } from '../store/useStore';
-import experiencesData from '../data/experiences.json';
+import { usePlayerStore } from '../store/usePlayerStore';
+import { getBadge } from '../data/gamification';
+import experiencesData from '../data/experiences';
 import teachersData from '../data/teachers.json';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES } from '../data/constants';
@@ -27,12 +39,18 @@ import { getExperienceShareText } from '../utils/shareUtils';
 export default function ExperienceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { addToRecentlyViewed } = useRecentlyViewed();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewSortBy, setReviewSortBy] = useState('recent'); // 'recent', 'highest', 'lowest', 'helpful'
 
   // Module 3: Selected date state
   const { selectedDate, setSelectedDate } = useStore();
+
+  const player = usePlayerStore((state) => state.user);
+  const bookExperience = usePlayerStore((state) => state.bookExperience);
+  const bookings = usePlayerStore((state) => state.bookings);
+  const [bookingResult, setBookingResult] = useState(null);
 
   const experience = experiencesData.find((exp) => exp.id === id);
 
@@ -103,14 +121,27 @@ export default function ExperienceDetailPage() {
   };
 
   const currentSpots = getCurrentSpots();
+  const alreadyBooked = bookings.some((booking) => booking.experienceId === experience.id);
 
   // Generate share text
   const shareText = getExperienceShareText(experience, city, language);
   const shareUrl = window.location.href;
 
   const handleBooking = () => {
-    const bookingDate = selectedDate || experience.date;
-    alert(`Booking for ${formatDate(bookingDate)}. Payment integration coming soon!`);
+    if (!player) {
+      navigate('/choose-role', { state: { from: location } });
+      return;
+    }
+
+    // Records the booking, earns points and can unlock the journey badges.
+    // Payment is a later step - this is the reservation itself.
+    const result = bookExperience({
+      experience,
+      date: selectedDate || experience.date,
+      pricePaid: experience.price,
+    });
+
+    setBookingResult(result ?? { alreadyBooked: true });
   };
 
   return (
@@ -486,10 +517,17 @@ export default function ExperienceDetailPage() {
                     variant="primary"
                     size="lg"
                     className="w-full"
-                    disabled={currentSpots === 0}
+                    disabled={currentSpots === 0 || alreadyBooked}
+                    icon={alreadyBooked ? <CheckCircle2 className="w-4 h-4" /> : null}
                     onClick={handleBooking}
                   >
-                    {currentSpots === 0 ? 'Sold Out' : selectedDate ? 'Book Selected Date' : 'Book Now'}
+                    {currentSpots === 0
+                      ? 'Sold Out'
+                      : alreadyBooked
+                      ? 'Booked'
+                      : selectedDate
+                      ? 'Book Selected Date'
+                      : 'Book Now'}
                   </Button>
 
                   <Button
@@ -521,6 +559,82 @@ export default function ExperienceDetailPage() {
           </div>
         )}
       </div>
+
+      {/* Booking confirmation - the payoff moment */}
+      <AnimatePresence>
+        {bookingResult && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={() => setBookingResult(null)}
+            role="dialog"
+            aria-modal="true"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(event) => event.stopPropagation()}
+              className="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl"
+            >
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                className="text-6xl mb-4"
+              >
+                🎉
+              </motion.div>
+
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                You're booked!
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                {experience.title} on {formatDate(bookingResult.booking?.date ?? experience.date)}.
+              </p>
+
+              {bookingResult.pointsGained > 0 && (
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold mb-4">
+                  <Sparkles className="w-4 h-4" />+{bookingResult.pointsGained} points
+                </div>
+              )}
+
+              {bookingResult.badgesUnlocked?.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Badge unlocked</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {bookingResult.badgesUnlocked.map((badgeId) => {
+                      const badge = getBadge(badgeId);
+                      return (
+                        <span
+                          key={badgeId}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-100 dark:bg-secondary-900/30 text-secondary-800 dark:text-secondary-200 text-sm font-medium"
+                        >
+                          <span>{badge?.icon}</span>
+                          {badge?.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mt-2">
+                <Button variant="primary" onClick={() => setBookingResult(null)}>
+                  Keep browsing
+                </Button>
+                <Link to="/profile" className="sm:w-auto">
+                  <Button variant="outline" className="w-full">
+                    View my bookings
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

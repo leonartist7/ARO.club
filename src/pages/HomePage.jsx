@@ -4,7 +4,7 @@ import Button from '../components/ui/Button';
 import ExperienceCard from '../components/features/ExperienceCard';
 import RecentlyViewed from '../components/RecentlyViewed';
 import { motion } from 'framer-motion';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 

@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 export default function NotFoundPage() {
   const navigate = useNavigate();

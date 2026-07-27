@@ -24,25 +24,35 @@ import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
 import Avatar from '../components/ui/Avatar';
 import teachersData from '../data/teachers.json';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES, SKILL_LEVELS, EXPERIENCE_TYPES } from '../data/constants';
 import { formatDate } from '../utils/date';
 import { formatPrice } from '../utils/helpers';
-import { useStore } from '../store/useStore';
+import { usePlayerStore } from '../store/usePlayerStore';
 
 export default function TeacherDashboardPage() {
-  const {
-    isTeacher,
-    teacherExperiences,
-    addTeacherExperience,
-    updateTeacherExperience,
-    deleteTeacherExperience,
-  } = useStore();
+  // The signed-in teacher, plus the listings they've authored - both from the
+  // persisted player store, so this is their dashboard rather than the first
+  // seed teacher's.
+  const player = usePlayerStore((state) => state.user);
+  const teacherLanguages = usePlayerStore((state) => state.languages);
+  const specialties = usePlayerStore((state) => state.interests);
+  const teacherExperiences = usePlayerStore((state) => state.createdExperiences);
+  const addTeacherExperience = usePlayerStore((state) => state.createExperience);
+  const updateTeacherExperience = usePlayerStore((state) => state.updateExperience);
+  const deleteTeacherExperience = usePlayerStore((state) => state.deleteExperience);
 
-  // Mock current teacher (first teacher)
-  const currentTeacher = teachersData[0];
-  const mockIsTeacher = true; // For demo purposes
+  const currentTeacher = {
+    id: player?.id ?? 'me',
+    name: player?.name ?? 'Teacher',
+    photo: player?.photo,
+    bio: player?.bio,
+    rating: null,
+    totalSessions: 0,
+    languages: teacherLanguages,
+    specialties,
+  };
 
   const [activeTab, setActiveTab] = useState('upcoming');
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -182,7 +192,7 @@ export default function TeacherDashboardPage() {
   };
 
   // Not a teacher check
-  if (!mockIsTeacher && !isTeacher) {
+  if (player && player.role !== 'teacher') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Card className="max-w-md">
@@ -277,9 +287,13 @@ export default function TeacherDashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Average Rating</p>
-                  <p className="text-3xl font-bold text-gray-900">{avgRating}</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {avgRating ?? '—'}
+                  </p>
                   <p className="text-xs text-gray-500 mt-1">
-                    From {teacherReviews.length} reviews
+                    {teacherReviews.length > 0
+                      ? `From ${teacherReviews.length} reviews`
+                      : 'No reviews yet'}
                   </p>
                 </div>
                 <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">

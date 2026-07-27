@@ -3,7 +3,7 @@ import { X, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCompare } from '../hooks/useCompare';
 import Button from './ui/Button';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 /**
  * Compare Bar Component

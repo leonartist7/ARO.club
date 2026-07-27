@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { getLevelFromPoints, getProgressToNextLevel } from '../utils/helpers';
+import {
+  getLevelFromPoints,
+  getProgressToNextLevel,
+  calculatePointsEarned,
+} from '../utils/helpers';
 import { BADGES, DAILY_QUESTS, QUESTS_PER_DAY } from '../data/gamification';
 
 /**
@@ -63,6 +67,12 @@ const emptyPlayer = {
   interests: [],
   goal: null,
 
+  // Marketplace
+  bookings: [],
+
+  // Teacher-authored experiences
+  createdExperiences: [],
+
   // Daily loop
   completedQuests: [],
   questsDate: null,
@@ -93,6 +103,10 @@ const AUTO_BADGES = [
   { id: 'polyglot', earned: (s) => s.stats.languagesStudied >= 3 },
   { id: 'social-butterfly', earned: (s) => s.stats.conversationsStarted >= 5 },
   { id: 'review-master', earned: (s) => s.stats.reviewsWritten >= 10 },
+  {
+    id: 'couple-goals',
+    earned: (s) => s.bookings.filter((booking) => booking.couple).length >= 3,
+  },
 ];
 
 /**
@@ -256,6 +270,124 @@ export const usePlayerStore = create(
           totalEarned: state.totalEarned + bonus,
         });
       },
+
+      // ----------------------------------------------------------- bookings
+
+      /**
+       * Book an experience.
+       *
+       * This is the seam between the marketplace and the game: a booking
+       * earns points, fills in the profile, and can unlock the journey badges
+       * (first booking, cities visited, languages studied, couple goals).
+       */
+      bookExperience: ({ experience, date = null, spots = 1, couple = false, pricePaid }) => {
+        const state = get();
+        if (!experience) return null;
+        if (state.bookings.some((booking) => booking.experienceId === experience.id)) {
+          return null; // already booked - don't double count
+        }
+
+        const paid = pricePaid ?? experience.price ?? 0;
+        const booking = {
+          experienceId: experience.id,
+          cityId: experience.cityId,
+          language: experience.language,
+          date: date ?? experience.date,
+          spots,
+          couple,
+          pricePaid: paid,
+          bookedAt: new Date().toISOString(),
+        };
+
+        const bookings = [...state.bookings, booking];
+        const earned = calculatePointsEarned(paid);
+
+        const next = {
+          ...state,
+          bookings,
+          points: state.points + earned,
+          totalEarned: state.totalEarned + earned,
+          stats: {
+            ...state.stats,
+            experiencesBooked: bookings.length,
+            citiesVisited: new Set(bookings.map((b) => b.cityId)).size,
+            languagesStudied: new Set(bookings.map((b) => b.language)).size,
+          },
+        };
+
+        const { unlocked, bonus } = settleBadges(next);
+
+        set({
+          bookings,
+          points: next.points + bonus,
+          totalEarned: next.totalEarned + bonus,
+          stats: next.stats,
+          badges: [...state.badges, ...unlocked],
+        });
+
+        return { pointsGained: earned + bonus, badgesUnlocked: unlocked, booking };
+      },
+
+      hasBooked: (experienceId) =>
+        get().bookings.some((booking) => booking.experienceId === experienceId),
+
+      // ------------------------------------------------------ teacher tools
+
+      /**
+       * Publish or draft an experience. Lives here (rather than in the
+       * transient UI store it used to) so a teacher's listings survive a
+       * refresh and can show up in Explore alongside the seed catalogue.
+       */
+      createExperience: (data) => {
+        const user = get().user;
+
+        // Normalise into the same shape as the seed catalogue. The create
+        // form keeps `location` as a plain string and `city` rather than
+        // `cityId`; Explore and ExperienceCard expect the richer shape, so
+        // convert here rather than letting a half-formed record leak out.
+        const when = data.time ? `${data.date}T${data.time}` : data.date;
+
+        const experience = {
+          ...data,
+          id: `own-${Date.now()}`,
+          cityId: data.cityId ?? data.city ?? '',
+          date: when,
+          price: Number(data.price) || 0,
+          duration: Number(data.duration) || 1,
+          maxCapacity: Number(data.maxCapacity) || 6,
+          location:
+            typeof data.location === 'string'
+              ? { venue: data.location, address: data.location }
+              : data.location ?? { venue: '', address: '' },
+          image: data.image ?? '',
+          tags: data.tags ?? [],
+          featured: false,
+          teacherId: user?.id ?? 'me',
+          teacherName: user?.name ?? 'You',
+          teacherPhoto: user?.photo ?? null,
+          teacherRating: null,
+          bookedSpots: 0,
+          status: data.status ?? 'draft',
+          createdAt: new Date().toISOString(),
+        };
+
+        set((state) => ({ createdExperiences: [...state.createdExperiences, experience] }));
+        return experience;
+      },
+
+      updateExperience: (id, updates) =>
+        set((state) => ({
+          createdExperiences: state.createdExperiences.map((experience) =>
+            experience.id === id ? { ...experience, ...updates } : experience
+          ),
+        })),
+
+      deleteExperience: (id) =>
+        set((state) => ({
+          createdExperiences: state.createdExperiences.filter(
+            (experience) => experience.id !== id
+          ),
+        })),
 
       // -------------------------------------------------------- daily streak
 

@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import EmptyState from '../components/ui/EmptyState';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { useToast } from '../hooks/useToast';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 /**
  * RecentlyViewedPage - Full page view of recently viewed experiences

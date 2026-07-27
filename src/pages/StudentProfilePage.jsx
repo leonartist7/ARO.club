@@ -24,79 +24,91 @@ import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
 import TeacherCard from '../components/features/TeacherCard';
-import studentsData from '../data/students.json';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import teachersData from '../data/teachers.json';
-import { BADGE_DEFINITIONS, LANGUAGES } from '../data/constants';
+import { LANGUAGES } from '../data/constants';
+import { BADGES } from '../data/gamification';
 import { formatDate } from '../utils/date';
-import { getLevelFromPoints, getProgressToNextLevel } from '../utils/helpers';
-import { useAuth } from '../contexts/AuthContext';
+import { usePlayerStore, usePlayerLevel } from '../store/usePlayerStore';
+import { useFavorites } from '../hooks/useFavorites';
 
 export default function StudentProfilePage() {
   const [activeTab, setActiveTab] = useState('overview');
-  const { profile, loading } = useAuth();
 
-  // Use Supabase profile if available, fallback to mock data
-  const student = profile || studentsData[0];
+  // The same store the header, dashboard and shop read, so this page can no
+  // longer show a different person with different points.
+  const player = usePlayerStore((state) => state.user);
+  const points = usePlayerStore((state) => state.points);
+  const earned = usePlayerStore((state) => state.badges);
+  const playerLanguages = usePlayerStore((state) => state.languages);
+  const bookings = usePlayerStore((state) => state.bookings);
+  const playerStats = usePlayerStore((state) => state.stats);
+  const level = usePlayerLevel();
+  const { favorites } = useFavorites();
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
-      </div>
-    );
-  }
+  const earnedBadges = BADGES.filter((badge) => earned.includes(badge.id));
+  const lockedBadges = BADGES.filter((badge) => !earned.includes(badge.id));
 
-  // Get level info
-  const levelInfo = getLevelFromPoints(student.points || 0);
-  const progressInfo = getProgressToNextLevel(student.points || 0);
-
-  // Get earned and locked badges - safely handle missing data
-  const studentBadges = student.badges || [];
-  const earnedBadges = BADGE_DEFINITIONS.filter((badge) =>
-    studentBadges.includes(badge.id)
-  );
-  const lockedBadges = BADGE_DEFINITIONS.filter(
-    (badge) => !studentBadges.includes(badge.id)
-  );
-
-  // Safely get stats - handle both snake_case and camelCase
-  const stats = student.stats || {
-    totalExperiences: 0,
-    citiesVisited: 0,
-    teachersMet: 0,
-    reviewsWritten: 0,
+  const stats = {
+    totalExperiences: playerStats.experiencesBooked,
+    citiesVisited: playerStats.citiesVisited,
+    teachersMet: new Set(
+      bookings
+        .map((b) => experiencesData.find((exp) => exp.id === b.experienceId)?.teacherId)
+        .filter(Boolean)
+    ).size,
+    reviewsWritten: playerStats.reviewsWritten,
   };
 
-  // Get languages with metadata - safely handle missing or malformed data
-  const languagesLearning = (student.languages_learning || student.languagesLearning || [])
-    .map((lang) => {
-      const languageData = LANGUAGES.find((l) => l.code === lang.code);
-      if (!languageData) return null; // Skip if language not found
-      return {
-        ...lang,
-        ...languageData,
-      };
-    })
-    .filter(Boolean); // Remove null entries
+  // Languages picked during onboarding, with their flag/name metadata.
+  const languagesLearning = playerLanguages
+    .map((code) => LANGUAGES.find((l) => l.code === code))
+    .filter(Boolean)
+    .map((language) => ({
+      ...language,
+      level: 'beginner',
+      progress: Math.min(
+        100,
+        bookings.filter((b) => b.language === language.code).length * 20
+      ),
+    }));
 
-  // Get upcoming experiences - handle both snake_case and camelCase
-  const upcomingBookings = student.upcoming_bookings || student.upcomingBookings || [];
-  const upcomingExperiences = experiencesData
-    .filter((exp) => upcomingBookings.includes(exp.id))
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
+  // Real bookings, split by whether the session has happened yet.
+  const now = Date.now();
+  const bookedExperiences = bookings
+    .map((booking) => ({
+      booking,
+      experience: experiencesData.find((exp) => exp.id === booking.experienceId),
+    }))
+    .filter((entry) => entry.experience);
 
-  // Get past experiences - handle both snake_case and camelCase
-  const pastBookings = student.past_bookings || student.pastBookings || [];
-  const pastExperiences = experiencesData
-    .filter((exp) => pastBookings.includes(exp.id))
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const upcomingExperiences = bookedExperiences
+    .filter(({ booking }) => new Date(booking.date).getTime() >= now)
+    .sort((a, b) => new Date(a.booking.date) - new Date(b.booking.date))
+    .map(({ experience }) => experience);
 
-  // Get favorite teachers - handle both snake_case and camelCase
-  const favoriteTeacherIds = student.favorite_teachers || student.favoriteTeachers || [];
-  const favoriteTeachers = teachersData.filter((teacher) =>
-    favoriteTeacherIds.includes(teacher.id)
+  const pastExperiences = bookedExperiences
+    .filter(({ booking }) => new Date(booking.date).getTime() < now)
+    .sort((a, b) => new Date(b.booking.date) - new Date(a.booking.date))
+    .map(({ experience }) => experience);
+
+  // Favourites are experience ids, so the teachers shown here are the ones
+  // behind the experiences the player saved.
+  const favouritedTeacherIds = new Set(
+    favorites
+      .map((expId) => experiencesData.find((exp) => exp.id === expId)?.teacherId)
+      .filter(Boolean)
   );
+  const favoriteTeachers = teachersData.filter((teacher) =>
+    favouritedTeacherIds.has(teacher.id)
+  );
+
+  const student = {
+    name: player?.name || 'Learner',
+    photo: player?.photo,
+    bio: player?.bio,
+    memberSince: player?.memberSince || new Date(),
+  };
 
   // Mobile tab content
   const tabs = [
@@ -133,16 +145,16 @@ export default function StudentProfilePage() {
                   {student.name}
                 </h1>
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                  Level {levelInfo.level}
+                  Level {level.level}
                 </Badge>
               </div>
 
-              <p className="text-white/90 text-lg mb-3">{levelInfo.name}</p>
+              <p className="text-white/90 text-lg mb-3">{level.name}</p>
 
               <div className="flex items-center gap-2 text-white/80 mb-4">
                 <Calendar className="w-4 h-4" />
                 <span className="text-sm">
-                  Member since {formatDate(student.member_since || student.memberSince || new Date(), 'MMMM yyyy')}
+                  Member since {formatDate(student.memberSince, 'MMMM yyyy')}
                 </span>
               </div>
 
@@ -150,7 +162,7 @@ export default function StudentProfilePage() {
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-1">
                   <Trophy className="w-4 h-4" />
-                  <span className="font-medium">{student.points || 0}</span> points
+                  <span className="font-medium">{points}</span> points
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4" />
@@ -225,14 +237,14 @@ export default function StudentProfilePage() {
                   {/* Points and Level */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-3xl font-bold text-gray-900">{student.points || 0}</p>
+                      <p className="text-3xl font-bold text-gray-900">{points}</p>
                       <p className="text-sm text-gray-600">Total Points</p>
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-primary-500">
-                        Level {levelInfo.level}
+                        Level {level.level}
                       </p>
-                      <p className="text-sm text-gray-600">{levelInfo.name}</p>
+                      <p className="text-sm text-gray-600">{level.name}</p>
                     </div>
                   </div>
 
@@ -240,22 +252,22 @@ export default function StudentProfilePage() {
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-medium text-gray-700">
-                        Progress to Level {levelInfo.level + 1}
+                        Progress to Level {level.level + 1}
                       </p>
                       <p className="text-sm text-gray-600">
-                        {progressInfo.pointsNeeded} points to go
+                        {level.pointsNeeded} points to go
                       </p>
                     </div>
                     <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${progressInfo.percentage}%` }}
+                        animate={{ width: `${level.percentage}%` }}
                         transition={{ duration: 1, delay: 0.2 }}
                         className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
                       />
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
-                      {Math.round(progressInfo.percentage)}% complete
+                      {Math.round(level.percentage)}% complete
                     </p>
                   </div>
                 </div>
@@ -271,7 +283,7 @@ export default function StudentProfilePage() {
                     Badges
                   </h2>
                   <Badge variant="secondary" size="sm" className="ml-auto">
-                    {earnedBadges.length} / {BADGE_DEFINITIONS.length}
+                    {earnedBadges.length} / {BADGES.length}
                   </Badge>
                 </div>
 

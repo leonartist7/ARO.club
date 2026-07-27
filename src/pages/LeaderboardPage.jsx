@@ -17,17 +17,40 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import studentsData from '../data/students.json';
-import { BADGE_DEFINITIONS } from '../data/constants';
+import { BADGES } from '../data/gamification';
 import { getLevelFromPoints } from '../utils/helpers';
+import { usePlayerStore } from '../store/usePlayerStore';
+
+const PLAYER_ID = '__you__';
 
 export default function LeaderboardPage() {
   const [activeFilter, setActiveFilter] = useState('all-time');
 
-  // Current user (first student)
-  const currentUserId = studentsData[0].id;
+  // The signed-in player competes on the real board rather than the board
+  // pretending the first seed student is you.
+  const player = usePlayerStore((state) => state.user);
+  const points = usePlayerStore((state) => state.points);
+  const badges = usePlayerStore((state) => state.badges);
+  const playerStats = usePlayerStore((state) => state.stats);
 
-  // Sort students by points
-  const rankedStudents = [...studentsData].sort((a, b) => b.points - a.points);
+  const board = player
+    ? [
+        ...studentsData,
+        {
+          id: PLAYER_ID,
+          name: player.name || 'You',
+          photo: player.photo,
+          points,
+          badges,
+          stats: { totalExperiences: playerStats.experiencesBooked },
+        },
+      ]
+    : studentsData;
+
+  const currentUserId = player ? PLAYER_ID : null;
+
+  // Sort by points
+  const rankedStudents = [...board].sort((a, b) => b.points - a.points);
 
   // Top 3 for podium
   const topThree = rankedStudents.slice(0, 3);
@@ -36,14 +59,18 @@ export default function LeaderboardPage() {
   const nextRanks = rankedStudents.slice(3, 10);
 
   // Find current user rank
-  const currentUserRank = rankedStudents.findIndex((s) => s.id === currentUserId) + 1;
-  const currentUser = rankedStudents.find((s) => s.id === currentUserId);
+  const currentUserRank = currentUserId
+    ? rankedStudents.findIndex((s) => s.id === currentUserId) + 1
+    : 0;
+  const currentUser = currentUserId
+    ? rankedStudents.find((s) => s.id === currentUserId)
+    : null;
 
   // Community stats
-  const totalPoints = studentsData.reduce((sum, s) => sum + s.points, 0);
-  const totalExperiences = studentsData.reduce((sum, s) => sum + s.stats.totalExperiences, 0);
-  const totalBadgesEarned = studentsData.reduce((sum, s) => sum + s.badges.length, 0);
-  const avgPointsPerUser = Math.round(totalPoints / studentsData.length);
+  const totalPoints = board.reduce((sum, s) => sum + s.points, 0);
+  const totalExperiences = board.reduce((sum, s) => sum + (s.stats?.totalExperiences ?? 0), 0);
+  const totalBadgesEarned = board.reduce((sum, s) => sum + s.badges.length, 0);
+  const avgPointsPerUser = Math.round(totalPoints / board.length);
 
   const filters = [
     { id: 'all-time', label: 'All Time' },
@@ -432,7 +459,7 @@ export default function LeaderboardPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  {BADGE_DEFINITIONS.slice(0, 6).map((badge) => (
+                  {BADGES.slice(0, 6).map((badge) => (
                     <div
                       key={badge.id}
                       className="bg-gray-50 rounded-lg p-3 text-center hover:bg-gray-100 transition-colors"

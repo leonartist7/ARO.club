@@ -7,7 +7,7 @@ import Select from '../components/ui/Select';
 import EmptyState from '../components/ui/EmptyState';
 import { useFavorites } from '../hooks/useFavorites';
 import { useToast } from '../hooks/useToast';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 /**
  * FavoritesPage - Display all favorited experiences

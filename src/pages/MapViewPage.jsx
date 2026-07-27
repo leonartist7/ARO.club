@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { CITIES, LANGUAGES } from '../data/constants';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function MapViewPage() {
