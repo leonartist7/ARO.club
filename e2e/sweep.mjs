@@ -5,6 +5,8 @@ const PUBLIC_ROUTES = [
   '/for-teachers', '/faq', '/contact', '/choose-role', '/signup',
   '/forgot-password', '/favorites', '/recently-viewed', '/compare',
   '/experience/exp1', '/teacher/t1', '/no-such-page',
+  // Previously 404s: the footer and both auth forms linked here.
+  '/terms', '/privacy', '/cookies', '/login',
 ];
 
 const PROTECTED_ROUTES = [

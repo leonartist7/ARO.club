@@ -32,6 +32,9 @@ const dayKey = (date = new Date()) => {
   return new Date(date.getTime() - offset).toISOString().slice(0, 10);
 };
 
+/** Points for leaving a review. */
+const REVIEW_REWARD = 40;
+
 /** How many days apart two day-keys are. */
 const daysBetween = (from, to) =>
   Math.round((new Date(to) - new Date(from)) / 86400000);
@@ -74,6 +77,7 @@ const emptyPlayer = {
 
   // Marketplace
   bookings: [],
+  reviews: [],
 
   // Teacher-authored experiences
   createdExperiences: [],
@@ -343,6 +347,59 @@ export const usePlayerStore = create(
 
       hasBooked: (experienceId) =>
         get().bookings.some((booking) => booking.experienceId === experienceId),
+
+      /**
+       * Bookings whose session has already happened and that haven't been
+       * reviewed yet - what the "how was it?" prompt is built from.
+       */
+      reviewableBookings: () => {
+        const state = get();
+        const now = Date.now();
+        return state.bookings.filter(
+          (booking) =>
+            new Date(booking.date).getTime() < now &&
+            !state.reviews.some((review) => review.experienceId === booking.experienceId)
+        );
+      },
+
+      /**
+       * Leave a review. Closes the loop the badges assumed existed: without
+       * this, `reviewsWritten` never moved and review-master was unearnable.
+       */
+      submitReview: ({ experienceId, rating, comment = '' }) => {
+        const state = get();
+        if (!experienceId || !rating) return null;
+        if (state.reviews.some((review) => review.experienceId === experienceId)) return null;
+
+        const review = {
+          experienceId,
+          rating,
+          comment: comment.trim(),
+          createdAt: new Date().toISOString(),
+        };
+
+        const reviews = [...state.reviews, review];
+        const next = {
+          ...state,
+          reviews,
+          stats: { ...state.stats, reviewsWritten: reviews.length },
+        };
+        const { unlocked, bonus } = settleBadges(next);
+
+        const earned = REVIEW_REWARD + bonus;
+        set({
+          reviews,
+          stats: next.stats,
+          badges: [...state.badges, ...unlocked],
+          points: state.points + earned,
+          totalEarned: state.totalEarned + earned,
+        });
+
+        return { pointsGained: earned, badgesUnlocked: unlocked, review };
+      },
+
+      hasReviewed: (experienceId) =>
+        get().reviews.some((review) => review.experienceId === experienceId),
 
       // ------------------------------------------------------ teacher tools
 

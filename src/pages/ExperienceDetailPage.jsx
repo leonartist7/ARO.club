@@ -25,6 +25,8 @@ import SocialProof from '../components/ui/SocialProof';
 import BookingProtection from '../components/ui/BookingProtection';
 import RecentlyBooked from '../components/ui/RecentlyBooked';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
+import { useFavorites } from '../hooks/useFavorites';
+import { useToast } from '../hooks/useToast';
 import { useStore } from '../store/useStore';
 import { usePlayerStore } from '../store/usePlayerStore';
 import { getBadge } from '../data/gamification';
@@ -41,6 +43,8 @@ export default function ExperienceDetailPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { addToRecentlyViewed } = useRecentlyViewed();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const toast = useToast();
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [reviewSortBy, setReviewSortBy] = useState('recent'); // 'recent', 'highest', 'lowest', 'helpful'
 
@@ -51,6 +55,7 @@ export default function ExperienceDetailPage() {
   const bookExperience = usePlayerStore((state) => state.bookExperience);
   const bookings = usePlayerStore((state) => state.bookings);
   const [bookingResult, setBookingResult] = useState(null);
+  const [bookingForTwo, setBookingForTwo] = useState(false);
 
   const experience = experiencesData.find((exp) => exp.id === id);
 
@@ -122,6 +127,7 @@ export default function ExperienceDetailPage() {
 
   const currentSpots = getCurrentSpots();
   const alreadyBooked = bookings.some((booking) => booking.experienceId === experience.id);
+  const saved = isFavorite(experience.id);
 
   // Generate share text
   const shareText = getExperienceShareText(experience, city, language);
@@ -138,7 +144,9 @@ export default function ExperienceDetailPage() {
     const result = bookExperience({
       experience,
       date: selectedDate || experience.date,
-      pricePaid: experience.price,
+      spots: bookingForTwo ? 2 : 1,
+      couple: bookingForTwo,
+      pricePaid: bookingForTwo ? couplePrice : experience.price,
     });
 
     setBookingResult(result ?? { alreadyBooked: true });
@@ -460,21 +468,40 @@ export default function ExperienceDetailPage() {
                     <span className="text-gray-600 dark:text-gray-400">/ person</span>
                   </div>
 
-                  {/* Couple Discount */}
-                  <div className="bg-secondary-50 border border-secondary-200 rounded-lg p-4">
+                  {/* Couple discount - selectable, not just advertised */}
+                  <button
+                    type="button"
+                    onClick={() => setBookingForTwo((previous) => !previous)}
+                    disabled={alreadyBooked || currentSpots < 2}
+                    aria-pressed={bookingForTwo}
+                    className={`w-full text-left rounded-lg p-4 border-2 transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                      bookingForTwo
+                        ? 'bg-secondary-100 dark:bg-secondary-900/30 border-secondary-500'
+                        : 'bg-secondary-50 dark:bg-secondary-900/20 border-secondary-200 dark:border-secondary-800 hover:border-secondary-400'
+                    }`}
+                  >
                     <div className="flex items-center gap-2 mb-1">
-                      <Heart className="w-5 h-5 text-secondary-600" />
-                      <p className="text-sm font-medium text-secondary-900">
-                        Couple Discount Available
+                      <Heart
+                        className={`w-5 h-5 text-secondary-600 dark:text-secondary-400 ${
+                          bookingForTwo ? 'fill-current' : ''
+                        }`}
+                      />
+                      <p className="text-sm font-medium text-secondary-900 dark:text-secondary-200">
+                        {bookingForTwo ? 'Booking for two' : 'Bringing someone?'}
                       </p>
+                      {currentSpots < 2 && !alreadyBooked && (
+                        <span className="ml-auto text-xs text-secondary-700 dark:text-secondary-400">
+                          Not enough spots
+                        </span>
+                      )}
                     </div>
-                    <p className="text-lg font-bold text-secondary-700">
+                    <p className="text-lg font-bold text-secondary-700 dark:text-secondary-300">
                       {formatPrice(couplePrice)} for 2 people
                     </p>
-                    <p className="text-xs text-secondary-600">
+                    <p className="text-xs text-secondary-600 dark:text-secondary-400">
                       Save {formatPrice(discount)}! Perfect for learning together
                     </p>
-                  </div>
+                  </button>
                 </div>
 
                 {/* Details */}
@@ -530,14 +557,19 @@ export default function ExperienceDetailPage() {
                       : 'Book Now'}
                   </Button>
 
+                  {/* Favourites already work everywhere else in the app. */}
                   <Button
-                    variant="outline"
+                    variant={saved ? 'primary' : 'outline'}
                     size="lg"
                     className="w-full"
-                    icon={<Heart className="w-4 h-4" />}
-                    onClick={() => alert('Save feature coming soon!')}
+                    icon={<Heart className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />}
+                    onClick={() => {
+                      toggleFavorite(experience.id);
+                      if (saved) toast.info('Removed from your saved list');
+                      else toast.success('Saved for later');
+                    }}
                   >
-                    Save for Later
+                    {saved ? 'Saved' : 'Save for Later'}
                   </Button>
                 </div>
               </CardBody>

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { usePlayerStore } from './usePlayerStore';
 import { inventoryKey } from '../data/shop';
 import catalogue from '../data/experiences';
+import { calculateCouplePrice } from '../utils/helpers';
 
 const player = () => usePlayerStore.getState();
 
@@ -235,6 +236,62 @@ describe('booking', () => {
   });
 });
 
+describe('reviews', () => {
+  const past = () =>
+    experience({ id: 'past1', date: new Date(Date.now() - 86400000).toISOString() });
+
+  it('only offers a review once the session has happened', () => {
+    player().bookExperience({ experience: experience() }); // future
+    expect(player().reviewableBookings()).toHaveLength(0);
+
+    player().bookExperience({ experience: past() });
+    expect(player().reviewableBookings()).toHaveLength(1);
+  });
+
+  it('awards points and counts toward review-master', () => {
+    player().bookExperience({ experience: past() });
+    const before = player().points;
+
+    const result = player().submitReview({ experienceId: 'past1', rating: 5, comment: 'Lovely' });
+
+    expect(result.pointsGained).toBeGreaterThan(0);
+    expect(player().points).toBeGreaterThan(before);
+    expect(player().stats.reviewsWritten).toBe(1);
+    expect(player().hasReviewed('past1')).toBe(true);
+  });
+
+  it('will not accept two reviews for the same experience', () => {
+    player().bookExperience({ experience: past() });
+    player().submitReview({ experienceId: 'past1', rating: 4 });
+
+    expect(player().submitReview({ experienceId: 'past1', rating: 1 })).toBeNull();
+    expect(player().stats.reviewsWritten).toBe(1);
+  });
+
+  it('drops out of the reviewable list once reviewed', () => {
+    player().bookExperience({ experience: past() });
+    player().submitReview({ experienceId: 'past1', rating: 5 });
+    expect(player().reviewableBookings()).toHaveLength(0);
+  });
+
+  it('unlocks review-master at ten reviews', () => {
+    // review-master was unreachable before this loop existed.
+    for (let i = 0; i < 10; i++) {
+      const id = `old${i}`;
+      player().bookExperience({
+        experience: experience({ id, date: new Date(Date.now() - 86400000).toISOString() }),
+      });
+      player().submitReview({ experienceId: id, rating: 5 });
+    }
+
+    expect(player().badges).toContain('review-master');
+  });
+
+  it('ignores a review with no rating', () => {
+    expect(player().submitReview({ experienceId: 'past1' })).toBeNull();
+  });
+});
+
 describe('streaks', () => {
   afterEach(() => vi.useRealTimers());
 
@@ -340,5 +397,16 @@ describe('teacher listings', () => {
 
     player().deleteExperience(created.id);
     expect(player().createdExperiences).toHaveLength(0);
+  });
+});
+
+describe('couple pricing', () => {
+  it('stores a price in whole cents, not floating point noise', () => {
+    // 18 * 2 * 0.85 is 30.599999999999998 before rounding.
+    const price = calculateCouplePrice(18);
+    expect(price).toBe(30.6);
+
+    player().bookExperience({ experience: experience({ price: 18 }), couple: true, pricePaid: price });
+    expect(player().bookings[0].pricePaid).toBe(30.6);
   });
 });

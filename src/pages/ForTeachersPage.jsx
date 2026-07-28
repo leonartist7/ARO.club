@@ -115,7 +115,7 @@ export default function ForTeachersPage() {
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                 {t('forTeachers.subtitle')}
               </p>
-              <Link to="/teacher-dashboard">
+              <Link to="/onboarding/teacher">
                 <Button
                   variant="secondary"
                   size="lg"
@@ -315,7 +315,7 @@ export default function ForTeachersPage() {
               {t('forTeachers.readyToTeachDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/teacher-dashboard">
+              <Link to="/onboarding/teacher">
                 <Button
                   variant="secondary"
                   size="lg"

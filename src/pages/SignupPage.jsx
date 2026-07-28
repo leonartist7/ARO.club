@@ -6,6 +6,7 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
+import { usePlayerStore } from '../store/usePlayerStore';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ export default function SignupPage() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const { signUp, signInWithGoogle } = useAuth();
+  const startSession = usePlayerStore((state) => state.signIn);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -63,7 +65,7 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const { error } = await signUp({
+      const { user, error } = await signUp({
         email: formData.email,
         password: formData.password,
         name: formData.name,
@@ -72,11 +74,21 @@ export default function SignupPage() {
       if (error) {
         setError(error.message);
       } else {
+        // Protected routes gate on the player store, so signing up without
+        // this granted access to nothing.
+        startSession({
+          id: user?.id ?? formData.email,
+          name: formData.name,
+          email: formData.email,
+          role: 'student',
+          isTeacher: false,
+        });
+
         setSuccess(true);
-        // Redirect to explore page after 2 seconds
+        // New accounts go through onboarding rather than straight to Explore.
         setTimeout(() => {
-          navigate('/explore');
-        }, 2000);
+          navigate('/onboarding/student');
+        }, 1500);
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -153,7 +165,7 @@ export default function SignupPage() {
                   <div>
                     <p className="text-sm font-medium text-green-800">Account created successfully!</p>
                     <p className="text-xs text-green-600 mt-1">
-                      Redirecting you to explore experiences...
+                      Taking you to set up your profile...
                     </p>
                   </div>
                 </motion.div>

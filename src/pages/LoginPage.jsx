@@ -6,8 +6,10 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
+import { usePlayerStore } from '../store/usePlayerStore';
 
 export default function LoginPage() {
+  const startSession = usePlayerStore((state) => state.signIn);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,11 +26,20 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { error } = await signIn({ email, password });
+      const { user, error } = await signIn({ email, password });
 
       if (error) {
         setError(error.message);
       } else {
+        // Protected routes gate on the player store, so a Supabase session
+        // alone used to grant access to nothing.
+        startSession({
+          id: user?.id ?? email,
+          name: user?.user_metadata?.name ?? email.split('@')[0],
+          email,
+          role: user?.user_metadata?.is_teacher ? 'teacher' : 'student',
+          isTeacher: Boolean(user?.user_metadata?.is_teacher),
+        });
         navigate(from, { replace: true });
       }
     } catch (err) {

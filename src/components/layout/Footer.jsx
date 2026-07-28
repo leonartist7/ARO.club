@@ -117,13 +117,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Conversa. {t('footer.copyright')}
           </p>
           <div className="flex gap-6 text-sm">
-            <Link to="#" className="hover:text-white transition-colors">
+            <Link to="/privacy" className="hover:text-white transition-colors">
               {t('footer.privacyPolicy')}
             </Link>
-            <Link to="#" className="hover:text-white transition-colors">
+            <Link to="/terms" className="hover:text-white transition-colors">
               {t('footer.termsOfService')}
             </Link>
-            <Link to="#" className="hover:text-white transition-colors">
+            <Link to="/cookies" className="hover:text-white transition-colors">
               {t('footer.cookiePolicy')}
             </Link>
           </div>

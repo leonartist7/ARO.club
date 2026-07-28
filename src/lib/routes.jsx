@@ -24,6 +24,7 @@ const ForTeachersPage = lazy(() => import('../pages/ForTeachersPage'));
 const FAQPage = lazy(() => import('../pages/FAQPage'));
 const ContactPage = lazy(() => import('../pages/ContactPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+const LegalPage = lazy(() => import('../pages/LegalPage'));
 
 // Auth Pages
 const ChooseRolePage = lazy(() => import('../pages/ChooseRolePage'));
@@ -165,9 +166,24 @@ export const router = createBrowserRouter([
         path: 'contact',
         element: <ContactPage />,
       },
+      // The footer and both auth forms linked to these; they used to 404.
       {
+        path: 'terms',
+        element: <LegalPage document="terms" />,
+      },
+      {
+        path: 'privacy',
+        element: <LegalPage document="privacy" />,
+      },
+      {
+        path: 'cookies',
+        element: <LegalPage document="cookies" />,
+      },
+      {
+        // Was pointing at ChooseRolePage, leaving the real sign-in form
+        // unreachable and stranding SignupPage's "Sign in" link.
         path: 'login',
-        element: <ChooseRolePage />,
+        element: <LoginPage />,
       },
       {
         path: 'choose-role',

@@ -14,7 +14,9 @@ export const formatPrice = (price, currency = 'USD') => {
  * Calculate couple discount price
  */
 export const calculateCouplePrice = (singlePrice) => {
-  return singlePrice * 2 * 0.85; // 15% discount for couples
+  // Rounded to cents: 18 * 2 * 0.85 lands on 30.599999999999998, which is
+  // fine once formatted but not fine stored on a booking as a price paid.
+  return Math.round(singlePrice * 2 * 0.85 * 100) / 100;
 };
 
 /**

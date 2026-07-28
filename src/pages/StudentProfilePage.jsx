@@ -24,6 +24,7 @@ import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
 import TeacherCard from '../components/features/TeacherCard';
+import ReviewPrompt from '../components/features/ReviewPrompt';
 import experiencesData from '../data/experiences';
 import teachersData from '../data/teachers.json';
 import { LANGUAGES } from '../data/constants';
@@ -34,6 +35,9 @@ import { useFavorites } from '../hooks/useFavorites';
 
 export default function StudentProfilePage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState({ name: '', bio: '' });
+  const updateUser = usePlayerStore((state) => state.updateUser);
 
   // The same store the header, dashboard and shop read, so this page can no
   // longer show a different person with different points.
@@ -180,7 +184,10 @@ export default function StudentProfilePage() {
               variant="secondary"
               size="md"
               icon={<Edit2 className="w-4 h-4" />}
-              onClick={() => alert('Edit profile feature coming soon!')}
+              onClick={() => {
+                setDraft({ name: student.name, bio: student.bio ?? '' });
+                setEditing(true);
+              }}
               className="self-start"
             >
               Edit Profile
@@ -188,6 +195,62 @@ export default function StudentProfilePage() {
           </div>
         </div>
       </div>
+
+      {/* Edit profile - was the only edit affordance and it just alerted */}
+      {editing && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={() => setEditing(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Edit profile"
+        >
+          <motion.form
+            initial={{ scale: 0.95, y: 12 }}
+            animate={{ scale: 1, y: 0 }}
+            onClick={(event) => event.stopPropagation()}
+            onSubmit={(event) => {
+              event.preventDefault();
+              updateUser({ name: draft.name.trim() || 'Learner', bio: draft.bio.trim() });
+              setEditing(false);
+            }}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-md w-full shadow-2xl"
+          >
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              Edit your profile
+            </h2>
+
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Name
+            </label>
+            <input
+              value={draft.name}
+              onChange={(event) => setDraft((d) => ({ ...d, name: event.target.value }))}
+              className="w-full px-4 py-2.5 mb-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            />
+
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              About you
+            </label>
+            <textarea
+              value={draft.bio}
+              onChange={(event) => setDraft((d) => ({ ...d, bio: event.target.value }))}
+              rows={3}
+              placeholder="What are you learning, and why?"
+              className="w-full px-4 py-2.5 mb-6 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            />
+
+            <div className="flex gap-3 justify-end">
+              <Button type="button" variant="ghost" onClick={() => setEditing(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="primary">
+                Save
+              </Button>
+            </div>
+          </motion.form>
+        </div>
+      )}
 
       {/* Mobile Tabs */}
       <div className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-10">
@@ -427,6 +490,9 @@ export default function StudentProfilePage() {
             )}
           </div>
         </div>
+
+        {/* Shows itself only when a past booking is waiting on a review */}
+        <ReviewPrompt className="mt-8" />
 
         {/* Upcoming Bookings Section */}
         <div

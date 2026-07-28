@@ -48,6 +48,9 @@ export default function TeacherProfilePage() {
     (exp) => new Date(exp.date) > new Date()
   );
 
+  // The soonest session, for the "Book a Session" CTA.
+  const nextExperience = upcomingExperiences[0];
+
   const teacherReviews = reviewsData.filter((r) => r.teacherId === id);
   const visibleReviews = showAllReviews ? teacherReviews : teacherReviews.slice(0, 6);
 
@@ -364,28 +367,36 @@ export default function TeacherProfilePage() {
             <Card className="sticky top-24">
               <CardBody className="space-y-6">
                 {/* CTA */}
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full"
-                  icon={<BookOpen className="w-5 h-5" />}
-                  onClick={() =>
-                    alert('Booking feature coming soon! Browse experiences below.')
-                  }
-                >
-                  Book a Session
-                </Button>
+                {/* Booking happens per experience, so send them to this
+                    teacher's next session rather than alerting. */}
+                {nextExperience ? (
+                  <Link to={`/experience/${nextExperience.id}`} className="block">
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
+                      icon={<BookOpen className="w-5 h-5" />}
+                    >
+                      Book a Session
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button variant="primary" size="lg" className="w-full" disabled>
+                    No sessions scheduled
+                  </Button>
+                )}
 
-                {/* Contact */}
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full"
-                  icon={<MessageCircle className="w-5 h-5" />}
-                  onClick={() => alert('Messaging feature coming soon!')}
-                >
-                  Contact {teacher.name.split(' ')[0]}
-                </Button>
+                {/* Contact - /chat already works */}
+                <Link to="/chat" className="block">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full"
+                    icon={<MessageCircle className="w-5 h-5" />}
+                  >
+                    Contact {teacher.name.split(' ')[0]}
+                  </Button>
+                </Link>
 
                 <div className="border-t border-gray-100 pt-6">
                   <h3 className="font-semibold text-gray-900 mb-4">Quick Facts</h3>

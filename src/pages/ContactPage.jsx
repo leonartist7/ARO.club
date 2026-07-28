@@ -16,6 +16,9 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 
+/** Where unsent messages are kept until there's a mail backend. */
+const DRAFTS_KEY = 'conversa-contact-messages';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,12 +30,24 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock submission
+
+    // There is no mail backend yet. Rather than claim the message was sent
+    // and silently drop it, keep it on the device so nothing the user typed
+    // is lost, and say plainly what did and didn't happen.
+    try {
+      const stored = JSON.parse(localStorage.getItem(DRAFTS_KEY) ?? '[]');
+      stored.push({ ...formData, savedAt: new Date().toISOString() });
+      localStorage.setItem(DRAFTS_KEY, JSON.stringify(stored));
+    } catch (error) {
+      console.error('Could not save the message locally:', error);
+    }
+
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+  };
+
+  const startAnother = () => {
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setSubmitted(false);
   };
 
   const handleChange = (field, value) => {
@@ -85,11 +100,26 @@ export default function ContactPage() {
                   >
                     <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      Message Sent!
+                      Your message is saved
                     </h3>
-                    <p className="text-gray-600">
-                      Thanks for reaching out. We'll get back to you within 24 hours.
+                    <p className="text-gray-600 mb-2">
+                      Thanks for writing, {formData.name || 'friend'}.
                     </p>
+                    <p className="text-sm text-gray-500 mb-6">
+                      We haven't connected email delivery yet, so this is stored on
+                      your device rather than sent to us. To reach a person today,
+                      email{' '}
+                      <a
+                        href="mailto:hello@conversa.com"
+                        className="text-primary-600 font-medium hover:underline"
+                      >
+                        hello@conversa.com
+                      </a>
+                      .
+                    </p>
+                    <Button variant="outline" onClick={startAnother}>
+                      Write another
+                    </Button>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">

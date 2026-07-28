@@ -22,6 +22,7 @@ import Button from '../components/ui/Button';
 import { usePlayerStore, usePlayerLevel } from '../store/usePlayerStore';
 import { characters, accessories } from '../data/characters';
 import { BADGES, getBadge } from '../data/gamification';
+import ReviewPrompt from '../components/features/ReviewPrompt';
 import { useLanguage } from '../contexts/LanguageContext';
 
 /** Find the emoji for an equipped item in any accessory slot. */
@@ -273,6 +274,9 @@ export default function StudentDashboard() {
 
           {/* Middle & Right Columns */}
           <div className="lg:col-span-2 space-y-6">
+
+            {/* Renders itself only when a past booking is waiting on a review */}
+            <ReviewPrompt />
 
             {/* Daily Quests */}
             <motion.div

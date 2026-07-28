@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -24,7 +23,6 @@ import { usePlayerStore } from '../store/usePlayerStore';
 const PLAYER_ID = '__you__';
 
 export default function LeaderboardPage() {
-  const [activeFilter, setActiveFilter] = useState('all-time');
 
   // The signed-in player competes on the real board rather than the board
   // pretending the first seed student is you.
@@ -72,12 +70,6 @@ export default function LeaderboardPage() {
   const totalBadgesEarned = board.reduce((sum, s) => sum + s.badges.length, 0);
   const avgPointsPerUser = Math.round(totalPoints / board.length);
 
-  const filters = [
-    { id: 'all-time', label: 'All Time' },
-    { id: 'month', label: 'This Month' },
-    { id: 'week', label: 'This Week' },
-  ];
-
   const podiumOrder = [1, 0, 2]; // Second, First, Third for visual layout
 
   return (
@@ -99,23 +91,18 @@ export default function LeaderboardPage() {
           </p>
         </div>
 
-        {/* Filters */}
+        {/* This board is all-time.
+            There used to be All Time / Month / Week pills here, but nothing
+            behind them: they restyled themselves and the rankings never
+            changed. Points carry no timestamps, so weekly and monthly
+            standings cannot be computed without inventing figures for the
+            other learners. The control is gone until there's a points ledger
+            to build it from. */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white rounded-lg shadow-sm p-1 border border-gray-200">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-2 rounded-md font-medium text-sm transition-all ${
-                  activeFilter === filter.id
-                    ? 'bg-primary-500 text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-600">
+            <Trophy className="w-4 h-4 text-primary-500" />
+            All-time standings
+          </span>
         </div>
 
         {/* Podium - Top 3 */}

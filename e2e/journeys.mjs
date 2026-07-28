@@ -154,6 +154,99 @@ export default async function journeys() {
     await context.close();
   }
 
+  // ------------------------------------------------ student: review the past
+  {
+    run.heading('student: past booking -> review -> points and badge');
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = run.watch(await context.newPage());
+
+    // A booking whose session already happened is what makes the prompt appear.
+    await signIn(
+      page,
+      seedPlayer({
+        bookings: [
+          {
+            experienceId: 'exp1',
+            cityId: 'paris',
+            language: 'fr',
+            type: 'conversation',
+            date: new Date(Date.now() - 2 * 86400000).toISOString(),
+            spots: 1,
+            couple: false,
+            pricePaid: 18,
+            bookedAt: new Date(Date.now() - 5 * 86400000).toISOString(),
+          },
+        ],
+        stats: {
+          gamesPlayed: 0,
+          experiencesBooked: 1,
+          conversationsStarted: 0,
+          reviewsWritten: 0,
+          citiesVisited: 1,
+          languagesStudied: 1,
+        },
+      })
+    );
+
+    await run.step('the dashboard asks how the past session went', async () => {
+      await page.goto(`${BASE}/student-dashboard`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(1500);
+      const body = await page.locator('main').innerText();
+      assert(/How was it\?/i.test(body), 'no review prompt on the dashboard');
+    });
+
+    await run.step('leaving a review earns points and records it', async () => {
+      const before = (await readStore(page)).points;
+
+      await page.getByRole('radio', { name: '5 stars' }).click();
+      await page.waitForTimeout(300);
+      await page.getByRole('button', { name: /post review/i }).click();
+      await page.waitForTimeout(1200);
+
+      const state = await readStore(page);
+      assert(state.reviews.length === 1, `reviews: ${JSON.stringify(state.reviews)}`);
+      assert(state.stats.reviewsWritten === 1, `reviewsWritten: ${state.stats.reviewsWritten}`);
+      assert(state.points > before, `points did not increase from ${before}`);
+      run.note(`points ${before} -> ${state.points}, reviews: ${state.reviews.length}`);
+    });
+
+    await run.step('the prompt goes away once reviewed', async () => {
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(1500);
+      const body = await page.locator('main').innerText();
+      assert(!/How was it\?/i.test(body), 'review prompt still showing after reviewing');
+    });
+
+    await context.close();
+  }
+
+  // ------------------------------------------------ student: couple booking
+  {
+    run.heading('student: couple discount is selectable, not just advertised');
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = run.watch(await context.newPage());
+    await signIn(page);
+
+    await run.step('booking for two records a couple booking at the discounted price', async () => {
+      await page.goto(`${BASE}/experience/exp1`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(1500);
+
+      await page.getByRole('button', { name: /bringing someone/i }).click();
+      await page.waitForTimeout(400);
+      await page.getByRole('button', { name: /^Book Now$/ }).click();
+      await page.waitForTimeout(1200);
+
+      const state = await readStore(page);
+      const booking = state.bookings[0];
+      assert(booking, 'no booking was recorded');
+      assert(booking.couple === true, `couple flag is ${booking.couple}`);
+      assert(booking.spots === 2, `spots is ${booking.spots}`);
+      run.note(`couple booking at ${booking.pricePaid} for ${booking.spots}`);
+    });
+
+    await context.close();
+  }
+
   // ------------------------------------------------------------- teacher
   {
     run.heading('teacher: dashboard identity -> publish -> reaches Explore');
