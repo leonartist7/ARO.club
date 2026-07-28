@@ -5,7 +5,12 @@ import {
   getProgressToNextLevel,
   calculatePointsEarned,
 } from '../utils/helpers';
-import { BADGES, DAILY_QUESTS, QUESTS_PER_DAY } from '../data/gamification';
+import {
+  BADGES,
+  DAILY_QUESTS,
+  QUESTS_PER_DAY,
+  BOOKABLE_TYPE_COUNT,
+} from '../data/gamification';
 
 /**
  * The single source of truth for the signed-in player.
@@ -106,6 +111,13 @@ const AUTO_BADGES = [
   {
     id: 'couple-goals',
     earned: (s) => s.bookings.filter((booking) => booking.couple).length >= 3,
+  },
+  {
+    // Shipped with no rule at all, so it could never be earned.
+    id: 'culture-vulture',
+    earned: (s) =>
+      new Set(s.bookings.map((booking) => booking.type).filter(Boolean)).size >=
+      BOOKABLE_TYPE_COUNT,
   },
 ];
 
@@ -292,6 +304,7 @@ export const usePlayerStore = create(
           experienceId: experience.id,
           cityId: experience.cityId,
           language: experience.language,
+          type: experience.type,
           date: date ?? experience.date,
           spots,
           couple,

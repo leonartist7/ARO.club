@@ -8,6 +8,19 @@
  * leaderboard.
  */
 
+import experiences from './experiences';
+
+/**
+ * How many distinct experience types a player can actually book.
+ *
+ * Derived from the catalogue rather than from EXPERIENCE_TYPES in constants.js,
+ * which lists 10 types while the catalogue only carries 9 (nothing has type
+ * "movie-night"). Hard-coding 10 would make culture-vulture unachievable.
+ */
+export const BOOKABLE_TYPE_COUNT = new Set(
+  experiences.map((experience) => experience.type).filter(Boolean)
+).size;
+
 /**
  * Badge categories - used to group badges in the UI.
  */
@@ -53,7 +66,7 @@ export const BADGES = [
     id: 'culture-vulture',
     name: 'Culture Vulture',
     description: 'Tried every kind of experience',
-    requirement: 'Complete all 10 experience types',
+    requirement: 'Book every kind of experience on offer',
     icon: '🎭',
     category: 'journey',
     points: 300,
