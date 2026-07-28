@@ -4,6 +4,7 @@ import { BASE } from './harness.mjs';
 import journeys from './journeys.mjs';
 import sweep from './sweep.mjs';
 import responsive from './responsive.mjs';
+import darkMode from './darkmode.mjs';
 
 /**
  * Runs the end-to-end suite against a dev server.
@@ -48,6 +49,7 @@ const suites = [
   ['journeys', journeys],
   ['sweep', sweep],
   ['responsive', responsive],
+  ['dark mode', darkMode],
 ];
 
 let failed = 0;

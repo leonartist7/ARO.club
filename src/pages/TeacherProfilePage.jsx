@@ -23,8 +23,8 @@ export default function TeacherProfilePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Teacher Not Found</h1>
-          <p className="text-gray-600 mb-6">Sorry, we couldn't find this teacher profile.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">Teacher Not Found</h1>
+          <p className="text-gray-600 mb-6 dark:text-gray-400">Sorry, we couldn't find this teacher profile.</p>
           <Link to="/explore">
             <Button variant="primary">Browse Experiences</Button>
           </Link>
@@ -65,7 +65,7 @@ export default function TeacherProfilePage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Header Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white">
@@ -148,18 +148,18 @@ export default function TeacherProfilePage() {
             {/* Bio */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 dark:text-white">
                   About {teacher.name}
                 </h2>
-                <p className="text-gray-700 leading-relaxed mb-4">{teacher.bio}</p>
-                <p className="text-gray-700 leading-relaxed">{teacher.about}</p>
+                <p className="text-gray-700 leading-relaxed mb-4 dark:text-gray-300">{teacher.bio}</p>
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">{teacher.about}</p>
               </CardBody>
             </Card>
 
             {/* Specialties */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 dark:text-white">
                   Specialties
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -175,17 +175,17 @@ export default function TeacherProfilePage() {
             {/* Certifications */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 flex items-center gap-2 dark:text-white">
                   <Award className="w-6 h-6 text-primary-500" />
                   Certifications
                 </h2>
                 <ul className="space-y-3">
                   {teacher.certifications.map((cert, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5 dark:bg-primary-900/40">
                         <span className="text-primary-500 font-semibold text-sm">✓</span>
                       </div>
-                      <span className="text-gray-700">{cert}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{cert}</span>
                     </li>
                   ))}
                 </ul>
@@ -195,7 +195,7 @@ export default function TeacherProfilePage() {
             {/* Languages Spoken */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4 flex items-center gap-2 dark:text-white">
                   <Languages className="w-6 h-6 text-primary-500" />
                   Languages Spoken
                 </h2>
@@ -206,7 +206,7 @@ export default function TeacherProfilePage() {
                       <div key={index} className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{language?.flag}</span>
-                          <span className="font-medium text-gray-900">{language?.name}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">{language?.name}</span>
                         </div>
                         <Badge
                           variant={lang.level === 'native' ? 'primary' : 'default'}
@@ -223,7 +223,7 @@ export default function TeacherProfilePage() {
 
             {/* Upcoming Experiences */}
             <div>
-              <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                 Upcoming Experiences ({upcomingExperiences.length})
               </h2>
               {upcomingExperiences.length > 0 ? (
@@ -236,7 +236,7 @@ export default function TeacherProfilePage() {
                 <Card>
                   <CardBody className="text-center py-12">
                     <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">No upcoming experiences scheduled</p>
+                    <p className="text-gray-600 dark:text-gray-400">No upcoming experiences scheduled</p>
                   </CardBody>
                 </Card>
               )}
@@ -246,15 +246,15 @@ export default function TeacherProfilePage() {
             {teacherReviews.length > 0 && (
               <Card>
                 <CardBody>
-                  <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                     Reviews ({teacherReviews.length})
                   </h2>
 
                   {/* Rating Distribution */}
-                  <div className="mb-8 pb-8 border-b border-gray-100">
+                  <div className="mb-8 pb-8 border-b border-gray-100 dark:border-gray-700">
                     <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
                       <div className="text-center">
-                        <div className="text-5xl font-bold text-gray-900 mb-2">
+                        <div className="text-5xl font-bold text-gray-900 mb-2 dark:text-white">
                           {teacher.rating}
                         </div>
                         <div className="flex items-center gap-1 mb-1 justify-center">
@@ -269,7 +269,7 @@ export default function TeacherProfilePage() {
                             />
                           ))}
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
                           {teacherReviews.length} reviews
                         </div>
                       </div>
@@ -286,7 +286,7 @@ export default function TeacherProfilePage() {
                               key={rating}
                               className="flex items-center gap-3 mb-2"
                             >
-                              <span className="text-sm text-gray-600 w-12">
+                              <span className="text-sm text-gray-600 w-12 dark:text-gray-400">
                                 {rating} star
                               </span>
                               <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -295,7 +295,7 @@ export default function TeacherProfilePage() {
                                   style={{ width: `${percentage}%` }}
                                 />
                               </div>
-                              <span className="text-sm text-gray-600 w-8">
+                              <span className="text-sm text-gray-600 w-8 dark:text-gray-400">
                                 {count}
                               </span>
                             </div>
@@ -310,7 +310,7 @@ export default function TeacherProfilePage() {
                     {visibleReviews.map((review) => (
                       <div
                         key={review.id}
-                        className="border-b border-gray-100 last:border-0 pb-6 last:pb-0"
+                        className="border-b border-gray-100 last:border-0 pb-6 last:pb-0 dark:border-gray-700"
                       >
                         <div className="flex items-start gap-3">
                           <Avatar
@@ -321,7 +321,7 @@ export default function TeacherProfilePage() {
                           />
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-1">
-                              <p className="font-medium text-gray-900">
+                              <p className="font-medium text-gray-900 dark:text-white">
                                 {review.studentName}
                               </p>
                               <div className="flex items-center gap-1">
@@ -337,10 +337,10 @@ export default function TeacherProfilePage() {
                                 ))}
                               </div>
                             </div>
-                            <p className="text-sm text-gray-500 mb-2">
+                            <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">
                               {formatDate(review.date)}
                             </p>
-                            <p className="text-gray-700">{review.comment}</p>
+                            <p className="text-gray-700 dark:text-gray-300">{review.comment}</p>
                           </div>
                         </div>
                       </div>
@@ -398,24 +398,24 @@ export default function TeacherProfilePage() {
                   </Button>
                 </Link>
 
-                <div className="border-t border-gray-100 pt-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">Quick Facts</h3>
+                <div className="border-t border-gray-100 pt-6 dark:border-gray-700">
+                  <h3 className="font-semibold text-gray-900 mb-4 dark:text-white">Quick Facts</h3>
                   <div className="space-y-3 text-sm">
                     <div>
-                      <span className="text-gray-600">Hourly Rate:</span>
-                      <div className="font-medium text-gray-900">
+                      <span className="text-gray-600 dark:text-gray-400">Hourly Rate:</span>
+                      <div className="font-medium text-gray-900 dark:text-white">
                         ${teacher.hourlyRate}/hour
                       </div>
                     </div>
                     <div>
-                      <span className="text-gray-600">Response Time:</span>
-                      <div className="font-medium text-gray-900">
+                      <span className="text-gray-600 dark:text-gray-400">Response Time:</span>
+                      <div className="font-medium text-gray-900 dark:text-white">
                         {teacher.responseTime}
                       </div>
                     </div>
                     <div>
-                      <span className="text-gray-600">Teaching Since:</span>
-                      <div className="font-medium text-gray-900">
+                      <span className="text-gray-600 dark:text-gray-400">Teaching Since:</span>
+                      <div className="font-medium text-gray-900 dark:text-white">
                         {formatDate(teacher.memberSince, 'MMMM yyyy')}
                       </div>
                     </div>

@@ -68,7 +68,7 @@ export default function ExperienceCard({ experience, compact = false }) {
                 className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-md hover:shadow-lg"
                 aria-label="Quick view"
               >
-                <Eye className="w-4 h-4 text-gray-900" />
+                <Eye className="w-4 h-4 text-gray-900 dark:text-white" />
               </button>
               <FavoriteButton experienceId={experience.id} size="sm" />
             </div>
@@ -88,13 +88,13 @@ export default function ExperienceCard({ experience, compact = false }) {
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 dark:text-white">
             {experience.title}
           </h3>
 
           {/* Description */}
           {!compact && (
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+            <p className="text-sm text-gray-600 mb-3 line-clamp-2 dark:text-gray-400">
               {experience.description}
             </p>
           )}
@@ -103,10 +103,10 @@ export default function ExperienceCard({ experience, compact = false }) {
           <div className="flex items-center gap-2 mb-3">
             <Avatar src={teacher?.photo} alt={teacher?.name} size="sm" name={teacher?.name} />
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
+              <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
                 {teacher?.name}
               </p>
-              <div className="flex items-center gap-1 text-xs text-gray-500">
+              <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                 <Star className="w-3 h-3 fill-yellow-400 stroke-yellow-400" />
                 <span>{teacher?.rating}</span>
                 <span>({teacher?.totalReviews})</span>
@@ -115,7 +115,7 @@ export default function ExperienceCard({ experience, compact = false }) {
           </div>
 
           {/* Details */}
-          <div className="space-y-1.5 mb-3 text-sm text-gray-600">
+          <div className="space-y-1.5 mb-3 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 flex-shrink-0" />
               <span className="truncate">{city?.name}, {city?.country}</span>

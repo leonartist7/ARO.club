@@ -87,7 +87,7 @@ export default function HowItWorksPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
@@ -132,12 +132,12 @@ export default function HowItWorksPage() {
 
                     {/* Content Section */}
                     <div className="md:col-span-2 p-8">
-                      <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                      <p className="text-gray-700 text-lg mb-6 leading-relaxed dark:text-gray-300">
                         {step.description}
                       </p>
                       <ul className="space-y-3">
                         {step.details.map((detail, i) => (
-                          <li key={i} className="flex items-center gap-3 text-gray-600">
+                          <li key={i} className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
                             <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0" />
                             <span>{detail}</span>
                           </li>
@@ -153,13 +153,13 @@ export default function HowItWorksPage() {
       </div>
 
       {/* Benefits Section */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-16 dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4 dark:text-white">
               {t('howItWorks.whyChoose')}
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-lg dark:text-gray-400">
               {t('howItWorks.whyChooseSubtitle')}
             </p>
           </div>
@@ -171,12 +171,12 @@ export default function HowItWorksPage() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1 * index, type: 'spring' }}
-                className="flex items-center gap-3 bg-gray-50 rounded-lg p-4"
+                className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 dark:bg-gray-800"
               >
                 <div className="w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   {benefit.icon}
                 </div>
-                <p className="text-gray-700">{benefit.text}</p>
+                <p className="text-gray-700 dark:text-gray-300">{benefit.text}</p>
               </motion.div>
             ))}
           </div>
@@ -186,7 +186,7 @@ export default function HowItWorksPage() {
       {/* Features Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
             {t('howItWorks.builtForSuccess')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -199,11 +199,11 @@ export default function HowItWorksPage() {
               >
                 <Card className="h-full text-center hover:shadow-lg transition-shadow">
                   <CardBody>
-                    <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
+                    <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600 dark:bg-primary-900/40">
                       {feature.icon}
                     </div>
-                    <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                    <h3 className="font-bold text-gray-900 mb-2 dark:text-white">{feature.title}</h3>
+                    <p className="text-gray-600 text-sm dark:text-gray-400">{feature.description}</p>
                   </CardBody>
                 </Card>
               </motion.div>
@@ -213,13 +213,13 @@ export default function HowItWorksPage() {
       </div>
 
       {/* Video Placeholder */}
-      <div className="bg-gray-100 py-16">
+      <div className="bg-gray-100 py-16 dark:bg-gray-700">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-8">
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4 dark:text-white">
               {t('howItWorks.seeInAction')}
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               {t('howItWorks.seeInActionSubtitle')}
             </p>
           </div>
@@ -228,8 +228,8 @@ export default function HowItWorksPage() {
               <div className="aspect-video bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🎬</div>
-                  <p className="text-gray-600 font-medium">{t('howItWorks.videoComingSoon')}</p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-600 font-medium dark:text-gray-400">{t('howItWorks.videoComingSoon')}</p>
+                  <p className="text-gray-500 text-sm dark:text-gray-400">
                     {t('howItWorks.videoSubtitle')}
                   </p>
                 </div>
@@ -255,7 +255,7 @@ export default function HowItWorksPage() {
                   variant="secondary"
                   size="lg"
                   icon={<ArrowRight className="w-5 h-5" />}
-                  className="bg-white text-primary-600 hover:bg-gray-50"
+                  className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                 >
                   {t('howItWorks.browseExperiences')}
                 </Button>

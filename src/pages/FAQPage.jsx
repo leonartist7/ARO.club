@@ -116,7 +116,7 @@ export default function FAQPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
@@ -191,7 +191,7 @@ export default function FAQPage() {
                         onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                         className="w-full text-left p-6 hover:bg-gray-50 transition-colors flex items-center justify-between gap-4"
                       >
-                        <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
+                        <span className="font-semibold text-gray-900 pr-4 dark:text-white">{faq.question}</span>
                         <ChevronDown
                           className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
                             expandedIndex === index ? 'rotate-180' : ''
@@ -207,7 +207,7 @@ export default function FAQPage() {
                             transition={{ duration: 0.2 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-6 pb-6 pt-0 text-gray-600 leading-relaxed">
+                            <div className="px-6 pb-6 pt-0 text-gray-600 leading-relaxed dark:text-gray-400">
                               {faq.answer}
                             </div>
                           </motion.div>
@@ -222,8 +222,8 @@ export default function FAQPage() {
             <Card>
               <CardBody className="text-center py-12">
                 <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-2">No questions found</p>
-                <p className="text-gray-500 text-sm">Try a different search term or category</p>
+                <p className="text-gray-600 mb-2 dark:text-gray-400">No questions found</p>
+                <p className="text-gray-500 text-sm dark:text-gray-400">Try a different search term or category</p>
               </CardBody>
             </Card>
           )}
@@ -246,7 +246,7 @@ export default function FAQPage() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary-600 hover:bg-gray-50"
+                  className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                 >
                   Contact Support
                 </Button>

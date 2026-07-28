@@ -30,17 +30,17 @@ export default function TeacherCard({ teacher }) {
               size="xl"
             />
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1 truncate">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 truncate">
                 {teacher.name}
               </h3>
               <div className="flex items-center gap-1 mb-2">
                 <Star className="w-4 h-4 fill-yellow-400 stroke-yellow-400" />
-                <span className="font-medium text-gray-900">{teacher.rating}</span>
-                <span className="text-sm text-gray-500">
+                <span className="font-medium text-gray-900 dark:text-white">{teacher.rating}</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
                   ({teacher.totalReviews} reviews)
                 </span>
               </div>
-              <div className="flex items-center gap-1 text-sm text-gray-600">
+              <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                 <MapPin className="w-4 h-4" />
                 <span>{city?.name}</span>
               </div>
@@ -57,11 +57,11 @@ export default function TeacherCard({ teacher }) {
           </div>
 
           {/* Bio */}
-          <p className="text-sm text-gray-600 mb-4 line-clamp-3">{teacher.bio}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{teacher.bio}</p>
 
           {/* Stats */}
-          <div className="flex items-center justify-between text-sm pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-1 text-gray-600">
+          <div className="flex items-center justify-between text-sm pt-4 border-t border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
               <BookOpen className="w-4 h-4" />
               <span>{teacher.totalSessions} sessions</span>
             </div>

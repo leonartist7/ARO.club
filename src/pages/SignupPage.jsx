@@ -130,7 +130,7 @@ export default function SignupPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-md w-full">
         <motion.div
@@ -143,10 +143,10 @@ export default function SignupPage() {
             <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <UserPlus className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
               Join Conversa
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Start learning languages through real experiences
             </p>
           </div>
@@ -159,7 +159,7 @@ export default function SignupPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2"
+                  className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2 dark:bg-green-900/30"
                 >
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <div>
@@ -176,7 +176,7 @@ export default function SignupPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2 dark:bg-red-900/30"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-700">{error}</p>
@@ -199,10 +199,10 @@ export default function SignupPage() {
               {/* Divider */}
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300"></div>
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or sign up with email</span>
+                  <span className="px-2 bg-white text-gray-500 dark:bg-gray-800 dark:text-gray-400">Or sign up with email</span>
                 </div>
               </div>
 
@@ -247,7 +247,7 @@ export default function SignupPage() {
                   {strength && (
                     <div className="mt-2">
                       <div className="flex items-center justify-between text-xs mb-1">
-                        <span className="text-gray-600">Password strength:</span>
+                        <span className="text-gray-600 dark:text-gray-400">Password strength:</span>
                         <span className={`font-medium ${
                           strength.label === 'Weak' ? 'text-red-600' :
                           strength.label === 'Medium' ? 'text-yellow-600' :
@@ -278,8 +278,8 @@ export default function SignupPage() {
                   icon={<Lock className="w-5 h-5" />}
                 />
 
-                <div className="text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg">
-                  <p className="font-medium text-gray-700 mb-1">Password requirements:</p>
+                <div className="text-xs text-gray-600 dark:text-gray-400 space-y-1 bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                  <p className="font-medium text-gray-700 mb-1 dark:text-gray-300">Password requirements:</p>
                   <ul className="space-y-1 list-disc list-inside">
                     <li className={formData.password.length >= 6 ? 'text-green-600' : ''}>
                       At least 6 characters
@@ -303,7 +303,7 @@ export default function SignupPage() {
 
               {/* Sign In Link */}
               <div className="mt-6 text-center text-sm">
-                <span className="text-gray-600">Already have an account? </span>
+                <span className="text-gray-600 dark:text-gray-400">Already have an account? </span>
                 <Link
                   to="/login"
                   className="text-primary-600 hover:text-primary-700 font-medium"
@@ -315,7 +315,7 @@ export default function SignupPage() {
           </Card>
 
           {/* Footer */}
-          <div className="mt-6 text-center text-xs text-gray-500">
+          <div className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
             By signing up, you agree to our{' '}
             <Link to="/terms" className="text-primary-600 hover:text-primary-700">
               Terms of Service

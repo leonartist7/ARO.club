@@ -368,7 +368,7 @@ export default function ExplorePage() {
                       onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
                       className="w-full"
                     />
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
                       $0 - ${priceRange[1]}
                     </div>
                   </div>

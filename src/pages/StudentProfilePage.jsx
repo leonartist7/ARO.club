@@ -127,7 +127,7 @@ export default function StudentProfilePage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Header Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white">
@@ -253,7 +253,7 @@ export default function StudentProfilePage() {
       )}
 
       {/* Mobile Tabs */}
-      <div className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-10 dark:bg-gray-800 dark:border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto">
             {tabs.map((tab) => {
@@ -291,7 +291,7 @@ export default function StudentProfilePage() {
               <CardBody>
                 <div className="flex items-center gap-2 mb-4">
                   <TrendingUp className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-display font-bold text-gray-900">
+                  <h2 className="text-xl font-display font-bold text-gray-900 dark:text-white">
                     Your Progress
                   </h2>
                 </div>
@@ -300,24 +300,24 @@ export default function StudentProfilePage() {
                   {/* Points and Level */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-3xl font-bold text-gray-900">{points}</p>
-                      <p className="text-sm text-gray-600">Total Points</p>
+                      <p className="text-3xl font-bold text-gray-900 dark:text-white">{points}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Total Points</p>
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-primary-500">
                         Level {level.level}
                       </p>
-                      <p className="text-sm text-gray-600">{level.name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{level.name}</p>
                     </div>
                   </div>
 
                   {/* Progress Bar */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-medium text-gray-700">
+                      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Progress to Level {level.level + 1}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         {level.pointsNeeded} points to go
                       </p>
                     </div>
@@ -329,7 +329,7 @@ export default function StudentProfilePage() {
                         className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 mt-1 dark:text-gray-400">
                       {Math.round(level.percentage)}% complete
                     </p>
                   </div>
@@ -342,7 +342,7 @@ export default function StudentProfilePage() {
               <CardBody>
                 <div className="flex items-center gap-2 mb-6">
                   <Award className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-display font-bold text-gray-900">
+                  <h2 className="text-xl font-display font-bold text-gray-900 dark:text-white">
                     Badges
                   </h2>
                   <Badge variant="secondary" size="sm" className="ml-auto">
@@ -352,7 +352,7 @@ export default function StudentProfilePage() {
 
                 {/* Earned Badges */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-3">Earned</h3>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-3 dark:text-gray-300">Earned</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     {earnedBadges.map((badge) => (
                       <motion.div
@@ -360,16 +360,16 @@ export default function StudentProfilePage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', stiffness: 200 }}
-                        className="relative bg-gradient-to-br from-primary-50 to-secondary-50 rounded-lg p-4 border-2 border-primary-200"
+                        className="relative bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 rounded-lg p-4 border-2 border-primary-200 dark:border-primary-800"
                       >
                         <div className="absolute top-2 right-2">
                           <CheckCircle2 className="w-4 h-4 text-primary-500" />
                         </div>
                         <div className="text-4xl mb-2">{badge.icon}</div>
-                        <p className="font-semibold text-gray-900 text-sm mb-1">
+                        <p className="font-semibold text-gray-900 text-sm mb-1 dark:text-white">
                           {badge.name}
                         </p>
-                        <p className="text-xs text-gray-600">{badge.description}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">{badge.description}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -377,21 +377,21 @@ export default function StudentProfilePage() {
 
                 {/* Locked Badges */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-700 mb-3">Locked</h3>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-3 dark:text-gray-300">Locked</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     {lockedBadges.map((badge) => (
                       <div
                         key={badge.id}
-                        className="relative bg-gray-50 rounded-lg p-4 border-2 border-gray-200 opacity-60"
+                        className="relative bg-gray-50 rounded-lg p-4 border-2 border-gray-200 opacity-60 dark:bg-gray-800 dark:border-gray-700"
                       >
                         <div className="absolute top-2 right-2">
                           <Lock className="w-4 h-4 text-gray-400" />
                         </div>
                         <div className="text-4xl mb-2 grayscale">{badge.icon}</div>
-                        <p className="font-semibold text-gray-700 text-sm mb-1">
+                        <p className="font-semibold text-gray-700 text-sm mb-1 dark:text-gray-300">
                           {badge.name}
                         </p>
-                        <p className="text-xs text-gray-500">{badge.requirement}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{badge.requirement}</p>
                       </div>
                     ))}
                   </div>
@@ -402,7 +402,7 @@ export default function StudentProfilePage() {
             {/* Languages Learning */}
             <Card>
               <CardBody>
-                <h2 className="text-xl font-display font-bold text-gray-900 mb-6">
+                <h2 className="text-xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                   Languages Learning
                 </h2>
                 <div className="space-y-4">
@@ -412,8 +412,8 @@ export default function StudentProfilePage() {
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{lang.flag}</span>
                           <div>
-                            <p className="font-medium text-gray-900">{lang.name}</p>
-                            <p className="text-sm text-gray-500 capitalize">{lang.level}</p>
+                            <p className="font-medium text-gray-900 dark:text-white">{lang.name}</p>
+                            <p className="text-sm text-gray-500 capitalize dark:text-gray-400">{lang.level}</p>
                           </div>
                         </div>
                         <span className="text-sm font-semibold text-primary-600">
@@ -440,40 +440,40 @@ export default function StudentProfilePage() {
             {/* Stats Grid */}
             <Card className="mb-6">
               <CardBody>
-                <h2 className="text-xl font-display font-bold text-gray-900 mb-4">
+                <h2 className="text-xl font-display font-bold text-gray-900 mb-4 dark:text-white">
                   Your Stats
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-primary-50 rounded-lg p-4">
+                  <div className="bg-primary-50 rounded-lg p-4 dark:bg-primary-900/30">
                     <BookOpen className="w-5 h-5 text-primary-500 mb-2" />
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stats.totalExperiences}
                     </p>
-                    <p className="text-xs text-gray-600">Experiences</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Experiences</p>
                   </div>
 
-                  <div className="bg-secondary-50 rounded-lg p-4">
+                  <div className="bg-secondary-50 rounded-lg p-4 dark:bg-secondary-900/30">
                     <MapPin className="w-5 h-5 text-secondary-500 mb-2" />
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stats.citiesVisited}
                     </p>
-                    <p className="text-xs text-gray-600">Cities</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Cities</p>
                   </div>
 
-                  <div className="bg-purple-50 rounded-lg p-4">
+                  <div className="bg-purple-50 rounded-lg p-4 dark:bg-purple-900/30">
                     <Users className="w-5 h-5 text-purple-500 mb-2" />
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stats.teachersMet}
                     </p>
-                    <p className="text-xs text-gray-600">Teachers</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Teachers</p>
                   </div>
 
-                  <div className="bg-yellow-50 rounded-lg p-4">
+                  <div className="bg-yellow-50 rounded-lg p-4 dark:bg-yellow-900/30">
                     <MessageSquare className="w-5 h-5 text-yellow-600 mb-2" />
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stats.reviewsWritten}
                     </p>
-                    <p className="text-xs text-gray-600">Reviews</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">Reviews</p>
                   </div>
                 </div>
               </CardBody>
@@ -483,8 +483,8 @@ export default function StudentProfilePage() {
             {student.bio && (
               <Card>
                 <CardBody>
-                  <h3 className="font-semibold text-gray-900 mb-2">About</h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">{student.bio}</p>
+                  <h3 className="font-semibold text-gray-900 mb-2 dark:text-white">About</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed dark:text-gray-300">{student.bio}</p>
                 </CardBody>
               </Card>
             )}
@@ -500,7 +500,7 @@ export default function StudentProfilePage() {
             activeTab !== 'upcoming' && activeTab !== 'overview' && 'hidden lg:block'
           }`}
         >
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
             Upcoming Experiences ({upcomingExperiences.length})
           </h2>
           {upcomingExperiences.length > 0 ? (
@@ -513,7 +513,7 @@ export default function StudentProfilePage() {
             <Card>
               <CardBody className="text-center py-12">
                 <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">No upcoming experiences</p>
+                <p className="text-gray-600 mb-4 dark:text-gray-400">No upcoming experiences</p>
                 <Link to="/explore">
                   <Button variant="primary">Browse Experiences</Button>
                 </Link>
@@ -528,7 +528,7 @@ export default function StudentProfilePage() {
             activeTab !== 'past' && activeTab !== 'overview' && 'hidden lg:block'
           }`}
         >
-          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
             Past Experiences ({pastExperiences.length})
           </h2>
           {pastExperiences.length > 0 ? (
@@ -541,7 +541,7 @@ export default function StudentProfilePage() {
             <Card>
               <CardBody className="text-center py-12">
                 <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">No past experiences yet</p>
+                <p className="text-gray-600 dark:text-gray-400">No past experiences yet</p>
               </CardBody>
             </Card>
           )}
@@ -555,7 +555,7 @@ export default function StudentProfilePage() {
         >
           <div className="flex items-center gap-2 mb-6">
             <Heart className="w-6 h-6 text-primary-500 fill-primary-500" />
-            <h2 className="text-2xl font-display font-bold text-gray-900">
+            <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
               Favorite Teachers ({favoriteTeachers.length})
             </h2>
           </div>
@@ -569,7 +569,7 @@ export default function StudentProfilePage() {
             <Card>
               <CardBody className="text-center py-12">
                 <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">No favorite teachers yet</p>
+                <p className="text-gray-600 dark:text-gray-400">No favorite teachers yet</p>
               </CardBody>
             </Card>
           )}

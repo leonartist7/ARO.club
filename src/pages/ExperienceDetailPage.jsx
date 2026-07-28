@@ -70,8 +70,8 @@ export default function ExperienceDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Experience Not Found</h1>
-          <p className="text-gray-600 mb-6">Sorry, we couldn't find the experience you're looking for.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">Experience Not Found</h1>
+          <p className="text-gray-600 mb-6 dark:text-gray-400">Sorry, we couldn't find the experience you're looking for.</p>
           <Link to="/explore">
             <Button variant="primary">Browse All Experiences</Button>
           </Link>
@@ -157,7 +157,7 @@ export default function ExperienceDetailPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Image */}
       <div className="relative h-[400px] md:h-[500px] bg-gray-900">
@@ -173,7 +173,7 @@ export default function ExperienceDetailPage() {
           onClick={() => navigate(-1)}
           className="absolute top-6 left-6 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-900" />
+          <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
         </button>
 
         {/* Share Button */}
@@ -218,7 +218,7 @@ export default function ExperienceDetailPage() {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900">
+                <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white">
                   {experience.title}
                 </h1>
 
@@ -234,10 +234,10 @@ export default function ExperienceDetailPage() {
                     size="lg"
                   />
                   <div>
-                    <p className="font-medium text-gray-900 group-hover:text-primary-500 transition-colors">
+                    <p className="font-medium text-gray-900 group-hover:text-primary-500 transition-colors dark:text-white">
                       Hosted by {teacher?.name}
                     </p>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <Star className="w-4 h-4 fill-yellow-400 stroke-yellow-400" />
                       <span className="font-medium">{teacher?.rating}</span>
                       <span>({teacher?.totalReviews} reviews)</span>
@@ -248,7 +248,7 @@ export default function ExperienceDetailPage() {
                 </Link>
 
                 {/* Description */}
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-300">
                   {experience.description}
                 </p>
               </CardBody>
@@ -257,7 +257,7 @@ export default function ExperienceDetailPage() {
             {/* What You'll Learn */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                   What You'll Learn
                 </h2>
                 <ul className="space-y-4">
@@ -269,10 +269,10 @@ export default function ExperienceDetailPage() {
                       transition={{ delay: index * 0.1 }}
                       className="flex items-start gap-3"
                     >
-                      <div className="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-0.5 dark:bg-primary-900/40">
                         <span className="text-primary-500 font-semibold text-sm">✓</span>
                       </div>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{item}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -282,7 +282,7 @@ export default function ExperienceDetailPage() {
             {/* What's Included */}
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                   What's Included
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -505,20 +505,20 @@ export default function ExperienceDetailPage() {
                 </div>
 
                 {/* Details */}
-                <div className="space-y-4 mb-6 pb-6 border-b border-gray-100">
-                  <div className="flex items-start gap-3 text-gray-700">
+                <div className="space-y-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-700">
+                  <div className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
                     <Calendar className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-medium">{getDayOfWeek(experience.date)}</p>
-                      <p className="text-sm text-gray-600">{formatDate(experience.date)}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{formatDate(experience.date)}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 text-gray-700">
+                  <div className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
                     <Clock className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-medium">{formatTime(experience.date)}</p>
-                      <p className="text-sm text-gray-600">{experience.duration} minutes</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{experience.duration} minutes</p>
                     </div>
                   </div>
 
@@ -580,7 +580,7 @@ export default function ExperienceDetailPage() {
         {/* Related Experiences */}
         {relatedExperiences.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-6 dark:text-white">
               You Might Also Like
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

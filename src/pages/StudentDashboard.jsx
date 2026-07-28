@@ -438,7 +438,7 @@ export default function StudentDashboard() {
                     <Button
                       variant="secondary"
                       size="lg"
-                      className="bg-white text-primary-600 hover:bg-gray-50"
+                      className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                     >
                       <Sparkles className="w-5 h-5 mr-2" />
                       Browse Experiences

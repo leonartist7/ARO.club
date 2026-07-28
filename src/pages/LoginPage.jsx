@@ -72,7 +72,7 @@ export default function LoginPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-md w-full">
         <motion.div
@@ -85,10 +85,10 @@ export default function LoginPage() {
             <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <LogIn className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
               Welcome Back!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Sign in to continue your language learning journey
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function LoginPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2 dark:bg-red-900/30"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-700">{error}</p>
@@ -124,10 +124,10 @@ export default function LoginPage() {
               {/* Divider */}
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300"></div>
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or continue with email</span>
+                  <span className="px-2 bg-white text-gray-500 dark:bg-gray-800 dark:text-gray-400">Or continue with email</span>
                 </div>
               </div>
 
@@ -159,9 +159,9 @@ export default function LoginPage() {
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                      className="rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:border-gray-600"
                     />
-                    <span className="text-gray-600">Remember me</span>
+                    <span className="text-gray-600 dark:text-gray-400">Remember me</span>
                   </label>
                   <Link
                     to="/forgot-password"
@@ -184,7 +184,7 @@ export default function LoginPage() {
 
               {/* Sign Up Link */}
               <div className="mt-6 text-center text-sm">
-                <span className="text-gray-600">Don't have an account? </span>
+                <span className="text-gray-600 dark:text-gray-400">Don't have an account? </span>
                 <Link
                   to="/signup"
                   className="text-primary-600 hover:text-primary-700 font-medium"
@@ -196,7 +196,7 @@ export default function LoginPage() {
           </Card>
 
           {/* Footer */}
-          <div className="mt-6 text-center text-xs text-gray-500">
+          <div className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
             By signing in, you agree to our{' '}
             <Link to="/terms" className="text-primary-600 hover:text-primary-700">
               Terms of Service

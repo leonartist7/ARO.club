@@ -46,7 +46,7 @@ export default function ForgotPasswordPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-md w-full">
         <motion.div
@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
           {/* Back Button */}
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 dark:text-gray-400"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm font-medium">Back to login</span>
@@ -68,10 +68,10 @@ export default function ForgotPasswordPage() {
             <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <Mail className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
               Forgot Password?
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               No worries! Enter your email and we'll send you reset instructions.
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function ForgotPasswordPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+                  className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg dark:bg-green-900/30"
                 >
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -104,7 +104,7 @@ export default function ForgotPasswordPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2 dark:bg-red-900/30"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-700">{error}</p>
@@ -158,7 +158,7 @@ export default function ForgotPasswordPage() {
               {/* Help Text */}
               {!success && (
                 <div className="mt-6 text-center">
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     Remember your password?{' '}
                     <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
                       Sign in

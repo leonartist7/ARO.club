@@ -366,7 +366,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/explore">
-                <Button className="bg-white text-secondary-700 hover:bg-gray-50 font-bold text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                <Button className="bg-white text-secondary-700 hover:bg-gray-50 font-bold text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-xl transform hover:scale-105 transition-all duration-200 dark:bg-gray-800">
                   <Sparkles className="w-6 h-6 mr-2" />
                   {t('home.cta.browseButton')}
                 </Button>

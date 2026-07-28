@@ -194,7 +194,7 @@ export default function StudentOnboarding() {
             transition={{ duration: 0.3 }}
           />
         </div>
-        <div className="px-4 py-2 text-center text-sm text-gray-600">
+        <div className="px-4 py-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Step {step} of 6
         </div>
       </div>
@@ -213,14 +213,14 @@ export default function StudentOnboarding() {
                 className="text-center"
               >
                 <div className="text-7xl mb-6">👋</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome to Langgie!</h1>
-                <p className="text-xl text-gray-600 mb-8">Let's start your language learning adventure</p>
+                <h1 className="text-4xl font-bold text-gray-800 mb-4 dark:text-gray-100">Welcome to Langgie!</h1>
+                <p className="text-xl text-gray-600 mb-8 dark:text-gray-400">Let's start your language learning adventure</p>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="What's your name?"
-                  className="w-full px-6 py-4 text-xl rounded-2xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none mb-6"
+                  className="w-full px-6 py-4 text-xl rounded-2xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none mb-6 dark:border-gray-700"
                 />
                 <Button
                   onClick={() => name && setStep(2)}
@@ -242,10 +242,10 @@ export default function StudentOnboarding() {
                 className="h-[600px]"
               >
                 <div className="text-center mb-6">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-2 dark:text-gray-100">
                     What do you want to learn?
                   </h2>
-                  <p className="text-gray-600">Swipe right to add, left to skip</p>
+                  <p className="text-gray-600 dark:text-gray-400">Swipe right to add, left to skip</p>
                   <div className="flex items-center justify-center gap-2 mt-4">
                     {selectedLanguages.map((code) => (
                       <span key={code} className="text-2xl">
@@ -307,10 +307,10 @@ export default function StudentOnboarding() {
                 className="h-[600px]"
               >
                 <div className="text-center mb-6">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-2 dark:text-gray-100">
                     What are your interests?
                   </h2>
-                  <p className="text-gray-600">Swipe right to add, left to skip</p>
+                  <p className="text-gray-600 dark:text-gray-400">Swipe right to add, left to skip</p>
                   <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
                     {selectedInterests.map((id) => (
                       <span key={id} className="text-2xl">
@@ -371,7 +371,7 @@ export default function StudentOnboarding() {
                 exit={{ opacity: 0, y: -20 }}
                 className="text-center"
               >
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Create Your Avatar</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-6 dark:text-gray-100">Create Your Avatar</h2>
 
                 {/* Avatar Preview */}
                 <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-8xl">
@@ -381,7 +381,7 @@ export default function StudentOnboarding() {
                 {/* Customization Options */}
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Skin Tone</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-gray-300">Skin Tone</label>
                     <div className="flex justify-center gap-2">
                       {SKIN_TONES.map((tone) => (
                         <button
@@ -403,7 +403,7 @@ export default function StudentOnboarding() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Hairstyle</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-gray-300">Hairstyle</label>
                     <div className="flex flex-wrap justify-center gap-2">
                       {HAIRSTYLES.map((style) => (
                         <button
@@ -422,7 +422,7 @@ export default function StudentOnboarding() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Outfit</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-gray-300">Outfit</label>
                     <div className="flex justify-center gap-2">
                       {OUTFITS.map((outfit) => (
                         <button
@@ -456,8 +456,8 @@ export default function StudentOnboarding() {
                 exit={{ opacity: 0, y: -20 }}
                 className="text-center"
               >
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Set Your Goal</h2>
-                <p className="text-gray-600 mb-8">How much time can you practice each day?</p>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4 dark:text-gray-100">Set Your Goal</h2>
+                <p className="text-gray-600 mb-8 dark:text-gray-400">How much time can you practice each day?</p>
 
                 <div className="space-y-4">
                   {GOALS.map((g) => (
@@ -473,8 +473,8 @@ export default function StudentOnboarding() {
                       <div className="flex items-center gap-4">
                         <div className="text-4xl">{g.emoji}</div>
                         <div className="flex-1">
-                          <div className="font-bold text-xl text-gray-800">{g.name}</div>
-                          <div className="text-gray-600">{g.description}</div>
+                          <div className="font-bold text-xl text-gray-800 dark:text-gray-100">{g.name}</div>
+                          <div className="text-gray-600 dark:text-gray-400">{g.description}</div>
                         </div>
                         {goal === g.id && (
                           <Check className="w-6 h-6 text-yellow-600" />
@@ -507,12 +507,12 @@ export default function StudentOnboarding() {
                 >
                   🎉
                 </motion.div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-4">You're All Set!</h2>
-                <p className="text-xl text-gray-600 mb-8">Welcome bonus: +100 points 🌟</p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4 dark:text-gray-100">You're All Set!</h2>
+                <p className="text-xl text-gray-600 mb-8 dark:text-gray-400">Welcome bonus: +100 points 🌟</p>
 
-                <div className="bg-white rounded-2xl p-6 mb-8 text-left">
+                <div className="bg-white rounded-2xl p-6 mb-8 text-left dark:bg-gray-800">
                   <h3 className="font-bold text-lg mb-4">Your Profile</h3>
-                  <div className="space-y-2 text-gray-700">
+                  <div className="space-y-2 text-gray-700 dark:text-gray-300">
                     <p><strong>Name:</strong> {name}</p>
                     <p><strong>Languages:</strong> {selectedLanguages.length} selected</p>
                     <p><strong>Interests:</strong> {selectedInterests.length} selected</p>

@@ -194,12 +194,12 @@ export default function TeacherDashboardPage() {
   // Not a teacher check
   if (player && player.role !== 'teacher') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <Card className="max-w-md">
           <CardBody className="text-center py-12">
             <AlertCircle className="w-16 h-16 text-primary-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Teacher Access Only</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2 dark:text-white">Teacher Access Only</h2>
+            <p className="text-gray-600 mb-6 dark:text-gray-400">
               This dashboard is only accessible to registered teachers.
             </p>
             <Link to="/for-teachers">
@@ -223,16 +223,16 @@ export default function TeacherDashboardPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
               Teacher Dashboard
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Welcome back, {currentTeacher.name.split(' ')[0]}!
             </p>
           </div>
@@ -254,13 +254,13 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Total Earnings</p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-sm text-gray-600 mb-1 dark:text-gray-400">Total Earnings</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {formatPrice(totalEarnings)}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">From upcoming sessions</p>
+                  <p className="text-xs text-gray-500 mt-1 dark:text-gray-400">From upcoming sessions</p>
                 </div>
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center dark:bg-primary-900/40">
                   <DollarSign className="w-6 h-6 text-primary-500" />
                 </div>
               </div>
@@ -271,11 +271,11 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Total Sessions</p>
-                  <p className="text-3xl font-bold text-gray-900">{totalSessions}</p>
-                  <p className="text-xs text-gray-500 mt-1">All time</p>
+                  <p className="text-sm text-gray-600 mb-1 dark:text-gray-400">Total Sessions</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">{totalSessions}</p>
+                  <p className="text-xs text-gray-500 mt-1 dark:text-gray-400">All time</p>
                 </div>
-                <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center dark:bg-secondary-900/40">
                   <Calendar className="w-6 h-6 text-secondary-500" />
                 </div>
               </div>
@@ -286,17 +286,17 @@ export default function TeacherDashboardPage() {
             <CardBody>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Average Rating</p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-sm text-gray-600 mb-1 dark:text-gray-400">Average Rating</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {avgRating ?? '—'}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 mt-1 dark:text-gray-400">
                     {teacherReviews.length > 0
                       ? `From ${teacherReviews.length} reviews`
                       : 'No reviews yet'}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center dark:bg-yellow-900/40">
                   <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
                 </div>
               </div>
@@ -307,10 +307,10 @@ export default function TeacherDashboardPage() {
         {/* My Experiences Section */}
         <Card className="mb-8">
           <CardBody>
-            <h2 className="text-xl font-bold text-gray-900 mb-6">My Experiences</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6 dark:text-white">My Experiences</h2>
 
             {/* Tabs */}
-            <div className="flex overflow-x-auto border-b border-gray-200 mb-6">
+            <div className="flex overflow-x-auto border-b border-gray-200 mb-6 dark:border-gray-700">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -337,11 +337,11 @@ export default function TeacherDashboardPage() {
                   return (
                     <div
                       key={experience.id}
-                      className="flex flex-col sm:flex-row items-start gap-4 p-4 border border-gray-200 rounded-lg hover:border-primary-200 hover:bg-gray-50 transition-colors"
+                      className="flex flex-col sm:flex-row items-start gap-4 p-4 border border-gray-200 rounded-lg hover:border-primary-200 hover:bg-gray-50 transition-colors dark:border-gray-700"
                     >
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {experience.title}
                           </h3>
                           {experience.status === 'draft' && (
@@ -350,7 +350,7 @@ export default function TeacherDashboardPage() {
                             </Badge>
                           )}
                         </div>
-                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-2">
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-2 dark:text-gray-400">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             {formatDate(experience.date)}
@@ -367,10 +367,10 @@ export default function TeacherDashboardPage() {
                           </span>
                         </div>
                         <div className="flex items-center gap-4 text-sm">
-                          <span className="font-medium text-gray-900">
+                          <span className="font-medium text-gray-900 dark:text-white">
                             {formatPrice(experience.price)}
                           </span>
-                          <span className="text-gray-500">
+                          <span className="text-gray-500 dark:text-gray-400">
                             {experience.bookedSpots || 0} / {experience.maxCapacity} booked
                           </span>
                         </div>
@@ -423,7 +423,7 @@ export default function TeacherDashboardPage() {
             ) : (
               <div className="text-center py-12">
                 <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-gray-400">
                   No {activeTab} experiences yet
                   {activeTab === 'drafts' && '. Create one to get started!'}
                 </p>
@@ -446,11 +446,11 @@ export default function TeacherDashboardPage() {
         {/* Recent Reviews */}
         <Card>
           <CardBody>
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Reviews</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6 dark:text-white">Recent Reviews</h2>
             {teacherReviews.length > 0 ? (
               <div className="space-y-4">
                 {teacherReviews.slice(0, 5).map((review) => (
-                  <div key={review.id} className="flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0">
+                  <div key={review.id} className="flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 dark:border-gray-700">
                     <Avatar
                       src={review.studentPhoto}
                       alt={review.studentName}
@@ -459,7 +459,7 @@ export default function TeacherDashboardPage() {
                     />
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
-                        <p className="font-medium text-gray-900">{review.studentName}</p>
+                        <p className="font-medium text-gray-900 dark:text-white">{review.studentName}</p>
                         <div className="flex items-center gap-1">
                           {[...Array(5)].map((_, i) => (
                             <Star
@@ -473,10 +473,10 @@ export default function TeacherDashboardPage() {
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-500 mb-2">
+                      <p className="text-sm text-gray-500 mb-2 dark:text-gray-400">
                         {formatDate(review.date)}
                       </p>
-                      <p className="text-gray-700 text-sm">{review.comment}</p>
+                      <p className="text-gray-700 text-sm dark:text-gray-300">{review.comment}</p>
                     </div>
                   </div>
                 ))}
@@ -484,7 +484,7 @@ export default function TeacherDashboardPage() {
             ) : (
               <div className="text-center py-8">
                 <Star className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600">No reviews yet</p>
+                <p className="text-gray-600 dark:text-gray-400">No reviews yet</p>
               </div>
             )}
           </CardBody>
@@ -497,10 +497,10 @@ export default function TeacherDashboardPage() {
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto dark:bg-gray-800"
           >
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between dark:bg-gray-800 dark:border-gray-700">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {editingExperience ? 'Edit Experience' : 'Create Experience'}
               </h2>
               <button
@@ -516,7 +516,7 @@ export default function TeacherDashboardPage() {
 
             <form onSubmit={handleSubmit} className="p-6 space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                   Experience Title *
                 </label>
                 <Input
@@ -529,7 +529,7 @@ export default function TeacherDashboardPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                   Description *
                 </label>
                 <textarea
@@ -538,13 +538,13 @@ export default function TeacherDashboardPage() {
                   placeholder="Describe what students will learn and do..."
                   rows={4}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:border-gray-600"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Language *
                   </label>
                   <Select
@@ -562,7 +562,7 @@ export default function TeacherDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     City *
                   </label>
                   <Select
@@ -582,7 +582,7 @@ export default function TeacherDashboardPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Skill Level *
                   </label>
                   <Select
@@ -600,7 +600,7 @@ export default function TeacherDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Experience Type *
                   </label>
                   <Select
@@ -620,7 +620,7 @@ export default function TeacherDashboardPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Price (USD) *
                   </label>
                   <Input
@@ -635,7 +635,7 @@ export default function TeacherDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Max Capacity *
                   </label>
                   <Input
@@ -650,7 +650,7 @@ export default function TeacherDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Duration (hrs) *
                   </label>
                   <Input
@@ -667,7 +667,7 @@ export default function TeacherDashboardPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Date *
                   </label>
                   <Input
@@ -679,7 +679,7 @@ export default function TeacherDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                     Time *
                   </label>
                   <Input
@@ -692,7 +692,7 @@ export default function TeacherDashboardPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                   Location *
                 </label>
                 <Input
@@ -704,7 +704,7 @@ export default function TeacherDashboardPage() {
                 />
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <Button
                   type="button"
                   variant="outline"

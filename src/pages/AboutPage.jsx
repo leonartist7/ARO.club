@@ -70,7 +70,7 @@ export default function AboutPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
@@ -95,7 +95,7 @@ export default function AboutPage() {
       </div>
 
       {/* Stats */}
-      <div className="bg-white border-b border-gray-200 py-12">
+      <div className="bg-white border-b border-gray-200 py-12 dark:bg-gray-800 dark:border-gray-700">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 className="text-center"
               >
                 <p className="text-4xl font-bold text-primary-600 mb-2">{stat.number}</p>
-                <p className="text-gray-600 text-sm">{stat.label}</p>
+                <p className="text-gray-600 text-sm dark:text-gray-400">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -122,10 +122,10 @@ export default function AboutPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-6 text-center dark:text-white">
               Our Story
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+            <div className="prose prose-lg max-w-none text-gray-700 space-y-4 dark:text-gray-300">
               <p>
                 In 2023, our founders Sarah and Marco met at a language exchange meetup in
                 Barcelona. Both were frustrated with traditional language learning methods—apps
@@ -152,9 +152,9 @@ export default function AboutPage() {
       </div>
 
       {/* Values */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-16 dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
             What We Believe
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -167,11 +167,11 @@ export default function AboutPage() {
               >
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardBody className="text-center">
-                    <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
+                    <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600 dark:bg-primary-900/40">
                       {value.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                    <p className="text-gray-600 text-sm">{value.description}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 dark:text-white">{value.title}</h3>
+                    <p className="text-gray-600 text-sm dark:text-gray-400">{value.description}</p>
                   </CardBody>
                 </Card>
               </motion.div>
@@ -182,7 +182,7 @@ export default function AboutPage() {
 
       {/* Team */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
           Meet the Team
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -196,9 +196,9 @@ export default function AboutPage() {
               <Card className="text-center">
                 <CardBody>
                   <div className="text-6xl mb-4">{member.emoji}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1 dark:text-white">{member.name}</h3>
                   <p className="text-primary-600 font-medium text-sm mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                  <p className="text-gray-600 text-sm dark:text-gray-400">{member.bio}</p>
                 </CardBody>
               </Card>
             </motion.div>
@@ -240,13 +240,13 @@ export default function AboutPage() {
 
       {/* CTA */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Card className="bg-gradient-to-r from-primary-50 to-secondary-50">
+        <Card className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30">
           <CardBody className="text-center py-12">
             <TrendingUp className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-display font-bold text-gray-900 mb-4 dark:text-white">
               Join Our Journey
             </h2>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto dark:text-gray-400">
               Whether you're a learner looking for authentic language experiences or a
               teacher wanting to share your culture, there's a place for you in our community.
             </p>
