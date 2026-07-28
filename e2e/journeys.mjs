@@ -220,6 +220,53 @@ export default async function journeys() {
     await context.close();
   }
 
+  // ------------------------------------------------------ student: passport
+  {
+    run.heading('student: passport stamps');
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = run.watch(await context.newPage());
+
+    await run.step('an empty passport invites a first booking', async () => {
+      await signIn(page);
+      await page.goto(`${BASE}/passport`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(1400);
+      const body = await page.locator('main').innerText();
+      assert(/No stamps yet/i.test(body), 'empty passport does not show its empty state');
+    });
+
+    await run.step('booked cities appear as stamps, unvisited ones as prompts', async () => {
+      await signIn(
+        page,
+        seedPlayer({
+          bookings: [
+            {
+              experienceId: 'exp1',
+              cityId: 'paris',
+              language: 'fr',
+              type: 'conversation',
+              date: new Date(Date.now() - 86400000).toISOString(),
+              spots: 1,
+              couple: false,
+              pricePaid: 18,
+              bookedAt: new Date().toISOString(),
+            },
+          ],
+        })
+      );
+
+      await page.goto(`${BASE}/passport`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(1400);
+      const body = await page.locator('main').innerText();
+
+      assert(body.includes('Paris'), 'the visited city has no stamp');
+      assert(/Stamps \(1\)/.test(body), `stamp count wrong: ${body.slice(0, 120)}`);
+      assert(/Still to visit/i.test(body), 'unvisited cities are not shown');
+      assert(/French/i.test(body), 'languages practised not listed');
+    });
+
+    await context.close();
+  }
+
   // ------------------------------------------------ student: couple booking
   {
     run.heading('student: couple discount is selectable, not just advertised');

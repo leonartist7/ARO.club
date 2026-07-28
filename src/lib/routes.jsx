@@ -25,6 +25,7 @@ const FAQPage = lazy(() => import('../pages/FAQPage'));
 const ContactPage = lazy(() => import('../pages/ContactPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 const LegalPage = lazy(() => import('../pages/LegalPage'));
+const PassportPage = lazy(() => import('../pages/PassportPage'));
 
 // Auth Pages
 const ChooseRolePage = lazy(() => import('../pages/ChooseRolePage'));
@@ -109,6 +110,14 @@ export const router = createBrowserRouter([
       {
         path: 'leaderboard',
         element: <LeaderboardPage />,
+      },
+      {
+        path: 'passport',
+        element: (
+          <ProtectedRoute>
+            <PassportPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'games',
