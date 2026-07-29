@@ -1,9 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
+import AdminRoute from '../components/auth/AdminRoute';
+import AdminLayout from '../components/admin/AdminLayout';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+const AdminPageLoader = () => (
+  <div className="flex items-center justify-center h-64">
+    <LoadingSpinner size="lg" />
+  </div>
+);
 
 // Pages (lazy loaded for better performance)
-import { lazy } from 'react';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ExplorePage = lazy(() => import('../pages/ExplorePage'));
@@ -38,6 +47,17 @@ const TeacherOnboarding = lazy(() => import('../pages/TeacherOnboarding'));
 const GamesPage = lazy(() => import('../pages/GamesPage'));
 const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ChatPage = lazy(() => import('../pages/ChatPage'));
+
+// Admin pages
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'));
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
+const AdminTeachersPage = lazy(() => import('../pages/admin/AdminTeachersPage'));
+const AdminTeacherDetailPage = lazy(() => import('../pages/admin/AdminTeacherDetailPage'));
+const AdminExperiencesPage = lazy(() => import('../pages/admin/AdminExperiencesPage'));
+const AdminBookingsPage = lazy(() => import('../pages/admin/AdminBookingsPage'));
+const AdminReviewsPage = lazy(() => import('../pages/admin/AdminReviewsPage'));
+const AdminAuditPage = lazy(() => import('../pages/admin/AdminAuditPage'));
 
 /**
  * App routes configuration
@@ -229,6 +249,54 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFoundPage />,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    element: (
+      <AdminRoute>
+        <Suspense fallback={<AdminPageLoader />}>
+          <AdminLayout />
+        </Suspense>
+      </AdminRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <AdminDashboardPage />,
+      },
+      {
+        path: 'users',
+        element: <AdminUsersPage />,
+      },
+      {
+        path: 'users/:id',
+        element: <AdminUserDetailPage />,
+      },
+      {
+        path: 'teachers',
+        element: <AdminTeachersPage />,
+      },
+      {
+        path: 'teachers/:id',
+        element: <AdminTeacherDetailPage />,
+      },
+      {
+        path: 'experiences',
+        element: <AdminExperiencesPage />,
+      },
+      {
+        path: 'bookings',
+        element: <AdminBookingsPage />,
+      },
+      {
+        path: 'reviews',
+        element: <AdminReviewsPage />,
+      },
+      {
+        path: 'audit',
+        element: <AdminAuditPage />,
       },
     ],
   },
