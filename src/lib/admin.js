@@ -220,3 +220,335 @@ export async function requestChanges(application, { adminId, reason, adminNotes 
   if (error) throw error;
   await logAudit(adminId, 'request_changes', 'application', application.id, { reason });
 }
+
+/**
+ * Platform admin layer (merged from claude/phase-a-tasks-tzg5ub, adapted to
+ * the trust-engine role model: admins = profiles.role = 'admin', audit log =
+ * admin_audit_log). Backed by the admin policies in supabase/admin-panel.sql.
+ */
+
+export const ADMIN_PAGE_SIZE = 20;
+
+/** Platform overview stats. Client-side counts (the old RPC is not shipped). */
+export async function getPlatformStats() {
+  const [usersRes, expRes, bookRes, revenueRes] = await Promise.all([
+    supabase.from('profiles').select('id', { count: 'exact', head: true }),
+    supabase.from('experiences').select('id', { count: 'exact', head: true }),
+    supabase.from('bookings').select('id', { count: 'exact', head: true }),
+    supabase.from('bookings').select('total_price'),
+  ]);
+  const totalRevenue = (revenueRes.data || []).reduce(
+    (sum, b) => sum + (Number(b.total_price) || 0),
+    0
+  );
+  return {
+    data: {
+      totalUsers: usersRes.count ?? 0,
+      totalExperiences: expRes.count ?? 0,
+      totalBookings: bookRes.count ?? 0,
+      totalRevenue,
+    },
+    error: usersRes.error || expRes.error || bookRes.error || revenueRes.error || null,
+  };
+}
+
+export async function getAllUsers(page = 1, limit = ADMIN_PAGE_SIZE, search = '') {
+  const from = (page - 1) * limit;
+  let q = supabase
+    .from('profiles')
+    .select('id, name, email, photo, is_admin:role, is_teacher, points, created_at', {
+      count: 'exact',
+    })
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) {
+    q = q.or(`name.ilike.%${safe}%,email.ilike.%${safe}%`);
+  }
+  return q;
+}
+
+export async function updateUserAdminFlag(userId, isAdmin) {
+  const result = await supabase
+    .from('profiles')
+    .update({ role: isAdmin ? 'admin' : 'student' })
+    .eq('id', userId)
+    .select()
+    .single();
+  if (!result.error) {
+    const { data: authData } = await supabase.auth.getUser();
+    await supabase.from('admin_audit_log').insert({
+      admin_id: authData?.user?.id ?? null,
+      action: isAdmin ? 'promote_admin' : 'demote_admin',
+      target_type: 'user',
+      target_id: userId,
+      detail: { role: isAdmin ? 'admin' : 'student' },
+    });
+  }
+  return result;
+}
+
+const EXPERIENCE_SORT_COLS = ['created_at', 'date', 'price', 'title'];
+
+export async function getAllExperiences(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { search = '', status = '', sortBy = 'created_at', asc = false } = opts;
+  const from = (page - 1) * limit;
+  const sortCol = EXPERIENCE_SORT_COLS.includes(sortBy) ? sortBy : 'created_at';
+  let q = supabase
+    .from('experiences')
+    .select(
+      `id, title, language, city, status, price, date, created_at,
+       teacher:teachers(name)`,
+      { count: 'exact' }
+    )
+    .order(sortCol, { ascending: asc })
+    .range(from, from + limit - 1);
+  if (status) q = q.eq('status', status);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) q = q.or(`title.ilike.%${safe}%,city.ilike.%${safe}%`);
+  return q;
+}
+
+export async function updateExperienceStatus(id, status) {
+  return supabase
+    .from('experiences')
+    .update({ status })
+    .eq('id', id)
+    .select()
+    .single();
+}
+
+export async function bulkUpdateExperienceStatus(ids, status) {
+  return supabase.from('experiences').update({ status }).in('id', ids).select('id');
+}
+
+const BOOKING_SORT_COLS = ['booking_date', 'total_price', 'status'];
+
+export async function getAllBookings(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { status = '', sortBy = 'booking_date', asc = false } = opts;
+  const from = (page - 1) * limit;
+  const sortCol = BOOKING_SORT_COLS.includes(sortBy) ? sortBy : 'booking_date';
+  let q = supabase
+    .from('bookings')
+    .select(
+      `id, total_price, status, payment_status, booking_date,
+       student:profiles(name, email),
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .order(sortCol, { ascending: asc })
+    .range(from, from + limit - 1);
+  if (status) q = q.eq('status', status);
+  return q;
+}
+
+export async function deleteBooking(id) {
+  return supabase.from('bookings').delete().eq('id', id).select('id');
+}
+
+export async function updateBookingStatus(id, status) {
+  return supabase
+    .from('bookings')
+    .update({ status })
+    .eq('id', id)
+    .select()
+    .single();
+}
+
+export async function bulkDeleteBookings(ids) {
+  return supabase.from('bookings').delete().in('id', ids).select('id');
+}
+
+export async function getPendingBookingsCount() {
+  const { count, error } = await supabase
+    .from('bookings')
+    .select('id', { count: 'exact', head: true })
+    .eq('status', 'pending');
+  return { count: count ?? 0, error };
+}
+
+const REVIEW_SORT_COLS = ['created_at', 'rating'];
+
+export async function getAllReviews(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { search = '', sortBy = 'created_at', asc = false } = opts;
+  const from = (page - 1) * limit;
+  const sortCol = REVIEW_SORT_COLS.includes(sortBy) ? sortBy : 'created_at';
+  let q = supabase
+    .from('reviews')
+    .select(
+      `id, rating, comment, student_name, created_at,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .order(sortCol, { ascending: asc })
+    .range(from, from + limit - 1);
+  const safe = search.trim().replace(/[%_(),]/g, '');
+  if (safe) q = q.or(`student_name.ilike.%${safe}%,comment.ilike.%${safe}%`);
+  return q;
+}
+
+export async function deleteReview(id) {
+  return supabase.from('reviews').delete().eq('id', id).select('id');
+}
+
+export async function bulkDeleteReviews(ids) {
+  return supabase.from('reviews').delete().in('id', ids).select('id');
+}
+
+export async function getAllTeachers(page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('teachers')
+    .select('id, name, email, verified, bio, languages, specialties, created_at', {
+      count: 'exact',
+    })
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function updateTeacherVerified(id, verified) {
+  return supabase
+    .from('teachers')
+    .update({ verified })
+    .eq('id', id)
+    .select('id, verified')
+    .single();
+}
+
+const MONTH_LABELS = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
+export async function getRevenueOverTime(weeks = 8) {
+  const w = Math.min(Math.max(weeks, 1), 52);
+  const { data, error } = await supabase.from('bookings').select('total_price, booking_date');
+  if (error) return { data: null, error };
+  const buckets = new Array(w).fill(null).map((_, i) => {
+    const start = new Date(Date.now() - (w - 1 - i) * 7 * 86400000);
+    start.setUTCDate(start.getUTCDate() - ((start.getUTCDay() + 6) % 7));
+    start.setUTCHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setUTCDate(end.getUTCDate() + 7);
+    return {
+      start: start.getTime(),
+      end: end.getTime(),
+      label: `${MONTH_LABELS[start.getUTCMonth()]} ${String(start.getUTCDate()).padStart(2, '0')}`,
+      revenue: 0,
+    };
+  });
+  (data || []).forEach((b) => {
+    const t = new Date(b.booking_date).getTime();
+    for (const bucket of buckets) {
+      if (t >= bucket.start && t < bucket.end) {
+        bucket.revenue += Number(b.total_price) || 0;
+        break;
+      }
+    }
+  });
+  return {
+    data: buckets.map(({ label, revenue }) => ({ label, revenue })),
+    error: null,
+  };
+}
+
+export async function getAdminEvents(limit = 20) {
+  return supabase
+    .from('admin_audit_log')
+    .select(
+      `id, action, table_name:target_type, record_id:target_id, details:detail, created_at,
+       admin:profiles!admin_id(name, email)`
+    )
+    .order('created_at', { ascending: false })
+    .limit(limit);
+}
+
+export async function logAdminEvent(action, tableName, recordId = null, details = null) {
+  const { data: authData } = await supabase.auth.getUser();
+  return supabase.from('admin_audit_log').insert({
+    admin_id: authData?.user?.id ?? null,
+    action,
+    target_type: tableName || null,
+    target_id: recordId || null,
+    detail: details || {},
+  });
+}
+
+export async function getAdminEventsPaged(page = 1, limit = ADMIN_PAGE_SIZE, opts = {}) {
+  const { action = '', table = '' } = opts;
+  const from = (page - 1) * limit;
+  let q = supabase
+    .from('admin_audit_log')
+    .select(
+      `id, action, table_name:target_type, record_id:target_id, details:detail, created_at,
+       admin:profiles!admin_id(name, email)`,
+      { count: 'exact' }
+    )
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+  if (action) q = q.eq('action', action);
+  if (table) q = q.eq('target_type', table);
+  return q;
+}
+
+export async function getUserById(id) {
+  return supabase
+    .from('profiles')
+    .select(
+      'id, name, email, photo, bio, is_admin:role, is_teacher, points, level, level_name, created_at'
+    )
+    .eq('id', id)
+    .single();
+}
+
+export async function getBookingsByStudent(studentId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('bookings')
+    .select(
+      `id, total_price, status, payment_status, booking_date,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .eq('student_id', studentId)
+    .order('booking_date', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function getReviewsByStudent(studentId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('reviews')
+    .select(
+      `id, rating, comment, created_at,
+       experience:experiences(title)`,
+      { count: 'exact' }
+    )
+    .eq('student_id', studentId)
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
+
+export async function getTeacherById(id) {
+  return supabase
+    .from('teachers')
+    .select(
+      `id, user_id, name, email, photo, bio, tagline, languages, specialties,
+       verified, verification_date, rating, total_reviews, total_sessions,
+       hourly_rate, created_at`
+    )
+    .eq('id', id)
+    .single();
+}
+
+export async function getExperiencesByTeacher(teacherId, page = 1, limit = ADMIN_PAGE_SIZE) {
+  const from = (page - 1) * limit;
+  return supabase
+    .from('experiences')
+    .select('id, title, language, city, status, price, date, created_at', {
+      count: 'exact',
+    })
+    .eq('teacher_id', teacherId)
+    .order('created_at', { ascending: false })
+    .range(from, from + limit - 1);
+}
