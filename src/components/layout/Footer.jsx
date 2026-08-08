@@ -132,16 +132,16 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            ? {new Date().getFullYear()} Tonguee. {t('footer.copyright')}
+            © {new Date().getFullYear()} Tonguee. {t('footer.copyright')}
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-            <Link to="#" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
+            <Link to="/privacy" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
               {t('footer.privacyPolicy')}
             </Link>
-            <Link to="#" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
+            <Link to="/terms" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
               {t('footer.termsOfService')}
             </Link>
-            <Link to="#" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
+            <Link to="/cookies" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">
               {t('footer.cookiePolicy')}
             </Link>
           </div>

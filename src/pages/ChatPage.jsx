@@ -5,6 +5,8 @@ import { supabase } from '../lib/supabase';
 import { Send, Search, ArrowLeft, MoreVertical } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
+import { MOCK_CONVERSATIONS, mockMessagesFor } from '../data/conversations';
+import { usePlayerStore } from '../store/usePlayerStore';
 
 export default function ChatPage() {
   const [conversations, setConversations] = useState([]);
@@ -15,12 +17,17 @@ export default function ChatPage() {
   const [sending, setSending] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const messagesEndRef = useRef(null);
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
+  const recordActivity = usePlayerStore((state) => state.recordActivity);
+  const completeQuest = usePlayerStore((state) => state.completeQuest);
 
   useEffect(() => {
     loadConversations();
 
-    // Subscribe to new conversations
+    // Realtime only makes sense with a real session. Without one the page
+    // runs on seed threads instead of dereferencing a null user.
+    if (!user?.id) return;
+
     const conversationSubscription = supabase
       .channel('conversations')
       .on('postgres_changes', {
@@ -41,6 +48,8 @@ export default function ChatPage() {
   useEffect(() => {
     if (selectedConversation) {
       loadMessages(selectedConversation.id);
+
+      if (!user?.id) return;
 
       // Subscribe to new messages in this conversation
       const messageSubscription = supabase
@@ -71,6 +80,13 @@ export default function ChatPage() {
   };
 
   const loadConversations = async () => {
+    // No session - run the UI on seed threads so chat stays designable.
+    if (!user?.id) {
+      setConversations(MOCK_CONVERSATIONS);
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('conversations')
@@ -103,6 +119,11 @@ export default function ChatPage() {
   };
 
   const loadMessages = async (conversationId) => {
+    if (!user?.id) {
+      setMessages(mockMessagesFor(conversationId));
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('messages')
@@ -129,6 +150,29 @@ export default function ChatPage() {
     if (!newMessage.trim() || !selectedConversation) return;
 
     setSending(true);
+
+    // Local mode: append straight to the thread and count it toward the
+    // social badges in the player store.
+    if (!user?.id) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `local-${Date.now()}`,
+          conversation_id: selectedConversation.id,
+          sender_id: 'me',
+          message_text: newMessage.trim(),
+          message_type: 'text',
+          read: true,
+          created_at: new Date().toISOString(),
+        },
+      ]);
+      recordActivity('conversationsStarted');
+      completeQuest('message-teacher');
+      setNewMessage('');
+      setSending(false);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('messages')
@@ -169,7 +213,7 @@ export default function ChatPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 flex items-center justify-center">
-        <div className="text-xl text-gray-600">Loading chats...</div>
+        <div className="text-xl text-gray-600 dark:text-gray-400">Loading chats...</div>
       </div>
     );
   }
@@ -184,10 +228,10 @@ export default function ChatPage() {
       <div className="max-w-7xl mx-auto h-screen flex">
         {/* Conversations List */}
         {showConversationsList && (
-          <div className={`${isMobile ? 'w-full' : 'w-96'} border-r border-gray-200 bg-white flex flex-col`}>
+          <div className={`${isMobile ? 'w-full' : 'w-96'} border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-col`}>
             {/* Header */}
-            <div className="p-4 border-b border-gray-200">
-              <h1 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+              <h1 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2 dark:text-gray-100">
                 💬 Chats
               </h1>
 
@@ -199,7 +243,7 @@ export default function ChatPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search conversations..."
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none"
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
                 />
               </div>
             </div>
@@ -209,10 +253,10 @@ export default function ChatPage() {
               {filteredConversations.length === 0 ? (
                 <div className="text-center py-12 px-4">
                   <div className="text-6xl mb-4">💬</div>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     {searchQuery ? 'No conversations found' : 'No conversations yet'}
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-gray-500 mt-2 dark:text-gray-400">
                     Book an experience to start chatting with teachers!
                   </p>
                 </div>
@@ -241,11 +285,11 @@ export default function ChatPage() {
                           {/* Content */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-baseline justify-between mb-1">
-                              <h3 className="font-semibold text-gray-800 truncate">
+                              <h3 className="font-semibold text-gray-800 truncate dark:text-gray-100">
                                 {conv.otherPerson?.name || 'Unknown'}
                               </h3>
                               {conv.last_message_at && (
-                                <span className="text-xs text-gray-500 ml-2">
+                                <span className="text-xs text-gray-500 ml-2 dark:text-gray-400">
                                   {new Date(conv.last_message_at).toLocaleDateString(undefined, {
                                     month: 'short',
                                     day: 'numeric',
@@ -253,7 +297,7 @@ export default function ChatPage() {
                                 </span>
                               )}
                             </div>
-                            <p className="text-sm text-gray-600 truncate">
+                            <p className="text-sm text-gray-600 truncate dark:text-gray-400">
                               {conv.last_message || 'No messages yet'}
                             </p>
                           </div>
@@ -276,9 +320,9 @@ export default function ChatPage() {
 
         {/* Chat View */}
         {showChat && (
-          <div className={`${isMobile ? 'w-full' : 'flex-1'} bg-white flex flex-col`}>
+          <div className={`${isMobile ? 'w-full' : 'flex-1'} bg-white dark:bg-gray-800 flex flex-col`}>
             {/* Chat Header */}
-            <div className="p-4 border-b border-gray-200 flex items-center gap-3">
+            <div className="p-4 border-b border-gray-200 flex items-center gap-3 dark:border-gray-700">
               {isMobile && (
                 <button
                   onClick={() => setSelectedConversation(null)}
@@ -293,16 +337,16 @@ export default function ChatPage() {
               </div>
 
               <div className="flex-1">
-                <h2 className="font-bold text-gray-800">
+                <h2 className="font-bold text-gray-800 dark:text-gray-100">
                   {selectedConversation.otherPerson?.name || 'Unknown'}
                 </h2>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   {selectedConversation.isStudent ? 'Teacher' : 'Student'}
                 </p>
               </div>
 
               <button className="p-2 hover:bg-gray-100 rounded-lg">
-                <MoreVertical className="w-5 h-5 text-gray-600" />
+                <MoreVertical className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
             </div>
 
@@ -310,7 +354,7 @@ export default function ChatPage() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-gray-500">Start the conversation!</p>
+                  <p className="text-gray-500 dark:text-gray-400">Start the conversation!</p>
                 </div>
               ) : (
                 messages.map((message, index) => {
@@ -352,14 +396,14 @@ export default function ChatPage() {
             </div>
 
             {/* Message Input */}
-            <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-200">
+            <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Type a message..."
-                  className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none"
+                  className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-yellow-400 focus:outline-none dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
                   disabled={sending}
                 />
                 <button
@@ -376,11 +420,11 @@ export default function ChatPage() {
 
         {/* Empty state (desktop) */}
         {!selectedConversation && !isMobile && (
-          <div className="flex-1 bg-white flex items-center justify-center">
+          <div className="flex-1 bg-white flex items-center justify-center dark:bg-gray-800">
             <div className="text-center">
               <div className="text-8xl mb-4">💬</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Select a conversation</h3>
-              <p className="text-gray-600">Choose a chat to start messaging</p>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2 dark:text-gray-100">Select a conversation</h3>
+              <p className="text-gray-600 dark:text-gray-400">Choose a chat to start messaging</p>
             </div>
           </div>
         )}

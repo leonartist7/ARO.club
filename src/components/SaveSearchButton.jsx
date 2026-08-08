@@ -97,7 +97,7 @@ export default function SaveSearchButton({ filters, hasActiveFilters }) {
                     onClick={() => setIsModalOpen(false)}
                     className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                   >
-                    <X className="w-5 h-5 text-gray-500" />
+                    <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                   </button>
                 </div>
 

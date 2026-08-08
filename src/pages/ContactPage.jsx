@@ -16,6 +16,9 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 
+/** Where unsent messages are kept until there's a mail backend. */
+const DRAFTS_KEY = 'conversa-contact-messages';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,12 +30,24 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock submission
+
+    // There is no mail backend yet. Rather than claim the message was sent
+    // and silently drop it, keep it on the device so nothing the user typed
+    // is lost, and say plainly what did and didn't happen.
+    try {
+      const stored = JSON.parse(localStorage.getItem(DRAFTS_KEY) ?? '[]');
+      stored.push({ ...formData, savedAt: new Date().toISOString() });
+      localStorage.setItem(DRAFTS_KEY, JSON.stringify(stored));
+    } catch (error) {
+      console.error('Could not save the message locally:', error);
+    }
+
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+  };
+
+  const startAnother = () => {
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setSubmitted(false);
   };
 
   const handleChange = (field, value) => {
@@ -44,7 +59,7 @@ export default function ContactPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-16">
@@ -73,7 +88,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <Card>
               <CardBody>
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6 dark:text-white">
                   Send us a Message
                 </h2>
 
@@ -84,18 +99,33 @@ export default function ContactPage() {
                     className="text-center py-12"
                   >
                     <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      Message Sent!
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">
+                      Your message is saved
                     </h3>
-                    <p className="text-gray-600">
-                      Thanks for reaching out. We'll get back to you within 24 hours.
+                    <p className="text-gray-600 mb-2 dark:text-gray-400">
+                      Thanks for writing, {formData.name || 'friend'}.
                     </p>
+                    <p className="text-sm text-gray-500 mb-6 dark:text-gray-400">
+                      We haven't connected email delivery yet, so this is stored on
+                      your device rather than sent to us. To reach a person today,
+                      email{' '}
+                      <a
+                        href="mailto:hello@conversa.com"
+                        className="text-primary-600 font-medium hover:underline"
+                      >
+                        hello@conversa.com
+                      </a>
+                      .
+                    </p>
+                    <Button variant="outline" onClick={startAnother}>
+                      Write another
+                    </Button>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                           Your Name *
                         </label>
                         <Input
@@ -108,7 +138,7 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                           Email Address *
                         </label>
                         <Input
@@ -122,7 +152,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                         Subject *
                       </label>
                       <Input
@@ -135,7 +165,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                         Message *
                       </label>
                       <textarea
@@ -144,7 +174,7 @@ export default function ContactPage() {
                         placeholder="Tell us more about your inquiry..."
                         rows={6}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                       />
                     </div>
 
@@ -168,15 +198,15 @@ export default function ContactPage() {
             {/* Contact Details */}
             <Card>
               <CardBody>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Contact Information</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-4 dark:text-white">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <Mail className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Email</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Email</p>
                       <a
                         href="mailto:support@conversa.com"
-                        className="text-gray-600 hover:text-primary-600 text-sm"
+                        className="text-gray-600 hover:text-primary-600 text-sm dark:text-gray-400"
                       >
                         support@conversa.com
                       </a>
@@ -186,10 +216,10 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3">
                     <Phone className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Phone</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Phone</p>
                       <a
                         href="tel:+1234567890"
-                        className="text-gray-600 hover:text-primary-600 text-sm"
+                        className="text-gray-600 hover:text-primary-600 text-sm dark:text-gray-400"
                       >
                         +1 (234) 567-890
                       </a>
@@ -199,8 +229,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Address</p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="font-medium text-gray-900 dark:text-white">Address</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">
                         123 Language Street
                         <br />
                         San Francisco, CA 94102
@@ -213,8 +243,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3">
                     <Clock className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Business Hours</p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="font-medium text-gray-900 dark:text-white">Business Hours</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">
                         Monday - Friday: 9AM - 6PM PST
                         <br />
                         Saturday - Sunday: Closed
@@ -231,7 +261,7 @@ export default function ContactPage() {
                 <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <Globe className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-600 text-sm">Map Coming Soon</p>
+                    <p className="text-gray-600 text-sm dark:text-gray-400">Map Coming Soon</p>
                   </div>
                 </div>
               </CardBody>
@@ -242,7 +272,7 @@ export default function ContactPage() {
               <CardBody>
                 <div className="flex items-center gap-2 mb-4">
                   <HelpCircle className="w-5 h-5 text-primary-500" />
-                  <h3 className="font-semibold text-gray-900">Need Help?</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">Need Help?</h3>
                 </div>
                 <div className="space-y-2 text-sm">
                   <Link
@@ -276,12 +306,12 @@ export default function ContactPage() {
           transition={{ delay: 0.3 }}
           className="mt-12"
         >
-          <Card className="bg-gradient-to-r from-primary-50 to-secondary-50">
+          <Card className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30">
             <CardBody className="text-center py-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">
                 Join Our Community
               </h3>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-600 mb-6 max-w-2xl mx-auto dark:text-gray-400">
                 Follow us on social media for language learning tips, cultural insights, and
                 special offers.
               </p>

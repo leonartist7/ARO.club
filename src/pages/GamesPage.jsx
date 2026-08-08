@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
+import { usePlayerStore } from '../store/usePlayerStore';
+import { getQuestions } from '../data/questions';
+import studentsData from '../data/students.json';
 import { Trophy, Zap, Volume2, Flame, Star, Clock, Target, Award } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
@@ -69,21 +72,25 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
   }, [timeLeft, showFeedback]);
 
   const loadQuestions = async () => {
+    // The bundled bank keeps the game playable with no backend attached.
+    // Supabase overrides it whenever the table actually has content.
+    let loaded = getQuestions(language, 10);
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('questions')
         .select('*')
         .eq('language', language)
         .eq('question_type', 'translation')
         .limit(10);
 
-      if (error) throw error;
-      setQuestions(data || []);
+      if (data?.length) loaded = data;
     } catch (error) {
-      console.error('Error loading questions:', error);
-    } finally {
-      setLoading(false);
+      console.error('Using the local question bank:', error);
     }
+
+    setQuestions(loaded);
+    setLoading(false);
   };
 
   const handleAnswer = (answer) => {
@@ -119,7 +126,7 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600 mb-4">No questions available for {language}.</p>
+        <p className="text-gray-600 mb-4 dark:text-gray-400">No questions available for {language}.</p>
         <Button onClick={() => onComplete(0, 0)}>Back to Games</Button>
       </div>
     );
@@ -137,7 +144,7 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
     <div className="space-y-6">
       {/* Progress */}
       <div className="flex items-center justify-between">
-        <div className="text-sm font-semibold text-gray-600">
+        <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">
           Question {currentQuestion + 1} / {questions.length}
         </div>
         <div className="flex items-center gap-2 text-orange-600 font-bold">
@@ -189,7 +196,7 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
       </div>
 
       {/* Score */}
-      <div className="text-center text-sm text-gray-600">
+      <div className="text-center text-sm text-gray-600 dark:text-gray-400">
         Score: {score} / {currentQuestion + (showFeedback ? 1 : 0)}
       </div>
     </div>
@@ -220,32 +227,24 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
   }, [timeLeft, showFeedback]);
 
   const loadQuestions = async () => {
+    // The bundled bank keeps the game playable with no backend attached.
+    // Supabase overrides it whenever the table actually has content.
+    let loaded = getQuestions(language, 20);
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('questions')
         .select('*')
         .eq('language', language)
-        .eq('question_type', 'multiple_choice')
         .limit(20);
 
-      if (error) throw error;
-
-      // If no specific multiple_choice questions, use translation questions
-      if (!data || data.length === 0) {
-        const { data: backupData } = await supabase
-          .from('questions')
-          .select('*')
-          .eq('language', language)
-          .limit(20);
-        setQuestions(backupData || []);
-      } else {
-        setQuestions(data);
-      }
+      if (data?.length) loaded = data;
     } catch (error) {
-      console.error('Error loading questions:', error);
-    } finally {
-      setLoading(false);
+      console.error('Using the local question bank:', error);
     }
+
+    setQuestions(loaded);
+    setLoading(false);
   };
 
   const handleAnswer = (answer) => {
@@ -282,7 +281,7 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600 mb-4">No quiz questions available.</p>
+        <p className="text-gray-600 mb-4 dark:text-gray-400">No quiz questions available.</p>
         <Button onClick={() => onComplete(0, 0)}>Back to Games</Button>
       </div>
     );
@@ -324,8 +323,8 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
       </div>
 
       {/* Question */}
-      <div className="bg-white rounded-2xl p-6 shadow-lg">
-        <div className="text-2xl font-bold text-gray-800 text-center mb-6">
+      <div className="bg-white rounded-2xl p-6 shadow-lg dark:bg-gray-800">
+        <div className="text-2xl font-bold text-gray-800 text-center mb-6 dark:text-gray-100">
           {question.question_text}
         </div>
 
@@ -361,7 +360,7 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
       {/* Score */}
       <div className="text-center">
         <div className="text-3xl font-bold text-purple-600">{score} points</div>
-        <div className="text-sm text-gray-500">Bonus for speed!</div>
+        <div className="text-sm text-gray-500 dark:text-gray-400">Bonus for speed!</div>
       </div>
     </div>
   );
@@ -372,8 +371,8 @@ function ListeningChallengeGame({ onComplete }) {
   return (
     <div className="text-center py-12 space-y-6">
       <div className="text-6xl mb-4">🎧</div>
-      <h3 className="text-2xl font-bold text-gray-800">Listening Challenge</h3>
-      <p className="text-gray-600 max-w-md mx-auto">
+      <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Listening Challenge</h3>
+      <p className="text-gray-600 max-w-md mx-auto dark:text-gray-400">
         This game requires audio files to be set up. For now, let's earn some points!
       </p>
       <Button onClick={() => onComplete(10, 10)}>
@@ -390,36 +389,42 @@ export default function GamesPage() {
   const [gameResults, setGameResults] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
+
+  const earnPoints = usePlayerStore((state) => state.earnPoints);
+  const awardBadge = usePlayerStore((state) => state.awardBadge);
+  const completeQuest = usePlayerStore((state) => state.completeQuest);
+  const points = usePlayerStore((state) => state.points);
+  const streak = usePlayerStore((state) => state.streak);
+  const playerLanguages = usePlayerStore((state) => state.languages);
 
   useEffect(() => {
     loadLeaderboard();
-    checkDailyStreak();
   }, []);
 
   const loadLeaderboard = async () => {
+    // Rank the seed students against the live player so the board is
+    // populated and the player's own position is real, backend or not.
+    const localBoard = [...studentsData]
+      .map((student) => ({ name: student.name, points: student.points, avatar: student.photo }))
+      .concat({ name: 'You', points, avatar: null })
+      .sort((a, b) => b.points - a.points);
+
+    setLeaderboard(localBoard.slice(0, 10));
+    setUserRank(localBoard.findIndex((entry) => entry.name === 'You') + 1);
+
+    if (!user?.id) return;
+
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('profiles')
         .select('name, points, level, avatar')
         .order('points', { ascending: false })
         .limit(10);
 
-      if (error) throw error;
-      setLeaderboard(data || []);
-
-      // Find user rank
-      if (user) {
-        const { data: allUsers } = await supabase
-          .from('profiles')
-          .select('id, points')
-          .order('points', { ascending: false });
-
-        const rank = allUsers?.findIndex(u => u.id === user.id) + 1;
-        setUserRank(rank);
-      }
+      if (data?.length) setLeaderboard(data);
     } catch (error) {
-      console.error('Error loading leaderboard:', error);
+      console.error('Using the local leaderboard:', error);
     }
   };
 
@@ -450,96 +455,71 @@ export default function GamesPage() {
     const accuracy = totalQuestions > 0 ? (score / totalQuestions) * 100 : 0;
     const pointsEarned = Math.floor((accuracy / 100) * game.points);
 
-    try {
-      // Save game session
-      await supabase.from('game_sessions').insert({
-        user_id: user.id,
-        game_type: selectedGame,
-        score,
-        points_earned: pointsEarned,
-        accuracy,
-      });
+    // The player store is the source of truth, so a finished run always counts
+    // - and the points are spendable in the shop immediately.
+    const result = earnPoints(pointsEarned, { games: 1 });
+    completeQuest('play-game');
 
-      // Update user points
-      const { data: currentProfile } = await supabase
-        .from('profiles')
-        .select('points')
-        .eq('id', user.id)
-        .single();
-
-      await supabase
-        .from('profiles')
-        .update({ points: (currentProfile?.points || 0) + pointsEarned })
-        .eq('id', user.id);
-
-      // Check for achievements
-      checkAchievements();
-
-      setGameResults({ score, totalQuestions, pointsEarned, accuracy });
-      setShowResults(true);
-    } catch (error) {
-      console.error('Error saving game results:', error);
+    if (accuracy === 100 && totalQuestions > 0) {
+      awardBadge('perfect-score');
+      completeQuest('perfect-round');
     }
-  };
 
-  const checkAchievements = async () => {
-    try {
-      // Check if first game achievement
-      const { data: sessions } = await supabase
-        .from('game_sessions')
-        .select('id')
-        .eq('user_id', user.id);
+    // Little "how did you find this" unlocks.
+    const hour = new Date().getHours();
+    if (hour < 4) awardBadge('night-owl');
+    else if (hour < 7) awardBadge('early-riser');
 
-      if (sessions?.length === 1) {
-        await supabase.from('user_achievements').insert({
+    setGameResults({
+      score,
+      totalQuestions,
+      pointsEarned: result.pointsGained,
+      accuracy,
+      leveledUp: result.leveledUp,
+      level: result.level,
+      badgesUnlocked: result.badgesUnlocked,
+    });
+    setShowResults(true);
+
+    // Mirror to Supabase when a real session exists - best effort only.
+    if (user?.id) {
+      try {
+        await supabase.from('game_sessions').insert({
           user_id: user.id,
-          achievement_id: 'first_game',
+          game_type: selectedGame,
+          score,
+          points_earned: pointsEarned,
+          accuracy,
         });
+      } catch (error) {
+        console.error('Could not sync the game session:', error);
       }
-
-      // Check if played all game types
-      const { data: gameTypes } = await supabase
-        .from('game_sessions')
-        .select('game_type')
-        .eq('user_id', user.id);
-
-      const uniqueGames = [...new Set(gameTypes?.map(g => g.game_type))];
-      if (uniqueGames.length >= 4) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'game_master',
-        });
-      }
-    } catch (error) {
-      console.error('Error checking achievements:', error);
     }
   };
 
   const handleClaimDailyStreak = async () => {
     try {
-      await supabase.from('game_sessions').insert({
-        user_id: user.id,
-        game_type: 'daily_streak',
+      const result = earnPoints(200);
+
+      setGameResults({
         score: 1,
-        points_earned: 200,
+        totalQuestions: 1,
+        pointsEarned: result.pointsGained,
+        accuracy: 100,
+        leveledUp: result.leveledUp,
+        level: result.level,
+        badgesUnlocked: result.badgesUnlocked,
       });
-
-      const { data: currentProfile } = await supabase
-        .from('profiles')
-        .select('points, streak')
-        .eq('id', user.id)
-        .single();
-
-      await supabase
-        .from('profiles')
-        .update({
-          points: (currentProfile?.points || 0) + 200,
-          last_active: new Date().toISOString().split('T')[0],
-        })
-        .eq('id', user.id);
-
-      setGameResults({ score: 1, totalQuestions: 1, pointsEarned: 200, accuracy: 100 });
       setShowResults(true);
+
+      if (user?.id) {
+        await supabase.from('game_sessions').insert({
+          user_id: user.id,
+          game_type: 'daily_streak',
+          score: 1,
+          points_earned: 200,
+        });
+      }
     } catch (error) {
       console.error('Error claiming daily streak:', error);
     }
@@ -571,27 +551,27 @@ export default function GamesPage() {
                 {gameResults.accuracy >= 80 ? '🎉' : gameResults.accuracy >= 60 ? '😊' : '💪'}
               </motion.div>
 
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2 dark:text-gray-100">
                 {gameResults.accuracy >= 80 ? 'Amazing!' : gameResults.accuracy >= 60 ? 'Great Job!' : 'Keep Practicing!'}
               </h2>
 
               <div className="space-y-4 my-8">
-                <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-xl">
-                  <span className="text-gray-600">Score</span>
-                  <span className="text-2xl font-bold text-gray-800">
+                <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-xl dark:bg-yellow-900/30">
+                  <span className="text-gray-600 dark:text-gray-400">Score</span>
+                  <span className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                     {gameResults.score} / {gameResults.totalQuestions}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-green-50 rounded-xl">
-                  <span className="text-gray-600">Accuracy</span>
+                <div className="flex items-center justify-between p-4 bg-green-50 rounded-xl dark:bg-green-900/30">
+                  <span className="text-gray-600 dark:text-gray-400">Accuracy</span>
                   <span className="text-2xl font-bold text-green-600">
                     {gameResults.accuracy.toFixed(0)}%
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-orange-50 rounded-xl">
-                  <span className="text-gray-600">Points Earned</span>
+                <div className="flex items-center justify-between p-4 bg-orange-50 rounded-xl dark:bg-orange-900/30">
+                  <span className="text-gray-600 dark:text-gray-400">Points Earned</span>
                   <span className="text-3xl font-bold text-orange-600 flex items-center gap-2">
                     <Star className="w-6 h-6 fill-current" />
                     +{gameResults.pointsEarned}
@@ -626,7 +606,7 @@ export default function GamesPage() {
         <div className="max-w-2xl mx-auto pt-8">
           <button
             onClick={() => setSelectedGame(null)}
-            className="mb-6 text-gray-600 hover:text-gray-800 flex items-center gap-2"
+            className="mb-6 text-gray-600 hover:text-gray-800 flex items-center gap-2 dark:text-gray-400"
           >
             ← Back to Games
           </button>
@@ -636,13 +616,13 @@ export default function GamesPage() {
               {selectedGame === 'word_match' && (
                 <WordMatchGame
                   onComplete={handleGameComplete}
-                  language={profile?.languages_learning?.[0] || 'Spanish'}
+                  language={playerLanguages[0] || 'es'}
                 />
               )}
               {selectedGame === 'speed_quiz' && (
                 <SpeedQuizGame
                   onComplete={handleGameComplete}
-                  language={profile?.languages_learning?.[0] || 'Spanish'}
+                  language={playerLanguages[0] || 'es'}
                 />
               )}
               {selectedGame === 'listening_challenge' && (
@@ -660,36 +640,36 @@ export default function GamesPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">🎮 Mini Games</h1>
-          <p className="text-xl text-gray-600">Play games, earn points, climb the leaderboard!</p>
+          <h1 className="text-5xl font-bold text-gray-800 mb-4 dark:text-gray-100">🎮 Mini Games</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">Play games, earn points, climb the leaderboard!</p>
         </div>
 
         {/* User Stats */}
-        {profile && (
+        {
           <div className="grid grid-cols-3 gap-4 mb-8">
             <Card>
               <CardBody className="text-center p-4">
                 <div className="text-3xl mb-2">⭐</div>
-                <div className="text-2xl font-bold text-yellow-600">{profile.points}</div>
-                <div className="text-sm text-gray-600">Points</div>
+                <div className="text-2xl font-bold text-yellow-600">{points}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Points</div>
               </CardBody>
             </Card>
             <Card>
               <CardBody className="text-center p-4">
                 <div className="text-3xl mb-2">🔥</div>
-                <div className="text-2xl font-bold text-orange-600">{profile.streak || 0}</div>
-                <div className="text-sm text-gray-600">Day Streak</div>
+                <div className="text-2xl font-bold text-orange-600">{streak}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Day Streak</div>
               </CardBody>
             </Card>
             <Card>
               <CardBody className="text-center p-4">
                 <div className="text-3xl mb-2">🏆</div>
                 <div className="text-2xl font-bold text-purple-600">#{userRank || '?'}</div>
-                <div className="text-sm text-gray-600">Rank</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Rank</div>
               </CardBody>
             </Card>
           </div>
-        )}
+        }
 
         {/* Game Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -709,8 +689,8 @@ export default function GamesPage() {
                         {game.emoji}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-1">{game.name}</h3>
-                        <p className="text-gray-600 mb-3">{game.description}</p>
+                        <h3 className="text-2xl font-bold text-gray-800 mb-1 dark:text-gray-100">{game.name}</h3>
+                        <p className="text-gray-600 mb-3 dark:text-gray-400">{game.description}</p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 text-yellow-600 font-bold">
                             <Star className="w-5 h-5 fill-current" />
@@ -738,7 +718,7 @@ export default function GamesPage() {
         {/* Leaderboard */}
         <Card>
           <CardBody className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2 dark:text-gray-100">
               <Trophy className="w-6 h-6 text-yellow-600" />
               Top Players
             </h2>
@@ -751,7 +731,9 @@ export default function GamesPage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className={`flex items-center gap-4 p-4 rounded-xl ${
-                    index < 3 ? 'bg-gradient-to-r from-yellow-50 to-orange-50' : 'bg-gray-50'
+                    index < 3
+                      ? 'bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/30 dark:to-orange-900/30'
+                      : 'bg-gray-50 dark:bg-gray-800'
                   }`}
                 >
                   <div className={`text-2xl font-bold ${
@@ -762,8 +744,8 @@ export default function GamesPage() {
                     {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`}
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-gray-800">{player.name}</div>
-                    <div className="text-sm text-gray-600">Level {player.level}</div>
+                    <div className="font-semibold text-gray-800 dark:text-gray-100">{player.name}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Level {player.level}</div>
                   </div>
                   <div className="text-right">
                     <div className="font-bold text-yellow-600 flex items-center gap-1">

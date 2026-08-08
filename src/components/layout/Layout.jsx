@@ -21,7 +21,10 @@ export default function Layout() {
           <CompareProvider>
             <ErrorBoundary>
               <SkipToContent />
-              <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 transition-colors">
+              {/* overflow-x-hidden: decorative elements (step badges, blur
+                  orbs) intentionally overhang their cards - clip them here so
+                  they never turn into a horizontal page scroll on mobile. */}
+              <div className="min-h-screen flex flex-col overflow-x-hidden bg-white dark:bg-gray-950 transition-colors">
                 <Header />
                 <main id="main-content" className="flex-1 pb-20 md:pb-0">
                   <PageTransition />

@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import ExperienceCard from '../components/features/ExperienceCard';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 export default function NotFoundPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function NotFoundPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50 flex flex-col"
+      className="min-h-screen bg-gray-50 flex flex-col dark:bg-gray-900"
     >
       <div className="flex-1 flex items-center justify-center px-4 py-16">
         <div className="max-w-2xl w-full text-center">
@@ -54,10 +54,10 @@ export default function NotFoundPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4 dark:text-white">
               Oops! You're Lost
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-600 mb-8 dark:text-gray-400">
               Looks like this page doesn't exist. But don't worry—your language learning
               adventure is just a search away!
             </p>
@@ -103,11 +103,14 @@ export default function NotFoundPage() {
                 Browse Experiences
               </Button>
             </Link>
-            <button onClick={() => navigate(-1)}>
-              <Button variant="outline" size="lg" icon={<ArrowLeft className="w-5 h-5" />}>
-                Go Back
-              </Button>
-            </button>
+            <Button
+              variant="outline"
+              size="lg"
+              icon={<ArrowLeft className="w-5 h-5" />}
+              onClick={() => navigate(-1)}
+            >
+              Go Back
+            </Button>
           </motion.div>
 
           {/* Quick Links */}
@@ -118,7 +121,7 @@ export default function NotFoundPage() {
           >
             <Card>
               <CardBody>
-                <h3 className="text-sm font-semibold text-gray-700 mb-3">Quick Links</h3>
+                <h3 className="text-sm font-semibold text-gray-700 mb-3 dark:text-gray-300">Quick Links</h3>
                 <div className="flex flex-wrap justify-center gap-3 text-sm">
                   <Link to="/explore" className="text-primary-600 hover:text-primary-700 hover:underline">
                     Explore Experiences
@@ -151,12 +154,12 @@ export default function NotFoundPage() {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="bg-white border-t border-gray-200 py-12"
+        className="bg-white border-t border-gray-200 py-12 dark:bg-gray-800 dark:border-gray-700"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-2 mb-8">
             <TrendingUp className="w-6 h-6 text-primary-500" />
-            <h2 className="text-2xl font-display font-bold text-gray-900">
+            <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
               Featured Experiences
             </h2>
           </div>

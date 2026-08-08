@@ -97,7 +97,7 @@ export default function ForTeachersPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
@@ -115,11 +115,11 @@ export default function ForTeachersPage() {
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
                 {t('forTeachers.subtitle')}
               </p>
-              <Link to="/teacher-dashboard">
+              <Link to="/onboarding/teacher">
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary-600 hover:bg-gray-50"
+                  className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                 >
                   {t('forTeachers.applyToTeach')}
                 </Button>
@@ -131,7 +131,7 @@ export default function ForTeachersPage() {
 
       {/* Benefits Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
           {t('forTeachers.whyTeach')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -144,11 +144,11 @@ export default function ForTeachersPage() {
             >
               <Card className="h-full text-center hover:shadow-lg transition-shadow">
                 <CardBody>
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
+                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600 dark:bg-primary-900/40">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{benefit.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">{benefit.title}</h3>
+                  <p className="text-gray-600 text-sm mb-3 dark:text-gray-400">{benefit.description}</p>
                   <p className="text-primary-600 font-semibold text-sm">{benefit.stats}</p>
                 </CardBody>
               </Card>
@@ -158,9 +158,9 @@ export default function ForTeachersPage() {
       </div>
 
       {/* How It Works */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-16 dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
             {t('forTeachers.howToStart')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -175,8 +175,8 @@ export default function ForTeachersPage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm">{step.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">{step.title}</h3>
+                <p className="text-gray-600 text-sm dark:text-gray-400">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -190,7 +190,7 @@ export default function ForTeachersPage() {
             <CardBody>
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle className="w-8 h-8 text-primary-500" />
-                <h2 className="text-2xl font-display font-bold text-gray-900">
+                <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
                   {t('forTeachers.requirements')}
                 </h2>
               </div>
@@ -204,7 +204,7 @@ export default function ForTeachersPage() {
                     className="flex items-start gap-3"
                   >
                     <Zap className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{req}</span>
+                    <span className="text-gray-700 dark:text-gray-300">{req}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -214,9 +214,9 @@ export default function ForTeachersPage() {
       </div>
 
       {/* Success Stories */}
-      <div className="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
+      <div className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12 text-center dark:text-white">
             {t('forTeachers.successStories')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -254,15 +254,15 @@ export default function ForTeachersPage() {
                     <div className="flex items-center gap-3 mb-4">
                       <div className="text-4xl">{story.emoji}</div>
                       <div>
-                        <p className="font-bold text-gray-900">{story.name}</p>
-                        <p className="text-sm text-gray-500">{story.location}</p>
+                        <p className="font-bold text-gray-900 dark:text-white">{story.name}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{story.location}</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 italic mb-4">{story.quote}</p>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <p className="text-gray-700 italic mb-4 dark:text-gray-300">{story.quote}</p>
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 stroke-yellow-400" />
-                        <span className="text-sm font-semibold">4.9</span>
+                        <span className="text-sm font-semibold text-gray-900 dark:text-white">4.9</span>
                       </div>
                       <p className="text-primary-600 font-semibold text-sm">{story.earnings}</p>
                     </div>
@@ -276,7 +276,7 @@ export default function ForTeachersPage() {
 
       {/* FAQs */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-display font-bold text-gray-900 mb-8 text-center">
+        <h2 className="text-3xl font-display font-bold text-gray-900 mb-8 text-center dark:text-white">
           {t('forTeachers.commonQuestions')}
         </h2>
         <div className="max-w-3xl mx-auto space-y-4">
@@ -289,8 +289,8 @@ export default function ForTeachersPage() {
             >
               <Card>
                 <CardBody>
-                  <h3 className="font-bold text-gray-900 mb-2">{faq.q}</h3>
-                  <p className="text-gray-600 text-sm">{faq.a}</p>
+                  <h3 className="font-bold text-gray-900 mb-2 dark:text-white">{faq.q}</h3>
+                  <p className="text-gray-600 text-sm dark:text-gray-400">{faq.a}</p>
                 </CardBody>
               </Card>
             </motion.div>
@@ -315,11 +315,11 @@ export default function ForTeachersPage() {
               {t('forTeachers.readyToTeachDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/teacher-dashboard">
+              <Link to="/onboarding/teacher">
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary-600 hover:bg-gray-50"
+                  className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                 >
                   {t('forTeachers.applyNow')}
                 </Button>

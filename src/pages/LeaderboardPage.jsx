@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -17,17 +16,39 @@ import Badge from '../components/ui/Badge';
 import Avatar from '../components/ui/Avatar';
 import { Card, CardBody } from '../components/ui/Card';
 import studentsData from '../data/students.json';
-import { BADGE_DEFINITIONS } from '../data/constants';
+import { BADGES } from '../data/gamification';
 import { getLevelFromPoints } from '../utils/helpers';
+import { usePlayerStore } from '../store/usePlayerStore';
+
+const PLAYER_ID = '__you__';
 
 export default function LeaderboardPage() {
-  const [activeFilter, setActiveFilter] = useState('all-time');
 
-  // Current user (first student)
-  const currentUserId = studentsData[0].id;
+  // The signed-in player competes on the real board rather than the board
+  // pretending the first seed student is you.
+  const player = usePlayerStore((state) => state.user);
+  const points = usePlayerStore((state) => state.points);
+  const badges = usePlayerStore((state) => state.badges);
+  const playerStats = usePlayerStore((state) => state.stats);
 
-  // Sort students by points
-  const rankedStudents = [...studentsData].sort((a, b) => b.points - a.points);
+  const board = player
+    ? [
+        ...studentsData,
+        {
+          id: PLAYER_ID,
+          name: player.name || 'You',
+          photo: player.photo,
+          points,
+          badges,
+          stats: { totalExperiences: playerStats.experiencesBooked },
+        },
+      ]
+    : studentsData;
+
+  const currentUserId = player ? PLAYER_ID : null;
+
+  // Sort by points
+  const rankedStudents = [...board].sort((a, b) => b.points - a.points);
 
   // Top 3 for podium
   const topThree = rankedStudents.slice(0, 3);
@@ -36,20 +57,18 @@ export default function LeaderboardPage() {
   const nextRanks = rankedStudents.slice(3, 10);
 
   // Find current user rank
-  const currentUserRank = rankedStudents.findIndex((s) => s.id === currentUserId) + 1;
-  const currentUser = rankedStudents.find((s) => s.id === currentUserId);
+  const currentUserRank = currentUserId
+    ? rankedStudents.findIndex((s) => s.id === currentUserId) + 1
+    : 0;
+  const currentUser = currentUserId
+    ? rankedStudents.find((s) => s.id === currentUserId)
+    : null;
 
   // Community stats
-  const totalPoints = studentsData.reduce((sum, s) => sum + s.points, 0);
-  const totalExperiences = studentsData.reduce((sum, s) => sum + s.stats.totalExperiences, 0);
-  const totalBadgesEarned = studentsData.reduce((sum, s) => sum + s.badges.length, 0);
-  const avgPointsPerUser = Math.round(totalPoints / studentsData.length);
-
-  const filters = [
-    { id: 'all-time', label: 'All Time' },
-    { id: 'month', label: 'This Month' },
-    { id: 'week', label: 'This Week' },
-  ];
+  const totalPoints = board.reduce((sum, s) => sum + s.points, 0);
+  const totalExperiences = board.reduce((sum, s) => sum + (s.stats?.totalExperiences ?? 0), 0);
+  const totalBadgesEarned = board.reduce((sum, s) => sum + s.badges.length, 0);
+  const avgPointsPerUser = Math.round(totalPoints / board.length);
 
   const podiumOrder = [1, 0, 2]; // Second, First, Third for visual layout
 
@@ -58,37 +77,32 @@ export default function LeaderboardPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-3">
             <Trophy className="w-10 h-10 text-primary-500" />
-            <h1 className="text-4xl font-display font-bold text-gray-900">Leaderboard</h1>
+            <h1 className="text-4xl font-display font-bold text-gray-900 dark:text-white">Leaderboard</h1>
           </div>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-lg dark:text-gray-400">
             Compete with learners worldwide and climb the ranks!
           </p>
         </div>
 
-        {/* Filters */}
+        {/* This board is all-time.
+            There used to be All Time / Month / Week pills here, but nothing
+            behind them: they restyled themselves and the rankings never
+            changed. Points carry no timestamps, so weekly and monthly
+            standings cannot be computed without inventing figures for the
+            other learners. The control is gone until there's a points ledger
+            to build it from. */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white rounded-lg shadow-sm p-1 border border-gray-200">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-2 rounded-md font-medium text-sm transition-all ${
-                  activeFilter === filter.id
-                    ? 'bg-primary-500 text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+            <Trophy className="w-4 h-4 text-primary-500" />
+            All-time standings
+          </span>
         </div>
 
         {/* Podium - Top 3 */}
@@ -111,7 +125,7 @@ export default function LeaderboardPage() {
                   <Crown key="1" className="w-10 h-10 text-yellow-400" />,
                   <Medal key="3" className="w-8 h-8 text-amber-600" />,
                 ];
-                const bgColors = ['bg-gray-200', 'bg-gradient-to-br from-yellow-300 to-yellow-500', 'bg-amber-600'];
+                const bgColors = ['bg-gray-500', 'bg-gradient-to-br from-yellow-300 to-yellow-500', 'bg-amber-600'];
                 const levelInfo = getLevelFromPoints(student.points);
 
                 return (
@@ -124,7 +138,7 @@ export default function LeaderboardPage() {
                   >
                     <Link
                       to="/profile"
-                      className="relative flex flex-col items-center h-full bg-white rounded-t-2xl p-6 hover:shadow-2xl transition-shadow"
+                      className="relative flex flex-col items-center h-full bg-white dark:bg-gray-800 rounded-t-2xl p-6 hover:shadow-2xl transition-shadow"
                     >
                       {/* Icon */}
                       <div className="absolute -top-5">{icons[index]}</div>
@@ -144,7 +158,7 @@ export default function LeaderboardPage() {
                       />
 
                       {/* Info */}
-                      <p className="font-bold text-gray-900 text-center mb-1">
+                      <p className="font-bold text-gray-900 text-center mb-1 dark:text-white">
                         {student.name}
                       </p>
                       <Badge variant="secondary" size="sm" className="mb-2">
@@ -154,7 +168,7 @@ export default function LeaderboardPage() {
                         <p className="text-2xl font-bold text-primary-500">
                           {student.points}
                         </p>
-                        <p className="text-xs text-gray-500">points</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">points</p>
                       </div>
                     </Link>
                   </motion.div>
@@ -171,7 +185,7 @@ export default function LeaderboardPage() {
                   <Medal key="2" className="w-6 h-6 text-gray-400" />,
                   <Medal key="3" className="w-6 h-6 text-amber-600" />,
                 ];
-                const bgColors = ['bg-gradient-to-br from-yellow-300 to-yellow-500', 'bg-gray-200', 'bg-amber-600'];
+                const bgColors = ['bg-gradient-to-br from-yellow-300 to-yellow-500', 'bg-gray-500', 'bg-amber-600'];
                 const levelInfo = getLevelFromPoints(student.points);
 
                 return (
@@ -183,7 +197,7 @@ export default function LeaderboardPage() {
                   >
                     <Link
                       to="/profile"
-                      className="flex items-center gap-4 bg-white rounded-xl p-4 hover:shadow-lg transition-shadow"
+                      className="flex items-center gap-4 bg-white rounded-xl p-4 hover:shadow-lg transition-shadow dark:bg-gray-800"
                     >
                       <div className={`w-12 h-12 rounded-full ${bgColors[index]} flex items-center justify-center flex-shrink-0`}>
                         {icons[index]}
@@ -197,13 +211,13 @@ export default function LeaderboardPage() {
                       />
 
                       <div className="flex-1">
-                        <p className="font-bold text-gray-900">{student.name}</p>
-                        <p className="text-sm text-gray-500">Level {levelInfo.level}</p>
+                        <p className="font-bold text-gray-900 dark:text-white">{student.name}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Level {levelInfo.level}</p>
                       </div>
 
                       <div className="text-right">
                         <p className="text-xl font-bold text-primary-500">{student.points}</p>
-                        <p className="text-xs text-gray-500">points</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">points</p>
                       </div>
                     </Link>
                   </motion.div>
@@ -222,10 +236,10 @@ export default function LeaderboardPage() {
                 <CardBody>
                   <div className="flex items-center gap-2 mb-3">
                     <Star className="w-5 h-5 text-primary-500 fill-primary-500" />
-                    <h3 className="font-semibold text-gray-900">Your Rank</h3>
+                    <h3 className="font-semibold text-gray-900 dark:text-white">Your Rank</h3>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 dark:bg-primary-900/40">
                       <span className="text-2xl font-bold text-primary-600">#{currentUserRank}</span>
                     </div>
 
@@ -237,15 +251,15 @@ export default function LeaderboardPage() {
                     />
 
                     <div className="flex-1">
-                      <p className="font-bold text-gray-900">{currentUser.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-bold text-gray-900 dark:text-white">{currentUser.name}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         Level {getLevelFromPoints(currentUser.points).level}
                       </p>
                     </div>
 
                     <div className="text-right">
                       <p className="text-2xl font-bold text-primary-500">{currentUser.points}</p>
-                      <p className="text-xs text-gray-500">points</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">points</p>
                     </div>
                   </div>
                 </CardBody>
@@ -255,26 +269,26 @@ export default function LeaderboardPage() {
             {/* Rankings 4-10 */}
             <Card>
               <CardBody>
-                <h3 className="font-semibold text-gray-900 mb-4">Top 10 Rankings</h3>
+                <h3 className="font-semibold text-gray-900 mb-4 dark:text-white">Top 10 Rankings</h3>
 
                 {/* Desktop Table */}
                 <div className="hidden sm:block overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+                      <tr className="border-b border-gray-200 dark:border-gray-700">
+                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600 dark:text-gray-400">
                           Rank
                         </th>
-                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600 dark:text-gray-400">
                           Learner
                         </th>
-                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+                        <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600 dark:text-gray-400">
                           Level
                         </th>
-                        <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">
+                        <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600 dark:text-gray-400">
                           Points
                         </th>
-                        <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">
+                        <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600 dark:text-gray-400">
                           Badges
                         </th>
                       </tr>
@@ -289,10 +303,10 @@ export default function LeaderboardPage() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}
-                            className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                            className="border-b border-gray-100 hover:bg-gray-50 transition-colors dark:border-gray-700"
                           >
                             <td className="py-4 px-4">
-                              <span className="font-semibold text-gray-900">#{rank}</span>
+                              <span className="font-semibold text-gray-900 dark:text-white">#{rank}</span>
                             </td>
                             <td className="py-4 px-4">
                               <Link to="/profile" className="flex items-center gap-3 hover:underline">
@@ -302,7 +316,7 @@ export default function LeaderboardPage() {
                                   name={student.name}
                                   size="sm"
                                 />
-                                <span className="font-medium text-gray-900">{student.name}</span>
+                                <span className="font-medium text-gray-900 dark:text-white">{student.name}</span>
                               </Link>
                             </td>
                             <td className="py-4 px-4">
@@ -311,10 +325,10 @@ export default function LeaderboardPage() {
                               </Badge>
                             </td>
                             <td className="py-4 px-4 text-right">
-                              <span className="font-semibold text-gray-900">{student.points}</span>
+                              <span className="font-semibold text-gray-900 dark:text-white">{student.points}</span>
                             </td>
                             <td className="py-4 px-4 text-right">
-                              <span className="text-gray-600">{student.badges.length}</span>
+                              <span className="text-gray-600 dark:text-gray-400">{student.badges.length}</span>
                             </td>
                           </motion.tr>
                         );
@@ -337,9 +351,9 @@ export default function LeaderboardPage() {
                       >
                         <Link
                           to="/profile"
-                          className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                          className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors dark:bg-gray-800"
                         >
-                          <span className="font-bold text-gray-900 text-lg w-8">#{rank}</span>
+                          <span className="font-bold text-gray-900 text-lg w-8 dark:text-white">#{rank}</span>
                           <Avatar
                             src={student.photo}
                             alt={student.name}
@@ -347,8 +361,8 @@ export default function LeaderboardPage() {
                             size="sm"
                           />
                           <div className="flex-1">
-                            <p className="font-medium text-gray-900">{student.name}</p>
-                            <p className="text-xs text-gray-500">
+                            <p className="font-medium text-gray-900 dark:text-white">{student.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
                               Level {levelInfo.level} · {student.badges.length} badges
                             </p>
                           </div>
@@ -369,14 +383,14 @@ export default function LeaderboardPage() {
               <CardBody>
                 <div className="flex items-center gap-2 mb-4">
                   <Users className="w-5 h-5 text-primary-500" />
-                  <h3 className="font-semibold text-gray-900">Community Stats</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">Community Stats</h3>
                 </div>
 
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm text-gray-600">Total Learners</span>
-                      <span className="font-bold text-gray-900">{studentsData.length}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Total Learners</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{studentsData.length}</span>
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-primary-500 rounded-full" style={{ width: '100%' }} />
@@ -385,8 +399,8 @@ export default function LeaderboardPage() {
 
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm text-gray-600">Total Points</span>
-                      <span className="font-bold text-gray-900">{totalPoints.toLocaleString()}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Total Points</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{totalPoints.toLocaleString()}</span>
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-secondary-500 rounded-full" style={{ width: '100%' }} />
@@ -395,8 +409,8 @@ export default function LeaderboardPage() {
 
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm text-gray-600">Experiences Completed</span>
-                      <span className="font-bold text-gray-900">{totalExperiences}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Experiences Completed</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{totalExperiences}</span>
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-purple-500 rounded-full" style={{ width: '100%' }} />
@@ -405,17 +419,17 @@ export default function LeaderboardPage() {
 
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm text-gray-600">Badges Earned</span>
-                      <span className="font-bold text-gray-900">{totalBadgesEarned}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Badges Earned</span>
+                      <span className="font-bold text-gray-900 dark:text-white">{totalBadgesEarned}</span>
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-yellow-500 rounded-full" style={{ width: '100%' }} />
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-gray-100">
+                  <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Avg Points per User</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Avg Points per User</span>
                       <span className="font-bold text-primary-500">{avgPointsPerUser}</span>
                     </div>
                   </div>
@@ -428,20 +442,20 @@ export default function LeaderboardPage() {
               <CardBody>
                 <div className="flex items-center gap-2 mb-4">
                   <Award className="w-5 h-5 text-primary-500" />
-                  <h3 className="font-semibold text-gray-900">Available Badges</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">Available Badges</h3>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  {BADGE_DEFINITIONS.slice(0, 6).map((badge) => (
+                  {BADGES.slice(0, 6).map((badge) => (
                     <div
                       key={badge.id}
-                      className="bg-gray-50 rounded-lg p-3 text-center hover:bg-gray-100 transition-colors"
+                      className="bg-gray-50 rounded-lg p-3 text-center hover:bg-gray-100 transition-colors dark:bg-gray-800"
                     >
                       <div className="text-3xl mb-2">{badge.icon}</div>
-                      <p className="text-xs font-semibold text-gray-900 mb-1">
+                      <p className="text-xs font-semibold text-gray-900 mb-1 dark:text-white">
                         {badge.name}
                       </p>
-                      <p className="text-xs text-gray-500 line-clamp-2">
+                      <p className="text-xs text-gray-500 line-clamp-2 dark:text-gray-400">
                         {badge.requirement}
                       </p>
                     </div>
@@ -465,7 +479,7 @@ export default function LeaderboardPage() {
                   Complete more experiences to earn points and climb the leaderboard.
                 </p>
                 <Link to="/explore">
-                  <Button variant="secondary" size="sm" className="w-full bg-white text-primary-600 hover:bg-gray-50">
+                  <Button variant="secondary" size="sm" className="w-full bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800">
                     Browse Experiences
                   </Button>
                 </Link>

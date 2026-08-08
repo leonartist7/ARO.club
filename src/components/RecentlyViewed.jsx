@@ -3,7 +3,7 @@ import { Eye, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ExperienceCard from './features/ExperienceCard';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 
 /**
  * RecentlyViewed - Horizontal scrollable carousel of recently viewed experiences

@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { CITIES, LANGUAGES } from '../data/constants';
-import experiencesData from '../data/experiences.json';
+import experiencesData from '../data/experiences';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function MapViewPage() {
@@ -22,7 +22,7 @@ export default function MapViewPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
@@ -61,11 +61,11 @@ export default function MapViewPage() {
                 </svg>
               </div>
               <div className="text-center z-10">
-                <MapPin className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                <p className="text-gray-700 font-bold text-lg mb-2">
+                <MapPin className="w-16 h-16 text-gray-500 mx-auto mb-4 dark:text-gray-400" />
+                <p className="text-gray-700 font-bold text-lg mb-2 dark:text-gray-300">
                   {t('mapView.mapComingSoon')}
                 </p>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   {t('mapView.mapSubtitle')}
                 </p>
               </div>
@@ -77,19 +77,19 @@ export default function MapViewPage() {
       {/* Cities Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-display font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
             {t('mapView.availableCities')}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             {t('mapView.weAreIn')} {cityStats.length} {t('mapView.citiesDescription')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {cityStats.map((city, index) => {
-            const cityLanguages = city.languages.map((langCode) =>
-              LANGUAGES.find((l) => l.code === langCode)
-            );
+            const cityLanguages = (city.languages ?? [])
+              .map((langCode) => LANGUAGES.find((l) => l.code === langCode))
+              .filter(Boolean);
 
             return (
               <motion.div
@@ -106,8 +106,8 @@ export default function MapViewPage() {
                         <div className="flex items-center gap-3">
                           <span className="text-4xl">{city.flag}</span>
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900">{city.name}</h3>
-                            <p className="text-sm text-gray-500">{city.country}</p>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{city.name}</h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{city.country}</p>
                           </div>
                         </div>
                         <Badge variant="primary" size="sm">
@@ -117,7 +117,7 @@ export default function MapViewPage() {
 
                       {/* Languages Available */}
                       <div className="mb-4">
-                        <p className="text-xs font-semibold text-gray-600 mb-2">
+                        <p className="text-xs font-semibold text-gray-600 mb-2 dark:text-gray-400">
                           {t('mapView.languagesAvailable')}
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -134,7 +134,7 @@ export default function MapViewPage() {
                       </div>
 
                       {/* CTA */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                         <span className="text-primary-600 font-medium text-sm">
                           {t('mapView.exploreCity')} {city.name}
                         </span>
@@ -150,26 +150,26 @@ export default function MapViewPage() {
       </div>
 
       {/* Stats Section */}
-      <div className="bg-white py-16">
+      <div className="bg-white py-16 dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">{cityStats.length}+</p>
-              <p className="text-gray-600 text-sm">{t('mapView.citiesLabel')}</p>
+              <p className="text-gray-600 text-sm dark:text-gray-400">{t('mapView.citiesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">{experiencesData.length}+</p>
-              <p className="text-gray-600 text-sm">{t('mapView.experiencesLabel')}</p>
+              <p className="text-gray-600 text-sm dark:text-gray-400">{t('mapView.experiencesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">
                 {[...new Set(experiencesData.map((e) => e.language))].length}+
               </p>
-              <p className="text-gray-600 text-sm">{t('mapView.languagesLabel')}</p>
+              <p className="text-gray-600 text-sm dark:text-gray-400">{t('mapView.languagesLabel')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-primary-600 mb-2">100+</p>
-              <p className="text-gray-600 text-sm">{t('mapView.teachersLabel')}</p>
+              <p className="text-gray-600 text-sm dark:text-gray-400">{t('mapView.teachersLabel')}</p>
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function MapViewPage() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary-600 hover:bg-gray-50"
+                  className="bg-white text-primary-600 hover:bg-gray-50 dark:bg-gray-800"
                 >
                   {t('mapView.requestCity')}
                 </Button>

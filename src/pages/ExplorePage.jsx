@@ -11,6 +11,7 @@ import AdvancedFiltersPanel from '../components/AdvancedFiltersPanel';
 import SaveSearchButton from '../components/SaveSearchButton';
 import SavedSearchesList from '../components/SavedSearchesList';
 import experiencesData from '../data/experiences.json';
+import { usePlayerStore } from '../store/usePlayerStore';
 import { LANGUAGES, CITIES, SKILL_LEVELS } from '../data/constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { cn } from '../utils/cn';
@@ -30,7 +31,14 @@ export default function ExplorePage() {
     buddy: false,
     brave: false,
   });
-  const [advancedFilters, setAdvancedFilters] = useState({
+
+  const createdExperiences = usePlayerStore((state) => state.createdExperiences);
+  const publishedByPlayer = useMemo(
+    () => createdExperiences.filter((experience) => experience.status !== 'draft'),
+    [createdExperiences]
+  );
+
+  // Advanced filters state
     weekend: false,
     accessible: false,
     petFriendly: false,
@@ -42,14 +50,21 @@ export default function ExplorePage() {
   });
 
   const filteredExperiences = useMemo(() => {
-    let results = [...experiencesData];
+    // Experiences the signed-in teacher published show up alongside the seed
+    // catalogue, so creating a listing has a visible effect on the marketplace.
+    let results = [
+      ...experiencesData,
+      ...publishedByPlayer,
+    ];
+
+    // Search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       results = results.filter(
         (exp) =>
-          exp.title.toLowerCase().includes(query) ||
-          exp.description.toLowerCase().includes(query) ||
-          exp.location.venue.toLowerCase().includes(query) ||
+          exp.title?.toLowerCase().includes(query) ||
+          exp.description?.toLowerCase().includes(query) ||
+          exp.location?.venue?.toLowerCase().includes(query) ||
           (CITIES.find((c) => c.id === exp.cityId)?.name || '').toLowerCase().includes(query)
       );
     }
@@ -111,7 +126,7 @@ export default function ExplorePage() {
       }
     });
     return results;
-  }, [searchQuery, selectedLanguage, selectedCity, selectedSkillLevel, priceRange, sortBy, advancedFilters, smartChips]);
+  }, [searchQuery, selectedLanguage, selectedCity, selectedSkillLevel, priceRange, sortBy, advancedFilters, smartChips, publishedByPlayer]);
 
   const resetFilters = () => {
     setSearchQuery('');

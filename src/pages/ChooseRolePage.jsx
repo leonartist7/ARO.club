@@ -16,34 +16,31 @@ import {
   TrendingUp,
   ArrowRight,
 } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { usePlayerStore } from '../store/usePlayerStore';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const ChooseRolePage = () => {
   const navigate = useNavigate();
-  const setCurrentUser = useStore((state) => state.setCurrentUser);
+  const signIn = usePlayerStore((state) => state.signIn);
   const { t } = useLanguage();
   const [hoveredSide, setHoveredSide] = useState(null);
 
   const handleRoleSelect = (role) => {
-    // Set mock user based on role
-    const mockUser = {
+    signIn({
       id: role === 'student' ? 'student-1' : 'teacher-1',
       name: role === 'student' ? 'Student User' : 'Teacher User',
       email: role === 'student' ? 'student@conversa.com' : 'teacher@conversa.com',
-      role: role,
+      role,
       isTeacher: role === 'teacher',
-    };
+    });
 
-    setCurrentUser(mockUser);
+    // First-timers go through onboarding; returning players land straight on
+    // their home screen with the progress they left behind.
+    const { onboardingComplete } = usePlayerStore.getState();
+    const home = role === 'student' ? '/student-dashboard' : '/teacher/dashboard';
 
-    // Navigate to appropriate page with smooth transition
     setTimeout(() => {
-      if (role === 'student') {
-        navigate('/explore');
-      } else {
-        navigate('/teacher/dashboard');
-      }
+      navigate(onboardingComplete ? home : `/onboarding/${role}`);
     }, 300);
   };
 

@@ -1,347 +1,213 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
-import { Star, ShoppingBag, Check, Lock, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Check, Lock, Sparkles, ShoppingBag, Coins } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { Card, CardBody } from '../components/ui/Card';
+import { usePlayerStore, usePlayerLevel } from '../store/usePlayerStore';
+import {
+  SHOP_CATEGORIES,
+  CATEGORY_SLOT,
+  itemsInCategory,
+  inventoryKey,
+  isStarterItem,
+} from '../data/shop';
 
-const CATEGORIES = [
-  { id: 'all', name: 'All Items', emoji: '🛍️' },
-  { id: 'accessory', name: 'Accessories', emoji: '🕶️' },
-  { id: 'outfit', name: 'Outfits', emoji: '👔' },
-  { id: 'hairstyle', name: 'Hairstyles', emoji: '💇' },
-  { id: 'furniture', name: 'Furniture', emoji: '🛋️' },
-  { id: 'decoration', name: 'Decorations', emoji: '🖼️' },
-];
-
+/**
+ * The shop.
+ *
+ * Points spent here come from the same store that games pay into, and
+ * anything wearable lands in the loadout the character builder and dashboard
+ * read from. Buy a crown, see it on your owl - that's the loop.
+ */
 export default function ShopPage() {
-  const [shopItems, setShopItems] = useState([]);
-  const [userInventory, setUserInventory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [loading, setLoading] = useState(true);
-  const [purchasingItem, setPurchasingItem] = useState(null);
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const { user, profile } = useAuth();
+  const [justPurchased, setJustPurchased] = useState(null);
+  const [deniedItem, setDeniedItem] = useState(null);
 
-  useEffect(() => {
-    loadShopItems();
-    loadUserInventory();
-  }, []);
+  const points = usePlayerStore((state) => state.points);
+  const inventory = usePlayerStore((state) => state.inventory);
+  const equipped = usePlayerStore((state) => state.equipped);
+  const buyItem = usePlayerStore((state) => state.buyItem);
+  const equip = usePlayerStore((state) => state.equipItem);
+  const level = usePlayerLevel();
 
-  const loadShopItems = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('shop_items')
-        .select('*')
-        .eq('available', true)
-        .order('price_points', { ascending: true });
+  const items = itemsInCategory(selectedCategory);
 
-      if (error) throw error;
-      setShopItems(data || []);
-    } catch (error) {
-      console.error('Error loading shop items:', error);
-    } finally {
-      setLoading(false);
-    }
+  const owns = (item) =>
+    isStarterItem(item) || inventory.includes(inventoryKey(item.category, item.id));
+
+  const isEquipped = (item) => {
+    const slot = CATEGORY_SLOT[item.category];
+    return slot ? equipped[slot] === item.id : false;
   };
 
-  const loadUserInventory = async () => {
-    if (!user) return;
-
-    try {
-      const { data, error } = await supabase
-        .from('user_inventory')
-        .select('item_id, purchased_at, equipped')
-        .eq('user_id', user.id);
-
-      if (error) throw error;
-      setUserInventory(data || []);
-    } catch (error) {
-      console.error('Error loading inventory:', error);
-    }
-  };
-
-  const isOwned = (itemId) => {
-    return userInventory.some(inv => inv.item_id === itemId);
-  };
-
-  const isEquipped = (itemId) => {
-    return userInventory.some(inv => inv.item_id === itemId && inv.equipped);
-  };
-
-  const canAfford = (price) => {
-    return (profile?.points || 0) >= price;
-  };
-
-  const meetsLevelRequirement = (requiredLevel) => {
-    return (profile?.level || 1) >= requiredLevel;
-  };
-
-  const handlePurchase = async (item) => {
-    if (!canAfford(item.price_points)) {
-      alert('Not enough points!');
+  const handleBuy = (item) => {
+    if (level.level < item.levelRequired) {
+      setDeniedItem({ item, reason: `Reach level ${item.levelRequired} to unlock this` });
       return;
     }
 
-    if (!meetsLevelRequirement(item.level_required)) {
-      alert(`You need to be level ${item.level_required} to purchase this item.`);
+    const bought = buyItem({ id: inventoryKey(item.category, item.id), cost: item.cost });
+
+    if (!bought) {
+      setDeniedItem({
+        item,
+        reason: `You need ${item.cost - points} more points`,
+      });
       return;
     }
 
-    if (isOwned(item.id)) {
-      alert('You already own this item!');
-      return;
-    }
-
-    setPurchasingItem(item.id);
-
-    try {
-      // Add to user inventory
-      const { error: invError } = await supabase
-        .from('user_inventory')
-        .insert({
-          user_id: user.id,
-          item_id: item.id,
-          equipped: false,
-        });
-
-      if (invError) throw invError;
-
-      // Deduct points
-      const newPoints = (profile?.points || 0) - item.price_points;
-      const { error: pointsError } = await supabase
-        .from('profiles')
-        .update({ points: newPoints })
-        .eq('id', user.id);
-
-      if (pointsError) throw pointsError;
-
-      // Check for shopping achievements
-      const totalSpent = shopItems
-        .filter(i => isOwned(i.id))
-        .reduce((sum, i) => sum + i.price_points, 0) + item.price_points;
-
-      if (totalSpent >= 500) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'big_spender',
-        }).catch(() => {}); // Ignore if already has achievement
-      }
-
-      // Check category-specific achievements
-      const ownedAccessories = shopItems.filter(i =>
-        i.category === 'accessory' && (isOwned(i.id) || i.id === item.id)
-      ).length;
-      if (ownedAccessories >= 5) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'fashionista',
-        }).catch(() => {});
-      }
-
-      const ownedDecor = shopItems.filter(i =>
-        (i.category === 'furniture' || i.category === 'decoration') &&
-        (isOwned(i.id) || i.id === item.id)
-      ).length;
-      if (ownedDecor >= 5) {
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'decorator',
-        }).catch(() => {});
-      }
-
-      // Reload data
-      await loadUserInventory();
-      setSelectedItem(item);
-      setShowPurchaseModal(true);
-    } catch (error) {
-      console.error('Error purchasing item:', error);
-      alert('Failed to purchase item. Please try again.');
-    } finally {
-      setPurchasingItem(null);
-    }
+    // Wearables equip themselves so the reward is immediate.
+    const slot = CATEGORY_SLOT[item.category];
+    if (slot) equip(slot, item.id);
+    setJustPurchased(item);
   };
-
-  const handleEquip = async (item) => {
-    try {
-      // Unequip all items in same category
-      await supabase
-        .from('user_inventory')
-        .update({ equipped: false })
-        .eq('user_id', user.id)
-        .in('item_id', shopItems.filter(i => i.category === item.category).map(i => i.id));
-
-      // Equip selected item
-      await supabase
-        .from('user_inventory')
-        .update({ equipped: true })
-        .eq('user_id', user.id)
-        .eq('item_id', item.id);
-
-      await loadUserInventory();
-    } catch (error) {
-      console.error('Error equipping item:', error);
-    }
-  };
-
-  const filteredItems = selectedCategory === 'all'
-    ? shopItems
-    : shopItems.filter(item => item.category === selectedCategory);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 flex items-center justify-center">
-        <div className="text-xl text-gray-600">Loading shop...</div>
-      </div>
-    );
-  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">🛍️ Shop</h1>
-          <p className="text-xl text-gray-600 mb-6">
-            Customize your avatar and virtual home!
-          </p>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+        >
+          <div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent mb-2 flex items-center gap-3">
+              <ShoppingBag className="w-8 h-8 sm:w-10 sm:h-10 text-primary-500 shrink-0" />
+              Shop
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Spend your points on gear for your character and room.
+            </p>
+          </div>
 
-          {/* User Points */}
-          {profile && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-8 py-4 rounded-full shadow-lg"
-            >
-              <Star className="w-6 h-6 fill-current" />
-              <span className="text-3xl font-bold">{profile.points}</span>
-              <span className="text-lg">points</span>
-            </motion.div>
-          )}
-        </div>
+          {/* Balance */}
+          <div className="flex items-center gap-3 self-start sm:self-auto">
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-lg border border-white/40 dark:border-gray-700/40">
+              <Coins className="w-5 h-5 text-primary-500" />
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={points}
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 10, opacity: 0 }}
+                  className="text-xl font-bold text-gray-900 dark:text-white tabular-nums"
+                >
+                  {points}
+                </motion.span>
+              </AnimatePresence>
+              <span className="text-sm text-gray-500 dark:text-gray-400">points</span>
+            </div>
+            <Link to="/games">
+              <Button variant="primary" size="sm">
+                Earn more
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
 
-        {/* Category Filter */}
-        <div className="flex overflow-x-auto gap-2 mb-8 pb-2">
-          {CATEGORIES.map((category) => (
-            <motion.button
+        {/* Category tabs */}
+        <div className="flex gap-2 overflow-x-auto pb-3 mb-6 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+          {SHOP_CATEGORIES.map((category) => (
+            <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-semibold whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                 selectedCategory === category.id
-                  ? 'bg-yellow-400 text-gray-800 shadow-lg scale-105'
-                  : 'bg-white text-gray-600 hover:bg-gray-50'
+                  ? 'bg-primary-500 text-white shadow-lg scale-105'
+                  : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'
               }`}
-              whileTap={{ scale: 0.95 }}
             >
-              <span className="mr-2">{category.emoji}</span>
+              <span>{category.icon}</span>
               {category.name}
-            </motion.button>
+            </button>
           ))}
         </div>
 
-        {/* Items Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filteredItems.map((item, index) => {
-            const owned = isOwned(item.id);
-            const equipped = isEquipped(item.id);
-            const affordable = canAfford(item.price_points);
-            const levelOk = meetsLevelRequirement(item.level_required);
-            const purchasing = purchasingItem === item.id;
+        {/* Items */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {items.map((item, index) => {
+            const owned = owns(item);
+            const worn = isEquipped(item);
+            const locked = level.level < item.levelRequired;
+            const affordable = points >= item.cost;
+            const slot = CATEGORY_SLOT[item.category];
 
             return (
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -4 }}
+                key={`${item.category}-${item.id}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: Math.min(index * 0.03, 0.4) }}
               >
-                <Card className="h-full">
-                  <CardBody className="p-4 flex flex-col h-full">
-                    {/* Item Preview */}
-                    <div className={`relative mb-4 aspect-square rounded-xl flex items-center justify-center text-6xl ${
-                      owned ? 'bg-gradient-to-br from-green-50 to-teal-50' :
-                      affordable && levelOk ? 'bg-gradient-to-br from-yellow-50 to-orange-50' :
-                      'bg-gray-100'
-                    }`}>
-                      {item.emoji}
-                      {equipped && (
-                        <div className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full p-1">
-                          <Check className="w-4 h-4" />
-                        </div>
-                      )}
-                      {!levelOk && !owned && (
-                        <div className="absolute inset-0 bg-gray-900/50 rounded-xl flex items-center justify-center">
-                          <Lock className="w-8 h-8 text-white" />
-                        </div>
-                      )}
+                <Card
+                  glass
+                  hover
+                  className={`h-full transition-all ${
+                    worn ? 'ring-4 ring-primary-500 ring-offset-2 dark:ring-offset-gray-900' : ''
+                  }`}
+                >
+                  <CardBody className="p-4 text-center flex flex-col h-full">
+                    <div
+                      className={`text-5xl sm:text-6xl mb-3 filter drop-shadow-lg ${
+                        locked && !owned ? 'grayscale opacity-50' : ''
+                      }`}
+                    >
+                      {item.icon}
                     </div>
 
-                    {/* Item Info */}
-                    <div className="flex-1">
-                      <h3 className="font-bold text-gray-800 text-sm mb-1 line-clamp-2">
-                        {item.name}
-                      </h3>
-                      {item.description && (
-                        <p className="text-xs text-gray-600 mb-2 line-clamp-2">
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 line-clamp-2">
+                      {item.name}
+                    </h3>
 
-                    {/* Level Requirement */}
-                    {item.level_required > 1 && (
-                      <div className={`text-xs mb-2 ${
-                        levelOk ? 'text-gray-500' : 'text-red-600 font-semibold'
-                      }`}>
-                        Level {item.level_required}+
+                    {!owned && (
+                      <div className="flex items-center justify-center gap-1 text-sm font-bold text-primary-600 dark:text-primary-400 mb-3">
+                        <Coins className="w-3.5 h-3.5" />
+                        {item.cost}
                       </div>
                     )}
 
-                    {/* Price / Actions */}
-                    {owned ? (
-                      equipped ? (
-                        <div className="bg-green-100 text-green-700 text-sm font-semibold py-2 px-3 rounded-xl text-center">
-                          Equipped
+                    <div className="mt-auto pt-2">
+                      {owned ? (
+                        worn ? (
+                          <div className="flex items-center justify-center gap-1 text-primary-600 dark:text-primary-400 text-xs font-semibold py-2">
+                            <Check className="w-3.5 h-3.5" />
+                            Equipped
+                          </div>
+                        ) : slot ? (
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            className="w-full text-xs"
+                            onClick={() => equip(slot, item.id)}
+                          >
+                            Equip
+                          </Button>
+                        ) : (
+                          <div className="flex items-center justify-center gap-1 text-green-600 dark:text-green-400 text-xs font-semibold py-2">
+                            <Check className="w-3.5 h-3.5" />
+                            Owned
+                          </div>
+                        )
+                      ) : locked ? (
+                        <div className="flex items-center justify-center gap-1 text-gray-500 dark:text-gray-400 text-xs font-medium py-2">
+                          <Lock className="w-3.5 h-3.5" />
+                          Level {item.levelRequired}
                         </div>
                       ) : (
                         <Button
-                          onClick={() => handleEquip(item)}
-                          variant="secondary"
+                          variant={affordable ? 'primary' : 'outline'}
                           size="sm"
-                          className="w-full"
+                          className="w-full text-xs"
+                          disabled={!affordable}
+                          onClick={() => handleBuy(item)}
                         >
-                          Equip
+                          {affordable ? 'Buy' : 'Not enough'}
                         </Button>
-                      )
-                    ) : (
-                      <Button
-                        onClick={() => handlePurchase(item)}
-                        disabled={purchasing || !affordable || !levelOk}
-                        size="sm"
-                        className={`w-full ${
-                          !affordable || !levelOk
-                            ? 'opacity-50 cursor-not-allowed'
-                            : ''
-                        }`}
-                      >
-                        {purchasing ? (
-                          'Purchasing...'
-                        ) : !levelOk ? (
-                          <span className="flex items-center justify-center gap-1">
-                            <Lock className="w-3 h-3" />
-                            Locked
-                          </span>
-                        ) : (
-                          <span className="flex items-center justify-center gap-1">
-                            <Star className="w-4 h-4 fill-current" />
-                            {item.price_points}
-                          </span>
-                        )}
-                      </Button>
-                    )}
+                      )}
+                    </div>
                   </CardBody>
                 </Card>
               </motion.div>
@@ -349,56 +215,97 @@ export default function ShopPage() {
           })}
         </div>
 
-        {filteredItems.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-600">No items in this category yet.</p>
-          </div>
+        {items.length === 0 && (
+          <Card glass>
+            <CardBody className="text-center py-16">
+              <ShoppingBag className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 dark:text-gray-400">
+                Nothing in this category yet.
+              </p>
+            </CardBody>
+          </Card>
         )}
       </div>
 
-      {/* Purchase Success Modal */}
+      {/* Purchase celebration */}
       <AnimatePresence>
-        {showPurchaseModal && selectedItem && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-            onClick={() => setShowPurchaseModal(false)}
-          >
+        {justPurchased && (
+          <Modal onClose={() => setJustPurchased(null)}>
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl p-8 max-w-sm w-full text-center"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+              className="text-7xl mb-4"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1, rotate: 360 }}
-                transition={{ delay: 0.2, type: 'spring' }}
-                className="text-8xl mb-4"
-              >
-                {selectedItem.emoji}
-              </motion.div>
-
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Purchase Successful!
-              </h3>
-              <p className="text-gray-600 mb-6">
-                You got <strong>{selectedItem.name}</strong>!
-              </p>
-
-              <Button
-                onClick={() => setShowPurchaseModal(false)}
-                className="w-full"
-              >
-                Awesome!
-              </Button>
+              {justPurchased.icon}
             </motion.div>
-          </motion.div>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              {justPurchased.name} unlocked!
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              {CATEGORY_SLOT[justPurchased.category]
+                ? "It's already equipped on your character."
+                : 'Added to your collection.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button variant="primary" onClick={() => setJustPurchased(null)}>
+                Keep shopping
+              </Button>
+              <Link to="/character-builder" className="sm:w-auto">
+                <Button variant="outline" className="w-full">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  View character
+                </Button>
+              </Link>
+            </div>
+          </Modal>
+        )}
+
+        {deniedItem && (
+          <Modal onClose={() => setDeniedItem(null)}>
+            <div className="text-6xl mb-4 grayscale">{deniedItem.item.icon}</div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              Not yet!
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">{deniedItem.reason}</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link to="/games" className="sm:w-auto">
+                <Button variant="primary" className="w-full">
+                  Earn points
+                </Button>
+              </Link>
+              <Button variant="outline" onClick={() => setDeniedItem(null)}>
+                Close
+              </Button>
+            </div>
+          </Modal>
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+/** Shared dialog shell for the purchase outcomes. */
+function Modal({ children, onClose }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        onClick={(event) => event.stopPropagation()}
+        className="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl"
+      >
+        {children}
+      </motion.div>
+    </motion.div>
   );
 }

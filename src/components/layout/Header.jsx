@@ -13,6 +13,7 @@ import {
   Heart,
   Ticket,
   ChevronDown,
+  BookMarked,
 } from 'lucide-react';
 import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
@@ -200,6 +201,15 @@ export default function Header() {
                       >
                         <User className="w-4 h-4" aria-hidden="true" />
                         {t('nav.myProfile')}
+                      </Link>
+                      <Link
+                        to="/passport"
+                        role="menuitem"
+                        className={menuItem(isActive('/passport'))}
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <BookMarked className="w-4 h-4" aria-hidden="true" />
+                        {t('nav.passport')}
                       </Link>
                       <Link
                         to="/leaderboard"

@@ -5,30 +5,19 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { characters, accessories } from '../data/characters';
-import { useStore } from '../store/useStore';
+import { usePlayerStore } from '../store/usePlayerStore';
+import { CATEGORY_SLOT, inventoryKey } from '../data/shop';
 
 export default function CharacterBuilder() {
-  const currentUser = useStore((state) => state.currentUser);
-
-  // Mock user data - in real app, fetch from backend
-  const [userPoints, setUserPoints] = useState(1250);
-  const [selectedCharacter, setSelectedCharacter] = useState('coco');
   const [selectedCategory, setSelectedCategory] = useState('characters');
-  const [ownedItems, setOwnedItems] = useState({
-    characters: ['coco'],
-    hats: [],
-    glasses: [],
-    accessories: ['fire'],
-    backgrounds: ['beach'],
-  });
 
-  const [equipped, setEquipped] = useState({
-    character: 'coco',
-    hat: null,
-    glasses: null,
-    accessory: 'fire',
-    background: 'beach',
-  });
+  // Points, inventory and loadout all live in the player store, so buying a
+  // hat here shows up instantly in the header and on the dashboard.
+  const userPoints = usePlayerStore((state) => state.points);
+  const inventory = usePlayerStore((state) => state.inventory);
+  const equipped = usePlayerStore((state) => state.equipped);
+  const buyItem = usePlayerStore((state) => state.buyItem);
+  const equip = usePlayerStore((state) => state.equipItem);
 
   const categories = [
     { id: 'characters', name: 'Characters', emoji: '🦉' },
@@ -38,37 +27,31 @@ export default function CharacterBuilder() {
     { id: 'backgrounds', name: 'Backgrounds', emoji: '🌅' },
   ];
 
-  const purchaseItem = (item, category) => {
-    if (userPoints >= item.cost && !isOwned(item.id, category)) {
-      setUserPoints(userPoints - item.cost);
-      setOwnedItems({
-        ...ownedItems,
-        [category]: [...ownedItems[category], item.id],
-      });
-      // Auto-equip after purchase
-      equipItem(item.id, category);
-    }
-  };
+  /** Free starter items count as owned without appearing in the inventory. */
+  const isOwned = (item, category) =>
+    item.cost === 0 ||
+    item.unlocked === true ||
+    inventory.includes(inventoryKey(category, item.id));
 
-  const isOwned = (itemId, category) => {
-    return ownedItems[category]?.includes(itemId);
+  const purchaseItem = (item, category) => {
+    if (isOwned(item, category)) return;
+
+    const bought = buyItem({ id: inventoryKey(category, item.id), cost: item.cost });
+    if (bought) {
+      equip(CATEGORY_SLOT[category], item.id); // auto-equip what you just bought
+    }
   };
 
   const equipItem = (itemId, category) => {
-    if (isOwned(itemId, category)) {
-      setEquipped({
-        ...equipped,
-        [category === 'characters' ? 'character' : category.slice(0, -1)]: itemId,
-      });
+    const item = (category === 'characters' ? characters : accessories[category])?.find(
+      (i) => i.id === itemId
+    );
+    if (item && isOwned(item, category)) {
+      equip(CATEGORY_SLOT[category], itemId);
     }
   };
 
-  const unequipItem = (category) => {
-    setEquipped({
-      ...equipped,
-      [category]: null,
-    });
-  };
+  const unequipItem = (slot) => equip(slot, null);
 
   // Get current character emoji
   const getCurrentCharacter = () => {
@@ -177,10 +160,8 @@ export default function CharacterBuilder() {
     }
 
     return items.map((item, index) => {
-      const owned = isOwned(item.id, selectedCategory);
-      const isEquipped = selectedCategory === 'characters'
-        ? equipped.character === item.id
-        : equipped[selectedCategory.slice(0, -1)] === item.id;
+      const owned = isOwned(item, selectedCategory);
+      const isEquipped = equipped[CATEGORY_SLOT[selectedCategory]] === item.id;
 
       return (
         <motion.div
@@ -229,7 +210,7 @@ export default function CharacterBuilder() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => unequipItem(selectedCategory.slice(0, -1))}
+                      onClick={() => unequipItem(CATEGORY_SLOT[selectedCategory])}
                       className="w-full text-xs"
                     >
                       Remove
