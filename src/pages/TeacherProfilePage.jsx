@@ -76,7 +76,7 @@ export default function TeacherProfilePage() {
 
   return (
     <motion.div {...motionProps} className="min-h-screen bg-gray-50 dark:bg-gray-950">
-      <div className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <div className="bg-primary-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
             <Avatar
@@ -349,15 +349,7 @@ export default function TeacherProfilePage() {
           <div className="lg:col-span-1">
             <Card className="sticky top-24">
               <CardBody className="space-y-6">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full"
-                  icon={<MessageCircle className="w-5 h-5" />}
-                  onClick={() => { window.location.href = '/chat'; }}
-                >
-                  Message before booking
-                </Button>
+                <Link to="/login" state={{ from: { pathname: "/chat" } }} className="block w-full"><Button variant="primary" size="lg" className="w-full" icon={<MessageCircle className="w-5 h-5" />}>Message before booking</Button></Link>
 
                 <Button variant="outline" size="lg" className="w-full" icon={<BookOpen className="w-5 h-5" />} disabled>
                   Booking opens soon

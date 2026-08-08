@@ -7,47 +7,47 @@ export default {
   ],
   theme: {
     extend: {
-            colors: {
-        // PRIMARY — Coral (CTAs, brand). Use 600/700 for fills w/ white text (AA).
+      colors: {
+        // PRIMARY — Warm brand yellow (visible, not neon flash)
         primary: {
-          50: '#FFF3EE',
-          100: '#FFE2D6',
-          200: '#FFC4AD',
-          300: '#FF9E78',
-          400: '#FF8453',
-          500: '#FF6B35', // brand reference (logo, large surfaces >=24px)
-          600: '#F25A22', // interactive fill + white bold text (AA-large)
-          700: '#CC4517', // text-on-white safe / small buttons
-          800: '#A2360F',
-          900: '#7A2810',
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#F5C518',
+          500: '#EAB308',
+          600: '#CA8A04',
+          700: '#A16207',
+          800: '#854D0E',
+          900: '#713F12',
         },
-        // SECONDARY — Teal (trust, links, secondary actions)
+        // SECONDARY — Warm orange (yellow + orange brand gradient pair)
         secondary: {
-          50: '#E9FBF9',
-          100: '#C7F4F0',
-          200: '#94E9E2',
-          300: '#5BD8CF',
-          400: '#2FC3B9',
-          500: '#20B2AA', // brand reference
-          600: '#199089', // interactive fill w/ white text
-          700: '#15726D', // text-on-white safe
-          800: '#115A56',
-          900: '#0D4744',
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97316', // brand orange
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
         },
-        // ACCENT — Sunny gold (GAMIFICATION ONLY)
+        
+        // ACCENT — Gold for gamification only
         accent: {
-          50: '#FFF8E6',
-          100: '#FFEDBF',
-          200: '#FFDD85',
-          300: '#FFCB47',
-          400: '#FFBC24',
-          500: '#FFB020', // gamification highlight
-          600: '#E0930C',
-          700: '#B87100', // text-on-white safe
-          800: '#8F5700',
-          900: '#6B4100',
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B',
+          600: '#D97706',
+          700: '#B45309',
+          800: '#92400E',
+          900: '#78350F',
         },
-        // SEMANTIC
         success: { 50: '#ECFDF3', 500: '#16A34A', 700: '#15803D' },
         warning: { 50: '#FFFBEB', 500: '#F59E0B', 700: '#B45309' },
         danger: { 50: '#FEF2F2', 500: '#EF4444', 700: '#B91C1C' },
@@ -72,10 +72,7 @@ export default {
         'pop': 'pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
+        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },

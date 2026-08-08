@@ -36,6 +36,7 @@ const TeacherOnboarding = lazy(() => import('../pages/TeacherOnboarding'));
 const GamesPage = lazy(() => import('../pages/GamesPage'));
 const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ChatPage = lazy(() => import('../pages/ChatPage'));
+const MyBookingsPage = lazy(() => import('../pages/MyBookingsPage'));
 
 // Teacher application + Admin (Trust & Quality Engine)
 const TeacherApplicationStatus = lazy(() => import('../pages/teacher/TeacherApplicationStatus'));
@@ -143,6 +144,11 @@ export const router = createBrowserRouter([
         element: <FavoritesPage />,
       },
       {
+        path: 'bookings',
+        element: <MyBookingsPage />,
+      },
+
+      {
         path: 'recently-viewed',
         element: <RecentlyViewedPage />,
       },
@@ -172,7 +178,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <ChooseRolePage />,
+        element: <LoginPage />,
       },
       {
         path: 'choose-role',

@@ -1,64 +1,45 @@
 import { Shield, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { cn } from '../../utils/cn';
 
-/**
- * Booking Protection Component
- * Trust badge with tooltip
- */
 export default function BookingProtection({ className }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div className="relative inline-block">
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+    <div className="relative">
+      <div
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className={`flex items-center gap-2 px-4 py-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg cursor-help ${className}`}
+        onFocus={() => setShowTooltip(true)}
+        onBlur={() => setShowTooltip(false)}
+        tabIndex={0}
+        className={cn(
+          'flex items-center gap-2 px-4 py-3 w-full',
+          'bg-success-50 dark:bg-success-500/15 border border-success-500/30',
+          'rounded-lg cursor-help',
+          className
+        )}
       >
-        <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
+        <Shield className="w-5 h-5 text-success-700 dark:text-success-500 shrink-0" aria-hidden="true" />
         <div>
           <div className="flex items-center gap-1.5">
-            <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-semibold text-green-900 dark:text-green-100">
-              Protected Booking
+            <Check className="w-4 h-4 text-success-700 dark:text-success-500" aria-hidden="true" />
+            <span className="text-sm font-semibold text-success-700 dark:text-success-500">
+              Protected booking
             </span>
           </div>
-          <p className="text-xs text-green-700 dark:text-green-300">
+          <p className="text-xs text-success-700/90 dark:text-success-500/90">
             Free cancellation available
           </p>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Tooltip */}
       {showTooltip && (
-        <motion.div
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 5 }}
-          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg shadow-lg z-50 w-64"
-        >
-          <div className="space-y-2 text-xs">
-            <div className="flex items-start gap-2">
-              <Check className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-400" />
-              <span>Free cancellation up to 24 hours before the experience</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Check className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-400" />
-              <span>Full refund if canceled within the allowed time</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Check className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-400" />
-              <span>Secure payment processing</span>
-            </div>
-          </div>
-          {/* Arrow */}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
-            <div className="w-2 h-2 bg-gray-900 dark:bg-gray-700 rotate-45"></div>
-          </div>
-        </motion.div>
+        <div className="absolute bottom-full left-0 mb-2 px-4 py-3 bg-gray-900 text-white rounded-lg shadow-lg z-50 w-64 text-xs space-y-2">
+          <p>Free cancellation up to 24 hours before.</p>
+          <p>Full refund within the allowed window.</p>
+          <p>Secure payment when booking opens.</p>
+        </div>
       )}
     </div>
   );

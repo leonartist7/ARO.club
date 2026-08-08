@@ -39,7 +39,6 @@ export function CompareProvider({ children }) {
   // Add experience to compare list
   const addToCompare = (experienceId) => {
     if (compareList.includes(experienceId)) {
-      addToast('Experience already in compare list', 'info');
       return false;
     }
 
@@ -49,20 +48,17 @@ export function CompareProvider({ children }) {
     }
 
     setCompareList((prev) => [...prev, experienceId]);
-    addToast('Added to compare list', 'success');
     return true;
   };
 
   // Remove experience from compare list
   const removeFromCompare = (experienceId) => {
     setCompareList((prev) => prev.filter((id) => id !== experienceId));
-    addToast('Removed from compare list', 'info');
   };
 
   // Clear all from compare list
   const clearCompare = () => {
     setCompareList([]);
-    addToast('Compare list cleared', 'info');
   };
 
   // Check if experience is in compare list

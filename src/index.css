@@ -30,9 +30,18 @@
     @apply bg-white/80 backdrop-blur-md;
   }
 
-  /* Gradient text */
+  /* Brand gradients: yellow → orange */
   .gradient-text {
     @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+  }
+  .gradient-brand {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500;
+  }
+  .gradient-brand-br {
+    @apply bg-gradient-to-br from-primary-500 to-secondary-500;
+  }
+  .gradient-brand-soft {
+    @apply bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30;
   }
 }
 
