@@ -6,7 +6,7 @@ import AdminRoute from '../components/auth/AdminRoute';
 import AdminLayout from '../components/admin/AdminLayout';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
-const AdminPageLoader = () => (
+const AdminPageLoader = (
   <div className="flex items-center justify-center h-64">
     <LoadingSpinner size="lg" />
   </div>
@@ -291,7 +291,7 @@ export const router = createBrowserRouter([
     path: '/admin',
     element: (
       <AdminRoute>
-        <Suspense fallback={<AdminPageLoader />}>
+        <Suspense fallback={AdminPageLoader}>
           <AdminLayout />
         </Suspense>
       </AdminRoute>

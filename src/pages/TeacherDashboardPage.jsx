@@ -23,7 +23,6 @@ import { Card, CardBody } from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
 import Avatar from '../components/ui/Avatar';
-import teachersData from '../data/teachers.json';
 import experiencesData from '../data/experiences';
 import reviewsData from '../data/reviews.json';
 import { LANGUAGES, CITIES, SKILL_LEVELS, EXPERIENCE_TYPES } from '../data/constants';

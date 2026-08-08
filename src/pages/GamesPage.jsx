@@ -400,6 +400,7 @@ export default function GamesPage() {
 
   useEffect(() => {
     loadLeaderboard();
+    checkDailyStreak();
   }, []);
 
   const loadLeaderboard = async () => {

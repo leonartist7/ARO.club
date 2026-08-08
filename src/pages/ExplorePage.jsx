@@ -32,13 +32,7 @@ export default function ExplorePage() {
     brave: false,
   });
 
-  const createdExperiences = usePlayerStore((state) => state.createdExperiences);
-  const publishedByPlayer = useMemo(
-    () => createdExperiences.filter((experience) => experience.status !== 'draft'),
-    [createdExperiences]
-  );
-
-  // Advanced filters state
+  const [advancedFilters, setAdvancedFilters] = useState({
     weekend: false,
     accessible: false,
     petFriendly: false,
@@ -48,6 +42,12 @@ export default function ExplorePage() {
     timeOfDay: [],
     experienceTypes: [],
   });
+
+  const createdExperiences = usePlayerStore((state) => state.createdExperiences);
+  const publishedByPlayer = useMemo(
+    () => createdExperiences.filter((experience) => experience.status !== 'draft'),
+    [createdExperiences]
+  );
 
   const filteredExperiences = useMemo(() => {
     // Experiences the signed-in teacher published show up alongside the seed

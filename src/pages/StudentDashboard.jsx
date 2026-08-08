@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -21,17 +20,14 @@ import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { usePlayerStore, usePlayerLevel } from '../store/usePlayerStore';
 import { characters, accessories } from '../data/characters';
-import { BADGES, getBadge } from '../data/gamification';
+import { BADGES } from '../data/gamification';
 import ReviewPrompt from '../components/features/ReviewPrompt';
-import { useLanguage } from '../contexts/LanguageContext';
 
 /** Find the emoji for an equipped item in any accessory slot. */
 const accessoryEmoji = (slot, id) =>
   id ? accessories[slot]?.find((item) => item.id === id)?.emoji : null;
 
 export default function StudentDashboard() {
-  const { t } = useLanguage();
-
   // Everything below comes from the one player store, so these numbers match
   // the header, the shop and the profile exactly.
   const user = usePlayerStore((state) => state.user);
