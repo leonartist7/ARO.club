@@ -26,6 +26,8 @@ No package authorizes the next package automatically. The director reviews deliv
 
 ## ARO-SEC0 — Repository Secret Hygiene
 
+Execution record: `ARO_SEC0_REPORT.md` (values intentionally omitted).
+
 ### Goal
 
 Remove tracked environment configuration from the active tree safely and determine whether credential rotation or history cleanup is required—without printing secret values.
