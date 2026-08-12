@@ -20,6 +20,7 @@ Evolve; do not replace. Tonguee becomes ARO’s first language-learning vertical
 | Tonguee term | ARO equivalent | Action now |
 |---|---|---|
 | Experience | Opportunity (language vertical) | none |
+| Circle | Participant cohort / operating group for an Opportunity | define in new ARO surfaces; do not mass-rename existing data |
 | Teacher | Host with language capability | none |
 | Learner | Participant with learning intent | none |
 | Booking | Confirmed participation | none |
@@ -29,11 +30,12 @@ Evolve; do not replace. Tonguee becomes ARO’s first language-learning vertical
 ## Sequence
 
 1. P0 installs the Director Pack only.
-2. P1 establishes safe profile/capability and goal foundations.
-3. P2 adds opt-in intent signals after data/RLS approval.
-4. P3 tests transparent language-vertical opportunity suggestions.
-5. P4 adds commitment only after safety, cancellation, and payment boundaries are specified.
-6. P5 adds the outcome/Proof loop.
-7. P6 pilots one adjacent vertical with category-specific Trust and operations requirements.
+2. ARO-SEC0 removes tracked environment configuration and routes any required credential response before broad implementation access.
+3. P1 establishes safe profile/capability and goal foundations.
+4. P2 adds opt-in intent signals after data/RLS approval.
+5. P3 tests transparent language-vertical opportunity suggestions.
+6. P4 adds commitment only after safety, cancellation, and payment boundaries are specified.
+7. P5 adds the outcome/Proof loop.
+8. P6 pilots one adjacent vertical with category-specific Trust and operations requirements.
 
 P0 authorizes no historical migration, brand replacement, generic marketplace launch, or schema change.

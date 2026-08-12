@@ -15,6 +15,8 @@ This is a conceptual contract, not a migration. No agent may create tables, colu
 | Outcome | Evidence of what happened | attendance, completion, review, repeat behavior |
 | Trust evidence | Context-specific verification/reliability evidence | current teacher verification and audit records |
 
+A **Circle** is the participant cohort and operating state around an Opportunity; it is not a competing top-level synonym. A Tonguee **Experience** is the first vertical format through which an approved Opportunity may operate.
+
 ## Data handling rules
 
 - Separate private inputs from public opportunity presentation.

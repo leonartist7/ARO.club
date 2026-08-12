@@ -1,4 +1,12 @@
-# 🛠️ TONGUEE — BUILD PLAYBOOK (work-routed, for any implementing agent)
+# ⚠️ LEGACY TONGUEE BUILD PLAN
+
+> This document is retained as historical and domain reference for the Tonguee language vertical.
+>
+> For current ARO platform execution, read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md`.
+>
+> Do not start new work from this document unless an approved ARO package explicitly references a legacy Tonguee section.
+
+# 🛠️ TONGUEE — BUILD PLAYBOOK (legacy reference)
 
 > **Purpose:** the execution guide a brand-new agent session can open and run. Work is routed by *kind*: mechanical implementation (🟦) is executed by the implementing agent against written specs; taste/architecture/money decisions (🟪) are already authored by the director as spec docs and are never re-decided by the implementer. **Read `AGENTS.md` first — it is the operating contract (rules, self-review, delivery).**
 >

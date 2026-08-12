@@ -22,6 +22,8 @@ ARO evolves the current React/Vite/Supabase application. The client, Supabase Au
 - A derived recommendation is not a source of truth. Store its inputs, consent state, and outcome only when an approved spec requires it.
 - AI features must have explicit input scope, confirmation for consequential actions, and auditability for privileged actions.
 - Do not prematurely replace the marketplace model; new abstractions need an approved package.
+- Opportunity is the universal arrangement; Circle is its cohort/operating group; Tonguee Experience is the first vertical format. See `DECISIONS.md`.
+- Digital subscription entitlements and marketplace payments are separate bounded systems. See `ARO_MONEY.md`.
 
 ## Future intelligence systems (not implementation authorization)
 
@@ -31,3 +33,5 @@ ARO evolves the current React/Vite/Supabase application. The client, Supabase Au
 - **ARO Director:** host-quality assistance.
 - **ARO Commit:** commitment states.
 - **ARO Proof:** validated outcomes.
+
+`ARO_TRUST_SAFETY.md`, `ARO_MONEY.md`, and `ARO_DESIGN_SYSTEM.md` govern the cross-cutting policy/experience boundaries for these systems.

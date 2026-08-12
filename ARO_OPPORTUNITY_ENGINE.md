@@ -21,3 +21,5 @@ The Opportunity Engine is a future decision-support loop that turns legitimate d
 - Recommendation quality never overrides Trust policy, RLS, moderation, or human review.
 - Show uncertainty honestly; do not promise fill rate, earnings, or personal outcomes.
 - High-risk categories need a dedicated policy before automated composition.
+
+When an Opportunity becomes operational, its participating group is the Circle. In Tonguee, the published vertical format remains an Experience. Qualification follows `ARO_TRUST_SAFETY.md`; economics follows `ARO_MONEY.md`.

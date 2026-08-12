@@ -4,19 +4,27 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md` → the documents named by the assigned package → only the source files named by that package. Read `ARO_VISION.md` once for context.
+Read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_VISION.md` once for context.
 
-| Question | Authority |
-|---|---|
-| What to build and in what order | `ARO_BUILD_PLAYBOOK.md` |
-| Product scope and journeys | `ARO_PRODUCT.md` |
-| Domain and technical boundaries | `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md` |
-| Opportunity lifecycle | `ARO_OPPORTUNITY_ENGINE.md` |
-| Tonguee reuse and migration | `ARO_MIGRATION.md` |
-| Current UI implementation details | `DESIGN_SYSTEM.md`, `DESIGN_EXECUTION_PLAN.md` until superseded |
-| Current money rules | `PAYMENTS_SPEC.md` until superseded |
+Authority order, highest first:
 
-If documents conflict, the more specific approved ARO package wins. If still unclear, stop and ask the director. Legacy Tonguee documents are valuable evidence and vertical-specific references, but do not override the ARO pack.
+1. `AGENTS.md` — operating contract and conflict rules.
+2. `ARO_BUILD_PLAYBOOK.md` — sequence, scope, gates, and acceptance criteria.
+3. Approved package-specific implementation specification.
+4. `ARO_ARCHITECTURE.md`.
+5. `ARO_DATA_MODEL.md`.
+6. `ARO_OPPORTUNITY_ENGINE.md`.
+7. `ARO_DESIGN_SYSTEM.md`.
+8. `ARO_TRUST_SAFETY.md`.
+9. `ARO_MONEY.md`.
+10. `ARO_GROWTH.md`.
+11. `ARO_SHIPATON.md`.
+12. `DECISIONS.md` — durable decisions and terminology.
+13. `ARO_PRODUCT.md`.
+14. `ARO_VISION.md`.
+15. `ARO_MIGRATION.md` for legacy mapping, followed by legacy Tonguee documents as historical/domain evidence only.
+
+Higher authority wins only within its intended scope; a playbook cannot silently override a specialist security or money rule merely because it appears earlier. The more restrictive safety, privacy, Trust, legal, and money rule wins until the director resolves a conflict. If two readings produce materially different behavior, stop and ask—never invent a third option.
 
 ## Product invariants
 
@@ -26,10 +34,13 @@ If documents conflict, the more specific approved ARO package wins. If still unc
 4. Trust is contextual and enforced server-side. Never bypass, weaken, duplicate, or remove the verified-teacher publish trigger or RLS protections.
 5. No financial promises. Do not add crypto, yield, wallet, escrow, payout, price, or payment-commitment behavior without a director-approved compliance, payments, and security spec. Never imply guaranteed returns.
 6. Privacy and safety precede intelligence. Treat intent, availability, location, capabilities, identity/credentials, outcomes, finances, and reputation as sensitive by default.
+7. **Opportunity** is the universal arrangement, **Circle** is its participant cohort/operating group, and a Tonguee **Experience** is the first vertical format. Teacher/learner are Tonguee roles; host/participant are platform roles.
+8. RevenueCat subscription entitlements and real-world marketplace transactions are separate systems. Neither the client nor RevenueCat is authoritative for host-service prices, payouts, or refunds.
 
 ## Execution rules
 
 - One work package = one branch = one PR = one self-review. Run only the assigned package and respect dependencies/gates.
+- ARO-SEC0 must complete before P1 because tracked environment configuration is an unresolved repository-security risk.
 - Stack remains React 19, Vite 7, Tailwind v3, Supabase JS v2, React Router v7, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Any dependency change needs director approval.
 - Reuse existing UI primitives, route patterns, dark mode, i18n, reduced-motion guards, keyboard access, and focus treatment.
 - Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.

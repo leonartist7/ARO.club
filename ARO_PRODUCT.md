@@ -11,6 +11,8 @@ ARO V1 does **not** launch a universal marketplace. It validates the loop in the
 
 The existing Tonguee experience is therefore the first ARO opportunity type: a language-learning experience led by a verified teacher.
 
+Terminology: an **Opportunity** is the universal arrangement, a **Circle** is the participant cohort/operating group around it, and a Tonguee **Experience** is the language-vertical format. Existing Tonguee UI and tables are not mass-renamed in P0/P1.
+
 ## V1 users and jobs
 
 | User | Job ARO helps complete | Existing foundation |
@@ -25,6 +27,10 @@ The existing Tonguee experience is therefore the first ARO opportunity type: a l
 - Do not change the verified-teacher publication gate.
 - Do not relabel shipped Tonguee UI to ARO until an approved brand and migration package exists.
 - New opportunity types require written product, data, trust/safety, and economics specifications.
+
+## Real-world and online hierarchy
+
+ARO’s signature outcome is real-world human activity. Online participation may improve accessibility, preparation, follow-up, or enable a deliberately approved online format; it is not a fallback to an attention feed and must not be counted as physical “real-life hours.” Each outcome metric states whether activity was in-person, live online, or asynchronous.
 
 ## Success signals
 
