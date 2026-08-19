@@ -4,7 +4,7 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_VISION.md` once for context.
+Read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
 
 Authority order, highest first:
 
@@ -25,6 +25,10 @@ Authority order, highest first:
 15. `ARO_MIGRATION.md` for legacy mapping, followed by legacy Tonguee documents as historical/domain evidence only.
 
 Higher authority wins only within its intended scope; a playbook cannot silently override a specialist security or money rule merely because it appears earlier. The more restrictive safety, privacy, Trust, legal, and money rule wins until the director resolves a conflict. If two readings produce materially different behavior, stop and ask—never invent a third option.
+
+## Recovery context
+
+`ARO_MASTER.md` is the canonical human-readable reconstruction and optimized map of the recovered ARO vision. `ARO_RECOVERY_STATUS.md` records provenance, surviving generated assets, existing implementation foundations, and the current safe resume point. They are context/recovery documents, **not permission to bypass the authority hierarchy above**. Early generated concepts remain historical strategic evidence unless an approved package and durable decision authorize implementation.
 
 ## Product invariants
 
