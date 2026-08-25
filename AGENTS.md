@@ -1,115 +1,143 @@
-# 🎬 TONGUEE — AGENT OPERATING CONTRACT
+# ARO — Agent Operating Contract
 
-> **Read this file first, fully, before touching any code.** You are the **implementation engineer** for Tonguee. The product vision, architecture, design system, and money architecture are already authored and final — they carry the director's authority. Your job is **faithful, high-quality execution of written specs**, not redesign. This contract is model- and tool-agnostic: it assumes nothing beyond a shell, an editor, and git.
+Read this file fully before touching code, configuration, or data. You are an implementation engineer for **ARO, the Human Opportunity Network**. Tonguee is ARO’s first language-learning vertical—not a discarded product. The ARO Director Pack is the source of authority; execute its approved packages faithfully and do not redesign product, architecture, money, security, Trust, privacy or engagement mechanics in an implementation task.
 
-**Read order:** `AGENTS.md` (this file) → `BUILD_PLAYBOOK.md` (what to build, in order) → the spec for your current work package → only the source files that spec names. `VISION.md` is the "why" — skim once. Do **not** crawl the whole repo.
+## Read order and authority
 
----
+Read `AGENTS.md` → `ARO_CURRENT_STATE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
 
-## 1. Chain of authority
+When the assigned work concerns visual/product experience, also read `ARO_EXPERIENCE_SYSTEM.md`. When it concerns progression, quests, Seasons, AR, Beacons, Trails, Expeditions or related monetization, also read `ARO_SEASONS_AR.md`.
 
-| Question | Authority |
-|---|---|
-| What to build & in what order | `BUILD_PLAYBOOK.md` |
-| How every screen looks, moves, feels | `DESIGN_EXECUTION_PLAN.md` + `DESIGN_SYSTEM.md` (tokens, a11y, hero pages) |
-| Money, bookings, payouts, refunds | `PAYMENTS_SPEC.md` |
-| Why the product exists | `VISION.md` |
+`ARO_CURRENT_STATE.md`, `ARO_SPEC_INDEX.md` and `ARO_IMPLEMENTATION_STATUS.md` are current-context/registry/status documents. They make work traceable but do not outrank narrower specialist implementation authority.
 
-If two docs conflict, the more specific spec wins. If it's still unclear → **stop and ask** (§5). Never resolve a conflict by inventing a third option.
+Authority order, highest first:
 
-## 2. Run order (canonical)
+1. `AGENTS.md` — operating contract and conflict rules.
+2. `ARO_BUILD_PLAYBOOK.md` — sequence, scope, gates, and acceptance criteria.
+3. Approved package-specific implementation specification.
+4. `ARO_ARCHITECTURE.md`.
+5. `ARO_DATA_MODEL.md`.
+6. `ARO_OPPORTUNITY_ENGINE.md`.
+7. `ARO_DESIGN_SYSTEM.md` and package-adopted portions of `ARO_EXPERIENCE_SYSTEM.md`.
+8. `ARO_TRUST_SAFETY.md`.
+9. `ARO_MONEY.md`.
+10. `ARO_GROWTH.md`.
+11. `ARO_SHIPATON.md`.
+12. `DECISIONS.md` — durable decisions and terminology.
+13. `ARO_PRODUCT.md`.
+14. `ARO_VISION.md`.
+15. `ARO_MIGRATION.md` for legacy mapping, followed by legacy Tonguee documents as historical/domain evidence only.
 
-**One work package = one branch = one PR = one self-review.** Never blend packages into one commit — even if instructed to "implement everything," execute packages strictly in this sequence, delivering each before starting the next:
+`ARO_SEASONS_AR.md` and strategic portions of `ARO_EXPERIENCE_SYSTEM.md` preserve approved direction but are not permission to bypass package sequencing or specialist review.
 
-1. **Phase A** (tasks A1–A5) — finish the Trust Engine → `BUILD_PLAYBOOK.md §5.A`
-2. **B1** — design-token swap → `DESIGN_SYSTEM.md §2 + §9` — *prerequisite for everything below*
-3. **B2** — rebuild the 4 hero pages → `DESIGN_SYSTEM.md §8`
-4. **B3** — accessibility pass → `DESIGN_SYSTEM.md §3`
-5. **DP1 → DP10**, in order → `DESIGN_EXECUTION_PLAN.md §10`
-6. **Phase C** (C1–C4) — payments → `PAYMENTS_SPEC.md` — ⚠️ **director-review gate before merge**
+Higher authority wins only within its intended scope; a playbook cannot silently override a specialist security or money rule merely because it appears earlier. The more restrictive safety, privacy, Trust, legal, accessibility and money rule wins until the director resolves a conflict. If two readings produce materially different behavior, stop and ask—never invent a third option.
 
-**Kickoff template (one per package; swap the ID):**
+## Current-state and recovery context
 
-> You are the implementation engineer for Tonguee. Read `AGENTS.md` fully and follow it as a contract. Then read the spec for work package **‹ID›** — `BUILD_PLAYBOOK.md` for Phase A/B/C tasks, `DESIGN_EXECUTION_PLAN.md §10` for DP1–DP10 — plus only the files that spec names. Implement ‹ID› exactly to spec: execute, don't redesign. Pass the §6 Self-Review Protocol, then deliver per §7.
+`ARO_CURRENT_STATE.md` is the concise answer to **what is true now**: current definition, active blocker, runtime sequence, latest strategic direction and implementation boundary.
 
-## 3. Stack contract (fixed — do not change)
+`ARO_MASTER.md` is the canonical human-readable reconstruction and optimized map of the recovered ARO vision. `ARO_RECOVERY_STATUS.md` records provenance, surviving generated assets, existing implementation foundations, and the safe resume point. `ARO_CHANGELOG.md` is the append-only record of meaningful product/architecture evolution.
 
-React 19 · Vite 7 · **Tailwind v3** (not v4 — no `@theme`/v4 syntax) · Supabase JS v2 · React Router v7 (lazy routes in `src/lib/routes.jsx`) · Zustand · framer-motion · lucide-react · date-fns · clsx + tailwind-merge via `cn()` (`src/utils/cn.js`).
+`ARO_EXPERIENCE_SYSTEM.md` preserves the latest **Living Opportunity OS** visual/product doctrine. `ARO_SEASONS_AR.md` preserves the latest **Seasons, quests, AR, Beacons, city gameplay and real-life progression** direction.
 
-**Pre-approved additions, only at the named package:** `@tanstack/react-query` (C1) · `qrcode` (C4) · `stripe` (inside Supabase Edge Functions only). **Any other new dependency = stop and ask (§5).** No UI kits, no CSS frameworks, no extra state libraries, no formatter sweeps.
+These context/strategy documents are **not permission to bypass the authority hierarchy above**. Early generated concepts and new strategic concepts require an approved package specification before runtime implementation.
 
-Commands: `npm run dev` · `npm run build` · `npm run lint`. Client env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (+ `VITE_STRIPE_PUBLISHABLE_KEY` in Phase C). All other secrets live only in Supabase function config — never in git, never in client code.
+## Spec-driven execution contract
 
-## 4. Hard rules (violating any of these fails the package)
+No runtime, schema, RLS, auth, AI, payment, Trust, privacy, analytics, location, AR, progression, reward, sponsorship or user-facing feature may be implemented directly from chat instructions or from a strategic/master document alone.
 
-1. **Reuse before build.** Existing primitives: `src/components/ui/*` (Button, Card, Badge, Input, Select, Avatar, Toast, Skeleton, EmptyState, ErrorState, LoadingSpinner, SpotCounter, SkipToContent…). Build a new component only when `DESIGN_EXECUTION_PLAN.md §2` or a spec names it. Never hand-roll a one-off variant of something that exists.
-2. **Minimal diffs.** Never reformat untouched code, never run a formatter repo-wide, never rewrite a whole file to change three lines, never rename/move files unless the spec says so.
-3. **Migrations are append-only.** Never edit `supabase/schema.sql`, `supabase/langgie-extensions.sql`, or `supabase/trust-engine.sql`. New DB changes go in new files (e.g. `supabase/payments.sql`, exactly as `PAYMENTS_SPEC.md §2` writes it).
-4. **RLS is the security boundary.** Never "fix" an access problem by loosening a policy or using the service-role key client-side. The service-role key exists only inside Edge Functions.
-5. **Money is integer cents, computed server-side.** The client sends only ids and quantities — never amounts. Follow `PAYMENTS_SPEC.md` to the letter.
-6. **Design tokens only.** No new hex colors outside `tailwind.config.js`; no new keyframes unless a spec item needs one; **gold is never a CTA**; **coral-500 is never body text** (use 600/700 fills, 700 text — `DESIGN_SYSTEM.md §3`); **Coco never appears on admin, checkout, legal, or safety screens**.
-7. **Everything shippable.** No TODOs, stubs, dead buttons, lorem, placeholder gray boxes, or commented-out blocks. A feature that lands in a later phase renders disabled with an honest label ("Booking opens soon").
-8. **Preserve cross-cutting features** in anything you touch: dark mode (`dark:` pairings per `DESIGN_SYSTEM.md §2` table), i18n (`src/i18n/translations.js`), `prefers-reduced-motion` guards, keyboard access + focus rings.
-9. **Don't touch what's shipped** (`BUILD_PLAYBOOK.md §4`) except where a task explicitly names the file.
-10. **Never claim done without proof.** "Done" means the §6 protocol ran and passed, with results shown in the delivery (§7).
+Every implementation must trace through:
 
-## 5. Stop-and-ask (director gates)
+`Vision → durable decision → governing spec → package spec → implementation → tests → evidence → status update`
 
-Stop and ask the director (the human running you) before doing any of the following. If you cannot ask, take the smallest spec-consistent action and flag it prominently under "Deviations" in your delivery — **except money/security items, which always stop.**
+Before writing code for a package:
 
-- Adding any dependency beyond §3's pre-approved list.
-- Any schema, RLS, or auth change not literally written in a spec.
-- Any deviation from `PAYMENTS_SPEC.md` — fee %, state machine, refund tiers, data model, webhook handling.
-- Deleting files, wholesale rewrites, or renames/moves not in a spec.
-- Changing brand tokens, fonts, or the design language.
-- A spec ambiguity where two readings produce materially different UIs or data. Present the options + your recommendation; wait.
+1. confirm dependencies and gates in `ARO_SPEC_INDEX.md` / `ARO_BUILD_PLAYBOOK.md`;
+2. create or read the package spec using `specs/PACKAGE_TEMPLATE.md`;
+3. ensure the package is explicitly **SPEC-READY**;
+4. baseline the existing behavior/tests/performance the package depends on;
+5. implement only requirements named by the package;
+6. map every acceptance criterion to test/evidence;
+7. update `ARO_IMPLEMENTATION_STATUS.md` and `ARO_SPEC_INDEX.md` in the delivery PR when status changes;
+8. update `ARO_CURRENT_STATE.md` and append `ARO_CHANGELOG.md` when the PR materially changes strategy, implementation state, active blocker, design doctrine, sequencing, Trust/privacy/money direction, AI authority, location/AR direction or major capability status.
 
-## 6. Self-Review Protocol (run before every delivery)
+Do not use the word “done” as a status. Use **IMPLEMENTED**, **VERIFIED**, or **SHIPPED** precisely.
 
-*This protocol supersedes any `/code-review` reference in older docs.*
+## Knowledge graph tooling
 
-1. **Build & lint pass:** `npm run build && npm run lint` — zero errors, zero new warnings.
-2. **Spec conformance pass:** re-read your package's spec section top-to-bottom; write a ✅/❌ line per requirement into the delivery body; fix every ❌ before delivering.
-3. **Diff audit:** `git diff --stat <base-branch>` — every touched file must be named in, or obviously required by, the spec. Revert stray edits and reformatting.
-4. **Regression greps** — each must return nothing for lines you added (`git diff <base> | grep -E '^\+'` piped to):
-   - `grep -iE 'TODO|FIXME|lorem|placeholder'`
-   - `grep -E '#[0-9A-Fa-f]{6}'` (hex allowed only in `tailwind.config.js`)
-   - `grep -E 'console\.log'`
-5. **Theme audit:** every added `bg-*` / `text-*` / `border-*` surface has its `dark:` pairing per the `DESIGN_SYSTEM.md §2` table.
-6. **States audit:** every new/rebuilt screen has designed loading, empty, and error states — never a blank div or raw error.
-7. **Hostile review:** read your entire diff once as a severe senior reviewer hunting real bugs — missing `await`, unguarded null, stale closure, broken import path, race in state updates, unkeyed list. Fix, rebuild.
-8. **Screen rubric:** score every touched screen against `DESIGN_EXECUTION_PLAN.md §11` (9 checks). All nine must hold.
-9. **Money packages only (Phase C):** tick every box of `PAYMENTS_SPEC.md §7` with one line of evidence each, then **stop for director review — do not merge**.
+ARO uses **Obsidian** and **Graphify** as discovery/navigation layers around the spec system.
 
-## 7. Delivery protocol
+- `ARO_HOME.md` is the Obsidian vault entry point. The repository root can be opened directly as an Obsidian vault.
+- `tools/knowledge/` contains the project-scoped Graphify setup. The pinned CLI package is `graphifyy==0.9.49`, sourced from `Graphify-Labs/graphify`.
+- If `graphify-out/graph.json` exists and the task asks about architecture, code relationships, cross-file flows, or where a concept is implemented, query Graphify before broad raw-file exploration.
+- After meaningful architecture/spec changes, update the local graph with `graphify . --update` when Graphify is available.
+- Use Obsidian backlinks/graph to discover disconnected specs, decisions, and status notes.
 
-- Branch from the repo's default branch, named `feat/<package-id>` (e.g. `feat/phase-a`, `feat/b1-tokens`, `feat/dp3`). Commit messages: `<package-id>: <what shipped>`.
-- Open one PR per package with this body (if PRs aren't available, put the same content in the final commit message):
+Neither graph is authoritative. Graphify can contain inferred edges and Obsidian links can be incomplete. Use them to **find and verify**, then resolve implementation authority through the spec hierarchy above.
 
-```markdown
-## Package
-DP3 — Gamification surfaces (DESIGN_EXECUTION_PLAN §10)
+Do not add Obsidian or Graphify to the product runtime bundle. They are repository tooling only.
 
-## Shipped
-- <one bullet per spec requirement, mapped ✅>
+## Product invariants
 
-## Self-review results
-build: PASS · lint: PASS · greps: clean · rubric: 9/9 · diff: only spec-named files
+1. ARO creates real-world opportunity; it is not a scroll-first social network.
+2. AI may assist, suggest, and compose, but people explicitly approve consequential actions.
+3. Tonguee’s learning experiences, teachers, bookings, Passport, warm voice, and trust infrastructure are preserved unless a package explicitly changes them.
+4. Trust is contextual and enforced server-side. Never bypass, weaken, duplicate, or remove the verified-teacher publish trigger or RLS protections.
+5. No financial promises. Do not add crypto, yield, wallet, escrow, payout, price, payment-commitment, paid reward or Season monetization behavior without a director-approved compliance, payments and security spec. Never imply guaranteed returns or earnings.
+6. Privacy and safety precede intelligence. Treat intent, availability, location, capabilities, identity/credentials, outcomes, finances and reputation as sensitive by default.
+7. **Opportunity** is the universal arrangement, **Circle** is its participant cohort/operating group, and a Tonguee **Experience** is the first vertical format. Teacher/learner are Tonguee roles; host/participant are platform roles.
+8. RevenueCat subscription entitlements and real-world marketplace transactions are separate systems. Neither the client nor RevenueCat is authoritative for host-service prices, payouts or refunds.
+9. ARO may use game-design psychology, but it must not optimize for compulsive screen time, fake scarcity, punitive streaks, paid randomness or pay-to-win Trust/status.
+10. Precise live user location is not public opportunity data. AR/Beacons/Maps must use explicit privacy and physical-safety specifications before implementation.
 
-## Deviations from spec
-None <or: each one listed, with why + the director's approval reference>
+## Execution rules
 
-## Screenshots
-light + dark × 360px + 1440px <or: "environment cannot run a browser">
-```
+- One work package = one branch = one PR = one self-review. Run only the assigned package and respect dependencies/gates.
+- ARO-SEC0 must complete before P1 because tracked environment configuration is an unresolved repository-security risk.
+- Stack remains React 19, Vite 7, Tailwind v3, Supabase JS v2, React Router v7, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Any dependency change needs director approval.
+- Reuse existing UI primitives, route patterns, dark mode, i18n, reduced-motion guards, keyboard access, and focus treatment.
+- Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.
+- Migrations are append-only. Never edit existing schema or Trust migrations in place.
+- RLS is the security boundary. Service-role credentials belong only in server-side functions; the client never calculates or authorizes money.
+- New screens include intentional loading, empty, error, retry, validation, pending and success states where applicable. No TODOs, stubs, dead buttons, placeholders, or filler copy.
+- “Optimized” requires a measurable baseline and budget. Do not trade correctness, safety, privacy, accessibility, truthful economics or physical safety for visual/perceived speed or engagement.
+- For retryable external writes, define idempotency/reconciliation before implementation.
+- No acceptance criterion may be marked PASS without a verification method and evidence.
+- Do not implement Seasons, AR, Beacons, Life Map, Sponsored Quests, Season+ or similar exploratory systems ahead of the governed core-loop sequence unless a new durable decision and approved package explicitly changes that sequence.
 
-## 8. Facts that trip up agents (memorize)
+## Stop and ask the director before
 
-- Brand is **Tonguee**; mascot is **Coco the Chameleon** — rendered as 🦎 in a coral→teal gradient orb until real art exists. Legacy names (Langgie, Conversa, any owl) must never reappear in UI or copy. The `package.json` name `"conversa"` is legacy plumbing — leave it.
-- Palette: coral `#FF6B35` = primary/CTA · teal `#20B2AA` = trust/links/money · gold `#FFB020` = gamification **only**. Success-green is semantic only.
-- `cn()` from `src/utils/cn.js` for all conditional classes; existing keyframes (`fade-in`, `slide-up`, `pop`, `float`, `bounce-gentle`, `wiggle`) already live in `tailwind.config.js`.
-- Auth: `useAuth()` from `src/contexts/AuthContext.jsx`. Guarding: `ProtectedRoute` + `requireRole` (`'admin'` / `'teacher'`). Data libs: `src/lib/admin.js`, `src/lib/teacherApplications.js`, client in `src/lib/supabase.js`.
-- Dark mode is the `class` strategy via `ThemeContext` — style with `dark:` variants, never a second stylesheet.
-- The Trust Engine's **verified-only publish gate is enforced in the database** (trigger + RLS in `trust-engine.sql`). The UI reflects that state; it never re-implements or bypasses it.
-- Verification tiers: 🟢 `verified` ("Verified") · 🔵 `pro` ("Pro") · 🟣 `elite` ("Top Tongue") — colors/icons per `DESIGN_SYSTEM.md §6`, always with a text label, never color-only.
-- Copy voice is warm, brave, anti-shame: buttons are verbs ("Book your table"), errors take the blame, empty states encourage. Microcopy is part of the design — don't ship filler.
+- Adding a dependency or changing stack/brand/design language.
+- Any schema, RLS, auth, retention, identity, credential, precise-location, availability, intent, outcome, reputation, reward or financial data change not literally authorized by a package spec.
+- Any AI action that sends a message, makes a booking, charges money, changes visibility, publishes content, exposes a location, or acts externally without explicit user approval in the specification.
+- Any deviation from a payments, safety, Trust, privacy or security specification.
+- Deleting files or performing a wholesale rewrite/rename not expressly authorized.
+- Expanding a package because an exploratory concept in `ARO_MASTER.md`, `ARO_EXPERIENCE_SYSTEM.md` or `ARO_SEASONS_AR.md` seems useful.
+- Adding engagement mechanics whose success depends primarily on screen time, loss aversion, gambling-like rewards or artificial scarcity.
+
+## Self-review before delivery
+
+1. Run `npm run build` and `npm run lint` (plus package-relevant tests).
+2. Check each acceptance criterion against the package and its evidence row.
+3. Audit `git diff --stat` and remove unrelated edits.
+4. Check added lines for TODO/FIXME, placeholders, raw hex outside approved tokens, and `console.log`.
+5. Verify dark mode, accessibility, loading/empty/error/retry states, and relevant Trust/security behavior.
+6. Compare measured performance against the package budget; report regressions honestly.
+7. Read the final diff as a hostile reviewer; fix defects before delivery.
+8. For security, privacy, Trust, schema, AI-authority, location/AR, engagement/reward or money work, request the required specialist review before merge.
+9. Update `ARO_IMPLEMENTATION_STATUS.md` and `ARO_SPEC_INDEX.md` to reflect the exact new state when applicable.
+10. Update `ARO_CURRENT_STATE.md` and append `ARO_CHANGELOG.md` for any material project-state or strategy change.
+
+## Delivery protocol
+
+Report package, spec version, shipped criteria, test results, RLS/security results when applicable, performance results, diff scope, deviations, and screenshots/evidence for user-facing work (light/dark and mobile/desktop where possible). Do not claim completion without this evidence.
+
+## Current facts
+
+- Product umbrella: **ARO**. Tonguee and Coco are approved first-vertical assets; do not remove or relabel them absent a migration package.
+- Current experience thesis: **Living Opportunity OS** — opportunity forming around a person, not a generic listings feed.
+- Current strategic game layer: **ARO Seasons** with real-life progression; implementation remains post-core-loop/spec gated.
+- `package.json` name `conversa` is legacy plumbing; leave it unless specifically assigned.
+- Dark mode uses `ThemeContext`; use `dark:` variants rather than a second stylesheet.
+- The verified-only publish gate is a database trigger plus RLS in `supabase/trust-engine.sql`; UI reflects it and never replaces it.
+- Copy is warm, brave, anti-shame, grounded in real life and oriented toward possibility. Buttons are verbs; errors take the blame.
