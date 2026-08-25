@@ -1,10 +1,10 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 24, 2026.**
+> **Status as of August 25, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
-> Update this ledger in every package PR that changes program status. Do not rely on chat history for completion state.
+> Update this ledger in every package PR that changes program status. Do not rely on chat history for completion state. Use `ARO_CURRENT_STATE.md` for the concise current strategic snapshot and `ARO_CHANGELOG.md` for evolution history.
 
 ---
 
@@ -15,6 +15,8 @@
 **ARO is in governed foundation / pre-P1 implementation state.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
+
+The latest Living Opportunity OS experience direction and Seasons/AR strategy are also preserved as **strategic/spec-gated layers**, not as completed runtime features.
 
 The existing Tonguee product provides a significant working vertical foundation. ARO does **not** restart from zero.
 
@@ -40,6 +42,7 @@ After SEC0 is closed or its remaining risk is explicitly accepted and documented
 - **BLOCKED** — named unresolved gate prevents progression.
 - **SPEC-REQUIRED** — direction exists but implementation specification is not yet approved.
 - **EXPLORATORY** — future idea only.
+- **VISION** — long-term direction only.
 - **DEPRECATED** — retained for historical/compatibility context.
 
 ---
@@ -49,6 +52,10 @@ After SEC0 is closed or its remaining risk is explicitly accepted and documented
 | Package | Status | What exists | Verification / evidence | Next action |
 |---|---|---|---|---|
 | Recovery of deleted master vision | **VERIFIED** | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md`; original strategic artifacts catalogued | recovery PR merged into director branch | keep synchronized with decisions |
+| Current-state/changelog governance | **VERIFIED** | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` sync rules | documentation contract exists | update on every material strategy/status PR |
+| Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | strategic doctrine preserved | adopt selectively inside package specs; validate accessibility/performance |
+| ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | strategy preserved | wait for reliable P5 Proof/Passport base, then specify lightweight progression |
+| ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | strategy preserved | prove place/privacy/safety model before AR |
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **IN-PROGRESS / BLOCKED** | branch `agent/aro-sec0-secret-hygiene`; PR #9; tracked `.env` removal prepared; report added | repo-side checks recorded in `ARO_SEC0_REPORT.md` | founder/provider credential decision + history decision |
@@ -95,9 +102,11 @@ The following implementation predates the new ARO package sequence and is intent
 ### Identity, progress and gamification
 
 - **Passport:** IMPLEMENTED language-vertical foundation.
-- **Points/streak/badges/player state:** IMPLEMENTED.
-- **Shop/loadout/gamification loop:** IMPLEMENTED foundation.
+- **Points/streak/badges/player state:** IMPLEMENTED legacy foundation.
+- **Shop/loadout/gamification loop:** IMPLEMENTED legacy foundation.
 - **Review/couple/badge reachability fixes:** IMPLEMENTED.
+
+Important: legacy gamification does **not** equal ARO Seasons implementation. Any future ARO progression system must follow the ethical engagement and real-world verification direction in `ARO_EXPERIENCE_SYSTEM.md` / `ARO_SEASONS_AR.md` and an approved package spec.
 
 ### Quality baseline
 
@@ -115,7 +124,7 @@ These statements mean the assets exist in the repository and were part of prior 
 
 ## 5. Master-plan capability status
 
-This table prevents the recovered long-term vision from being mistaken for current implementation.
+This table prevents the recovered/current long-term vision from being mistaken for current implementation.
 
 | Capability | Current state |
 |---|---|
@@ -124,21 +133,30 @@ This table prevents the recovered long-term vision from being mistaken for curre
 | Demand Ledger / Demand Signals | P2 pending |
 | Opportunity Compiler / ARO Catalyst | P3 pending |
 | Pre-Commit Markets / ARO Commit | P4 pending |
+| Commitment Orbit visual/interaction language | strategic direction; P4 package must specify |
 | Proof of Outcome / ARO Proof | P5 pending |
 | Contextual Trust Graph | partial vertical foundation exists; platform generalization pending |
 | Human Composability | exploratory after core loop |
 | Business Capacity Graph / Spaces | exploratory after core loop/category/business specs |
 | Personal Opportunity Agent | vision/architecture; no autonomous consequential action |
 | Life Passport | Tonguee Passport implemented; platform expansion pending P5+ |
+| Passport constellation / Life Map | exploratory after Proof/Passport + privacy specification |
 | City Intelligence | strategic/growth direction; not implemented as general engine |
 | Wish Markets | exploratory |
 | Opportunity Unlocks | exploratory mechanism; commitment foundation first |
 | Bounties | exploratory |
 | ARO Teams | exploratory; GUILD concept preserved |
 | Travel Mode | exploratory |
+| ARO Seasons | exploratory/spec-required after Proof loop is reliable |
+| Season+ | exploratory; no monetization package approved |
+| Quests / Big Quests / Expeditions | exploratory |
+| ARO Sparks | exploratory memory/progression object |
+| ARO Beacons | exploratory place/business primitive |
+| Opportunity Trails | exploratory |
+| AR opportunity overlays | exploratory; location/privacy/safety layer not yet specified |
 | Community Mode | exploratory/business-capacity future |
-| Creator Guild Leaders | growth vision |
-| Brand-funded opportunities | growth vision with disclosure/trust constraints |
+| Creator Guild Leaders / Creator Seasons | growth vision |
+| Brand-funded opportunities / Sponsored Quests | growth vision with disclosure/trust constraints |
 | ARO Wallet | exploratory/future regulated infrastructure only |
 | Stablecoin rails | exploratory infrastructure only |
 | Agent-to-agent commerce | long-term vision only; human approval invariant locked |
@@ -157,6 +175,7 @@ Before P1 code begins:
 6. Establish current mobile/desktop/light/dark baseline screenshots for affected journeys.
 7. Run relevant existing unit/E2E suites and record baseline failures separately from package regressions.
 8. Set measurable performance/accessibility budgets for the affected surfaces.
+9. Decide which portions of `ARO_EXPERIENCE_SYSTEM.md` are explicitly adopted by the P1 package; do not implement unrelated future visual mechanics by implication.
 
 Only then move P1 to **IN-PROGRESS**.
 
@@ -195,4 +214,4 @@ Do not delete older records; status history is useful operational evidence.
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 
-The fastest path is not maximum simultaneous coding. It is **maximum parallelism inside a stable specification boundary**.
+Do not move Seasons/AR into runtime simply because the strategic direction is now documented. The fastest path is not maximum simultaneous coding. It is **maximum parallelism inside a stable specification boundary**.
