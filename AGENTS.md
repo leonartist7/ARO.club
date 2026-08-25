@@ -52,6 +52,20 @@ Before writing code for a package:
 
 Do not use the word “done” as a status. Use **IMPLEMENTED**, **VERIFIED**, or **SHIPPED** precisely.
 
+## Knowledge graph tooling
+
+ARO uses **Obsidian** and **Graphify** as discovery/navigation layers around the spec system.
+
+- `ARO_HOME.md` is the Obsidian vault entry point. The repository root can be opened directly as an Obsidian vault.
+- `tools/knowledge/` contains the project-scoped Graphify setup. The pinned CLI package is `graphifyy==0.9.49`, sourced from `Graphify-Labs/graphify`.
+- If `graphify-out/graph.json` exists and the task asks about architecture, code relationships, cross-file flows, or where a concept is implemented, query Graphify before broad raw-file exploration.
+- After meaningful architecture/spec changes, update the local graph with `graphify . --update` when Graphify is available.
+- Use Obsidian backlinks/graph to discover disconnected specs, decisions, and status notes.
+
+Neither graph is authoritative. Graphify can contain inferred edges and Obsidian links can be incomplete. Use them to **find and verify**, then resolve implementation authority through the spec hierarchy above.
+
+Do not add Obsidian or Graphify to the product runtime bundle. They are repository tooling only.
+
 ## Product invariants
 
 1. ARO creates real-world opportunity; it is not a scroll-first social network.
