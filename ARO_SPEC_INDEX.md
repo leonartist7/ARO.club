@@ -8,7 +8,7 @@
 
 ## 1. Spec-driven rule
 
-No ARO runtime, schema, RLS, auth, AI, payment, trust, privacy, analytics, or user-facing feature work begins from a chat request alone.
+No ARO runtime, schema, RLS, auth, AI, payment, trust, privacy, analytics, AR, location, progression, reward, sponsorship or user-facing feature work begins from a chat request alone.
 
 Every implementation must resolve to:
 
@@ -40,25 +40,29 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | Concern | Canonical source |
 |---|---|
 | Agent behavior / conflict rules | `AGENTS.md` |
+| Current truth snapshot | `ARO_CURRENT_STATE.md` |
 | Package order, gates, acceptance criteria | `ARO_BUILD_PLAYBOOK.md` |
-| Master human-readable product map | `ARO_MASTER.md` |
+| Master recovered product map | `ARO_MASTER.md` |
 | Current implementation/resume status | `ARO_IMPLEMENTATION_STATUS.md` |
+| Latest experience / visual / mobile direction | `ARO_EXPERIENCE_SYSTEM.md` + approved package spec when implementing |
+| Seasons / quests / AR / Beacons strategy | `ARO_SEASONS_AR.md` + approved package spec when implementing |
 | Durable accepted decisions | `DECISIONS.md` |
 | Vision | `ARO_VISION.md` |
 | Product scope | `ARO_PRODUCT.md` |
 | Architecture | `ARO_ARCHITECTURE.md` |
 | Domain/data concepts | `ARO_DATA_MODEL.md` |
 | Opportunity intelligence | `ARO_OPPORTUNITY_ENGINE.md` |
-| Design/UX | `ARO_DESIGN_SYSTEM.md` |
+| Design/UX | `ARO_DESIGN_SYSTEM.md` + `ARO_EXPERIENCE_SYSTEM.md` |
 | Trust/safety/category risk | `ARO_TRUST_SAFETY.md` |
 | Money/subscriptions/payments | `ARO_MONEY.md` + approved package payment addendum |
 | Growth/density | `ARO_GROWTH.md` |
 | Shipathon | `ARO_SHIPATON.md` |
 | Tonguee → ARO evolution | `ARO_MIGRATION.md` |
+| Product/architecture evolution history | `ARO_CHANGELOG.md` |
 | Recovery provenance | `ARO_RECOVERY_STATUS.md` |
 | New package format | `specs/PACKAGE_TEMPLATE.md` |
 
-When two documents appear to conflict, follow `AGENTS.md`: the narrower specialist rule and the more restrictive security/privacy/trust/legal/money rule win until director resolution.
+`ARO_CURRENT_STATE.md` is the concise current snapshot. It does not silently override narrower specialist requirements. When two documents appear to conflict, follow `AGENTS.md`: the narrower specialist rule and the more restrictive security/privacy/trust/legal/money rule win until director resolution.
 
 ---
 
@@ -67,18 +71,26 @@ When two documents appear to conflict, follow `AGENTS.md`: the narrower speciali
 | Package / capability | Status | Authority / evidence | Next gate |
 |---|---|---|---|
 | ARO recovery + master synthesis | **VERIFIED** as documentation recovery | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md` | keep synchronized with durable decisions |
+| Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
+| Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
+| ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
+| ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
 | ARO-SEC0 repository secret hygiene | **BLOCKED / IN-PROGRESS** | branch `agent/aro-sec0-secret-hygiene`, `ARO_SEC0_REPORT.md`, PR #9 | founder/provider rotation/restriction + history decision |
 | P1 Capability + Goal Foundation | **BLOCKED** | `ARO_BUILD_PLAYBOOK.md` | close/accept SEC0 risk, then package-specific data/RLS spec |
 | P2 Explicit Intent + Demand Signal | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md` | P1 verified + privacy/aggregation spec |
 | P3 Language Opportunity Suggestion | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_OPPORTUNITY_ENGINE.md` | P2 verified + AI/evaluation/trust spec |
 | P4 Commitment + Booking + minimum viability | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_MONEY.md` | P3 verified + money/cancellation/concurrency specs |
-| P5 Proof + Outcomes + Passport | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_DESIGN_SYSTEM.md` | P4 verified + outcome-evidence spec |
+| P5 Proof + Outcomes + Passport | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md` | P4 verified + outcome-evidence spec |
 | P6 adjacent vertical pilot | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_TRUST_SAFETY.md` | core loop reliable + category gate |
 | Wallet / stablecoin rails / yield integrations | **EXPLORATORY** | recovered strategy only + `ARO_MONEY.md` boundaries | separate legal/security/money approval |
 | Generic Bounties | **EXPLORATORY** | `ARO_MASTER.md` | product/data/trust/economics spec |
 | Generic ARO Teams | **EXPLORATORY** | `ARO_MASTER.md`, GUILD precursor | product/trust/economics spec |
-| Travel Mode | **EXPLORATORY** | `ARO_MASTER.md` | privacy/location/trust/product spec |
+| Travel Mode | **EXPLORATORY** | `ARO_MASTER.md`, `ARO_SEASONS_AR.md` | privacy/location/trust/product spec |
+| ARO Beacons | **EXPLORATORY** | `ARO_SEASONS_AR.md` | Spaces/place model + business/privacy/safety spec |
+| ARO Season+ | **EXPLORATORY** | `ARO_SEASONS_AR.md` | progression value proven + money/legal spec |
+| Sponsored Quests | **EXPLORATORY** | `ARO_SEASONS_AR.md` | sponsorship disclosure + safety + economics spec |
+| Personal Life Map | **EXPLORATORY** | `ARO_EXPERIENCE_SYSTEM.md`, `ARO_SEASONS_AR.md` | Proof/Passport + privacy/location spec |
 | Agent-to-agent commerce | **VISION** | `ARO_MASTER.md`, `DECISIONS.md` human approval boundary | far-future architecture + legal/security review |
 
 ---
@@ -130,6 +142,17 @@ Every new package spec must be created from `specs/PACKAGE_TEMPLATE.md` and incl
 19. **Required reviewers/sign-offs.**
 20. **Definition of Done.**
 
+If a package includes **Seasons, quests, rewards, AR, precise location, Beacons, sponsorships or public city metrics**, it must additionally specify:
+
+- engagement/anti-dark-pattern guardrails;
+- accessibility alternatives;
+- location precision/privacy tiers;
+- physical safety implications;
+- fraud/anti-gaming controls;
+- reward economics and disclosures;
+- sponsorship disclosures when applicable;
+- battery/device/performance budgets for spatial features.
+
 A package missing a consequential section stays **SPEC-REQUIRED**.
 
 ---
@@ -149,6 +172,7 @@ Rules:
 - Security/RLS/money acceptance criteria require server/data-level evidence, not screenshots.
 - User-facing UI criteria require visual evidence at specified breakpoints and themes.
 - Performance claims require measurements, not adjectives.
+- Real-world progression claims require defined verification semantics, not arbitrary client-side increments.
 
 ---
 
@@ -158,17 +182,17 @@ Rules:
 
 Optimize in this order:
 
-1. **Correctness and safety** — no bypasses, race conditions, misleading states, or trust regressions.
+1. **Correctness and safety** — no bypasses, race conditions, misleading states, physical-safety regressions or trust regressions.
 2. **User outcome** — fewer steps to meaningful real-world value.
 3. **Clarity** — obvious state, next action, terms, privacy and consequences.
 4. **Reliability** — idempotency, retries, recoverable errors, observability.
 5. **Performance** — fast interaction, bounded network/data work, mobile efficiency.
-6. **Accessibility** — keyboard, screen reader, contrast, motion and touch target quality.
+6. **Accessibility** — keyboard, screen reader, contrast, motion, touch target and non-AR alternatives.
 7. **Maintainability** — reuse, typed/validated boundaries, minimal duplication, explicit invariants.
 8. **Cost efficiency** — bounded AI/API use, caching where safe, no unnecessary vendors.
 9. **Delight** — motion/visual polish after the above are protected.
 
-Never trade Trust, privacy, truthful economics, or data integrity for perceived speed or visual novelty.
+Never trade Trust, privacy, truthful economics, physical safety, accessibility or data integrity for perceived speed, engagement or visual novelty.
 
 ---
 
@@ -185,13 +209,39 @@ Package specs must set concrete budgets appropriate to the surface. Unless a pac
 - reduced-motion path for nonessential animation;
 - no client-side secrets or privileged service credentials;
 - every mutation has explicit pending/success/failure behavior;
-- every retryable external side effect has an idempotency/recovery strategy where applicable.
+- every retryable external side effect has an idempotency/recovery strategy where applicable;
+- maps/AR must have explicit battery, thermal, network and fallback budgets before shipping;
+- no visual effect may obscure Trust, price, cancellation, safety or commitment truth.
 
-Exact Core Web Vitals, bundle, image, AI latency/cost, query latency, and memory budgets belong in the package spec after measuring the current baseline.
+Exact Core Web Vitals, bundle, image, AI latency/cost, query latency, memory and AR/device budgets belong in the package spec after measuring the current baseline.
 
 ---
 
-## 9. Change control
+## 9. Always-current documentation contract
+
+Every PR that materially changes any of the following must update `ARO_CURRENT_STATE.md` and append `ARO_CHANGELOG.md`:
+
+- product definition;
+- strategic direction;
+- active package/blocker;
+- implementation status;
+- design/brand doctrine;
+- package sequencing;
+- Trust/privacy/safety rules;
+- money/monetization direction;
+- AI authority;
+- location/AR direction;
+- major capability status.
+
+When status changes, also update `ARO_SPEC_INDEX.md` and `ARO_IMPLEMENTATION_STATUS.md`.
+
+When a durable decision changes, update `DECISIONS.md` and the relevant specialist document.
+
+This is the mechanism that keeps ARO current without relying on chat history.
+
+---
+
+## 10. Change control
 
 A spec change is required when implementation would alter any of the following:
 
@@ -199,22 +249,24 @@ A spec change is required when implementation would alter any of the following:
 - package scope/non-goals;
 - schema, RLS, auth or retention;
 - Trust/safety eligibility;
-- money, pricing, fee, refund, payout or entitlement behavior;
+- money, pricing, fee, refund, payout, reward or entitlement behavior;
 - AI decision authority or external action;
 - public/private data visibility;
+- location precision or place visibility;
 - new dependency/provider;
 - performance budget materially;
 - analytics definitions used for public/product decisions;
-- rollout or migration risk.
+- rollout or migration risk;
+- progression/quest semantics that alter user incentives.
 
 Implementation agents may improve code structure inside approved behavior, but may not silently redesign behavior to “optimize” it.
 
 ---
 
-## 10. Definition of a spec-driven ARO package
+## 11. Definition of a spec-driven ARO package
 
 A package is truly complete only when:
 
-`approved spec + implementation + automated verification + visual/operational evidence + security/privacy/trust review where applicable + status registry update`
+`approved spec + implementation + automated verification + visual/operational evidence + security/privacy/trust review where applicable + status registry update + current-state/changelog update when material`
 
 Anything less remains work in progress.
