@@ -4,7 +4,9 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
+Read `AGENTS.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
+
+`ARO_SPEC_INDEX.md` and `ARO_IMPLEMENTATION_STATUS.md` are registry/status documents. They make work traceable but do not outrank specialist implementation authority.
 
 Authority order, highest first:
 
@@ -28,7 +30,27 @@ Higher authority wins only within its intended scope; a playbook cannot silently
 
 ## Recovery context
 
-`ARO_MASTER.md` is the canonical human-readable reconstruction and optimized map of the recovered ARO vision. `ARO_RECOVERY_STATUS.md` records provenance, surviving generated assets, existing implementation foundations, and the current safe resume point. They are context/recovery documents, **not permission to bypass the authority hierarchy above**. Early generated concepts remain historical strategic evidence unless an approved package and durable decision authorize implementation.
+`ARO_MASTER.md` is the canonical human-readable reconstruction and optimized map of the recovered ARO vision. `ARO_RECOVERY_STATUS.md` records provenance, surviving generated assets, existing implementation foundations, and the safe resume point. `ARO_SPEC_INDEX.md` is the canonical specification registry and `ARO_IMPLEMENTATION_STATUS.md` is the completion/status ledger. These context/registry documents are **not permission to bypass the authority hierarchy above**. Early generated concepts remain historical strategic evidence unless an approved package and durable decision authorize implementation.
+
+## Spec-driven execution contract
+
+No runtime, schema, RLS, auth, AI, payment, Trust, privacy, analytics, or user-facing feature may be implemented directly from chat instructions or from `ARO_MASTER.md` alone.
+
+Every implementation must trace through:
+
+`Vision → durable decision → governing spec → package spec → implementation → tests → evidence → status update`
+
+Before writing code for a package:
+
+1. confirm dependencies and gates in `ARO_SPEC_INDEX.md` / `ARO_BUILD_PLAYBOOK.md`;
+2. create or read the package spec using `specs/PACKAGE_TEMPLATE.md`;
+3. ensure the package is explicitly **SPEC-READY**;
+4. baseline the existing behavior/tests/performance the package depends on;
+5. implement only requirements named by the package;
+6. map every acceptance criterion to test/evidence;
+7. update `ARO_IMPLEMENTATION_STATUS.md` and `ARO_SPEC_INDEX.md` in the delivery PR.
+
+Do not use the word “done” as a status. Use **IMPLEMENTED**, **VERIFIED**, or **SHIPPED** precisely.
 
 ## Product invariants
 
@@ -50,7 +72,10 @@ Higher authority wins only within its intended scope; a playbook cannot silently
 - Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.
 - Migrations are append-only. Never edit existing schema or Trust migrations in place.
 - RLS is the security boundary. Service-role credentials belong only in server-side functions; the client never calculates or authorizes money.
-- New screens include intentional loading, empty, and error states. No TODOs, stubs, dead buttons, placeholders, or filler copy.
+- New screens include intentional loading, empty, error, retry, validation, pending and success states where applicable. No TODOs, stubs, dead buttons, placeholders, or filler copy.
+- “Optimized” requires a measurable baseline and budget. Do not trade correctness, safety, privacy, accessibility or truthful economics for visual/perceived speed.
+- For retryable external writes, define idempotency/reconciliation before implementation.
+- No acceptance criterion may be marked PASS without a verification method and evidence.
 
 ## Stop and ask the director before
 
@@ -59,20 +84,23 @@ Higher authority wins only within its intended scope; a playbook cannot silently
 - Any AI action that sends a message, makes a booking, charges money, changes visibility, or acts externally without explicit user approval in the specification.
 - Any deviation from a payments, safety, Trust, or security specification.
 - Deleting files or performing a wholesale rewrite/rename not expressly authorized.
+- Expanding a package because an exploratory concept in `ARO_MASTER.md` seems useful.
 
 ## Self-review before delivery
 
 1. Run `npm run build` and `npm run lint` (plus package-relevant tests).
-2. Check each acceptance criterion against the package.
+2. Check each acceptance criterion against the package and its evidence row.
 3. Audit `git diff --stat` and remove unrelated edits.
 4. Check added lines for TODO/FIXME, placeholders, raw hex outside approved tokens, and `console.log`.
-5. Verify dark mode, accessibility, loading/empty/error states, and relevant Trust/security behavior.
-6. Read the final diff as a hostile reviewer; fix defects before delivery.
-7. For security, privacy, Trust, schema, or money work, request director review before merge.
+5. Verify dark mode, accessibility, loading/empty/error/retry states, and relevant Trust/security behavior.
+6. Compare measured performance against the package budget; report regressions honestly.
+7. Read the final diff as a hostile reviewer; fix defects before delivery.
+8. For security, privacy, Trust, schema, AI-authority, or money work, request the required specialist review before merge.
+9. Update `ARO_IMPLEMENTATION_STATUS.md` and `ARO_SPEC_INDEX.md` to reflect the exact new state.
 
 ## Delivery protocol
 
-Report package, shipped criteria, test results, diff scope, deviations, and screenshots for user-facing work (light/dark and mobile/desktop where possible). Do not claim completion without this evidence.
+Report package, spec version, shipped criteria, test results, RLS/security results when applicable, performance results, diff scope, deviations, and screenshots/evidence for user-facing work (light/dark and mobile/desktop where possible). Do not claim completion without this evidence.
 
 ## Current facts
 
