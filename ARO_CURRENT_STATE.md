@@ -110,11 +110,11 @@ These are **IMPLEMENTED foundations**, not automatic proof that every legacy pat
 
 The founder confirmed that the historical environment file contained only browser-facing Supabase URL/anonymous-key categories, selected the Tonguee Supabase project as the canonical backend, accepted the documented historical exposure, and chose no Git history rewrite. The active tree removes `.env` and ignores local environment variants.
 
-### Active next gate — ARO-P1 specification and baseline
+### Active next gate — ARO-P1 execution baseline
 
-**State:** SPEC-REQUIRED
+**State:** SPEC-READY; runtime not yet IN-PROGRESS
 
-Before P1 runtime work begins, create and approve the package-specific private data/RLS/retention specification, audit the existing Tonguee auth/profile/RLS behavior, and capture the required test and visual baselines.
+The P1 private data/RLS/retention specification and read-only discovery report are complete. Before runtime work begins, capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase evidence required by `specs/ARO-P1-BASELINE.md`.
 
 ---
 
@@ -123,7 +123,7 @@ Before P1 runtime work begins, create and approve the package-specific private d
 Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
-2. **P1** — Capability + Goal foundation (**next: package spec and baseline**).
+2. **P1** — Capability + Goal foundation (**SPEC-READY; next: pre-code execution baseline**).
 3. **P2** — Explicit Intent + privacy-preserving Demand Signals.
 4. **P3** — ARO Catalyst / language Opportunity Suggestions.
 5. **P4** — Commitment + minimum viability + booking/payment mechanics.
