@@ -187,6 +187,32 @@ Key files:
 
 ---
 
+
+## 2026-08-26 — SEC0 repository secret hygiene verified
+
+### Decision
+
+The founder confirmed that the historical environment file contained only browser-facing Supabase project URL and anonymous client key categories. No Stripe or Google configuration was present. The Tonguee Supabase project remains the canonical backend for the ARO migration.
+
+### Repository remediation
+
+- Removed `.env` from the active Git tree.
+- Hardened `.gitignore` for `.env.*` while preserving `.env.example`.
+- Recorded the classification and decision in `ARO_SEC0_REPORT.md`.
+- Preserved Vercel deployment configuration outside Git.
+
+### Risk decision
+
+The founder accepted the documented historical exposure and chose no Git history rewrite. No rotation is required solely for the classified browser-facing categories. RLS and API exposure remain mandatory P1 baseline review items.
+
+### Status transition
+
+- ARO-SEC0: **BLOCKED / IN-PROGRESS → VERIFIED** after finalization PR merge.
+- ARO-P1: **BLOCKED → SPEC-REQUIRED**.
+- Next gate: approve the P1 private data/RLS/retention package spec and capture baselines before runtime implementation.
+
+---
+
 ## Changelog rule
 
 For future entries include, when relevant:
