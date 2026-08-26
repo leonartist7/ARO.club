@@ -28,6 +28,8 @@ No package authorizes the next package automatically. The director reviews deliv
 
 Execution record: `ARO_SEC0_REPORT.md` (values intentionally omitted).
 
+**Status: COMPLETE — 2026-08-26.** Founder confirmed only browser-facing Supabase URL/anonymous-key categories, accepted the documented historical exposure, and chose no history rewrite.
+
 ### Goal
 
 Remove tracked environment configuration from the active tree safely and determine whether credential rotation or history cleanup is required—without printing secret values.
@@ -39,9 +41,9 @@ None. The repository becomes safe for broader agent access and later financial i
 ### Dependencies and locked decisions
 
 - Runs after P0.1 and before P1.
-- `.env` is currently tracked even though `.gitignore` lists it.
+- `.env` was tracked on the P0.1 base and is removed from tracking by this package.
 - Do not expose values in terminals, logs, commits, issues, PRs, or chat.
-- Do not rewrite Git history without explicit founder approval and a coordinated recovery plan.
+- Founder decision recorded: no history rewrite; browser-facing historical exposure accepted after classification.
 
 ### Allowed scope
 
@@ -64,13 +66,13 @@ No schema change. Treat any possibly exposed auth, database, storage, email, ana
 
 ### Acceptance criteria
 
-- [ ] `.env` is no longer tracked on the branch, without deleting the founder’s necessary local configuration unintentionally.
-- [ ] `.gitignore` covers expected local environment variants.
-- [ ] `.env.example` contains names and non-secret placeholders only; validation never prints values.
-- [ ] Credential categories and owners are inventoried by variable/provider name only.
-- [ ] Rotation requirements and completed founder actions are documented without values.
-- [ ] Git-history exposure is assessed; any cleanup proposal describes coordination and risks and waits for explicit approval.
-- [ ] Repository and CI searches confirm no other obvious secret-bearing files are tracked, with secret values redacted by tooling/output handling.
+- [x] `.env` is no longer tracked on the branch, without deleting the founder’s necessary local configuration unintentionally.
+- [x] `.gitignore` covers expected local environment variants.
+- [x] `.env.example` contains names and non-secret placeholders only; validation never prints values.
+- [x] Credential categories and owners are inventoried by variable/provider name only.
+- [x] Rotation requirements and completed founder actions are documented without values.
+- [x] Git-history exposure is assessed; the founder accepted the documented browser-facing exposure and chose no rewrite.
+- [x] Repository and CI searches confirm no other obvious secret-bearing files are tracked, with secret values redacted by tooling/output handling.
 
 ### Tests and verification
 
