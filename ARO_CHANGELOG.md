@@ -230,7 +230,7 @@ ARO-P1 is now **SPEC-READY**. The package contract defines one private language-
 
 ### Repository discovery
 
-The current learner experience persists onboarding/profile state primarily through a local Zustand player store with best-effort profile mirroring. The connected Tonguee Supabase project remains the canonical backend and reports an existing RLS-enabled marketplace/Trust foundation but no recorded migration history through the connector.
+The current learner experience persists onboarding/profile state primarily through a local Zustand player store with best-effort profile mirroring. The connected Tonguee Supabase project remains the canonical backend and reports an existing RLS-enabled marketplace foundation but no recorded migration history through the connector. Repository Trust SQL exists; the execution baseline must verify which Trust controls are applied live.
 
 ### Added
 
