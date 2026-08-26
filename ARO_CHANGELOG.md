@@ -213,6 +213,38 @@ The founder accepted the documented historical exposure and chose no Git history
 
 ---
 
+
+## 2026-08-26 — P1 capability and goal specification approved
+
+### Decision
+
+ARO-P1 is now **SPEC-READY**. The package contract defines one private language-learning goal plus bounded, self-declared language capabilities for an authenticated adult. It does not authorize P2 intent, public demand, matching, AI, location, money, Google, Stripe, new verticals or a broad redesign.
+
+### Data and privacy direction
+
+- New P1 data belongs in dedicated owner-private tables rather than publicly readable profiles.
+- Self-declared capability remains separate from verified teacher evidence.
+- No automatic backfill from local Zustand state or legacy profile fields is allowed.
+- Anon and other users receive no access; admins receive no default access.
+- Exact RLS, grants, retention, deletion and regression requirements are locked in the package spec.
+
+### Repository discovery
+
+The current learner experience persists onboarding/profile state primarily through a local Zustand player store with best-effort profile mirroring. The connected Tonguee Supabase project remains the canonical backend and reports an existing RLS-enabled marketplace/Trust foundation but no recorded migration history through the connector.
+
+### Added
+
+- specs/ARO-P1-CAPABILITY-GOAL.md
+- specs/ARO-P1-BASELINE.md
+
+### Status transition
+
+- ARO-P1: **SPEC-REQUIRED → SPEC-READY**.
+- Runtime: not IN-PROGRESS.
+- Next gate: capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase baseline, then open one P1 implementation branch.
+
+---
+
 ## Changelog rule
 
 For future entries include, when relevant:
