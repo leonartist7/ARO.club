@@ -75,14 +75,16 @@ try {
   for (const viewport of viewports) {
     for (const theme of themes) {
       const context = await browser.newContext({ viewport });
-      const player = seedPlayer({ bookings: [], badges: [] });
-      await context.addInitScript(({ playerData, selectedTheme }) => {
-        localStorage.setItem('conversa-player', JSON.stringify(playerData));
-        localStorage.setItem('conversa-theme', selectedTheme);
-      }, { playerData: player, selectedTheme: theme });
-
       const page = await context.newPage();
       page.on('pageerror', (error) => manifest.pageErrors.push(String(error).slice(0, 300)));
+
+      // Establish a real origin before touching localStorage; opaque about:blank
+      // documents may reject storage access on some browsers/platforms.
+      await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+      await page.evaluate(({ playerData, selectedTheme }) => {
+        localStorage.setItem('conversa-player', JSON.stringify(playerData));
+        localStorage.setItem('conversa-theme', selectedTheme);
+      }, { playerData: seedPlayer({ bookings: [], badges: [] }), selectedTheme: theme });
 
       for (const route of routes) {
         await page.goto(BASE + route, { waitUntil: 'domcontentloaded' });
