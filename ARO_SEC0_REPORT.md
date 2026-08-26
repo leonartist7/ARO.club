@@ -2,9 +2,9 @@
 
 ## Status
 
-**Current status: remediation prepared; founder/provider review required before declaring the incident closed.**
+**Status: COMPLETE — founder/provider decision recorded 2026-08-26.**
 
-This package removes the tracked `.env` from the active Git tree without reading, printing, or copying its values. It does not rewrite Git history. Because the file was committed previously, credentials that may have appeared there must be treated as potentially exposed until the owner of each provider confirms otherwise.
+This package removes the tracked `.env` from the active Git tree without reading, printing, or copying its values. It does not rewrite Git history. The founder confirmed that the historical file contained only the browser-facing Supabase project URL and anonymous client key variable categories; no server credential, Stripe configuration, or Google configuration was present.
 
 ## Scope and evidence handled safely
 
@@ -35,6 +35,16 @@ The safe template names these client-exposed configuration categories:
 
 Do not infer that a value is safe solely because it has a `VITE_` prefix. Vite exposes `VITE_*` values to browser bundles. Any server credential found by the founder in the local file or provider dashboard requires immediate rotation and relocation to server-side configuration.
 
+## Founder decision — 2026-08-26
+
+- The founder confirmed that the historical file contained only `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` variable categories. Values are intentionally omitted.
+- No Stripe or Google configuration was present.
+- The canonical backend remains the Supabase project named **Tonguee**; the separately named `aro-platform` project contains an unrelated venue/ordering schema and is not the ARO migration target.
+- The Supabase URL and legacy anonymous client key are browser-facing configuration. Their safety depends on correct RLS and least-privilege database grants; a service-role or other server secret must never be placed in a `VITE_*` variable.
+- No credential rotation is required solely because these browser-facing values appeared in Git. Supabase RLS and API exposure still require review before production data work, and migration to a modern publishable key may be considered separately.
+- The founder accepts the documented historical exposure and chooses **no Git history rewrite**. Removing the file from the active tree is sufficient for SEC0.
+- Vercel remains connected to the Tonguee GitHub repository. Deployment environment values remain managed outside Git.
+
 ## Founder/provider actions
 
 1. Confirm whether the historical `.env` contained only the above client configuration categories or any server secrets.
@@ -51,9 +61,9 @@ Do not infer that a value is safe solely because it has a `VITE_` prefix. Vite e
 - [x] `.env.example` remains tracked and placeholder-only.
 - [x] No runtime, schema, route, dependency, or product code changed.
 - [x] Historical exposure is documented without values.
-- [ ] Provider rotation/restriction decision completed by the founder.
-- [ ] History-cleanup decision completed by the founder.
+- [x] Provider rotation/restriction decision completed by the founder: no rotation required for the confirmed browser-facing categories.
+- [x] History-cleanup decision completed by the founder: no rewrite; historical exposure accepted and documented.
 
 ## Gate
 
-P1 may begin only after the unchecked founder/provider decisions are resolved or explicitly accepted as a documented risk. Production financial integrations remain blocked until any relevant credentials are confirmed safe and server-side secrets are configured outside Git.
+**ARO-SEC0 is closed.** P1 may begin on the Tonguee Supabase project. Production financial integrations remain separately blocked until their provider-specific credentials and server-side configuration receive explicit security review.
