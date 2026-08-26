@@ -12,7 +12,7 @@
 
 ### Program state
 
-**ARO is in governed foundation / pre-P1 implementation state.**
+**ARO is in governed foundation / P1 pre-implementation baseline state.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
 
@@ -28,7 +28,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is not yet IN-PROGRESS. Its next step is a package-specific private data/RLS/retention specification plus the required auth/profile/RLS, test, accessibility, performance and visual baselines.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` records discovery and defines the remaining pre-code test, accessibility, performance, visual and migration-environment evidence.
 
 ---
 
@@ -208,7 +208,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`P1 spec → P1 baseline verification → P1 implementation → P1 verification → P2 spec`
+`P1 spec (SPEC-READY) → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 
