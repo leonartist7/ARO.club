@@ -4,7 +4,7 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_CURRENT_STATE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
+Read `AGENTS.md` → `ARO_CURRENT_STATE.md` → `ARO_INFRASTRUCTURE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
 
 When the assigned work concerns visual/product experience, also read `ARO_EXPERIENCE_SYSTEM.md`. When it concerns progression, quests, Seasons, AR, Beacons, Trails, Expeditions or related monetization, also read `ARO_SEASONS_AR.md`.
 
