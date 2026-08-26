@@ -28,7 +28,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` records discovery and defines the remaining pre-code test, accessibility, performance, visual and migration-environment evidence.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` records discovery and defines the remaining pre-code test, accessibility, performance, visual and migration-environment evidence. `ARO_INFRASTRUCTURE.md` records the canonical GitHub/Vercel/Supabase targets, the quarantined secondary project, and human-only provider TODOs.
 
 ---
 
