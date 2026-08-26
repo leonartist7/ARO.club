@@ -2,7 +2,7 @@
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-25
+> **Last strategic update:** 2026-08-26
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -106,11 +106,15 @@ These are **IMPLEMENTED foundations**, not automatic proof that every legacy pat
 
 ### ARO-SEC0 — Repository Secret Hygiene
 
-**State:** IN-PROGRESS / BLOCKED
+**State:** VERIFIED after finalization PR merge
 
-Repository-side remediation exists on the dedicated SEC0 branch/PR. Remaining founder/provider decisions include credential rotation/restriction and whether historical Git cleanup is required.
+The founder confirmed that the historical environment file contained only browser-facing Supabase URL/anonymous-key categories, selected the Tonguee Supabase project as the canonical backend, accepted the documented historical exposure, and chose no Git history rewrite. The active tree removes `.env` and ignores local environment variants.
 
-P1 does not begin until SEC0 is closed or remaining risk is explicitly accepted and documented according to the playbook.
+### Active next gate — ARO-P1 specification and baseline
+
+**State:** SPEC-REQUIRED
+
+Before P1 runtime work begins, create and approve the package-specific private data/RLS/retention specification, audit the existing Tonguee auth/profile/RLS behavior, and capture the required test and visual baselines.
 
 ---
 
@@ -118,8 +122,8 @@ P1 does not begin until SEC0 is closed or remaining risk is explicitly accepted 
 
 Current governed sequence:
 
-1. **SEC0** — secret hygiene.
-2. **P1** — Capability + Goal foundation.
+1. **SEC0** — secret hygiene (**VERIFIED**).
+2. **P1** — Capability + Goal foundation (**next: package spec and baseline**).
 3. **P2** — Explicit Intent + privacy-preserving Demand Signals.
 4. **P3** — ARO Catalyst / language Opportunity Suggestions.
 5. **P4** — Commitment + minimum viability + booking/payment mechanics.
