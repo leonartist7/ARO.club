@@ -54,7 +54,7 @@ Important boundaries:
 - profiles is publicly readable and includes identity/profile fields plus learning/gamification JSON.
 - teachers and published experiences have public-read behavior.
 - bookings are owner-bound through student_id.
-- the Trust Engine adds teacher applications, private documents, admin audit behavior and verified/active publishing enforcement.
+- repository trust-engine.sql defines teacher applications, private documents, admin audit behavior and verified/active publishing enforcement; the implementation baseline must verify which of these controls are actually applied in the connected environment.
 - the active live schema reports no recorded migration history through the connector, despite existing tables.
 
 Existing legacy risks to preserve as baseline facts, not silently mix into P1:
