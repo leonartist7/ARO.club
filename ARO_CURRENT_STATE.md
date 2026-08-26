@@ -113,9 +113,9 @@ The founder confirmed that the historical environment file contained only browse
 
 ### ARO-R1 — Repository separation and platform rebrand
 
-**State:** VERIFIED locally; not SHIPPED
+**State:** IMPLEMENTED / PROVIDER-SEPARATION BLOCKED; not SHIPPED
 
-ARO now has an independent `leonartist7/ARO.club` repository. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check pass under `artifacts/ARO-R1/VERIFICATION.md`. The package is not deployed and neither repository's `main` branch changed.
+ARO now has an independent `leonartist7/ARO.club` repository. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check pass under `artifacts/ARO-R1/VERIFICATION.md`. However, GitHub recorded an automatic Preview deployment through the inherited Vercel project `lionovart/langgie`; provider separation is not complete. Neither repository's `main` branch changed and no Production deployment was made.
 
 ### Active next gate — ARO.club environment decision, then P1 baseline
 
@@ -130,7 +130,7 @@ Before P1 schema work, create or select an isolated ARO.club Vercel and Supabase
 Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
-2. **R1** — repository separation + ARO platform rebrand (**VERIFIED locally; not SHIPPED**).
+2. **R1** — repository separation + ARO platform rebrand (**IMPLEMENTED / PROVIDER-SEPARATION BLOCKED; not SHIPPED**).
 3. **P1** — Capability + Goal foundation (**SPEC-READY; next: safe environment decision and pre-code execution baseline**).
 4. **P2** — Explicit Intent + privacy-preserving Demand Signals.
 5. **P3** — ARO Catalyst / language Opportunity Suggestions.

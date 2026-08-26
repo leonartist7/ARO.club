@@ -3,7 +3,7 @@
 > Date: 2026-08-26  
 > Branch: `feat/aro-r1-full-rebrand`  
 > Spec: `specs/ARO-R1-FULL-REBRAND.md` v1.0.0  
-> Result: **VERIFIED locally; not SHIPPED**
+> Result: **IMPLEMENTED / PROVIDER-SEPARATION BLOCKED; not SHIPPED**
 
 ## Repository and scope
 
@@ -11,7 +11,8 @@
 - `tonguee-governed` is a read-only governance source remote for `leonartist7/Tonguee`.
 - `git merge-base --is-ancestor 9394cb7 HEAD` passed.
 - The R1 diff contains no `supabase/`, SQL, Vercel, CI, auth-provider, payment, Stripe or Google configuration change.
-- No Supabase or Vercel provider mutation was performed.
+- No Supabase or Vercel configuration mutation was performed by the implementation agent.
+- After the branch was pushed, the existing Vercel integration automatically created Preview deployment `6113868573` in project path `lionovart/langgie` at `https://langgie-k8zpre22r-lionovart.vercel.app`. Earlier ARO.club commits show the same inherited behavior.
 - Supabase `jjgccfrwjkwknyjtbtxa` remains **QUARANTINED — KEEP**.
 
 ## Automated verification
@@ -62,8 +63,8 @@ Environment note: Node 24.11.0 is below `jsdom@30.0.0`'s preferred Node 24.15.0 
 | R1-009 | PASS | semantic/accessibility spot check and reduced-motion source review |
 | R1-010 | PASS | four screenshots; no horizontal overflow at 360/1440 |
 | R1-011 | PASS with inherited lint qualification | tests/build pass; legacy lint debt recorded |
-| R1-012 | PASS | diff and provider review; no provider/schema/Trust/money/Auth expansion |
+| R1-012 | BLOCKED | source diff has no provider/schema/Trust/money/Auth expansion, but the inherited `lionovart/langgie` Vercel project automatically deployed the ARO.club branch |
 
 ## Release boundary
 
-R1 is not deployed and neither repository's `main` branch has changed. Before release, the founder must approve the visual direction and the team must create/select an isolated ARO.club Vercel and backend environment. Tonguee production is not the default ARO.club target.
+R1 is not deployed to Production and neither repository's `main` branch has changed. It was automatically deployed to a Preview inside the inherited `lionovart/langgie` Vercel project, so hosting separation is not complete. Before release, the founder must approve the visual direction, disconnect/relink ARO.club into its own Vercel project, verify which environment variables the inherited Preview received, and create/select an isolated ARO.club backend environment. Tonguee production is not the approved ARO.club target.

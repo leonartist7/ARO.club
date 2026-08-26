@@ -1,6 +1,6 @@
 # ARO-R1 — Platform Rebrand and Repository Separation
 
-> **Status:** VERIFIED locally; not SHIPPED  
+> **Status:** IMPLEMENTED / PROVIDER-SEPARATION BLOCKED; not SHIPPED
 > **Version:** 1.0.0  
 > **Approved by:** Founder, 2026-08-26  
 > **Implementation branch:** `feat/aro-r1-full-rebrand`
@@ -90,7 +90,7 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 | R1-009 | Keyboard, focus, semantic headings and reduced motion remain valid | PASS — accessibility spot check |
 | R1-010 | 360px/1440px light/dark layouts pass | PASS — screenshot evidence |
 | R1-011 | Unit tests and production build pass; legacy baseline issues are reported honestly | PASS with inherited lint qualification |
-| R1-012 | No provider, schema, Trust, money, Google or Stripe change occurs | PASS — diff/provider review |
+| R1-012 | No provider, schema, Trust, money, Google or Stripe change occurs | BLOCKED — no code/config mutation, but Vercel automatically deployed the branch through inherited project `lionovart/langgie`; detach/relink review required |
 
 ## 9. Rollout and recovery
 
@@ -101,4 +101,4 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 
 ## 10. Definition of VERIFIED
 
-The package is VERIFIED when all acceptance criteria have evidence, required tests/build succeed or pre-existing failures are clearly separated, mobile/desktop and light/dark browser evidence exists, no high-severity accessibility regression exists, governance records are current, and no original Tonguee production/provider state has changed.
+The package is VERIFIED when all acceptance criteria have evidence, required tests/build succeed or pre-existing failures are clearly separated, mobile/desktop and light/dark browser evidence exists, no high-severity accessibility regression exists, governance records are current, and no original Tonguee production/provider state has changed. The current inherited Vercel Preview connection prevents this state.
