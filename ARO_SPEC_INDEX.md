@@ -41,6 +41,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 |---|---|
 | Agent behavior / conflict rules | `AGENTS.md` |
 | Current truth snapshot | `ARO_CURRENT_STATE.md` |
+| Infrastructure, environments and provider targets | `ARO_INFRASTRUCTURE.md` |
 | Package order, gates, acceptance criteria | `ARO_BUILD_PLAYBOOK.md` |
 | Master recovered product map | `ARO_MASTER.md` |
 | Current implementation/resume status | `ARO_IMPLEMENTATION_STATUS.md` |
@@ -72,6 +73,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 |---|---|---|---|
 | ARO recovery + master synthesis | **VERIFIED** as documentation recovery | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md` | keep synchronized with durable decisions |
 | Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
+| Infrastructure/environment registry | **VERIFIED** as documentation snapshot | `ARO_INFRASTRUCTURE.md` | complete founder Vercel/project-dependency checks; update on every target/config decision |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |

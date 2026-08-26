@@ -44,10 +44,11 @@ Master loop:
 
 1. `AGENTS.md` — operating contract and conflict rules.
 2. `ARO_CURRENT_STATE.md` — current truth snapshot.
-3. `ARO_SPEC_INDEX.md` — canonical package/status registry.
-4. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
-5. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
-6. Assigned package spec.
+3. `ARO_INFRASTRUCTURE.md` — repository, branch, deployment, environment and Supabase operational truth.
+4. `ARO_SPEC_INDEX.md` — canonical package/status registry.
+5. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
+6. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
+7. Assigned package spec.
 
 ### Master context
 
@@ -114,7 +115,7 @@ The founder confirmed that the historical environment file contained only browse
 
 **State:** SPEC-READY; runtime not yet IN-PROGRESS
 
-The P1 private data/RLS/retention specification and read-only discovery report are complete. Before runtime work begins, capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase evidence required by `specs/ARO-P1-BASELINE.md`.
+The P1 private data/RLS/retention specification and read-only discovery report are complete. Before runtime work begins, capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase evidence required by `specs/ARO-P1-BASELINE.md`. Infrastructure identifiers, manual founder checks and the quarantined `aro-platform` project are governed by `ARO_INFRASTRUCTURE.md`.
 
 ---
 

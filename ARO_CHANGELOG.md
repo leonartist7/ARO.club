@@ -245,6 +245,37 @@ The current learner experience persists onboarding/profile state primarily throu
 
 ---
 
+
+## 2026-08-26 — Infrastructure and environment registry added
+
+### Why
+
+GitHub, Vercel, environment-variable and Supabase decisions were distributed across security reports, PRs and chat context. Agents need one no-secret operational map before changing providers, branches or production state.
+
+### Added
+
+- ARO_INFRASTRUCTURE.md
+- agent read-order and authority-map links
+- ADR-025 for the secondary Supabase project quarantine
+- founder-only and agent-only TODO checklists
+
+### Locked operational state
+
+- leonartist7/Tonguee remains the repository.
+- main remains the current production/default branch.
+- feat/aro-p0-director-reset remains the governed ARO integration branch.
+- Vercel remains connected to the Tonguee repository; its exact Production/Preview environment mapping requires founder dashboard confirmation.
+- Supabase Tonguee ref ybhecubqnhukgpvchjay remains the canonical ARO backend.
+- Supabase aro-platform ref jjgccfrwjkwknyjtbtxa is **QUARANTINED — KEEP** because five auth accounts remain, despite empty public-table estimates and no storage objects.
+- Stripe and Google provider configuration remain out of scope.
+- No provider, deployment, schema, auth or runtime state changed in this documentation package.
+
+### Next gate
+
+Complete the human Vercel/Supabase dependency checks in ARO_INFRASTRUCTURE.md, while the program proceeds only to the documented P1 pre-code execution baseline.
+
+---
+
 ## Changelog rule
 
 For future entries include, when relevant:
