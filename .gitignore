@@ -12,10 +12,10 @@ dist
 dist-ssr
 *.local
 
-# Environment variables (contains API keys!)
+# Environment variables (never commit local values)
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
