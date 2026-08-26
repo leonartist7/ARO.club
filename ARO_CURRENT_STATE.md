@@ -2,7 +2,7 @@
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-25
+> **Last strategic update:** 2026-08-26
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -44,10 +44,11 @@ Master loop:
 
 1. `AGENTS.md` — operating contract and conflict rules.
 2. `ARO_CURRENT_STATE.md` — current truth snapshot.
-3. `ARO_SPEC_INDEX.md` — canonical package/status registry.
-4. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
-5. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
-6. Assigned package spec.
+3. `ARO_INFRASTRUCTURE.md` — repository, branch, deployment, environment and Supabase operational truth.
+4. `ARO_SPEC_INDEX.md` — canonical package/status registry.
+5. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
+6. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
+7. Assigned package spec.
 
 ### Master context
 
@@ -106,11 +107,15 @@ These are **IMPLEMENTED foundations**, not automatic proof that every legacy pat
 
 ### ARO-SEC0 — Repository Secret Hygiene
 
-**State:** IN-PROGRESS / BLOCKED
+**State:** VERIFIED after finalization PR merge
 
-Repository-side remediation exists on the dedicated SEC0 branch/PR. Remaining founder/provider decisions include credential rotation/restriction and whether historical Git cleanup is required.
+The founder confirmed that the historical environment file contained only browser-facing Supabase URL/anonymous-key categories, selected the Tonguee Supabase project as the canonical backend, accepted the documented historical exposure, and chose no Git history rewrite. The active tree removes `.env` and ignores local environment variants.
 
-P1 does not begin until SEC0 is closed or remaining risk is explicitly accepted and documented according to the playbook.
+### Active next gate — ARO-P1 execution baseline
+
+**State:** SPEC-READY; runtime not yet IN-PROGRESS
+
+The P1 private data/RLS/retention specification and read-only discovery report are complete. Before runtime work begins, capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase evidence required by `specs/ARO-P1-BASELINE.md`. Infrastructure identifiers, manual founder checks and the quarantined `aro-platform` project are governed by `ARO_INFRASTRUCTURE.md`.
 
 ---
 
@@ -118,8 +123,8 @@ P1 does not begin until SEC0 is closed or remaining risk is explicitly accepted 
 
 Current governed sequence:
 
-1. **SEC0** — secret hygiene.
-2. **P1** — Capability + Goal foundation.
+1. **SEC0** — secret hygiene (**VERIFIED**).
+2. **P1** — Capability + Goal foundation (**SPEC-READY; next: pre-code execution baseline**).
 3. **P2** — Explicit Intent + privacy-preserving Demand Signals.
 4. **P3** — ARO Catalyst / language Opportunity Suggestions.
 5. **P4** — Commitment + minimum viability + booking/payment mechanics.

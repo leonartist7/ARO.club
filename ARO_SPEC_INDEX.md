@@ -41,6 +41,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 |---|---|
 | Agent behavior / conflict rules | `AGENTS.md` |
 | Current truth snapshot | `ARO_CURRENT_STATE.md` |
+| Infrastructure, environments and provider targets | `ARO_INFRASTRUCTURE.md` |
 | Package order, gates, acceptance criteria | `ARO_BUILD_PLAYBOOK.md` |
 | Master recovered product map | `ARO_MASTER.md` |
 | Current implementation/resume status | `ARO_IMPLEMENTATION_STATUS.md` |
@@ -72,12 +73,13 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 |---|---|---|---|
 | ARO recovery + master synthesis | **VERIFIED** as documentation recovery | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md` | keep synchronized with durable decisions |
 | Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
+| Infrastructure/environment registry | **VERIFIED** as documentation snapshot | `ARO_INFRASTRUCTURE.md` | complete founder Vercel/project-dependency checks; update on every target/config decision |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
-| ARO-SEC0 repository secret hygiene | **BLOCKED / IN-PROGRESS** | branch `agent/aro-sec0-secret-hygiene`, `ARO_SEC0_REPORT.md`, PR #9 | founder/provider rotation/restriction + history decision |
-| P1 Capability + Goal Foundation | **BLOCKED** | `ARO_BUILD_PLAYBOOK.md` | close/accept SEC0 risk, then package-specific data/RLS spec |
+| ARO-SEC0 repository secret hygiene | **VERIFIED** after finalization PR merge | `ARO_SEC0_REPORT.md`, branch `agent/aro-sec0-finalize`; active tree removes `.env` | keep local/deployment configuration outside Git; continue RLS review in P1 baseline |
+| P1 Capability + Goal Foundation | **SPEC-READY** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md` | capture the pre-code execution baseline, then open one scoped implementation package |
 | P2 Explicit Intent + Demand Signal | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md` | P1 verified + privacy/aggregation spec |
 | P3 Language Opportunity Suggestion | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_OPPORTUNITY_ENGINE.md` | P2 verified + AI/evaluation/trust spec |
 | P4 Commitment + Booking + minimum viability | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_MONEY.md` | P3 verified + money/cancellation/concurrency specs |
