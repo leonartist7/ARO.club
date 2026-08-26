@@ -36,6 +36,7 @@ const changedFiles = () => {
   if (baseCommit) add(capture('git', ['diff', '--name-only', `${baseCommit}...HEAD`]));
   add(capture('git', ['diff', '--name-only']));
   add(capture('git', ['diff', '--cached', '--name-only']));
+  add(capture('git', ['ls-files', '--others', '--exclude-standard']));
   return [...names];
 };
 
@@ -58,6 +59,7 @@ console.log(`\nARO verification gate (${quick ? 'quick' : 'full'})`);
 console.log('='.repeat(64));
 
 if (baseCommit) run('committed branch diff --check', 'git', ['diff', '--check', `${baseCommit}...HEAD`]);
+run('staged diff --check', 'git', ['diff', '--cached', '--check']);
 run('working tree diff --check', 'git', ['diff', '--check']);
 run('lint', 'npm', ['run', 'lint']);
 run('unit/integration tests', 'npm', ['test']);
@@ -73,7 +75,7 @@ if (hygieneOffenders.length) {
   results.push({ label: 'changed-source hygiene', ok: false, status: 1 });
 } else {
   console.log('\n=== changed-source hygiene ===');
-  console.log('ok   no TODO/FIXME or console.log in changed product source files');
+  console.log('ok   no TODO/FIXME or console.log in changed product source files, including untracked additions');
   results.push({ label: 'changed-source hygiene', ok: true, status: 0 });
 }
 

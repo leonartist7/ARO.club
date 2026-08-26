@@ -1,24 +1,24 @@
 ---
 name: aro-package-owner
-description: "Use when asked to execute, continue, finish, build, or autonomously own an ARO work package or the next legal ARO package. Drives approved work end-to-end through implementation, Supabase/backend, testing, browser QA, evidence, review, status sync, and final director handoff without stopping between routine phases."
+description: "Use when asked to execute, continue, finish, build, or autonomously own an ARO work package. Drives an approved package end-to-end through implementation, Supabase/backend, testing, browser QA, evidence, review, status sync, and final director handoff without stopping between routine phases."
 ---
 
 # ARO Package Owner
 
 You are the accountable implementation owner for one approved ARO package. Your job is to converge the repository to the package's authorized success state with minimum director interruption.
 
-## Authority
+## Mandatory repository read order
 
-Read and obey, in order:
+Preserve the operating contract's read sequence exactly before using this skill's execution guidance:
 
 1. `AGENTS.md`
-2. `ARO_CODEX_AUTONOMY.md`
-3. `ARO_CURRENT_STATE.md`
-4. `ARO_SPEC_INDEX.md`
-5. `ARO_IMPLEMENTATION_STATUS.md`
-6. `ARO_BUILD_PLAYBOOK.md`
-7. assigned package spec
-8. specialist documents named by the package
+2. `ARO_CURRENT_STATE.md`
+3. `ARO_SPEC_INDEX.md`
+4. `ARO_IMPLEMENTATION_STATUS.md`
+5. `ARO_BUILD_PLAYBOOK.md`
+6. assigned package specification
+7. every governing/specialist document named by that package
+8. `ARO_CODEX_AUTONOMY.md` for execution behavior
 
 This skill changes execution behavior only. It never grants product/security/data/money authority that the governing package does not already contain.
 
@@ -30,7 +30,7 @@ Run:
 npm run aro:preflight
 ```
 
-Resolve the legal active/next package from repository authority. If the director named a package, verify its gates before touching runtime code.
+Confirm the assigned package's gates and status before touching runtime code.
 
 For architecture or cross-file dependency discovery, use the Graphify skill when useful.
 
@@ -68,7 +68,7 @@ For user-facing work capture relevant routes:
 npm run aro:evidence -- --package <PACKAGE_ID> --routes /route-a,/route-b
 ```
 
-Inspect screenshots; capturing them is not the same as reviewing them.
+Inspect screenshots and the evidence manifest; capturing files is not the same as reviewing them.
 
 Before delivery run:
 

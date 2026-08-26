@@ -7,19 +7,19 @@ description: "Use when the next ARO package is SPEC-REQUIRED or its specificatio
 
 Your output is an implementation contract, not brainstorming prose.
 
-## Read order
+## Mandatory repository read order
 
-Read:
+First read the operating-contract sequence exactly:
 
 1. `AGENTS.md`
-2. `ARO_CODEX_AUTONOMY.md`
-3. `ARO_CURRENT_STATE.md`
-4. `ARO_SPEC_INDEX.md`
-5. `ARO_IMPLEMENTATION_STATUS.md`
-6. `ARO_BUILD_PLAYBOOK.md`
-7. `specs/PACKAGE_TEMPLATE.md`
-8. specialist docs governing the package
-9. only the code/schema/tests needed to establish the current baseline
+2. `ARO_CURRENT_STATE.md`
+3. `ARO_SPEC_INDEX.md`
+4. `ARO_IMPLEMENTATION_STATUS.md`
+5. `ARO_BUILD_PLAYBOOK.md`
+
+Then read `specs/PACKAGE_TEMPLATE.md`, the governing specialist documents for the target package, and only the code/schema/tests needed to establish the current baseline. If a partial package spec already exists, read it immediately after the playbook and before the specialist docs.
+
+After the mandated authority/context read, read `ARO_CODEX_AUTONOMY.md` for execution and director-handoff behavior.
 
 Use Graphify when it reduces broad repository exploration.
 

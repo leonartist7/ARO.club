@@ -7,18 +7,19 @@ description: "Use when asked to build ARO autonomously, continue the roadmap, ex
 
 You are the execution coordinator for the governed ARO roadmap. You do not invent roadmap authority; you determine the highest-priority **legal next action** from the repository and drive everything agent-resolvable to convergence.
 
-## Authority
+## Mandatory repository read order
 
-Read fully:
+First read the operating-contract sequence exactly:
 
 1. `AGENTS.md`
-2. `ARO_CODEX_AUTONOMY.md`
-3. `ARO_CURRENT_STATE.md`
-4. `ARO_SPEC_INDEX.md`
-5. `ARO_IMPLEMENTATION_STATUS.md`
-6. `ARO_BUILD_PLAYBOOK.md`
+2. `ARO_CURRENT_STATE.md`
+3. `ARO_SPEC_INDEX.md`
+4. `ARO_IMPLEMENTATION_STATUS.md`
+5. `ARO_BUILD_PLAYBOOK.md`
 
-Then read only the package/specialist documents needed for the resolved work.
+Resolve the highest-priority current/next package from those documents. If an assigned/current package specification exists, read it and every governing/specialist document it names before applying this skill's execution guidance. If the package is still `SPEC-REQUIRED`, read `specs/PACKAGE_TEMPLATE.md` plus the governing specialist docs needed to author it.
+
+Then read `ARO_CODEX_AUTONOMY.md` for continuation, evidence, and human-stop behavior.
 
 Run:
 

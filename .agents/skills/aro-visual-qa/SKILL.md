@@ -7,9 +7,18 @@ description: "Use for ARO user-facing package verification, browser inspection, 
 
 Visual QA is an implementation gate, not decoration. A user-facing package is not verified merely because it builds or because screenshots were captured.
 
-## Read first
+## Mandatory repository read order
 
-Read `AGENTS.md`, `ARO_CODEX_AUTONOMY.md`, the active package spec, and the relevant design/experience documents named by the package.
+Before inspecting or changing package code, preserve the operating-contract sequence:
+
+1. `AGENTS.md`
+2. `ARO_CURRENT_STATE.md`
+3. `ARO_SPEC_INDEX.md`
+4. `ARO_IMPLEMENTATION_STATUS.md`
+5. `ARO_BUILD_PLAYBOOK.md`
+6. active package specification
+7. every governing design/experience/specialist document named by the package
+8. `ARO_CODEX_AUTONOMY.md` for evidence/continuation behavior
 
 ## Baseline capture
 
@@ -30,17 +39,18 @@ Override routes/viewports/themes only when the package requires something differ
 
 ## Inspect, do not merely capture
 
-Review every relevant screenshot/render for:
+Review every relevant screenshot/render and the evidence manifest for:
 
 - clipping, overflow, unexpected empty space, or overlapping content;
 - incorrect stacking/layering/z-index;
 - broken typography hierarchy or unreadable text;
 - dark-mode surfaces/contrast regressions;
+- context-driven theme state disagreeing with rendered theme;
 - unintended horizontal scrolling;
 - missing/loading/error/empty/success states where applicable;
 - obvious keyboard/focus/touch-target/accessibility regressions;
 - motion or animation that obscures state or causes layout instability;
-- missing assets, broken images, console/page errors;
+- missing assets, broken images, console/page/request failures;
 - mobile layouts that merely shrink desktop instead of remaining usable;
 - Trust, price, commitment, privacy, or safety information being visually obscured.
 
