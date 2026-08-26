@@ -12,23 +12,23 @@
 
 ### Program state
 
-**ARO is in governed foundation / P1 pre-implementation baseline state.**
+**ARO is in a separated-repository, locally verified R1 state; P1 remains pre-implementation.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
 
 The latest Living Opportunity OS experience direction and Seasons/AR strategy are also preserved as **strategic/spec-gated layers**, not as completed runtime features.
 
-The existing Tonguee product provides a significant working vertical foundation. ARO does **not** restart from zero.
+The existing Tonguee product provides a significant working vertical foundation. ARO does **not** restart from zero. The ARO runtime now lives in `leonartist7/ARO.club`; the original Tonguee repository and production providers remain preserved.
 
 ### Current gate
 
-**ARO-SEC0 — Repository Secret Hygiene** is VERIFIED after the finalization PR merges. The founder classified the historical variables as browser-facing Supabase URL/anonymous-key categories, accepted the documented exposure, selected the Tonguee Supabase project, and chose no Git history rewrite.
+**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally and not SHIPPED. All 12 acceptance criteria have evidence in `artifacts/ARO-R1/VERIFICATION.md`. A separate ARO.club deployment/backend environment must be approved before release or P1 schema work.
 
 ### Next runtime package
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` records discovery and defines the remaining pre-code test, accessibility, performance, visual and migration-environment evidence. `ARO_INFRASTRUCTURE.md` records the canonical GitHub/Vercel/Supabase targets, the quarantined secondary project, and human-only provider TODOs.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` defines the remaining pre-code evidence. `ARO_INFRASTRUCTURE.md` records the separated repositories, unassigned ARO.club provider target, preserved Tonguee production boundary, quarantined secondary project and human-only provider TODOs.
 
 ---
 
@@ -57,7 +57,8 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.m
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
-| P1 — capability + goal foundation | **SPEC-REQUIRED** | package definition in build playbook | no runtime implementation yet under ARO package | write/approve package spec and capture baselines |
+| R1 — repository separation + platform rebrand | **VERIFIED locally; not SHIPPED** | independent ARO.club repository, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md` | founder visual review; separate provider environment; release PR |
+| P1 — capability + goal foundation | **SPEC-READY** | approved package and baseline specifications | no runtime implementation yet | approve safe ARO.club environment and capture baseline |
 | P2 — explicit intent + demand signal | **SPEC-REQUIRED** | package definition and privacy principles | no ARO implementation | P1 verified; approve intent/aggregation/RLS spec |
 | P3 — language opportunity suggestion | **SPEC-REQUIRED** | Catalyst/Opportunity Engine boundaries | no ARO implementation | P2 verified; AI/evaluation/Trust package spec |
 | P4 — commitment + booking | **SPEC-REQUIRED** | commitment and money boundaries | existing Tonguee bookings are foundation, not P4 completion | P3 verified; approve state/money/concurrency spec |
@@ -208,7 +209,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`P1 spec (SPEC-READY) → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
+`R1 founder/provider gate → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 

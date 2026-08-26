@@ -109,13 +109,19 @@ These are **IMPLEMENTED foundations**, not automatic proof that every legacy pat
 
 **State:** VERIFIED after finalization PR merge
 
-The founder confirmed that the historical environment file contained only browser-facing Supabase URL/anonymous-key categories, selected the Tonguee Supabase project as the canonical backend, accepted the documented historical exposure, and chose no Git history rewrite. The active tree removes `.env` and ignores local environment variants.
+The founder confirmed that the historical environment file contained only browser-facing Supabase URL/anonymous-key categories, accepted the documented historical exposure, and chose no Git history rewrite. Tonguee was the then-selected migration backend; ADR-026 now preserves it as the original production source while the separated ARO.club target remains unassigned. The active tree removes `.env` and ignores local environment variants.
 
-### Active next gate — ARO-P1 execution baseline
+### ARO-R1 — Repository separation and platform rebrand
 
-**State:** SPEC-READY; runtime not yet IN-PROGRESS
+**State:** VERIFIED locally; not SHIPPED
 
-The P1 private data/RLS/retention specification and read-only discovery report are complete. Before runtime work begins, capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase evidence required by `specs/ARO-P1-BASELINE.md`. Infrastructure identifiers, manual founder checks and the quarantined `aro-platform` project are governed by `ARO_INFRASTRUCTURE.md`.
+ARO now has an independent `leonartist7/ARO.club` repository. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check pass under `artifacts/ARO-R1/VERIFICATION.md`. The package is not deployed and neither repository's `main` branch changed.
+
+### Active next gate — ARO.club environment decision, then P1 baseline
+
+**State:** FOUNDER/PROVIDER DECISION REQUIRED; P1 remains SPEC-READY
+
+Before P1 schema work, create or select an isolated ARO.club Vercel and Supabase test/migration environment. Do not silently point the separated app at Tonguee production. After that decision, execute `specs/ARO-P1-BASELINE.md` against the approved target and preserve `aro-platform` as **QUARANTINED — KEEP**.
 
 ---
 
@@ -124,12 +130,13 @@ The P1 private data/RLS/retention specification and read-only discovery report a
 Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
-2. **P1** — Capability + Goal foundation (**SPEC-READY; next: pre-code execution baseline**).
-3. **P2** — Explicit Intent + privacy-preserving Demand Signals.
-4. **P3** — ARO Catalyst / language Opportunity Suggestions.
-5. **P4** — Commitment + minimum viability + booking/payment mechanics.
-6. **P5** — ARO Proof + outcomes + Passport evolution.
-7. **P6** — carefully gated adjacent vertical.
+2. **R1** — repository separation + ARO platform rebrand (**VERIFIED locally; not SHIPPED**).
+3. **P1** — Capability + Goal foundation (**SPEC-READY; next: safe environment decision and pre-code execution baseline**).
+4. **P2** — Explicit Intent + privacy-preserving Demand Signals.
+5. **P3** — ARO Catalyst / language Opportunity Suggestions.
+6. **P4** — Commitment + minimum viability + booking/payment mechanics.
+7. **P5** — ARO Proof + outcomes + Passport evolution.
+8. **P6** — carefully gated adjacent vertical.
 
 Do not skip the sequence because a future concept is exciting.
 

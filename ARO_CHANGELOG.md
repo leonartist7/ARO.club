@@ -6,6 +6,35 @@
 
 ---
 
+## 2026-08-26 — ARO.club repository separation and platform rebrand
+
+### Decision
+
+ARO now has an independent runtime repository, `leonartist7/ARO.club`. The original Tonguee repository, deployment and Supabase project remain preserved as the first language vertical and recovery path.
+
+### Implemented
+
+- integrated governed ARO history through `9394cb7` into the copied repository;
+- introduced the ARO orbit mark, editorial typography and Bone/Ink/Vermilion/Saffron platform palette;
+- replaced the universal shell, homepage, metadata and public platform language with ARO identity;
+- preserved Tonguee explicitly as the first live language path, including existing teachers, experiences, bookings, Passport and Trust foundations;
+- removed false platform-scale implications and labelled the wider Opportunity Engine as future capability;
+- recorded four breakpoint/theme screenshots, 61 passing tests, a passing production build, responsive/accessibility evidence and inherited lint debt in `artifacts/ARO-R1/VERIFICATION.md`.
+
+### Infrastructure boundary
+
+- no provider, schema, RLS, Trust, auth, payment, Stripe or Google change occurred;
+- ARO.club has no approved Vercel or Supabase runtime target yet;
+- Tonguee production must not be used silently;
+- `aro-platform` (`jjgccfrwjkwknyjtbtxa`) remains **QUARANTINED — KEEP**.
+
+### Status transition
+
+- ARO-R1: **SPEC-READY / IN-PROGRESS → VERIFIED locally; not SHIPPED**.
+- ARO-P1: remains **SPEC-READY**, gated by an isolated ARO.club environment and execution baseline.
+
+---
+
 ## 2026-08-25 — Living Opportunity OS + Seasons / AR strategic expansion
 
 ### Why this changed

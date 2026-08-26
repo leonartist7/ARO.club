@@ -248,7 +248,7 @@ These are deliberately modest self-descriptions. They do not imply teaching cred
 - Do not drop or rename existing fields.
 - Re-running the migration in the intended migration system must be safe or fail clearly before partial deployment.
 - Rollback for a bad release is forward-fix; do not destroy user data automatically.
-- Before production rollout, verify that the repository migration history matches live Tonguee schema reality because the connected project currently reports no recorded migrations.
+- Before production rollout, verify that the repository migration history matches the explicitly approved ARO.club target. Use live Tonguee schema reality as read-only migration evidence because that project currently reports no recorded migrations; do not mutate Tonguee production merely because it is the source foundation.
 - Deletion is immediate from the active database; provider backup retention follows the configured Supabase backup policy and is documented in the release record.
 - User export must include these records when a formal export feature exists. Until then, support must not claim automated export.
 

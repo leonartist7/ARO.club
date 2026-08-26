@@ -29,7 +29,7 @@ const ChooseRolePage = () => {
     signIn({
       id: role === 'student' ? 'student-1' : 'teacher-1',
       name: role === 'student' ? 'Student User' : 'Teacher User',
-      email: role === 'student' ? 'student@conversa.com' : 'teacher@conversa.com',
+      email: role === 'student' ? 'student@aro.club' : 'teacher@aro.club',
       role,
       isTeacher: role === 'teacher',
     });

@@ -137,7 +137,7 @@ Report package, spec version, shipped criteria, test results, RLS/security resul
 - Product umbrella: **ARO**. Tonguee and Coco are approved first-vertical assets; do not remove or relabel them absent a migration package.
 - Current experience thesis: **Living Opportunity OS** — opportunity forming around a person, not a generic listings feed.
 - Current strategic game layer: **ARO Seasons** with real-life progression; implementation remains post-core-loop/spec gated.
-- `package.json` name `conversa` is legacy plumbing; leave it unless specifically assigned.
+- `package.json` name is `aro-club`; the R1 rebrand package explicitly retired the legacy `conversa` package identity in this repository.
 - Dark mode uses `ThemeContext`; use `dark:` variants rather than a second stylesheet.
 - The verified-only publish gate is a database trigger plus RLS in `supabase/trust-engine.sql`; UI reflects it and never replaces it.
 - Copy is warm, brave, anti-shame, grounded in real life and oriented toward possibility. Buttons are verbs; errors take the blame.

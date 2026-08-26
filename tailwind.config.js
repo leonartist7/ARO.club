@@ -8,31 +8,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        // PRIMARY — Warm brand yellow (visible, not neon flash)
+        bone: '#F6F0E6',
+        ink: '#282420',
+        moss: '#68735A',
+        clay: '#B86D4B',
+        sky: '#7699A8',
+        plum: '#302331',
+        // PRIMARY — ARO Vermilion / Living Red
         primary: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          200: '#FDE68A',
-          300: '#FCD34D',
-          400: '#F5C518',
-          500: '#EAB308',
-          600: '#CA8A04',
-          700: '#A16207',
-          800: '#854D0E',
-          900: '#713F12',
+          50: '#FFF1EB',
+          100: '#FFDED1',
+          200: '#FFBBA5',
+          300: '#FF8F70',
+          400: '#F45F3B',
+          500: '#DE4325',
+          600: '#BE3219',
+          700: '#992716',
+          800: '#7D2319',
+          900: '#671F19',
         },
-        // SECONDARY — Warm orange (yellow + orange brand gradient pair)
+        // SECONDARY — Saffron / warm signal
         secondary: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316', // brand orange
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12',
+          50: '#FFF8E6',
+          100: '#FCECC2',
+          200: '#F7D982',
+          300: '#EFC14B',
+          400: '#DFA326',
+          500: '#C98A17',
+          600: '#A66B12',
+          700: '#815015',
+          800: '#693F18',
+          900: '#57351A',
         },
         
         // ACCENT — Gold for gamification only
@@ -54,8 +60,8 @@ export default {
         info: { 50: '#EFF6FF', 500: '#3B82F6', 700: '#1D4ED8' },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['DM Serif Display', 'Georgia', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

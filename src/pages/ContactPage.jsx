@@ -110,10 +110,10 @@ export default function ContactPage() {
                       your device rather than sent to us. To reach a person today,
                       email{' '}
                       <a
-                        href="mailto:hello@conversa.com"
+                        href="mailto:hello@aro.club"
                         className="text-primary-600 font-medium hover:underline"
                       >
-                        hello@conversa.com
+                        hello@aro.club
                       </a>
                       .
                     </p>
@@ -205,10 +205,10 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white">Email</p>
                       <a
-                        href="mailto:support@conversa.com"
+                        href="mailto:support@aro.club"
                         className="text-gray-600 hover:text-primary-600 text-sm dark:text-gray-400"
                       >
-                        support@conversa.com
+                        support@aro.club
                       </a>
                     </div>
                   </div>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                     to="/how-it-works"
                     className="block text-primary-600 hover:text-primary-700 hover:underline"
                   >
-                    Learn how Tonguee works
+                    Learn how ARO works
                   </Link>
                   <Link
                     to="/for-teachers"

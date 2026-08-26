@@ -106,7 +106,7 @@ export default function TeacherApplicationStatus() {
         <h1 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-2">
           No application yet
         </h1>
-        <p className="text-gray-500 mb-6">Start your teacher application to join Tonguee.</p>
+        <p className="text-gray-500 mb-6">Start your language-teacher application to join ARO.</p>
         <Link to="/onboarding/teacher"><Button>Become a teacher</Button></Link>
       </div>
     );

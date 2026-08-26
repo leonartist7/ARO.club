@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import AroMark from '../brand/AroMark';
 
 const socialLinks = [
   { name: 'Facebook', icon: Facebook, href: '#' },
@@ -34,7 +35,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800">
+    <footer className="bg-bone dark:bg-gray-950 text-gray-600 dark:text-gray-400 border-t border-ink/10 dark:border-bone/10">
       {/* Trust strip */}
       <div className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-b border-primary-100 dark:border-primary-900/40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -59,10 +60,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-2 text-2xl font-display font-bold mb-4 gradient-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              className="flex items-center gap-2.5 mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              aria-label="ARO home"
             >
-              <span className="text-2xl" aria-hidden="true">🦎</span>
-              Tonguee
+              <AroMark size="sm" label="" />
+              <span className="text-xl font-bold tracking-[0.18em] text-ink dark:text-bone">ARO</span>
             </Link>
             <p className="text-sm mb-6 max-w-xs text-gray-500 dark:text-gray-400">
               {t('footer.description')}
@@ -132,7 +134,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} Tonguee. {t('footer.copyright')}
+            © {new Date().getFullYear()} ARO. {t('footer.copyright')}
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             <Link to="/privacy" className="hover:text-primary-700 dark:hover:text-primary-300 transition-colors min-h-11 inline-flex items-center">

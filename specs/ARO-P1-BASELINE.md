@@ -6,12 +6,14 @@
 
 ## 1. Canonical systems
 
-- Repository: leonartist7/Tonguee
-- Governed ARO branch: feat/aro-p0-director-reset
-- Production/default branch: main remains unchanged by this package
-- Canonical Supabase backend: Tonguee, project ref ybhecubqnhukgpvchjay
-- Current Vercel deployment remains connected to the Tonguee GitHub repository
-- Separate aro-platform Supabase project is not the ARO migration target; it remains untouched until external dependencies are ruled out
+- **R1 separation update:** these findings remain read-only migration evidence from the original Tonguee production foundation. They do not authorize the separated ARO.club repository to use or mutate Tonguee production. See ADR-026 and `ARO_INFRASTRUCTURE.md`.
+- Repository: `leonartist7/ARO.club`
+- Governed package base: latest verified ARO.club package head containing Tonguee governance through `9394cb7`
+- Production/default branch: both repositories' `main` branches remain unchanged by this package
+- Preserved source backend: Tonguee, project ref ybhecubqnhukgpvchjay
+- ARO.club Vercel/Supabase target: unassigned; approval is required before this baseline or P1 runtime work can complete
+- Current Tonguee Vercel deployment remains connected to the original Tonguee GitHub repository
+- Separate aro-platform Supabase project is not an ARO runtime target; it remains untouched until external dependencies are ruled out
 
 ## 2. Repository findings
 

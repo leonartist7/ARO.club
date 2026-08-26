@@ -38,7 +38,7 @@ export default function TierBadge({ tier, size = 'sm', className }) {
       size={size}
       className={cn(config.className, className)}
       icon={<Icon className="w-3.5 h-3.5" aria-hidden="true" />}
-      title="Hand-verified by the Tonguee team."
+      title="Hand-verified by the ARO team."
     >
       {config.label}
     </Badge>

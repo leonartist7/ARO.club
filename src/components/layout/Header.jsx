@@ -23,6 +23,7 @@ import { useStore } from '../../store/useStore';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { cn } from '../../utils/cn';
+import AroMark from '../brand/AroMark';
 
 /** Public marketing links only — app pages live in the account dropdown */
 const publicNav = [
@@ -32,7 +33,7 @@ const publicNav = [
 ];
 
 /**
- * Sticky header: yellow brand wordmark, public nav, Sign in/up,
+ * Sticky ARO platform header, public navigation, sign in/up,
  * account dropdown for Play / Bookings / Profile / dashboards.
  */
 export default function Header() {
@@ -74,21 +75,17 @@ export default function Header() {
   const closeMobile = () => setMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800">
+    <header className="sticky top-0 z-50 bg-bone/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-ink/10 dark:border-bone/10">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main">
         <div className="flex items-center justify-between h-16 gap-3">
           {/* Brand */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-2xl font-display font-bold gradient-text shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            className="flex items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            aria-label="ARO home"
           >
-            <span
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-lg shadow-sm"
-              aria-hidden="true"
-            >
-              🦎
-            </span>
-            Tonguee
+            <AroMark size="sm" label="" />
+            <span className="text-xl font-bold tracking-[0.18em] text-ink dark:text-bone">ARO</span>
           </Link>
 
           {/* Desktop: public links only */}

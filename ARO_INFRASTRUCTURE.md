@@ -10,17 +10,18 @@
 
 ## 1. Executive truth
 
-- ARO is being evolved inside the existing GitHub repository leonartist7/Tonguee.
-- Tonguee remains ARO's first language vertical and the current production foundation.
-- The governed ARO integration branch is feat/aro-p0-director-reset.
-- GitHub main remains the Tonguee production/default branch.
-- The current Vercel deployment is connected to the Tonguee GitHub repository.
-- The Supabase project named Tonguee, ref ybhecubqnhukgpvchjay, is the canonical ARO migration backend.
+- ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
+- Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
+- The governed ARO history through `9394cb7` is present in ARO.club. The active package branch is `feat/aro-r1-full-rebrand`.
+- ARO.club `main` remains production-safe at the copied Tonguee base until a separate release gate.
+- ARO.club has no approved Vercel production project or Supabase runtime target yet. It must not silently use Tonguee production credentials.
+- Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is not the ARO migration backend and must not be deleted or repurposed until its five auth accounts and any external dependencies are identified.
 - Stripe is not configured.
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
-- ARO-P1 is SPEC-READY; runtime implementation has not begun.
+- ARO-R1 is implemented and locally verified on its package branch; it is not deployed.
+- ARO-P1 remains SPEC-READY; runtime implementation has not begun and requires a safe ARO.club backend/migration environment.
 
 ---
 
@@ -28,27 +29,28 @@
 
 | Item | Current value | Rule |
 |---|---|---|
-| Repository | leonartist7/Tonguee | Single source repository for current ARO evolution |
-| Production/default branch | main at ce29119386df32e8571403c2cf0189680d92a8a8 | Do not merge ARO work here without a separate founder release gate |
-| Governed ARO branch | feat/aro-p0-director-reset at 6faf0bee272caefe040534720669cbe8151d1bbc after the infrastructure-registry merge | Base/integration branch for approved ARO packages |
+| ARO runtime repository | `leonartist7/ARO.club` | Independent ARO product repository |
+| ARO.club protected base | `main` at copied base `ce29119386df32e8571403c2cf0189680d92a8a8` | Do not merge/release without a separate founder release gate |
+| Active governed package branch | `feat/aro-r1-full-rebrand` | Contains the governed ARO history plus the R1 implementation |
+| Governed source history | `leonartist7/Tonguee`, `feat/aro-p0-director-reset`, through `9394cb7` | Historical governance source; preserve, do not develop new ARO runtime there |
+| Original production repository | `leonartist7/Tonguee`, branch `main` | Untouched Tonguee production and recovery path |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
 | SEC0 merge commit | c2c8e388e3dd33d94c04df4e67ff965d5bb829a6 | Removed tracked .env from active ARO tree and completed security documentation |
 | SEC0 PR | #18 | Merged into governed ARO branch |
 | P1 spec merge commit | ee0c5066adde24faf0eb8f9bb92753641c8b6770 | Added P1 spec/baseline docs and moved P1 to SPEC-READY |
 | P1 spec PR | #19 | Merged into governed ARO branch |
-| Current documentation package | docs/aro-infrastructure-registry | This registry only; no runtime changes |
+| Current runtime package | `ARO-R1`, branch `feat/aro-r1-full-rebrand` | Brand/repository separation only; no provider or schema change |
 
 ### Branch discipline
 
 - One package equals one branch and one PR.
-- Product/runtime packages branch from the current governed ARO branch, not stale main.
-- Documentation governance packages also target the governed ARO branch.
-- main remains untouched until a deliberate release/migration package is reviewed.
+- New product/runtime packages branch from the latest verified ARO.club package head.
+- Governance and runtime delivery now target `leonartist7/ARO.club`; the Tonguee repository remains a preserved source/production boundary.
+- Both repositories' `main` branches remain untouched until a deliberate release/migration package is reviewed.
 - No force push, history rewrite or destructive branch cleanup is authorized by this registry.
 - Old PR #9 is superseded by SEC0 PR #18 and remains historical evidence.
-- Post-registry comparison reports main and the governed ARO branch as diverged: ARO is three commits ahead and one commit behind.
-- The main-only commit ce291193 is an empty documentation-promotion commit: comparing it with parent 931f2614 reports no changed files. This is ancestry divergence, not a missing source/content change.
-- The P1 execution baseline must record and, if needed for clean ancestry, reconcile this no-content main commit without overwriting newer ARO governance.
+- The ARO.club R1 branch merged the governed Tonguee ARO history into the copied `ce291193` base without rewriting either repository's history.
+- `9394cb7` is an ancestor of the R1 branch; this is the minimum governance ancestry gate for the separated repository.
 
 ---
 
@@ -56,31 +58,29 @@
 
 ### Known state
 
-- The founder reports that the active Vercel deployment contains the latest Tonguee GitHub work.
-- GitHub deployment checks on ARO documentation PRs report through the Vercel project path lionovart/langgie.
-- Vercel preview checks passed for SEC0 and P1 documentation changes.
-- No Vercel configuration was mutated during P0, SEC0 or P1 specification work.
+- The existing Vercel deployment remains associated with the original Tonguee repository and production path.
+- No Vercel project was created, linked or mutated by R1.
+- The ARO.club deployment target is **UNASSIGNED**.
 
 ### Required deployment posture
 
-- Production should continue to deploy from main until a separate ARO release gate changes that decision.
-- ARO package branches and PRs should use Preview deployments.
-- The governed ARO branch must not silently become Production.
+- Tonguee production continues to deploy from its existing `main` configuration.
+- ARO.club requires its own Vercel project before any Preview or Production deployment.
+- The R1 branch must not silently become Production or inherit Tonguee environment variables.
 - Environment variables remain managed in Vercel, not committed to Git.
 - Preview and Production variable scopes must be reviewed separately.
 - Any future server-only secret must use a non-VITE name and must never be exposed to client bundles.
 
 ### Manual verification required in Vercel
 
-The founder must confirm in the Vercel project settings:
+Before release, the founder must confirm in Vercel:
 
-1. Git repository is leonartist7/Tonguee.
-2. Production branch is main.
-3. VITE_SUPABASE_URL points to the canonical Tonguee Supabase project, ref ybhecubqnhukgpvchjay.
-4. VITE_SUPABASE_ANON_KEY is an active publishable/anonymous client key from that same Tonguee project.
-5. Both variables exist in the intended Production and Preview scopes.
-6. No service-role, database password, Stripe secret or Google client secret is stored under a VITE-prefixed variable.
-7. Deployment protection and domain assignments match the founder's intended public/staging behavior.
+1. The existing Tonguee project still points to `leonartist7/Tonguee` and its intended production branch.
+2. A separate ARO.club project points to `leonartist7/ARO.club`.
+3. ARO.club Preview/Production scopes do not inherit Tonguee production credentials by accident.
+4. The selected ARO.club backend project and client variables match the separately approved migration/environment decision.
+5. No service-role, database password, Stripe secret or Google client secret is stored under a VITE-prefixed variable.
+6. Deployment protection and domain assignments match the founder's intended public/staging behavior.
 
 Do not paste values into issues, PRs, chat, screenshots or this repository. Compare project identifiers and key category inside provider dashboards.
 
@@ -110,14 +110,14 @@ Do not paste values into issues, PRs, chat, screenshots or this repository. Comp
 
 ## 5. Supabase project registry
 
-### Canonical project: Tonguee
+### Preserved production project: Tonguee
 
 | Field | Value |
 |---|---|
 | Name | Tonguee |
 | Project ref | ybhecubqnhukgpvchjay |
-| Role | Canonical backend for Tonguee and the staged ARO migration |
-| Current action | Preserve; use for read-only baseline and approved append-only migrations |
+| Role | Original Tonguee production backend and migration evidence source |
+| Current action | Preserve; read-only audit is allowed, but do not connect the separated ARO.club app without an explicit migration/environment package |
 | Destructive action | Not authorized |
 
 Read-only inspection observed eight public tables with RLS enabled:
@@ -209,8 +209,9 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 |---|---|---|---|
 | P0/P0.1 Director Pack | VERIFIED | Director Pack, ARO_P0_AUDIT.md | none |
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
+| ARO-R1 repository separation + rebrand | VERIFIED locally; not shipped | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, branch `feat/aro-r1-full-rebrand` | founder visual review, separate Vercel/backend decision, then release PR |
 | ARO-P1 spec | SPEC-READY | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, PR #19, merge ee0c506 | capture execution baseline |
-| ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | baseline must pass first |
+| ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | approve safe ARO.club backend/test environment and pass baseline first |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
 P1's locked data direction:
@@ -229,10 +230,11 @@ P1's locked data direction:
 
 These actions require founder/provider-dashboard authority and cannot safely be completed by an implementation agent without explicit access and confirmation.
 
-### NOW — required before P1 production work
+### NOW — required before ARO.club provider work
 
-- [ ] In Vercel, confirm the repository is leonartist7/Tonguee and Production Branch is main.
-- [ ] In Vercel, confirm both VITE variables belong to Supabase project ybhecubqnhukgpvchjay in the intended Production and Preview scopes.
+- [ ] Confirm the existing Tonguee Vercel project still targets `leonartist7/Tonguee` and its intended production branch.
+- [ ] Create or select a separate Vercel project for `leonartist7/ARO.club`; do not copy Tonguee production variables automatically.
+- [ ] Choose a safe ARO.club Supabase strategy: a new isolated project, an approved branch/environment, or an explicit staged migration plan. This choice is required before P1 schema work.
 - [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.
 - [ ] In Supabase aro-platform, identify the five auth accounts and the project owner/purpose without copying personal data into Git.
 - [ ] Search Vercel projects/local configs/external services for references to jjgccfrwjkwknyjtbtxa.
@@ -249,20 +251,20 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 
 ## 9. Agent TODOs
 
-### Exact next work package
+### Exact next work package after R1 review
 
 **ARO-P1-BASELINE — Pre-code execution baseline**
 
 An agent must:
 
 1. read the required governance chain and P1 spec;
-2. obtain authenticated repository access to the exact governed ARO head;
-3. record branch SHA, clean diff and the known no-content main/ARO ancestry divergence;
+2. use the latest verified ARO.club package head;
+3. record branch SHA, clean diff and the approved ARO.club backend/test target;
 4. run npm test, npm run lint and npm run build;
 5. run available auth/onboarding/profile/teacher/Passport E2E checks;
 6. capture 360px and 1440px light/dark baseline screenshots;
 7. record accessibility and performance baselines;
-8. snapshot Tonguee Supabase grants, policies, constraints, advisors and applied Trust controls;
+8. snapshot Tonguee Supabase grants, policies, constraints, advisors and applied Trust controls as migration evidence without mutating production;
 9. confirm a safe migration/test environment;
 10. update specs/ARO-P1-BASELINE.md with evidence and blockers;
 11. open a documentation/evidence PR to the governed ARO branch.

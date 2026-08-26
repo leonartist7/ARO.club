@@ -172,3 +172,13 @@ This file records durable choices. Package-specific implementation details belon
 
 **Consequences:** The founder completes the dependency/account checklist in ARO_INFRASTRUCTURE.md. If no dependency exists, pause first, observe, then delete only with explicit founder authorization and appropriate export/recovery preparation.
 
+## ADR-026 — Separate ARO.club from Tonguee production
+
+**Status:** Accepted
+
+**Decision:** `leonartist7/ARO.club` is the independent runtime repository for the ARO platform. `leonartist7/Tonguee`, its production deployment and Supabase project `ybhecubqnhukgpvchjay` remain preserved as the Tonguee vertical and recovery path. The separated ARO.club app has no approved production Vercel or Supabase target until a dedicated environment/cutover decision is made.
+
+**Rationale:** Repository separation allows a full ARO platform identity and future architecture to evolve without putting the working Tonguee production path or its users at risk.
+
+**Consequences:** This decision narrows ADR-024: the Tonguee Supabase project remains the source migration foundation and evidence base, but it is no longer the automatic runtime target for the separated ARO.club repository. P1 must use an explicitly approved isolated environment or staged migration plan. `aro-platform` remains quarantined under ADR-025.
+

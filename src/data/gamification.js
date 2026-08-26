@@ -82,7 +82,7 @@ export const BADGES = [
   },
   {
     id: 'legend',
-    name: 'Conversa Legend',
+    name: 'ARO Pioneer',
     description: 'Reached 2000 points',
     requirement: 'Earn 2000 points',
     icon: '👑',
