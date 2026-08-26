@@ -45,6 +45,12 @@ Then, on a branch/worktree where normal checks are expected to pass:
 npm run aro:verify:quick
 ```
 
+The E2E harness now uses an explicit `E2E_CHROME` path when provided, the hosted Chromium path when it exists, and otherwise Playwright's normal local Chromium resolution. If Chromium has not been installed on the workstation yet, run once:
+
+```bash
+npx playwright install chromium
+```
+
 For a user-facing package, test evidence capture on one route:
 
 ```bash
