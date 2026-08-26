@@ -276,6 +276,15 @@ Complete the human Vercel/Supabase dependency checks in ARO_INFRASTRUCTURE.md, w
 
 ---
 
+
+## 2026-08-26 — Main/ARO branch topology verified
+
+A post-merge comparison reports main and feat/aro-p0-director-reset as diverged. The governed ARO branch is three commits ahead and one commit behind. The main-only commit ce291193 is an empty documentation-promotion commit: its comparison with parent 931f2614 contains no changed files.
+
+This is a Git ancestry difference, not missing runtime or documentation content. The P1 execution baseline must record it and may reconcile ancestry safely if needed, but must not overwrite newer SEC0, P1 or infrastructure governance.
+
+---
+
 ## Changelog rule
 
 For future entries include, when relevant:

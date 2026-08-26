@@ -89,7 +89,7 @@ Existing public profiles, teacher verification and verified-publish enforcement 
 
 The following evidence must be captured from the exact P1 implementation base before code or SQL changes:
 
-1. Current branch SHA and clean diff.
+1. Current branch SHA and clean diff, including the known main/ARO ancestry divergence: main-only ce291193 is an empty commit with no file delta from 931f2614; reconcile ancestry only if required and never overwrite newer ARO governance.
 2. npm test result, including honest recording of pre-existing failures.
 3. npm run lint result.
 4. npm run build result and build-output sizes.

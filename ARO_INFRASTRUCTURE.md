@@ -29,8 +29,8 @@
 | Item | Current value | Rule |
 |---|---|---|
 | Repository | leonartist7/Tonguee | Single source repository for current ARO evolution |
-| Production/default branch | main | Do not merge ARO work here without a separate founder release gate |
-| Governed ARO branch | feat/aro-p0-director-reset | Base/integration branch for approved ARO packages |
+| Production/default branch | main at ce29119386df32e8571403c2cf0189680d92a8a8 | Do not merge ARO work here without a separate founder release gate |
+| Governed ARO branch | feat/aro-p0-director-reset at 6faf0bee272caefe040534720669cbe8151d1bbc after the infrastructure-registry merge | Base/integration branch for approved ARO packages |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
 | SEC0 merge commit | c2c8e388e3dd33d94c04df4e67ff965d5bb829a6 | Removed tracked .env from active ARO tree and completed security documentation |
 | SEC0 PR | #18 | Merged into governed ARO branch |
@@ -46,6 +46,9 @@
 - main remains untouched until a deliberate release/migration package is reviewed.
 - No force push, history rewrite or destructive branch cleanup is authorized by this registry.
 - Old PR #9 is superseded by SEC0 PR #18 and remains historical evidence.
+- Post-registry comparison reports main and the governed ARO branch as diverged: ARO is three commits ahead and one commit behind.
+- The main-only commit ce291193 is an empty documentation-promotion commit: comparing it with parent 931f2614 reports no changed files. This is ancestry divergence, not a missing source/content change.
+- The P1 execution baseline must record and, if needed for clean ancestry, reconcile this no-content main commit without overwriting newer ARO governance.
 
 ---
 
@@ -254,7 +257,7 @@ An agent must:
 
 1. read the required governance chain and P1 spec;
 2. obtain authenticated repository access to the exact governed ARO head;
-3. record branch SHA and clean diff;
+3. record branch SHA, clean diff and the known no-content main/ARO ancestry divergence;
 4. run npm test, npm run lint and npm run build;
 5. run available auth/onboarding/profile/teacher/Passport E2E checks;
 6. capture 360px and 1440px light/dark baseline screenshots;
