@@ -26,13 +26,14 @@ const capture = (command, args) => {
   return result.status === 0 ? result.stdout.trim() : '';
 };
 
+let baseCommit = capture('git', ['merge-base', 'HEAD', 'origin/main']);
+if (!baseCommit) baseCommit = capture('git', ['merge-base', 'HEAD', 'main']);
+
 const changedFiles = () => {
   const names = new Set();
   const add = (output) => output.split(/\r?\n/).filter(Boolean).forEach((name) => names.add(name));
 
-  let base = capture('git', ['merge-base', 'HEAD', 'origin/main']);
-  if (!base) base = capture('git', ['merge-base', 'HEAD', 'main']);
-  if (base) add(capture('git', ['diff', '--name-only', `${base}...HEAD`]));
+  if (baseCommit) add(capture('git', ['diff', '--name-only', `${baseCommit}...HEAD`]));
   add(capture('git', ['diff', '--name-only']));
   add(capture('git', ['diff', '--cached', '--name-only']));
   return [...names];
@@ -56,7 +57,8 @@ for (const file of changedFiles()) {
 console.log(`\nARO verification gate (${quick ? 'quick' : 'full'})`);
 console.log('='.repeat(64));
 
-run('git diff --check', 'git', ['diff', '--check']);
+if (baseCommit) run('committed branch diff --check', 'git', ['diff', '--check', `${baseCommit}...HEAD`]);
+run('working tree diff --check', 'git', ['diff', '--check']);
 run('lint', 'npm', ['run', 'lint']);
 run('unit/integration tests', 'npm', ['test']);
 run('production build', 'npm', ['run', 'build']);
