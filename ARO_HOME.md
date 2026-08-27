@@ -15,6 +15,7 @@ aliases:
 
 ## Start here
 
+- [[ARO_MASTER_DELIVERY_PLAN]] — **canonical cross-package delivery objective and cloud-task handoff**
 - [[ARO_CURRENT_STATE]] — **what is true right now; current strategy, implementation state, blocker and latest ideas**
 - [[ARO_MASTER]] — recovered and optimized master vision
 - [[ARO_SPEC_INDEX]] — canonical spec registry and status vocabulary
@@ -52,9 +53,9 @@ These are approved strategic direction, but runtime implementation remains packa
 
 ### Current sequence
 
-`SEC0 → P1 Capability/Goals → P2 Intent/Demand → P3 Catalyst → P4 Commit → P5 Proof → P6 Adjacent Vertical`
+`SEC0 → R1 → M0 → I0 → Q0 → P1 → N1 → X1 → P2 → A1 → P3 → P4 → P5 → V1 release audit`
 
-Do not insert Seasons/AR ahead of the core loop simply because they are strategically approved.
+P6, production 3D/AR, Seasons and money remain outside the V1 release gate unless a separately approved package changes that scope.
 
 ## Knowledge graph workflow
 

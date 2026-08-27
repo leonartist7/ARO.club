@@ -4,7 +4,7 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_CURRENT_STATE.md` → `ARO_INFRASTRUCTURE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
+Read `AGENTS.md` → `ARO_MASTER_DELIVERY_PLAN.md` → `ARO_CURRENT_STATE.md` → `ARO_INFRASTRUCTURE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
 
 When the assigned work concerns visual/product experience, also read `ARO_EXPERIENCE_SYSTEM.md`. When it concerns progression, quests, Seasons, AR, Beacons, Trails, Expeditions or related monetization, also read `ARO_SEASONS_AR.md`.
 
@@ -13,20 +13,21 @@ When the assigned work concerns visual/product experience, also read `ARO_EXPERI
 Authority order, highest first:
 
 1. `AGENTS.md` — operating contract and conflict rules.
-2. `ARO_BUILD_PLAYBOOK.md` — sequence, scope, gates, and acceptance criteria.
-3. Approved package-specific implementation specification.
-4. `ARO_ARCHITECTURE.md`.
-5. `ARO_DATA_MODEL.md`.
-6. `ARO_OPPORTUNITY_ENGINE.md`.
-7. `ARO_DESIGN_SYSTEM.md` and package-adopted portions of `ARO_EXPERIENCE_SYSTEM.md`.
-8. `ARO_TRUST_SAFETY.md`.
-9. `ARO_MONEY.md`.
-10. `ARO_GROWTH.md`.
-11. `ARO_SHIPATON.md`.
-12. `DECISIONS.md` — durable decisions and terminology.
-13. `ARO_PRODUCT.md`.
-14. `ARO_VISION.md`.
-15. `ARO_MIGRATION.md` for legacy mapping, followed by legacy Tonguee documents as historical/domain evidence only.
+2. `ARO_MASTER_DELIVERY_PLAN.md` — long-running objective, enabling-package dependency graph and final stopping condition.
+3. `ARO_BUILD_PLAYBOOK.md` — sequence, scope, gates, and acceptance criteria.
+4. Approved package-specific implementation specification.
+5. `ARO_ARCHITECTURE.md`.
+6. `ARO_DATA_MODEL.md`.
+7. `ARO_OPPORTUNITY_ENGINE.md`.
+8. `ARO_DESIGN_SYSTEM.md` and package-adopted portions of `ARO_EXPERIENCE_SYSTEM.md`.
+9. `ARO_TRUST_SAFETY.md`.
+10. `ARO_MONEY.md`.
+11. `ARO_GROWTH.md`.
+12. `ARO_SHIPATON.md`.
+13. `DECISIONS.md` — durable decisions and terminology.
+14. `ARO_PRODUCT.md`.
+15. `ARO_VISION.md`.
+16. `ARO_MIGRATION.md` for legacy mapping, followed by legacy Tonguee documents as historical/domain evidence only.
 
 `ARO_SEASONS_AR.md` and strategic portions of `ARO_EXPERIENCE_SYSTEM.md` preserve approved direction but are not permission to bypass package sequencing or specialist review.
 
@@ -35,6 +36,8 @@ Higher authority wins only within its intended scope; a playbook cannot silently
 ## Current-state and recovery context
 
 `ARO_CURRENT_STATE.md` is the concise answer to **what is true now**: current definition, active blocker, runtime sequence, latest strategic direction and implementation boundary.
+
+`ARO_MASTER_DELIVERY_PLAN.md` is the canonical cross-package objective and cloud-task handoff. It coordinates the governed path through P5 but never authorizes implementation without the narrower SPEC-READY package required by this contract.
 
 `ARO_MASTER.md` is the canonical human-readable reconstruction and optimized map of the recovered ARO vision. `ARO_RECOVERY_STATUS.md` records provenance, surviving generated assets, existing implementation foundations, and the safe resume point. `ARO_CHANGELOG.md` is the append-only record of meaningful product/architecture evolution.
 

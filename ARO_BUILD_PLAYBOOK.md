@@ -10,8 +10,16 @@ Terminology is locked by `DECISIONS.md`: **Opportunity** is the universal arrang
 
 1. P0/P0.1 — governance.
 2. **ARO-SEC0 — Repository Secret Hygiene (must complete before P1).**
-3. P1 → P2 → P3 → P4 → P5 in order.
-4. P6 only after the Shipathon loop is reliable and its category gate is approved.
+3. R1 — repository/provider separation and platform identity.
+4. M0 → I0 → Q0 — master delivery governance, isolated infrastructure and deterministic reliability foundation.
+5. P1 — Capability + Goal Foundation.
+6. N1 → X1 — governed platform/Next.js decision and ARO experience foundation.
+7. P2 — Explicit Intent + Demand Signals.
+8. A1 — AI Runtime, Evaluation and Safety Foundation.
+9. P3 → P4 → P5 in order.
+10. P6 only after the V1 loop is reliable and its category gate is approved.
+
+The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, Q0, N1, X1 and A1 are enabling packages defined by `ARO_MASTER_DELIVERY_PLAN.md`; none may implement downstream product behavior by implication.
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 

@@ -43,12 +43,13 @@ Master loop:
 ### Read first
 
 1. `AGENTS.md` — operating contract and conflict rules.
-2. `ARO_CURRENT_STATE.md` — current truth snapshot.
-3. `ARO_INFRASTRUCTURE.md` — repository, branch, deployment, environment and Supabase operational truth.
-4. `ARO_SPEC_INDEX.md` — canonical package/status registry.
-5. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
-6. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
-7. Assigned package spec.
+2. `ARO_MASTER_DELIVERY_PLAN.md` — durable objective, complete phase graph and cloud-task starter prompt.
+3. `ARO_CURRENT_STATE.md` — current truth snapshot.
+4. `ARO_INFRASTRUCTURE.md` — repository, branch, deployment, environment and Supabase operational truth.
+5. `ARO_SPEC_INDEX.md` — canonical package/status registry.
+6. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
+7. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
+8. Assigned package spec.
 
 ### Master context
 
@@ -123,6 +124,10 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 
 The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. The approved $0/month `ARO.club Staging` creation was rejected because the founder account already owns/administers the maximum two active free projects. Tonguee production remains preserved and `aro-platform` remains **QUARANTINED — KEEP**, so neither may be used to clear the limit. P1 runtime work remains prohibited until safe isolated capacity exists.
 
+### Active master objective
+
+`ARO_MASTER_DELIVERY_PLAN.md` now governs the autonomous, spec-driven path through the verified P5 V1 loop. It inserts isolated-infrastructure, reliability, platform/Next.js, experience-system and AI-foundation packages at explicit dependency gates without reordering P1 → P2 → P3 → P4 → P5 or authorizing exploratory 3D/AR runtime work.
+
 ---
 
 ## 5. Runtime build sequence
@@ -131,12 +136,15 @@ Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
 2. **R1** — repository separation + ARO platform rebrand (**SHIPPED**).
-3. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
-4. **P2** — Explicit Intent + privacy-preserving Demand Signals.
-5. **P3** — ARO Catalyst / language Opportunity Suggestions.
-6. **P4** — Commitment + minimum viability + booking/payment mechanics.
-7. **P5** — ARO Proof + outcomes + Passport evolution.
-8. **P6** — carefully gated adjacent vertical.
+3. **M0 / I0 / Q0** — master governance, isolated infrastructure and reliability foundation.
+4. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
+5. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
+6. **P2** — Explicit Intent + privacy-preserving Demand Signals.
+7. **A1** — AI Runtime, Evaluation and Safety Foundation.
+8. **P3** — ARO Catalyst / language Opportunity Suggestions.
+9. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
+10. **P5** — ARO Proof + outcomes + Passport evolution.
+11. **P6** — carefully gated adjacent vertical after the V1 release audit.
 
 Do not skip the sequence because a future concept is exciting.
 

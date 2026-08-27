@@ -6,6 +6,32 @@
 
 ---
 
+## 2026-08-27 — Master Delivery Plan and cloud-task contract
+
+### Decision
+
+ARO now has one canonical durable delivery objective in `ARO_MASTER_DELIVERY_PLAN.md`: reach a production-ready, verified V1 opportunity loop through P5 with isolated infrastructure, deterministic quality gates, a measured platform/Next.js decision, an accessible experience foundation, governed AI architecture and a complete release/recovery audit.
+
+### Added
+
+- verifiable final stopping condition and definition of zero known release-blocking defects;
+- autonomous-work and founder-only approval boundaries;
+- enabling-package graph for M0, I0, Q0, N1, X1 and A1;
+- detailed phase contracts through P5 and the final V1 audit;
+- strict deferral of production 3D/AR, Seasons, P6, money providers and consequential autonomous AI;
+- a copy-ready cloud-task starter prompt and package progress-log format;
+- ADR-027 and mandatory discovery links from agent/status/build governance.
+
+### Sequence clarification
+
+The semantic product dependency remains P1 → P2 → P3 → P4 → P5. Enabling packages prepare infrastructure, reliability, platform, experience and AI boundaries; they cannot smuggle downstream product behavior into an earlier phase.
+
+### Status transition
+
+- M0 Master Delivery Governance: **ACTIVE / GOVERNANCE-READY**.
+- I0: **SPEC-REQUIRED / BLOCKED** on isolated Supabase capacity.
+- Q0, N1, X1 and A1: **SPEC-REQUIRED** at their named dependency gates.
+
 ## 2026-08-27 — R1 production release and P1 baseline gate
 
 ### Released
