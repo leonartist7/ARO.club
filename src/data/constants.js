@@ -202,7 +202,7 @@ export const BADGE_DEFINITIONS = [
   },
   {
     id: 'legend',
-    name: 'Tonguee Legend',
+    name: 'ARO Pioneer',
     description: 'Reached 2000 points',
     icon: '👑',
     requirement: 'Earn 2000 points',

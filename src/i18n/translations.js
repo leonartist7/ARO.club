@@ -51,20 +51,35 @@ export const translations = {
 
     // Home Page
     home: {
+      platformEyebrow: 'ARO / The Human Opportunity Network',
       hero: {
-        title: "Don't just learn it.",
-        titleHighlight: 'Live it.',
-        subtitle: 'Real conversations with hand-verified teachers — in cafés, markets, and neighborhoods around the world.',
-        browseButton: 'Find an experience',
-        teachButton: 'Become a teacher',
-        searchPlaceholder: 'City or language…',
+        title: 'Your life has more possible paths',
+        titleHighlight: 'than you can see.',
+        subtitle: 'ARO helps what you want, what you know, and the people around you form into meaningful real-world opportunity.',
+        browseButton: 'Explore what is live',
+        teachButton: 'See how ARO works',
+        searchPlaceholder: 'Search the first live path…',
         howItWorksButton: 'How It Works',
         learnCard: 'Learn',
         learnCardDesc: 'Warm up with games',
         liveCard: 'Live',
         liveCardDesc: 'Meet at a real café',
       },
-      trustStrip: 'Every teacher hand-verified by a human',
+      trustStrip: 'AI organizes. Humans approve. Real life happens.',
+      field: {
+        label: 'ARO opportunity field',
+        want: 'What you want',
+        bring: 'What you can bring',
+        context: 'People · place · time',
+      },
+      tonguee: {
+        eyebrow: 'Tonguee · First live path',
+        title: 'Language becomes a reason to meet.',
+        description: 'ARO begins with something real: verified language teachers, small groups, and cultural experiences in places people already love.',
+        promise: 'People near you want what you know.',
+        honesty: 'That is the future ARO is building toward. Today, Tonguee proves the first human loop without pretending the wider opportunity engine is already live.',
+        loopEyebrow: 'The human loop',
+      },
       languages: 'Popular Languages',
       stats: {
         experiences: 'Experiences',
@@ -72,31 +87,31 @@ export const translations = {
         teachers: 'Expert Teachers',
         cities: 'Cities Worldwide',
       },
-      featured: 'Featured Experiences',
-      featuredSubtitle: 'Handpicked tables from verified teachers',
+      featured: 'Language opportunities, live now',
+      featuredSubtitle: 'Tonguee is ARO’s first live path: real tables with verified language teachers.',
       featuredEmpty: 'No featured experiences yet — explore the full menu.',
       seeAll: 'See all',
       recentlyViewed: 'Recently Viewed',
       loop: {
-        title: 'The Loop',
-        subtitle: 'Learn → Live → Belong',
+        title: 'Opportunity should form around your life.',
+        subtitle: 'Know → Form → Live',
         learn: {
-          title: 'Learn',
-          description: 'Warm up phrases and games before you go.',
+          title: 'Know',
+          description: 'Name what you are moving toward and what you can genuinely bring.',
         },
         live: {
-          title: 'Live',
-          description: 'Show up. Speak. Share a real table with a local.',
+          title: 'Form',
+          description: 'ARO reveals credible possibility without acting on your behalf.',
         },
         belong: {
-          title: 'Belong',
-          description: 'Earn streaks, friends, and the courage to keep going.',
+          title: 'Live',
+          description: 'People commit, meet in real life, and build proof through what happened.',
         },
       },
       forTeachers: {
-        title: 'Teach what you love. Earn on your terms.',
-        description: 'Join hand-verified teachers hosting tables worldwide. Apply once — we review every human.',
-        cta: 'Apply to teach',
+        title: 'Bring what you know to life.',
+        description: 'Tonguee gives verified language teachers the first working path inside ARO.',
+        cta: 'Explore Tonguee for teachers',
       },
       howItWorks: {
         title: 'How It Works',
@@ -229,7 +244,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'Connect with locals, learn languages naturally, and experience authentic cultural moments in cities around the world.',
+      description: 'AI for a more human world. ARO helps meaningful opportunity form around real people and real life.',
       company: {
         title: 'Company',
         aboutUs: 'About Us',
@@ -279,7 +294,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'How Tonguee Works',
+      title: 'How ARO Works',
       subtitle: "Learning a language has never been this easy—or this fun. Here's how to get started on your language learning journey.",
       step1: {
         number: '01',
@@ -313,7 +328,7 @@ export const translations = {
         detail2: 'Unlock achievement badges',
         detail3: 'Build your language portfolio',
       },
-      whyChoose: 'Why Choose Tonguee?',
+      whyChoose: 'Why Choose ARO?',
       whyChooseSubtitle: "We're not just another language app. Here's what makes us different:",
       benefit1: 'Learn from native speakers in real situations',
       benefit2: 'Small group sizes for personalized attention',
@@ -331,7 +346,7 @@ export const translations = {
       feature4Title: 'Community Focused',
       feature4Description: 'Join a global community of language learners.',
       seeInAction: 'See It In Action',
-      seeInActionSubtitle: 'Watch how Tonguee brings language learning to life',
+      seeInActionSubtitle: 'Watch how ARO brings language learning to life through Tonguee',
       videoComingSoon: 'Video Coming Soon',
       videoSubtitle: 'See real students learning in real situations',
       readyToStart: 'Ready to Start Learning?',
@@ -345,7 +360,7 @@ export const translations = {
       title: 'Teach Your Language, Share Your Culture',
       subtitle: 'Turn your language skills into income. Join thousands of teachers worldwide helping students learn through real experiences.',
       applyToTeach: 'Apply to Teach',
-      whyTeach: 'Why Teach with Tonguee?',
+      whyTeach: 'Why Teach with ARO?',
       benefit1Title: 'Earn Extra Income',
       benefit1Description: 'Set your own prices and schedule. Earn money sharing your language and culture.',
       benefit1Stats: 'Avg. $40/hour',
@@ -454,20 +469,35 @@ export const translations = {
 
     // Home Page
     home: {
+      platformEyebrow: 'ARO / Le réseau d’opportunités humaines',
       hero: {
-        title: 'Ne l\'apprenez pas seulement.',
-        titleHighlight: 'Vivez-le.',
-        subtitle: 'De vraies conversations avec des enseignants vérifiés — cafés, marchés et quartiers du monde entier.',
-        browseButton: 'Trouver une expérience',
-        teachButton: 'Devenir enseignant',
-        searchPlaceholder: 'Ville ou langue…',
+        title: 'Votre vie offre plus de chemins possibles',
+        titleHighlight: 'que vous ne pouvez en voir.',
+        subtitle: 'ARO aide vos intentions, vos capacités et les personnes autour de vous à former de vraies opportunités humaines.',
+        browseButton: 'Explorer ce qui existe',
+        teachButton: 'Découvrir ARO',
+        searchPlaceholder: 'Rechercher le premier parcours…',
         howItWorksButton: 'Comment Ça Marche',
         learnCard: 'Apprendre',
         learnCardDesc: 'Échauffez-vous avec des jeux',
         liveCard: 'Vivre',
         liveCardDesc: 'Rendez-vous au café',
       },
-      trustStrip: 'Chaque enseignant est vérifié par un humain',
+      trustStrip: 'L’IA organise. Les humains approuvent. La vie réelle commence.',
+      field: {
+        label: 'Champ d’opportunités ARO',
+        want: 'Ce que vous voulez',
+        bring: 'Ce que vous apportez',
+        context: 'Personnes · lieu · moment',
+      },
+      tonguee: {
+        eyebrow: 'Tonguee · Premier parcours actif',
+        title: 'La langue devient une raison de se rencontrer.',
+        description: 'ARO commence par quelque chose de réel : des enseignants de langues vérifiés, de petits groupes et des expériences culturelles dans des lieux appréciés.',
+        promise: 'Des personnes près de vous veulent ce que vous savez.',
+        honesty: 'C’est le futur qu’ARO construit. Aujourd’hui, Tonguee prouve la première boucle humaine sans prétendre que tout le moteur d’opportunités est déjà actif.',
+        loopEyebrow: 'La boucle humaine',
+      },
       languages: 'Langues Populaires',
       stats: {
         experiences: 'Expériences',
@@ -475,22 +505,22 @@ export const translations = {
         teachers: 'Enseignants Experts',
         cities: 'Villes dans le Monde',
       },
-      featured: 'Expériences en Vedette',
-      featuredSubtitle: 'Tables sélectionnées par des enseignants vérifiés',
+      featured: 'Opportunités linguistiques disponibles',
+      featuredSubtitle: 'Tonguee est le premier parcours actif d’ARO : de vraies tables avec des enseignants vérifiés.',
       featuredEmpty: 'Pas encore d\'expériences en vedette — explorez le menu complet.',
       seeAll: 'Voir tout',
       recentlyViewed: 'Vues Récemment',
       loop: {
-        title: 'La Boucle',
-        subtitle: 'Apprendre → Vivre → Appartenir',
-        learn: { title: 'Apprendre', description: 'Échauffez phrases et jeux avant d\'y aller.' },
-        live: { title: 'Vivre', description: 'Présentez-vous. Parlez. Partagez une vraie table.' },
-        belong: { title: 'Appartenir', description: 'Gagnez des séries, des amis et le courage de continuer.' },
+        title: 'L’opportunité doit se former autour de votre vie.',
+        subtitle: 'Connaître → Former → Vivre',
+        learn: { title: 'Connaître', description: 'Nommez votre direction et ce que vous pouvez réellement apporter.' },
+        live: { title: 'Former', description: 'ARO révèle des possibilités crédibles sans agir à votre place.' },
+        belong: { title: 'Vivre', description: 'Les humains s’engagent, se rencontrent et prouvent ce qui s’est passé.' },
       },
       forTeachers: {
-        title: 'Enseignez ce que vous aimez. Gagnez à votre rythme.',
-        description: 'Rejoignez des enseignants vérifiés partout dans le monde. Une candidature — nous examinons chaque humain.',
-        cta: 'Postuler pour enseigner',
+        title: 'Donnez vie à ce que vous savez.',
+        description: 'Tonguee offre aux enseignants de langues vérifiés le premier parcours actif dans ARO.',
+        cta: 'Explorer Tonguee pour enseignants',
       },
       howItWorks: {
         title: 'Comment Ça Marche',
@@ -623,7 +653,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'Connectez-vous avec les locaux, apprenez les langues naturellement et vivez des moments culturels authentiques dans les villes du monde entier.',
+      description: 'L’IA pour un monde plus humain. ARO aide de vraies opportunités à se former dans la vie réelle.',
       company: {
         title: 'Entreprise',
         aboutUs: 'À Propos',
@@ -673,7 +703,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'Comment Tonguee Fonctionne',
+      title: 'Comment ARO Fonctionne',
       subtitle: 'Apprendre une langue n\'a jamais été aussi facile—ou aussi amusant. Voici comment commencer votre parcours d\'apprentissage des langues.',
       step1: {
         number: '01',
@@ -707,7 +737,7 @@ export const translations = {
         detail2: 'Débloquer des badges de réussite',
         detail3: 'Construire votre portfolio linguistique',
       },
-      whyChoose: 'Pourquoi Choisir Tonguee?',
+      whyChoose: 'Pourquoi Choisir ARO?',
       whyChooseSubtitle: 'Nous ne sommes pas qu\'une autre application de langue. Voici ce qui nous rend différents:',
       benefit1: 'Apprendre avec des locuteurs natifs dans des situations réelles',
       benefit2: 'Petits groupes pour une attention personnalisée',
@@ -725,7 +755,7 @@ export const translations = {
       feature4Title: 'Axé sur la Communauté',
       feature4Description: 'Rejoignez une communauté mondiale d\'apprenants.',
       seeInAction: 'Voyez en Action',
-      seeInActionSubtitle: 'Regardez comment Tonguee donne vie à l\'apprentissage des langues',
+      seeInActionSubtitle: 'Regardez comment ARO donne vie à l\'apprentissage des langues avec Tonguee',
       videoComingSoon: 'Vidéo Bientôt Disponible',
       videoSubtitle: 'Voir de vrais étudiants apprendre dans des situations réelles',
       readyToStart: 'Prêt à Commencer l\'Apprentissage?',
@@ -739,7 +769,7 @@ export const translations = {
       title: 'Enseignez Votre Langue, Partagez Votre Culture',
       subtitle: 'Transformez vos compétences linguistiques en revenus. Rejoignez des milliers d\'enseignants dans le monde aidant les étudiants à apprendre par des expériences réelles.',
       applyToTeach: 'Postuler pour Enseigner',
-      whyTeach: 'Pourquoi Enseigner avec Tonguee?',
+      whyTeach: 'Pourquoi Enseigner avec ARO?',
       benefit1Title: 'Gagner un Revenu Supplémentaire',
       benefit1Description: 'Définissez vos propres prix et horaires. Gagnez de l\'argent en partageant votre langue et culture.',
       benefit1Stats: 'Moy. 40$/heure',
@@ -838,20 +868,35 @@ export const translations = {
 
     // Home Page
     home: {
+      platformEyebrow: 'ARO / La red de oportunidades humanas',
       hero: {
-        title: 'No solo lo aprendas.',
-        titleHighlight: 'Vívelo.',
-        subtitle: 'Conversaciones reales con profesores verificados — cafés, mercados y barrios del mundo.',
-        browseButton: 'Encontrar una experiencia',
-        teachButton: 'Ser profesor',
-        searchPlaceholder: 'Ciudad o idioma…',
+        title: 'Tu vida tiene más caminos posibles',
+        titleHighlight: 'de los que puedes ver.',
+        subtitle: 'ARO ayuda a que tus intenciones, capacidades y las personas a tu alrededor formen oportunidades humanas reales.',
+        browseButton: 'Explorar lo que existe',
+        teachButton: 'Conocer ARO',
+        searchPlaceholder: 'Buscar en el primer camino…',
         howItWorksButton: 'Cómo Funciona',
         learnCard: 'Aprender',
         learnCardDesc: 'Calienta con juegos',
         liveCard: 'Vivir',
         liveCardDesc: 'Encuentro en un café real',
       },
-      trustStrip: 'Cada profesor es verificado por un humano',
+      trustStrip: 'La IA organiza. Las personas aprueban. La vida real sucede.',
+      field: {
+        label: 'Campo de oportunidades ARO',
+        want: 'Lo que quieres',
+        bring: 'Lo que puedes aportar',
+        context: 'Personas · lugar · momento',
+      },
+      tonguee: {
+        eyebrow: 'Tonguee · Primer camino activo',
+        title: 'El idioma se convierte en una razón para encontrarse.',
+        description: 'ARO comienza con algo real: profesores de idiomas verificados, grupos pequeños y experiencias culturales en lugares que la gente ya disfruta.',
+        promise: 'Personas cerca de ti quieren lo que sabes.',
+        honesty: 'Ese es el futuro que ARO está construyendo. Hoy Tonguee demuestra el primer ciclo humano sin fingir que todo el motor de oportunidades ya está activo.',
+        loopEyebrow: 'El ciclo humano',
+      },
       languages: 'Idiomas Populares',
       stats: {
         experiences: 'Experiencias',
@@ -859,22 +904,22 @@ export const translations = {
         teachers: 'Profesores Expertos',
         cities: 'Ciudades en el Mundo',
       },
-      featured: 'Experiencias Destacadas',
-      featuredSubtitle: 'Mesas seleccionadas de profesores verificados',
+      featured: 'Oportunidades de idiomas disponibles',
+      featuredSubtitle: 'Tonguee es el primer camino activo de ARO: mesas reales con profesores verificados.',
       featuredEmpty: 'Aún no hay experiencias destacadas — explora el menú completo.',
       seeAll: 'Ver todo',
       recentlyViewed: 'Vistas Recientemente',
       loop: {
-        title: 'El Bucle',
-        subtitle: 'Aprender → Vivir → Pertenecer',
-        learn: { title: 'Aprender', description: 'Calienta frases y juegos antes de ir.' },
-        live: { title: 'Vivir', description: 'Aparece. Habla. Comparte una mesa real.' },
-        belong: { title: 'Pertenecer', description: 'Gana rachas, amigos y el valor de seguir.' },
+        title: 'La oportunidad debe formarse alrededor de tu vida.',
+        subtitle: 'Conocer → Formar → Vivir',
+        learn: { title: 'Conocer', description: 'Nombra hacia dónde vas y lo que realmente puedes aportar.' },
+        live: { title: 'Formar', description: 'ARO revela posibilidades creíbles sin actuar en tu nombre.' },
+        belong: { title: 'Vivir', description: 'Las personas se comprometen, se encuentran y prueban lo que ocurrió.' },
       },
       forTeachers: {
-        title: 'Enseña lo que amas. Gana a tu ritmo.',
-        description: 'Únete a profesores verificados en todo el mundo. Una solicitud — revisamos a cada humano.',
-        cta: 'Solicitar para enseñar',
+        title: 'Dale vida a lo que sabes.',
+        description: 'Tonguee ofrece a profesores de idiomas verificados el primer camino activo dentro de ARO.',
+        cta: 'Explorar Tonguee para profesores',
       },
       howItWorks: {
         title: 'Cómo Funciona',
@@ -1007,7 +1052,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'Conéctate con locales, aprende idiomas de forma natural y experimenta momentos culturales auténticos en ciudades de todo el mundo.',
+      description: 'IA para un mundo más humano. ARO ayuda a que oportunidades reales se formen en la vida real.',
       company: {
         title: 'Empresa',
         aboutUs: 'Sobre Nosotros',
@@ -1057,7 +1102,7 @@ export const translations = {
 
     // How It Works Page
     howItWorks: {
-      title: 'Cómo Funciona Tonguee',
+      title: 'Cómo Funciona ARO',
       subtitle: 'Aprender un idioma nunca ha sido tan fácil—o tan divertido. Aquí te mostramos cómo comenzar tu viaje de aprendizaje de idiomas.',
       step1: {
         number: '01',
@@ -1091,7 +1136,7 @@ export const translations = {
         detail2: 'Desbloquea insignias de logros',
         detail3: 'Construye tu portafolio de idiomas',
       },
-      whyChoose: '¿Por Qué Elegir Tonguee?',
+      whyChoose: '¿Por Qué Elegir ARO?',
       whyChooseSubtitle: 'No somos solo otra aplicación de idiomas. Esto es lo que nos hace diferentes:',
       benefit1: 'Aprender con hablantes nativos en situaciones reales',
       benefit2: 'Grupos pequeños para atención personalizada',
@@ -1109,7 +1154,7 @@ export const translations = {
       feature4Title: 'Enfocado en la Comunidad',
       feature4Description: 'Únete a una comunidad global de estudiantes de idiomas.',
       seeInAction: 'Míralo en Acción',
-      seeInActionSubtitle: 'Mira cómo Tonguee da vida al aprendizaje de idiomas',
+      seeInActionSubtitle: 'Mira cómo ARO da vida al aprendizaje de idiomas con Tonguee',
       videoComingSoon: 'Video Próximamente',
       videoSubtitle: 'Ver estudiantes reales aprendiendo en situaciones reales',
       readyToStart: '¿Listo para Comenzar a Aprender?',
@@ -1123,7 +1168,7 @@ export const translations = {
       title: 'Enseña Tu Idioma, Comparte Tu Cultura',
       subtitle: 'Convierte tus habilidades lingüísticas en ingresos. Únete a miles de profesores en todo el mundo ayudando a estudiantes a aprender a través de experiencias reales.',
       applyToTeach: 'Postular para Enseñar',
-      whyTeach: '¿Por Qué Enseñar con Tonguee?',
+      whyTeach: '¿Por Qué Enseñar con ARO?',
       benefit1Title: 'Gana Ingresos Extras',
       benefit1Description: 'Establece tus propios precios y horario. Gana dinero compartiendo tu idioma y cultura.',
       benefit1Stats: 'Prom. $40/hora',

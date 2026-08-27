@@ -213,7 +213,7 @@ export default function StudentOnboarding() {
                 className="text-center"
               >
                 <div className="text-7xl mb-6">👋</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-4 dark:text-gray-100">Welcome to Langgie!</h1>
+                <h1 className="text-4xl font-bold text-gray-800 mb-4 dark:text-gray-100">Welcome to ARO.</h1>
                 <p className="text-xl text-gray-600 mb-8 dark:text-gray-400">Let's start your language learning adventure</p>
                 <input
                   type="text"

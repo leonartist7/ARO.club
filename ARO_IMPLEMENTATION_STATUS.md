@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 25, 2026.**
+> **Status as of August 26, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
@@ -12,25 +12,23 @@
 
 ### Program state
 
-**ARO is in governed foundation / pre-P1 implementation state.**
+**ARO is in a separated-repository and provider-separated R1 state; P1 remains pre-implementation.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
 
 The latest Living Opportunity OS experience direction and Seasons/AR strategy are also preserved as **strategic/spec-gated layers**, not as completed runtime features.
 
-The existing Tonguee product provides a significant working vertical foundation. ARO does **not** restart from zero.
+The existing Tonguee product provides a significant working vertical foundation. ARO does **not** restart from zero. The ARO runtime now lives in `leonartist7/ARO.club`; the original Tonguee repository and production providers remain preserved.
 
-### Current blocker
+### Current gate
 
-**ARO-SEC0 — Repository Secret Hygiene** is the active gate before P1.
-
-A remediation branch and PR exist. The repository-side change is prepared, but founder/provider review is still required to determine credential rotation/restriction and whether historical Git cleanup is required.
+**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally / PROVIDER-SEPARATED and not SHIPPED. UI, test, build and local browser criteria pass, including a no-Supabase-variable resilience gate: public routes render while account actions fail closed with truthful copy. The founder created independent Vercel project `aro-club`, which successfully deployed the safe copied-main baseline; the rebrand branch remains unpromoted pending visual/release review and environment-scope audit.
 
 ### Next runtime package
 
-After SEC0 is closed or its remaining risk is explicitly accepted and documented:
-
 **ARO-P1 — Capability and Goal Foundation**
+
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` defines the remaining pre-code evidence. `ARO_INFRASTRUCTURE.md` records the separated repositories, unassigned ARO.club provider target, preserved Tonguee production boundary, quarantined secondary project and human-only provider TODOs.
 
 ---
 
@@ -58,8 +56,9 @@ After SEC0 is closed or its remaining risk is explicitly accepted and documented
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | strategy preserved | prove place/privacy/safety model before AR |
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
-| SEC0 — secret hygiene | **IN-PROGRESS / BLOCKED** | branch `agent/aro-sec0-secret-hygiene`; PR #9; tracked `.env` removal prepared; report added | repo-side checks recorded in `ARO_SEC0_REPORT.md` | founder/provider credential decision + history decision |
-| P1 — capability + goal foundation | **BLOCKED** | package definition in build playbook | no runtime implementation yet under ARO package | close SEC0; write/approve package spec |
+| SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
+| R1 — repository separation + platform rebrand | **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | founder visual review; env-scope audit; isolated backend decision; release gate |
+| P1 — capability + goal foundation | **SPEC-READY** | approved package and baseline specifications | no runtime implementation yet | approve safe ARO.club environment and capture baseline |
 | P2 — explicit intent + demand signal | **SPEC-REQUIRED** | package definition and privacy principles | no ARO implementation | P1 verified; approve intent/aggregation/RLS spec |
 | P3 — language opportunity suggestion | **SPEC-REQUIRED** | Catalyst/Opportunity Engine boundaries | no ARO implementation | P2 verified; AI/evaluation/Trust package spec |
 | P4 — commitment + booking | **SPEC-REQUIRED** | commitment and money boundaries | existing Tonguee bookings are foundation, not P4 completion | P3 verified; approve state/money/concurrency spec |
@@ -167,7 +166,7 @@ This table prevents the recovered/current long-term vision from being mistaken f
 
 Before P1 code begins:
 
-1. Close or explicitly accept/document SEC0 provider/history risk.
+1. **Satisfied:** SEC0 provider/history risk is classified, accepted, documented and remediated in the active tree.
 2. Confirm P1 package spec exists and is marked SPEC-READY.
 3. Audit current auth/profile/public-profile/RLS behavior that P1 will touch.
 4. Define the exact private data model, retention/deletion behavior and provenance for goal/capability records.
@@ -210,7 +209,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`SEC0 decision → P1 spec → P1 implementation → P1 verification → P2 spec`
+`R1 founder review + env audit → isolated backend decision → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 

@@ -1,8 +1,8 @@
-# 👅 Tonguee
+# ARO — The Human Opportunity Network
 
 **Learn languages through real experiences with local teachers in cities around the world.**
 
-Tonguee connects language learners with local teachers for small group (4-6 people) experiences in authentic settings like cafés, markets, walking tours, and cultural activities. The brand is Tonguee; the mascot is Coco the Chameleon (🦎).
+ARO helps human intent, capability, people, place and time form into meaningful real-world opportunity. Tonguee is ARO's first live vertical, connecting language learners with verified local teachers for small-group experiences in authentic settings such as cafés, markets, walking tours and cultural activities. Coco the Chameleon remains Tonguee's vertical guide.
 
 ---
 

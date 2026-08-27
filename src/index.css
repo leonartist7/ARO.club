@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply font-sans text-gray-900 antialiased;
+    @apply bg-bone font-sans text-ink antialiased dark:bg-gray-950 dark:text-bone;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -30,7 +30,7 @@
     @apply bg-white/80 backdrop-blur-md;
   }
 
-  /* Brand gradients: yellow → orange */
+  /* ARO signal gradients: living red → saffron */
   .gradient-text {
     @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
   }
@@ -49,6 +49,19 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .aro-grid {
+    background-image:
+      linear-gradient(to right, rgb(40 36 32 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(40 36 32 / 0.055) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .dark .aro-grid {
+    background-image:
+      linear-gradient(to right, rgb(246 240 230 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(246 240 230 / 0.055) 1px, transparent 1px);
+  }
 }
 
 
@@ -59,6 +72,10 @@
   .animate-wiggle,
   .animate-pulse-soft,
   .animate-pulse {
+    animation: none !important;
+  }
+
+  .aro-orbit-motion {
     animation: none !important;
   }
 }

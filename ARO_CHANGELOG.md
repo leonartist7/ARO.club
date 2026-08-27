@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-08-26 — ARO.club repository separation and platform rebrand
+
+### Decision
+
+ARO now has an independent runtime repository, `leonartist7/ARO.club`. The original Tonguee repository, deployment and Supabase project remain preserved as the first language vertical and recovery path.
+
+### Implemented
+
+- integrated governed ARO history through `9394cb7` into the copied repository;
+- introduced the ARO orbit mark, editorial typography and Bone/Ink/Vermilion/Saffron platform palette;
+- replaced the universal shell, homepage, metadata and public platform language with ARO identity;
+- preserved Tonguee explicitly as the first live language path, including existing teachers, experiences, bookings, Passport and Trust foundations;
+- removed false platform-scale implications and labelled the wider Opportunity Engine as future capability;
+- recorded four breakpoint/theme screenshots, 61 passing tests, a passing production build, responsive/accessibility evidence and inherited lint debt in `artifacts/ARO-R1/VERIFICATION.md`.
+
+### Infrastructure boundary
+
+- no provider configuration, schema, RLS, Trust, auth, payment, Stripe or Google mutation was made by the package;
+- after the R1 branch was pushed, Vercel initially created a Preview deployment through inherited project `lionovart/langgie`, exposing the hosting-separation issue;
+- the founder then created independent Vercel project `aro-club`, which successfully deployed safe copied-main commit `ce291193` as its Production baseline;
+- ARO.club has no approved Supabase runtime target yet;
+- Tonguee production must not be used silently;
+- `aro-platform` (`jjgccfrwjkwknyjtbtxa`) remains **QUARANTINED — KEEP**.
+
+### Status transition
+
+- ARO-R1: **SPEC-READY / IN-PROGRESS → VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**.
+- ARO-P1: remains **SPEC-READY**, gated by an isolated ARO.club environment and execution baseline.
+
+### Preview resilience correction
+
+The first independent preview revealed that the legacy Supabase client threw before React mounted when Vercel variables were absent. R1 v1.0.1 now permits public review routes to render without backend configuration. Authentication and account creation fail closed with explicit preview-state copy. No database credentials, provider configuration or production data were added.
+
+---
+
 ## 2026-08-25 — Living Opportunity OS + Seasons / AR strategic expansion
 
 ### Why this changed
@@ -184,6 +219,104 @@ Key files:
 
 - `ARO_MASTER.md`
 - `ARO_RECOVERY_STATUS.md`
+
+---
+
+
+## 2026-08-26 — SEC0 repository secret hygiene verified
+
+### Decision
+
+The founder confirmed that the historical environment file contained only browser-facing Supabase project URL and anonymous client key categories. No Stripe or Google configuration was present. The Tonguee Supabase project remains the canonical backend for the ARO migration.
+
+### Repository remediation
+
+- Removed `.env` from the active Git tree.
+- Hardened `.gitignore` for `.env.*` while preserving `.env.example`.
+- Recorded the classification and decision in `ARO_SEC0_REPORT.md`.
+- Preserved Vercel deployment configuration outside Git.
+
+### Risk decision
+
+The founder accepted the documented historical exposure and chose no Git history rewrite. No rotation is required solely for the classified browser-facing categories. RLS and API exposure remain mandatory P1 baseline review items.
+
+### Status transition
+
+- ARO-SEC0: **BLOCKED / IN-PROGRESS → VERIFIED** after finalization PR merge.
+- ARO-P1: **BLOCKED → SPEC-REQUIRED**.
+- Next gate: approve the P1 private data/RLS/retention package spec and capture baselines before runtime implementation.
+
+---
+
+
+## 2026-08-26 — P1 capability and goal specification approved
+
+### Decision
+
+ARO-P1 is now **SPEC-READY**. The package contract defines one private language-learning goal plus bounded, self-declared language capabilities for an authenticated adult. It does not authorize P2 intent, public demand, matching, AI, location, money, Google, Stripe, new verticals or a broad redesign.
+
+### Data and privacy direction
+
+- New P1 data belongs in dedicated owner-private tables rather than publicly readable profiles.
+- Self-declared capability remains separate from verified teacher evidence.
+- No automatic backfill from local Zustand state or legacy profile fields is allowed.
+- Anon and other users receive no access; admins receive no default access.
+- Exact RLS, grants, retention, deletion and regression requirements are locked in the package spec.
+
+### Repository discovery
+
+The current learner experience persists onboarding/profile state primarily through a local Zustand player store with best-effort profile mirroring. The connected Tonguee Supabase project remains the canonical backend and reports an existing RLS-enabled marketplace foundation but no recorded migration history through the connector. Repository Trust SQL exists; the execution baseline must verify which Trust controls are applied live.
+
+### Added
+
+- specs/ARO-P1-CAPABILITY-GOAL.md
+- specs/ARO-P1-BASELINE.md
+
+### Status transition
+
+- ARO-P1: **SPEC-REQUIRED → SPEC-READY**.
+- Runtime: not IN-PROGRESS.
+- Next gate: capture the exact pre-code Git, test, build, visual, accessibility, performance and Supabase baseline, then open one P1 implementation branch.
+
+---
+
+
+## 2026-08-26 — Infrastructure and environment registry added
+
+### Why
+
+GitHub, Vercel, environment-variable and Supabase decisions were distributed across security reports, PRs and chat context. Agents need one no-secret operational map before changing providers, branches or production state.
+
+### Added
+
+- ARO_INFRASTRUCTURE.md
+- agent read-order and authority-map links
+- ADR-025 for the secondary Supabase project quarantine
+- founder-only and agent-only TODO checklists
+
+### Locked operational state
+
+- leonartist7/Tonguee remains the repository.
+- main remains the current production/default branch.
+- feat/aro-p0-director-reset remains the governed ARO integration branch.
+- Vercel remains connected to the Tonguee repository; its exact Production/Preview environment mapping requires founder dashboard confirmation.
+- Supabase Tonguee ref ybhecubqnhukgpvchjay remains the canonical ARO backend.
+- Supabase aro-platform ref jjgccfrwjkwknyjtbtxa is **QUARANTINED — KEEP** because five auth accounts remain, despite empty public-table estimates and no storage objects.
+- Stripe and Google provider configuration remain out of scope.
+- No provider, deployment, schema, auth or runtime state changed in this documentation package.
+
+### Next gate
+
+Complete the human Vercel/Supabase dependency checks in ARO_INFRASTRUCTURE.md, while the program proceeds only to the documented P1 pre-code execution baseline.
+
+---
+
+
+## 2026-08-26 — Main/ARO branch topology verified
+
+A post-merge comparison reports main and feat/aro-p0-director-reset as diverged. The governed ARO branch is three commits ahead and one commit behind. The main-only commit ce291193 is an empty documentation-promotion commit: its comparison with parent 931f2614 contains no changed files.
+
+This is a Git ancestry difference, not missing runtime or documentation content. The P1 execution baseline must record it and may reconcile ancestry safely if needed, but must not overwrite newer SEC0, P1 or infrastructure governance.
 
 ---
 

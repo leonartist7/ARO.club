@@ -19,11 +19,11 @@ const DOCUMENTS = {
     icon: FileText,
     title: 'Terms of Service',
     intro:
-      'The rules for using Conversa. This is a plain-language summary of how the product works today.',
+      'The rules for using ARO. This is a plain-language summary of how the product works today.',
     sections: [
       {
-        heading: 'What Conversa is',
-        body: 'Conversa connects language learners with local teachers for small group experiences in real places. We provide the marketplace; teachers run their own sessions and set their own prices and capacity.',
+        heading: 'What ARO is',
+        body: 'ARO is a human opportunity platform. Its first live path connects language learners with verified local teachers for small-group experiences in real places. Hosts run their own sessions and set their own approved terms.',
       },
       {
         heading: 'Your account',
@@ -46,7 +46,7 @@ const DOCUMENTS = {
   privacy: {
     icon: ShieldCheck,
     title: 'Privacy Policy',
-    intro: 'What Conversa knows about you, and where it is kept.',
+    intro: 'What ARO knows about you, and where it is kept.',
     sections: [
       {
         heading: 'What is stored on your device',
@@ -62,14 +62,14 @@ const DOCUMENTS = {
       },
       {
         heading: 'Getting your data removed',
-        body: 'Signing out clears your local data. To have an account deleted entirely, email privacy@conversa.com and we will remove it.',
+        body: 'Signing out clears local session data. To request account deletion, email privacy@aro.club.',
       },
     ],
   },
   cookies: {
     icon: Cookie,
     title: 'Cookie Policy',
-    intro: 'Conversa uses browser storage rather than tracking cookies.',
+    intro: 'ARO uses browser storage rather than tracking cookies.',
     sections: [
       {
         heading: 'What we use',
@@ -81,7 +81,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'Clearing it',
-        body: 'Clearing site data in your browser settings removes everything Conversa has stored, including your progress.',
+        body: 'Clearing site data in your browser settings removes everything ARO has stored locally, including local progress.',
       },
     ],
   },
@@ -132,7 +132,7 @@ export default function LegalPage({ document: documentKey }) {
         <div className="flex gap-3 p-4 mb-8 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
           <p className="text-sm text-amber-900 dark:text-amber-200">
-            Conversa is still in development and this document has not been reviewed
+            ARO is still in development and this document has not been reviewed
             by a lawyer. It describes what the product actually does today rather
             than serving as a binding agreement.
           </p>

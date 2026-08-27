@@ -151,3 +151,34 @@ This file records durable choices. Package-specific implementation details belon
 **Decision:** ARO’s signature loop culminates in real-world human activity. Approved online formats may improve access, preparation, and follow-up, but metrics must distinguish in-person, live-online, and asynchronous activity.
 
 **Consequence:** Online engagement cannot be reported as physical real-life hours or become an endless content feed.
+
+## ADR-024 — Tonguee Supabase project is the canonical migration backend
+
+**Status:** Accepted
+
+**Decision:** ARO P1 and subsequent governed migration packages extend the existing Supabase project named **Tonguee**. The separately named `aro-platform` Supabase project contains an unrelated venue/ordering schema and is not an ARO runtime target.
+
+**Rationale:** The Tonguee project matches the repository’s implemented profiles, teachers, experiences, bookings, reviews, Trust, auth and RLS foundation. Reusing it follows ADR-001, ADR-012 and ADR-013 and avoids an unnecessary backend rewrite.
+
+**Consequences:** P1 must audit and extend the Tonguee project additively. Environment configuration must remain outside Git. Switching projects requires a new approved migration decision and explicit data/auth/RLS cutover plan.
+
+## ADR-025 — Quarantine the secondary aro-platform project before disposition
+
+**Status:** Accepted
+
+**Decision:** Supabase project jjgccfrwjkwknyjtbtxa (aro-platform) is classified as **QUARANTINED — KEEP**. It is not an ARO runtime target and must not be deleted, paused, merged into Tonguee or repurposed until its five auth accounts, creator/purpose and external references are identified.
+
+**Rationale:** Its hospitality-oriented schema does not match Tonguee/ARO, public tables appeared empty and storage had no objects, but five auth accounts remain. Those accounts create enough uncertainty that destructive action would be irresponsible.
+
+**Consequences:** The founder completes the dependency/account checklist in ARO_INFRASTRUCTURE.md. If no dependency exists, pause first, observe, then delete only with explicit founder authorization and appropriate export/recovery preparation.
+
+## ADR-026 — Separate ARO.club from Tonguee production
+
+**Status:** Accepted
+
+**Decision:** `leonartist7/ARO.club` is the independent runtime repository for the ARO platform. `leonartist7/Tonguee`, its production deployment and Supabase project `ybhecubqnhukgpvchjay` remain preserved as the Tonguee vertical and recovery path. The separated ARO.club app has no approved production Vercel or Supabase target until a dedicated environment/cutover decision is made.
+
+**Rationale:** Repository separation allows a full ARO platform identity and future architecture to evolve without putting the working Tonguee production path or its users at risk.
+
+**Consequences:** This decision narrows ADR-024: the Tonguee Supabase project remains the source migration foundation and evidence base, but it is no longer the automatic runtime target for the separated ARO.club repository. P1 must use an explicitly approved isolated environment or staged migration plan. `aro-platform` remains quarantined under ADR-025.
+
