@@ -32,6 +32,7 @@ Environment note: Node 24.11.0 is below `jsdom@30.0.0`'s preferred Node 24.15.0 
 ## Browser and accessibility evidence
 
 - Local preview used dummy, non-production Supabase-shaped values. No live backend data was requested or changed.
+- A second local preview used no Supabase variables at all. The public homepage rendered with no browser warnings/errors; `/login` displayed a truthful backend-unavailable notice and disabled account submission.
 - Page title: `ARO — The Human Opportunity Network`.
 - Browser console: no warnings or errors during the homepage and `/explore` smoke check.
 - Primary CTA navigated to `/explore`; the destination rendered `Explore Language Experiences`.
@@ -65,7 +66,12 @@ Environment note: Node 24.11.0 is below `jsdom@30.0.0`'s preferred Node 24.15.0 
 | R1-010 | PASS | four screenshots; no horizontal overflow at 360/1440 |
 | R1-011 | PASS with inherited lint qualification | tests/build pass; legacy lint debt recorded |
 | R1-012 | PASS | source diff has no provider/schema/Trust/money/Auth expansion; founder created independent Vercel project `aro-club`; rebrand branch remains unpromoted |
+| R1-013 | PASS | no-env production build plus homepage/login browser verification |
 
 ## Release boundary
 
 The R1 rebrand branch is not deployed to Production and neither repository's `main` branch has changed. The founder created independent Vercel project `aro-club`, whose Production baseline is the safe copied `main` commit. Before promoting R1, verify the new project's Preview/Production environment-variable scopes and create/select an isolated ARO.club backend environment. Tonguee production is not the approved ARO.club target.
+
+## Blank-preview incident
+
+The first separated preview exposed two independent conditions: Vercel authentication protected the Preview URL, and the application previously threw during module initialization when Supabase variables were absent. R1 v1.0.1 removes the application crash. Public review routes now work without backend configuration; account actions remain unavailable and fail closed until an approved ARO.club backend is configured. Deployment Protection remains a Vercel access setting, not an application failure.

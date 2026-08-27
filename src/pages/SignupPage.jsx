@@ -17,7 +17,7 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signUp, signInWithGoogle } = useAuth();
+  const { signUp, signInWithGoogle, isBackendConfigured } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -78,7 +78,7 @@ export default function SignupPage() {
           navigate('/explore');
         }, 2000);
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -97,7 +97,7 @@ export default function SignupPage() {
         setLoading(false);
       }
       // Note: Google sign-in will redirect, so we don't set loading to false here
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -142,6 +142,12 @@ export default function SignupPage() {
           {/* Signup Card */}
           <Card>
             <CardBody>
+              {!isBackendConfigured && (
+                <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink">
+                  Account creation is not active in this preview yet. You can still explore the public ARO experience.
+                </div>
+              )}
+
               {/* Success Message */}
               {success && (
                 <motion.div
@@ -177,7 +183,7 @@ export default function SignupPage() {
                 variant="outline"
                 fullWidth
                 onClick={handleGoogleSignIn}
-                disabled={loading || success}
+                disabled={loading || success || !isBackendConfigured}
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >
@@ -204,7 +210,7 @@ export default function SignupPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  disabled={loading || success}
+                  disabled={loading || success || !isBackendConfigured}
                   icon={<User className="w-5 h-5" />}
                 />
 
@@ -229,7 +235,7 @@ export default function SignupPage() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    disabled={loading || success}
+                    disabled={loading || success || !isBackendConfigured}
                     icon={<Lock className="w-5 h-5" />}
                   />
                   {strength && (
@@ -262,7 +268,7 @@ export default function SignupPage() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  disabled={loading || success}
+                  disabled={loading || success || !isBackendConfigured}
                   icon={<Lock className="w-5 h-5" />}
                 />
 
@@ -282,7 +288,7 @@ export default function SignupPage() {
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={loading || success}
+                  disabled={loading || success || !isBackendConfigured}
                   loading={loading}
                 >
                   {loading ? 'Creating account...' : 'Create Account'}

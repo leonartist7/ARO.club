@@ -1,7 +1,7 @@
 # ARO-R1 — Platform Rebrand and Repository Separation
 
 > **Status:** VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED
-> **Version:** 1.0.0  
+> **Version:** 1.0.1
 > **Approved by:** Founder, 2026-08-26  
 > **Implementation branch:** `feat/aro-r1-full-rebrand`
 
@@ -74,6 +74,7 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 - 360px and 1440px layouts have no horizontal overflow.
 - Light and dark modes remain first-class.
 - Reduced-motion preference removes nonessential orbit motion.
+- When the isolated ARO.club backend is not configured, public routes still render and account actions explain their unavailable preview state instead of crashing the application.
 
 ## 8. Acceptance criteria
 
@@ -91,6 +92,7 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 | R1-010 | 360px/1440px light/dark layouts pass | PASS — screenshot evidence |
 | R1-011 | Unit tests and production build pass; legacy baseline issues are reported honestly | PASS with inherited lint qualification |
 | R1-012 | No provider, schema, Trust, money, Google or Stripe change occurs | PASS — no provider/schema/runtime source mutation; founder separated ARO.club into Vercel project `aro-club`, while the rebrand branch remains unpromoted |
+| R1-013 | Public review routes render without Supabase variables; account actions fail closed with truthful copy | PASS — no-env build/browser verification |
 
 ## 9. Rollout and recovery
 

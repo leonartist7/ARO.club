@@ -22,7 +22,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 ### Current gate
 
-**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally / PROVIDER-SEPARATED and not SHIPPED. UI, test, build and local browser criteria pass. The founder created independent Vercel project `aro-club`, which successfully deployed the safe copied-main baseline; the rebrand branch remains unpromoted pending visual/release review and environment-scope audit.
+**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally / PROVIDER-SEPARATED and not SHIPPED. UI, test, build and local browser criteria pass, including a no-Supabase-variable resilience gate: public routes render while account actions fail closed with truthful copy. The founder created independent Vercel project `aro-club`, which successfully deployed the safe copied-main baseline; the rebrand branch remains unpromoted pending visual/release review and environment-scope audit.
 
 ### Next runtime package
 

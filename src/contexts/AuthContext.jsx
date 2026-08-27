@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { isSupabaseConfigured, supabase, supabaseConfigError } from '../lib/supabase';
 
 const AuthContext = createContext({});
 
@@ -17,6 +17,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return undefined;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -61,6 +66,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signUp = async ({ email, password, name, photo = '' }) => {
+    if (!isSupabaseConfigured) {
+      return { user: null, error: supabaseConfigError };
+    }
+
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -83,6 +92,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async ({ email, password }) => {
+    if (!isSupabaseConfigured) {
+      return { user: null, error: supabaseConfigError };
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -97,6 +110,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signInWithGoogle = async () => {
+    if (!isSupabaseConfigured) {
+      return { data: null, error: supabaseConfigError };
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -113,6 +130,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = async () => {
+    if (!isSupabaseConfigured) {
+      setUser(null);
+      setProfile(null);
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
@@ -125,6 +148,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateProfile = async (updates) => {
+    if (!isSupabaseConfigured) {
+      return { data: null, error: supabaseConfigError };
+    }
+
     try {
       if (!user) throw new Error('No user logged in');
 
@@ -144,6 +171,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const resetPassword = async (email) => {
+    if (!isSupabaseConfigured) {
+      return { data: null, error: supabaseConfigError };
+    }
+
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/reset-password`,
@@ -157,6 +188,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updatePassword = async (newPassword) => {
+    if (!isSupabaseConfigured) {
+      return { data: null, error: supabaseConfigError };
+    }
+
     try {
       const { data, error } = await supabase.auth.updateUser({
         password: newPassword,
@@ -173,6 +208,7 @@ export const AuthProvider = ({ children }) => {
     user,
     profile,
     loading,
+    isBackendConfigured: isSupabaseConfigured,
     signUp,
     signIn,
     signInWithGoogle,

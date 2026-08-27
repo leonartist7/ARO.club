@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signInWithGoogle } = useAuth();
+  const { signIn, signInWithGoogle, isBackendConfigured } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,7 +42,7 @@ export default function LoginPage() {
         });
         navigate(from, { replace: true });
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -61,7 +61,7 @@ export default function LoginPage() {
         setLoading(false);
       }
       // Note: Google sign-in will redirect, so we don't set loading to false here
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -96,6 +96,12 @@ export default function LoginPage() {
           {/* Login Card */}
           <Card>
             <CardBody>
+              {!isBackendConfigured && (
+                <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink dark:border-secondary-700 dark:bg-secondary-900/20 dark:text-bone">
+                  Account access is not active in this preview yet. You can still explore the public ARO experience.
+                </div>
+              )}
+
               {/* Error Message */}
               {error && (
                 <motion.div
@@ -114,7 +120,7 @@ export default function LoginPage() {
                 variant="outline"
                 fullWidth
                 onClick={handleGoogleSignIn}
-                disabled={loading}
+                disabled={loading || !isBackendConfigured}
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >
@@ -140,7 +146,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  disabled={loading}
+                  disabled={loading || !isBackendConfigured}
                   icon={<Mail className="w-5 h-5" />}
                 />
 
@@ -151,7 +157,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  disabled={loading}
+                  disabled={loading || !isBackendConfigured}
                   icon={<Lock className="w-5 h-5" />}
                 />
 
@@ -175,7 +181,7 @@ export default function LoginPage() {
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={loading}
+                  disabled={loading || !isBackendConfigured}
                   loading={loading}
                 >
                   {loading ? 'Signing in...' : 'Sign In'}

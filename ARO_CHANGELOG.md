@@ -35,6 +35,10 @@ ARO now has an independent runtime repository, `leonartist7/ARO.club`. The origi
 - ARO-R1: **SPEC-READY / IN-PROGRESS → VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**.
 - ARO-P1: remains **SPEC-READY**, gated by an isolated ARO.club environment and execution baseline.
 
+### Preview resilience correction
+
+The first independent preview revealed that the legacy Supabase client threw before React mounted when Vercel variables were absent. R1 v1.0.1 now permits public review routes to render without backend configuration. Authentication and account creation fail closed with explicit preview-state copy. No database credentials, provider configuration or production data were added.
+
 ---
 
 ## 2026-08-25 — Living Opportunity OS + Seasons / AR strategic expansion
