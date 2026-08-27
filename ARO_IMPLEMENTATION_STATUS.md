@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 26, 2026.**
+> **Status as of August 27, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
@@ -12,7 +12,7 @@
 
 ### Program state
 
-**ARO is in a separated-repository and provider-separated R1 state; P1 remains pre-implementation.**
+**ARO R1 is shipped; P1 remains pre-implementation at a failed safe-environment baseline gate.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
 
@@ -22,13 +22,13 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 ### Current gate
 
-**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally / PROVIDER-SEPARATED and not SHIPPED. UI, test, build and local browser criteria pass, including a no-Supabase-variable resilience gate: public routes render while account actions fail closed with truthful copy. The founder created independent Vercel project `aro-club`, which successfully deployed the safe copied-main baseline; the rebrand branch remains unpromoted pending visual/release review and environment-scope audit.
+**ARO-R1 — Platform Rebrand and Repository Separation** is SHIPPED. PR #22 merged into `main` as `494817f`, and its Vercel production deployment reached `READY`. Public routes render while account actions fail closed with truthful copy when no backend is configured.
 
 ### Next runtime package
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.md` locks the private data, RLS, retention, UX and verification contract. `specs/ARO-P1-BASELINE.md` defines the remaining pre-code evidence. `ARO_INFRASTRUCTURE.md` records the separated repositories, unassigned ARO.club provider target, preserved Tonguee production boundary, quarantined secondary project and human-only provider TODOs.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is recorded under `artifacts/ARO-P1-BASELINE/VERIFICATION.md`, but the gate did not pass: a $0/month isolated project was rejected at the two-active-free-project limit. Tonguee production remains evidence-only and `aro-platform` remains quarantined.
 
 ---
 
@@ -57,8 +57,8 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.m
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
-| R1 — repository separation + platform rebrand | **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | founder visual review; env-scope audit; isolated backend decision; release gate |
-| P1 — capability + goal foundation | **SPEC-READY** | approved package and baseline specifications | no runtime implementation yet | approve safe ARO.club environment and capture baseline |
+| R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
+| P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | provide isolated Supabase capacity, then finish authenticated/RLS gate |
 | P2 — explicit intent + demand signal | **SPEC-REQUIRED** | package definition and privacy principles | no ARO implementation | P1 verified; approve intent/aggregation/RLS spec |
 | P3 — language opportunity suggestion | **SPEC-REQUIRED** | Catalyst/Opportunity Engine boundaries | no ARO implementation | P2 verified; AI/evaluation/Trust package spec |
 | P4 — commitment + booking | **SPEC-REQUIRED** | commitment and money boundaries | existing Tonguee bookings are foundation, not P4 completion | P3 verified; approve state/money/concurrency spec |
@@ -209,7 +209,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`R1 founder review + env audit → isolated backend decision → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
+`isolated backend capacity → finish P1 baseline → P1 implementation → P1 verification → Next.js foundation package → P2 spec`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 

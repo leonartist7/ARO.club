@@ -79,8 +79,8 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
 | ARO-SEC0 repository secret hygiene | **VERIFIED** after finalization PR merge | `ARO_SEC0_REPORT.md`, branch `agent/aro-sec0-finalize`; active tree removes `.env` | keep local/deployment configuration outside Git; continue RLS review in P1 baseline |
-| R1 ARO platform rebrand + repository separation | **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED** | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, branch `feat/aro-r1-full-rebrand` | founder visual review; verify new-project env scopes; approve isolated Supabase target before release/P1 |
-| P1 Capability + Goal Foundation | **SPEC-READY** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md` | capture the pre-code execution baseline, then open one scoped implementation package |
+| R1 ARO platform rebrand + repository separation | **SHIPPED** | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent production; preserve Tonguee recovery boundary |
+| P1 Capability + Goal Foundation | **SPEC-READY / BASELINE BLOCKED** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md`, `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | provide isolated Supabase capacity; finish authenticated/RLS baseline before runtime code |
 | P2 Explicit Intent + Demand Signal | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md` | P1 verified + privacy/aggregation spec |
 | P3 Language Opportunity Suggestion | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_OPPORTUNITY_ENGINE.md` | P2 verified + AI/evaluation/trust spec |
 | P4 Commitment + Booking + minimum viability | **SPEC-REQUIRED** | `ARO_BUILD_PLAYBOOK.md`, `ARO_MONEY.md` | P3 verified + money/cancellation/concurrency specs |

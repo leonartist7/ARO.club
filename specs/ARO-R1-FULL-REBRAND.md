@@ -1,6 +1,6 @@
 # ARO-R1 — Platform Rebrand and Repository Separation
 
-> **Status:** VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED
+> **Status:** SHIPPED — PR #22 merged 2026-08-27
 > **Version:** 1.0.1
 > **Approved by:** Founder, 2026-08-26  
 > **Implementation branch:** `feat/aro-r1-full-rebrand`
@@ -91,7 +91,7 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 | R1-009 | Keyboard, focus, semantic headings and reduced motion remain valid | PASS — accessibility spot check |
 | R1-010 | 360px/1440px light/dark layouts pass | PASS — screenshot evidence |
 | R1-011 | Unit tests and production build pass; legacy baseline issues are reported honestly | PASS with inherited lint qualification |
-| R1-012 | No provider, schema, Trust, money, Google or Stripe change occurs | PASS — no provider/schema/runtime source mutation; founder separated ARO.club into Vercel project `aro-club`, while the rebrand branch remains unpromoted |
+| R1-012 | No provider, schema, Trust, money, Google or Stripe change occurs | PASS — no provider/schema/runtime source mutation; founder separated ARO.club into Vercel project `aro-club`; PR #22 later passed its release gate |
 | R1-013 | Public review routes render without Supabase variables; account actions fail closed with truthful copy | PASS — no-env build/browser verification |
 
 ## 9. Rollout and recovery
@@ -103,4 +103,4 @@ This package does not implement the future 3D world, AR, Seasons, Catalyst, dema
 
 ## 10. Definition of VERIFIED
 
-The package is VERIFIED when all acceptance criteria have evidence, required tests/build succeed or pre-existing failures are clearly separated, mobile/desktop and light/dark browser evidence exists, no high-severity accessibility regression exists, governance records are current, and no original Tonguee production/provider state has changed. The founder completed the Vercel project separation on 2026-08-26; the R1 branch still requires visual/release approval before promotion.
+The package is VERIFIED when all acceptance criteria have evidence, required tests/build succeed or pre-existing failures are clearly separated, mobile/desktop and light/dark browser evidence exists, no high-severity accessibility regression exists, governance records are current, and no original Tonguee production/provider state has changed. The founder completed Vercel project separation on 2026-08-26 and approved release on 2026-08-27; PR #22 merged as `494817f` and the resulting production deployment reached `READY`.
