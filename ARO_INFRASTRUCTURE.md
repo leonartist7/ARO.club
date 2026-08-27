@@ -13,7 +13,7 @@
 - ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
 - The governed ARO history through `9394cb7` is present in ARO.club. The active package branch is `feat/aro-r1-full-rebrand`.
-- ARO.club `main` remains production-safe at the copied Tonguee base until a separate release gate.
+- ARO.club `main` now contains shipped R1 merge `494817f`; its independent Vercel production deployment is `READY`.
 - ARO.club now has an independent Vercel project named `aro-club`. Its Supabase runtime target remains unassigned; it must not silently use Tonguee production credentials.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is not the ARO migration backend and must not be deleted or repurposed until its five auth accounts and any external dependencies are identified.
@@ -21,7 +21,7 @@
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is locally verified and provider-separated on its package branch. The rebrand branch is not deployed to Production.
-- ARO-P1 remains SPEC-READY; runtime implementation has not begun and requires a safe ARO.club backend/migration environment.
+- ARO-P1 remains SPEC-READY; its execution baseline is recorded, but runtime implementation has not begun because the free-plan project limit prevents creation of the approved isolated environment.
 
 ---
 
@@ -62,13 +62,14 @@
 - GitHub initially recorded ARO.club Preview deployments in inherited project path `lionovart/langgie`, including deployment `6113868573`.
 - The founder separated the repositories and created Vercel project `aro-club`.
 - GitHub deployment `6114077718` successfully deployed safe ARO.club `main` commit `ce291193` as the new project's Production baseline at `https://aro-club-mffksnmw5-lionovart.vercel.app`.
-- The R1 rebrand branch remains unpromoted pending founder review.
+- R1 PR #22 merged as `494817f`; production deployment `dpl_DKCbYy8LvJAWP3tAzCA43oGGJUA2` reached `READY` on 2026-08-27.
+- R1 is promoted; account functionality remains intentionally unavailable until an isolated ARO.club backend is approved.
 
 ### Required deployment posture
 
 - Tonguee production continues to deploy from its existing `main` configuration.
-- ARO.club requires its own Vercel project before any Preview or Production deployment.
-- The R1 branch must not silently become Production or inherit Tonguee environment variables.
+- ARO.club uses its independent Vercel project for Preview and Production deployments.
+- Future branches must not inherit Tonguee environment variables.
 - Environment variables remain managed in Vercel, not committed to Git.
 - Preview and Production variable scopes must be reviewed separately.
 - Any future server-only secret must use a non-VITE name and must never be exposed to client bundles.
@@ -212,8 +213,8 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | P0/P0.1 Director Pack | VERIFIED | Director Pack, ARO_P0_AUDIT.md | none |
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
 | ARO-R1 repository separation + rebrand | VERIFIED locally / PROVIDER-SEPARATED; not shipped | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | founder review; verify env scopes; keep branch unpromoted until release gate |
-| ARO-P1 spec | SPEC-READY | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, PR #19, merge ee0c506 | capture execution baseline |
-| ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | approve safe ARO.club backend/test environment and pass baseline first |
+| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | provide isolated Supabase capacity and finish authenticated/RLS gate |
+| ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | pass the safe-environment baseline first |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
 P1's locked data direction:
@@ -238,7 +239,7 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 - [x] Separate `leonartist7/ARO.club` into Vercel project `aro-club` and establish a safe copied-main Production baseline.
 - [ ] Confirm Tonguee remains linked to its intended Vercel project and production branch.
 - [ ] Audit ARO.club Preview/Production environment-variable scopes without pasting values into Git or chat.
-- [ ] Choose a safe ARO.club Supabase strategy: a new isolated project, an approved branch/environment, or an explicit staged migration plan. This choice is required before P1 schema work.
+- [ ] Provide safe ARO.club Supabase capacity. The approved $0/month `ARO.club Staging` creation was rejected at the account's two-active-free-project limit; no project or charge was created. Do not clear the limit by touching Tonguee or quarantined `aro-platform`.
 - [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.
 - [ ] In Supabase aro-platform, identify the five auth accounts and the project owner/purpose without copying personal data into Git.
 - [ ] Search Vercel projects/local configs/external services for references to jjgccfrwjkwknyjtbtxa.

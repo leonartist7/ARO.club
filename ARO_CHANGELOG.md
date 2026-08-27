@@ -6,6 +6,30 @@
 
 ---
 
+## 2026-08-27 — R1 production release and P1 baseline gate
+
+### Released
+
+- merged R1 PR #22 into `main` as `494817f`;
+- verified Vercel production deployment `dpl_DKCbYy8LvJAWP3tAzCA43oGGJUA2` as `READY`;
+- preserved fail-closed account behavior while no ARO.club backend is configured.
+
+### P1 baseline evidence
+
+- captured the exact base SHA, 61 passing unit tests, passing production build, bundle sizes and inherited lint/E2E failures;
+- captured eight 360px/1440px light/dark protected-route gate screenshots with no overflow, browser errors, blank state, error overlay or unnamed controls;
+- completed a read-only Tonguee grants, RLS, function and advisor audit without mutating production;
+- confirmed broad legacy grants/policies and advisor debt make dedicated private P1 tables mandatory.
+
+### Environment gate
+
+The founder approved a $0/month `ARO.club Staging` project in `lionovart's Org`. Supabase rejected creation because the account already has the maximum two active free projects. No project or charge was created. Tonguee remains preserved, and `aro-platform` remains **QUARANTINED — KEEP**. P1 runtime work remains prohibited until isolated capacity exists.
+
+### Status transition
+
+- ARO-R1: **VERIFIED / not SHIPPED → SHIPPED**.
+- ARO-P1: **SPEC-READY → SPEC-READY / BASELINE BLOCKED**.
+
 ## 2026-08-26 — ARO.club repository separation and platform rebrand
 
 ### Decision

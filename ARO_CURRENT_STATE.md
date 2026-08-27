@@ -2,7 +2,7 @@
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-26
+> **Last strategic update:** 2026-08-27
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -113,15 +113,15 @@ The founder confirmed that the historical environment file contained only browse
 
 ### ARO-R1 — Repository separation and platform rebrand
 
-**State:** VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED
+**State:** SHIPPED
 
-ARO now has an independent `leonartist7/ARO.club` repository and Vercel project `aro-club`. The new Vercel project successfully deployed safe copied-main commit `ce291193` as its Production baseline; the R1 rebrand branch remains unpromoted. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check pass under `artifacts/ARO-R1/VERIFICATION.md`.
+ARO now has an independent `leonartist7/ARO.club` repository and Vercel project `aro-club`. R1 PR #22 merged into `main` as `494817f`, and Vercel production deployment `dpl_DKCbYy8LvJAWP3tAzCA43oGGJUA2` reached `READY`. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check are recorded under `artifacts/ARO-R1/VERIFICATION.md`.
 
-### Active next gate — ARO.club environment decision, then P1 baseline
+### Active next gate — isolated P1 environment
 
-**State:** FOUNDER/PROVIDER DECISION REQUIRED; P1 remains SPEC-READY
+**State:** BASELINE EXECUTED; GATE NOT PASSED
 
-Before P1 schema work, create or select an isolated ARO.club Vercel and Supabase test/migration environment. Do not silently point the separated app at Tonguee production. After that decision, execute `specs/ARO-P1-BASELINE.md` against the approved target and preserve `aro-platform` as **QUARANTINED — KEEP**.
+The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. The approved $0/month `ARO.club Staging` creation was rejected because the founder account already owns/administers the maximum two active free projects. Tonguee production remains preserved and `aro-platform` remains **QUARANTINED — KEEP**, so neither may be used to clear the limit. P1 runtime work remains prohibited until safe isolated capacity exists.
 
 ---
 
@@ -130,8 +130,8 @@ Before P1 schema work, create or select an isolated ARO.club Vercel and Supabase
 Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
-2. **R1** — repository separation + ARO platform rebrand (**VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**).
-3. **P1** — Capability + Goal foundation (**SPEC-READY; next: safe environment decision and pre-code execution baseline**).
+2. **R1** — repository separation + ARO platform rebrand (**SHIPPED**).
+3. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
 4. **P2** — Explicit Intent + privacy-preserving Demand Signals.
 5. **P3** — ARO Catalyst / language Opportunity Suggestions.
 6. **P4** — Commitment + minimum viability + booking/payment mechanics.

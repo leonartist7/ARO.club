@@ -8,7 +8,9 @@
 >
 > Spec: `specs/ARO-R1-FULL-REBRAND.md` v1.0.1
 >
-> Result: **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**
+> Result at verification: **VERIFIED locally / PROVIDER-SEPARATED**
+>
+> Release update: PR #22 merged on 2026-08-27 as `494817f`; production deployment `dpl_DKCbYy8LvJAWP3tAzCA43oGGJUA2` reached `READY`.
 
 ## Repository and scope
 
@@ -80,12 +82,12 @@ The first journey expects role selection to enter `/onboarding/student`, but the
 | R1-009 | PASS | semantic/accessibility spot check and reduced-motion source review |
 | R1-010 | PASS | four screenshots; no horizontal overflow at 360/1440 |
 | R1-011 | PASS with inherited lint qualification | tests/build pass; legacy lint debt recorded |
-| R1-012 | PASS | source diff has no provider/schema/Trust/money/Auth expansion; founder created independent Vercel project `aro-club`; rebrand branch remains unpromoted |
+| R1-012 | PASS | source diff has no provider/schema/Trust/money/Auth expansion; founder created independent Vercel project `aro-club`; later release recorded above |
 | R1-013 | PASS | no-env production build plus homepage/login browser verification |
 
 ## Release boundary
 
-The R1 rebrand branch is not deployed to Production and neither repository's `main` branch has changed. The founder created independent Vercel project `aro-club`, whose Production baseline is the safe copied `main` commit. Before promoting R1, verify the new project's Preview/Production environment-variable scopes and create/select an isolated ARO.club backend environment. Tonguee production is not the approved ARO.club target.
+At initial verification, the R1 rebrand branch was not deployed to Production. The founder later approved release, PR #22 merged, and the independent Vercel production deployment reached `READY`. ARO.club still has no approved backend environment; account actions remain fail-closed. Tonguee production is not the approved ARO.club target.
 
 ## Blank-preview incident
 
