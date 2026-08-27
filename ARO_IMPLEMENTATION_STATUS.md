@@ -12,7 +12,7 @@
 
 ### Program state
 
-**ARO is in a separated-repository, R1 implemented/provider-blocked state; P1 remains pre-implementation.**
+**ARO is in a separated-repository and provider-separated R1 state; P1 remains pre-implementation.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
 
@@ -22,7 +22,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 ### Current gate
 
-**ARO-R1 — Platform Rebrand and Repository Separation** is IMPLEMENTED and not SHIPPED. UI, test, build and local browser criteria pass, but R1-012 remains BLOCKED because pushing the branch automatically deployed a Preview through inherited Vercel project `lionovart/langgie`. Hosting/environment separation must be completed before VERIFIED status, release or P1 schema work.
+**ARO-R1 — Platform Rebrand and Repository Separation** is VERIFIED locally / PROVIDER-SEPARATED and not SHIPPED. UI, test, build and local browser criteria pass. The founder created independent Vercel project `aro-club`, which successfully deployed the safe copied-main baseline; the rebrand branch remains unpromoted pending visual/release review and environment-scope audit.
 
 ### Next runtime package
 
@@ -57,7 +57,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. `specs/ARO-P1-CAPABILITY-GOAL.m
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
-| R1 — repository separation + platform rebrand | **IMPLEMENTED / PROVIDER-SEPARATION BLOCKED** | independent ARO.club repository, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | detach inherited Vercel Preview link, audit scopes, create isolated provider environment, then verify |
+| R1 — repository separation + platform rebrand | **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | founder visual review; env-scope audit; isolated backend decision; release gate |
 | P1 — capability + goal foundation | **SPEC-READY** | approved package and baseline specifications | no runtime implementation yet | approve safe ARO.club environment and capture baseline |
 | P2 — explicit intent + demand signal | **SPEC-REQUIRED** | package definition and privacy principles | no ARO implementation | P1 verified; approve intent/aggregation/RLS spec |
 | P3 — language opportunity suggestion | **SPEC-REQUIRED** | Catalyst/Opportunity Engine boundaries | no ARO implementation | P2 verified; AI/evaluation/Trust package spec |
@@ -209,7 +209,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`R1 Vercel separation + founder review → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
+`R1 founder review + env audit → isolated backend decision → P1 execution baseline → P1 implementation → P1 verification → P2 spec`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 

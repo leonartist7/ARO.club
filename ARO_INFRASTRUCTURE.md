@@ -14,13 +14,13 @@
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
 - The governed ARO history through `9394cb7` is present in ARO.club. The active package branch is `feat/aro-r1-full-rebrand`.
 - ARO.club `main` remains production-safe at the copied Tonguee base until a separate release gate.
-- ARO.club has no approved independent Vercel production project or Supabase runtime target yet. Pushing R1 triggered an inherited Preview deployment under `lionovart/langgie`; this connection must be separated and its variable scopes audited before release.
+- ARO.club now has an independent Vercel project named `aro-club`. Its Supabase runtime target remains unassigned; it must not silently use Tonguee production credentials.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is not the ARO migration backend and must not be deleted or repurposed until its five auth accounts and any external dependencies are identified.
 - Stripe is not configured.
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
-- ARO-R1 is implemented on its package branch and its UI/tests/build pass, but provider separation is BLOCKED by the inherited `lionovart/langgie` Vercel Preview link. It is not deployed to Production.
+- ARO-R1 is locally verified and provider-separated on its package branch. The rebrand branch is not deployed to Production.
 - ARO-P1 remains SPEC-READY; runtime implementation has not begun and requires a safe ARO.club backend/migration environment.
 
 ---
@@ -59,9 +59,10 @@
 ### Known state
 
 - The existing Vercel deployment remains associated with the original Tonguee repository and production path.
-- No Vercel project was created, linked or configured manually by R1.
-- GitHub recorded automatic ARO.club Preview deployments in the existing Vercel project path `lionovart/langgie`, including deployment `6113868573` for R1 commit `0274778`.
-- Therefore the ARO.club hosting target is **INHERITED / NOT SAFELY SEPARATED**, not unassigned.
+- GitHub initially recorded ARO.club Preview deployments in inherited project path `lionovart/langgie`, including deployment `6113868573`.
+- The founder separated the repositories and created Vercel project `aro-club`.
+- GitHub deployment `6114077718` successfully deployed safe ARO.club `main` commit `ce291193` as the new project's Production baseline at `https://aro-club-mffksnmw5-lionovart.vercel.app`.
+- The R1 rebrand branch remains unpromoted pending founder review.
 
 ### Required deployment posture
 
@@ -77,8 +78,8 @@
 Before release, the founder must confirm in Vercel:
 
 1. The existing Tonguee project still points to `leonartist7/Tonguee` and its intended production branch.
-2. Disconnect ARO.club from the inherited `lionovart/langgie` project without disrupting Tonguee production, then link a separate ARO.club project to `leonartist7/ARO.club`.
-3. Audit the automatic ARO.club Preview deployment and confirm whether it inherited Tonguee production credentials; rotate only if a non-browser secret or unintended privileged credential is discovered.
+2. Confirm `leonartist7/ARO.club` remains linked only to Vercel project `aro-club` and Tonguee remains linked to its intended project.
+3. Audit ARO.club Preview/Production environment scopes before promotion; rotate only if a non-browser secret or unintended privileged credential is discovered.
 4. The selected ARO.club backend project and client variables match the separately approved migration/environment decision.
 5. No service-role, database password, Stripe secret or Google client secret is stored under a VITE-prefixed variable.
 6. Deployment protection and domain assignments match the founder's intended public/staging behavior.
@@ -210,7 +211,7 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 |---|---|---|---|
 | P0/P0.1 Director Pack | VERIFIED | Director Pack, ARO_P0_AUDIT.md | none |
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
-| ARO-R1 repository separation + rebrand | IMPLEMENTED / PROVIDER-SEPARATION BLOCKED | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | detach inherited `lionovart/langgie` Preview link; isolated Vercel/backend decision; then verify |
+| ARO-R1 repository separation + rebrand | VERIFIED locally / PROVIDER-SEPARATED; not shipped | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, PR #22 | founder review; verify env scopes; keep branch unpromoted until release gate |
 | ARO-P1 spec | SPEC-READY | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, PR #19, merge ee0c506 | capture execution baseline |
 | ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | approve safe ARO.club backend/test environment and pass baseline first |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
@@ -234,9 +235,9 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 ### NOW — required before ARO.club provider work
 
 - [ ] Confirm the existing Tonguee Vercel project still targets `leonartist7/Tonguee` and its intended production branch.
-- [ ] Inspect why `leonartist7/ARO.club` automatically deploys through Vercel project `lionovart/langgie`, and confirm whether Tonguee is still connected there.
-- [ ] Disconnect/relink without disrupting Tonguee production, then create or select a separate Vercel project for `leonartist7/ARO.club`; do not copy Tonguee production variables automatically.
-- [ ] Audit Preview deployment `6113868573` environment scopes for unintended Tonguee credentials without pasting values into Git or chat.
+- [x] Separate `leonartist7/ARO.club` into Vercel project `aro-club` and establish a safe copied-main Production baseline.
+- [ ] Confirm Tonguee remains linked to its intended Vercel project and production branch.
+- [ ] Audit ARO.club Preview/Production environment-variable scopes without pasting values into Git or chat.
 - [ ] Choose a safe ARO.club Supabase strategy: a new isolated project, an approved branch/environment, or an explicit staged migration plan. This choice is required before P1 schema work.
 - [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.
 - [ ] In Supabase aro-platform, identify the five auth accounts and the project owner/purpose without copying personal data into Git.

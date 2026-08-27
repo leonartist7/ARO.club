@@ -24,14 +24,15 @@ ARO now has an independent runtime repository, `leonartist7/ARO.club`. The origi
 ### Infrastructure boundary
 
 - no provider configuration, schema, RLS, Trust, auth, payment, Stripe or Google mutation was made by the package;
-- after the R1 branch was pushed, Vercel automatically created a Preview deployment through inherited project `lionovart/langgie`; hosting separation is therefore blocked pending dashboard audit/detach/relink;
-- ARO.club has no approved independent Vercel or Supabase runtime target yet;
+- after the R1 branch was pushed, Vercel initially created a Preview deployment through inherited project `lionovart/langgie`, exposing the hosting-separation issue;
+- the founder then created independent Vercel project `aro-club`, which successfully deployed safe copied-main commit `ce291193` as its Production baseline;
+- ARO.club has no approved Supabase runtime target yet;
 - Tonguee production must not be used silently;
 - `aro-platform` (`jjgccfrwjkwknyjtbtxa`) remains **QUARANTINED — KEEP**.
 
 ### Status transition
 
-- ARO-R1: **SPEC-READY / IN-PROGRESS → IMPLEMENTED / PROVIDER-SEPARATION BLOCKED; not SHIPPED**.
+- ARO-R1: **SPEC-READY / IN-PROGRESS → VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**.
 - ARO-P1: remains **SPEC-READY**, gated by an isolated ARO.club environment and execution baseline.
 
 ---
