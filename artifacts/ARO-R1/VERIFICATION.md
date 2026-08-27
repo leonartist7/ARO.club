@@ -1,8 +1,13 @@
 # ARO-R1 Verification Record
 
-> Date: 2026-08-26  
-> Branch: `feat/aro-r1-full-rebrand`  
-> Spec: `specs/ARO-R1-FULL-REBRAND.md` v1.0.0  
+> Date: 2026-08-27
+>
+> Branch: `feat/aro-r1-full-rebrand`
+>
+> Commit: `17996ade695f243a363d832a7c13658048f335f2`
+>
+> Spec: `specs/ARO-R1-FULL-REBRAND.md` v1.0.1
+>
 > Result: **VERIFIED locally / PROVIDER-SEPARATED; not SHIPPED**
 
 ## Repository and scope
@@ -14,6 +19,7 @@
 - No Supabase or Vercel configuration mutation was performed by the implementation agent.
 - After the branch was pushed, the existing Vercel integration automatically created Preview deployment `6113868573` in project path `lionovart/langgie` at `https://langgie-k8zpre22r-lionovart.vercel.app`. Earlier ARO.club commits show the same inherited behavior.
 - The founder then separated the repositories in Vercel and created project `aro-club`. GitHub deployment `6114077718` successfully deployed safe base commit `ce291193` as that project's Production baseline at `https://aro-club-mffksnmw5-lionovart.vercel.app`.
+- Vercel Preview deployment `dpl_AFEUhcQeqEJ54M7g9ehMuVrn3RZB` built R1 commit `17996ad` in independent project `aro-club` and reached `READY`. The protected review URL rendered `ARO — The Human Opportunity Network` with no browser-console warnings or errors.
 - Supabase `jjgccfrwjkwknyjtbtxa` remains **QUARANTINED — KEEP**.
 
 ## Automated verification
@@ -22,9 +28,10 @@
 |---|---|---|
 | Unit tests | PASS | Vitest: 2 files, 61 tests passed |
 | Production build | PASS | Vite 7.2.2; 2,601 modules transformed |
-| Main JS bundle | BASELINE RECORDED | 750.30 kB minified / 229.86 kB gzip; inherited >500 kB warning remains |
-| CSS bundle | BASELINE RECORDED | 89.61 kB minified / 13.91 kB gzip |
-| Repository lint | INHERITED FAILURE | 23 errors / 9 warnings, matching the recorded Tonguee baseline; no new R1-specific failure category |
+| Main JS bundle | BASELINE RECORDED | 750.65 kB minified / 229.96 kB gzip; inherited >500 kB warning remains |
+| CSS bundle | BASELINE RECORDED | 89.84 kB minified / 13.92 kB gzip |
+| Repository lint | INHERITED FAILURE | 19 errors / 9 warnings; unused-code, context-export and Hooks debt remains outside R1 scope |
+| Legacy E2E | BASELINE FAILURE | 11 passed / 18 failed after Windows harness workarounds; stale auth/onboarding expectations dominate, route-render and responsive sweeps pass |
 | Diff whitespace | PASS | `git diff --check` returned no whitespace error |
 
 Environment note: Node 24.11.0 is below `jsdom@30.0.0`'s preferred Node 24.15.0 floor. The suite nevertheless passed. Upgrade Node before treating that engine warning as resolved.
@@ -42,6 +49,14 @@ Environment note: Node 24.11.0 is below `jsdom@30.0.0`'s preferred Node 24.15.0 
 - 360px layout: no horizontal overflow.
 - 1440px layout: no horizontal overflow.
 - Source review confirms visible focus-ring styles and a `prefers-reduced-motion` path that disables `.aro-orbit-motion`.
+- The legacy route sweep found no runtime errors or blank pages on public or signed-in protected routes.
+- The responsive sweep found no horizontal overflow at 390px or 768px. Dark-mode text readability passed; one inherited light-surface class remains on `/signup`.
+
+## Legacy E2E qualification
+
+The repository runner is not portable on this Windows host without workarounds: it spawns `npm` directly and hardcodes `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`. Running against an already-started Vite server with `E2E_CHROME` set to installed Chrome allowed the suite to execute.
+
+The first journey expects role selection to enter `/onboarding/student`, but the current unauthenticated application correctly routes to `/login`. That stale assumption causes cascading timeouts in onboarding, booking, review and Passport steps. Separate successful checks confirm that public/protected pages render, no tested route is blank, responsive layouts do not overflow, and dark-mode text remains readable. These failures are baseline debt and are not represented as R1 regressions or as a passing P1 gate.
 
 ## Screenshots
 
