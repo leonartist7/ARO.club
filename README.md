@@ -42,11 +42,18 @@ Open [http://localhost:5173](http://localhost:5173) to view the app.
 ## 📚 Documentation
 
 - **`AGENTS.md`** — operating contract for contributors and agents (read first)
-- **`BUILD_PLAYBOOK.md`** — what to build, in order
+- **`ARO_MASTER_DELIVERY_PLAN.md`** — canonical V1 delivery objective, phase map, gates and cloud-task handoff
+- **`ARO_CURRENT_STATE.md`** — current governed truth, blockers and next action
+- **`ARO_INFRASTRUCTURE.md`** — repository, Vercel and Supabase provider boundary
+- **`ARO_SPEC_INDEX.md`** — package registry and status vocabulary
+- **`ARO_IMPLEMENTATION_STATUS.md`** — verified implementation state by package
+- **`ARO_BUILD_PLAYBOOK.md`** — package execution rules and delivery sequence
 - **`VISION.md`** — why the product exists
 - **`DESIGN_SYSTEM.md`** — design tokens, accessibility, hero pages
 - **`DESIGN_EXECUTION_PLAN.md`** — how every screen looks, moves, feels
 - **`PAYMENTS_SPEC.md`** — money, bookings, payouts, refunds (Phase C, not yet merged)
+
+New cloud tasks must read `AGENTS.md` and `ARO_MASTER_DELIVERY_PLAN.md` before selecting implementation work. The master plan defines sequencing; an approved package specification remains the authority for runtime changes.
 
 ## 🛠️ Tech Stack
 

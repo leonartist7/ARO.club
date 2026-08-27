@@ -182,3 +182,13 @@ This file records durable choices. Package-specific implementation details belon
 
 **Consequences:** This decision narrows ADR-024: the Tonguee Supabase project remains the source migration foundation and evidence base, but it is no longer the automatic runtime target for the separated ARO.club repository. P1 must use an explicitly approved isolated environment or staged migration plan. `aro-platform` remains quarantined under ADR-025.
 
+## ADR-027 — Govern V1 through one durable master delivery objective
+
+**Status:** Accepted
+
+**Decision:** `ARO_MASTER_DELIVERY_PLAN.md` coordinates the production-ready V1 path through P5. It inserts M0 governance, I0 isolated infrastructure, Q0 reliability, N1 platform/Next.js decision, X1 experience foundation and A1 AI foundation at explicit gates while preserving the semantic product dependency P1 → P2 → P3 → P4 → P5.
+
+**Rationale:** A durable, verifiable objective lets local and cloud agents make autonomous progress without relying on chat history or mixing unrelated behavior into one package. Infrastructure, reliability, platform, design and AI foundations need their own evidence before downstream product packages depend on them.
+
+**Consequences:** Every phase remains one spec, branch, PR and review. The master plan does not authorize runtime implementation by itself. Production 3D/AR, Seasons, P6, money providers and consequential autonomous AI remain separately gated.
+

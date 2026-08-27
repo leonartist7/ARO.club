@@ -14,7 +14,7 @@
 
 **ARO R1 is shipped; P1 remains pre-implementation at a failed safe-environment baseline gate.**
 
-The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub.
+The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub. `ARO_MASTER_DELIVERY_PLAN.md` is the canonical durable objective and cloud-task handoff through the verified P5 V1 loop.
 
 The latest Living Opportunity OS experience direction and Seasons/AR strategy are also preserved as **strategic/spec-gated layers**, not as completed runtime features.
 
@@ -51,6 +51,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 |---|---|---|---|---|
 | Recovery of deleted master vision | **VERIFIED** | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md`; original strategic artifacts catalogued | recovery PR merged into director branch | keep synchronized with decisions |
 | Current-state/changelog governance | **VERIFIED** | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` sync rules | documentation contract exists | update on every material strategy/status PR |
+| M0 — master delivery governance | **ACTIVE / GOVERNANCE-READY** | durable objective, phase graph, autonomy boundaries, V1 stopping condition and cloud starter prompt | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027 | synchronize every material package/release transition |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | strategic doctrine preserved | adopt selectively inside package specs; validate accessibility/performance |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | strategy preserved | wait for reliable P5 Proof/Passport base, then specify lightweight progression |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | strategy preserved | prove place/privacy/safety model before AR |
@@ -58,8 +59,13 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
 | R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
+| I0 — isolated infrastructure | **SPEC-REQUIRED / BLOCKED** | provider boundary and failed free-capacity attempt recorded | `ARO_INFRASTRUCTURE.md`, P1 baseline evidence | obtain approved Supabase capacity; write/approve I0 spec |
+| Q0 — reliability foundation | **SPEC-REQUIRED** | exact lint/E2E/build debt is baselined | `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | specify portable E2E, current auth contracts, lint and CI gates |
 | P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | provide isolated Supabase capacity, then finish authenticated/RLS gate |
+| N1 — platform / Next.js decision | **SPEC-REQUIRED** | measured-decision contract exists in master plan | no implementation | P1 verified; author parity, SSR/auth, cutover and rollback spec |
+| X1 — experience foundation | **SPEC-REQUIRED** | Living Opportunity OS direction plus bounded foundation contract | no implementation | N1 decision complete; specify reusable accessible primitives |
 | P2 — explicit intent + demand signal | **SPEC-REQUIRED** | package definition and privacy principles | no ARO implementation | P1 verified; approve intent/aggregation/RLS spec |
+| A1 — AI runtime, evaluation + safety | **SPEC-REQUIRED** | provider/eval/cost/authority contract exists in master plan | no runtime implementation | P2 verified; approve AI foundation spec before P3 |
 | P3 — language opportunity suggestion | **SPEC-REQUIRED** | Catalyst/Opportunity Engine boundaries | no ARO implementation | P2 verified; AI/evaluation/Trust package spec |
 | P4 — commitment + booking | **SPEC-REQUIRED** | commitment and money boundaries | existing Tonguee bookings are foundation, not P4 completion | P3 verified; approve state/money/concurrency spec |
 | P5 — Proof + outcomes + Passport | **SPEC-REQUIRED** | Proof/Passport direction; existing Passport foundation | existing Passport is not full ARO Proof | P4 verified; approve outcome evidence spec |
@@ -209,7 +215,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`isolated backend capacity → finish P1 baseline → P1 implementation → P1 verification → Next.js foundation package → P2 spec`
+`M0 governance → I0 isolated capacity → Q0 reliability → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 
