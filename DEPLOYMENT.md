@@ -125,9 +125,11 @@ Expected results: 15 achievements, 40+ shop items, 60+ questions
    In Vercel project settings, add these:
 
    ```env
-   VITE_SUPABASE_URL=https://ybhecubqnhukgpvchjay.supabase.co
-   VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InliaGVjdWJxbmh1a2dwdmNoamF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4NzE2MzIsImV4cCI6MjA3ODQ0NzYzMn0.Z6kif0Ta68TIEX-09rw9mcsf_zuomRK9p-DTEXrPxuI
+   VITE_SUPABASE_URL=https://your-approved-project.supabase.co
+   VITE_SUPABASE_ANON_KEY=your-project-publishable-or-legacy-anon-key
    ```
+
+   Use the approved environment's values from its provider dashboard. Do not copy Tonguee values into ARO.club and do not commit literal key values to documentation.
 
 4. **Deploy**
    - Click "Deploy"

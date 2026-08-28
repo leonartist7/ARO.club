@@ -348,8 +348,8 @@ cn('px-2 py-1', 'px-4')  // Result: "py-1 px-4" (last px wins)
 ### Environment Variables Required
 ```bash
 # Supabase (Already configured)
-VITE_SUPABASE_URL=https://ybhecubqnhukgpvchjay.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_SUPABASE_URL=https://your-approved-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-project-publishable-or-legacy-anon-key
 
 # Stripe (Not configured - needed for payments)
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
