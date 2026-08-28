@@ -1,78 +1,34 @@
 import { chromium } from 'playwright';
+import { existsSync } from 'node:fs';
 
 export const BASE = process.env.E2E_BASE ?? 'http://localhost:5173';
 
-/**
- * Chromium is preinstalled in this environment at a fixed path; fall back to
- * Playwright's own resolution anywhere else.
- */
 const launchOptions = () => {
-  const preinstalled = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-  return process.env.E2E_CHROME
-    ? { executablePath: process.env.E2E_CHROME }
-    : { executablePath: preinstalled };
+  const candidates = [
+    process.env.E2E_CHROME,
+    '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  ].filter(Boolean);
+
+  const executablePath = candidates.find(existsSync);
+  return executablePath ? { executablePath } : {};
 };
 
 export const launch = () => chromium.launch(launchOptions());
 
-/** A signed-in, onboarded player. Override anything per test. */
-export const seedPlayer = (over = {}) => ({
-  state: {
-    user: {
-      id: 'student-1',
-      name: 'Ada',
-      email: 'ada@example.com',
-      role: 'student',
-      isTeacher: false,
-    },
-    onboardingComplete: true,
-    points: 500,
-    totalEarned: 500,
-    totalSpent: 0,
-    streak: 2,
-    bestStreak: 2,
-    lastCheckIn: null,
-    badges: [],
-    inventory: [],
-    bookings: [],
-    createdExperiences: [],
-    equipped: {
-      character: 'owl',
-      hat: null,
-      glasses: null,
-      accessory: null,
-      background: null,
-    },
-    languages: ['fr'],
-    interests: [],
-    goal: 'regular',
-    completedQuests: [],
-    questsDate: null,
-    stats: {
-      gamesPlayed: 0,
-      experiencesBooked: 0,
-      conversationsStarted: 0,
-      reviewsWritten: 0,
-      citiesVisited: 0,
-      languagesStudied: 0,
-    },
-    ...over,
-  },
-  version: 1,
-});
-
-/** Write the player store into localStorage before the app boots. */
-export const signIn = async (page, seed = seedPlayer()) => {
-  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
-  await page.evaluate(
-    (data) => localStorage.setItem('conversa-player', JSON.stringify(data)),
-    seed
-  );
-};
-
-/** Read the persisted player state back out. */
-export const readStore = (page) =>
-  page.evaluate(() => JSON.parse(localStorage.getItem('conversa-player') || '{}')?.state);
+/** Retry only the Windows/Chromium loopback suspension observed in long sweeps. */
+export async function navigate(page, url, options) {
+  try {
+    return await page.goto(url, options);
+  } catch (error) {
+    if (!String(error).includes('ERR_NETWORK_IO_SUSPENDED')) throw error;
+    await new Promise((resolve) => setTimeout(resolve, 250));
+    return page.goto(url, options);
+  }
+}
 
 /**
  * Minimal test recorder. Collects failures rather than throwing, so one broken

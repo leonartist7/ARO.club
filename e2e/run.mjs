@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
+import { fileURLToPath } from 'node:url';
 import { BASE } from './harness.mjs';
 import journeys from './journeys.mjs';
 import sweep from './sweep.mjs';
@@ -32,15 +33,30 @@ const waitForServer = async (attempts = 40) => {
 
 let server = null;
 
+const stopServer = () => {
+  if (!server) return;
+
+  try {
+    if (process.platform === 'win32') server.kill('SIGTERM');
+    else process.kill(-server.pid, 'SIGTERM');
+  } catch {
+    /* already gone */
+  }
+};
+
 if (await isUp()) {
   console.log(`Using the dev server already running at ${BASE}`);
 } else {
   console.log(`Starting a dev server for ${BASE}`);
-  server = spawn('npm', ['run', 'dev'], { stdio: 'ignore', detached: true });
+  const viteCli = fileURLToPath(new URL('../node_modules/vite/bin/vite.js', import.meta.url));
+  server = spawn(process.execPath, [viteCli, '--host', '127.0.0.1'], {
+    stdio: 'ignore',
+    detached: process.platform !== 'win32',
+  });
 
   if (!(await waitForServer())) {
     console.error(`Dev server never came up at ${BASE}`);
-    if (server) process.kill(-server.pid, 'SIGTERM');
+    stopServer();
     process.exit(1);
   }
 }
@@ -69,13 +85,7 @@ try {
     }
   }
 } finally {
-  if (server) {
-    try {
-      process.kill(-server.pid, 'SIGTERM');
-    } catch {
-      /* already gone */
-    }
-  }
+  stopServer();
 }
 
 console.log(`\n${'='.repeat(48)}`);

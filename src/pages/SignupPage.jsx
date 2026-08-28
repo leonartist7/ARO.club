@@ -272,8 +272,8 @@ export default function SignupPage() {
                   icon={<Lock className="w-5 h-5" />}
                 />
 
-                <div className="text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg">
-                  <p className="font-medium text-gray-700 mb-1">Password requirements:</p>
+                <div className="text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg dark:bg-gray-800 dark:text-gray-300">
+                  <p className="font-medium text-gray-700 mb-1 dark:text-gray-200">Password requirements:</p>
                   <ul className="space-y-1 list-disc list-inside">
                     <li className={formData.password.length >= 6 ? 'text-green-600' : ''}>
                       At least 6 characters

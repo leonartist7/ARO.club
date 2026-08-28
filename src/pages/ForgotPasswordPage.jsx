@@ -12,7 +12,7 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { resetPassword } = useAuth();
+  const { resetPassword, isBackendConfigured } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
       } else {
         setSuccess(true);
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -79,6 +79,12 @@ export default function ForgotPasswordPage() {
           {/* Card */}
           <Card>
             <CardBody>
+              {!isBackendConfigured && (
+                <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink dark:border-secondary-700 dark:bg-secondary-900/20 dark:text-bone">
+                  Password recovery is not active in this preview yet. Account access will return when the secure ARO backend is connected.
+                </div>
+              )}
+
               {/* Success Message */}
               {success && (
                 <motion.div
@@ -121,7 +127,7 @@ export default function ForgotPasswordPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    disabled={loading}
+                    disabled={loading || !isBackendConfigured}
                     icon={<Mail className="w-5 h-5" />}
                   />
 
@@ -129,7 +135,7 @@ export default function ForgotPasswordPage() {
                     type="submit"
                     variant="primary"
                     fullWidth
-                    disabled={loading}
+                    disabled={loading || !isBackendConfigured}
                     loading={loading}
                   >
                     {loading ? 'Sending...' : 'Send Reset Instructions'}

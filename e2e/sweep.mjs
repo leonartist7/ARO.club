@@ -1,4 +1,4 @@
-import { BASE, launch, seedPlayer, createRun, assert } from './harness.mjs';
+import { BASE, launch, navigate, createRun, assert } from './harness.mjs';
 
 const PUBLIC_ROUTES = [
   '/', '/explore', '/map', '/leaderboard', '/about', '/how-it-works',
@@ -45,7 +45,7 @@ export default async function sweep() {
     });
 
     if (seed) {
-      await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+      await navigate(page, BASE, { waitUntil: 'domcontentloaded' });
       await page.evaluate(
         (data) => localStorage.setItem('conversa-player', JSON.stringify(data)),
         seed
@@ -57,8 +57,10 @@ export default async function sweep() {
 
     for (const route of routes) {
       current = route;
-      await page.goto(BASE + route, { waitUntil: 'domcontentloaded', timeout: 15000 });
-      await page.waitForTimeout(900);
+      await navigate(page, BASE + route, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      await page
+        .waitForFunction(() => document.body.innerText.trim().length >= 30, null, { timeout: 3000 })
+        .catch(() => undefined);
 
       const body = (await page.locator('body').innerText().catch(() => '')).trim();
       if (body.length < 30) blank.push(`${route} (${body.length} chars)`);
@@ -83,23 +85,32 @@ export default async function sweep() {
     assert(publicPass.blank.length === 0, publicPass.blank.join(', '))
   );
 
-  run.heading('protected routes, signed in');
-  const signedIn = await visit(PROTECTED_ROUTES, { seed: seedPlayer(), label: 'protected' });
-  await run.step('no runtime errors on any protected route', () =>
+  run.heading('protected routes reject local-only identity');
+  const localOnly = await visit(PROTECTED_ROUTES, {
+    seed: {
+      state: { user: { id: 'local-only', role: 'admin' }, onboardingComplete: true },
+      version: 1,
+    },
+    label: 'hostile-local-storage',
+  });
+  await run.step('no runtime errors while rejecting local-only identity', () =>
     assert(
-      signedIn.crashes.length === 0,
-      signedIn.crashes.map((c) => `${c.route}: ${c.text}`).join(' | ')
+      localOnly.crashes.length === 0,
+      localOnly.crashes.map((c) => `${c.route}: ${c.text}`).join(' | ')
     )
   );
-  await run.step('no protected route renders blank', () =>
-    assert(signedIn.blank.length === 0, signedIn.blank.join(', '))
-  );
+  await run.step('localStorage identity grants no protected access', () => {
+    const leaked = PROTECTED_ROUTES.filter(
+      (route) => !localOnly.redirects.some((r) => r.route === route && r.landed === '/login')
+    );
+    assert(leaked.length === 0, `local-only identity leaked into: ${leaked.join(', ')}`);
+  });
 
   run.heading('protected routes, signed out');
   const signedOut = await visit(PROTECTED_ROUTES, { label: 'gate' });
-  await run.step('every protected route redirects to the role picker', () => {
+  await run.step('every protected route redirects to login', () => {
     const leaked = PROTECTED_ROUTES.filter(
-      (route) => !signedOut.redirects.some((r) => r.route === route && r.landed === '/choose-role')
+      (route) => !signedOut.redirects.some((r) => r.route === route && r.landed === '/login')
     );
     assert(leaked.length === 0, `these did not gate: ${leaked.join(', ')}`);
   });

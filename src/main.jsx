@@ -7,13 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { FavoritesProvider } from './contexts/FavoritesContext';
 import { RecentlyViewedProvider } from './contexts/RecentlyViewedContext';
 import { SavedSearchesProvider } from './contexts/SavedSearchesContext';
-
-// Loading component for lazy-loaded routes
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
-  </div>
-);
+import PageLoader from './components/ui/PageLoader';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

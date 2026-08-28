@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "node e2e/run.mjs"
+    "test:e2e": "node e2e/run.mjs",
+    "test:e2e:auth": "node e2e/auth.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.81.1",

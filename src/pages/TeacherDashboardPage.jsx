@@ -87,7 +87,13 @@ export default function TeacherDashboardPage() {
       status: exp.status || 'draft',
     }));
     return [...jsonExperiences, ...zustandExperiences];
-  }, [currentTeacher.id, teacherExperiences]);
+  }, [
+    currentTeacher.id,
+    currentTeacher.name,
+    currentTeacher.photo,
+    currentTeacher.rating,
+    teacherExperiences,
+  ]);
 
   // Filter experiences by tab
   const upcomingExperiences = allExperiences.filter(

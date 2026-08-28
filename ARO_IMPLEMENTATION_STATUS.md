@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 27, 2026.**
+> **Status as of August 28, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
@@ -12,7 +12,7 @@
 
 ### Program state
 
-**ARO R1 is shipped; P1 remains pre-implementation at a failed safe-environment baseline gate.**
+**ARO R1 is shipped; Q0 public reliability gates pass; P1 remains pre-implementation at a failed safe-environment baseline gate.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub. `ARO_MASTER_DELIVERY_PLAN.md` is the canonical durable objective and cloud-task handoff through the verified P5 V1 loop.
 
@@ -23,6 +23,10 @@ The existing Tonguee product provides a significant working vertical foundation.
 ### Current gate
 
 **ARO-R1 — Platform Rebrand and Repository Separation** is SHIPPED. PR #22 merged into `main` as `494817f`, and its Vercel production deployment reached `READY`. Public routes render while account actions fail closed with truthful copy when no backend is configured.
+
+### Current enabling package
+
+**ARO-Q0 — Reliability and CI Foundation** is **IMPLEMENTED / AUTH-GATE BLOCKED**. Lint, 61 unit tests, build and 16 public/fail-closed browser checks pass locally; GitHub Quality jobs are defined. Real Auth/RLS verification waits for I0 and branch protection remains founder-authorized provider work.
 
 ### Next runtime package
 
@@ -60,7 +64,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
 | R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
 | I0 — isolated infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | full environment/provider spec, refreshed GitHub/Vercel/Supabase/domain/local baseline, literal-key hygiene fix | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, `artifacts/ARO-I0/VERIFICATION.md` | compatible local container runtime + founder-approved hosted capacity/domain decision |
-| Q0 — reliability foundation | **SPEC-REQUIRED** | exact lint/E2E/build debt is baselined | `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | specify portable E2E, current auth contracts, lint and CI gates |
+| Q0 — reliability foundation | **IMPLEMENTED / AUTH-GATE BLOCKED** | zero-warning lint, portable browser runner, fail-closed/hostile-auth contracts, GitHub Quality workflow | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, `artifacts/ARO-Q0/VERIFICATION.md` | pass PR CI; provide I0 target for real Auth/RLS; founder-authorize branch protection |
 | P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | provide isolated Supabase capacity, then finish authenticated/RLS gate |
 | N1 — platform / Next.js decision | **SPEC-REQUIRED** | measured-decision contract exists in master plan | no implementation | P1 verified; author parity, SSR/auth, cutover and rollback spec |
 | X1 — experience foundation | **SPEC-REQUIRED** | Living Opportunity OS direction plus bounded foundation contract | no implementation | N1 decision complete; specify reusable accessible primitives |

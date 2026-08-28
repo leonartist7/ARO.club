@@ -186,6 +186,10 @@ Make the inherited application baseline deterministic enough that new P1 regress
 - build contains no new critical warning and dependency/lockfile state is reproducible;
 - CI blocks merge when a required gate fails.
 
+### Current status — 2026-08-28
+
+`specs/ARO-Q0-RELIABILITY-FOUNDATION.md` is implemented. Local lint, 61 unit tests, production build and 16 public/fail-closed browser checks pass; `.github/workflows/quality.yml` defines the stable PR checks. Q0 remains **IMPLEMENTED / AUTH-GATE BLOCKED** until I0 provides an approved isolated Auth/RLS target and founder-authorized branch protection is configured. Evidence: `artifacts/ARO-Q0/VERIFICATION.md`.
+
 ---
 
 ## 7. Phase P1 — Capability + Goal Foundation

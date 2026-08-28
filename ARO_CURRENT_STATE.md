@@ -2,7 +2,7 @@
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-27
+> **Last strategic update:** 2026-08-28
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -126,6 +126,12 @@ The repository, test/build, visual/accessibility and live read-only Trust eviden
 
 Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 production deployment. The connected `aro-club` project does not list `aro.club`; that hostname currently serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action.
 
+### ARO-Q0 — Reliability and CI Foundation
+
+**State:** IMPLEMENTED / AUTH-GATE BLOCKED
+
+Q0 removes the inherited lint debt, replaces fake localStorage-auth journeys with the real fail-closed Supabase contract, adds portable Windows/Linux browser execution and GitHub Quality checks, and records 61/61 unit tests, a passing build, 16/16 public E2E checks and a clean 1440px visual audit. The authenticated suite exits non-zero as `BLOCKED_PREREQUISITE` until I0 supplies an approved isolated target and synthetic account. Branch protection remains a founder/provider gate.
+
 ### Active master objective
 
 `ARO_MASTER_DELIVERY_PLAN.md` now governs the autonomous, spec-driven path through the verified P5 V1 loop. It inserts isolated-infrastructure, reliability, platform/Next.js, experience-system and AI-foundation packages at explicit dependency gates without reordering P1 → P2 → P3 → P4 → P5 or authorizing exploratory 3D/AR runtime work.
@@ -140,7 +146,7 @@ Current governed sequence:
 2. **R1** — repository separation + ARO platform rebrand (**SHIPPED**).
 3. **M0** — master governance (**VERIFIED**).
 4. **I0** — isolated infrastructure (**SPEC-READY / IMPLEMENTATION BLOCKED**).
-5. **Q0** — reliability foundation (**SPEC-REQUIRED**).
+5. **Q0** — reliability foundation (**IMPLEMENTED / AUTH-GATE BLOCKED**).
 6. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
 7. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
 8. **P2** — Explicit Intent + privacy-preserving Demand Signals.

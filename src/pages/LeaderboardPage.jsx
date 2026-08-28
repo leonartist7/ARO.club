@@ -179,7 +179,6 @@ export default function LeaderboardPage() {
             {/* Mobile Podium */}
             <div className="md:hidden space-y-4">
               {topThree.map((student, index) => {
-                const rank = index + 1;
                 const icons = [
                   <Crown key="1" className="w-6 h-6 text-yellow-400" />,
                   <Medal key="2" className="w-6 h-6 text-gray-400" />,
