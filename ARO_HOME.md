@@ -50,6 +50,7 @@ These are approved strategic direction, but runtime implementation remains packa
 
 - [[AGENTS]] — agent operating contract
 - [[specs/PACKAGE_TEMPLATE|Package Spec Template]]
+- [[specs/ARO-I0-ISOLATED-INFRASTRUCTURE|ARO-I0 Isolated Infrastructure]] — active provider/environment package
 
 ### Current sequence
 

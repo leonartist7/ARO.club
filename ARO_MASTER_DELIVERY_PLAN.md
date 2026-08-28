@@ -4,7 +4,7 @@
 >
 > **Approved by:** Founder, 2026-08-27
 >
-> **Current base:** `main` after P1 baseline merge `6bc9341`
+> **Current base:** `main` after M0 merge `67d5c8d`
 >
 > **Objective:** Deliver ARO's production-ready V1 opportunity loop through P5, with isolated infrastructure, a reliable application foundation, governed platform and AI architecture, verified user experience, operational recovery, and zero known release-blocking defects.
 
@@ -118,7 +118,7 @@ Every new cloud/local task can discover the current objective, package order, au
 
 ### Gate
 
-Documentation consistency check passes and a documentation-only PR reaches `main`.
+**PASSED.** Documentation consistency checks passed and PR #24 reached `main` as `67d5c8d`.
 
 ---
 
@@ -153,7 +153,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-Supabase rejected the approved $0/month `ARO.club Staging` project because the founder account already has two active free projects. No charge or project was created. Resolution requires founder-approved capacity; neither existing active project may be touched under current authority.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. Supabase rejected the approved $0/month `ARO.club Staging` project because the founder account already has two active free projects. The $0 local Supabase path is also blocked on this host because no Docker-compatible runtime is installed. No charge or project was created. Resolution requires a compatible local runtime and/or founder-approved hosted capacity; neither existing active project may be touched under current authority.
 
 ---
 

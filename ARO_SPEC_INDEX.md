@@ -78,11 +78,11 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
-| M0 Master Delivery Governance | **ACTIVE / GOVERNANCE-READY** | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027 | keep plan, status, evidence and cloud-task handoff synchronized |
+| M0 Master Delivery Governance | **VERIFIED** | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027, merged PR #24 | keep plan, status, evidence and cloud-task handoff synchronized |
 | ARO-SEC0 repository secret hygiene | **VERIFIED** after finalization PR merge | `ARO_SEC0_REPORT.md`, branch `agent/aro-sec0-finalize`; active tree removes `.env` | keep local/deployment configuration outside Git; continue RLS review in P1 baseline |
 | R1 ARO platform rebrand + repository separation | **SHIPPED** | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent production; preserve Tonguee recovery boundary |
-| I0 Isolated Infrastructure | **SPEC-REQUIRED / BLOCKED** | phase contract in `ARO_MASTER_DELIVERY_PLAN.md`; provider evidence in `ARO_INFRASTRUCTURE.md` | obtain founder-approved isolated Supabase capacity; author package spec |
-| Q0 Reliability Foundation | **SPEC-REQUIRED** | baseline lint/E2E/build evidence in `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | author package spec after I0 target exists |
+| I0 Isolated Infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, provider registry | install local container runtime and/or obtain founder-approved hosted capacity; resolve `aro.club` ownership |
+| Q0 Reliability Foundation | **SPEC-REQUIRED** | baseline lint/E2E/build evidence in `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | safe spec drafting may continue; hosted/auth verification waits for I0 target |
 | P1 Capability + Goal Foundation | **SPEC-READY / BASELINE BLOCKED** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md`, `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | provide isolated Supabase capacity; finish authenticated/RLS baseline before runtime code |
 | N1 Platform / Next.js Decision | **SPEC-REQUIRED** | phase contract in `ARO_MASTER_DELIVERY_PLAN.md` | P1 verified; produce measured parity/migration decision spec |
 | X1 Experience Foundation | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md`, phase contract in `ARO_MASTER_DELIVERY_PLAN.md` | N1 decision complete; specify tokens/primitives/accessibility/performance |

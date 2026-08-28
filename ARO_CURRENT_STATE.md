@@ -120,9 +120,11 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 
 ### Active next gate — isolated P1 environment
 
-**State:** BASELINE EXECUTED; GATE NOT PASSED
+**State:** I0 SPEC-READY; IMPLEMENTATION BLOCKED
 
-The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. The approved $0/month `ARO.club Staging` creation was rejected because the founder account already owns/administers the maximum two active free projects. Tonguee production remains preserved and `aro-platform` remains **QUARANTINED — KEEP**, so neither may be used to clear the limit. P1 runtime work remains prohibited until safe isolated capacity exists.
+The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider baseline in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`. The approved $0/month hosted project remains blocked by the two-active-free-project limit, and the current host has no Docker-compatible runtime for the $0 local Supabase path. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP**.
+
+Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 production deployment. The connected `aro-club` project does not list `aro.club`; that hostname currently serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action.
 
 ### Active master objective
 
@@ -136,15 +138,17 @@ Current governed sequence:
 
 1. **SEC0** — secret hygiene (**VERIFIED**).
 2. **R1** — repository separation + ARO platform rebrand (**SHIPPED**).
-3. **M0 / I0 / Q0** — master governance, isolated infrastructure and reliability foundation.
-4. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
-5. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
-6. **P2** — Explicit Intent + privacy-preserving Demand Signals.
-7. **A1** — AI Runtime, Evaluation and Safety Foundation.
-8. **P3** — ARO Catalyst / language Opportunity Suggestions.
-9. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
-10. **P5** — ARO Proof + outcomes + Passport evolution.
-11. **P6** — carefully gated adjacent vertical after the V1 release audit.
+3. **M0** — master governance (**VERIFIED**).
+4. **I0** — isolated infrastructure (**SPEC-READY / IMPLEMENTATION BLOCKED**).
+5. **Q0** — reliability foundation (**SPEC-REQUIRED**).
+6. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
+7. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
+8. **P2** — Explicit Intent + privacy-preserving Demand Signals.
+9. **A1** — AI Runtime, Evaluation and Safety Foundation.
+10. **P3** — ARO Catalyst / language Opportunity Suggestions.
+11. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
+12. **P5** — ARO Proof + outcomes + Passport evolution.
+13. **P6** — carefully gated adjacent vertical after the V1 release audit.
 
 Do not skip the sequence because a future concept is exciting.
 

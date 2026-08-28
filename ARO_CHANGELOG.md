@@ -6,6 +6,34 @@
 
 ---
 
+## 2026-08-28 — I0 isolated-infrastructure specification and provider baseline
+
+### Added
+
+- `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` 1.0.0 with local/Preview/Production boundaries, migration and secret contracts, failure analysis, cost gates, recovery strategy and requirement-level evidence;
+- `artifacts/ARO-I0/BASELINE.md` with live read-only GitHub, Vercel, Supabase, domain and local-runtime evidence;
+- `artifacts/ARO-I0/VERIFICATION.md` with requirement-level package evidence, 61 passing tests, passing build and the unchanged 19-error/9-warning lint baseline;
+- an explicit $0 local Supabase path, currently blocked because this host has no Docker-compatible runtime.
+
+### Provider truth
+
+- Vercel `aro-club` is linked to `leonartist7/ARO.club`; `langgie` remains linked to `leonartist7/Tonguee`;
+- M0 production deployment for `67d5c8d` is READY;
+- Supabase Free still has two ACTIVE_HEALTHY projects: Tonguee and quarantined `aro-platform`;
+- a new project currently quotes $0/month but cannot be created at the active-project limit;
+- Preview branch compute currently quotes $0.01344/hour and remains unapproved;
+- `aro.club` is not attached to the connected ARO Vercel project and currently serves a different Spanish-language site, so ownership/disposition is a founder gate.
+
+### Security hygiene
+
+Removed the literal legacy Tonguee browser anon key from `DEPLOYMENT.md` and replaced it with provider-neutral placeholders. SEC0 still requires no rotation or history rewrite solely for that publishable-key category.
+
+### Status transition
+
+- M0: **VERIFIED**.
+- I0: **SPEC-READY / IMPLEMENTATION BLOCKED**.
+- P1 remains **SPEC-READY / BASELINE BLOCKED**; no schema or provider mutation occurred.
+
 ## 2026-08-27 — Master Delivery Plan and cloud-task contract
 
 ### Decision
