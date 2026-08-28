@@ -16,7 +16,7 @@ export default function AdminRoute({ children }) {
 
   // Not authenticated — send to login so they can return after sign-in
   if (!user) {
-    return <Navigate to="/choose-role" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   // Authenticated but not admin — generic not-found

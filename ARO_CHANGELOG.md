@@ -6,6 +6,33 @@
 
 ---
 
+## 2026-08-28 — Q0 reliability and CI foundation
+
+### Implemented
+
+- eliminated the inherited 19 lint errors and 9 warnings without broad rule disablement;
+- added a portable Vite/Chromium E2E harness with platform-aware child cleanup and a narrowly scoped Windows loopback-suspension retry;
+- removed stale localStorage user impersonation journeys and replaced them with real signed-out, fail-closed and hostile-local-state contracts;
+- added an explicit authenticated E2E gate that reports `BLOCKED_PREREQUISITE` until I0 supplies an approved isolated target and synthetic credentials;
+- added stable GitHub `Quality / static` and `Quality / browser-smoke` jobs;
+- made password recovery truthful and disabled without a backend, aligned the admin redirect with `/login`, fixed an inherited signup dark surface and repaired a corrupted footer separator.
+
+### Verification
+
+- lint PASS with zero warnings;
+- unit PASS, 61/61;
+- production build PASS, 2,602 modules;
+- public/fail-closed E2E PASS, 16/16;
+- 1440px live-Chrome visual audit PASS with no page error or framework overlay;
+- main JS changed by only +0.04 kB minified/+0.04 kB gzip; no dependency changed.
+
+### Status transition
+
+- Q0: **SPEC-REQUIRED → IMPLEMENTED / AUTH-GATE BLOCKED**.
+- I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED**.
+- P1 remains **SPEC-READY / BASELINE BLOCKED**.
+- No provider, schema, domain, billing or production mutation occurred.
+
 ## 2026-08-28 — I0 isolated-infrastructure specification and provider baseline
 
 ### Added

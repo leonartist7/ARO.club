@@ -9,7 +9,7 @@ export const copyToClipboard = async (text) => {
   try {
     await navigator.clipboard.writeText(text);
     return true;
-  } catch (err) {
+  } catch {
     // Fallback for older browsers
     const textArea = document.createElement('textarea');
     textArea.value = text;
@@ -21,7 +21,7 @@ export const copyToClipboard = async (text) => {
       document.execCommand('copy');
       document.body.removeChild(textArea);
       return true;
-    } catch (err) {
+    } catch {
       document.body.removeChild(textArea);
       return false;
     }

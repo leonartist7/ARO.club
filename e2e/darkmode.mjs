@@ -1,11 +1,9 @@
-import { BASE, launch, seedPlayer, createRun, assert } from './harness.mjs';
+import { BASE, launch, navigate, createRun, assert } from './harness.mjs';
 
 const ROUTES = [
   '/', '/explore', '/about', '/how-it-works', '/for-teachers', '/faq', '/contact',
   '/leaderboard', '/map', '/terms', '/login', '/signup', '/experience/exp1',
   '/teacher/t1', '/no-such-page', '/favorites', '/recently-viewed', '/compare',
-  '/student-dashboard', '/profile', '/games', '/shop', '/chat', '/character-builder',
-  '/passport', '/teacher/dashboard',
 ];
 
 /**
@@ -23,16 +21,15 @@ export default async function darkMode() {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
 
-  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
-  await page.evaluate((data) => {
-    localStorage.setItem('conversa-player', JSON.stringify(data));
+  await navigate(page, BASE, { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => {
     localStorage.setItem('conversa-theme', 'dark');
-  }, seedPlayer({ bookings: [], badges: [] }));
+  });
 
   const offenders = [];
 
   for (const route of ROUTES) {
-    await page.goto(BASE + route, { waitUntil: 'domcontentloaded' });
+    await navigate(page, BASE + route, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(1100);
     await page.evaluate(() => document.documentElement.classList.add('dark'));
     await page.waitForTimeout(400);
@@ -85,7 +82,7 @@ export default async function darkMode() {
   const lowContrast = [];
 
   for (const route of ROUTES) {
-    await page.goto(BASE + route, { waitUntil: 'domcontentloaded' });
+    await navigate(page, BASE + route, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(1000);
     await page.evaluate(() => document.documentElement.classList.add('dark'));
     await page.waitForTimeout(400);

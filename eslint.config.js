@@ -28,6 +28,18 @@ export default defineConfig([
       // Mark identifiers referenced in JSX (e.g. `motion.div`, `<Icon/>`) as used,
       // so no-unused-vars stops false-flagging Framer Motion + component imports.
       'react/jsx-uses-vars': 'error',
+      'react-refresh/only-export-components': ['error', {
+        allowExportNames: [
+          'useAuth',
+          'useCompare',
+          'useFavoritesContext',
+          'useLanguage',
+          'useRecentlyViewedContext',
+          'useSavedSearchesContext',
+          'useTheme',
+          'useToastContext',
+        ],
+      }],
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^[A-Z_]' }],
     },
   },

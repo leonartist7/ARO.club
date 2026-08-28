@@ -11,7 +11,7 @@ const socialLinks = [
 ];
 
 /**
- * Footer ? warm two-tone surface, trust strip, link columns, social, legal.
+ * Footer with a warm two-tone surface, trust strip, link columns, social, legal.
  */
 export default function Footer() {
   const { t } = useLanguage();
@@ -45,7 +45,7 @@ export default function Footer() {
               {t('footer.trustVerified')}
             </span>
             <span className="hidden sm:inline text-primary-300 dark:text-primary-700" aria-hidden="true">
-              ?
+              &bull;
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Heart className="w-4 h-4 fill-current" aria-hidden="true" />

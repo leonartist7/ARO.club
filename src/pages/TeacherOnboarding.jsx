@@ -96,7 +96,7 @@ export default function TeacherOnboarding() {
   const [bio, setBio] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user, updateProfile } = useAuth();
+  const { user } = useAuth();
 
   const handleSwipe = (direction, isLanguage = false) => {
     if (direction === 'right') {

@@ -1,5 +1,4 @@
 import { Plus, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { useCompare } from '../../hooks/useCompare';
 import Button from './Button';

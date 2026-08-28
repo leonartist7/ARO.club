@@ -1,4 +1,4 @@
-import { BASE, launch, createRun, assert } from './harness.mjs';
+import { BASE, launch, navigate, createRun, assert } from './harness.mjs';
 
 const ROUTES = [
   '/', '/explore', '/about', '/how-it-works', '/for-teachers',
@@ -26,7 +26,7 @@ export default async function responsive() {
     const overflowing = [];
 
     for (const route of ROUTES) {
-      await page.goto(BASE + route, { waitUntil: 'domcontentloaded' });
+      await navigate(page, BASE + route, { waitUntil: 'domcontentloaded' });
       await page.waitForTimeout(2200); // let entrance animations settle
 
       const result = await page.evaluate(() => ({

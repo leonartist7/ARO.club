@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
@@ -21,6 +21,74 @@ export default function ChatPage() {
   const recordActivity = usePlayerStore((state) => state.recordActivity);
   const completeQuest = usePlayerStore((state) => state.completeQuest);
 
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const loadConversations = useCallback(async () => {
+    // No session - run the UI on seed threads so chat stays designable.
+    if (!user?.id) {
+      setConversations(MOCK_CONVERSATIONS);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('conversations')
+        .select(`
+          *,
+          student:student_id(id, name, avatar),
+          teacher:teacher_id(id, name, avatar)
+        `)
+        .or(`student_id.eq.${user.id},teacher_id.eq.${user.id}`)
+        .order('last_message_at', { ascending: false });
+
+      if (error) throw error;
+
+      const conversationsWithOther = data?.map((conversation) => {
+        const isStudent = conversation.student_id === user.id;
+        return {
+          ...conversation,
+          otherPerson: isStudent ? conversation.teacher : conversation.student,
+          isStudent,
+        };
+      });
+
+      setConversations(conversationsWithOther || []);
+    } catch (error) {
+      console.error('Error loading conversations:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [user?.id]);
+
+  const loadMessages = useCallback(async (conversationId) => {
+    if (!user?.id) {
+      setMessages(mockMessagesFor(conversationId));
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('messages')
+        .select('*')
+        .eq('conversation_id', conversationId)
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      setMessages(data || []);
+
+      await supabase
+        .from('messages')
+        .update({ read: true })
+        .eq('conversation_id', conversationId)
+        .neq('sender_id', user.id);
+    } catch (error) {
+      console.error('Error loading messages:', error);
+    }
+  }, [user?.id]);
+
   useEffect(() => {
     loadConversations();
 
@@ -35,7 +103,7 @@ export default function ChatPage() {
         schema: 'public',
         table: 'conversations',
         filter: `student_id=eq.${user.id},teacher_id=eq.${user.id}`
-      }, (payload) => {
+      }, () => {
         loadConversations();
       })
       .subscribe();
@@ -43,7 +111,7 @@ export default function ChatPage() {
     return () => {
       conversationSubscription.unsubscribe();
     };
-  }, [user]);
+  }, [loadConversations, user?.id]);
 
   useEffect(() => {
     if (selectedConversation) {
@@ -69,81 +137,11 @@ export default function ChatPage() {
         messageSubscription.unsubscribe();
       };
     }
-  }, [selectedConversation]);
+  }, [loadMessages, scrollToBottom, selectedConversation, user?.id]);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const loadConversations = async () => {
-    // No session - run the UI on seed threads so chat stays designable.
-    if (!user?.id) {
-      setConversations(MOCK_CONVERSATIONS);
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('conversations')
-        .select(`
-          *,
-          student:student_id(id, name, avatar),
-          teacher:teacher_id(id, name, avatar)
-        `)
-        .or(`student_id.eq.${user.id},teacher_id.eq.${user.id}`)
-        .order('last_message_at', { ascending: false });
-
-      if (error) throw error;
-
-      // Get the other person in each conversation
-      const conversationsWithOther = data?.map(conv => {
-        const isStudent = conv.student_id === user.id;
-        return {
-          ...conv,
-          otherPerson: isStudent ? conv.teacher : conv.student,
-          isStudent,
-        };
-      });
-
-      setConversations(conversationsWithOther || []);
-    } catch (error) {
-      console.error('Error loading conversations:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const loadMessages = async (conversationId) => {
-    if (!user?.id) {
-      setMessages(mockMessagesFor(conversationId));
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('messages')
-        .select('*')
-        .eq('conversation_id', conversationId)
-        .order('created_at', { ascending: true });
-
-      if (error) throw error;
-      setMessages(data || []);
-
-      // Mark messages as read
-      await supabase
-        .from('messages')
-        .update({ read: true })
-        .eq('conversation_id', conversationId)
-        .neq('sender_id', user.id);
-    } catch (error) {
-      console.error('Error loading messages:', error);
-    }
-  };
+  }, [messages, scrollToBottom]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();

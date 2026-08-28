@@ -21,6 +21,8 @@ Terminology is locked by `DECISIONS.md`: **Opportunity** is the universal arrang
 
 The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, Q0, N1, X1 and A1 are enabling packages defined by `ARO_MASTER_DELIVERY_PLAN.md`; none may implement downstream product behavior by implication.
 
+Current enabling-state record (2026-08-28): M0 is **VERIFIED**; I0 is **SPEC-READY / IMPLEMENTATION BLOCKED**; Q0 is **IMPLEMENTED / AUTH-GATE BLOCKED** with local public gates passing. The real Auth/RLS suite still requires I0, and branch protection remains founder-authorized provider work.
+
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 
 ## P0 / P0.1 — Director Reset and Pack Completion

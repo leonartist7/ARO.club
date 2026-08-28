@@ -3,7 +3,7 @@ import { create } from 'zustand';
 /**
  * Global app store using Zustand
  */
-export const useStore = create((set, get) => ({
+export const useStore = create((set) => ({
   // UI State
   isMobileMenuOpen: false,
   setMobileMenuOpen: (isOpen) => set({ isMobileMenuOpen: isOpen }),

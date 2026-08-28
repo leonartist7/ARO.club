@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
@@ -58,20 +58,7 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadQuestions();
-  }, []);
-
-  useEffect(() => {
-    if (timeLeft > 0 && !showFeedback) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0) {
-      handleNext();
-    }
-  }, [timeLeft, showFeedback]);
-
-  const loadQuestions = async () => {
+  const loadQuestions = useCallback(async () => {
     // The bundled bank keeps the game playable with no backend attached.
     // Supabase overrides it whenever the table actually has content.
     let loaded = getQuestions(language, 10);
@@ -91,7 +78,31 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
 
     setQuestions(loaded);
     setLoading(false);
-  };
+  }, [language]);
+
+  const handleNext = useCallback(() => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+      setShowFeedback(false);
+      setTimeLeft(30);
+    } else {
+      onComplete(score, questions.length);
+    }
+  }, [currentQuestion, onComplete, questions.length, score]);
+
+  useEffect(() => {
+    loadQuestions();
+  }, [loadQuestions]);
+
+  useEffect(() => {
+    if (timeLeft > 0 && !showFeedback) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+    if (timeLeft === 0) handleNext();
+    return undefined;
+  }, [handleNext, showFeedback, timeLeft]);
 
   const handleAnswer = (answer) => {
     if (showFeedback) return;
@@ -106,17 +117,6 @@ function WordMatchGame({ onComplete, language = 'Spanish' }) {
     setTimeout(() => {
       handleNext();
     }, 1500);
-  };
-
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
-      setShowFeedback(false);
-      setTimeLeft(30);
-    } else {
-      onComplete(score, questions.length);
-    }
   };
 
   if (loading) {
@@ -213,20 +213,7 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadQuestions();
-  }, []);
-
-  useEffect(() => {
-    if (timeLeft > 0 && !showFeedback) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0) {
-      handleNext();
-    }
-  }, [timeLeft, showFeedback]);
-
-  const loadQuestions = async () => {
+  const loadQuestions = useCallback(async () => {
     // The bundled bank keeps the game playable with no backend attached.
     // Supabase overrides it whenever the table actually has content.
     let loaded = getQuestions(language, 20);
@@ -245,7 +232,31 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
 
     setQuestions(loaded);
     setLoading(false);
-  };
+  }, [language]);
+
+  const handleNext = useCallback(() => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+      setShowFeedback(false);
+      setTimeLeft(15);
+    } else {
+      onComplete(score, questions.length);
+    }
+  }, [currentQuestion, onComplete, questions.length, score]);
+
+  useEffect(() => {
+    loadQuestions();
+  }, [loadQuestions]);
+
+  useEffect(() => {
+    if (timeLeft > 0 && !showFeedback) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+    if (timeLeft === 0) handleNext();
+    return undefined;
+  }, [handleNext, showFeedback, timeLeft]);
 
   const handleAnswer = (answer) => {
     if (showFeedback) return;
@@ -261,17 +272,6 @@ function SpeedQuizGame({ onComplete, language = 'Spanish' }) {
     setTimeout(() => {
       handleNext();
     }, 1000);
-  };
-
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
-      setShowFeedback(false);
-      setTimeLeft(15);
-    } else {
-      onComplete(score, questions.length);
-    }
   };
 
   if (loading) {
@@ -398,12 +398,7 @@ export default function GamesPage() {
   const streak = usePlayerStore((state) => state.streak);
   const playerLanguages = usePlayerStore((state) => state.languages);
 
-  useEffect(() => {
-    loadLeaderboard();
-    checkDailyStreak();
-  }, []);
-
-  const loadLeaderboard = async () => {
+  const loadLeaderboard = useCallback(async () => {
     // Rank the seed students against the live player so the board is
     // populated and the player's own position is real, backend or not.
     const localBoard = [...studentsData]
@@ -427,9 +422,9 @@ export default function GamesPage() {
     } catch (error) {
       console.error('Using the local leaderboard:', error);
     }
-  };
+  }, [points, user?.id]);
 
-  const checkDailyStreak = async () => {
+  const checkDailyStreak = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -449,7 +444,12 @@ export default function GamesPage() {
     } catch (error) {
       console.error('Error checking streak:', error);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadLeaderboard();
+    checkDailyStreak();
+  }, [checkDailyStreak, loadLeaderboard]);
 
   const handleGameComplete = async (score, totalQuestions) => {
     const game = GAMES.find(g => g.id === selectedGame);
