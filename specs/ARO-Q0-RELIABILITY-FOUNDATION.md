@@ -211,11 +211,11 @@ No product analytics. CI records duration, pass/fail and artifact metadata only.
 |---|---|---|---|---|
 | Q0-001 | lint is clean without broad disables | `npm run lint -- --max-warnings=0` | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
 | Q0-002 | unit/build baseline passes | npm commands | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
-| Q0-003 | E2E runner is cross-platform and cleans up | Windows local + CI | `artifacts/ARO-Q0/VERIFICATION.md` | LOCAL PASS / CI PENDING |
+| Q0-003 | E2E runner is cross-platform and cleans up | Windows local + CI | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
 | Q0-004 | public/fail-closed contracts pass | `npm run test:e2e` | `artifacts/ARO-Q0/VERIFICATION.md` | PASS 16/16 |
 | Q0-005 | stale fake-auth assumptions are removed | hostile source/test review | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
 | Q0-006 | authenticated suite is explicit and honest | prerequisite and real-target runs | `artifacts/ARO-Q0/VERIFICATION.md` | BLOCKED ON I0 |
-| Q0-007 | GitHub CI enforces public gates | PR check results | `.github/workflows/quality.yml` | IMPLEMENTED / PR PENDING |
+| Q0-007 | GitHub CI enforces public gates | PR check results | PR #26, `.github/workflows/quality.yml` | PASS |
 | Q0-008 | branch protection references stable checks | GitHub API | future Q0 verification | TODO / PROVIDER GATE |
 | Q0-009 | bundle/performance baseline is not regressed | build output | `artifacts/ARO-Q0/VERIFICATION.md` | PASS (+0.04 kB main JS) |
 | Q0-010 | no provider/schema/product expansion | diff and provider audit | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
@@ -268,8 +268,8 @@ Until I0 exists, the maximum truthful status is **IMPLEMENTED / AUTH-GATE BLOCKE
 Package: ARO-Q0
 Spec version: 1.0.0
 Branch: feat/aro-q0-reliability-foundation
-PR: pending creation
-Commit: pending
+PR: #26
+Commit: 464e0b8 plus evidence finalization
 Acceptance: local public gates pass; Auth/branch-protection gates blocked
 Unit: 61/61 PASS
 Integration: public/fail-closed PASS; real Auth BLOCKED_PREREQUISITE

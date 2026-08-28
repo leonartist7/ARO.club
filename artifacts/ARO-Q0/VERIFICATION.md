@@ -20,7 +20,7 @@ Q0 is **IMPLEMENTED / AUTH-GATE BLOCKED**. All locally runnable repository and p
 | Public E2E | `npm run test:e2e` | PASS — 16/16 checks |
 | Authenticated E2E | `npm run test:e2e:auth` without I0 inputs | BLOCKED_PREREQUISITE, non-zero as required |
 | Git diff | `git diff --check` | pending final delivery rerun |
-| GitHub CI | `Quality / static`, `Quality / browser-smoke` | pending PR execution |
+| GitHub CI | `Quality / static`, `Quality / browser-smoke` | PASS on PR #26 — 32s / 2m40s |
 
 ## Browser contract evidence
 
@@ -70,8 +70,7 @@ The inherited >500 kB bundle warning remains assigned to the later platform/perf
 
 ## Remaining gates
 
-1. Run GitHub `Quality / static` and `Quality / browser-smoke` on the PR.
-2. Supply an approved I0 isolated URL and synthetic account, then extend/run real Auth and RLS journeys.
-3. Configure branch protection against stable checks only with explicit founder/provider authorization.
+1. Supply an approved I0 isolated URL and synthetic account, then extend/run real Auth and RLS journeys.
+2. Configure branch protection against stable checks only with explicit founder/provider authorization.
 
 Until those gates close, Q0 cannot be marked VERIFIED.
