@@ -17,18 +17,22 @@ export function authClient(anonKey) {
 }
 
 async function recoveryMail(email) {
-  const deadline = Date.now() + 30000;
-  while (Date.now() < deadline) {
-    const listing = await localFetch(`${MAIL}/api/v1/messages`, MAIL);
-    requireCondition(listing.status === 200, 'MAIL_LIST_FAILED');
-    const data = await listing.json();
-    const message = data.messages?.find(item => item.To?.some(to => to.Address === email));
-    if (message) {
-      const response = await localFetch(`${MAIL}/api/v1/message/${encodeURIComponent(message.ID)}`, MAIL);
-      requireCondition(response.status === 200, 'MAIL_READ_FAILED');
-      return (await response.json()).HTML;
+  const signal = AbortSignal.timeout(30000);
+  try {
+    while (!signal.aborted) {
+      const listing = await localFetch(`${MAIL}/api/v1/messages`, MAIL, { signal });
+      requireCondition(listing.status === 200, 'MAIL_LIST_FAILED');
+      const data = await listing.json();
+      const message = data.messages?.find(item => item.To?.some(to => to.Address === email));
+      if (message) {
+        const response = await localFetch(`${MAIL}/api/v1/message/${encodeURIComponent(message.ID)}`, MAIL, { signal });
+        requireCondition(response.status === 200, 'MAIL_READ_FAILED');
+        return (await response.json()).HTML;
+      }
+      await delay(500, undefined, { signal });
     }
-    await delay(500);
+  } catch (error) {
+    if (!signal.aborted) throw error;
   }
   throw new Error('MAIL_TIMEOUT');
 }

@@ -40,3 +40,23 @@ test('only local recovery link with exact callback is accepted', () => {
     assert.throws(() => recoveryLink(`<a href="${link}">Reset</a>`));
   }
 });
+
+test('caller cancellation aborts an in-flight request without waiting for timeout', async () => {
+  const controller = new AbortController();
+  const reason = new Error('synthetic cancellation');
+  const request = localFetch(API, API, { signal: controller.signal }, async (_url, options) => {
+    assert.notEqual(options.signal, controller.signal);
+    assert.equal(options.redirect, 'manual');
+    return new Promise((_resolve, reject) => {
+      options.signal.addEventListener('abort', () => reject(options.signal.reason), { once: true });
+    });
+  });
+  controller.abort(reason);
+  await assert.rejects(request, error => error === reason);
+});
+
+test('already-cancelled requests never invoke fetch', async () => {
+  let calls = 0;
+  await assert.rejects(localFetch(API, API, { signal: AbortSignal.abort() }, async () => { calls += 1; }), { name: 'AbortError' });
+  assert.equal(calls, 0);
+});

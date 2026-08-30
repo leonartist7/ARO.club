@@ -27,7 +27,10 @@ export function requireHostedRunner(env, platform) {
 
 export async function localFetch(raw, origin, options = {}, fetcher = fetch) {
   const url = validateTarget(raw, origin);
-  return fetcher(url, { ...options, redirect: 'manual', signal: AbortSignal.timeout(15000) });
+  const timeout = AbortSignal.timeout(15000);
+  const signal = options.signal ? AbortSignal.any([options.signal, timeout]) : timeout;
+  signal.throwIfAborted();
+  return fetcher(url, { ...options, redirect: 'manual', signal });
 }
 
 export function recoveryLink(html) {

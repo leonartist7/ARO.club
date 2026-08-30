@@ -65,3 +65,12 @@ This is a platform fixture, not the application database. Passing it will not pr
 ## Review
 
 Implementation self-review checks exact project/network ownership, localhost URLs and published ports, generated-data retention, no raw credentials in output, fail-closed checks, and cleanup on failure. CodeRabbit's initial automatic check skipped review; that SUCCESS is not review evidence. A [full security/operations review was explicitly requested](https://github.com/leonartist7/ARO.club/pull/27#issuecomment-5470193181); the bot confirmed review run `0c729a54-00c4-4786-9abf-8fe3616cf316` in progress. Review findings/sign-off remain pending; no independent human approval is claimed.
+
+### Review findings and response
+
+CodeRabbit completed the requested review of `6a2c0da` with two minor findings and no reported high/critical finding:
+
+1. [Stale PR metadata](https://github.com/leonartist7/ARO.club/pull/27#discussion_r3890058826): already corrected in `9a83d0c`.
+2. [Caller cancellation overwritten](https://github.com/leonartist7/ARO.club/pull/27#discussion_r3890058830): fixed by composing the caller's signal with the fixed request timeout. Two regression tests cover in-flight and already-aborted cancellation. Recovery polling now also uses a shared 30-second deadline signal, so an in-flight request cannot extend the polling budget.
+
+Local boundary suite after the correction: 8/8 PASS. Runtime changes require a fresh CI run before verification/merge. The independent review is automated, not a human approval or a waiver of later hosted/founder gates. No additional paid review is requested.
