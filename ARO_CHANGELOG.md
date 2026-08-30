@@ -438,3 +438,13 @@ For future entries include, when relevant:
 - next gate.
 
 This file is append-only evidence of evolution; `ARO_CURRENT_STATE.md` remains the concise answer to what is true now.
+
+---
+
+## 2026-08-30 — I0.1 disposable Supabase CI implementation
+
+Parent I0 already permits a synthetic, disposable CI database. Added a bounded I0.1 specification and implementation on `feat/aro-i0-ephemeral-ci` to exercise this lane without hosted capacity or a local Windows container runtime. The harness pins CLI 2.116.0, restricts execution to GitHub-hosted Linux, enforces loopback bindings, runs a rolled-back RLS probe and synthetic Auth/recovery lifecycle, and verifies reset and targeted cleanup.
+
+Local boundary tests pass (6/6); existing unit tests pass (61/61), lint is clean and the production build/bundle is unchanged. Actual CI database/Auth tests and pre-merge security/operations review are pending. Status: **IN-PROGRESS**, not VERIFIED. See `artifacts/ARO-I0.1/VERIFICATION.md`.
+
+Corrected stale infrastructure branch/main references against live GitHub (`87121a7`). No hosted variable, domain, provider, application table, historical SQL or dependency was changed. The fixture deliberately has no product migrations; application migration provenance and full I0/Q0 Auth/P1 gates remain unresolved. Tonguee is preserved and aro-platform remains **QUARANTINED — KEEP**.

@@ -159,6 +159,8 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ## 6. Phase Q0 — Reliability foundation
 
+I0 execution update (2026-08-30): a disposable GitHub-hosted Supabase CI lane is being implemented as `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, under I0's existing local/CI authority. It needs no hosted capacity or local Windows runtime. Actual CI verification and security/operations review remain pending. This platform-only fixture does not resolve application migration provenance, hosted capacity or the full I0/P1 gates.
+
 ### Goal
 
 Make the inherited application baseline deterministic enough that new P1 regressions are distinguishable from legacy debt.

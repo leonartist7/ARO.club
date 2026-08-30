@@ -2,7 +2,7 @@
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-28
+> **Last strategic update:** 2026-08-30
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -125,6 +125,10 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider baseline in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`. The approved $0/month hosted project remains blocked by the two-active-free-project limit, and the current host has no Docker-compatible runtime for the $0 local Supabase path. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP**.
 
 Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 production deployment. The connected `aro-club` project does not list `aro.club`; that hostname currently serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action.
+
+### I0 execution update — disposable CI lane
+
+**ARO-I0.1 is IN-PROGRESS** on `feat/aro-i0-ephemeral-ci`, based on Q0 merge `87121a7`. It implements the disposable CI lane already allowed by I0, without hosted credentials or application migrations. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Local boundary tests pass; actual CI/Auth/SQL/reset evidence and security/operations review are pending. A passing platform fixture will not establish inherited-schema compatibility or open P1 automatically. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
 
 ### ARO-Q0 — Reliability and CI Foundation
 

@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 28, 2026.**
+> **Status as of August 30, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
@@ -29,6 +29,8 @@ The existing Tonguee product provides a significant working vertical foundation.
 **ARO-Q0 — Reliability and CI Foundation** is **IMPLEMENTED / AUTH-GATE BLOCKED**. Lint, 61 unit tests, build and 16 public/fail-closed browser checks pass locally; GitHub Quality jobs are defined. Real Auth/RLS verification waits for I0 and branch protection remains founder-authorized provider work.
 
 ### Next runtime package
+
+I0.1 update: the disposable Supabase CI subpackage is **IN-PROGRESS** (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Boundary unit tests pass; real CI platform/Auth/RLS-probe/reset evidence and required review are pending. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated.
 
 **ARO-P1 — Capability and Goal Foundation**
 
