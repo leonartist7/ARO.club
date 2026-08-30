@@ -1,7 +1,7 @@
 # ARO-I0.1 verification
 
 Date: 2026-08-30. Spec: 1.0.0. Base: `87121a74bcf9d5db3b0dd41d0063c556fbe933af`.
-Branch: `feat/aro-i0-ephemeral-ci`. Status: IN-PROGRESS; CI and required review pending.
+Branch: `feat/aro-i0-ephemeral-ci`. PR: [#27](https://github.com/leonartist7/ARO.club/pull/27). Status: IMPLEMENTED / REVIEW PENDING; platform CI passes.
 
 ## Baseline
 
@@ -25,13 +25,38 @@ Branch: `feat/aro-i0-ephemeral-ci`. Status: IN-PROGRESS; CI and required review 
 
 | Criterion | Status | Evidence still required |
 |---|---|---|
-| CI-001 pinned isolated runner | IMPLEMENTED | actual GitHub execution |
-| CI-002 start/reset/bindings | NOT RUN | live CI assertions |
-| CI-003 hostile SQL twice | NOT RUN | 21 assertions each run |
-| CI-004 Auth lifecycle | NOT RUN | signup/signin/refresh/recovery/change/logout/admin denial |
-| CI-005 reset/cleanup | NOT RUN | zero accounts, old credentials denied, no resources |
-| CI-006 unchanged app quality | LOCAL PASS / CI PENDING | PR Quality jobs |
-| CI-007 evidence/status/review | IN-PROGRESS | completed evidence and security/operations review |
+| CI-001 pinned isolated runner | PASS | run 33325347032, 6/6 boundary assertions |
+| CI-002 start/reset/bindings | PASS | healthy start, all published ports loopback, clean reset |
+| CI-003 hostile SQL twice | PASS | pgTAP 21/21 on both runs |
+| CI-004 Auth lifecycle | PASS | signup/signin/refresh/recovery/change/logout/admin denial |
+| CI-005 reset/cleanup | PASS | exactly two synthetic accounts before reset, zero after; prior password denied; no stack resources after cleanup |
+| CI-006 unchanged app quality | PASS | local baseline + Quality run 33325347076 SUCCESS (static and browser-smoke) |
+| CI-007 evidence/status/review | REVIEW PENDING | actual automated security/operations review requested |
+
+## Live CI evidence
+
+Commit: `6a2c0daa9393b6bb5e935df4b5523fd27af9c7b2`.
+[Isolated database run 33325347032](https://github.com/leonartist7/ARO.club/actions/runs/33325347032): SUCCESS, platform job 1m37s, 2026-08-30 17:28:26–17:30:03 UTC. This was an actual Docker/Supabase run, not a mocked result.
+
+| Phase | Seconds | Result |
+|---|---:|---|
+| fresh runner | 0.19 | PASS |
+| start + loopback binding inspection | 45.80 | PASS |
+| initial reset + zero accounts | 12.84 | PASS |
+| first SQL isolation matrix | 3.27 | 21/21 PASS |
+| signup two users | 0.29 | PASS |
+| bad password, signin, refresh, identity, admin denial | 0.32 | PASS |
+| local mail recovery + password change + old-password denial | 0.44 | PASS |
+| global logout + refresh denial | 0.05 | PASS |
+| exactly two synthetic accounts | 0.05 | PASS |
+| reset + zero accounts + prior credentials denied | 12.43 | PASS |
+| second SQL isolation matrix | 1.16 | 21/21 PASS |
+| targeted container/volume/network cleanup | 2.30 | PASS |
+| workflow always-cleanup confirmation | 0.04 | PASS |
+
+The synthetic resources were intentionally erased and are not recoverable; no user or hosted data was involved. Job duration is below the 25-minute budget. No skipped health checks or ignored failures. No raw keys, tokens, mail contents or service logs were uploaded. Existing checkout/setup-node Node20-to-24 deprecation annotation is non-blocking and recorded as maintenance debt.
+
+[Quality run 33325347076](https://github.com/leonartist7/ARO.club/actions/runs/33325347076): SUCCESS, including lint/unit/build and public browser smoke. No application-source or dependency diff versus `87121a7`.
 
 ## Scope qualification
 
@@ -39,4 +64,4 @@ This is a platform fixture, not the application database. Passing it will not pr
 
 ## Review
 
-Implementation self-review checks exact project/network ownership, localhost URLs and published ports, generated-data retention, no raw credentials in output, fail-closed checks, and cleanup on failure. Independent security/operations review has not been claimed and remains required before merge.
+Implementation self-review checks exact project/network ownership, localhost URLs and published ports, generated-data retention, no raw credentials in output, fail-closed checks, and cleanup on failure. CodeRabbit's initial automatic check skipped review; that SUCCESS is not review evidence. A [full security/operations review was explicitly requested](https://github.com/leonartist7/ARO.club/pull/27#issuecomment-5470193181); the bot confirmed review run `0c729a54-00c4-4786-9abf-8fe3616cf316` in progress. Review findings/sign-off remain pending; no independent human approval is claimed.

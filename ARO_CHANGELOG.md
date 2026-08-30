@@ -448,3 +448,7 @@ Parent I0 already permits a synthetic, disposable CI database. Added a bounded I
 Local boundary tests pass (6/6); existing unit tests pass (61/61), lint is clean and the production build/bundle is unchanged. Actual CI database/Auth tests and pre-merge security/operations review are pending. Status: **IN-PROGRESS**, not VERIFIED. See `artifacts/ARO-I0.1/VERIFICATION.md`.
 
 Corrected stale infrastructure branch/main references against live GitHub (`87121a7`). No hosted variable, domain, provider, application table, historical SQL or dependency was changed. The fixture deliberately has no product migrations; application migration provenance and full I0/Q0 Auth/P1 gates remain unresolved. Tonguee is preserved and aro-platform remains **QUARANTINED — KEEP**.
+
+### I0.1 live verification update
+
+PR #27 commit `6a2c0da` passed Isolated database run `33325347032` in 1m37s: 6 boundary assertions, 21 pgTAP assertions twice, real synthetic Auth/recovery/password-change/logout/admin denial, reset-erasure and targeted cleanup. Quality run `33325347076` also passed. Status is now **IMPLEMENTED / REVIEW PENDING**; the existing CodeRabbit integration is performing the explicitly requested security/operations review. No skipped-review SUCCESS is treated as approval. Detailed timings and remaining scope limits are recorded in `artifacts/ARO-I0.1/VERIFICATION.md`.

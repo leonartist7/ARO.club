@@ -128,7 +128,7 @@ Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 p
 
 ### I0 execution update — disposable CI lane
 
-**ARO-I0.1 is IN-PROGRESS** on `feat/aro-i0-ephemeral-ci`, based on Q0 merge `87121a7`. It implements the disposable CI lane already allowed by I0, without hosted credentials or application migrations. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Local boundary tests pass; actual CI/Auth/SQL/reset evidence and security/operations review are pending. A passing platform fixture will not establish inherited-schema compatibility or open P1 automatically. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
+**ARO-I0.1 is IMPLEMENTED / REVIEW PENDING** in PR #27 on `feat/aro-i0-ephemeral-ci`, based on Q0 merge `87121a7`. Real CI passes: 6 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup in a 1m37s job. Quality CI also passes. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Security/operations review remains pending. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
 
 ### ARO-Q0 — Reliability and CI Foundation
 

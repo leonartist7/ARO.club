@@ -269,7 +269,7 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 
 **ARO-I0 — Isolated Infrastructure and Provider Boundary**
 
-Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, IN-PROGRESS. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Local safety tests pass; real CI and required review are pending. No application migration target is certified yet.
+Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, IMPLEMENTED / REVIEW PENDING, PR #27. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; security/operations review remains pending. No application migration target is certified yet.
 
 Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. Complete the $0 local stack when a compatible container runtime is available, then obtain explicit founder approval before any hosted cost/provider/domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
 

@@ -106,7 +106,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 
 ## 4. Existing Tonguee foundation to preserve and re-verify
 
-I0 subpackage: **ARO-I0.1 Ephemeral Supabase CI — IN-PROGRESS**. Authority: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md` 1.0.0 under parent I0's existing CI authorization. Evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Actual CI and required review remain pending; this does not change P1's blocked baseline or certify the application schema.
+I0 subpackage: **ARO-I0.1 Ephemeral Supabase CI — IMPLEMENTED / REVIEW PENDING**, PR #27. Authority: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md` 1.0.0 under parent I0's existing CI authorization. Evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Real platform/Auth/SQL/reset/cleanup and Quality CI pass; security/operations review remains pending. This does not change P1's blocked baseline or certify the application schema.
 
 These are not “future ARO ideas”; they are existing implementation assets that ARO deliberately evolves rather than replaces.
 

@@ -2,10 +2,10 @@
 
 ## 0. Metadata
 
-- Status: SPEC-READY for implementation; security/operations review required before merge.
+- Status: IMPLEMENTED / REVIEW PENDING; platform CI passes, security/operations review required before merge.
 - Spec version: 1.0.0
 - Owner/director: ARO founder/director
-- Branch: `feat/aro-i0-ephemeral-ci`; PR not yet opened.
+- Branch: `feat/aro-i0-ephemeral-ci`; PR [#27](https://github.com/leonartist7/ARO.club/pull/27).
 - Depends on: SEC0, R1, M0; I0 1.0.0 CI authorization; Q0 implementation.
 - Governing authority: `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO_INFRASTRUCTURE.md`, `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` sections 8, 10 and 11, `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md`, `ARO_TRUST_SAFETY.md`, ADR-025–027.
 - Reviewers: implementation self-review; security/operations review before merge. Founder remains required for hosted resources, cost and release decisions.
@@ -143,15 +143,15 @@ Node unit tests cover target/redirect/host rejection and output sanitization. pg
 
 ## 24. Acceptance
 
-| ID | Requirement | Evidence | Initial state |
+| ID | Requirement | Evidence | Current state |
 |---|---|---|---|
-| CI-001 | pinned, hosted-free, isolated runner with no secrets | workflow + preflight tests | NOT RUN |
-| CI-002 | loopback-only healthy start and clean reset | CI binding/reset assertions | NOT RUN |
-| CI-003 | nonempty hostile SQL matrix passes twice | pgTAP counts and run log | NOT RUN |
-| CI-004 | real local Auth API lifecycle passes | named assertions | NOT RUN |
-| CI-005 | reset erases accounts; targeted cleanup is proven | count, credential denial, Docker enumeration | NOT RUN |
-| CI-006 | app unchanged and quality gates pass | diff + lint/unit/build/browser checks | NOT RUN |
-| CI-007 | scope/limits/evidence/status synchronized | review + verification record | NOT RUN |
+| CI-001 | pinned, hosted-free, isolated runner with no secrets | run 33325347032 + 6 boundary tests | PASS |
+| CI-002 | loopback-only healthy start and clean reset | CI binding/reset assertions | PASS |
+| CI-003 | nonempty hostile SQL matrix passes twice | 21/21 pgTAP assertions twice | PASS |
+| CI-004 | real local Auth API lifecycle passes | named assertions | PASS |
+| CI-005 | reset erases accounts; targeted cleanup is proven | count, credential denial, Docker enumeration | PASS |
+| CI-006 | app unchanged and quality gates pass | local + Quality CI run 33325347076 SUCCESS | PASS |
+| CI-007 | scope/limits/evidence/status synchronized | review + verification record | REVIEW PENDING |
 
 ## 25. Rollout
 
