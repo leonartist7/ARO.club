@@ -159,7 +159,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ## 6. Phase Q0 — Reliability foundation
 
-I0 execution update (2026-08-30): the disposable GitHub-hosted Supabase CI lane in PR #27 (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`) passes actual platform/Auth/SQL-probe/reset/cleanup tests. It needs no hosted capacity or local Windows runtime. Status: IMPLEMENTED / REVIEW PENDING. This platform-only fixture does not resolve application migration provenance, hosted capacity or the full I0/P1 gates.
+I0 execution update (2026-08-30): the disposable GitHub-hosted Supabase CI lane in PR #27 (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`) is VERIFIED at runtime commit `54e41b7`; release pending. Real platform/Auth/SQL/reset/cleanup and Quality checks pass, and automated review findings are resolved. It needs no hosted capacity or local Windows runtime. This fixture does not resolve application migration provenance, hosted capacity or full I0/P1 gates; source Trust drift requires reviewed baseline reconciliation.
 
 ### Goal
 

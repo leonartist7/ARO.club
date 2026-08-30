@@ -25,7 +25,7 @@ Current enabling-state record (2026-08-28): M0 is **VERIFIED**; I0 is **SPEC-REA
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 
-I0 execution update (2026-08-30): `ARO-I0.1` implements the parent-spec disposable CI lane in its own branch/PR. It tests platform infrastructure only, not application migration compatibility. Evidence and pre-merge security/operations review are required; no hosted or P1 gate is waived.
+I0 execution update (2026-08-30): `ARO-I0.1` is VERIFIED at `54e41b7` in PR #27, release pending. Actual platform CI passes and automated security/operations review findings are resolved. It tests platform infrastructure only, not application migration compatibility; no hosted or P1 gate is waived. Next technical gate is reviewed application-baseline reconciliation, including the live source Trust drift recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
 
 ## P0 / P0.1 — Director Reset and Pack Completion
 

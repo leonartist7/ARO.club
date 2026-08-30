@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- Status: IMPLEMENTED / REVIEW PENDING; platform CI passes, security/operations review required before merge.
+- Status: VERIFIED at runtime commit `54e41b7`; PR #27 release pending.
 - Spec version: 1.0.0
 - Owner/director: ARO founder/director
 - Branch: `feat/aro-i0-ephemeral-ci`; PR [#27](https://github.com/leonartist7/ARO.club/pull/27).
@@ -151,7 +151,7 @@ Node unit tests cover target/redirect/host rejection and output sanitization. pg
 | CI-004 | real local Auth API lifecycle passes | named assertions | PASS |
 | CI-005 | reset erases accounts; targeted cleanup is proven | count, credential denial, Docker enumeration | PASS |
 | CI-006 | app unchanged and quality gates pass | local + Quality CI run 33325347076 SUCCESS | PASS |
-| CI-007 | scope/limits/evidence/status synchronized | review + verification record | REVIEW PENDING |
+| CI-007 | scope/limits/evidence/status synchronized | completed automated review, both findings resolved, verification record | PASS |
 
 ## 25. Rollout
 
@@ -163,7 +163,7 @@ Dispose only the newly created CI project's resources. Never stop all projects o
 
 ## 27. Security review
 
-Implementation self-review must cover exact target, credentials, grants/RLS, redirects, log redaction and cleanup ownership. Required pre-merge security/operations review remains pending and must be recorded honestly.
+Implementation self-review covers exact target, credentials, grants/RLS, redirects, log redaction and cleanup ownership. CodeRabbit completed the requested security/operations review; both minor findings were resolved and fresh CI passed at `54e41b7`. No critical/high finding remains. This is automated independent review plus implementation self-review, not human approval. See the evidence record for links and scope.
 
 ## 28. Design review
 
@@ -175,4 +175,4 @@ All CI-001–007 pass with actual CI evidence, existing quality checks remain gr
 
 ## 30. Delivery record
 
-See `artifacts/ARO-I0.1/VERIFICATION.md`. Package remains unverified until the specified real CI run and review are complete.
+See `artifacts/ARO-I0.1/VERIFICATION.md`. CI-001–007 PASS for the platform-only scope. Runtime commit `54e41b7`; PR #27 release pending. Full I0, application Auth/Trust compatibility and P1 remain unverified.

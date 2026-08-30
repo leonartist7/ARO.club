@@ -143,7 +143,7 @@ Important baseline facts:
 
 - profiles is publicly readable and is not safe for private P1 goal/capability fields.
 - Repository SQL defines the Trust Engine, teacher applications/documents, admin audit behavior and verified-publish enforcement.
-- The P1 execution baseline must verify which repository Trust controls are applied in the live project.
+- A read-only 2026-08-30 catalog audit confirmed the repository Trust tables, profiles.role and verified-publish trigger are absent from this live source. Only the timestamp trigger exists on experiences, and its RLS checks publication status/teacher ownership, not verification. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`; do not copy this schema as a verified Trust baseline or mutate Tonguee under I0.1.
 - The connector reported no recorded migrations even though live schema exists. Future work must reconcile migration provenance and use append-only migrations.
 - Existing policies/grants include legacy broad patterns. New P1 tables must use explicit authenticated owner-only RLS and least privilege.
 - No P1 schema or RLS changes have been applied.
@@ -269,7 +269,7 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 
 **ARO-I0 — Isolated Infrastructure and Provider Boundary**
 
-Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, IMPLEMENTED / REVIEW PENDING, PR #27. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; security/operations review remains pending. No application migration target is certified yet.
+Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, VERIFIED at `54e41b7`, PR #27 release pending. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; automated security/operations review findings are resolved. No application migration target is certified yet.
 
 Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. Complete the $0 local stack when a compatible container runtime is available, then obtain explicit founder approval before any hosted cost/provider/domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
 

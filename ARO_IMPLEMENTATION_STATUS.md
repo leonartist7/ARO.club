@@ -30,7 +30,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 ### Next runtime package
 
-I0.1 update: the disposable Supabase CI subpackage is **IMPLEMENTED / REVIEW PENDING**, PR #27 (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Real CI platform/Auth/RLS-probe/reset/cleanup and Quality checks pass; security/operations review remains pending. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated.
+I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`, PR #27 release pending (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Real CI platform/Auth/RLS-probe/reset/cleanup and Quality checks pass; automated security/operations review findings are resolved. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated; live source Trust drift is recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
 
 **ARO-P1 — Capability and Goal Foundation**
 

@@ -128,7 +128,9 @@ Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 p
 
 ### I0 execution update — disposable CI lane
 
-**ARO-I0.1 is IMPLEMENTED / REVIEW PENDING** in PR #27 on `feat/aro-i0-ephemeral-ci`, based on Q0 merge `87121a7`. Real CI passes: 6 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup in a 1m37s job. Quality CI also passes. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Security/operations review remains pending. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
+**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 release pending. Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
+
+Migration-source finding (2026-08-30): live read-only Tonguee metadata lacks the repository Trust tables, `profiles.role` and verified-publish enforcement trigger. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. Source-code Trust foundations must not be described as verified live controls. A reviewed application baseline reconciliation is required; no Tonguee mutation was performed or authorized.
 
 ### ARO-Q0 — Reliability and CI Foundation
 

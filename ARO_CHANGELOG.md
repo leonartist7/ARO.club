@@ -452,3 +452,13 @@ Corrected stale infrastructure branch/main references against live GitHub (`8712
 ### I0.1 live verification update
 
 PR #27 commit `6a2c0da` passed Isolated database run `33325347032` in 1m37s: 6 boundary assertions, 21 pgTAP assertions twice, real synthetic Auth/recovery/password-change/logout/admin denial, reset-erasure and targeted cleanup. Quality run `33325347076` also passed. Status is now **IMPLEMENTED / REVIEW PENDING**; the existing CodeRabbit integration is performing the explicitly requested security/operations review. No skipped-review SUCCESS is treated as approval. Detailed timings and remaining scope limits are recorded in `artifacts/ARO-I0.1/VERIFICATION.md`.
+
+### I0.1 review and migration-source clarification
+
+The requested automated security/operations review completed with two minor findings. PR metadata was already corrected; caller cancellation and a strict recovery-poll deadline were fixed with two new tests (8/8 local PASS). A fresh runtime CI run is required before merge.
+
+Read-only Tonguee catalog inspection confirmed the repository Trust tables, profile role and verified-publish trigger are absent live; experience policies lack verification checks. This changes the next migration action: a reviewed application-baseline reconciliation is mandatory, not a blind schema copy. Evidence is in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. No production data, schema, provider or quarantined project was changed.
+
+### I0.1 package verification
+
+Runtime commit `54e41b7` passed Isolated database run `33325803194` and Quality run `33325803093`. Eight boundary tests and all SQL/Auth/reset/cleanup assertions pass. Both review threads are resolved. I0.1 is **VERIFIED** for its platform-only scope; PR #27 release is pending. Parent I0 and P1 are not verified. No further paid review or provider capacity was requested.

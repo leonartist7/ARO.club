@@ -1,7 +1,7 @@
 # ARO-I0.1 verification
 
 Date: 2026-08-30. Spec: 1.0.0. Base: `87121a74bcf9d5db3b0dd41d0063c556fbe933af`.
-Branch: `feat/aro-i0-ephemeral-ci`. PR: [#27](https://github.com/leonartist7/ARO.club/pull/27). Status: IMPLEMENTED / REVIEW PENDING; platform CI passes.
+Branch: `feat/aro-i0-ephemeral-ci`. PR: [#27](https://github.com/leonartist7/ARO.club/pull/27). Status: VERIFIED at runtime commit `54e41b7`; PR release pending.
 
 ## Baseline
 
@@ -31,7 +31,7 @@ Branch: `feat/aro-i0-ephemeral-ci`. PR: [#27](https://github.com/leonartist7/ARO
 | CI-004 Auth lifecycle | PASS | signup/signin/refresh/recovery/change/logout/admin denial |
 | CI-005 reset/cleanup | PASS | exactly two synthetic accounts before reset, zero after; prior password denied; no stack resources after cleanup |
 | CI-006 unchanged app quality | PASS | local baseline + Quality run 33325347076 SUCCESS (static and browser-smoke) |
-| CI-007 evidence/status/review | REVIEW PENDING | actual automated security/operations review requested |
+| CI-007 evidence/status/review | PASS | actual automated security/operations review completed; both minor findings resolved, fresh CI passes |
 
 ## Live CI evidence
 
@@ -74,3 +74,14 @@ CodeRabbit completed the requested review of `6a2c0da` with two minor findings a
 2. [Caller cancellation overwritten](https://github.com/leonartist7/ARO.club/pull/27#discussion_r3890058830): fixed by composing the caller's signal with the fixed request timeout. Two regression tests cover in-flight and already-aborted cancellation. Recovery polling now also uses a shared 30-second deadline signal, so an in-flight request cannot extend the polling budget.
 
 Local boundary suite after the correction: 8/8 PASS. Runtime changes require a fresh CI run before verification/merge. The independent review is automated, not a human approval or a waiver of later hosted/founder gates. No additional paid review is requested.
+
+### Final runtime verification
+
+Runtime commit: `54e41b741159c552e0c9f7da9cae3796b62901b6`.
+
+- [Isolated database run 33325803194](https://github.com/leonartist7/ARO.club/actions/runs/33325803194): SUCCESS, 8/8 boundary tests, 21/21 SQL assertions twice, all Auth/reset/cleanup assertions passed after the cancellation fix.
+- Start/bindings 39.61s; initial reset 11.87s; first SQL 2.31s; recovery/password change 0.42s; reset-erasure 11.87s; second SQL 0.91s; cleanup 2.20s; always-cleanup confirmation 0.04s.
+- [Quality run 33325803093](https://github.com/leonartist7/ARO.club/actions/runs/33325803093): SUCCESS, static and public browser checks.
+- Both review threads are resolved in GitHub. No unresolved critical/high issue or required acceptance failure remains for I0.1's stated platform scope. Subsequent skipped automatic CodeRabbit statuses are not counted as additional reviews.
+- Documentation-only evidence finalization does not change the tested runtime; its own PR checks must pass before merge.
+- Read-only migration-source evidence is separately recorded in `MIGRATION_SOURCE_AUDIT.md`; it confirms why application baseline reconciliation is still necessary and does not authorize a live fix.
