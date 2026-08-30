@@ -2,7 +2,7 @@
 
 > **Canonical operational map.** Agents must read this before changing Git branches, deployment configuration, Supabase projects, authentication providers, environment variables, migrations or production state.
 >
-> **Last verified:** 2026-08-28
+> **Last verified:** GitHub 2026-08-30; hosted-provider snapshot 2026-08-28
 >
 > This document records identifiers and decisions only. Never add secret values, tokens, service-role keys, passwords, recovery codes or private user data.
 
@@ -12,8 +12,8 @@
 
 - ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
-- The governed ARO history through `9394cb7` is present in ARO.club. M0 merged through PR #24; the active package branch is `spec/aro-i0-isolated-infrastructure`.
-- ARO.club `main` is `67d5c8d24bd6b6a11cff10d49407b321b1bf74cb`; independent Vercel production deployment `dpl_Gk92V3NpoRFwCTCKJyGRyGvn9M5S` is `READY`.
+- The governed ARO history through `9394cb7` is present in ARO.club. M0, I0 spec and Q0 implementation merged through PRs #24–26; the active package branch is `feat/aro-i0-ephemeral-ci`.
+- ARO.club `main` is `87121a74bcf9d5db3b0dd41d0063c556fbe933af` (live GitHub verification 2026-08-30). The last hosted audit recorded Q0 Vercel deployment `dpl_AAivTxkWi3zJRDmCP3dbfAVkAsdy` as `READY`; this turn does not claim a fresh Vercel audit.
 - ARO.club now has an independent Vercel project named `aro-club`. Its Supabase runtime target remains unassigned; it must not silently use Tonguee production credentials.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is not the ARO migration backend and must not be deleted or repurposed until its five auth accounts and any external dependencies are identified.
@@ -31,8 +31,8 @@
 | Item | Current value | Rule |
 |---|---|---|
 | ARO runtime repository | `leonartist7/ARO.club` | Independent ARO product repository |
-| ARO.club base | `main` at `67d5c8d24bd6b6a11cff10d49407b321b1bf74cb` | Default branch; currently not protected |
-| Active governed package branch | `spec/aro-i0-isolated-infrastructure` | I0 spec, baseline evidence and documentation hygiene only |
+| ARO.club base | `main` at `87121a74bcf9d5db3b0dd41d0063c556fbe933af` | Default branch; protection unresolved at last audit |
+| Active governed package branch | `feat/aro-i0-ephemeral-ci` | I0.1 disposable CI only; no product migration or hosted mutation |
 | Governed source history | `leonartist7/Tonguee`, `feat/aro-p0-director-reset`, through `9394cb7` | Historical governance source; preserve, do not develop new ARO runtime there |
 | Original production repository | `leonartist7/Tonguee`, branch `main` | Untouched Tonguee production and recovery path |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
@@ -40,7 +40,7 @@
 | SEC0 PR | #18 | Merged into governed ARO branch |
 | P1 spec merge commit | ee0c5066adde24faf0eb8f9bb92753641c8b6770 | Added P1 spec/baseline docs and moved P1 to SPEC-READY |
 | P1 spec PR | #19 | Merged into governed ARO branch |
-| Current package | `ARO-I0`, branch `spec/aro-i0-isolated-infrastructure` | No provider/schema mutation until remaining gates pass |
+| Current package | `ARO-I0.1`, branch `feat/aro-i0-ephemeral-ci` | Parent I0 CI authorization; required review before merge |
 
 ### Branch discipline
 
@@ -143,7 +143,7 @@ Important baseline facts:
 
 - profiles is publicly readable and is not safe for private P1 goal/capability fields.
 - Repository SQL defines the Trust Engine, teacher applications/documents, admin audit behavior and verified-publish enforcement.
-- The P1 execution baseline must verify which repository Trust controls are applied in the live project.
+- A read-only 2026-08-30 catalog audit confirmed the repository Trust tables, profiles.role and verified-publish trigger are absent from this live source. Only the timestamp trigger exists on experiences, and its RLS checks publication status/teacher ownership, not verification. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`; do not copy this schema as a verified Trust baseline or mutate Tonguee under I0.1.
 - The connector reported no recorded migrations even though live schema exists. Future work must reconcile migration provenance and use append-only migrations.
 - Existing policies/grants include legacy broad patterns. New P1 tables must use explicit authenticated owner-only RLS and least privilege.
 - No P1 schema or RLS changes have been applied.
@@ -268,6 +268,8 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 ### Exact next work package
 
 **ARO-I0 — Isolated Infrastructure and Provider Boundary**
+
+Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, VERIFIED at `54e41b7`, PR #27 release pending. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; automated security/operations review findings are resolved. No application migration target is certified yet.
 
 Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. Complete the $0 local stack when a compatible container runtime is available, then obtain explicit founder approval before any hosted cost/provider/domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
 

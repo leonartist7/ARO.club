@@ -438,3 +438,27 @@ For future entries include, when relevant:
 - next gate.
 
 This file is append-only evidence of evolution; `ARO_CURRENT_STATE.md` remains the concise answer to what is true now.
+
+---
+
+## 2026-08-30 — I0.1 disposable Supabase CI implementation
+
+Parent I0 already permits a synthetic, disposable CI database. Added a bounded I0.1 specification and implementation on `feat/aro-i0-ephemeral-ci` to exercise this lane without hosted capacity or a local Windows container runtime. The harness pins CLI 2.116.0, restricts execution to GitHub-hosted Linux, enforces loopback bindings, runs a rolled-back RLS probe and synthetic Auth/recovery lifecycle, and verifies reset and targeted cleanup.
+
+Local boundary tests pass (6/6); existing unit tests pass (61/61), lint is clean and the production build/bundle is unchanged. Actual CI database/Auth tests and pre-merge security/operations review are pending. Status: **IN-PROGRESS**, not VERIFIED. See `artifacts/ARO-I0.1/VERIFICATION.md`.
+
+Corrected stale infrastructure branch/main references against live GitHub (`87121a7`). No hosted variable, domain, provider, application table, historical SQL or dependency was changed. The fixture deliberately has no product migrations; application migration provenance and full I0/Q0 Auth/P1 gates remain unresolved. Tonguee is preserved and aro-platform remains **QUARANTINED — KEEP**.
+
+### I0.1 live verification update
+
+PR #27 commit `6a2c0da` passed Isolated database run `33325347032` in 1m37s: 6 boundary assertions, 21 pgTAP assertions twice, real synthetic Auth/recovery/password-change/logout/admin denial, reset-erasure and targeted cleanup. Quality run `33325347076` also passed. Status is now **IMPLEMENTED / REVIEW PENDING**; the existing CodeRabbit integration is performing the explicitly requested security/operations review. No skipped-review SUCCESS is treated as approval. Detailed timings and remaining scope limits are recorded in `artifacts/ARO-I0.1/VERIFICATION.md`.
+
+### I0.1 review and migration-source clarification
+
+The requested automated security/operations review completed with two minor findings. PR metadata was already corrected; caller cancellation and a strict recovery-poll deadline were fixed with two new tests (8/8 local PASS). A fresh runtime CI run is required before merge.
+
+Read-only Tonguee catalog inspection confirmed the repository Trust tables, profile role and verified-publish trigger are absent live; experience policies lack verification checks. This changes the next migration action: a reviewed application-baseline reconciliation is mandatory, not a blind schema copy. Evidence is in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. No production data, schema, provider or quarantined project was changed.
+
+### I0.1 package verification
+
+Runtime commit `54e41b7` passed Isolated database run `33325803194` and Quality run `33325803093`. Eight boundary tests and all SQL/Auth/reset/cleanup assertions pass. Both review threads are resolved. I0.1 is **VERIFIED** for its platform-only scope; PR #27 release is pending. Parent I0 and P1 are not verified. No further paid review or provider capacity was requested.

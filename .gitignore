@@ -34,3 +34,9 @@ graphify-out/
 .obsidian/workspace-mobile.json
 .obsidian/cache/
 .trash/
+
+# Supabase local/CI generated state (never a hosted link in Git)
+supabase/.temp/
+supabase/.branches/
+tools/ci/supabase/.temp/
+tools/ci/supabase/.branches/

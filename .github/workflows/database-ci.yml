@@ -1,0 +1,31 @@
+name: Isolated database
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  platform:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Boundary unit tests
+        run: node --test tools/ci/boundary.test.mjs
+      - uses: supabase/setup-cli@3c2f5e2ae34c34e428e8e206e2c4d21fa2d20fbf # v2.1.1
+        with:
+          version: 2.116.0
+      - name: Disposable Supabase platform verification
+        run: node tools/ci/run.mjs
+      - name: Confirm cleanup even after cancellation or failure
+        if: always()
+        run: node tools/ci/run.mjs --cleanup
