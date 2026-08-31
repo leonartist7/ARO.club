@@ -6,7 +6,7 @@
 - Version: 0.1.0, proposal only; not runtime authority
 - Owner: ARO founder/director
 - Branch: `spec/aro-i0-application-baseline`
-- PR: to be recorded when created
+- PR: [#28](https://github.com/leonartist7/ARO.club/pull/28), draft; not merged
 - Depends on: I0 specification and SHIPPED I0.1
 - Blocks: real application Auth/Trust baseline for Q0/P1
 - Governing docs: AGENTS.md, ARO_MASTER_DELIVERY_PLAN.md, ARO_BUILD_PLAYBOOK.md,
