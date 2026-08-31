@@ -1,10 +1,19 @@
 # ARO — Master Delivery Plan
 
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> No repair is implemented. Isolated-only direction and reviewed exact contracts
+> are required before runtime work; full I0/Q0/P1 gates remain in force.
+
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
 > **Approved by:** Founder, 2026-08-27
 >
-> **Current base:** `main` after M0 merge `67d5c8d`
+> **Current base:** `main` at I0.1 merge `467a11d`
 >
 > **Objective:** Deliver ARO's production-ready V1 opportunity loop through P5, with isolated infrastructure, a reliable application foundation, governed platform and AI architecture, verified user experience, operational recovery, and zero known release-blocking defects.
 
@@ -159,7 +168,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ## 6. Phase Q0 — Reliability foundation
 
-I0 execution update (2026-08-30): the disposable GitHub-hosted Supabase CI lane in PR #27 (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`) is VERIFIED at runtime commit `54e41b7`; release pending. Real platform/Auth/SQL/reset/cleanup and Quality checks pass, and automated review findings are resolved. It needs no hosted capacity or local Windows runtime. This fixture does not resolve application migration provenance, hosted capacity or full I0/P1 gates; source Trust drift requires reviewed baseline reconciliation.
+I0 execution update (2026-08-30): the disposable GitHub-hosted Supabase CI lane in PR #27 (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`) is VERIFIED at runtime commit `54e41b7`; merged at 467a11d (SHIPPED). Real platform/Auth/SQL/reset/cleanup and Quality checks pass, and automated review findings are resolved. It needs no hosted capacity or local Windows runtime. This fixture does not resolve application migration provenance, hosted capacity or full I0/P1 gates; source Trust drift requires reviewed baseline reconciliation.
 
 ### Goal
 

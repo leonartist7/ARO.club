@@ -1,6 +1,15 @@
 # ARO — Implementation Status Ledger
 
-> **Status as of August 30, 2026.**
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> No repair is implemented. Isolated-only direction and reviewed exact contracts
+> are required before runtime work; full I0/Q0/P1 gates remain in force.
+
+> **Status as of August 31, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
 >
@@ -30,7 +39,7 @@ The existing Tonguee product provides a significant working vertical foundation.
 
 ### Next runtime package
 
-I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`, PR #27 release pending (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Real CI platform/Auth/RLS-probe/reset/cleanup and Quality checks pass; automated security/operations review findings are resolved. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated; live source Trust drift is recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
+I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`, PR #27 merged at 467a11d (SHIPPED) (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Real CI platform/Auth/RLS-probe/reset/cleanup and Quality checks pass; automated security/operations review findings are resolved. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated; live source Trust drift is recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
 
 **ARO-P1 — Capability and Goal Foundation**
 

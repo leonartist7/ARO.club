@@ -462,3 +462,24 @@ Read-only Tonguee catalog inspection confirmed the repository Trust tables, prof
 ### I0.1 package verification
 
 Runtime commit `54e41b7` passed Isolated database run `33325803194` and Quality run `33325803093`. Eight boundary tests and all SQL/Auth/reset/cleanup assertions pass. Both review threads are resolved. I0.1 is **VERIFIED** for its platform-only scope; PR #27 release is pending. Parent I0 and P1 are not verified. No further paid review or provider capacity was requested.
+
+## 2026-08-31 — I0.1 release reconciled; I0.2 approval proposal recorded
+
+PR #27 merged at `467a11d` on August 30. Main Isolated database run
+`33326228058` and Quality run `33326228026` passed. I0.1 is **SHIPPED**
+for disposable platform CI only. Current status documents now reflect the
+release instead of the pre-merge snapshot; historical entries remain unchanged.
+
+Added I0.2 proposal 0.1.0 and the application audit based on August 30 source
+inspection and read-only live catalogs. The audit distinguishes database
+permissions from client/static/local-state demonstrations and identifies
+private-profile exposure, field-authority gaps, application submission/review
+conflicts, non-atomic approval, publication coverage and client money authority.
+PostgreSQL's implicit WITH CHECK behaviour is documented accurately.
+
+Status: **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**, not implementation.
+No migration, runtime, dependency, hosted provider or production change.
+Fresh August 30 lint, 61/61 unit tests and build passed; they do not test the
+identified application database behaviours. Next gate is bounded isolated-only
+approval and reviewed exact contracts, not a paid-resource purchase. Tonguee
+remains read-only and aro-platform remains **QUARANTINED — KEEP**.

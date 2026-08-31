@@ -1,5 +1,14 @@
 # ARO — Canonical Spec Index
 
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> No repair is implemented. Isolated-only direction and reviewed exact contracts
+> are required before runtime work; full I0/Q0/P1 gates remain in force.
+
 > **Purpose:** make ARO spec-driven, traceable, and resistant to product drift. This file is the registry for what is vision, what is approved, what is implemented, what is verified, and what remains blocked or exploratory.
 >
 > This registry does **not** override `AGENTS.md`, `ARO_BUILD_PLAYBOOK.md`, package-specific specs, or specialist security/data/trust/money rules. It tells every agent where authority lives and what state each package is in.
@@ -106,7 +115,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 
 ## 4. Existing Tonguee foundation to preserve and re-verify
 
-I0 subpackage: **ARO-I0.1 Ephemeral Supabase CI — VERIFIED** at `54e41b7`, PR #27 release pending. Authority: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md` 1.0.0 under parent I0's existing CI authorization. Evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Real platform/Auth/SQL/reset/cleanup and Quality CI pass; automated security/operations review completed with both minor findings resolved. This does not change P1's blocked baseline or certify the application schema.
+I0 subpackage: **ARO-I0.1 Ephemeral Supabase CI — VERIFIED** at `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Authority: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md` 1.0.0 under parent I0's existing CI authorization. Evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. Real platform/Auth/SQL/reset/cleanup and Quality CI pass; automated security/operations review completed with both minor findings resolved. This does not change P1's blocked baseline or certify the application schema.
 
 These are not “future ARO ideas”; they are existing implementation assets that ARO deliberately evolves rather than replaces.
 
