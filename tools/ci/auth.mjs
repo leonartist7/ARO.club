@@ -69,11 +69,10 @@ export async function exerciseAuth(anonKey, phase) {
     const other = await request('signup', { method: 'POST', body: { email: otherEmail, password } });
     userId = owner.user?.id;
     otherUserId = other.user?.id;
-    otherSession = other.session;
-    requireCondition(userId && otherUserId && userId !== otherUserId && otherSession?.access_token, 'DISTINCT_USERS_REQUIRED');
+    requireCondition(userId && otherUserId && userId !== otherUserId, 'DISTINCT_USERS_REQUIRED');
   });
-  const signIn = (candidate, statuses = [200]) => request('token?grant_type=password', {
-    method: 'POST', body: { email, password: candidate }, statuses,
+  const signIn = (candidate, statuses = [200], candidateEmail = email) => request('token?grant_type=password', {
+    method: 'POST', body: { email: candidateEmail, password: candidate }, statuses,
   });
   let session;
   await phase('auth-password-and-refresh', async () => {
@@ -81,6 +80,8 @@ export async function exerciseAuth(anonKey, phase) {
     requireCondition(!rejected.access_token, 'INVALID_PASSWORD_ACCEPTED');
     session = await signIn(password);
     requireCondition(session.user?.id === userId && session.refresh_token, 'SIGNIN_IDENTITY');
+    otherSession = await signIn(password, [200], otherEmail);
+    requireCondition(otherSession.user?.id === otherUserId && otherSession.access_token, 'OTHER_SIGNIN_IDENTITY');
     session = await request('token?grant_type=refresh_token', { method: 'POST', body: { refresh_token: session.refresh_token } });
     requireCondition(session.user?.id === userId && session.access_token, 'REFRESH_IDENTITY');
     const user = await request('user', { token: session.access_token });
