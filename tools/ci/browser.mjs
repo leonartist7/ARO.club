@@ -33,11 +33,15 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     env: { ...process.env, VITE_SUPABASE_URL: API, VITE_SUPABASE_ANON_KEY: anonKey },
   });
   let browser;
+  let stage = 'START';
   try {
+    stage = 'SERVER';
     await waitForServer();
+    stage = 'LAUNCH';
     browser = await chromium.launch();
     for (const width of [360, 1440]) {
       for (const theme of ['light', 'dark']) {
+        stage = `CONTEXT_${width}_${theme.toUpperCase()}`;
         const context = await browser.newContext({
           viewport: { width, height: width === 360 ? 800 : 1000 },
           colorScheme: theme,
@@ -47,11 +51,13 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         const pageErrors = [];
         page.on('pageerror', error => pageErrors.push(String(error)));
         const started = performance.now();
+        stage = `LOGIN_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
         await page.getByLabel('Email Address').fill(email);
         await page.getByLabel('Password').fill(password);
         await page.getByRole('button', { name: 'Sign In' }).click();
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+        stage = `PROFILE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
         await page.getByRole('heading', { level: 1 }).waitFor({ timeout: 10000 });
         requireCondition(new URL(page.url()).pathname === '/profile', 'AUTH_BROWSER_REDIRECTED');
@@ -64,13 +70,19 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         requireCondition(!layout.overflow, 'HORIZONTAL_OVERFLOW');
         requireCondition(pageErrors.length === 0, 'AUTH_BROWSER_PAGE_ERROR');
         requireCondition(performance.now() - started < 15000, 'AUTH_BROWSER_BUDGET');
+        stage = `SCREENSHOT_${width}_${theme.toUpperCase()}`;
         await page.screenshot({
           path: `${screenshotDir}/${width}-${theme}.png`,
-          fullPage: true,
+          animations: 'disabled',
+          fullPage: false,
+          timeout: 10000,
         });
         await context.close();
       }
     }
+  } catch (error) {
+    if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
+    throw new Error(`BROWSER_${stage}`);
   } finally {
     await browser?.close();
     try {
