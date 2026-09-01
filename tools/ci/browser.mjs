@@ -55,7 +55,13 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
         await page.getByLabel('Email Address').fill(email);
         await page.getByLabel('Password').fill(password);
-        await page.getByRole('button', { name: 'Sign In' }).click();
+        const signInButton = page.getByRole('button', { name: 'Sign In' });
+        requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
+        const [authResponse] = await Promise.all([
+          page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
+          signInButton.click(),
+        ]);
+        requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
