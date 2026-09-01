@@ -22,27 +22,32 @@ export const AuthProvider = ({ children }) => {
       return undefined;
     }
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Session readiness must not depend on the optional profile/role lookup.
+    // A slow Data API request previously left every protected screen on its
+    // spinner forever, even though Supabase had already authenticated the
+    // user. Role-gated screens remain safe: they still require `profile`.
+    const applySession = (session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        loadProfile(session.user.id);
-      } else {
         setLoading(false);
-      }
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await loadProfile(session.user.id);
+        void loadProfile(session.user.id);
       } else {
         setProfile(null);
         setLoading(false);
       }
+    };
+
+    // Get initial session. A failed local-session read must also release the
+    // app shell; it is equivalent to no usable session.
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => applySession(session))
+      .catch(() => applySession(null));
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      applySession(session);
     });
 
     return () => subscription.unsubscribe();
