@@ -50,14 +50,15 @@ export const AuthProvider = ({ children }) => {
 
   const loadProfile = async (userId) => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      const [profileResult, roleResult] = await Promise.all([
+        supabase.from('profiles').select('*').eq('id', userId).single(),
+        supabase.schema('api').from('current_user_role').select('role').eq('user_id', userId).single(),
+      ]);
 
-      if (error) throw error;
-      setProfile(data);
+      if (profileResult.error) throw profileResult.error;
+      if (roleResult.error) throw roleResult.error;
+      const role = roleResult.data.role === 'participant' ? 'student' : roleResult.data.role;
+      setProfile({ ...profileResult.data, role, is_teacher: role === 'teacher' });
     } catch (error) {
       console.error('Error loading profile:', error);
     } finally {
@@ -163,7 +164,7 @@ export const AuthProvider = ({ children }) => {
         .single();
 
       if (error) throw error;
-      setProfile(data);
+      setProfile((current) => ({ ...current, ...data }));
       return { data, error: null };
     } catch (error) {
       return { data: null, error };

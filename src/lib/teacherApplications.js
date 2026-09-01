@@ -86,7 +86,14 @@ export async function getDocuments(applicationId) {
     .eq('application_id', applicationId)
     .order('created_at', { ascending: true });
   if (error) throw error;
-  return data || [];
+  return Promise.all((data || []).map(async (document) => {
+    const bucket = document.doc_type === 'id' ? 'verification-docs' : 'teacher-portfolio';
+    const { data: signed, error: signedError } = await supabase.storage
+      .from(bucket)
+      .createSignedUrl(document.object_path, 60 * 10);
+    if (signedError) throw signedError;
+    return { ...document, url: signed.signedUrl };
+  }));
 }
 
 /**
@@ -105,10 +112,6 @@ export async function uploadDocument({ userId, applicationId, docType, file, lab
     .upload(path, file, { upsert: false });
   if (uploadError) throw uploadError;
 
-  const { data: signed } = await supabase.storage
-    .from(bucket)
-    .createSignedUrl(path, 60 * 60 * 24 * 7); // 7-day signed URL for review
-
   const { data, error } = await supabase
     .from('teacher_documents')
     .insert({
@@ -116,12 +119,16 @@ export async function uploadDocument({ userId, applicationId, docType, file, lab
       user_id: userId,
       doc_type: docType,
       label: label || docType,
-      url: signed?.signedUrl || path,
+      object_path: path,
     })
     .select()
     .single();
   if (error) throw error;
-  return data;
+  const { data: signed, error: signedError } = await supabase.storage
+    .from(bucket)
+    .createSignedUrl(path, 60 * 10);
+  if (signedError) throw signedError;
+  return { ...data, url: signed.signedUrl };
 }
 
 /** 0-100 completeness score for the meter / "ready to submit" gating. */

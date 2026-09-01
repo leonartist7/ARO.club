@@ -1,6 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { API, CALLBACK, localFetch, recoveryLink, requireHostedRunner, validateTarget } from './boundary.mjs';
+
+const ciRoot = fileURLToPath(new URL('.', import.meta.url));
 
 const env = { CI: 'true', GITHUB_ACTIONS: 'true', RUNNER_ENVIRONMENT: 'github-hosted' };
 test('only disposable hosted Linux runner accepted', () => {
@@ -59,4 +63,28 @@ test('already-cancelled requests never invoke fetch', async () => {
   let calls = 0;
   await assert.rejects(localFetch(API, API, { signal: AbortSignal.abort() }, async () => { calls += 1; }), { name: 'AbortError' });
   assert.equal(calls, 0);
+});
+
+test('application baseline is append-only and isolated in the disposable workdir', () => {
+  const migrationDir = `${ciRoot}supabase/migrations`;
+  const migrations = readdirSync(migrationDir);
+  assert.deepEqual(migrations, ['20260831235206_application_trust_baseline.sql']);
+  const sql = readFileSync(`${migrationDir}/${migrations[0]}`, 'utf8');
+  assert.doesNotMatch(sql, /\b(drop|truncate)\s+(table|schema|database)\b/i);
+  assert.doesNotMatch(sql, /ybhecubqnhukgpvchjay|jjgccfrwjkwknyjtbtxa/i);
+});
+
+test('Data API exposes only public and reviewed api schemas', () => {
+  const config = readFileSync(`${ciRoot}supabase/config.toml`, 'utf8');
+  assert.match(config, /schemas = \["public", "api"\]/);
+  assert.doesNotMatch(config, /schemas = \[[^\]]*app_private/);
+});
+
+test('private document storage is enabled for policy verification', () => {
+  const config = readFileSync(`${ciRoot}supabase/config.toml`, 'utf8');
+  assert.match(config, /\[storage\]\s+enabled = true/);
+  const migration = readFileSync(`${ciRoot}supabase/migrations/20260831235206_application_trust_baseline.sql`, 'utf8');
+  const tests = readFileSync(`${ciRoot}supabase/tests/application.test.sql`, 'utf8');
+  assert.match(migration, /aro_docs_owner_insert/);
+  assert.match(tests, /cross-owner document metadata is denied/);
 });

@@ -6,6 +6,35 @@
 
 ---
 
+## 2026-08-31 — I0.2 application/Auth/Trust baseline authorized
+
+### Decision
+
+The founder explicitly authorized the isolated ARO-only repair in PR #28. The
+authorization excludes hosted/production mutations, Tonguee, quarantined
+`aro-platform`, paid resources, payment providers, Stripe, Google and P1 feature
+scope. The exact package contract is now version 1.0.0 and SPEC-READY.
+
+### Implemented on the package branch
+
+- added one CLI-generated append-only migration for private profiles/roles,
+  application review and decision separation, teacher eligibility, publication,
+  booking read authority, audit and private document storage;
+- replaced browser-controlled verification/audit writes with one atomic,
+  server-authorized decision path;
+- persisted storage object paths instead of signed URLs and limited generated
+  document access links to ten minutes;
+- reconciled current Auth role, application and admin-review clients;
+- expanded disposable CI to 81 transactional SQL assertions, real Auth/API/
+  Storage boundary exercises and static isolation guards.
+
+### Status transition
+
+- I0.2: **SPEC-REQUIRED → SPEC-READY / IN-PROGRESS**.
+- CI, independent review, authenticated browser evidence and final verification
+  remain required before merge or any later rollout.
+- No hosted provider or production environment was changed.
+
 ## 2026-08-28 — Q0 reliability and CI foundation
 
 ### Implemented

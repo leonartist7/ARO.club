@@ -6,15 +6,15 @@ The `Isolated database / platform` GitHub check runs this workdir on a standard 
 
 Safe local verification: `node --test tools/ci/boundary.test.mjs` and `node --check tools/ci/run.mjs`.
 
-CI sequence: pinned CLI → loopback-only Docker network → platform start → local reset → transactional SQL matrix → synthetic Auth lifecycle (including local recovery email) → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
+CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth lifecycle (including local recovery email) → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
 
 ## What this proves—and does not
 
 - Proves only the assertions that actually pass in the named CI run: service operation, platform reset, synthetic Auth and test-only RLS enforcement.
-- `platform.test.sql` rolls back its probe table and contains no product migration.
-- This workdir has zero application migrations. `supabase/*.sql` at the repository root is **not loaded**. In particular, `clean-schema.sql` drops existing tables and must not be used as a blind bootstrap.
-- Application schema/Trust import requires a separate reviewed baseline reconciliation. Future migrations must be created through the CLI and append-only; no production dump or user migration is authorized here.
-- This does not verify browser onboarding, hosted recovery/deliverability, profile/Trust compatibility, P1 storage, production rollout or full I0 acceptance.
+- `platform.test.sql` and `application.test.sql` are transactional and roll back their synthetic rows.
+- The only loaded application migration is the reviewed I0.2 baseline under `supabase/migrations`. Repository-root legacy SQL remains excluded; `clean-schema.sql` drops existing tables and must never be used as a bootstrap.
+- The I0.2 migration was created through the pinned CLI and is append-only. It has no hosted project reference, production dump or real user data.
+- This does not verify hosted recovery/deliverability, production rollout, provider capacity, or full I0 acceptance. It does verify the migrated local Auth/profile/application/verification/publication/booking/storage boundaries asserted by the test matrix.
 - Hosted capacity, scoped variables/callbacks, recovery, domain ownership and branch protection remain separate gates.
 
 ## Boundaries and retention

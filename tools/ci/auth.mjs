@@ -16,6 +16,24 @@ export function authClient(anonKey) {
   };
 }
 
+function platformClient(anonKey) {
+  return async function request(path, { method = 'GET', token, body, headers = {}, statuses = [200] } = {}) {
+    const response = await localFetch(`${API}/${path}`, API, {
+      method,
+      headers: {
+        apikey: anonKey,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(body !== undefined && !(body instanceof Uint8Array) ? { 'Content-Type': 'application/json' } : {}),
+        ...headers,
+      },
+      ...(body !== undefined ? { body: body instanceof Uint8Array ? body : JSON.stringify(body) } : {}),
+    });
+    requireCondition(statuses.includes(response.status), `PLATFORM_HTTP_${response.status}`);
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
+  };
+}
+
 async function recoveryMail(email) {
   const signal = AbortSignal.timeout(30000);
   try {
@@ -44,11 +62,15 @@ export async function exerciseAuth(anonKey, phase) {
   const password = `Aa1!${randomBytes(24).toString('hex')}`;
   const newPassword = `Bb2!${randomBytes(24).toString('hex')}`;
   let userId;
+  let otherUserId;
+  let otherSession;
   await phase('auth-signup-two-users', async () => {
     const owner = await request('signup', { method: 'POST', body: { email, password } });
     const other = await request('signup', { method: 'POST', body: { email: otherEmail, password } });
     userId = owner.user?.id;
-    requireCondition(userId && other.user?.id && userId !== other.user.id, 'DISTINCT_USERS_REQUIRED');
+    otherUserId = other.user?.id;
+    otherSession = other.session;
+    requireCondition(userId && otherUserId && userId !== otherUserId && otherSession?.access_token, 'DISTINCT_USERS_REQUIRED');
   });
   const signIn = (candidate, statuses = [200]) => request('token?grant_type=password', {
     method: 'POST', body: { email, password: candidate }, statuses,
@@ -64,6 +86,59 @@ export async function exerciseAuth(anonKey, phase) {
     const user = await request('user', { token: session.access_token });
     requireCondition(user.id === userId, 'USER_IDENTITY');
     await request('admin/users', { token: session.access_token, statuses: [403] });
+  });
+  await phase('application-auth-and-trust-boundaries', async () => {
+    const platform = platformClient(anonKey);
+    const ownerToken = session.access_token;
+    const otherToken = otherSession.access_token;
+    const ownProfile = await platform(`rest/v1/profiles?id=eq.${userId}&select=id,name`, { token: ownerToken });
+    requireCondition(ownProfile?.length === 1 && ownProfile[0].id === userId, 'OWNER_PROFILE_MISSING');
+    const role = await platform(`rest/v1/current_user_role?user_id=eq.${userId}&select=user_id,role`, {
+      token: ownerToken, headers: { 'Accept-Profile': 'api' },
+    });
+    requireCondition(role?.length === 1 && role[0].role === 'participant', 'CURRENT_ROLE_MISSING');
+    const hiddenProfile = await platform(`rest/v1/profiles?id=eq.${otherUserId}&select=id`, { token: ownerToken });
+    requireCondition(hiddenProfile?.length === 0, 'CROSS_USER_PROFILE_VISIBLE');
+    await platform(`rest/v1/profiles?id=eq.${userId}`, {
+      method: 'PATCH', token: ownerToken, body: { name: 'Synthetic Owner' }, statuses: [204],
+    });
+    await platform(`rest/v1/profiles?id=eq.${userId}`, {
+      method: 'PATCH', token: ownerToken, body: { points: 999 }, statuses: [401, 403],
+    });
+    const cards = await platform(`rest/v1/profile_cards?id=eq.${userId}&select=id,name`);
+    requireCondition(cards?.[0]?.name === 'Synthetic Owner', 'PUBLIC_CARD_NOT_SYNCED');
+
+    const [application] = await platform('rest/v1/teacher_applications', {
+      method: 'POST', token: ownerToken,
+      headers: { Prefer: 'return=representation' },
+      body: { user_id: userId, display_name: 'Synthetic Teacher' }, statuses: [201],
+    });
+    requireCondition(application?.status === 'draft', 'APPLICATION_DRAFT_MISSING');
+    const hiddenApplication = await platform(`rest/v1/teacher_applications?id=eq.${application.id}&select=id`, { token: otherToken });
+    requireCondition(hiddenApplication?.length === 0, 'CROSS_USER_APPLICATION_VISIBLE');
+
+    const objectPath = `${userId}/${application.id}/id.png`;
+    await platform(`storage/v1/object/verification-docs/${objectPath}`, {
+      method: 'POST', token: ownerToken, body: new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]),
+      headers: { 'Content-Type': 'image/png', 'x-upsert': 'false' }, statuses: [200],
+    });
+    await platform('rest/v1/teacher_documents', {
+      method: 'POST', token: ownerToken, body: {
+        application_id: application.id, user_id: userId, doc_type: 'id', object_path: objectPath,
+      }, statuses: [201],
+    });
+    const hiddenDocument = await platform(`rest/v1/teacher_documents?application_id=eq.${application.id}&select=id`, { token: otherToken });
+    requireCondition(hiddenDocument?.length === 0, 'CROSS_USER_DOCUMENT_VISIBLE');
+    await platform(`storage/v1/object/verification-docs/${objectPath}`, {
+      token: otherToken, statuses: [400, 403, 404],
+    });
+    await platform(`rest/v1/teacher_applications?id=eq.${application.id}`, {
+      method: 'PATCH', token: ownerToken, body: { status: 'submitted' }, statuses: [204],
+    });
+    await platform('rest/v1/bookings', {
+      method: 'POST', token: ownerToken, body: { student_id: userId, total_minor: 1, currency: 'CAD' },
+      statuses: [401, 403],
+    });
   });
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });

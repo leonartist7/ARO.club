@@ -2,8 +2,8 @@
 
 ## 0. Metadata
 
-- Status: **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**
-- Version: 0.1.0, proposal only; not runtime authority
+- Status: **SPEC-READY / IN-PROGRESS**
+- Version: 1.0.0; implementation authority for isolated I0.2 only
 - Owner: ARO founder/director
 - Branch: `spec/aro-i0-application-baseline`
 - PR: [#28](https://github.com/leonartist7/ARO.club/pull/28), draft; not merged
@@ -45,7 +45,7 @@ Hosted/production rollout; customer-data migration; provider purchases; changes
 to Tonguee or quarantined aro-platform; P1 feature code; payments/Stripe/Google;
 Next.js or dependency changes; new gamification, AI, precise location or AR.
 
-## 6. Director decision required before implementation
+## 6. Director decision and authorization
 
 Approve **isolated ARO-only** remediation of the following inherited behaviour:
 
@@ -61,8 +61,11 @@ Approve **isolated ARO-only** remediation of the following inherited behaviour:
    truthful persistence/error handling. Local player state is not promoted to
    verified learning, payment or Proof data.
 
-This is a proposal, not an accepted decision. Founder approval of direction is
-followed by exact field/API contracts and security review before SPEC-READY.
+The founder approved this exact bounded direction on 2026-08-31 in
+[PR #28](https://github.com/leonartist7/ARO.club/pull/28#issuecomment-5486409684).
+That approval authorizes isolated migration, client reconciliation, tests and
+evidence only. It does not authorize a hosted or production mutation, spending,
+Tonguee changes, `aro-platform` changes, P1 feature code, Stripe or Google.
 Any further consequential choice returns to the director.
 
 ## 7. Personas and permissions
@@ -83,21 +86,41 @@ against any visibility change, not silently removed from regression scope.
 
 ## 9. State machine
 
-Preserve the named application states draft, submitted, in_review,
-changes_requested, approved and rejected. Specify allowed actors, old/new
-values, server timestamps, concurrency and retry behavior for every transition
-in the implementation revision. Applicant approval and owner reassignment are
-always denied; reviewer decisions must be atomic with their audit event.
+The application states are `draft`, `submitted`, `in_review`,
+`changes_requested`, `approved` and `rejected`. An applicant may create only a
+draft, edit/delete a draft, submit a draft or requested-change record, and edit
+then resubmit requested changes. An administrator may move submitted to review,
+changes, rejection or approval; review may move to changes, rejection or
+approval. All other transitions and ownership changes are denied. Submission
+and review timestamps are server-set. A decision requires a complete review row
+owned by the acting administrator and atomically creates the applicant decision,
+teacher/verification/role changes when approved, and immutable audit event.
 
 ## 10. Data specification
 
-Reconcile profiles and onboarding columns, teachers, experiences, applications,
-private review records, document metadata and audit records first. Inventory all
-remaining extension consumers and classify their migration/exposure explicitly.
-No automatic import of snapshots, seed-data.sql, customer data or localStorage.
-Use CLI-generated append-only migrations and fixed-path privileged functions.
-Exact columns, constraints, indexes, fixture order and export/delete contracts
-are required in the implementation revision; this draft does not invent them.
+The CLI-generated migration owns these contracts:
+
+- `public.profiles`: private identity/onboarding row; owner/admin read, owner
+  updates only named presentation/onboarding columns. Email, points and level are
+  protected. `profile_cards` exposes only id, name, photo, avatar, points, level.
+- `app_private.user_roles`: server-controlled participant/teacher/admin role.
+- `teacher_applications`: owner draft data and server-enforced state machine;
+  unique non-rejected application per user.
+- private reviews and audit live in `app_private`; applicants receive only tier,
+  reason and reviewed time through `teacher_application_decisions`.
+- `teacher_documents` stores a constrained owner/application object path—never
+  a signed URL. The two buckets are private, MIME/size bounded and owner/admin
+  policy protected.
+- `teachers` contains presentation data. Verification/status/tier live only in
+  `app_private.teacher_verifications`; public eligibility is derived server-side.
+- `experiences` may publish only for an active verified teacher. Suspension
+  immediately removes teacher and experience from public reads.
+- `bookings` uses integer minor units plus ISO currency and is client read-only;
+  no browser mutation or payment authority exists in I0.2.
+
+Every identifier is UUID-backed; relationships, enums/checks, timestamps and
+frequent authorization/filter indexes are declared in the migration. No import
+of snapshots, legacy root SQL, seed-data, customer data or localStorage occurs.
 
 ## 11. RLS and authorization matrix
 
@@ -111,8 +134,9 @@ WITH CHECK. A narrower admin policy cannot cancel a permissive owner policy.
 
 Synthetic data only. Identity-document test files are clearly synthetic, never
 real identity scans. Persist object paths rather than long-lived signed tokens;
-authorize access when issuing bounded URLs. Full lifecycle, retention duration,
-orphan cleanup and approved public fields must be fixed before implementation.
+authorize access when issuing ten-minute URLs. CI retains synthetic rows/files
+only for the job and destroys the exact owned database, storage and network at
+cleanup. Production retention/export/deletion remains a separate rollout gate.
 CI cleanup erases test users, database and storage resources. No private rows,
 tokens, signed URLs or user emails in uploaded evidence.
 
@@ -135,11 +159,16 @@ N/A: no model, provider, inference or external agent action.
 
 ## 16. API/server contract
 
-Before SPEC-READY, enumerate profile update/presentation queries, application
-draft/edit/submit, reviewer decision, document access/delete and audit reads.
-Specify fields, errors, actor derivation, idempotency, concurrency and limits.
-Privileged decisions run as one authorized transaction; browser checks alone
-and best-effort audit inserts are not sufficient.
+The Data API exposes `public` plus the reviewed `api` schema; `app_private` is
+never exposed. Anonymous access is select-only for profile cards and eligible
+teachers/experiences. Authenticated callers use owner-filtered profile,
+application, document and booking queries. `api.current_user_role` exposes only
+the caller's role; review, verification and audit views remain admin-only under
+security-invoker RLS. Applicant decisions contain only application id, tier,
+reason and reviewed time. Profile/application/teacher/experience writes use
+column grants plus RLS. Review status changes invoke one database transaction;
+there is no client audit write, verification write or booking write. Authorization
+derives from `auth.uid()` and the private server role, never user metadata.
 
 ## 17. UI/UX
 
@@ -161,9 +190,11 @@ evidence for a new authenticated flow.
 
 ## 20. Performance
 
-Record migration/reset duration, Auth/data requests and query plans. Establish
-affected-route budgets before implementation. Current bundle baseline is in the
-audit; no dependency or bundle expansion is authorized by this draft.
+Record migration/reset duration and Auth/data requests. The implementation adds
+no runtime dependency and must not increase the measured 750.83 kB main chunk
+by more than 10 kB minified or 5 kB gzip. Local Auth/data calls remain under
+1 s at p95 on the disposable runner. Authorization joins
+must use declared foreign-key/filter indexes; any slower query requires a plan.
 
 ## 21. Reliability
 
@@ -192,11 +223,11 @@ inventory only. Never upload test credentials, Auth mail bodies or private data.
 | ID | Criterion | Verification | Current state |
 |---|---|---|---|
 | I02-01 | Source/client conflicts inventoried | audit F1–F7 and catalog checks | RECORDED |
-| I02-02 | Direction and exact contracts approved | director decision and reviewed spec revision | BLOCKED |
-| I02-03 | Clean application reset reproducible | two CI runs with schema/grant assertions | NOT RUN |
-| I02-04 | Private data and privileged fields protected | hostile SQL/API/Storage tests | NOT RUN |
-| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | expanded E2E plus database assertions | NOT RUN |
-| I02-06 | Approval/publication/suspension atomic and enforced | concurrency and bypass tests | NOT RUN |
+| I02-02 | Direction and exact contracts approved | founder PR comment and v1.0 spec | PASS |
+| I02-03 | Clean application reset reproducible | two CI runs with schema/grant assertions | IMPLEMENTED / CI PENDING |
+| I02-04 | Private data and privileged fields protected | hostile SQL/API/Storage tests | IMPLEMENTED / CI PENDING |
+| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | expanded API/Auth plus browser evidence | IN PROGRESS |
+| I02-06 | Approval/publication/suspension atomic and enforced | transactional and bypass tests | IMPLEMENTED / CI PENDING |
 | I02-07 | Compatibility/accessibility/performance budgets pass | named journey evidence | NOT RUN |
 | I02-08 | Review and cleanup complete; status truthful | review/CI/recovery record | NOT RUN |
 
@@ -214,13 +245,14 @@ PR. Never use destructive production rollback or copy customer data.
 
 ## 27. Security/privacy/Trust review
 
-Audit by Codex, 2026-08-30. Findings F1–F7 recorded. Repair approval: **no**.
-Independent required implementation review has not occurred.
+Audit by Codex, 2026-08-30; design review updated 2026-08-31. Findings F1–F7
+are addressed by explicit grants, fixed-search-path functions, private schemas,
+RLS and hostile tests. Founder repair approval is recorded. Independent
+implementation review remains required before merge.
 
 ## 28. Product/design review
 
-Visibility and denied legacy writes require director decision. No approval is
-inferred from the master goal; no visual redesign proposed.
+Founder approval is recorded in PR #28. No visual redesign is proposed.
 
 ## 29. Verification condition
 
@@ -230,6 +262,7 @@ a green platform probe alone does not verify this package or P1.
 
 ## 30. Delivery record
 
-Documentation/audit only, version 0.1.0. No migration/runtime/provider change.
-Fresh lint, 61 unit tests and build pass. Application integration/RLS/E2E repairs
-not implemented. Status: SPEC-REQUIRED / DIRECTOR DECISION REQUIRED.
+Version 1.0.0 exact contract is approved and implementation is active in draft
+PR #28. The append-only migration, client contract repairs and SQL/API/Storage
+tests exist locally; CI, independent review, browser evidence and final status
+remain pending. No hosted/runtime provider change has occurred.

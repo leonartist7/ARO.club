@@ -2,12 +2,13 @@
 
 > **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
 > `467a11d`; main Isolated database and Quality CI passed. Next is
-> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
-> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
+> [I0.2 application baseline](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 1.0.0, **SPEC-READY / IN-PROGRESS** in draft PR #28.
 > [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
 > profile privacy, field authority, approval and booking conflicts.
-> No repair is implemented. Isolated-only direction and reviewed exact contracts
-> are required before runtime work; full I0/Q0/P1 gates remain in force.
+> Founder authorization is recorded. Isolated implementation is active; CI,
+> independent review and browser evidence remain required. No hosted target was
+> mutated and full I0/Q0/P1 gates remain in force.
 
 ## Operating contract
 
