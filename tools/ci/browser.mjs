@@ -71,7 +71,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
         const [authResponse] = await Promise.all([
           page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
-          signInButton.click(),
+          page.getByLabel('Password').press('Enter'),
         ]);
         requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
