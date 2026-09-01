@@ -52,7 +52,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         await page.getByLabel('Password').fill(password);
         await page.getByRole('button', { name: 'Sign In' }).click();
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
-        await page.goto(`${base}/profile`, { waitUntil: 'networkidle' });
+        await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
+        await page.getByRole('heading', { level: 1 }).waitFor({ timeout: 10000 });
         requireCondition(new URL(page.url()).pathname === '/profile', 'AUTH_BROWSER_REDIRECTED');
         requireCondition(await page.getByRole('heading', { level: 1 }).count() === 1, 'PROFILE_HEADING_MISSING');
         const layout = await page.evaluate(() => ({
