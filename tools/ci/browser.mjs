@@ -83,6 +83,16 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
+        // Keep one synthetic, viewport-sized arrival image even when the
+        // readiness assertion below fails. It makes a browser-only failure
+        // diagnosable without printing account or service data to CI logs.
+        await page.waitForTimeout(500);
+        await page.screenshot({
+          path: `${screenshotDir}/${width}-${theme}-profile-arrival.png`,
+          animations: 'disabled',
+          fullPage: false,
+          timeout: 10000,
+        });
         await page.getByRole('heading', { level: 1 }).waitFor({ timeout: 10000 });
         requireCondition(new URL(page.url()).pathname === '/profile', 'AUTH_BROWSER_REDIRECTED');
         requireCondition(await page.getByRole('heading', { level: 1 }).count() === 1, 'PROFILE_HEADING_MISSING');
