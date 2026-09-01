@@ -65,13 +65,19 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         const started = performance.now();
         stage = `LOGIN_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
-        await page.getByLabel('Email Address').fill(email);
-        await page.getByLabel('Password').fill(password);
+        const emailInput = page.locator('input[type="email"]');
+        const passwordInput = page.locator('input[type="password"]');
+        await emailInput.waitFor({ state: 'visible', timeout: 10000 });
+        await passwordInput.waitFor({ state: 'visible', timeout: 10000 });
+        requireCondition(await page.getByLabel('Email Address').count() === 1, 'EMAIL_LABEL_MISSING');
+        requireCondition(await page.getByLabel('Password').count() === 1, 'PASSWORD_LABEL_MISSING');
+        await emailInput.fill(email);
+        await passwordInput.fill(password);
         const signInButton = page.getByRole('button', { name: 'Sign In' });
         requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
         const [authResponse] = await Promise.all([
           page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
-          page.getByLabel('Password').press('Enter'),
+          passwordInput.press('Enter'),
         ]);
         requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
