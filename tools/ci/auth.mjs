@@ -55,7 +55,7 @@ async function recoveryMail(email) {
   throw new Error('MAIL_TIMEOUT');
 }
 
-export async function exerciseAuth(anonKey, phase) {
+export async function exerciseAuth(anonKey, phase, browserCheck = async () => {}) {
   const request = authClient(anonKey);
   const email = `i0-${randomUUID()}@example.invalid`;
   const otherEmail = `i0-${randomUUID()}@example.invalid`;
@@ -141,6 +141,7 @@ export async function exerciseAuth(anonKey, phase) {
       statuses: [401, 403],
     });
   });
+  await phase('authenticated-browser-matrix', () => browserCheck({ anonKey, email, password }));
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
     const link = recoveryLink(await recoveryMail(email));

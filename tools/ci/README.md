@@ -6,7 +6,7 @@ The `Isolated database / platform` GitHub check runs this workdir on a standard 
 
 Safe local verification: `node --test tools/ci/boundary.test.mjs` and `node --check tools/ci/run.mjs`.
 
-CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth lifecycle (including local recovery email) → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
+CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth/API/Storage lifecycle → authenticated 360/1440 light/dark browser matrix → local recovery email → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
 
 ## What this proves—and does not
 
@@ -21,7 +21,7 @@ CI sequence: pinned CLI → loopback-only Docker network → platform start → 
 
 Project: `aro-i0-ci`. Network: `aro-i0-ci-net`, labeled with the current GitHub run/attempt/job. Cleanup requires that exact ownership label and removes only that project's disposable volumes. Existing resources cause preflight rejection. The workflow repeats cleanup with `always()`; GitHub runner disposal is the final containment boundary after a hard cancellation.
 
-CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
+CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. Four synthetic authenticated screenshots are retained for seven days and contain no credential or real-user data. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
 
 ## Sources checked 2026-08-30
 

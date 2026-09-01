@@ -226,7 +226,7 @@ inventory only. Never upload test credentials, Auth mail bodies or private data.
 | I02-02 | Direction and exact contracts approved | founder PR comment and v1.0 spec | PASS |
 | I02-03 | Clean application reset reproducible | two CI runs with schema/grant assertions | IMPLEMENTED / CI PENDING |
 | I02-04 | Private data and privileged fields protected | hostile SQL/API/Storage tests | IMPLEMENTED / CI PENDING |
-| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | expanded API/Auth plus browser evidence | IN PROGRESS |
+| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | expanded API/Auth plus browser evidence | IMPLEMENTED / CI PENDING |
 | I02-06 | Approval/publication/suspension atomic and enforced | transactional and bypass tests | IMPLEMENTED / CI PENDING |
 | I02-07 | Compatibility/accessibility/performance budgets pass | named journey evidence | NOT RUN |
 | I02-08 | Review and cleanup complete; status truthful | review/CI/recovery record | NOT RUN |

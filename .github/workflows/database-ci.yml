@@ -19,6 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - name: Boundary unit tests
         run: node --test tools/ci/boundary.test.mjs
       - uses: supabase/setup-cli@3c2f5e2ae34c34e428e8e206e2c4d21fa2d20fbf # v2.1.1
@@ -29,3 +32,10 @@ jobs:
       - name: Confirm cleanup even after cancellation or failure
         if: always()
         run: node tools/ci/run.mjs --cleanup
+      - name: Retain synthetic authenticated screenshots
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: i0-2-authenticated-baseline
+          path: artifacts/ARO-I0.2/ci-screenshots
+          retention-days: 7
