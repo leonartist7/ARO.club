@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
@@ -26,11 +26,23 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
   mkdirSync(screenshotDir, { recursive: true });
   const vite = fileURLToPath(new URL('../../node_modules/vite/bin/vite.js', import.meta.url));
-  const server = spawn(process.execPath, [vite, '--host', '127.0.0.1', '--port', '5173'], {
+  const appEnvironment = {
+    ...process.env,
+    VITE_SUPABASE_URL: API,
+    VITE_SUPABASE_ANON_KEY: anonKey,
+  };
+  const build = spawnSync(process.execPath, [vite, 'build'], {
+    cwd: root,
+    env: appEnvironment,
+    stdio: 'ignore',
+    timeout: 120000,
+  });
+  requireCondition(!build.error && build.status === 0, 'BROWSER_BUILD_FAILED');
+  const server = spawn(process.execPath, [vite, 'preview', '--host', '127.0.0.1', '--port', '5173'], {
     cwd: root,
     stdio: 'ignore',
     detached: true,
-    env: { ...process.env, VITE_SUPABASE_URL: API, VITE_SUPABASE_ANON_KEY: anonKey },
+    env: appEnvironment,
   });
   let browser;
   let stage = 'START';
