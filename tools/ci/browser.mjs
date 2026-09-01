@@ -63,8 +63,9 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         const pageErrors = [];
         page.on('pageerror', error => pageErrors.push(String(error)));
         const started = performance.now();
-        stage = `LOGIN_${width}_${theme.toUpperCase()}`;
+        stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
+        stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
         const emailInput = page.locator('input[type="email"]');
         const passwordInput = page.locator('input[type="password"]');
         await emailInput.waitFor({ state: 'visible', timeout: 10000 });
@@ -75,11 +76,13 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         await passwordInput.fill(password);
         const signInButton = page.getByRole('button', { name: 'Sign In' });
         requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
+        stage = `LOGIN_AUTH_${width}_${theme.toUpperCase()}`;
         const [authResponse] = await Promise.all([
           page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
           passwordInput.press('Enter'),
         ]);
         requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
+        stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
         await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });

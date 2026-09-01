@@ -39,14 +39,23 @@ export const AuthProvider = ({ children }) => {
 
     // Get initial session. A failed local-session read must also release the
     // app shell; it is equivalent to no usable session.
+    let authEventRevision = 0;
+    const sessionRevision = authEventRevision;
     supabase.auth.getSession()
-      .then(({ data: { session } }) => applySession(session))
-      .catch(() => applySession(null));
+      .then(({ data: { session } }) => {
+        // Never let a slower initial read overwrite a newer sign-in/out
+        // event. This is particularly visible in a fresh browser context.
+        if (authEventRevision === sessionRevision) applySession(session);
+      })
+      .catch(() => {
+        if (authEventRevision === sessionRevision) applySession(null);
+      });
 
     // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      authEventRevision += 1;
       applySession(session);
     });
 
