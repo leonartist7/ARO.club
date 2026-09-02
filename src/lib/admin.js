@@ -81,7 +81,24 @@ export async function getApplicationDetail(id) {
     .order('created_at', { ascending: true });
   if (docErr) throw docErr;
 
-  return { application, documents: documents || [] };
+  const { data: review, error: reviewErr } = await supabase
+    .schema('api')
+    .from('teacher_application_reviews')
+    .select('*')
+    .eq('application_id', id)
+    .maybeSingle();
+  if (reviewErr) throw reviewErr;
+
+  const signedDocuments = await Promise.all((documents || []).map(async (document) => {
+    const bucket = document.doc_type === 'id' ? 'verification-docs' : 'teacher-portfolio';
+    const { data: signed, error: signedError } = await supabase.storage
+      .from(bucket)
+      .createSignedUrl(document.object_path, 60 * 10);
+    if (signedError) throw signedError;
+    return { ...document, url: signed.signedUrl };
+  }));
+
+  return { application: { ...application, ...(review || {}) }, documents: signedDocuments };
 }
 
 /** Lightweight ops stats for the dashboard header. */
@@ -100,31 +117,31 @@ export async function getAdminStats() {
   return counts;
 }
 
-async function logAudit(adminId, action, targetType, targetId, detail = {}) {
-  // Best-effort; never block a decision on the audit insert.
-  try {
-    await supabase.from('admin_audit_log').insert({
-      admin_id: adminId,
-      action,
-      target_type: targetType,
-      target_id: targetId,
-      detail,
-    });
-  } catch (e) {
-    console.error('audit log failed', e);
-  }
+async function saveReview(applicationId, review) {
+  const table = supabase.schema('api').from('teacher_application_reviews');
+  const { data: existing, error: readError } = await table
+    .select('application_id')
+    .eq('application_id', applicationId)
+    .maybeSingle();
+  if (readError) throw readError;
+  const request = existing
+    ? table.update(review).eq('application_id', applicationId)
+    : table.insert({ application_id: applicationId, ...review });
+  const { data, error } = await request.select().single();
+  if (error) throw error;
+  return data;
 }
 
 /** Claim an application for review (submitted -> in_review). */
 export async function startReview(application, adminId) {
+  await saveReview(application.id, { reviewed_by: adminId, reviewed_at: new Date().toISOString() });
   const { data, error } = await supabase
     .from('teacher_applications')
-    .update({ status: 'in_review', reviewed_by: adminId })
+    .update({ status: 'in_review' })
     .eq('id', application.id)
     .select()
     .single();
   if (error) throw error;
-  await logAudit(adminId, 'start_review', 'application', application.id);
   return data;
 }
 
@@ -135,90 +152,50 @@ export async function startReview(application, adminId) {
 export async function approveApplication(application, { adminId, tier, rubricScores, adminNotes }) {
   const now = new Date().toISOString();
 
+  await saveReview(application.id, {
+    tier,
+    rubric_scores: rubricScores || {},
+    admin_notes: adminNotes || null,
+    decision_reason: null,
+    reviewed_by: adminId,
+    reviewed_at: now,
+  });
+
   const { error: appErr } = await supabase
     .from('teacher_applications')
-    .update({
-      status: 'approved',
-      tier,
-      rubric_scores: rubricScores || {},
-      admin_notes: adminNotes || null,
-      reviewed_by: adminId,
-      reviewed_at: now,
-    })
+    .update({ status: 'approved' })
     .eq('id', application.id);
   if (appErr) throw appErr;
-
-  // Ensure the public teacher record exists and is now live.
-  const { data: existingTeacher } = await supabase
-    .from('teachers')
-    .select('id')
-    .eq('user_id', application.user_id)
-    .maybeSingle();
-
-  const teacherPayload = {
-    user_id: application.user_id,
-    name: application.display_name,
-    bio: application.bio,
-    tagline: application.headline,
-    languages: application.languages || [],
-    specialties: application.experience_types || [],
-    verified: true,
-    verification_date: now,
-    status: 'active',
-    tier,
-    application_id: application.id,
-  };
-
-  if (existingTeacher) {
-    const { error } = await supabase
-      .from('teachers')
-      .update(teacherPayload)
-      .eq('id', existingTeacher.id);
-    if (error) throw error;
-  } else {
-    const { error } = await supabase.from('teachers').insert(teacherPayload);
-    if (error) throw error;
-  }
-
-  // Make sure the profile is flagged as a teacher.
-  await supabase
-    .from('profiles')
-    .update({ role: 'teacher', is_teacher: true })
-    .eq('id', application.user_id);
-
-  await logAudit(adminId, 'approve_application', 'application', application.id, { tier });
 }
 
 /** REJECT with a reason shown to the applicant. */
 export async function rejectApplication(application, { adminId, reason, adminNotes }) {
+  await saveReview(application.id, {
+    admin_notes: adminNotes || null,
+    decision_reason: reason,
+    reviewed_by: adminId,
+    reviewed_at: new Date().toISOString(),
+  });
   const { error } = await supabase
     .from('teacher_applications')
-    .update({
-      status: 'rejected',
-      decision_reason: reason,
-      admin_notes: adminNotes || null,
-      reviewed_by: adminId,
-      reviewed_at: new Date().toISOString(),
-    })
+    .update({ status: 'rejected' })
     .eq('id', application.id);
   if (error) throw error;
-  await logAudit(adminId, 'reject_application', 'application', application.id, { reason });
 }
 
 /** REQUEST CHANGES — sends it back to the applicant to edit and resubmit. */
 export async function requestChanges(application, { adminId, reason, adminNotes }) {
+  await saveReview(application.id, {
+    admin_notes: adminNotes || null,
+    decision_reason: reason,
+    reviewed_by: adminId,
+    reviewed_at: new Date().toISOString(),
+  });
   const { error } = await supabase
     .from('teacher_applications')
-    .update({
-      status: 'changes_requested',
-      decision_reason: reason,
-      admin_notes: adminNotes || null,
-      reviewed_by: adminId,
-      reviewed_at: new Date().toISOString(),
-    })
+    .update({ status: 'changes_requested' })
     .eq('id', application.id);
   if (error) throw error;
-  await logAudit(adminId, 'request_changes', 'application', application.id, { reason });
 }
 
 /**

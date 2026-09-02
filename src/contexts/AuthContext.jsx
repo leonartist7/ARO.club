@@ -22,27 +22,41 @@ export const AuthProvider = ({ children }) => {
       return undefined;
     }
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Session readiness must not depend on the optional profile/role lookup.
+    // A slow Data API request previously left every protected screen on its
+    // spinner forever, even though Supabase had already authenticated the
+    // user. Role-gated screens remain safe: they still require `profile`.
+    const applySession = (session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        loadProfile(session.user.id);
-      } else {
         setLoading(false);
-      }
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await loadProfile(session.user.id);
+        void loadProfile(session.user.id);
       } else {
         setProfile(null);
         setLoading(false);
       }
+    };
+
+    // Get initial session. A failed local-session read must also release the
+    // app shell; it is equivalent to no usable session.
+    let authEventRevision = 0;
+    const sessionRevision = authEventRevision;
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => {
+        // Never let a slower initial read overwrite a newer sign-in/out
+        // event. This is particularly visible in a fresh browser context.
+        if (authEventRevision === sessionRevision) applySession(session);
+      })
+      .catch(() => {
+        if (authEventRevision === sessionRevision) applySession(null);
+      });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      authEventRevision += 1;
+      applySession(session);
     });
 
     return () => subscription.unsubscribe();
@@ -50,14 +64,15 @@ export const AuthProvider = ({ children }) => {
 
   const loadProfile = async (userId) => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      const [profileResult, roleResult] = await Promise.all([
+        supabase.from('profiles').select('*').eq('id', userId).single(),
+        supabase.schema('api').from('current_user_role').select('role').eq('user_id', userId).single(),
+      ]);
 
-      if (error) throw error;
-      setProfile(data);
+      if (profileResult.error) throw profileResult.error;
+      if (roleResult.error) throw roleResult.error;
+      const role = roleResult.data.role === 'participant' ? 'student' : roleResult.data.role;
+      setProfile({ ...profileResult.data, role, is_teacher: role === 'teacher' });
     } catch (error) {
       console.error('Error loading profile:', error);
     } finally {
@@ -163,7 +178,7 @@ export const AuthProvider = ({ children }) => {
         .single();
 
       if (error) throw error;
-      setProfile(data);
+      setProfile((current) => ({ ...current, ...data }));
       return { data, error: null };
     } catch (error) {
       return { data: null, error };

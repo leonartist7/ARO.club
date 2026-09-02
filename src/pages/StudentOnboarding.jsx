@@ -137,22 +137,20 @@ export default function StudentOnboarding() {
   const handleComplete = async () => {
     setLoading(true);
 
-    // The local player store is the source of truth, so onboarding always
-    // completes - even with no backend attached.
-    completeOnboarding({
+    const localOnboarding = {
       name: name.trim() || 'Learner',
       languages: selectedLanguages,
       interests: selectedInterests,
       goal,
       avatar,
       welcomeBonus: 100,
-    });
+    };
 
-    // Mirror to Supabase when there's a real session. Best effort: a failure
-    // here must never trap the player on the last onboarding step.
+    // Authenticated onboarding is durable only after the private profile write
+    // succeeds. Signed-out demo play remains local-only and explicit.
     if (user?.id) {
       try {
-        await supabase
+        const { error } = await supabase
           .from('profiles')
           .update({
             name,
@@ -163,19 +161,18 @@ export default function StudentOnboarding() {
             interests: selectedInterests,
             languages_learning: selectedLanguages,
             onboarding_completed: true,
-            points: 100, // Welcome bonus
           })
           .eq('id', user.id);
-
-        await supabase.from('user_achievements').insert({
-          user_id: user.id,
-          achievement_id: 'welcome_bonus',
-        });
+        if (error) throw error;
       } catch (error) {
         console.error('Could not sync onboarding to Supabase:', error);
+        alert('We could not save your profile. Please try again.');
+        setLoading(false);
+        return;
       }
     }
 
+    completeOnboarding(localOnboarding);
     setLoading(false);
     navigate('/student-dashboard');
   };

@@ -4,7 +4,7 @@ project_id = "aro-i0-ci"
 [api]
 enabled = true
 port = 54321
-schemas = ["public"]
+schemas = ["public", "api"]
 extra_search_path = ["public", "extensions"]
 max_rows = 100
 auto_expose_new_tables = false
@@ -34,7 +34,8 @@ enabled = true
 port = 54324
 
 [storage]
-enabled = false
+enabled = true
+file_size_limit = "50MiB"
 
 [storage.vector]
 enabled = false

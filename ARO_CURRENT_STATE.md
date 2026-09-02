@@ -1,8 +1,19 @@
 # ARO — Current State
 
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 1.0.0, **SPEC-READY / IN-PROGRESS** in draft PR #28.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> Founder authorization is recorded; isolated append-only migration, client
+> contract repairs and hostile SQL/API/Storage tests are implemented locally.
+> CI, independent review and browser evidence remain required. No hosted project
+> was changed; full I0/Q0/P1 gates remain in force.
+
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-30
+> **Last strategic update:** 2026-08-31
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -128,7 +139,7 @@ Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 p
 
 ### I0 execution update — disposable CI lane
 
-**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 release pending. Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
+**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
 
 Migration-source finding (2026-08-30): live read-only Tonguee metadata lacks the repository Trust tables, `profiles.role` and verified-publish enforcement trigger. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. Source-code Trust foundations must not be described as verified live controls. A reviewed application baseline reconciliation is required; no Tonguee mutation was performed or authorized.
 

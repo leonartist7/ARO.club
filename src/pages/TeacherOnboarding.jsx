@@ -140,7 +140,6 @@ export default function TeacherOnboarding() {
           bio,
           experience_types: selectedExperiences,
           onboarding_completed: true,
-          points: 100, // Welcome bonus
         })
         .eq('id', user.id);
 

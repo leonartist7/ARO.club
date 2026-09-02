@@ -1,8 +1,17 @@
 # ARO — Infrastructure, Environment, and Operations Registry
 
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> No repair is implemented. Isolated-only direction and reviewed exact contracts
+> are required before runtime work; full I0/Q0/P1 gates remain in force.
+
 > **Canonical operational map.** Agents must read this before changing Git branches, deployment configuration, Supabase projects, authentication providers, environment variables, migrations or production state.
 >
-> **Last verified:** GitHub 2026-08-30; hosted-provider snapshot 2026-08-28
+> **Last verified:** GitHub 2026-08-31; hosted-provider snapshot 2026-08-28
 >
 > This document records identifiers and decisions only. Never add secret values, tokens, service-role keys, passwords, recovery codes or private user data.
 
@@ -12,8 +21,8 @@
 
 - ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
-- The governed ARO history through `9394cb7` is present in ARO.club. M0, I0 spec and Q0 implementation merged through PRs #24–26; the active package branch is `feat/aro-i0-ephemeral-ci`.
-- ARO.club `main` is `87121a74bcf9d5db3b0dd41d0063c556fbe933af` (live GitHub verification 2026-08-30). The last hosted audit recorded Q0 Vercel deployment `dpl_AAivTxkWi3zJRDmCP3dbfAVkAsdy` as `READY`; this turn does not claim a fresh Vercel audit.
+- The governed ARO history through `9394cb7` is present in ARO.club. M0, I0 spec and Q0 implementation merged through PRs #24–26; the active package branch is `spec/aro-i0-application-baseline`.
+- ARO.club `main` is `467a11df122651df561adde2b3e03a35c6b25aaf` (live GitHub verification 2026-08-31). I0.1 production verification is recorded in [PR #27's release comment](https://github.com/leonartist7/ARO.club/pull/27#issuecomment-5470297817); this documentation pass does not claim a fresh Vercel audit.
 - ARO.club now has an independent Vercel project named `aro-club`. Its Supabase runtime target remains unassigned; it must not silently use Tonguee production credentials.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is not the ARO migration backend and must not be deleted or repurposed until its five auth accounts and any external dependencies are identified.
@@ -22,7 +31,7 @@
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is SHIPPED. M0 is VERIFIED as governance.
 - I0 spec 1.0.0 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`; implementation is blocked by hosted capacity and the absence of a local container runtime.
-- ARO-P1 remains SPEC-READY; its execution baseline is recorded, but runtime implementation has not begun because no safe isolated database environment is operational.
+- ARO-P1 remains SPEC-READY; its execution baseline is recorded, but runtime implementation has not begun because the application database baseline is not verified.
 
 ---
 
@@ -31,8 +40,8 @@
 | Item | Current value | Rule |
 |---|---|---|
 | ARO runtime repository | `leonartist7/ARO.club` | Independent ARO product repository |
-| ARO.club base | `main` at `87121a74bcf9d5db3b0dd41d0063c556fbe933af` | Default branch; protection unresolved at last audit |
-| Active governed package branch | `feat/aro-i0-ephemeral-ci` | I0.1 disposable CI only; no product migration or hosted mutation |
+| ARO.club base | `main` at `467a11df122651df561adde2b3e03a35c6b25aaf` | Default branch; protection unresolved at last audit |
+| Active governed package branch | `spec/aro-i0-application-baseline` | I0.2 audit/proposal only; no product migration or hosted mutation |
 | Governed source history | `leonartist7/Tonguee`, `feat/aro-p0-director-reset`, through `9394cb7` | Historical governance source; preserve, do not develop new ARO runtime there |
 | Original production repository | `leonartist7/Tonguee`, branch `main` | Untouched Tonguee production and recovery path |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
@@ -40,7 +49,7 @@
 | SEC0 PR | #18 | Merged into governed ARO branch |
 | P1 spec merge commit | ee0c5066adde24faf0eb8f9bb92753641c8b6770 | Added P1 spec/baseline docs and moved P1 to SPEC-READY |
 | P1 spec PR | #19 | Merged into governed ARO branch |
-| Current package | `ARO-I0.1`, branch `feat/aro-i0-ephemeral-ci` | Parent I0 CI authorization; required review before merge |
+| Current package | `ARO-I0.2`, branch `spec/aro-i0-application-baseline` | Audit/proposal only; director decision and reviewed exact contracts required |
 
 ### Branch discipline
 
@@ -269,7 +278,11 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 
 **ARO-I0 — Isolated Infrastructure and Provider Boundary**
 
-Active implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, VERIFIED at `54e41b7`, PR #27 release pending. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; automated security/operations review findings are resolved. No application migration target is certified yet.
+Completed implementation slice: **ARO-I0.1 Ephemeral Supabase CI**, spec 1.0.0, SHIPPED through PR #27 at `467a11d`. Target is only the disposable CI project `aro-i0-ci` under `tools/ci`; it is not a hosted project ref. See `artifacts/ARO-I0.1/VERIFICATION.md`. Real CI proves platform/Auth/SQL-probe/reset/cleanup; automated security/operations review findings are resolved. No application migration target is certified yet.
+
+Current slice: **ARO-I0.2 application baseline audit/proposal**, version 0.1.0.
+Read `specs/ARO-I0.2-APPLICATION-BASELINE.md` and obtain the isolated-only
+director decision in section 6 before finalizing implementation contracts.
 
 Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. Complete the $0 local stack when a compatible container runtime is available, then obtain explicit founder approval before any hosted cost/provider/domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
 

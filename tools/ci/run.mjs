@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { exerciseAuth } from './auth.mjs';
+import { exerciseAuthenticatedBrowser } from './browser.mjs';
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -62,8 +63,8 @@ function userCount(expected) {
 }
 function sqlTests() {
   const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=21\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 21/21 (transaction rolled back)\n');
+  requireCondition(/Tests=81\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write('PASS pgTAP 81/81 (transactions rolled back)\n');
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -94,7 +95,7 @@ try {
     });
     try {
       await phase('start-and-loopback-bindings', () => {
-        cli(['start', '--exclude', 'realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'], 600000);
+        cli(['start', '--exclude', 'realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'], 600000);
         checkBindings();
       });
       await phase('clean-reset', () => { cli(['db', 'reset', '--local', '--no-seed'], 180000); userCount(0); });
@@ -102,7 +103,7 @@ try {
       const status = JSON.parse(cli(['status', '-o', 'json']));
       validateTarget(status.API_URL, API, '/');
       validateTarget(status.INBUCKET_URL ?? status.MAILPIT_URL, MAIL, '/');
-      const confirmReset = await exerciseAuth(status.ANON_KEY, phase);
+      const confirmReset = await exerciseAuth(status.ANON_KEY, phase, exerciseAuthenticatedBrowser);
       await phase('synthetic-account-count', () => userCount(2));
       await phase('reset-removes-accounts', async () => {
         cli(['db', 'reset', '--local', '--no-seed'], 180000);

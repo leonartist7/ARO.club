@@ -6,22 +6,22 @@ The `Isolated database / platform` GitHub check runs this workdir on a standard 
 
 Safe local verification: `node --test tools/ci/boundary.test.mjs` and `node --check tools/ci/run.mjs`.
 
-CI sequence: pinned CLI → loopback-only Docker network → platform start → local reset → transactional SQL matrix → synthetic Auth lifecycle (including local recovery email) → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
+CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth/API/Storage lifecycle → authenticated 360/1440 light/dark browser matrix → local recovery email → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
 
 ## What this proves—and does not
 
 - Proves only the assertions that actually pass in the named CI run: service operation, platform reset, synthetic Auth and test-only RLS enforcement.
-- `platform.test.sql` rolls back its probe table and contains no product migration.
-- This workdir has zero application migrations. `supabase/*.sql` at the repository root is **not loaded**. In particular, `clean-schema.sql` drops existing tables and must not be used as a blind bootstrap.
-- Application schema/Trust import requires a separate reviewed baseline reconciliation. Future migrations must be created through the CLI and append-only; no production dump or user migration is authorized here.
-- This does not verify browser onboarding, hosted recovery/deliverability, profile/Trust compatibility, P1 storage, production rollout or full I0 acceptance.
+- `platform.test.sql` and `application.test.sql` are transactional and roll back their synthetic rows.
+- The only loaded application migration is the reviewed I0.2 baseline under `supabase/migrations`. Repository-root legacy SQL remains excluded; `clean-schema.sql` drops existing tables and must never be used as a bootstrap.
+- The I0.2 migration was created through the pinned CLI and is append-only. It has no hosted project reference, production dump or real user data.
+- This does not verify hosted recovery/deliverability, production rollout, provider capacity, or full I0 acceptance. It does verify the migrated local Auth/profile/application/verification/publication/booking/storage boundaries asserted by the test matrix.
 - Hosted capacity, scoped variables/callbacks, recovery, domain ownership and branch protection remain separate gates.
 
 ## Boundaries and retention
 
 Project: `aro-i0-ci`. Network: `aro-i0-ci-net`, labeled with the current GitHub run/attempt/job. Cleanup requires that exact ownership label and removes only that project's disposable volumes. Existing resources cause preflight rejection. The workflow repeats cleanup with `always()`; GitHub runner disposal is the final containment boundary after a hard cancellation.
 
-CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
+CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. Four synthetic authenticated screenshots are retained for seven days and contain no credential or real-user data. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
 
 ## Sources checked 2026-08-30
 

@@ -1,5 +1,15 @@
 # ARO — Build Playbook
 
+> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
+> `467a11d`; main Isolated database and Quality CI passed. Next is
+> [I0.2 application baseline](specs/ARO-I0.2-APPLICATION-BASELINE.md),
+> version 1.0.0, **SPEC-READY / IN-PROGRESS** in draft PR #28.
+> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
+> profile privacy, field authority, approval and booking conflicts.
+> Founder authorization is recorded. Isolated implementation is active; CI,
+> independent review and browser evidence remain required. No hosted target was
+> mutated and full I0/Q0/P1 gates remain in force.
+
 ## Operating contract
 
 Read `AGENTS.md` first. The director authors product, design, data, Trust/Safety, money, and architecture decisions; an implementation agent executes one approved package. One package = one branch = one PR. Any unresolved security, privacy, Trust, money, legal, or materially different product decision stops for director review.
@@ -25,7 +35,7 @@ Current enabling-state record (2026-08-28): M0 is **VERIFIED**; I0 is **SPEC-REA
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 
-I0 execution update (2026-08-30): `ARO-I0.1` is VERIFIED at `54e41b7` in PR #27, release pending. Actual platform CI passes and automated security/operations review findings are resolved. It tests platform infrastructure only, not application migration compatibility; no hosted or P1 gate is waived. Next technical gate is reviewed application-baseline reconciliation, including the live source Trust drift recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
+I0 execution update (2026-08-30): `ARO-I0.1` is VERIFIED at `54e41b7` in PR #27, merged at 467a11d (SHIPPED). Actual platform CI passes and automated security/operations review findings are resolved. It tests platform infrastructure only, not application migration compatibility; no hosted or P1 gate is waived. Next technical gate is reviewed application-baseline reconciliation, including the live source Trust drift recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
 
 ## P0 / P0.1 — Director Reset and Pack Completion
 
