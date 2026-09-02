@@ -8,6 +8,10 @@ import { API, requireCondition } from './boundary.mjs';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const base = 'http://127.0.0.1:5173';
 const screenshotDir = fileURLToPath(new URL('../../artifacts/ARO-I0.2/ci-screenshots/', import.meta.url));
+// CI workers can take longer than an interactive browser to parse the current
+// baseline bundle. Keep readiness bounded, but do not confuse cold-start CPU
+// contention with an application failure.
+const uiReadyTimeout = 20000;
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -68,8 +72,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
         const emailInput = page.locator('input[type="email"]');
         const passwordInput = page.locator('input[type="password"]');
-        await emailInput.waitFor({ state: 'visible', timeout: 10000 });
-        await passwordInput.waitFor({ state: 'visible', timeout: 10000 });
+        await emailInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+        await passwordInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
         requireCondition(await page.getByLabel('Email Address').count() === 1, 'EMAIL_LABEL_MISSING');
         requireCondition(await page.getByLabel('Password').count() === 1, 'PASSWORD_LABEL_MISSING');
         await emailInput.fill(email);
