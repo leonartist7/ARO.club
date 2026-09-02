@@ -5,7 +5,7 @@
 > Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
 > light/dark browser evidence. I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**
 > in that disposable lane. Parent I0 capacity/domain/branch-protection and the
-> independent I0.2 implementation review remain separate follow-ups.
+> required independent I0.2 implementation review remain open. P1 is blocked.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
@@ -149,6 +149,15 @@ passed. The disposable lane verifies the application migration, 81 hostile SQL
 assertions, synthetic Auth/API/Storage/recovery/reset flows and authenticated
 360px/1440px light/dark browser evidence. This does not complete parent I0's
 hosted capacity/domain/branch-protection requirements or waive P1's baseline.
+
+### I0.2 supplemental review update
+
+A supplemental read-only review record is preserved in
+`artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`. Because it did not rerun the
+database/Auth/Storage lane and was not performed by the required independent
+specialist reviewer, it is not package sign-off and does not close I02-08.
+Parent I0 remains blocked on safe capacity, domain and branch-protection gates,
+so this review does not authorize P1.
 
 ### Active master objective
 
