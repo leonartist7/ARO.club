@@ -6,6 +6,38 @@
 
 ---
 
+## 2026-09-02 — Correction: I0.2 independent review remains open
+
+The preceding review-reconciliation entry over-promoted a supplemental
+same-workflow read-only audit into formal independent package sign-off. That
+claim is corrected: I0.2 remains **IMPLEMENTED / CI VERIFIED**, and I02-08
+remains **IMPLEMENTED / REVIEW FOLLOW-UP** until an independent
+security/privacy/Trust/operations reviewer inspects PR #28 and its CI evidence
+and explicitly records approval or findings.
+
+The supplemental audit is retained as transparent non-signoff evidence at
+`artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`. Its local unit and database rerun
+limitations are now recorded accurately. Parent I0 and P1 remain blocked; no
+hosted provider, Tonguee, quarantined `aro-platform`, payment, Stripe or Google
+state changed.
+
+## 2026-09-02 — I0.2 independent review recorded and infrastructure state reconciled
+
+An independent read-only security/privacy/Trust/operations review of the I0.2
+implementation found no release-blocking defect within its isolated scope. The
+review checked the append-only migration, grants and RLS, private review and
+storage boundaries, verified-publish enforcement, client authority changes,
+disposable-runner guards and PR #28 evidence. Local boundary tests, lint and
+build passed; the local unit lane is environment-blocked by the host Node
+20.18.1 and jsdom/undici worker incompatibility, while PR #28 remains the
+recorded passing 61-test CI evidence.
+
+`ARO_INFRASTRUCTURE.md` now matches the canonical delivery state instead of
+describing I0.2 as an unapproved proposal. Parent I0 remains **SPEC-READY /
+IMPLEMENTATION BLOCKED** on isolated capacity, domain and branch-protection
+requirements. P1 remains **SPEC-READY / BASELINE BLOCKED**. No hosted provider,
+Tonguee, quarantined `aro-platform`, payment, Stripe or Google state changed.
+
 ## 2026-09-02 — I0.2 application baseline and Q0 authenticated CI merged
 
 PR #28 merged into `main` at `5976928` after both Isolated database and

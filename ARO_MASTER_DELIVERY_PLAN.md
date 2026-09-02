@@ -4,14 +4,14 @@
 > The disposable application baseline and Q0 authenticated regression gate
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
 > 360px/1440px light/dark browser checks. Parent I0's hosted
-> capacity/domain/branch-protection gates and I0.2's independent review remain
-> open; P1 is still not authorized to start.
+> capacity/domain/branch-protection gates and I0.2's required independent review
+> remain open; P1 is still not authorized to start.
 
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
 > **Approved by:** Founder, 2026-08-27
 >
-> **Current base:** `main` at I0.1 merge `467a11d`
+> **Reviewed base:** requested `main` commit `5c3d55c`
 >
 > **Objective:** Deliver ARO's production-ready V1 opportunity loop through P5, with isolated infrastructure, a reliable application foundation, governed platform and AI architecture, verified user experience, operational recovery, and zero known release-blocking defects.
 

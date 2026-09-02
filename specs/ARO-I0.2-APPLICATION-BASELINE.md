@@ -229,7 +229,7 @@ inventory only. Never upload test credentials, Auth mail bodies or private data.
 | I02-05 | Real Auth/onboarding/Trust journeys persist correctly | passing expanded API/Auth plus browser evidence | PASS |
 | I02-06 | Approval/publication/suspension atomic and enforced | passing transactional and bypass tests | PASS |
 | I02-07 | Compatibility/accessibility/performance budgets pass | responsive light/dark evidence, semantic label and bounded browser checks | PASS |
-| I02-08 | Review and cleanup complete; status truthful | CI cleanup passed; independent review remains follow-up | IMPLEMENTED / REVIEW FOLLOW-UP |
+| I02-08 | Review and cleanup complete; status truthful | CI cleanup passed; independent specialist review remains | IMPLEMENTED / REVIEW FOLLOW-UP |
 
 ## 25. Rollout
 
@@ -248,8 +248,9 @@ PR. Never use destructive production rollback or copy customer data.
 Audit by Codex, 2026-08-30; design review updated 2026-08-31. Findings F1–F7
 are addressed by explicit grants, fixed-search-path functions, private schemas,
 RLS and hostile tests. Founder repair approval is recorded. PR #28 merged after
-the CI evidence passed; independent implementation review remains a follow-up
-because CodeRabbit skipped review for this OSS repository.
+the CI evidence passed. A supplemental read-only review record exists at
+`../artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`, but it did not rerun the isolated
+database lane and does not satisfy the required independent specialist review.
 
 ## 28. Product/design review
 
