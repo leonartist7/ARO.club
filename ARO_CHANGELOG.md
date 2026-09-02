@@ -6,6 +6,30 @@
 
 ---
 
+## 2026-09-02 — I0.2 application baseline and Q0 authenticated CI merged
+
+PR #28 merged into `main` at `5976928` after both Isolated database and
+Quality workflows passed. The disposable lane now proves the I0.2 migration,
+81 transactional SQL assertions, synthetic Auth/API/Storage boundaries,
+recovery/reset cleanup and authenticated 360px/1440px light/dark browser
+evidence. Q0's authenticated regression gate is therefore no longer blocked
+in this disposable CI scope.
+
+Status transition:
+
+- I0.2: **SPEC-READY / IN-PROGRESS → IMPLEMENTED / CI VERIFIED**.
+- Q0: **IMPLEMENTED / AUTH-GATE BLOCKED → IMPLEMENTED / CI VERIFIED** in the
+  disposable lane.
+- Parent I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED** on separate hosted
+  capacity, domain and branch-protection requirements.
+- P1 remains **SPEC-READY / BASELINE BLOCKED**; this merge does not authorize
+  P1 runtime implementation.
+
+The independent implementation review required by I0.2 remains a follow-up:
+CodeRabbit returned a successful skipped-review status for this OSS repository.
+No hosted provider, Tonguee, quarantined `aro-platform`, payment scope or paid
+resource was changed.
+
 ## 2026-08-31 — I0.2 application/Auth/Trust baseline authorized
 
 ### Decision

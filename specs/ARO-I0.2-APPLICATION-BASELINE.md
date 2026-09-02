@@ -2,18 +2,18 @@
 
 ## 0. Metadata
 
-- Status: **SPEC-READY / IN-PROGRESS**
+- Status: **IMPLEMENTED / CI VERIFIED**; independent implementation review follow-up remains
 - Version: 1.0.0; implementation authority for isolated I0.2 only
 - Owner: ARO founder/director
 - Branch: `spec/aro-i0-application-baseline`
-- PR: [#28](https://github.com/leonartist7/ARO.club/pull/28), draft; not merged
+- PR: [#28](https://github.com/leonartist7/ARO.club/pull/28), merged into `main` at `5976928`
 - Depends on: I0 specification and SHIPPED I0.1
 - Blocks: real application Auth/Trust baseline for Q0/P1
 - Governing docs: AGENTS.md, ARO_MASTER_DELIVERY_PLAN.md, ARO_BUILD_PLAYBOOK.md,
   ARO_INFRASTRUCTURE.md, ARO_ARCHITECTURE.md, ARO_DATA_MODEL.md,
   ARO_TRUST_SAFETY.md, ARO_MONEY.md, ARO_MIGRATION.md, ADR-025–027
 - Required review: director, security/privacy/Trust and operations
-- Updated: 2026-08-31; source audit and local test baseline dated 2026-08-30
+- Updated: 2026-09-02; source audit dated 2026-08-30 and CI verification dated 2026-09-02
 
 ## 1. Problem
 
@@ -224,12 +224,12 @@ inventory only. Never upload test credentials, Auth mail bodies or private data.
 |---|---|---|---|
 | I02-01 | Source/client conflicts inventoried | audit F1–F7 and catalog checks | RECORDED |
 | I02-02 | Direction and exact contracts approved | founder PR comment and v1.0 spec | PASS |
-| I02-03 | Clean application reset reproducible | two CI runs with schema/grant assertions | IMPLEMENTED / CI PENDING |
-| I02-04 | Private data and privileged fields protected | hostile SQL/API/Storage tests | IMPLEMENTED / CI PENDING |
-| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | expanded API/Auth plus browser evidence | IMPLEMENTED / CI PENDING |
-| I02-06 | Approval/publication/suspension atomic and enforced | transactional and bypass tests | IMPLEMENTED / CI PENDING |
-| I02-07 | Compatibility/accessibility/performance budgets pass | named journey evidence | NOT RUN |
-| I02-08 | Review and cleanup complete; status truthful | review/CI/recovery record | NOT RUN |
+| I02-03 | Clean application reset reproducible | two passing CI runs with schema/grant assertions | PASS |
+| I02-04 | Private data and privileged fields protected | passing hostile SQL/API/Storage tests | PASS |
+| I02-05 | Real Auth/onboarding/Trust journeys persist correctly | passing expanded API/Auth plus browser evidence | PASS |
+| I02-06 | Approval/publication/suspension atomic and enforced | passing transactional and bypass tests | PASS |
+| I02-07 | Compatibility/accessibility/performance budgets pass | responsive light/dark evidence, semantic label and bounded browser checks | PASS |
+| I02-08 | Review and cleanup complete; status truthful | CI cleanup passed; independent review remains follow-up | IMPLEMENTED / REVIEW FOLLOW-UP |
 
 ## 25. Rollout
 
@@ -247,8 +247,9 @@ PR. Never use destructive production rollback or copy customer data.
 
 Audit by Codex, 2026-08-30; design review updated 2026-08-31. Findings F1–F7
 are addressed by explicit grants, fixed-search-path functions, private schemas,
-RLS and hostile tests. Founder repair approval is recorded. Independent
-implementation review remains required before merge.
+RLS and hostile tests. Founder repair approval is recorded. PR #28 merged after
+the CI evidence passed; independent implementation review remains a follow-up
+because CodeRabbit skipped review for this OSS repository.
 
 ## 28. Product/design review
 
@@ -262,7 +263,8 @@ a green platform probe alone does not verify this package or P1.
 
 ## 30. Delivery record
 
-Version 1.0.0 exact contract is approved and implementation is active in draft
-PR #28. The append-only migration, client contract repairs and SQL/API/Storage
-tests exist locally; CI, independent review, browser evidence and final status
-remain pending. No hosted/runtime provider change has occurred.
+Version 1.0.0 implementation merged through PR #28 at `5976928`. Two passing
+CI runs prove the append-only migration, client contract repairs, hostile
+SQL/API/Storage tests, Auth/recovery/reset and responsive authenticated browser
+evidence. Independent implementation review remains a named follow-up. No
+hosted/runtime provider change occurred.

@@ -1,15 +1,11 @@
 # ARO — Current State
 
-> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
-> `467a11d`; main Isolated database and Quality CI passed. Next is
-> [I0.2 application baseline](specs/ARO-I0.2-APPLICATION-BASELINE.md),
-> version 1.0.0, **SPEC-READY / IN-PROGRESS** in draft PR #28.
-> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
-> profile privacy, field authority, approval and booking conflicts.
-> Founder authorization is recorded; isolated append-only migration, client
-> contract repairs and hostile SQL/API/Storage tests are implemented locally.
-> CI, independent review and browser evidence remain required. No hosted project
-> was changed; full I0/Q0/P1 gates remain in force.
+> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> Its disposable CI lane passed 81 transactional SQL assertions, synthetic
+> Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
+> light/dark browser evidence. I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**
+> in that disposable lane. Parent I0 capacity/domain/branch-protection and the
+> independent I0.2 implementation review remain separate follow-ups.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
@@ -129,9 +125,10 @@ The founder confirmed that the historical environment file contained only browse
 
 ARO now has an independent `leonartist7/ARO.club` repository and Vercel project `aro-club`. R1 PR #22 merged into `main` as `494817f`, and Vercel production deployment `dpl_DKCbYy8LvJAWP3tAzCA43oGGJUA2` reached `READY`. The ARO shell, metadata, public homepage and universal copy use the approved editorial/orbit identity, while Tonguee remains the first live language vertical. Tests, build, route smoke, responsive light/dark screenshots and an accessibility spot check are recorded under `artifacts/ARO-R1/VERIFICATION.md`.
 
-### Active next gate — isolated P1 environment
+### Active next gate — parent I0 and P1 environment
 
-**State:** I0 SPEC-READY; IMPLEMENTATION BLOCKED
+**State:** parent I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED**; P1 remains
+**SPEC-READY / BASELINE BLOCKED**.
 
 The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider baseline in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`. The approved $0/month hosted project remains blocked by the two-active-free-project limit, and the current host has no Docker-compatible runtime for the $0 local Supabase path. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP**.
 
@@ -143,11 +140,15 @@ Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 p
 
 Migration-source finding (2026-08-30): live read-only Tonguee metadata lacks the repository Trust tables, `profiles.role` and verified-publish enforcement trigger. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. Source-code Trust foundations must not be described as verified live controls. A reviewed application baseline reconciliation is required; no Tonguee mutation was performed or authorized.
 
-### ARO-Q0 — Reliability and CI Foundation
+### ARO-I0.2 and ARO-Q0 — application baseline and reliability
 
-**State:** IMPLEMENTED / AUTH-GATE BLOCKED
+**State:** I0.2 **IMPLEMENTED / CI VERIFIED**; Q0 **IMPLEMENTED / CI VERIFIED**
 
-Q0 removes the inherited lint debt, replaces fake localStorage-auth journeys with the real fail-closed Supabase contract, adds portable Windows/Linux browser execution and GitHub Quality checks, and records 61/61 unit tests, a passing build, 16/16 public E2E checks and a clean 1440px visual audit. The authenticated suite exits non-zero as `BLOCKED_PREREQUISITE` until I0 supplies an approved isolated target and synthetic account. Branch protection remains a founder/provider gate.
+PR #28 merged at `5976928` after both Isolated database and Quality workflows
+passed. The disposable lane verifies the application migration, 81 hostile SQL
+assertions, synthetic Auth/API/Storage/recovery/reset flows and authenticated
+360px/1440px light/dark browser evidence. This does not complete parent I0's
+hosted capacity/domain/branch-protection requirements or waive P1's baseline.
 
 ### Active master objective
 
@@ -162,8 +163,10 @@ Current governed sequence:
 1. **SEC0** — secret hygiene (**VERIFIED**).
 2. **R1** — repository separation + ARO platform rebrand (**SHIPPED**).
 3. **M0** — master governance (**VERIFIED**).
-4. **I0** — isolated infrastructure (**SPEC-READY / IMPLEMENTATION BLOCKED**).
-5. **Q0** — reliability foundation (**IMPLEMENTED / AUTH-GATE BLOCKED**).
+4. **I0** — isolated infrastructure (I0.1 **SHIPPED**; I0.2 **IMPLEMENTED /
+   CI VERIFIED**; parent hosted gate remains blocked).
+5. **Q0** — reliability foundation (**IMPLEMENTED / CI VERIFIED** in the
+   disposable lane).
 6. **P1** — Capability + Goal foundation (**SPEC-READY; baseline gate waiting on isolated Supabase capacity**).
 7. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
 8. **P2** — Explicit Intent + privacy-preserving Demand Signals.

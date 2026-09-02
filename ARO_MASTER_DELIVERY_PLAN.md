@@ -1,13 +1,11 @@
 # ARO — Master Delivery Plan
 
-> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
-> `467a11d`; main Isolated database and Quality CI passed. Next is
-> [I0.2 application baseline proposal](specs/ARO-I0.2-APPLICATION-BASELINE.md),
-> version 0.1.0, **SPEC-REQUIRED / DIRECTOR DECISION REQUIRED**.
-> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
-> profile privacy, field authority, approval and booking conflicts.
-> No repair is implemented. Isolated-only direction and reviewed exact contracts
-> are required before runtime work; full I0/Q0/P1 gates remain in force.
+> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> The disposable application baseline and Q0 authenticated regression gate
+> passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
+> 360px/1440px light/dark browser checks. Parent I0's hosted
+> capacity/domain/branch-protection gates and I0.2's independent review remain
+> open; P1 is still not authorized to start.
 
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
@@ -197,9 +195,14 @@ Make the inherited application baseline deterministic enough that new P1 regress
 - build contains no new critical warning and dependency/lockfile state is reproducible;
 - CI blocks merge when a required gate fails.
 
-### Current status — 2026-08-28
+### Current status — 2026-09-02
 
-`specs/ARO-Q0-RELIABILITY-FOUNDATION.md` is implemented. Local lint, 61 unit tests, production build and 16 public/fail-closed browser checks pass; `.github/workflows/quality.yml` defines the stable PR checks. Q0 remains **IMPLEMENTED / AUTH-GATE BLOCKED** until I0 provides an approved isolated Auth/RLS target and founder-authorized branch protection is configured. Evidence: `artifacts/ARO-Q0/VERIFICATION.md`.
+`specs/ARO-Q0-RELIABILITY-FOUNDATION.md` is **IMPLEMENTED / CI VERIFIED** in
+the disposable I0.2 lane. PR #28 merged at `5976928` after local lint, 61 unit
+tests, production build, public smoke and authenticated isolated
+Auth/RLS/browser evidence passed. Parent I0's hosted capacity/domain and
+branch-protection gates remain outside this fixture. Evidence includes PR #28
+and `artifacts/ARO-Q0/VERIFICATION.md`.
 
 ---
 

@@ -1,14 +1,11 @@
 # ARO — Build Playbook
 
-> **2026-08-31 execution handoff:** I0.1 is **SHIPPED** through PR #27 at
-> `467a11d`; main Isolated database and Quality CI passed. Next is
-> [I0.2 application baseline](specs/ARO-I0.2-APPLICATION-BASELINE.md),
-> version 1.0.0, **SPEC-READY / IN-PROGRESS** in draft PR #28.
-> [Application audit](artifacts/ARO-I0.2/APPLICATION_BASELINE_AUDIT.md) records
-> profile privacy, field authority, approval and booking conflicts.
-> Founder authorization is recorded. Isolated implementation is active; CI,
-> independent review and browser evidence remain required. No hosted target was
-> mutated and full I0/Q0/P1 gates remain in force.
+> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`
+> after the isolated migration/Auth/RLS/Storage/recovery/reset and responsive
+> authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
+> VERIFIED** in the disposable lane. Parent-I0 hosted capacity/domain/
+> branch-protection and I0.2 independent review remain separate gates; P1 is
+> still not authorized to start.
 
 ## Operating contract
 
@@ -31,7 +28,11 @@ Terminology is locked by `DECISIONS.md`: **Opportunity** is the universal arrang
 
 The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, Q0, N1, X1 and A1 are enabling packages defined by `ARO_MASTER_DELIVERY_PLAN.md`; none may implement downstream product behavior by implication.
 
-Current enabling-state record (2026-08-28): M0 is **VERIFIED**; I0 is **SPEC-READY / IMPLEMENTATION BLOCKED**; Q0 is **IMPLEMENTED / AUTH-GATE BLOCKED** with local public gates passing. The real Auth/RLS suite still requires I0, and branch protection remains founder-authorized provider work.
+Current enabling-state record (2026-09-02): M0 is **VERIFIED**; I0.1 is
+**SHIPPED**; I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED** in the disposable
+lane. Parent I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED** on hosted
+capacity/domain/branch-protection gates. P1 remains **SPEC-READY / BASELINE
+BLOCKED** and does not start from this CI fixture alone.
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 
