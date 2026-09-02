@@ -8,6 +8,8 @@
 >
 > Result: **SPECIFICATION/HYGIENE VERIFIED; BRANCH PROTECTION VERIFIED; INFRASTRUCTURE IMPLEMENTATION BLOCKED**
 
+Provider-gate evidence branch: `infra/aro-i0-branch-protection`, PR #30.
+
 ## Scope
 
 This delivery verifies the I0 specification, provider baseline, status synchronization and removal of literal Supabase key values from deployment documentation. It does not claim that local, Preview or Production infrastructure is ready.

@@ -7,6 +7,7 @@
 - **Owner/director:** ARO founder/director
 - **Specification branch / PR:** `spec/aro-i0-isolated-infrastructure` / #25, merged at `3e66b60`
 - **Current provider-gate branch:** `infra/aro-i0-branch-protection`
+- **Current provider-gate PR:** #30
 - **Depends on:** SEC0 VERIFIED; R1 SHIPPED; M0 VERIFIED
 - **Blocks:** Q0 hosted verification; P1 authenticated/RLS baseline and runtime implementation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_INFRASTRUCTURE.md`, `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md`, `ARO_TRUST_SAFETY.md`, ADR-025 through ADR-027
@@ -348,7 +349,7 @@ I0 is VERIFIED only when:
 Package: ARO-I0
 Spec version: 1.0.0
 Branch: infra/aro-i0-branch-protection
-PR: pending
+PR: #30
 Base: 2712642
 Acceptance: 5 pass-to-date / 5 blocked / 1 fail
 Unit: 61/61 passed
