@@ -4,8 +4,9 @@
 > Its disposable CI lane passed 81 transactional SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
 > light/dark browser evidence. I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**
-> in that disposable lane. Parent I0 capacity/domain/branch-protection and the
-> required independent I0.2 implementation review remain open. P1 is blocked.
+> in that disposable lane. GitHub `main` protection now requires the three
+> stable CI checks. Parent I0 hosted capacity/domain and the required independent
+> I0.2 implementation review remain open. P1 is blocked.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
@@ -130,9 +131,9 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 **State:** parent I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED**; P1 remains
 **SPEC-READY / BASELINE BLOCKED**.
 
-The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider baseline in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`. The approved $0/month hosted project remains blocked by the two-active-free-project limit, and the current host has no Docker-compatible runtime for the $0 local Supabase path. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP**.
+The repository, test/build, visual/accessibility and live read-only Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider baseline in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`. On 2026-09-02 Supabase reported Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform` `INACTIVE`; a new project quotes $0/month, but creation still requires explicit cost confirmation and a region choice. The current host still has no Docker-compatible runtime for the $0 local Supabase path. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP** and untouched.
 
-Live Vercel evidence confirms the ARO.club/Tonguee project links and latest M0 production deployment. The connected `aro-club` project does not list `aro.club`; that hostname currently serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action.
+Live Vercel evidence confirms the ARO.club/Tonguee project links and the READY ARO.club production deployment for current `main` commit `2712642`. The connected `aro-club` project does not list `aro.club`; that hostname still serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action. GitHub `main` protection now requires PRs, resolved conversations and the stable `static`, `browser-smoke` and `platform` checks, with force-pushes and deletion disabled.
 
 ### I0 execution update — disposable CI lane
 

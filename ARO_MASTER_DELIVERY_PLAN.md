@@ -3,9 +3,10 @@
 > **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > The disposable application baseline and Q0 authenticated regression gate
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
-> 360px/1440px light/dark browser checks. Parent I0's hosted
-> capacity/domain/branch-protection gates and I0.2's required independent review
-> remain open; P1 is still not authorized to start.
+> 360px/1440px light/dark browser checks. GitHub `main` protection now requires
+> the stable `static`, `browser-smoke` and `platform` checks. Parent I0's hosted
+> capacity/domain gates and I0.2's required independent review remain open; P1
+> is still not authorized to start.
 
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
@@ -160,7 +161,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. Supabase rejected the approved $0/month `ARO.club Staging` project because the founder account already has two active free projects. The $0 local Supabase path is also blocked on this host because no Docker-compatible runtime is installed. No charge or project was created. Resolution requires a compatible local runtime and/or founder-approved hosted capacity; neither existing active project may be touched under current authority.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. On 2026-09-02 Supabase reported Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform` `INACTIVE`, so the prior two-active-project capacity condition no longer applies. A new project currently quotes $0/month, but creation still requires explicit provider cost confirmation and an approved region. The $0 local Supabase path remains blocked on this host because no Docker-compatible runtime is installed. No charge or project was created, and neither preserved project was mutated. GitHub branch protection is now active; hosted capacity and domain ownership remain open.
 
 ---
 
@@ -200,9 +201,9 @@ Make the inherited application baseline deterministic enough that new P1 regress
 `specs/ARO-Q0-RELIABILITY-FOUNDATION.md` is **IMPLEMENTED / CI VERIFIED** in
 the disposable I0.2 lane. PR #28 merged at `5976928` after local lint, 61 unit
 tests, production build, public smoke and authenticated isolated
-Auth/RLS/browser evidence passed. Parent I0's hosted capacity/domain and
-branch-protection gates remain outside this fixture. Evidence includes PR #28
-and `artifacts/ARO-Q0/VERIFICATION.md`.
+Auth/RLS/browser evidence passed. Parent I0's hosted capacity/domain gates
+remain outside this fixture; branch protection passed on 2026-09-02. Evidence
+includes PR #28 and `artifacts/ARO-Q0/VERIFICATION.md`.
 
 ---
 

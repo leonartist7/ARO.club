@@ -4,7 +4,8 @@
 > The disposable lane passed migration, 81 SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset and authenticated responsive browser evidence.
 > I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**. Parent-I0 capacity/domain/
-> branch-protection and I0.2's independent-review follow-up remain explicit.
+> hosted capacity/domain and I0.2's independent-review follow-up remain explicit.
+> GitHub `main` protection now requires the three stable CI checks.
 
 > **Purpose:** make ARO spec-driven, traceable, and resistant to product drift. This file is the registry for what is vision, what is approved, what is implemented, what is verified, and what remains blocked or exploratory.
 >
@@ -87,9 +88,9 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | M0 Master Delivery Governance | **VERIFIED** | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027, merged PR #24 | keep plan, status, evidence and cloud-task handoff synchronized |
 | ARO-SEC0 repository secret hygiene | **VERIFIED** after finalization PR merge | `ARO_SEC0_REPORT.md`, branch `agent/aro-sec0-finalize`; active tree removes `.env` | keep local/deployment configuration outside Git; continue RLS review in P1 baseline |
 | R1 ARO platform rebrand + repository separation | **SHIPPED** | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent production; preserve Tonguee recovery boundary |
-| I0 Isolated Infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, provider registry | install local container runtime and/or obtain founder-approved hosted capacity; resolve `aro.club` ownership |
+| I0 Isolated Infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, provider registry | confirm the quoted $0 hosted project and region; resolve `aro.club` ownership; local runtime remains unavailable |
 | I0.2 Application/Auth/Trust Baseline | **IMPLEMENTED / CI VERIFIED** | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, merged PR #28 / `5976928` | required independent implementation review remains open |
-| Q0 Reliability Foundation | **IMPLEMENTED / CI VERIFIED** | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, Quality + PR #28 isolated evidence | parent-I0 hosted capacity and branch protection remain founder gates |
+| Q0 Reliability Foundation | **IMPLEMENTED / CI VERIFIED** | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, Quality + PR #28 isolated evidence | parent-I0 hosted capacity remains; branch protection passed 2026-09-02 |
 | P1 Capability + Goal Foundation | **SPEC-READY / BASELINE BLOCKED** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md`, `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | provide isolated Supabase capacity; finish authenticated/RLS baseline before runtime code |
 | N1 Platform / Next.js Decision | **SPEC-REQUIRED** | phase contract in `ARO_MASTER_DELIVERY_PLAN.md` | P1 verified; produce measured parity/migration decision spec |
 | X1 Experience Foundation | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md`, phase contract in `ARO_MASTER_DELIVERY_PLAN.md` | N1 decision complete; specify tokens/primitives/accessibility/performance |

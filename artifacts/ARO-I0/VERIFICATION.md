@@ -6,7 +6,7 @@
 >
 > Base: `67d5c8d24bd6b6a11cff10d49407b321b1bf74cb`
 >
-> Result: **SPECIFICATION/HYGIENE VERIFIED; INFRASTRUCTURE IMPLEMENTATION BLOCKED**
+> Result: **SPECIFICATION/HYGIENE VERIFIED; BRANCH PROTECTION VERIFIED; INFRASTRUCTURE IMPLEMENTATION BLOCKED**
 
 ## Scope
 
@@ -24,8 +24,24 @@ No runtime source, dependency, schema, migration, RLS policy, Auth setting, Verc
 | I0 spec completeness | PASS | 30 template-aligned sections, 365 lines |
 | Provider baseline | PASS | `artifacts/ARO-I0/BASELINE.md` |
 | Runtime/source delta | PASS | none |
+| GitHub branch protection | PASS | strict `static`, `browser-smoke`, `platform`; PR/conversation resolution required; admin enforcement; force-push/deletion disabled |
 
 ## Automated baseline
+
+2026-09-02 documentation/provider-gate self-review:
+
+| Check | Result | Evidence |
+|---|---|---|
+| Lint | PASS | `npm run lint -- --max-warnings=0` |
+| Unit | PASS | Vitest 2 files / 61 tests |
+| Build | PASS | Vite 7.2.2; 2,602 modules |
+| Main JS | RECORDED | 750.86 kB minified / 230.09 kB gzip |
+| CSS | RECORDED | 89.84 kB minified / 13.92 kB gzip |
+| Diff whitespace | PASS | `git diff --check` |
+
+The package changes documentation and the GitHub protection setting only; it
+adds no runtime source or dependency. The inherited large-chunk and stale
+browser-dataset warnings remain unchanged in scope.
 
 | Check | Result | Evidence |
 |---|---|---|
@@ -46,9 +62,9 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | Tonguee ↔ Vercel `langgie` Git link | PASS |
 | Latest M0 production deployment READY | PASS |
 | Tonguee Supabase ACTIVE_HEALTHY and untouched | PASS |
-| `aro-platform` ACTIVE_HEALTHY, quarantined and untouched | PASS |
-| Free plan/two active slots confirmed | PASS |
-| Current new-project quote recorded without confirmation | PASS — $0/month, capacity rejected |
+| `aro-platform` INACTIVE, quarantined and untouched by this audit | PASS |
+| Free plan/one active slot currently available | PASS |
+| Current new-project quote recorded without confirmation | PASS — $0/month; confirmation not submitted |
 | Current Preview-branch quote recorded without confirmation | PASS — $0.01344/hour; paid capability unapproved |
 | Local container runtime | FAIL — Docker-compatible command unavailable |
 | Hosted isolated ARO target | FAIL — unassigned |
@@ -62,21 +78,21 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | I0-002 | PASS | live Supabase project status; no mutations |
 | I0-003 | PASS | literal values removed; repository scan clean |
 | I0-004 | BLOCKED | no compatible local container runtime |
-| I0-005 | BLOCKED | Free capacity exhausted; no hosted target |
+| I0-005 | BLOCKED | $0 project quote confirmed; explicit cost confirmation and region still required; no hosted target |
 | I0-006 | BLOCKED | target does not exist; env-scope dashboard evidence unavailable |
 | I0-007 | BLOCKED | isolated Auth target absent |
 | I0-008 | BLOCKED | isolated recovery target absent |
-| I0-009 | BLOCKED | main is unprotected and required CI checks are not installed |
+| I0-009 | PASS | main protection requires strict `static`, `browser-smoke`, `platform`, PRs and resolved conversations |
 | I0-010 | PASS TO DATE | no charge, project, branch or destructive operation occurred |
 | I0-011 | FAIL / FOUNDER ACTION | connected project does not own/list `aro.club`; hostname serves another product |
 
 ## Review conclusion
 
-The package is safe to merge as specification/evidence/hygiene. I0 itself must remain **SPEC-READY / IMPLEMENTATION BLOCKED**. Do not advance I0 to VERIFIED, do not start P1 runtime migrations, and do not point ARO.club at either existing active Supabase project.
+The package is safe to merge as specification/evidence/hygiene. I0 itself must remain **SPEC-READY / IMPLEMENTATION BLOCKED**. Do not advance I0 to VERIFIED, do not start P1 runtime migrations, and do not point ARO.club at either preserved Supabase project.
 
 Safe continuation after founder action:
 
-1. install/enable a compatible container runtime for the $0 local path;
-2. initialize and verify local Supabase migrations and hostile RLS tests;
+1. confirm the quoted $0 `ARO.club Staging` project and select its region;
+2. create and verify that isolated target without touching either preserved project;
 3. identify the current `aro.club` owner/project;
-4. approve exactly one hosted capacity path after reviewing the current total cost.
+4. optionally install/enable a compatible container runtime for the local path.

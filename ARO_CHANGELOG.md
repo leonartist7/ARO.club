@@ -6,6 +6,27 @@
 
 ---
 
+## 2026-09-02 — I0 GitHub protection gate passed; hosted capacity state refreshed
+
+Live GitHub verification found the stable `static`, `browser-smoke` and
+`platform` checks green on current `main` commit `2712642`. The reversible I0
+provider gate was then closed: `main` now requires pull requests, resolved
+conversations and those three strict successful checks; admins are included and
+force-pushes/deletion are disabled. I0-009 and Q0-008 are **VERIFIED**.
+
+Live Vercel verification confirmed `aro-club` remains linked to ARO.club and its
+`2712642` Production deployment is READY; `aro.club` remains absent from the
+project and still serves the separate Spanish-language product. Live Supabase
+verification found Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform`
+`INACTIVE`. The old two-active-project capacity condition is therefore stale,
+and a new project currently quotes $0/month, but creation still requires
+explicit provider cost confirmation and an approved region.
+
+No Supabase project, Vercel variable/domain, payment resource, Tonguee data or
+quarantined `aro-platform` state was changed. Parent I0 remains **SPEC-READY /
+IMPLEMENTATION BLOCKED** on hosted capacity/domain and local-runtime/recovery
+work. P1 remains blocked and no runtime implementation began.
+
 ## 2026-09-02 — Correction: I0.2 independent review remains open
 
 The preceding review-reconciliation entry over-promoted a supplemental

@@ -2,11 +2,11 @@
 
 ## 0. Metadata
 
-- **Status:** IMPLEMENTED / AUTH-GATE BLOCKED
+- **Status:** IMPLEMENTED / CI VERIFIED; parent-I0 hosted gate remains
 - **Spec version:** 1.0.0
 - **Owner/director:** ARO founder/director
 - **Implementation branch:** `feat/aro-q0-reliability-foundation`
-- **PR:** pending
+- **PR:** #26, merged at `87121a7`
 - **Depends on:** M0 VERIFIED; I0 specification merged; repository/provider boundary preserved
 - **Blocks:** reliable P1 regression detection; later platform and release gates
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO_INFRASTRUCTURE.md`, `ARO_TRUST_SAFETY.md`, `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`
@@ -214,9 +214,9 @@ No product analytics. CI records duration, pass/fail and artifact metadata only.
 | Q0-003 | E2E runner is cross-platform and cleans up | Windows local + CI | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
 | Q0-004 | public/fail-closed contracts pass | `npm run test:e2e` | `artifacts/ARO-Q0/VERIFICATION.md` | PASS 16/16 |
 | Q0-005 | stale fake-auth assumptions are removed | hostile source/test review | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
-| Q0-006 | authenticated suite is explicit and honest | prerequisite and real-target runs | `artifacts/ARO-Q0/VERIFICATION.md` | BLOCKED ON I0 |
+| Q0-006 | authenticated suite is explicit and honest | prerequisite and disposable isolated runs | `artifacts/ARO-Q0/VERIFICATION.md`, PR #28 | PASS IN DISPOSABLE LANE |
 | Q0-007 | GitHub CI enforces public gates | PR check results | PR #26, `.github/workflows/quality.yml` | PASS |
-| Q0-008 | branch protection references stable checks | GitHub API | future Q0 verification | TODO / PROVIDER GATE |
+| Q0-008 | branch protection references stable checks | GitHub API | `artifacts/ARO-Q0/VERIFICATION.md` | PASS — 2026-09-02 |
 | Q0-009 | bundle/performance baseline is not regressed | build output | `artifacts/ARO-Q0/VERIFICATION.md` | PASS (+0.04 kB main JS) |
 | Q0-010 | no provider/schema/product expansion | diff and provider audit | `artifacts/ARO-Q0/VERIFICATION.md` | PASS |
 
@@ -226,7 +226,7 @@ No product analytics. CI records duration, pass/fail and artifact metadata only.
 2. Verify locally and on Vercel/GitHub PR.
 3. Merge after required public checks pass.
 4. Configure branch protection against stable checks if authorized.
-5. Keep Q0 **IMPLEMENTED / AUTH-GATE BLOCKED** until I0 enables the authenticated suite.
+5. Keep Q0 **IMPLEMENTED / CI VERIFIED** in the disposable lane until parent I0 enables hosted verification.
 
 ## 26. Rollback / forward recovery
 
@@ -255,12 +255,12 @@ Q0 is fully VERIFIED only when:
 - [ ] spec/version and acceptance evidence are complete;
 - [ ] lint, unit, build and public E2E pass locally and in CI;
 - [ ] authenticated suite passes against the approved I0 target;
-- [ ] required branch protection is active or a founder-approved exception is recorded;
+- [x] required branch protection is active;
 - [ ] no unresolved critical/high security/reliability finding;
 - [ ] no dependency/provider/schema/product scope expansion;
 - [ ] status/current-state/changelog evidence matches truth.
 
-Until I0 exists, the maximum truthful status is **IMPLEMENTED / AUTH-GATE BLOCKED**.
+Until parent I0 supplies a hosted target, the maximum truthful status is **IMPLEMENTED / CI VERIFIED** in the disposable lane.
 
 ## 30. Delivery record
 
@@ -270,13 +270,13 @@ Spec version: 1.0.0
 Branch: feat/aro-q0-reliability-foundation
 PR: #26
 Commit: 464e0b8 plus evidence finalization
-Acceptance: local public gates pass; Auth/branch-protection gates blocked
+Acceptance: disposable public/Auth gates and branch protection pass; parent-I0 hosted gate remains
 Unit: 61/61 PASS
-Integration: public/fail-closed PASS; real Auth BLOCKED_PREREQUISITE
-E2E: 16/16 PASS
-RLS/security: no mutation; authenticated gate blocked on I0
+Integration: public/fail-closed and disposable isolated Auth PASS; hosted target blocked
+E2E: public 16/16 plus PR #28 authenticated responsive matrix PASS
+RLS/security: PR #28 disposable 81-assertion matrix PASS; hosted gate blocked
 A11y: public smoke only; package audits preserved
 Performance: baseline 750.65 kB JS / 89.84 kB CSS
 Evidence: artifacts/ARO-Q0/
-Status: IMPLEMENTED / AUTH-GATE BLOCKED
+Status: IMPLEMENTED / CI VERIFIED; parent-I0 hosted gate remains
 ```

@@ -10,6 +10,29 @@
 
 No provider, database, environment variable, domain, billing or user-data mutation was performed.
 
+## 2026-09-02 live refresh
+
+- Current GitHub `main` is `2712642`; requested baseline `5c3d55c` remains in its ancestry.
+- `main` is protected: pull requests, resolved conversations and strict successful
+  `static`, `browser-smoke` and `platform` checks are required; admins are
+  included and force-pushes/deletion are disabled.
+- Vercel project `aro-club` remains linked to `leonartist7/ARO.club`; production
+  deployment `dpl_CvXygcqWmPHRTS5YP9XG8bvLaxhM` for `2712642` is READY. Its
+  project domains still do not include `aro.club`.
+- `aro.club` still returns the Spanish-language product title recorded below.
+- Supabase reports Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform`
+  `INACTIVE`. No ARO hosted project exists. A new project in `lionovart's Org`
+  currently quotes $0/month; creation still needs the provider's explicit cost
+  confirmation and an approved region.
+- Docker, Podman, nerdctl and a local Supabase CLI remain unavailable on this host.
+
+The provider-setting mutation in this refresh is limited to GitHub branch
+protection. Tonguee, `aro-platform`, Supabase capacity, Vercel variables/domains,
+billing and user data were not changed.
+
+The sections below preserve the original 2026-08-28 snapshot. Where a current
+field differs, the 2026-09-02 refresh above supersedes it.
+
 ## Executive result
 
 I0 has enough evidence for a complete implementation specification, but cannot pass yet. ARO.club is correctly separated at GitHub and Vercel; its backend remains fail-closed. Hosted capacity is unavailable under the current Free allocation, and the local machine has no compatible container runtime. The public hostname `aro.club` is not attached to the connected `aro-club` Vercel project and currently serves a different Spanish-language product.
