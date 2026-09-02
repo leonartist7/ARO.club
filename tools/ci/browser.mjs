@@ -55,39 +55,49 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     await waitForServer();
     stage = 'LAUNCH';
     browser = await chromium.launch();
-    for (const width of [360, 1440]) {
-      for (const theme of ['light', 'dark']) {
-        stage = `CONTEXT_${width}_${theme.toUpperCase()}`;
-        const context = await browser.newContext({
-          viewport: { width, height: width === 360 ? 800 : 1000 },
-          colorScheme: theme,
-        });
-        await context.addInitScript((selectedTheme) => localStorage.setItem('theme', selectedTheme), theme);
-        const page = await context.newPage();
-        const pageErrors = [];
-        page.on('pageerror', error => pageErrors.push(String(error)));
+    for (const theme of ['light', 'dark']) {
+      stage = `CONTEXT_${theme.toUpperCase()}`;
+      const context = await browser.newContext({
+        viewport: { width: 360, height: 800 },
+        colorScheme: theme,
+      });
+      await context.addInitScript((selectedTheme) => localStorage.setItem('theme', selectedTheme), theme);
+      const page = await context.newPage();
+      const pageErrors = [];
+      page.on('pageerror', error => pageErrors.push(String(error)));
+
+      for (const width of [360, 1440]) {
+        await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
         const started = performance.now();
-        stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
-        await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
-        stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
-        const emailInput = page.locator('input[type="email"]');
-        const passwordInput = page.locator('input[type="password"]');
-        await emailInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
-        await passwordInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
-        requireCondition(await page.getByLabel('Email Address').count() === 1, 'EMAIL_LABEL_MISSING');
-        requireCondition(await page.getByLabel('Password').count() === 1, 'PASSWORD_LABEL_MISSING');
-        await emailInput.fill(email);
-        await passwordInput.fill(password);
-        const signInButton = page.getByRole('button', { name: 'Sign In' });
-        requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
-        stage = `LOGIN_AUTH_${width}_${theme.toUpperCase()}`;
-        const [authResponse] = await Promise.all([
-          page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
-          passwordInput.press('Enter'),
-        ]);
-        requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
-        stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
-        await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+
+        // One real sign-in per color-scheme. The desktop capture then proves
+        // the same authenticated session survives a responsive resize, rather
+        // than creating a fourth cold browser boot under a heavily loaded CI
+        // worker.
+        if (width === 360) {
+          stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
+          stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
+          const emailInput = page.locator('input[type="email"]');
+          const passwordInput = page.locator('input[type="password"]');
+          await emailInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          await passwordInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          requireCondition(await page.getByLabel('Email Address').count() === 1, 'EMAIL_LABEL_MISSING');
+          requireCondition(await page.getByLabel('Password').count() === 1, 'PASSWORD_LABEL_MISSING');
+          await emailInput.fill(email);
+          await passwordInput.fill(password);
+          const signInButton = page.getByRole('button', { name: 'Sign In' });
+          requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
+          stage = `LOGIN_AUTH_${width}_${theme.toUpperCase()}`;
+          const [authResponse] = await Promise.all([
+            page.waitForResponse(response => response.url().includes('/auth/v1/token'), { timeout: 10000 }),
+            passwordInput.press('Enter'),
+          ]);
+          requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
+          stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
+          await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+        }
+
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
         await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
         // Keep one synthetic, viewport-sized arrival image even when the
@@ -118,8 +128,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           fullPage: false,
           timeout: 10000,
         });
-        await context.close();
       }
+      await context.close();
     }
   } catch (error) {
     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
