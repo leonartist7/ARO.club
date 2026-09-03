@@ -8,7 +8,9 @@
 >
 > Method: live read-only GitHub, Vercel and Supabase connector/API inspection plus local repository/runtime checks
 
-No provider, database, environment variable, domain, billing or user-data mutation was performed.
+The original 2026-08-28 baseline inspection was read-only: no provider,
+database, environment-variable, domain, billing or user-data mutation was
+performed during that snapshot.
 
 ## 2026-09-02 live refresh
 
@@ -49,7 +51,9 @@ I0 has enough evidence for a complete implementation specification, but cannot p
 | Workflow directory | `.github/` absent |
 | Active package branch | `spec/aro-i0-isolated-infrastructure` |
 
-Required-check and branch-protection implementation belongs to I0/Q0 and remains pending.
+At the time of the preserved 2026-08-28 snapshot, required-check and
+branch-protection implementation belonged to I0/Q0 and remained pending. It
+subsequently passed on 2026-09-02 as recorded in the live refresh above.
 
 ## Vercel evidence
 
@@ -156,7 +160,7 @@ No service-role key, database password, Stripe secret or Google client secret wa
 | Vercel Preview/Production scopes | BLOCKED | founder/dashboard audit after target exists |
 | Auth URLs/callbacks | BLOCKED | configure in isolated target |
 | Recovery drill | BLOCKED | requires isolated target |
-| GitHub branch protection/checks | BLOCKED | implement with Q0 checks |
+| GitHub branch protection/checks | PASS in 2026-09-02 refresh | preserve stable required checks |
 | `aro.club` routing | FAIL / OWNER ACTION | identify existing site/account and decide intended domain |
 
 ## Safe next actions

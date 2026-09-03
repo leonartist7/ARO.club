@@ -137,7 +137,7 @@ Live Vercel evidence confirms the ARO.club/Tonguee project links and the READY A
 
 ### I0 execution update — disposable CI lane
 
-**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 hosted/callback/recovery/protection/domain gates remain unchanged.
+**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 local-reset, hosted, callback, recovery and domain gates remain open; branch protection passed on 2026-09-02.
 
 Migration-source finding (2026-08-30): live read-only Tonguee metadata lacks the repository Trust tables, `profiles.role` and verified-publish enforcement trigger. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. Source-code Trust foundations must not be described as verified live controls. A reviewed application baseline reconciliation is required; no Tonguee mutation was performed or authorized.
 
@@ -149,7 +149,7 @@ PR #28 merged at `5976928` after both Isolated database and Quality workflows
 passed. The disposable lane verifies the application migration, 81 hostile SQL
 assertions, synthetic Auth/API/Storage/recovery/reset flows and authenticated
 360px/1440px light/dark browser evidence. This does not complete parent I0's
-hosted capacity/domain/branch-protection requirements or waive P1's baseline.
+local-reset, hosted-capacity or domain requirements or waive P1's baseline.
 
 ### I0.2 supplemental review update
 
@@ -157,7 +157,7 @@ A supplemental read-only review record is preserved in
 `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`. Because it did not rerun the
 database/Auth/Storage lane and was not performed by the required independent
 specialist reviewer, it is not package sign-off and does not close I02-08.
-Parent I0 remains blocked on safe capacity, domain and branch-protection gates,
+Parent I0 remains blocked on local reset, safe capacity and domain gates,
 so this review does not authorize P1.
 
 ### Active master objective

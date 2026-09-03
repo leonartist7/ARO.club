@@ -60,7 +60,9 @@ The inherited >500 kB bundle warning remains assigned to the later platform/perf
 
 ## Security and scope review
 
-- no Supabase, Vercel, DNS, billing, domain, schema, RLS or provider mutation;
+- Q0 runtime implementation made no Supabase, Vercel, DNS, billing, domain,
+  schema or RLS mutation; the later 2026-09-02 I0 provider-gate refresh changed
+  only GitHub branch-protection settings;
 - no Auth bypass or test-only production hook;
 - no credentials, tokens or customer data in tests/logs;
 - no dependency or lockfile change;
