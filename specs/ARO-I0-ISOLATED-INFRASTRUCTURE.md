@@ -365,7 +365,7 @@ A11y: inherited R1/P1 fail-closed evidence
 Performance: no runtime delta
 Screenshots/evidence: artifacts/ARO-I0/BASELINE.md; artifacts/ARO-I0/VERIFICATION.md
 Reviewers: Supabase/infrastructure self-review; founder required for capacity/domain
-Known follow-ups: mandatory local container runtime/reset, default-privilege hardening, Vercel scopes, Auth callbacks, recovery, domain ownership
+Known follow-ups: mandatory local container runtime/reset, Vercel scopes, Auth callbacks, recovery, domain ownership
 Release environment: none
 Status: IN-PROGRESS / GATES BLOCKED
 ```

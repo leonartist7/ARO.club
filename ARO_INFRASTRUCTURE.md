@@ -229,7 +229,7 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
 | ARO-R1 repository separation + rebrand | SHIPPED | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent deployment; preserve provider boundary |
 | ARO-M0 master delivery governance | VERIFIED | `ARO_MASTER_DELIVERY_PLAN.md`, PR #24, merge `67d5c8d` | keep status synchronized |
-| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md` | merge/apply default-privilege hardening; complete mandatory local reset, Preview/Auth/recovery and domain gates |
+| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete mandatory local reset, Preview/Auth/recovery and domain gates |
 | ARO-I0.2 application baseline | IMPLEMENTED / CI VERIFIED | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | required independent implementation review remains open |
 | ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | finish parent-I0 hosted configuration and recovery; branch protection passed 2026-09-02 |
 | ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 local/hosted/domain gates and authenticated baseline |

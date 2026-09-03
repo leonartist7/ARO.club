@@ -32,11 +32,16 @@ Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR #31.
   owned public tables inherited broad grants for `anon`, `authenticated` and
   `service_role`. Existing application tables remain explicitly revoked/RLS-
   protected. The append-only `20260903074000_lock_public_default_privileges.sql`
-  migration fixes repository-migration defaults and is pending CI/review before
-  hosted application.
+  migration fixes repository-migration defaults. PR #31 passed `static`,
+  `browser-smoke` and `platform`, merged at `1415113`, and the migration applied
+  successfully to staging.
+- Post-hardening hosted verification passes all 21 platform and 60 application
+  assertions transactionally. Supabase records both migrations, security
+  advisors remain clean, and only expected fresh-database performance notices
+  remain.
 - The staging database remains synthetic-empty after verification: zero Auth
   users, profiles and applications. Vercel production is `READY` on merged
-  `main` commit `eb297e0`; Preview/Production variables were not changed.
+  `main` commit `1415113`; Preview/Production variables were not changed.
 
 ## Scope
 
@@ -94,7 +99,7 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | GitHub repo/default branch/current main | PASS |
 | ARO.club ↔ Vercel `aro-club` Git link | PASS |
 | Tonguee ↔ Vercel `langgie` Git link | PASS |
-| Current `main` production deployment READY | PASS — `eb297e0` / `dpl_6g3si7pmfhQpKykxZGZJFneULhbX` |
+| Current `main` production deployment READY | PASS — `1415113` / `dpl_EWraRtx8jVPNe8kF7sq7Jm5jqv36` |
 | Tonguee Supabase ACTIVE_HEALTHY and untouched | PASS |
 | `aro-platform` INACTIVE, quarantined and untouched by this audit | PASS |
 | Free plan/one active slot currently available | PASS |
@@ -126,8 +131,7 @@ I0 is now **IN-PROGRESS / GATES BLOCKED**. Do not advance I0 to VERIFIED, do not
 
 Safe continuation:
 
-1. pass CI/review, merge and apply the append-only default-privilege hardening;
-2. complete the mandatory local runtime/reset evidence;
-3. configure and verify Preview-scoped variables and Auth callbacks;
-4. perform hosted recovery and authenticated E2E evidence;
-5. identify the current `aro.club` owner/project before any domain action.
+1. complete the mandatory local runtime/reset evidence;
+2. configure and verify Preview-scoped variables and Auth callbacks;
+3. perform hosted recovery and authenticated E2E evidence;
+4. identify the current `aro.club` owner/project before any domain action.

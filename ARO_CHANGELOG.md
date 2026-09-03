@@ -17,9 +17,13 @@ The approved I0.2 migration applied successfully and all 60 transactional
 application Trust/RLS assertions passed. Security advisors returned no
 findings. The generic 21-test platform probe exposed three implicit default
 grant differences for new `postgres`-owned public tables. Existing application
-objects remain protected by explicit revoke/grant and RLS. An append-only
+objects remained protected by explicit revoke/grant and RLS. An append-only
 default-privilege hardening migration was added on
-`infra/aro-i0-hosted-staging` for CI/review before hosted application.
+`infra/aro-i0-hosted-staging`; PR #31 passed all required checks and merged at
+`1415113`. The migration applied successfully, after which hosted platform
+21/21 and application Trust/RLS 60/60 assertions passed transactionally.
+Staging retained zero Auth users, profiles and applications, and security
+advisors returned no findings.
 
 I0 moves to **IN-PROGRESS / GATES BLOCKED**; it is not VERIFIED. Mandatory local
 reset, Preview variables, Auth callbacks, recovery and domain ownership remain
