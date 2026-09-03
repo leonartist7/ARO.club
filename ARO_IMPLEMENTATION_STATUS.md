@@ -4,8 +4,9 @@
 > Its isolated database and Quality workflows passed, including 81 SQL
 > assertions, synthetic Auth/API/Storage/recovery/reset exercises and the
 > authenticated responsive browser matrix. I0.2 and Q0 are **IMPLEMENTED / CI
-> VERIFIED** in the disposable lane. Parent I0 and I0.2's independent-review
-> follow-up remain explicit.
+> VERIFIED** in the disposable lane. GitHub `main` protection now requires the
+> three stable CI checks. Parent I0 and I0.2's independent-review follow-up
+> remain explicit.
 
 > **Status as of September 2, 2026.**
 >
@@ -37,7 +38,8 @@ The existing Tonguee product provides a significant working vertical foundation.
 **ARO-I0.2 + ARO-Q0** are **IMPLEMENTED / CI VERIFIED**. PR #28 merged at
 `5976928` with passing disposable migration/Auth/RLS/Storage/recovery/reset and
 authenticated 360px/1440px light/dark browser evidence, plus Quality CI. The
-parent I0 hosted environment and branch-protection gates remain separate.
+parent I0 hosted environment gate remains separate; branch protection passed
+on 2026-09-02.
 
 ### Next runtime package
 
@@ -45,7 +47,7 @@ I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`,
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is recorded under `artifacts/ARO-P1-BASELINE/VERIFICATION.md`, but the gate did not pass: a $0/month isolated project was rejected at the two-active-free-project limit. Tonguee production remains evidence-only and `aro-platform` remains quarantined.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is recorded under `artifacts/ARO-P1-BASELINE/VERIFICATION.md`, but the gate did not pass. The prior two-active-project condition is stale because quarantined `aro-platform` now reports `INACTIVE`; a new project quotes $0/month, but explicit cost confirmation and a region choice are still required. Tonguee production remains evidence-only and `aro-platform` remains quarantined and untouched.
 
 ---
 
@@ -76,9 +78,9 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
 | R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
-| I0 — isolated infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | full environment/provider spec, refreshed GitHub/Vercel/Supabase/domain/local baseline, literal-key hygiene fix | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, `artifacts/ARO-I0/VERIFICATION.md` | compatible local container runtime + founder-approved hosted capacity/domain decision |
+| I0 — isolated infrastructure | **SPEC-READY / IMPLEMENTATION BLOCKED** | full environment/provider spec, refreshed GitHub/Vercel/Supabase/domain/local baseline, literal-key hygiene fix and active branch protection | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md`, `artifacts/ARO-I0/VERIFICATION.md` | confirm quoted $0 hosted project/region and resolve domain; local runtime unavailable |
 | I0.2 — application/Auth/Trust baseline | **IMPLEMENTED / CI VERIFIED** | PR #28 merged `5976928`; disposable migration/Auth/RLS/Storage/recovery/reset/browser matrix | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | obtain required independent implementation review; preserve isolated scope |
-| Q0 — reliability foundation | **IMPLEMENTED / CI VERIFIED** | zero-warning lint, portable browser runner, public and authenticated isolated CI | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, `artifacts/ARO-Q0/VERIFICATION.md`, PR #28 | parent-I0 hosted and branch-protection gates remain separate |
+| Q0 — reliability foundation | **IMPLEMENTED / CI VERIFIED** | zero-warning lint, portable browser runner, public and authenticated isolated CI, stable required checks on protected `main` | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, `artifacts/ARO-Q0/VERIFICATION.md`, PR #28 | parent-I0 hosted gate remains separate |
 | P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | provide isolated Supabase capacity, then finish authenticated/RLS gate |
 | N1 — platform / Next.js decision | **SPEC-REQUIRED** | measured-decision contract exists in master plan | no implementation | P1 verified; author parity, SSR/auth, cutover and rollback spec |
 | X1 — experience foundation | **SPEC-REQUIRED** | Living Opportunity OS direction plus bounded foundation contract | no implementation | N1 decision complete; specify reusable accessible primitives |

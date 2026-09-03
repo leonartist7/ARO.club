@@ -8,7 +8,32 @@
 >
 > Method: live read-only GitHub, Vercel and Supabase connector/API inspection plus local repository/runtime checks
 
-No provider, database, environment variable, domain, billing or user-data mutation was performed.
+The original 2026-08-28 baseline inspection was read-only: no provider,
+database, environment-variable, domain, billing or user-data mutation was
+performed during that snapshot.
+
+## 2026-09-02 live refresh
+
+- Current GitHub `main` is `2712642`; requested baseline `5c3d55c` remains in its ancestry.
+- `main` is protected: pull requests, resolved conversations and strict successful
+  `static`, `browser-smoke` and `platform` checks are required; admins are
+  included and force-pushes/deletion are disabled.
+- Vercel project `aro-club` remains linked to `leonartist7/ARO.club`; production
+  deployment `dpl_CvXygcqWmPHRTS5YP9XG8bvLaxhM` for `2712642` is READY. Its
+  project domains still do not include `aro.club`.
+- `aro.club` still returns the Spanish-language product title recorded below.
+- Supabase reports Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform`
+  `INACTIVE`. No ARO hosted project exists. A new project in `lionovart's Org`
+  currently quotes $0/month; creation still needs the provider's explicit cost
+  confirmation and an approved region.
+- Docker, Podman, nerdctl and a local Supabase CLI remain unavailable on this host.
+
+The provider-setting mutation in this refresh is limited to GitHub branch
+protection. Tonguee, `aro-platform`, Supabase capacity, Vercel variables/domains,
+billing and user data were not changed.
+
+The sections below preserve the original 2026-08-28 snapshot. Where a current
+field differs, the 2026-09-02 refresh above supersedes it.
 
 ## Executive result
 
@@ -26,7 +51,9 @@ I0 has enough evidence for a complete implementation specification, but cannot p
 | Workflow directory | `.github/` absent |
 | Active package branch | `spec/aro-i0-isolated-infrastructure` |
 
-Required-check and branch-protection implementation belongs to I0/Q0 and remains pending.
+At the time of the preserved 2026-08-28 snapshot, required-check and
+branch-protection implementation belonged to I0/Q0 and remained pending. It
+subsequently passed on 2026-09-02 as recorded in the live refresh above.
 
 ## Vercel evidence
 
@@ -133,7 +160,7 @@ No service-role key, database password, Stripe secret or Google client secret wa
 | Vercel Preview/Production scopes | BLOCKED | founder/dashboard audit after target exists |
 | Auth URLs/callbacks | BLOCKED | configure in isolated target |
 | Recovery drill | BLOCKED | requires isolated target |
-| GitHub branch protection/checks | BLOCKED | implement with Q0 checks |
+| GitHub branch protection/checks | PASS in 2026-09-02 refresh | preserve stable required checks |
 | `aro.club` routing | FAIL / OWNER ACTION | identify existing site/account and decide intended domain |
 
 ## Safe next actions

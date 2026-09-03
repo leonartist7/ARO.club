@@ -3,8 +3,9 @@
 > **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`
 > after the isolated migration/Auth/RLS/Storage/recovery/reset and responsive
 > authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
-> VERIFIED** in the disposable lane. Parent-I0 hosted capacity/domain/
-> branch-protection and I0.2's required independent implementation review remain
+> VERIFIED** in the disposable lane. GitHub `main` protection now requires the
+> stable `static`, `browser-smoke` and `platform` checks. Parent-I0 hosted
+> capacity/domain and I0.2's required independent implementation review remain
 > separate gates; P1 is still not authorized to start.
 
 ## Operating contract
@@ -31,8 +32,9 @@ The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, 
 Current enabling-state record (2026-09-02): M0 is **VERIFIED**; I0.1 is
 **SHIPPED**; I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED** in the disposable
 lane. Parent I0 remains **SPEC-READY / IMPLEMENTATION BLOCKED** on hosted
-capacity/domain/branch-protection gates. P1 remains **SPEC-READY / BASELINE
-BLOCKED** and does not start from this CI fixture alone.
+capacity/domain gates. P1 remains **SPEC-READY / BASELINE BLOCKED** and does
+not start from this CI fixture alone. The branch-protection provider gate passed
+on 2026-09-02.
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 

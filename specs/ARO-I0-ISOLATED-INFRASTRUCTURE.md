@@ -5,8 +5,9 @@
 - **Status:** SPEC-READY / IMPLEMENTATION BLOCKED
 - **Spec version:** 1.0.0
 - **Owner/director:** ARO founder/director
-- **Implementation branch:** `spec/aro-i0-isolated-infrastructure`
-- **PR:** pending
+- **Specification branch / PR:** `spec/aro-i0-isolated-infrastructure` / #25, merged at `3e66b60`
+- **Current provider-gate branch:** `infra/aro-i0-branch-protection`
+- **Current provider-gate PR:** #30
 - **Depends on:** SEC0 VERIFIED; R1 SHIPPED; M0 VERIFIED
 - **Blocks:** Q0 hosted verification; P1 authenticated/RLS baseline and runtime implementation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_INFRASTRUCTURE.md`, `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md`, `ARO_TRUST_SAFETY.md`, ADR-025 through ADR-027
@@ -17,7 +18,7 @@ The founder's approved master objective authorizes reversible, $0, spec-driven p
 
 ## 1. Problem
 
-ARO.club has its own GitHub repository and Vercel project but no approved isolated Supabase target. Pointing the separated application at Tonguee would expose production data and make migration testing unsafe. `aro-platform` is quarantined because its five Auth accounts and external ownership/dependencies are unresolved. The current Supabase Free organization already has two active projects, so a third hosted project cannot be created without a founder-controlled capacity decision.
+ARO.club has its own GitHub repository and Vercel project but no approved isolated Supabase target. Pointing the separated application at Tonguee would expose production data and make migration testing unsafe. `aro-platform` is quarantined because its five Auth accounts and external ownership/dependencies are unresolved. On 2026-09-02 it reported `INACTIVE`, leaving one active Free slot; a hosted project still cannot be created until the founder confirms the current $0 quote and selects a region.
 
 The repository also inherits deployment documents and SQL snapshots from Tonguee. They are valuable migration evidence but are not an ordered, reproducible ARO migration history.
 
@@ -182,9 +183,9 @@ Stop conditions include target-ref mismatch, unexpected real data, missing RLS o
 
 No product money or entitlement behavior is introduced.
 
-Provider cost options at the 2026-08-28 audit:
+Provider cost options, refreshed 2026-09-02:
 
-- Current Free organization quoted a new project at **$0/month**, but creation is blocked by the two-active-project limit.
+- Current Free organization quoted a new project at **$0/month**. One active slot is presently available because quarantined `aro-platform` reports `INACTIVE`; creation still requires explicit cost confirmation and a region choice.
 - Supabase Preview branching is a Pro capability; the connector quoted **$0.01344/hour** for a branch. Five hours of branch compute would be about **$0.0672**, excluding the required paid organization plan and other usage.
 - No paid option is selected by this spec. Current cost must be re-queried and approved immediately before creation.
 
@@ -247,7 +248,7 @@ No user analytics are added. Operational evidence records deployment status, mig
 - [ ] secret/key-pattern scan passes with no literal provider values in active docs/source;
 - [ ] `.env*` ignore rules preserve `.env.example` only;
 - [ ] ARO.club has no hard-coded Tonguee/`aro-platform` fallback;
-- [ ] GitHub default branch and required checks/branch protection are recorded.
+- [x] GitHub default branch and required checks/branch protection are recorded.
 
 ### Local data
 
@@ -283,11 +284,11 @@ No user analytics are added. Operational evidence records deployment status, mig
 | I0-002 | Tonguee and `aro-platform` remain untouched and correctly classified | live Supabase read-only project audit | `artifacts/ARO-I0/BASELINE.md` | PASS |
 | I0-003 | literal provider key values are absent from active documentation/source | repository pattern scan | `artifacts/ARO-I0/VERIFICATION.md` | PASS |
 | I0-004 | local isolated stack is reproducible | container + CLI clean reset | future `artifacts/ARO-I0/VERIFICATION.md` | BLOCKED |
-| I0-005 | hosted isolated ARO project exists | connector project inspection | future verification | BLOCKED |
+| I0-005 | hosted isolated ARO project exists | connector project inspection | future verification | BLOCKED — $0 confirmation and region required |
 | I0-006 | Preview/Production variable scopes match the approved target | provider dashboard/connector audit | future verification | BLOCKED |
 | I0-007 | Auth URLs/callbacks are allow-listed correctly | provider configuration + E2E | future verification | BLOCKED |
 | I0-008 | backup/export and forward recovery are tested | restore drill | future verification | BLOCKED |
-| I0-009 | GitHub required checks and branch protection are active | GitHub API | future verification | BLOCKED |
+| I0-009 | GitHub required checks and branch protection are active | GitHub API | `artifacts/ARO-I0/VERIFICATION.md` | PASS — 2026-09-02 |
 | I0-010 | no provider cost or destructive change occurs without approval | audit trail | package PR + provider logs | PASS TO DATE |
 | I0-011 | custom-domain ownership/routing is unambiguous | Vercel project-domain audit + DNS/content smoke | `artifacts/ARO-I0/BASELINE.md` | FAIL / FOUNDER ACTION |
 
@@ -313,9 +314,9 @@ No user analytics are added. Operational evidence records deployment status, mig
 ## 27. Security / privacy / Trust review
 
 - **Reviewer:** Codex using the Supabase security workflow; independent/founder review still required for provider mutation
-- **Date:** 2026-08-28
-- **Findings:** no isolated target; Free capacity exhausted; local container runtime absent; inherited literal anon key in `DEPLOYMENT.md`; no ARO custom domain on the connected Vercel project; GitHub main unprotected
-- **Resolution:** literal key removal included; remaining items are explicit gates
+- **Date:** 2026-09-02 refresh of the 2026-08-28 review
+- **Findings:** no isolated target; local container runtime absent; inherited literal anon key in `DEPLOYMENT.md`; no ARO custom domain on the connected Vercel project; GitHub main was unprotected
+- **Resolution:** literal key removal and GitHub protection complete; hosted confirmation/region, local runtime and domain remain explicit gates
 - **Approved:** spec/hygiene work yes; hosted/production mutation no
 
 ## 28. Product / design review
@@ -336,7 +337,7 @@ I0 is VERIFIED only when:
 - [ ] Preview/Production scopes and Auth callbacks pass;
 - [ ] migrations, advisors, hostile RLS and authenticated E2E pass in the isolated target;
 - [ ] backup/export and recovery drill pass;
-- [ ] GitHub required checks/branch protection are active;
+- [x] GitHub required checks/branch protection are active;
 - [ ] domain ownership/routing is resolved;
 - [ ] no unresolved critical/high security finding remains;
 - [ ] all acceptance criteria have evidence;
@@ -347,13 +348,13 @@ I0 is VERIFIED only when:
 ```text
 Package: ARO-I0
 Spec version: 1.0.0
-Branch: spec/aro-i0-isolated-infrastructure
-PR: pending
-Commit: pending
-Acceptance: 4 pass-to-date / 6 blocked / 1 fail
+Branch: infra/aro-i0-branch-protection
+PR: #30
+Base: 2712642
+Acceptance: 5 pass-to-date / 5 blocked / 1 fail
 Unit: 61/61 passed
 Build: passed; inherited large-chunk warning unchanged
-Lint: inherited baseline 19 errors / 9 warnings; Q0 owns remediation
+Lint: zero errors / warnings
 Integration: blocked on local/hosted isolated target
 E2E: fail-closed baseline exists; authenticated evidence blocked
 RLS/security: live projects inspected read-only; no mutation
@@ -361,7 +362,7 @@ A11y: inherited R1/P1 fail-closed evidence
 Performance: no runtime delta
 Screenshots/evidence: artifacts/ARO-I0/BASELINE.md; artifacts/ARO-I0/VERIFICATION.md
 Reviewers: Supabase/infrastructure self-review; founder required for capacity/domain
-Known follow-ups: local container runtime, hosted capacity, Vercel scopes, Auth callbacks, branch protection, domain ownership
+Known follow-ups: local container runtime, hosted capacity, Vercel scopes, Auth callbacks, domain ownership
 Release environment: none
 Status: SPEC-READY / IMPLEMENTATION BLOCKED
 ```

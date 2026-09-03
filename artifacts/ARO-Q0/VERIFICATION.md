@@ -8,7 +8,7 @@
 
 ## Result
 
-Q0 is **IMPLEMENTED / AUTH-GATE BLOCKED**. All locally runnable repository and public-browser gates pass. Full verification remains blocked on the approved I0 isolated Auth/RLS target and founder-authorized branch protection.
+Q0 is **IMPLEMENTED / CI VERIFIED** in the disposable lane. Its public and authenticated isolated checks pass, and on 2026-09-02 GitHub `main` protection was configured against the stable `static`, `browser-smoke` and `platform` checks. Parent-I0 hosted verification remains blocked.
 
 ## Automated evidence
 
@@ -60,7 +60,9 @@ The inherited >500 kB bundle warning remains assigned to the later platform/perf
 
 ## Security and scope review
 
-- no Supabase, Vercel, DNS, billing, domain, schema, RLS or provider mutation;
+- Q0 runtime implementation made no Supabase, Vercel, DNS, billing, domain,
+  schema or RLS mutation; the later 2026-09-02 I0 provider-gate refresh changed
+  only GitHub branch-protection settings;
 - no Auth bypass or test-only production hook;
 - no credentials, tokens or customer data in tests/logs;
 - no dependency or lockfile change;
@@ -71,6 +73,6 @@ The inherited >500 kB bundle warning remains assigned to the later platform/perf
 ## Remaining gates
 
 1. Supply an approved I0 isolated URL and synthetic account, then extend/run real Auth and RLS journeys.
-2. Configure branch protection against stable checks only with explicit founder/provider authorization.
+2. Branch protection is complete; preserve the stable check names while required.
 
 Until those gates close, Q0 cannot be marked VERIFIED.
