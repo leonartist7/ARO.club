@@ -162,7 +162,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. The approved I0.2 migration and 60 transactional application Trust/RLS assertions passed. A hosted default-privilege mismatch is addressed by an append-only hardening migration on `infra/aro-i0-hosted-staging`, pending CI/review before hosted application. The mandatory local reset remains blocked because no Docker-compatible runtime is installed. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is active and `artifacts/ARO-I0/VERIFICATION.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. PR #31 merged at `1415113`; both ordered migrations are applied, and the hosted 21 platform plus 60 application Trust/RLS assertions pass transactionally. The mandatory local reset remains blocked because no Docker-compatible runtime is installed. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
 
 ---
 
