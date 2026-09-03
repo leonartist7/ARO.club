@@ -6,6 +6,22 @@
 
 ---
 
+## 2026-09-03 — I0 protected-CI reset equivalence approved
+
+The founder approved a versioned I0 amendment that accepts the existing
+protected GitHub-hosted disposable Supabase reset/replay/cleanup lane as the
+I0-004 reproducibility proof. Local Docker is now optional developer tooling,
+not an infrastructure release gate. The evidence is not weakened: the pinned
+lane remains isolated to GitHub-hosted Linux, applies ordered migrations from a
+clean reset, runs platform/Auth/RLS/Storage/browser checks, repeats reset/SQL
+verification and performs ownership-labelled cleanup.
+
+I0 spec version advances to 1.1.0 and I0-004 moves to PASS. I0 remains
+**IN-PROGRESS / GATES BLOCKED** on Preview variables, Auth callbacks, recovery
+and domain ownership. P1 runtime did not start. No provider, database, domain,
+payment, Stripe, Google, key, history, Tonguee or quarantined `aro-platform`
+state changed.
+
 ## 2026-09-03 — I0 isolated hosted staging provisioned
 
 After a refreshed Supabase quote again reported exactly $0/month and the

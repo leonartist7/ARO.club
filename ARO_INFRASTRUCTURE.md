@@ -29,8 +29,8 @@
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is SHIPPED. M0 is VERIFIED as governance.
-- I0 spec 1.0.0 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/BASELINE.md`; branch protection is active, while hosted creation awaits the required $0 cost confirmation/region choice and the local path lacks a container runtime.
-- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED in the disposable lane. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 has not supplied an approved isolated runtime target.
+- I0 spec 1.1.0 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass.
+- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview/Auth/recovery/domain gates remain open.
 
 ---
 
@@ -229,10 +229,10 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
 | ARO-R1 repository separation + rebrand | SHIPPED | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent deployment; preserve provider boundary |
 | ARO-M0 master delivery governance | VERIFIED | `ARO_MASTER_DELIVERY_PLAN.md`, PR #24, merge `67d5c8d` | keep status synchronized |
-| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete mandatory local reset, Preview/Auth/recovery and domain gates |
+| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete Preview/Auth/recovery and domain gates; local Docker is optional |
 | ARO-I0.2 application baseline | IMPLEMENTED / CI VERIFIED | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | required independent implementation review remains open |
 | ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | finish parent-I0 hosted configuration and recovery; branch protection passed 2026-09-02 |
-| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 local/hosted/domain gates and authenticated baseline |
+| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 Preview/Auth/recovery/domain gates and authenticated baseline |
 | ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | pass the safe-environment baseline first |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
@@ -259,7 +259,7 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 - [x] Confirm Tonguee remains linked to Vercel project `langgie`; confirm its intended Production Branch manually.
 - [ ] Audit ARO.club Preview/Production environment-variable scopes without pasting values into Git or chat.
 - [x] `ARO.club Staging` (`mibydnerayobemhnlfyl`) created with founder-confirmed $0/month quote in `ca-central-1`; `aro-platform` remained `INACTIVE` and untouched.
-- [ ] Install/enable a Docker-compatible container runtime if the founder chooses the $0 local Supabase development path.
+- [x] Founder accepted protected GitHub-hosted reset/replay/cleanup evidence for I0-004; local Docker remains optional developer tooling.
 - [ ] Identify which account/project currently serves the Spanish product at `aro.club` and decide whether the Human Opportunity Network should later receive that hostname.
 - [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.
 - [ ] In Supabase aro-platform, identify the five auth accounts and the project owner/purpose without copying personal data into Git.
@@ -290,7 +290,7 @@ Baseline**, version 1.0.0, IMPLEMENTED / CI VERIFIED through PR #28 at
 independent specialist review. This disposable result does not certify a hosted
 application target or waive parent-I0 requirements.
 
-Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. Complete the $0 local stack when a compatible container runtime is available, then obtain explicit founder approval before any hosted cost/provider/domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
+Follow `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`. The protected CI reset/replay/cleanup lane satisfies I0-004; local Docker is optional. Preserve explicit founder approval before any new cost, production or domain mutation. Record evidence in `artifacts/ARO-I0/VERIFICATION.md`.
 
 Only after I0 provides a safe target may Q0/P1 run authenticated and hostile-RLS verification. P1 implementation still follows `specs/ARO-P1-CAPABILITY-GOAL.md` exactly.
 

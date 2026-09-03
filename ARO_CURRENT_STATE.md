@@ -5,8 +5,8 @@
 > Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
 > light/dark browser evidence. I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**
 > in that disposable lane. GitHub `main` protection now requires the three
-> stable CI checks. Isolated hosted capacity now exists; parent I0 local reset,
-> hosted configuration/recovery/domain and the required independent
+> stable CI checks. Isolated hosted capacity and CI reset equivalence now pass;
+> parent I0 hosted configuration/recovery/domain and the required independent
 > I0.2 implementation review remain open. P1 is blocked.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
@@ -132,9 +132,9 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 **State:** parent I0 is **IN-PROGRESS / GATES BLOCKED**; P1 remains
 **SPEC-READY / BASELINE BLOCKED**.
 
-The repository, test/build, visual/accessibility and live Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider evidence in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`. PR #31 merged at `1415113`; the approved application migration and append-only default-privilege hardening are applied. Hosted platform 21/21 and application Trust/RLS 60/60 assertions pass transactionally, with zero retained Auth users, profiles or applications and no security-advisor findings. The current host still has no Docker-compatible runtime for the mandatory local reset. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP** and untouched.
+The repository, test/build, visual/accessibility and live Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider evidence in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`. PR #31 merged at `1415113`; the approved application migration and append-only default-privilege hardening are applied. Hosted platform 21/21 and application Trust/RLS 60/60 assertions pass transactionally, with zero retained Auth users, profiles or applications and no security-advisor findings. The founder approved the already-protected GitHub-hosted clean reset/replay/cleanup lane as the I0 reproducibility proof; local Docker is optional. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP** and untouched.
 
-Live Vercel evidence confirms the ARO.club/Tonguee project links and READY ARO.club production deployment `dpl_EWraRtx8jVPNe8kF7sq7Jm5jqv36` for current `main` commit `1415113`. The connected `aro-club` project does not list `aro.club`; that hostname still serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action. GitHub `main` protection requires PRs, resolved conversations and the stable `static`, `browser-smoke` and `platform` checks, with force-pushes and deletion disabled.
+The 2026-09-03 live Vercel gate snapshot confirms the ARO.club/Tonguee project links and READY ARO.club production deployment `dpl_5F7Pp6Vc1EsZyWpxJyuiJVxppAXL` for merged `main` commit `bce0675`. The connected `aro-club` project does not list `aro.club`; that hostname still serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action. GitHub `main` protection requires PRs, resolved conversations and the stable `static`, `browser-smoke` and `platform` checks, with force-pushes and deletion disabled.
 
 ### I0 execution update — disposable CI lane
 
@@ -158,7 +158,7 @@ A supplemental read-only review record is preserved in
 `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`. Because it did not rerun the
 database/Auth/Storage lane and was not performed by the required independent
 specialist reviewer, it is not package sign-off and does not close I02-08.
-Parent I0 remains blocked on local reset, safe capacity and domain gates,
+Parent I0 remains blocked on Preview/Auth/recovery and domain gates,
 so this review does not authorize P1.
 
 ### Active master objective

@@ -3,11 +3,11 @@
 ## 0. Metadata
 
 - **Status:** IN-PROGRESS / GATES BLOCKED
-- **Spec version:** 1.0.1
+- **Spec version:** 1.1.0
 - **Owner/director:** ARO founder/director
 - **Specification branch / PR:** `spec/aro-i0-isolated-infrastructure` / #25, merged at `3e66b60`
-- **Current provider-gate branch:** `infra/aro-i0-hosted-staging`
-- **Current provider-gate PR:** #31
+- **Current governance-gate branch:** `spec/aro-i0-ci-reset-equivalence`
+- **Current governance-gate PR:** pending
 - **Depends on:** SEC0 VERIFIED; R1 SHIPPED; M0 VERIFIED
 - **Blocks:** Q0 hosted verification; P1 authenticated/RLS baseline and runtime implementation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_INFRASTRUCTURE.md`, `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md`, `ARO_TRUST_SAFETY.md`, ADR-025 through ADR-027
@@ -32,7 +32,9 @@ P1 stores private goals and capabilities. Its migration, hostile RLS tests and a
 
 ## 4. Goals
 
-- Establish a reproducible local Supabase development/test environment at $0 when a compatible container runtime is available.
+- Establish a reproducible disposable Supabase development/test environment at
+  $0 through the isolated GitHub-hosted CI lane; a local container runtime is
+  optional developer convenience, not an I0 release gate.
 - Establish one founder-approved hosted ARO Supabase environment before hosted authenticated testing.
 - Keep Vercel Preview and Production variables explicitly scoped and fail closed when missing or mismatched.
 - Define GitHub, migration, seed/test-account, backup, recovery, Auth callback and secret-handling contracts.
@@ -78,15 +80,18 @@ Anything in the master vision not named in Goals remains out of scope.
 
 ## 8. Environment journeys
 
-### Journey A — Local development and RLS verification
+### Journey A — Disposable reset and RLS verification
 
-1. Developer installs/starts a compatible container runtime outside the repository.
-2. The pinned/discovered Supabase CLI initializes or starts the repo-local stack.
-3. Ordered migrations apply to a clean local database.
-4. Synthetic owner, other-user and admin fixtures are created through a documented test harness.
-5. Unit, migration, hostile RLS and authenticated browser tests run.
-6. `supabase db reset` reproduces the same schema and fixtures.
-7. Local services stop without affecting any hosted project.
+1. The protected GitHub-hosted Linux workflow starts its pinned Supabase CLI
+   and loopback-only disposable container stack.
+2. Ordered migrations apply to a clean database through `supabase db reset`.
+3. Synthetic owner, other-user and admin fixtures are created through the
+   documented test harness.
+4. Unit, migration, hostile RLS and authenticated browser tests run.
+5. A second reset/replay proves the same schema and boundaries.
+6. Ownership-labelled cleanup removes only the disposable CI resources.
+7. Developers may run the same stack locally when a compatible container
+   runtime is available, but local installation is not required for I0.
 
 ### Journey B — Pull-request Preview
 
@@ -116,7 +121,7 @@ Anything in the master vision not named in Goals remains out of scope.
 
 ```text
 UNASSIGNED
-  → LOCAL_READY
+  → RESET_READY
   → HOSTED_STAGING_READY
   → PRODUCTION_APPROVED
   → PRODUCTION_ACTIVE
@@ -126,14 +131,18 @@ UNASSIGNED
 Any hosted state → DEGRADED → RECOVERING → prior healthy state
 ```
 
-`UNASSIGNED → LOCAL_READY` requires reproducible local reset evidence. `LOCAL_READY → HOSTED_STAGING_READY` requires a named isolated project and verified scoped variables/callbacks. No transition to `PRODUCTION_APPROVED` occurs without founder approval and backup/recovery evidence.
+`UNASSIGNED → RESET_READY` requires reproducible clean-reset evidence from the
+protected isolated CI lane or an equivalent reviewed local run. `RESET_READY →
+HOSTED_STAGING_READY` requires a named isolated project and verified scoped
+variables/callbacks. No transition to `PRODUCTION_APPROVED` occurs without
+founder approval and backup/recovery evidence.
 
 ## 10. Environment and data specification
 
 | Environment | Backend | Data class | Vercel scope | Persistence | Current state |
 |---|---|---|---|---|---|
-| Local | local Supabase containers | synthetic only | none / `.env.local` ignored | disposable | BLOCKED: compatible container runtime absent |
-| CI | clean local Supabase services or approved equivalent | synthetic only | CI secret store | disposable | SPECIFIED, not implemented |
+| Local | optional local Supabase containers | synthetic only | none / `.env.local` ignored | disposable | OPTIONAL: compatible container runtime absent |
+| CI | pinned loopback-only Supabase services on GitHub-hosted Linux | synthetic only | no hosted credentials | disposable | VERIFIED: I0.1/I0.2 clean reset, replay and cleanup |
 | Preview | `mibydnerayobemhnlfyl` after scoped variable/callback approval | synthetic/test only | Preview | staging | TARGET ACTIVE / CONFIGURATION BLOCKED |
 | Production | dedicated approved ARO hosted project | real ARO data after release | Production | durable | target unassigned |
 | Tonguee | `ybhecubqnhukgpvchjay` | preserved Tonguee data | Tonguee project only | durable | ACTIVE, read-only for I0 |
@@ -238,7 +247,7 @@ Any configuration-error surface must retain semantic headings/landmarks, keyboar
 | provider outage | sign-in/data unavailable | provider/Vercel logs and health checks | honest degraded state; retry after recovery | no speculative writes |
 | callback mismatch | Auth loop/failure | Auth E2E and provider logs | correct allow-list; retry sign-in | no data mutation required |
 | leaked secret | account compromise | secret scanning/provider audit | incident assessment and rotation | revoke/reissue before release |
-| container runtime absent | local tests unavailable | prerequisite check | founder installs compatible runtime or approves hosted capacity | no data affected |
+| local container runtime absent | local convenience unavailable | prerequisite check | use the protected isolated CI reset lane | no data affected; not an I0 blocker |
 
 ## 22. Analytics / measurement
 
@@ -253,12 +262,12 @@ No user analytics are added. Operational evidence records deployment status, mig
 - [ ] ARO.club has no hard-coded Tonguee/`aro-platform` fallback;
 - [x] GitHub default branch and required checks/branch protection are recorded.
 
-### Local data
+### Disposable reset data
 
-- [ ] compatible container runtime available;
-- [ ] current Supabase CLI version recorded and commands discovered through `--help`;
-- [ ] clean start/reset applies ordered migrations;
-- [ ] synthetic Auth fixtures work;
+- [x] protected GitHub-hosted Linux container runtime available;
+- [x] pinned Supabase CLI version recorded and workflow reviewed;
+- [x] clean start/reset applies ordered migrations twice;
+- [x] synthetic Auth fixtures work;
 - [ ] owner/other/anon/admin/service hostile tests run;
 - [ ] stop/reset is reproducible.
 
@@ -286,7 +295,7 @@ No user analytics are added. Operational evidence records deployment status, mig
 | I0-001 | ARO.club GitHub/Vercel are separated from Tonguee | live connector project/link/deployment audit | `artifacts/ARO-I0/BASELINE.md` | PASS |
 | I0-002 | Tonguee and `aro-platform` remain untouched and correctly classified | live Supabase read-only project audit | `artifacts/ARO-I0/BASELINE.md` | PASS |
 | I0-003 | literal provider key values are absent from active documentation/source | repository pattern scan | `artifacts/ARO-I0/VERIFICATION.md` | PASS |
-| I0-004 | local isolated stack is reproducible | container + CLI clean reset | future `artifacts/ARO-I0/VERIFICATION.md` | BLOCKED |
+| I0-004 | disposable isolated stack is reproducible | protected CI clean reset/replay/cleanup | `artifacts/ARO-I0.1/VERIFICATION.md`, PR #31 platform check | PASS |
 | I0-005 | hosted isolated ARO project exists | connector project inspection | `artifacts/ARO-I0/VERIFICATION.md` | PASS — `mibydnerayobemhnlfyl`, $0/month, `ca-central-1` |
 | I0-006 | Preview/Production variable scopes match the approved target | provider dashboard/connector audit | future verification | BLOCKED |
 | I0-007 | Auth URLs/callbacks are allow-listed correctly | provider configuration + E2E | future verification | BLOCKED |
@@ -298,7 +307,7 @@ No user analytics are added. Operational evidence records deployment status, mig
 ## 25. Rollout
 
 1. Merge the spec/evidence/hygiene package after documentation and security review.
-2. Install/enable a compatible local container runtime, then implement and verify local Supabase configuration.
+2. Verify the protected disposable CI reset/replay/cleanup lane.
 3. Re-query provider cost and obtain founder approval for exactly one hosted path.
 4. Create/identify the isolated hosted project; record its ref before configuring Vercel.
 5. Configure Preview first, run migrations/advisors/Auth/RLS/E2E, then record recovery evidence.
@@ -317,10 +326,13 @@ No user analytics are added. Operational evidence records deployment status, mig
 ## 27. Security / privacy / Trust review
 
 - **Reviewer:** Codex using the Supabase security workflow; independent/founder review still required for provider mutation
-- **Date:** 2026-09-02 refresh of the 2026-08-28 review
-- **Findings:** no isolated target; local container runtime absent; inherited literal anon key in `DEPLOYMENT.md`; no ARO custom domain on the connected Vercel project; GitHub main was unprotected
-- **Resolution:** literal key removal and GitHub protection complete; hosted confirmation/region, local runtime and domain remain explicit gates
-- **Approved:** spec/hygiene work yes; hosted/production mutation no
+- **Date:** 2026-09-03 refresh of the 2026-08-28 review
+- **Findings:** the original baseline lacked an isolated target, branch protection
+  and reproducible reset evidence; the host still lacks a local container runtime
+- **Resolution:** literal key removal, branch protection, hosted staging and the
+  protected CI reset/replay/cleanup lane are complete; the founder approved CI
+  equivalence so local Docker is optional; Preview/Auth/recovery/domain remain
+- **Approved:** CI-reset equivalence and $0 hosted staging yes; production mutation no
 
 ## 28. Product / design review
 
@@ -335,8 +347,8 @@ No user analytics are added. Operational evidence records deployment status, mig
 I0 is VERIFIED only when:
 
 - [x] spec is versioned and governance/status documents point to it;
-- [ ] compatible local runtime and reproducible local reset pass;
-- [ ] isolated hosted project is approved, active and recorded;
+- [x] protected disposable CI runtime and reproducible reset/replay/cleanup pass;
+- [x] isolated hosted project is approved, active and recorded;
 - [ ] Preview/Production scopes and Auth callbacks pass;
 - [ ] migrations, advisors, hostile RLS and authenticated E2E pass in the isolated target;
 - [ ] backup/export and recovery drill pass;
@@ -350,22 +362,22 @@ I0 is VERIFIED only when:
 
 ```text
 Package: ARO-I0
-Spec version: 1.0.0
-Branch: infra/aro-i0-branch-protection
-PR: #30
-Base: 2712642
-Acceptance: 5 pass-to-date / 5 blocked / 1 fail
+Spec version: 1.1.0
+Branch: spec/aro-i0-ci-reset-equivalence
+PR: pending
+Base: bce0675
+Acceptance: 7 pass-to-date / 3 blocked / 1 fail
 Unit: 61/61 passed
 Build: passed; inherited large-chunk warning unchanged
 Lint: zero errors / warnings
-Integration: blocked on local/hosted isolated target
-E2E: fail-closed baseline exists; authenticated evidence blocked
-RLS/security: live projects inspected read-only; no mutation
+Integration: disposable CI and hosted SQL matrices pass; Preview/Auth recovery blocked
+E2E: disposable authenticated evidence passes; hosted Auth/callback evidence blocked
+RLS/security: disposable and hosted 21+60 SQL matrices pass; advisors clean
 A11y: inherited R1/P1 fail-closed evidence
 Performance: no runtime delta
 Screenshots/evidence: artifacts/ARO-I0/BASELINE.md; artifacts/ARO-I0/VERIFICATION.md
-Reviewers: Supabase/infrastructure self-review; founder required for capacity/domain
-Known follow-ups: mandatory local container runtime/reset, Vercel scopes, Auth callbacks, recovery, domain ownership
+Reviewers: founder approved CI-reset equivalence; independent I0.2 review remains open
+Known follow-ups: Vercel scopes, Auth callbacks, recovery, domain ownership
 Release environment: none
 Status: IN-PROGRESS / GATES BLOCKED
 ```
