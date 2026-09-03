@@ -4,8 +4,9 @@
 > The disposable application baseline and Q0 authenticated regression gate
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
 > 360px/1440px light/dark browser checks. GitHub `main` protection now requires
-> the stable `static`, `browser-smoke` and `platform` checks. Parent I0's hosted
-> capacity/domain gates and I0.2's required independent review remain open; P1
+> the stable `static`, `browser-smoke` and `platform` checks. An isolated $0
+> hosted staging project now exists; local reset, hosted configuration/recovery,
+> domain gates and I0.2's required independent review remain open; P1
 > is still not authorized to start.
 
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
@@ -161,7 +162,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. On 2026-09-02 Supabase reported Tonguee `ACTIVE_HEALTHY` and quarantined `aro-platform` `INACTIVE`, so the prior two-active-project capacity condition no longer applies. A new project currently quotes $0/month, but creation still requires explicit provider cost confirmation and an approved region. The $0 local Supabase path remains blocked on this host because no Docker-compatible runtime is installed. No charge or project was created, and neither preserved project was mutated. GitHub branch protection is now active; hosted capacity and domain ownership remain open.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is SPEC-READY and `artifacts/ARO-I0/BASELINE.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. The approved I0.2 migration and 60 transactional application Trust/RLS assertions passed. A hosted default-privilege mismatch is addressed by an append-only hardening migration on `infra/aro-i0-hosted-staging`, pending CI/review before hosted application. The mandatory local reset remains blocked because no Docker-compatible runtime is installed. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
 
 ---
 
