@@ -12,6 +12,9 @@ Provider-gate evidence branch: `infra/aro-i0-branch-protection`, PR #30.
 
 Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR #31.
 
+Post-merge verification reconciliation: `docs/aro-i0-hosted-verification`, PR
+#32.
+
 ## 2026-09-03 hosted-staging execution
 
 - PR #30 merged at `eb297e0` after all corrected-commit checks passed and all
