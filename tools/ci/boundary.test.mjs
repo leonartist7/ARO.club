@@ -68,10 +68,18 @@ test('already-cancelled requests never invoke fetch', async () => {
 test('application baseline is append-only and isolated in the disposable workdir', () => {
   const migrationDir = `${ciRoot}supabase/migrations`;
   const migrations = readdirSync(migrationDir);
-  assert.deepEqual(migrations, ['20260831235206_application_trust_baseline.sql']);
-  const sql = readFileSync(`${migrationDir}/${migrations[0]}`, 'utf8');
-  assert.doesNotMatch(sql, /\b(drop|truncate)\s+(table|schema|database)\b/i);
-  assert.doesNotMatch(sql, /ybhecubqnhukgpvchjay|jjgccfrwjkwknyjtbtxa/i);
+  assert.deepEqual(migrations, [
+    '20260831235206_application_trust_baseline.sql',
+    '20260903074000_lock_public_default_privileges.sql',
+  ]);
+  for (const migration of migrations) {
+    const sql = readFileSync(`${migrationDir}/${migration}`, 'utf8');
+    assert.doesNotMatch(sql, /\b(drop|truncate)\s+(table|schema|database)\b/i);
+    assert.doesNotMatch(sql, /ybhecubqnhukgpvchjay|jjgccfrwjkwknyjtbtxa/i);
+  }
+  const hardening = readFileSync(`${migrationDir}/${migrations[1]}`, 'utf8');
+  assert.match(hardening, /alter default privileges for role postgres/i);
+  assert.doesNotMatch(hardening, /for role supabase_admin/i);
 });
 
 test('Data API exposes only public and reviewed api schemas', () => {

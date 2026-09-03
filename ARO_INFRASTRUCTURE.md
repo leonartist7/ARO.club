@@ -229,10 +229,10 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
 | ARO-R1 repository separation + rebrand | SHIPPED | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent deployment; preserve provider boundary |
 | ARO-M0 master delivery governance | VERIFIED | `ARO_MASTER_DELIVERY_PLAN.md`, PR #24, merge `67d5c8d` | keep status synchronized |
-| ARO-I0 isolated infrastructure | SPEC-READY / IMPLEMENTATION BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/BASELINE.md` | complete the mandatory local runtime/reset gate; confirm the quoted $0 hosted project and region; resolve domain |
+| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md` | merge/apply default-privilege hardening; complete mandatory local reset, Preview/Auth/recovery and domain gates |
 | ARO-I0.2 application baseline | IMPLEMENTED / CI VERIFIED | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | required independent implementation review remains open |
-| ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | parent-I0 hosted capacity; branch protection gate passed 2026-09-02 |
-| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | provide isolated Supabase capacity and finish authenticated/RLS gate |
+| ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | finish parent-I0 hosted configuration and recovery; branch protection passed 2026-09-02 |
+| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 local/hosted/domain gates and authenticated baseline |
 | ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | pass the safe-environment baseline first |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
@@ -258,7 +258,7 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 - [x] Separate `leonartist7/ARO.club` into Vercel project `aro-club` and establish a safe copied-main Production baseline.
 - [x] Confirm Tonguee remains linked to Vercel project `langgie`; confirm its intended Production Branch manually.
 - [ ] Audit ARO.club Preview/Production environment-variable scopes without pasting values into Git or chat.
-- [ ] Confirm creation of `ARO.club Staging` in `lionovart's Org` at the freshly quoted $0/month and select its region. One active slot is presently available because quarantined `aro-platform` is `INACTIVE`; do not restore, repurpose or otherwise touch it to manage capacity.
+- [x] `ARO.club Staging` (`mibydnerayobemhnlfyl`) created with founder-confirmed $0/month quote in `ca-central-1`; `aro-platform` remained `INACTIVE` and untouched.
 - [ ] Install/enable a Docker-compatible container runtime if the founder chooses the $0 local Supabase development path.
 - [ ] Identify which account/project currently serves the Spanish product at `aro.club` and decide whether the Human Opportunity Network should later receive that hostname.
 - [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.

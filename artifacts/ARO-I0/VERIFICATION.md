@@ -6,15 +6,47 @@
 >
 > Base: `67d5c8d24bd6b6a11cff10d49407b321b1bf74cb`
 >
-> Result: **SPECIFICATION/HYGIENE VERIFIED; BRANCH PROTECTION VERIFIED; INFRASTRUCTURE IMPLEMENTATION BLOCKED**
+> Result: **HOSTED CAPACITY ACTIVE; APPLICATION RLS VERIFIED; REMAINING I0 GATES BLOCKED**
 
 Provider-gate evidence branch: `infra/aro-i0-branch-protection`, PR #30.
+
+Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR #31.
+
+## 2026-09-03 hosted-staging execution
+
+- PR #30 merged at `eb297e0` after all corrected-commit checks passed and all
+  review conversations were resolved. The explicitly authorized administrator
+  merge did not alter branch protection.
+- Supabase re-quoted one project in `lionovart's Org` at exactly $0/month. The
+  founder-approved `ARO.club Staging` project `mibydnerayobemhnlfyl` became
+  `ACTIVE_HEALTHY` in `ca-central-1`.
+- Tonguee remained `ACTIVE_HEALTHY`; quarantined `aro-platform` remained
+  `INACTIVE` and untouched.
+- The approved I0.2 application migration applied successfully. All 60
+  transactional application Trust/RLS assertions passed and rolled back; zero
+  synthetic Auth users remained.
+- Supabase security advisors returned no findings. Performance advisors
+  returned only fresh-database unused-index INFO notices and multiple-policy
+  optimization warnings; no correctness or security failure.
+- The 21-test platform probe found three failures: newly created `postgres`-
+  owned public tables inherited broad grants for `anon`, `authenticated` and
+  `service_role`. Existing application tables remain explicitly revoked/RLS-
+  protected. The append-only `20260903074000_lock_public_default_privileges.sql`
+  migration fixes repository-migration defaults and is pending CI/review before
+  hosted application.
+- The staging database remains synthetic-empty after verification: zero Auth
+  users, profiles and applications. Vercel production is `READY` on merged
+  `main` commit `eb297e0`; Preview/Production variables were not changed.
 
 ## Scope
 
 This delivery verifies the I0 specification, provider baseline, status synchronization and removal of literal Supabase key values from deployment documentation. It does not claim that local, Preview or Production infrastructure is ready.
 
-No runtime source, dependency, schema, migration, RLS policy, Auth setting, Vercel variable, domain, Supabase resource, billing plan or user data changed.
+The original 2026-08-28 specification/hygiene package changed no runtime source,
+dependency, schema, migration, RLS policy, Auth setting, Vercel variable,
+domain, Supabase resource, billing plan or user data. The 2026-09-03 execution
+created only the founder-approved $0 staging resource and applied the approved
+application migration; no real user data was introduced.
 
 ## Repository verification
 
@@ -62,14 +94,14 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | GitHub repo/default branch/current main | PASS |
 | ARO.club ↔ Vercel `aro-club` Git link | PASS |
 | Tonguee ↔ Vercel `langgie` Git link | PASS |
-| Latest M0 production deployment READY | PASS |
+| Current `main` production deployment READY | PASS — `eb297e0` / `dpl_6g3si7pmfhQpKykxZGZJFneULhbX` |
 | Tonguee Supabase ACTIVE_HEALTHY and untouched | PASS |
 | `aro-platform` INACTIVE, quarantined and untouched by this audit | PASS |
 | Free plan/one active slot currently available | PASS |
 | Current new-project quote recorded without confirmation | PASS — $0/month; confirmation not submitted |
 | Current Preview-branch quote recorded without confirmation | PASS — $0.01344/hour; paid capability unapproved |
 | Local container runtime | FAIL — Docker-compatible command unavailable |
-| Hosted isolated ARO target | FAIL — unassigned |
+| Hosted isolated ARO target | PASS — `mibydnerayobemhnlfyl`, `ACTIVE_HEALTHY`, `ca-central-1`, $0/month |
 | `aro.club` routing to connected ARO project | FAIL — different Spanish product currently served |
 
 ## Acceptance mapping
@@ -80,21 +112,22 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | I0-002 | PASS | live Supabase project status; no mutations |
 | I0-003 | PASS | literal values removed; repository scan clean |
 | I0-004 | BLOCKED | no compatible local container runtime |
-| I0-005 | BLOCKED | $0 project quote confirmed; explicit cost confirmation and region still required; no hosted target |
-| I0-006 | BLOCKED | target does not exist; env-scope dashboard evidence unavailable |
-| I0-007 | BLOCKED | isolated Auth target absent |
-| I0-008 | BLOCKED | isolated recovery target absent |
+| I0-005 | PASS | isolated target `mibydnerayobemhnlfyl` active in `ca-central-1` at confirmed $0/month |
+| I0-006 | BLOCKED | Preview/Production variable scopes not configured or verified |
+| I0-007 | BLOCKED | isolated Auth URL/callback configuration not verified |
+| I0-008 | BLOCKED | isolated recovery drill not performed |
 | I0-009 | PASS | main protection requires strict `static`, `browser-smoke`, `platform`, PRs and resolved conversations |
-| I0-010 | PASS TO DATE | no charge, project, branch or destructive operation occurred |
+| I0-010 | PASS TO DATE | founder approved the exactly $0 project; no charge or destructive operation occurred |
 | I0-011 | FAIL / FOUNDER ACTION | connected project does not own/list `aro.club`; hostname serves another product |
 
 ## Review conclusion
 
-The package is safe to merge as specification/evidence/hygiene. I0 itself must remain **SPEC-READY / IMPLEMENTATION BLOCKED**. Do not advance I0 to VERIFIED, do not start P1 runtime migrations, and do not point ARO.club at either preserved Supabase project.
+I0 is now **IN-PROGRESS / GATES BLOCKED**. Do not advance I0 to VERIFIED, do not start P1 runtime migrations, and do not point ARO.club at either preserved Supabase project.
 
-Safe continuation after founder action:
+Safe continuation:
 
-1. confirm the quoted $0 `ARO.club Staging` project and select its region;
-2. create and verify that isolated target without touching either preserved project;
-3. identify the current `aro.club` owner/project;
-4. optionally install/enable a compatible container runtime for the local path.
+1. pass CI/review, merge and apply the append-only default-privilege hardening;
+2. complete the mandatory local runtime/reset evidence;
+3. configure and verify Preview-scoped variables and Auth callbacks;
+4. perform hosted recovery and authenticated E2E evidence;
+5. identify the current `aro.club` owner/project before any domain action.
