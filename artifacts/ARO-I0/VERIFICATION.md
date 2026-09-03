@@ -10,7 +10,7 @@
 
 Provider-gate evidence branch: `infra/aro-i0-branch-protection`, PR #30.
 
-Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR pending.
+Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR #31.
 
 ## 2026-09-03 hosted-staging execution
 
