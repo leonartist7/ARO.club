@@ -48,7 +48,7 @@ I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`,
 
 **ARO-P1 — Capability and Goal Foundation**
 
-P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is recorded under `artifacts/ARO-P1-BASELINE/VERIFICATION.md`, but the gate did not pass. Isolated hosted capacity now exists at `mibydnerayobemhnlfyl`; this does not waive parent-I0 local reset, hosted hardening/configuration/recovery or domain gates. Tonguee production remains evidence-only and `aro-platform` remains quarantined and untouched.
+P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is recorded under `artifacts/ARO-P1-BASELINE/VERIFICATION.md`, but the gate did not pass. Isolated hosted capacity now exists at `mibydnerayobemhnlfyl`, and the founder accepted the protected CI reset/replay/cleanup lane as I0-004. Parent-I0 Preview/Auth/recovery and domain gates remain. Tonguee production remains evidence-only and `aro-platform` remains quarantined and untouched.
 
 ---
 
@@ -79,7 +79,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
 | R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
-| I0 — isolated infrastructure | **IN-PROGRESS / GATES BLOCKED** | active $0 isolated staging target, both migrations applied, hosted 21+60 SQL assertions pass, active branch protection | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete local reset, Preview/Auth/recovery and domain gates |
+| I0 — isolated infrastructure | **IN-PROGRESS / GATES BLOCKED** | active $0 isolated staging target, CI reset equivalence, both migrations applied, hosted 21+60 SQL assertions pass, active branch protection | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` v1.1.0, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete Preview/Auth/recovery and domain gates |
 | I0.2 — application/Auth/Trust baseline | **IMPLEMENTED / CI VERIFIED** | PR #28 merged `5976928`; disposable migration/Auth/RLS/Storage/recovery/reset/browser matrix | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | obtain required independent implementation review; preserve isolated scope |
 | Q0 — reliability foundation | **IMPLEMENTED / CI VERIFIED** | zero-warning lint, portable browser runner, public and authenticated isolated CI, stable required checks on protected `main` | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, `artifacts/ARO-Q0/VERIFICATION.md`, PR #28 | parent-I0 hosted configuration/recovery remains separate |
 | P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | complete parent-I0 and authenticated/RLS gates |

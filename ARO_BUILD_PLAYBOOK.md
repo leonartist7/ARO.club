@@ -5,7 +5,7 @@
 > authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
 > VERIFIED** in the disposable lane. GitHub `main` protection now requires the
 > stable `static`, `browser-smoke` and `platform` checks. Isolated hosted
-> capacity now exists; parent-I0 local reset, hosted configuration/recovery,
+> capacity and CI reset equivalence now pass; parent-I0 hosted configuration/recovery,
 > domain and I0.2's required independent implementation review remain separate
 > gates; P1 is still not authorized to start.
 
@@ -33,7 +33,8 @@ The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, 
 Current enabling-state record (2026-09-02): M0 is **VERIFIED**; I0.1 is
 **SHIPPED**; I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED** in the disposable
 lane. Parent I0 is **IN-PROGRESS / GATES BLOCKED** after provisioning isolated
-hosted capacity; local reset, hosted configuration/recovery and domain remain.
+hosted capacity and accepting protected CI reset equivalence; hosted
+configuration/recovery and domain remain.
 P1 remains **SPEC-READY / BASELINE BLOCKED** and does
 not start from this CI fixture alone. The branch-protection provider gate passed
 on 2026-09-02.

@@ -5,7 +5,7 @@
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
 > 360px/1440px light/dark browser checks. GitHub `main` protection now requires
 > the stable `static`, `browser-smoke` and `platform` checks. An isolated $0
-> hosted staging project now exists; local reset, hosted configuration/recovery,
+> hosted staging project now exists; CI reset equivalence passes, while hosted configuration/recovery,
 > domain gates and I0.2's required independent review remain open; P1
 > is still not authorized to start.
 
@@ -162,7 +162,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is active and `artifacts/ARO-I0/VERIFICATION.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. PR #31 merged at `1415113`; both ordered migrations are applied, and the hosted 21 platform plus 60 application Trust/RLS assertions pass transactionally. The mandatory local reset remains blocked because no Docker-compatible runtime is installed. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is active and `artifacts/ARO-I0/VERIFICATION.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. PR #31 merged at `1415113`; both ordered migrations are applied, and the hosted 21 platform plus 60 application Trust/RLS assertions pass transactionally. The founder approved the protected disposable CI reset/replay/cleanup evidence as I0-004, so local Docker is optional. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
 
 ---
 

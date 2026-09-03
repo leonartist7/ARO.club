@@ -15,6 +15,8 @@ Hosted-staging evidence branch: `infra/aro-i0-hosted-staging`, PR #31.
 Post-merge verification reconciliation: `docs/aro-i0-hosted-verification`, PR
 #32.
 
+CI-reset-equivalence amendment: `spec/aro-i0-ci-reset-equivalence`, PR #33.
+
 ## 2026-09-03 hosted-staging execution
 
 - PR #30 merged at `eb297e0` after all corrected-commit checks passed and all
@@ -43,8 +45,14 @@ Post-merge verification reconciliation: `docs/aro-i0-hosted-verification`, PR
   advisors remain clean, and only expected fresh-database performance notices
   remain.
 - The staging database remains synthetic-empty after verification: zero Auth
-  users, profiles and applications. Vercel production is `READY` on merged
-  `main` commit `1415113`; Preview/Production variables were not changed.
+  users, profiles and applications. The 2026-09-03 Vercel gate snapshot is
+  `READY` on merged `main` commit `bce0675` at deployment
+  `dpl_5F7Pp6Vc1EsZyWpxJyuiJVxppAXL`; Preview/Production variables were not
+  changed.
+- On 2026-09-03 the founder approved the protected GitHub-hosted disposable
+  reset/replay/cleanup lane as equivalent I0 reproducibility evidence. I0-004
+  therefore passes without requiring Docker on the founder's computer; a local
+  container runtime remains optional developer tooling.
 
 ## Scope
 
@@ -102,13 +110,13 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | GitHub repo/default branch/current main | PASS |
 | ARO.club ↔ Vercel `aro-club` Git link | PASS |
 | Tonguee ↔ Vercel `langgie` Git link | PASS |
-| Current `main` production deployment READY | PASS — `1415113` / `dpl_EWraRtx8jVPNe8kF7sq7Jm5jqv36` |
+| 2026-09-03 `main` production deployment snapshot READY | PASS — `bce0675` / `dpl_5F7Pp6Vc1EsZyWpxJyuiJVxppAXL` |
 | Tonguee Supabase ACTIVE_HEALTHY and untouched | PASS |
 | `aro-platform` INACTIVE, quarantined and untouched by this audit | PASS |
 | Free plan/one active slot currently available | PASS |
-| Current new-project quote recorded without confirmation | PASS — $0/month; confirmation not submitted |
+| New-project quote and confirmation | PASS — exactly $0/month; staging created |
 | Current Preview-branch quote recorded without confirmation | PASS — $0.01344/hour; paid capability unapproved |
-| Local container runtime | FAIL — Docker-compatible command unavailable |
+| Local container runtime | OPTIONAL / unavailable — CI reset equivalence approved |
 | Hosted isolated ARO target | PASS — `mibydnerayobemhnlfyl`, `ACTIVE_HEALTHY`, `ca-central-1`, $0/month |
 | `aro.club` routing to connected ARO project | FAIL — different Spanish product currently served |
 
@@ -119,7 +127,7 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | I0-001 | PASS | live Vercel/GitHub separation evidence in baseline |
 | I0-002 | PASS | live Supabase project status; no mutations |
 | I0-003 | PASS | literal values removed; repository scan clean |
-| I0-004 | BLOCKED | no compatible local container runtime |
+| I0-004 | PASS | protected CI reset/replay/cleanup evidence; founder-approved equivalence |
 | I0-005 | PASS | isolated target `mibydnerayobemhnlfyl` active in `ca-central-1` at confirmed $0/month |
 | I0-006 | BLOCKED | Preview/Production variable scopes not configured or verified |
 | I0-007 | BLOCKED | isolated Auth URL/callback configuration not verified |
@@ -134,7 +142,6 @@ I0 is now **IN-PROGRESS / GATES BLOCKED**. Do not advance I0 to VERIFIED, do not
 
 Safe continuation:
 
-1. complete the mandatory local runtime/reset evidence;
-2. configure and verify Preview-scoped variables and Auth callbacks;
-3. perform hosted recovery and authenticated E2E evidence;
-4. identify the current `aro.club` owner/project before any domain action.
+1. configure and verify Preview-scoped variables and Auth callbacks;
+2. perform hosted recovery and authenticated E2E evidence;
+3. identify the current `aro.club` owner/project before any domain action.
