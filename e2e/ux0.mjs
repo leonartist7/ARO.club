@@ -1,9 +1,9 @@
 import { BASE, launch, navigate, createRun, assert } from './harness.mjs';
 
 const selectEnglishScenario = async (page) => {
-  await page.locator('input[value="conversational-spanish"]').check({ force: true });
-  await page.locator('input[value="cooking-stories"]').check({ force: true });
-  await page.locator('input[value="kitchen-saturday"]').check({ force: true });
+  await page.locator('input[value="conversational-spanish"]').evaluate((input) => input.click());
+  await page.locator('input[value="cooking-stories"]').evaluate((input) => input.click());
+  await page.locator('input[value="kitchen-saturday"]').evaluate((input) => input.click());
 };
 
 export default async function ux0() {
