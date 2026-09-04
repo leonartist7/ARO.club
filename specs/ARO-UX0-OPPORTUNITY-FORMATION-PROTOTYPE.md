@@ -347,8 +347,8 @@ contract and privacy review.
 | UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | PASS |
 | UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | PASS |
 | UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | PASS |
-| UX0-009 | existing required CI and public-route smoke remain green | CI | package PR | PENDING CI |
-| UX0-010 | founder approves the distinct creative direction before merge | founder review | package PR | PENDING FOUNDER |
+| UX0-009 | existing required CI and public-route smoke remain green | CI | PR #35 | PENDING CI |
+| UX0-010 | founder approves the distinct creative direction before merge | founder review | PR #35 | PENDING FOUNDER |
 | UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | PASS |
 
 ## 25. Rollout

@@ -4,6 +4,7 @@
 > **Spec:** 1.0.0
 > **Base:** `main` `2e0a97f` (PR #34 merge)
 > **Branch:** `feat/aro-ux0-opportunity-prototype`
+> **Pull request:** [#35](https://github.com/leonartist7/ARO.club/pull/35)
 > **Status:** IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
 > **Captured:** 2026-09-04
 
@@ -26,7 +27,7 @@ AI, realtime, location, payment or persistence work.
 | UX0-006 | native radio controls, focus, semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; token contrast evidence | PASS |
 | UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 2.6 ms response, CLS ≤0.001616, image budgets | PASS |
 | UX0-008 | original face-free editorial image + responsive variants | `ASSET_MANIFEST.md`, generated asset review and sizes | PASS |
-| UX0-009 | existing tests/build pass locally; required hosted checks | PR required checks pending | PENDING CI |
+| UX0-009 | existing tests/build pass locally; required hosted checks | PR #35 required checks pending | PENDING CI |
 | UX0-010 | Preview creative approval | founder review pending; do not merge or release | PENDING FOUNDER |
 | UX0-011 | all controls, validation, provenance, fixtures and result clauses use locale keys | complete key test for `en`, `fr`, `es`; E2E locale spot check | PASS |
 
