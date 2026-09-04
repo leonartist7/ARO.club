@@ -6,6 +6,7 @@ import journeys from './journeys.mjs';
 import sweep from './sweep.mjs';
 import responsive from './responsive.mjs';
 import darkMode from './darkmode.mjs';
+import ux0 from './ux0.mjs';
 
 /**
  * Runs the end-to-end suite against a dev server.
@@ -52,6 +53,11 @@ if (await isUp()) {
   server = spawn(process.execPath, [viteCli, '--host', '127.0.0.1'], {
     stdio: 'ignore',
     detached: process.platform !== 'win32',
+    env: {
+      ...process.env,
+      VITE_SUPABASE_URL: 'https://ux0-network-boundary.supabase.co',
+      VITE_SUPABASE_ANON_KEY: 'synthetic-browser-key-for-network-boundary-test',
+    },
   });
 
   if (!(await waitForServer())) {
@@ -62,6 +68,7 @@ if (await isUp()) {
 }
 
 const suites = [
+  ['ux0 opportunity formation', ux0],
   ['journeys', journeys],
   ['sweep', sweep],
   ['responsive', responsive],

@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- **Status:** SPEC-READY
+- **Status:** IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
 - **Spec version:** 1.0.0
 - **Owner/director:** ARO founder/director
 - **Specification branch:** `spec/aro-ux0-opportunity-prototype`
@@ -339,17 +339,17 @@ contract and privacy review.
 
 | ID | Requirement | Verification | Evidence location | Status |
 |---|---|---|---|---|
-| UX0-001 | first viewport communicates the ARO thesis and three anchors | founder review + visual captures | `artifacts/ARO-UX0/VERIFICATION.md` | TODO |
-| UX0-002 | user-controlled signals form one deterministic, explainable result | unit + E2E | same | TODO |
-| UX0-003 | prototype content is visibly synthetic and non-binding | copy assertion + review | same | TODO |
-| UX0-004 | source-controlled prototype mode keeps Supabase/Auth fail-closed with zero Supabase-domain requests; no backend, P1, payment, Google, AI or live-location behavior is added | diff/route/network audit | same | TODO |
-| UX0-005 | 360px, 390px, 430px, 768x1024 and 1440px light/dark experience passes | visual matrix | same | TODO |
-| UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | TODO |
-| UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | TODO |
-| UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | TODO |
-| UX0-009 | existing required CI and public-route smoke remain green | CI | package PR | TODO |
-| UX0-010 | founder approves the distinct creative direction before merge | founder review | package PR | TODO |
-| UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | TODO |
+| UX0-001 | first viewport communicates the ARO thesis and three anchors | founder review + visual captures | `artifacts/ARO-UX0/VERIFICATION.md` | PENDING FOUNDER |
+| UX0-002 | user-controlled signals form one deterministic, explainable result | unit + E2E | same | PASS |
+| UX0-003 | prototype content is visibly synthetic and non-binding | copy assertion + review | same | PASS |
+| UX0-004 | source-controlled prototype mode keeps Supabase/Auth fail-closed with zero Supabase-domain requests; no backend, P1, payment, Google, AI or live-location behavior is added | diff/route/network audit | same | PASS |
+| UX0-005 | 360px, 390px, 430px, 768x1024 and 1440px light/dark experience passes | visual matrix | same | PASS |
+| UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | PASS |
+| UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | PASS |
+| UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | PASS |
+| UX0-009 | existing required CI and public-route smoke remain green | CI | package PR | PENDING CI |
+| UX0-010 | founder approves the distinct creative direction before merge | founder review | package PR | PENDING FOUNDER |
+| UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | PASS |
 
 ## 25. Rollout
 
@@ -367,9 +367,9 @@ prior verified artifact. No database, Auth, domain or provider rollback is neede
 ## 27. Security / privacy / Trust review
 
 - **Reviewer:** required self-review; specialist only if implementation expands scope
-- **Date:** pending implementation
-- **Findings:** pending
-- **Resolution:** pending
+- **Date:** 2026-09-04
+- **Findings:** no backend/schema/provider/AI/location/money expansion; compiled route audit produced zero Supabase-domain requests
+- **Resolution:** source-controlled prototype mode mounts a static account boundary and prevents Supabase client/Auth initialization
 - **Approved:** no
 
 ## 28. Product / design review
@@ -377,7 +377,7 @@ prior verified artifact. No database, Auth, domain or provider rollback is neede
 - **Reviewer:** ARO founder/director
 - **Date:** pending Preview review
 - **Findings:** current baseline is generic and does not demonstrate opportunity formation
-- **Resolution:** UX0 must prove a distinctive three-point living-field interaction
+- **Resolution:** implemented community-table / living-field direction; Preview review pending
 - **Approved:** spec direction yes; implementation no
 
 ## 29. Definition of Done
@@ -393,17 +393,17 @@ Package: ARO-UX0
 Spec version: 1.0.0
 Branch: feat/aro-ux0-opportunity-prototype (future)
 Specification PR: #34
-Commit: pending
-Acceptance: 0/11 passed
-Unit: pending
-Integration: pending
-E2E: pending
-RLS/security: no data change; pending diff audit
-A11y: pending
-Performance: pending
-Screenshots/evidence: artifacts/ARO-UX0/VERIFICATION.md (future)
+Commit: pending delivery commit
+Acceptance: 8/11 passed; UX0-001/009/010 pending founder/CI
+Unit: 73/73 PASS
+Integration: prototype/provider/locale boundary PASS
+E2E: focused UX0 9/9 PASS; complete suite 25/25 PASS
+RLS/security: no data change; zero Supabase-domain requests across UX0/account audit
+A11y: keyboard, semantics, live region, 44px targets, reduced motion and token contrast PASS
+Performance: +3.21 kB home gzip, total named initial JS/CSS -37.55 kB; response 1.9 ms; max CLS 0.000301
+Screenshots/evidence: artifacts/ARO-UX0/VERIFICATION.md
 Reviewers: founder/product-design required
 Known follow-ups: I0 Auth/recovery/domain; P1 runtime remains blocked
 Release environment: Preview only
-Status: SPEC-READY
+Status: IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
 ```

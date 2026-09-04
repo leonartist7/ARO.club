@@ -12,6 +12,12 @@
 > ARO's visual language and opportunity-formation thesis can be validated while
 > those gates remain open.
 
+> **2026-09-04 UX0 delivery update:** `feat/aro-ux0-opportunity-prototype`
+> implements the synthetic three-point field and passes its local unit, focused
+> browser, responsive, accessibility, network and performance evidence. Eight
+> of eleven acceptance rows pass; hosted CI plus founder Preview/Production
+> release approval remain open. I0 and P1 gates are unchanged.
+
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
 > **Approved by:** Founder, 2026-08-27
@@ -234,7 +240,11 @@ fail-closed and may not enable accounts, add schema/RLS, P1 behavior, remote per
 location, Stripe, Google, payments, paid resources or Production changes.
 
 UX0 does not pass I0, authorize P1 runtime or reorder P1 → P5. Its implementation
-uses a new branch and PR after this specification reaches `main`.
+is now **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING** on
+`feat/aro-ux0-opportunity-prototype`. The delivery keeps prototype mode
+source-controlled and default-on, produces zero Supabase-domain requests across
+the UX0/account audit and remains unmerged pending the explicit Production
+release decision.
 
 ---
 

@@ -1,0 +1,542 @@
+{
+  "capturedAt": "2026-09-04T23:36:15.022Z",
+  "transformedModules": 2606,
+  "indexScript": "/assets/index-vjPfikqN.js",
+  "homeChunk": {
+    "file": "HomePage-BUBoqipQ.js",
+    "bytes": 22982,
+    "gzipBytes": 5960
+  },
+  "css": {
+    "file": "index-Ct7tyDQT.css",
+    "bytes": 95976,
+    "gzipBytes": 15055
+  },
+  "largestJavaScript": {
+    "file": "index-vjPfikqN.js",
+    "bytes": 587601,
+    "gzipBytes": 188216
+  },
+  "generatedImages": [
+    {
+      "file": "public/ux0/opportunity-table-800.webp",
+      "bytes": 52426
+    },
+    {
+      "file": "public/ux0/opportunity-table-1440.webp",
+      "bytes": 126298
+    }
+  ],
+  "assets": [
+    {
+      "file": "AboutPage-qg4-uiSw.js",
+      "bytes": 8867,
+      "gzipBytes": 2710
+    },
+    {
+      "file": "AdminAuditPage-CjXPfsK6.js",
+      "bytes": 4387,
+      "gzipBytes": 1653
+    },
+    {
+      "file": "AdminBookingsPage-DQoTMPZX.js",
+      "bytes": 7536,
+      "gzipBytes": 2459
+    },
+    {
+      "file": "AdminDashboard-BaDOLbeg.js",
+      "bytes": 4941,
+      "gzipBytes": 1969
+    },
+    {
+      "file": "AdminDashboardPage-BjxQ0PAb.js",
+      "bytes": 8790,
+      "gzipBytes": 2358
+    },
+    {
+      "file": "AdminExperiencesPage-DJLABRsg.js",
+      "bytes": 6875,
+      "gzipBytes": 2386
+    },
+    {
+      "file": "AdminReviewsPage-CYwAyLP2.js",
+      "bytes": 6828,
+      "gzipBytes": 2350
+    },
+    {
+      "file": "AdminTeacherDetailPage-CE6iZDn8.js",
+      "bytes": 6205,
+      "gzipBytes": 2061
+    },
+    {
+      "file": "AdminTeachersPage-CNr0a9ON.js",
+      "bytes": 4459,
+      "gzipBytes": 1530
+    },
+    {
+      "file": "AdminUserDetailPage-sfWZABW4.js",
+      "bytes": 7410,
+      "gzipBytes": 1879
+    },
+    {
+      "file": "AdminUsersPage-24JdTuYX.js",
+      "bytes": 5053,
+      "gzipBytes": 1756
+    },
+    {
+      "file": "ApplicationReview-DvUlbXfW.js",
+      "bytes": 8057,
+      "gzipBytes": 2679
+    },
+    {
+      "file": "arrow-left-BsW5-djc.js",
+      "bytes": 166,
+      "gzipBytes": 162
+    },
+    {
+      "file": "auditMeta-B-pHHKsu.js",
+      "bytes": 1322,
+      "gzipBytes": 547
+    },
+    {
+      "file": "AuthCallbackPage-BkIiLBXJ.js",
+      "bytes": 1092,
+      "gzipBytes": 569
+    },
+    {
+      "file": "award-CQEjizpL.js",
+      "bytes": 270,
+      "gzipBytes": 223
+    },
+    {
+      "file": "Badge-C5oCXJJU.js",
+      "bytes": 1344,
+      "gzipBytes": 540
+    },
+    {
+      "file": "calendar-CHOKikBd.js",
+      "bytes": 258,
+      "gzipBytes": 203
+    },
+    {
+      "file": "CharacterBuilder-C4lwwqfm.js",
+      "bytes": 8228,
+      "gzipBytes": 2530
+    },
+    {
+      "file": "characters-Bl5nE4IJ.js",
+      "bytes": 1779,
+      "gzipBytes": 660
+    },
+    {
+      "file": "ChatPage-DAUN39kj.js",
+      "bytes": 9980,
+      "gzipBytes": 3510
+    },
+    {
+      "file": "chevron-left-CIZ-ftiD.js",
+      "bytes": 131,
+      "gzipBytes": 144
+    },
+    {
+      "file": "chevron-right-TlSM35Xr.js",
+      "bytes": 131,
+      "gzipBytes": 140
+    },
+    {
+      "file": "chevron-up-DHNXKHOJ.js",
+      "bytes": 129,
+      "gzipBytes": 140
+    },
+    {
+      "file": "ChooseRolePage-DcpyZY9n.js",
+      "bytes": 9172,
+      "gzipBytes": 2336
+    },
+    {
+      "file": "chromium-DMC_7AJq.js",
+      "bytes": 313,
+      "gzipBytes": 225
+    },
+    {
+      "file": "circle-alert-DchfJjPQ.js",
+      "bytes": 251,
+      "gzipBytes": 186
+    },
+    {
+      "file": "circle-check-DtM3U67q.js",
+      "bytes": 174,
+      "gzipBytes": 165
+    },
+    {
+      "file": "circle-question-mark-jos1Vdnr.js",
+      "bytes": 244,
+      "gzipBytes": 204
+    },
+    {
+      "file": "clock-C2v9i4vM.js",
+      "bytes": 165,
+      "gzipBytes": 163
+    },
+    {
+      "file": "ComparePage-DdRVCjud.js",
+      "bytes": 7295,
+      "gzipBytes": 2094
+    },
+    {
+      "file": "constants-DxViUlEV.js",
+      "bytes": 2607,
+      "gzipBytes": 1091
+    },
+    {
+      "file": "ContactPage-nZm86wN_.js",
+      "bytes": 8811,
+      "gzipBytes": 2635
+    },
+    {
+      "file": "credit-card-BRbT0ojA.js",
+      "bytes": 208,
+      "gzipBytes": 186
+    },
+    {
+      "file": "crown-ueZMEvFN.js",
+      "bytes": 363,
+      "gzipBytes": 257
+    },
+    {
+      "file": "date-C0dgv24w.js",
+      "bytes": 22584,
+      "gzipBytes": 6806
+    },
+    {
+      "file": "dollar-sign-11vS0OYe.js",
+      "bytes": 220,
+      "gzipBytes": 188
+    },
+    {
+      "file": "EmptyState-DxmESZzB.js",
+      "bytes": 1339,
+      "gzipBytes": 668
+    },
+    {
+      "file": "ErrorState-aBrog2Ak.js",
+      "bytes": 2169,
+      "gzipBytes": 1047
+    },
+    {
+      "file": "ExperienceCard-B6COT3bg.js",
+      "bytes": 14461,
+      "gzipBytes": 3988
+    },
+    {
+      "file": "ExperienceDetailPage-DqwGvJ0B.js",
+      "bytes": 32436,
+      "gzipBytes": 9320
+    },
+    {
+      "file": "ExplorePage-CVkufB7L.js",
+      "bytes": 20969,
+      "gzipBytes": 5887
+    },
+    {
+      "file": "FAQPage-By6EtE26.js",
+      "bytes": 9148,
+      "gzipBytes": 3459
+    },
+    {
+      "file": "FavoritesPage-CYxdTVNp.js",
+      "bytes": 3090,
+      "gzipBytes": 1420
+    },
+    {
+      "file": "file-text-C2j69oyl.js",
+      "bytes": 386,
+      "gzipBytes": 253
+    },
+    {
+      "file": "flame-CG-zHyaW.js",
+      "bytes": 195,
+      "gzipBytes": 180
+    },
+    {
+      "file": "ForgotPasswordPage-CZ5sqici.js",
+      "bytes": 4025,
+      "gzipBytes": 1607
+    },
+    {
+      "file": "ForTeachersPage-DPYwGZMQ.js",
+      "bytes": 9049,
+      "gzipBytes": 1933
+    },
+    {
+      "file": "GamesPage-DIRN-ScA.js",
+      "bytes": 22852,
+      "gzipBytes": 6086
+    },
+    {
+      "file": "globe-CvDz-RFF.js",
+      "bytes": 238,
+      "gzipBytes": 186
+    },
+    {
+      "file": "HomePage-BUBoqipQ.js",
+      "bytes": 22982,
+      "gzipBytes": 5960
+    },
+    {
+      "file": "HowItWorksPage-BKe2KlYk.js",
+      "bytes": 8065,
+      "gzipBytes": 1845
+    },
+    {
+      "file": "index-Ct7tyDQT.css",
+      "bytes": 95976,
+      "gzipBytes": 15055
+    },
+    {
+      "file": "index-vjPfikqN.js",
+      "bytes": 587601,
+      "gzipBytes": 188216
+    },
+    {
+      "file": "Input-gj5g0noC.js",
+      "bytes": 1580,
+      "gzipBytes": 693
+    },
+    {
+      "file": "LeaderboardPage-B-Cu3U6x.js",
+      "bytes": 13250,
+      "gzipBytes": 2971
+    },
+    {
+      "file": "LegalPage-2FvitrIx.js",
+      "bytes": 5322,
+      "gzipBytes": 2283
+    },
+    {
+      "file": "lock-CJ2_gxBr.js",
+      "bytes": 202,
+      "gzipBytes": 188
+    },
+    {
+      "file": "LoginPage-BPmY8YXG.js",
+      "bytes": 5164,
+      "gzipBytes": 1995
+    },
+    {
+      "file": "mail-DS6WLKru.js",
+      "bytes": 214,
+      "gzipBytes": 200
+    },
+    {
+      "file": "map-pin-BWgwU3RM.js",
+      "bytes": 255,
+      "gzipBytes": 220
+    },
+    {
+      "file": "MapViewPage-CDl27lFX.js",
+      "bytes": 6310,
+      "gzipBytes": 1798
+    },
+    {
+      "file": "message-circle-B0pGu_Fl.js",
+      "bytes": 242,
+      "gzipBytes": 211
+    },
+    {
+      "file": "MyBookingsPage-b7huBx8k.js",
+      "bytes": 1002,
+      "gzipBytes": 559
+    },
+    {
+      "file": "NotFoundPage-8U0G4A_9.js",
+      "bytes": 4751,
+      "gzipBytes": 1600
+    },
+    {
+      "file": "Pager-Cpr0IoF3.js",
+      "bytes": 697,
+      "gzipBytes": 393
+    },
+    {
+      "file": "PassportPage-CEYW02cw.js",
+      "bytes": 7326,
+      "gzipBytes": 2492
+    },
+    {
+      "file": "pen-DrM-agJY.js",
+      "bytes": 236,
+      "gzipBytes": 199
+    },
+    {
+      "file": "plus-JM4ODIp7.js",
+      "bytes": 357,
+      "gzipBytes": 245
+    },
+    {
+      "file": "RecentlyViewedPage-CPy6vJbr.js",
+      "bytes": 4896,
+      "gzipBytes": 2086
+    },
+    {
+      "file": "ReviewPrompt-BYTAD3MD.js",
+      "bytes": 3472,
+      "gzipBytes": 1497
+    },
+    {
+      "file": "reviews-BwUIfCdy.js",
+      "bytes": 18329,
+      "gzipBytes": 4977
+    },
+    {
+      "file": "rotate-ccw-ODi9CV3n.js",
+      "bytes": 201,
+      "gzipBytes": 182
+    },
+    {
+      "file": "search-BY-ayNgK.js",
+      "bytes": 170,
+      "gzipBytes": 164
+    },
+    {
+      "file": "Select-NmCHpomy.js",
+      "bytes": 1506,
+      "gzipBytes": 785
+    },
+    {
+      "file": "send-CPd-3ffA.js",
+      "bytes": 291,
+      "gzipBytes": 229
+    },
+    {
+      "file": "shield-off-Ce5zSMnM.js",
+      "bytes": 401,
+      "gzipBytes": 280
+    },
+    {
+      "file": "shop-Pfcs5yTN.js",
+      "bytes": 2429,
+      "gzipBytes": 1009
+    },
+    {
+      "file": "ShopPage-DEzF2r71.js",
+      "bytes": 7249,
+      "gzipBytes": 2538
+    },
+    {
+      "file": "SignupPage-QO7xhCDc.js",
+      "bytes": 6779,
+      "gzipBytes": 2449
+    },
+    {
+      "file": "SortHeader-8qLy8bsg.js",
+      "bytes": 688,
+      "gzipBytes": 429
+    },
+    {
+      "file": "sparkles-CQyDl0p5.js",
+      "bytes": 495,
+      "gzipBytes": 281
+    },
+    {
+      "file": "StudentDashboard-DBrxFLEk.js",
+      "bytes": 11611,
+      "gzipBytes": 3130
+    },
+    {
+      "file": "StudentOnboarding-C3WEIAic.js",
+      "bytes": 12941,
+      "gzipBytes": 3837
+    },
+    {
+      "file": "StudentProfilePage-DtCabjdV.js",
+      "bytes": 17442,
+      "gzipBytes": 4281
+    },
+    {
+      "file": "students-CkEX3t8K.js",
+      "bytes": 6534,
+      "gzipBytes": 1742
+    },
+    {
+      "file": "target-CprREmHd.js",
+      "bytes": 222,
+      "gzipBytes": 161
+    },
+    {
+      "file": "teacherApplications-N-2OytdF.js",
+      "bytes": 2415,
+      "gzipBytes": 1025
+    },
+    {
+      "file": "TeacherApplicationStatus-lRKguBF2.js",
+      "bytes": 6309,
+      "gzipBytes": 2469
+    },
+    {
+      "file": "TeacherDashboardPage-3jp0qUxp.js",
+      "bytes": 15586,
+      "gzipBytes": 3972
+    },
+    {
+      "file": "TeacherOnboarding-B-4lVKyX.js",
+      "bytes": 12120,
+      "gzipBytes": 3763
+    },
+    {
+      "file": "TeacherProfilePage-uOo-x8g4.js",
+      "bytes": 12529,
+      "gzipBytes": 3382
+    },
+    {
+      "file": "teachers-BZcJ5JYT.js",
+      "bytes": 15170,
+      "gzipBytes": 5245
+    },
+    {
+      "file": "TierBadge-C0vCiIiN.js",
+      "bytes": 1157,
+      "gzipBytes": 578
+    },
+    {
+      "file": "trash-2-DjCcuxYX.js",
+      "bytes": 329,
+      "gzipBytes": 214
+    },
+    {
+      "file": "trending-up-vZ2lyf_e.js",
+      "bytes": 176,
+      "gzipBytes": 170
+    },
+    {
+      "file": "use-transform-BhhgkjSf.js",
+      "bytes": 905,
+      "gzipBytes": 514
+    },
+    {
+      "file": "usePagedList-BgDYJ9nx.js",
+      "bytes": 426,
+      "gzipBytes": 296
+    },
+    {
+      "file": "usePlayerStore-HHNDgghQ.js",
+      "bytes": 11353,
+      "gzipBytes": 4306
+    },
+    {
+      "file": "useRecentlyViewed-DldHFaIM.js",
+      "bytes": 80,
+      "gzipBytes": 95
+    },
+    {
+      "file": "video-Dq8qSfer.js",
+      "bytes": 745,
+      "gzipBytes": 419
+    },
+    {
+      "file": "zap-BLCvcl-m.js",
+      "bytes": 263,
+      "gzipBytes": 207
+    }
+  ]
+}

@@ -9,6 +9,11 @@
 > remaining gates and I0.2's independent-review follow-up remain explicit. UX0
 > is SPEC-READY as a synthetic frontend-only prototype and does not unlock P1.
 
+> **2026-09-04 UX0 update:** the package branch implements the full synthetic
+> formation interaction and passes local unit/browser/responsive/accessibility/
+> network/performance evidence. Eight of eleven rows pass; hosted CI and founder
+> Preview/Production release approval remain pending.
+
 > **Status as of September 3, 2026.**
 >
 > This file answers one question unambiguously: **what exists, what has been verified, what is blocked, and what comes next?**
@@ -21,8 +26,9 @@
 
 ### Program state
 
-**ARO R1 is shipped; I0.2 and Q0 CI gates pass; UX0 is the next eligible
-frontend-only package; P1 remains pre-implementation at its parent-I0 gate.**
+**ARO R1 is shipped; I0.2 and Q0 CI gates pass; UX0 is implemented and locally
+verified pending Preview/release approval; P1 remains pre-implementation at its
+parent-I0 gate.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub. `ARO_MASTER_DELIVERY_PLAN.md` is the canonical durable objective and cloud-task handoff through the verified P5 V1 loop.
 
@@ -47,11 +53,12 @@ gates remain separate. Branch protection passed on 2026-09-02.
 
 I0.1 update: the disposable Supabase CI subpackage is **VERIFIED** at `54e41b7`, PR #27 merged at 467a11d (SHIPPED) (`specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`, `artifacts/ARO-I0.1/VERIFICATION.md`). Real CI platform/Auth/RLS-probe/reset/cleanup and Quality checks pass; automated security/operations review findings are resolved. No product schema or hosted environment is established by this fixture. Q0 authenticated app regression and P1 remain gated; live source Trust drift is recorded in `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`.
 
-**ARO-UX0 — Opportunity Formation Prototype** is **SPEC-READY**. It may begin
-after its specification PR merges and may change only the synthetic frontend.
-Its signature interaction joins what a person wants, what they can bring, and
-people · place · time into one immediately updating, explainable opportunity.
-It cannot add backend semantics or waive any I0/P1 gate.
+**ARO-UX0 — Opportunity Formation Prototype** is **IMPLEMENTED / LOCAL VERIFIED /
+FOUNDER PREVIEW APPROVAL PENDING**. Its exact 27-combination fixture interaction
+joins what a person wants, what they can bring, and people · place · time into
+one immediately updating, explainable prototype possibility. Eight of eleven
+criteria pass. Hosted CI and founder approval remain; it adds no backend
+semantics and cannot waive any I0/P1 gate.
 
 ### Next semantic product package
 
@@ -82,7 +89,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | Current-state/changelog governance | **VERIFIED** | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` sync rules | documentation contract exists | update on every material strategy/status PR |
 | M0 — master delivery governance | **VERIFIED** | durable objective, phase graph, autonomy boundaries, V1 stopping condition and cloud starter prompt | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027, merged PR #24 | synchronize every material package/release transition |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | strategic doctrine preserved | adopt selectively inside package specs; validate accessibility/performance |
-| UX0 — opportunity formation frontend prototype | **SPEC-READY** | founder-approved frontend-first boundary; real-time deterministic three-point interaction | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/HANDOFF.md`; no runtime yet | implement on a new branch/PR; Preview-only founder review |
+| UX0 — opportunity formation frontend prototype | **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING** | deterministic 27-combination field, local state machine, translated result/provenance, original imagery and fail-closed source mode | `artifacts/ARO-UX0/VERIFICATION.md`; 73 unit tests, focused browser matrix and zero-Supabase audit pass locally | hosted checks, substantive review, then founder Preview + Production release decision |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | strategy preserved | wait for reliable P5 Proof/Passport base, then specify lightweight progression |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | strategy preserved | prove place/privacy/safety model before AR |
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
@@ -246,7 +253,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
+`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype (Preview approval pending) → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
 
 UX0 may proceed while the remaining parent-I0 gates are deferred, but it does
 not satisfy them or authorize P1.
