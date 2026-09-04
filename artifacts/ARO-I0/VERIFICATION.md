@@ -17,6 +17,9 @@ Post-merge verification reconciliation: `docs/aro-i0-hosted-verification`, PR
 
 CI-reset-equivalence amendment: `spec/aro-i0-ci-reset-equivalence`, PR #33.
 
+Preview-scope and frontend-sequencing reconciliation:
+`spec/aro-ux0-opportunity-prototype`, PR pending.
+
 ## 2026-09-03 hosted-staging execution
 
 - PR #30 merged at `eb297e0` after all corrected-commit checks passed and all
@@ -53,10 +56,23 @@ CI-reset-equivalence amendment: `spec/aro-i0-ci-reset-equivalence`, PR #33.
   reset/replay/cleanup lane as equivalent I0 reproducibility evidence. I0-004
   therefore passes without requiring Docker on the founder's computer; a local
   container runtime remains optional developer tooling.
+- Later on 2026-09-03 the founder deleted the two overlapping Supabase
+  Production+Preview variables and created new `VITE_SUPABASE_URL` and
+  `VITE_SUPABASE_ANON_KEY` entries scoped only to Preview. Read-only dashboard
+  inspection verified the two names and scopes without revealing values.
+- Vercel deployment `dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh` for `main` commit
+  `58bf3da` reached READY in Preview and the public application rendered. This
+  proves deployment/rendering and scope, not literal value-to-project matching
+  or authenticated connectivity.
+- Existing masked Stripe and Google entries remained visible at their inherited
+  Production+Preview scopes and were not changed, enabled or used by this work.
+- The founder deliberately deferred hosted Auth callbacks/recovery while a
+  synthetic-only UX0 frontend prototype is built. This does not pass I0 or
+  authorize P1 runtime.
 
 ## Scope
 
-This delivery verifies the I0 specification, provider baseline, status synchronization and removal of literal Supabase key values from deployment documentation. It does not claim that local, Preview or Production infrastructure is ready.
+This delivery verifies the I0 specification, provider baseline, status synchronization, removal of literal Supabase key values from deployment documentation, and the two Preview-only Supabase variable names/scopes. It does not claim that the masked values, hosted Auth, recovery or Production infrastructure are ready.
 
 The original 2026-08-28 specification/hygiene package changed no runtime source,
 dependency, schema, migration, RLS policy, Auth setting, Vercel variable,
@@ -118,6 +134,9 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | Current Preview-branch quote recorded without confirmation | PASS — $0.01344/hour; paid capability unapproved |
 | Local container runtime | OPTIONAL / unavailable — CI reset equivalence approved |
 | Hosted isolated ARO target | PASS — `mibydnerayobemhnlfyl`, `ACTIVE_HEALTHY`, `ca-central-1`, $0/month |
+| Preview Supabase variable names/scopes | PASS — exactly `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, both Preview only; values not exposed/read back |
+| Preview deployment/render | PASS — `58bf3da` / `dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh`, READY; public app rendered |
+| Preview literal value-to-project match | BLOCKED — provider values remain masked and authenticated connectivity is deferred |
 | `aro.club` routing to connected ARO project | FAIL — different Spanish product currently served |
 
 ## Acceptance mapping
@@ -129,7 +148,7 @@ The build also reports stale browser-compatibility datasets. No dependency updat
 | I0-003 | PASS | literal values removed; repository scan clean |
 | I0-004 | PASS | protected CI reset/replay/cleanup evidence; founder-approved equivalence |
 | I0-005 | PASS | isolated target `mibydnerayobemhnlfyl` active in `ca-central-1` at confirmed $0/month |
-| I0-006 | BLOCKED | Preview/Production variable scopes not configured or verified |
+| I0-006 | PARTIAL | Preview names/scopes and READY render pass; literal value matching and Production remain blocked |
 | I0-007 | BLOCKED | isolated Auth URL/callback configuration not verified |
 | I0-008 | BLOCKED | isolated recovery drill not performed |
 | I0-009 | PASS | main protection requires strict `static`, `browser-smoke`, `platform`, PRs and resolved conversations |
@@ -142,6 +161,6 @@ I0 is now **IN-PROGRESS / GATES BLOCKED**. Do not advance I0 to VERIFIED, do not
 
 Safe continuation:
 
-1. configure and verify Preview-scoped variables and Auth callbacks;
-2. perform hosted recovery and authenticated E2E evidence;
+1. verify the Preview literal value categories/target when Auth work resumes;
+2. configure Auth callbacks and perform hosted recovery/authenticated E2E;
 3. identify the current `aro.club` owner/project before any domain action.

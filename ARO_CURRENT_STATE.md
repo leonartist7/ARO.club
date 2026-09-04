@@ -1,17 +1,18 @@
 # ARO — Current State
 
-> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > Its disposable CI lane passed 81 transactional SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
 > light/dark browser evidence. I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**
 > in that disposable lane. GitHub `main` protection now requires the three
 > stable CI checks. Isolated hosted capacity and CI reset equivalence now pass;
-> parent I0 hosted configuration/recovery/domain and the required independent
-> I0.2 implementation review remain open. P1 is blocked.
+> parent I0 value-matching/Auth/recovery/domain and the required independent
+> I0.2 implementation review remain open. P1 is blocked. A separate synthetic-
+> only UX0 frontend prototype is SPEC-READY and does not waive those gates.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-08-31
+> **Last strategic update:** 2026-09-03
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -134,11 +135,11 @@ ARO now has an independent `leonartist7/ARO.club` repository and Vercel project 
 
 The repository, test/build, visual/accessibility and live Trust evidence is recorded in `artifacts/ARO-P1-BASELINE/VERIFICATION.md`. I0 now has a complete specification and refreshed provider evidence in `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`. PR #31 merged at `1415113`; the approved application migration and append-only default-privilege hardening are applied. Hosted platform 21/21 and application Trust/RLS 60/60 assertions pass transactionally, with zero retained Auth users, profiles or applications and no security-advisor findings. The founder approved the already-protected GitHub-hosted clean reset/replay/cleanup lane as the I0 reproducibility proof; local Docker is optional. Tonguee remains preserved and `aro-platform` remains **QUARANTINED — KEEP** and untouched.
 
-The 2026-09-03 live Vercel gate snapshot confirms the ARO.club/Tonguee project links and READY ARO.club production deployment `dpl_5F7Pp6Vc1EsZyWpxJyuiJVxppAXL` for merged `main` commit `bce0675`. The connected `aro-club` project does not list `aro.club`; that hostname still serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action. GitHub `main` protection requires PRs, resolved conversations and the stable `static`, `browser-smoke` and `platform` checks, with force-pushes and deletion disabled.
+The 2026-09-03 live Vercel gate snapshot confirms the ARO.club/Tonguee project links and READY ARO.club production deployment for merged `main` commit `58bf3da`. The founder deleted the two overlapping Production+Preview Supabase entries and created new `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` entries scoped only to Preview. Read-only dashboard inspection confirmed the names/scopes without exposing values. Preview deployment `dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh` for `58bf3da` is READY and the application renders; literal value-to-project matching remains unverified. The connected `aro-club` project does not list `aro.club`; that hostname still serves a different Spanish-language product and requires founder ownership/disposition clarification before any domain action. GitHub `main` protection requires PRs, resolved conversations and the stable `static`, `browser-smoke` and `platform` checks, with force-pushes and deletion disabled.
 
 ### I0 execution update — disposable CI lane
 
-**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Full I0 local-reset, hosted, callback, recovery and domain gates remain open; branch protection passed on 2026-09-02.
+**ARO-I0.1 is VERIFIED** at runtime commit `54e41b7`, PR #27 merged at 467a11d (SHIPPED). Real CI passes: 8 boundary tests, 21 SQL assertions twice, synthetic Auth/recovery/password change/logout, account-erasing reset and targeted cleanup. Quality CI passes; the requested automated security/operations review completed and both minor findings were resolved. Spec: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md`; evidence: `artifacts/ARO-I0.1/VERIFICATION.md`. This proves a disposable platform environment, not inherited-schema compatibility or P1 readiness. Parent I0 Preview value matching, Auth/recovery and domain gates remain open; branch protection passed on 2026-09-02.
 
 Migration-source finding (2026-08-30): live read-only Tonguee metadata lacks the repository Trust tables, `profiles.role` and verified-publish enforcement trigger. See `artifacts/ARO-I0.1/MIGRATION_SOURCE_AUDIT.md`. Source-code Trust foundations must not be described as verified live controls. A reviewed application baseline reconciliation is required; no Tonguee mutation was performed or authorized.
 
@@ -150,7 +151,8 @@ PR #28 merged at `5976928` after both Isolated database and Quality workflows
 passed. The disposable lane verifies the application migration, 81 hostile SQL
 assertions, synthetic Auth/API/Storage/recovery/reset flows and authenticated
 360px/1440px light/dark browser evidence. This does not complete parent I0's
-local-reset, hosted-capacity or domain requirements or waive P1's baseline.
+Preview value-matching, hosted Auth/recovery or domain requirements or waive
+P1's baseline.
 
 ### I0.2 supplemental review update
 
@@ -158,12 +160,25 @@ A supplemental read-only review record is preserved in
 `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md`. Because it did not rerun the
 database/Auth/Storage lane and was not performed by the required independent
 specialist reviewer, it is not package sign-off and does not close I02-08.
-Parent I0 remains blocked on Preview/Auth/recovery and domain gates,
+Parent I0 remains blocked on Preview literal-value matching, Auth/recovery and domain gates,
 so this review does not authorize P1.
 
 ### Active master objective
 
 `ARO_MASTER_DELIVERY_PLAN.md` now governs the autonomous, spec-driven path through the verified P5 V1 loop. It inserts isolated-infrastructure, reliability, platform/Next.js, experience-system and AI-foundation packages at explicit dependency gates without reordering P1 → P2 → P3 → P4 → P5 or authorizing exploratory 3D/AR runtime work.
+
+### ARO-UX0 — frontend-first opportunity prototype
+
+**State:** SPEC-READY; implementation has not started.
+
+On 2026-09-03 the founder deliberately deferred hosted Auth/callback/recovery
+work while ARO validates a frontend-only prototype. UX0 is governed by
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`. It replaces the generic
+marketplace-first creative direction with a real-time, deterministic three-point
+interaction: **what you want + what you can bring + people · place · time → one
+explainable synthetic opportunity**. Original generated imagery is authorized
+where useful. No backend, account, P1, realtime provider, AI, location, money,
+Stripe, Google or Production behavior is authorized.
 
 ---
 
@@ -178,14 +193,16 @@ Current governed sequence:
    CI VERIFIED**; hosted target provisioned, remaining parent gates blocked).
 5. **Q0** — reliability foundation (**IMPLEMENTED / CI VERIFIED** in the
    disposable lane).
-6. **P1** — Capability + Goal foundation (**SPEC-READY; baseline waits on complete parent-I0 verification, not capacity alone**).
-7. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
-8. **P2** — Explicit Intent + privacy-preserving Demand Signals.
-9. **A1** — AI Runtime, Evaluation and Safety Foundation.
-10. **P3** — ARO Catalyst / language Opportunity Suggestions.
-11. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
-12. **P5** — ARO Proof + outcomes + Passport evolution.
-13. **P6** — carefully gated adjacent vertical after the V1 release audit.
+6. **UX0** — synthetic Opportunity Formation frontend prototype (**SPEC-READY;
+   may proceed independently; does not unlock P1**).
+7. **P1** — Capability + Goal foundation (**SPEC-READY; baseline waits on complete parent-I0 verification, not capacity alone**).
+8. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
+9. **P2** — Explicit Intent + privacy-preserving Demand Signals.
+10. **A1** — AI Runtime, Evaluation and Safety Foundation.
+11. **P3** — ARO Catalyst / language Opportunity Suggestions.
+12. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
+13. **P5** — ARO Proof + outcomes + Passport evolution.
+14. **P6** — carefully gated adjacent vertical after the V1 release audit.
 
 Do not skip the sequence because a future concept is exciting.
 

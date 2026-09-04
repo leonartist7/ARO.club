@@ -1,16 +1,17 @@
 # ARO — Infrastructure, Environment, and Operations Registry
 
-> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > Its disposable CI lane passed the application migration, 81 transactional SQL
 > assertions, Auth/API/Storage/recovery/reset flows and authenticated responsive
 > browser evidence. A supplemental review record exists, but the required
 > independent implementation review remains open. GitHub `main` protection now
-> requires the three stable CI checks. Parent I0's hosted capacity and domain
-> gates remain open; P1 is not authorized.
+> requires the three stable CI checks. Hosted staging and CI reset equivalence
+> pass; Preview literal-value matching, Auth/recovery and domain gates remain.
+> UX0 is SPEC-READY as a synthetic frontend-only prototype; P1 is not authorized.
 
 > **Canonical operational map.** Agents must read this before changing Git branches, deployment configuration, Supabase projects, authentication providers, environment variables, migrations or production state.
 >
-> **Last verified:** GitHub, Vercel and Supabase 2026-09-02
+> **Last verified:** GitHub, Vercel and Supabase 2026-09-03
 >
 > This document records identifiers and decisions only. Never add secret values, tokens, service-role keys, passwords, recovery codes or private user data.
 
@@ -20,17 +21,17 @@
 
 - ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
-- The governed ARO history through `9394cb7` is present in ARO.club. M0, I0.1, I0.2 and Q0 delivery history is merged through PR #28; the review correction is merged through PR #29 at `2712642`; no runtime package is currently authorized.
-- Requested baseline `5c3d55c` remains in current `main` ancestry; live `main` and its READY Vercel production deployment are at `2712642`.
-- ARO.club now has an independent Vercel project named `aro-club`. Its Supabase runtime target remains unassigned; it must not silently use Tonguee production credentials.
+- The governed ARO history through `9394cb7` is present in ARO.club. M0, I0.1, I0.2 and Q0 delivery history is merged through PR #28; infrastructure follow-ups are merged through PR #33 at `58bf3da`.
+- Requested baseline `5c3d55c` remains in current `main` ancestry; live `main` and its READY Vercel production deployment are at `58bf3da`.
+- ARO.club now has an independent Vercel project named `aro-club` and isolated Supabase staging project `mibydnerayobemhnlfyl`. Preview variable names/scopes are verified; their masked literal values are not independently verified.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is `INACTIVE`, is not the ARO migration backend and must not be restored, deleted or repurposed until its five auth accounts and any external dependencies are identified.
 - Stripe is not configured.
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is SHIPPED. M0 is VERIFIED as governance.
-- I0 spec 1.1.0 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass.
-- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview/Auth/recovery/domain gates remain open.
+- I0 spec 1.1.1 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass.
+- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-UX0 is SPEC-READY as a synthetic frontend-only prototype. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview literal-value matching, Auth/recovery and domain gates remain open.
 
 ---
 
@@ -39,8 +40,8 @@
 | Item | Current value | Rule |
 |---|---|---|
 | ARO runtime repository | `leonartist7/ARO.club` | Independent ARO product repository |
-| ARO.club reviewed source | current `main` `2712642`; requested baseline `5c3d55c` is an ancestor | Default-branch protection active with stable required checks |
-| Active governed package | Parent `ARO-I0` blocked; no runtime package active | Do not start P1 before the isolated environment and baseline gates pass |
+| ARO.club reviewed source | current `main` `58bf3da`; requested baseline `5c3d55c` is an ancestor | Default-branch protection active with stable required checks |
+| Active governed package | `ARO-UX0` SPEC-READY; parent `ARO-I0` remains gates-blocked | UX0 may implement synthetic frontend behavior only; do not start P1 before its gates pass |
 | Governed source history | `leonartist7/Tonguee`, `feat/aro-p0-director-reset`, through `9394cb7` | Historical governance source; preserve, do not develop new ARO runtime there |
 | Original production repository | `leonartist7/Tonguee`, branch `main` | Untouched Tonguee production and recovery path |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
@@ -76,7 +77,13 @@
 - M0 PR #24 merged as `67d5c8d`; production deployment `dpl_Gk92V3NpoRFwCTCKJyGRyGvn9M5S` reached `READY` on 2026-08-27.
 - PR #29 merged as `2712642`; production deployment `dpl_CvXygcqWmPHRTS5YP9XG8bvLaxhM` reached `READY` on 2026-09-02.
 - Live connector evidence confirms Vercel project `aro-club` (`prj_lFGjUkwTZHQAse6sxPXTQLK3qMeY`) links to `leonartist7/ARO.club`; project `langgie` (`prj_TZl9H4B2BiFX6sB9g00D64QVur4B`) links to `leonartist7/Tonguee`.
-- Account functionality remains intentionally unavailable until an isolated ARO.club backend is approved.
+- On 2026-09-03 the founder removed the two overlapping ARO Supabase
+  Production+Preview entries and created `VITE_SUPABASE_URL` and
+  `VITE_SUPABASE_ANON_KEY` as Preview-only variables. Dashboard inspection
+  verified names/scopes without revealing values. Preview deployment
+  `dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh` for `58bf3da` reached READY and rendered.
+- Account functionality remains intentionally deferred until Auth callbacks and
+  hosted recovery evidence are completed.
 - `aro.club` is not listed on the connected `aro-club` project's domains. It currently returns a different Spanish-language product from Vercel. Do not detach or overwrite it until the founder identifies its account/project and intended disposition.
 
 ### Required deployment posture
@@ -110,10 +117,10 @@ Do not paste values into issues, PRs, chat, screenshots or this repository. Comp
 
 | Variable | Classification | Client exposure | Current decision |
 |---|---|---:|---|
-| VITE_SUPABASE_URL | Supabase public project URL | yes | Keep in Vercel/local environment; do not commit |
-| VITE_SUPABASE_ANON_KEY | Supabase browser client anon/publishable key | yes | Keep in Vercel/local environment; rely on correct RLS |
-| Stripe variables | Not configured | N/A | Out of scope until an approved money package |
-| Google OAuth variables | Not configured by founder | N/A | Out of scope until a dedicated auth package |
+| VITE_SUPABASE_URL | Supabase public project URL | yes | Preview-only name/scope verified; literal target value not read back; do not commit |
+| VITE_SUPABASE_ANON_KEY | Supabase browser client anon/publishable key | yes | Preview-only name/scope verified; literal value/category not read back; rely on correct RLS |
+| Stripe variables | Inherited entries visible in Vercel | browser category unknown from masked audit | Out of scope and untouched; do not use until an approved money package |
+| Google variables | Inherited entries visible in Vercel | browser category unknown from masked audit | Out of scope and untouched; do not use until a dedicated package |
 
 ### SEC0 decision
 
@@ -229,11 +236,12 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | ARO-SEC0 | VERIFIED | ARO_SEC0_REPORT.md, PR #18, merge c2c8e3 | keep secrets/config outside Git |
 | ARO-R1 repository separation + rebrand | SHIPPED | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent deployment; preserve provider boundary |
 | ARO-M0 master delivery governance | VERIFIED | `ARO_MASTER_DELIVERY_PLAN.md`, PR #24, merge `67d5c8d` | keep status synchronized |
-| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113` | complete Preview/Auth/recovery and domain gates; local Docker is optional |
+| ARO-I0 isolated infrastructure | IN-PROGRESS / GATES BLOCKED | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`; Preview names/scopes verified | verify Preview values, then complete Auth/recovery and domain gates; local Docker is optional |
 | ARO-I0.2 application baseline | IMPLEMENTED / CI VERIFIED | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | required independent implementation review remains open |
 | ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | finish parent-I0 hosted configuration and recovery; branch protection passed 2026-09-02 |
-| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 Preview/Auth/recovery/domain gates and authenticated baseline |
+| ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 Preview value-matching/Auth/recovery/domain gates and authenticated baseline |
 | ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | pass the safe-environment baseline first |
+| ARO-UX0 frontend prototype | SPEC-READY | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md` | implement synthetic-only visual/interaction prototype on a new branch/PR |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
 P1's locked data direction:
@@ -257,11 +265,11 @@ These actions require founder/provider-dashboard authority and cannot safely be 
 - [x] Confirm the existing Tonguee Vercel project still links to `leonartist7/Tonguee`; its intended Production Branch remains a dashboard check.
 - [x] Separate `leonartist7/ARO.club` into Vercel project `aro-club` and establish a safe copied-main Production baseline.
 - [x] Confirm Tonguee remains linked to Vercel project `langgie`; confirm its intended Production Branch manually.
-- [ ] Audit ARO.club Preview/Production environment-variable scopes without pasting values into Git or chat.
+- [x] Verify the two ARO Supabase variable names are scoped only to Preview without exposing values; literal value-to-project matching remains separate.
 - [x] `ARO.club Staging` (`mibydnerayobemhnlfyl`) created with founder-confirmed $0/month quote in `ca-central-1`; `aro-platform` remained `INACTIVE` and untouched.
 - [x] Founder accepted protected GitHub-hosted reset/replay/cleanup evidence for I0-004; local Docker remains optional developer tooling.
 - [ ] Identify which account/project currently serves the Spanish product at `aro.club` and decide whether the Human Opportunity Network should later receive that hostname.
-- [ ] In Supabase Tonguee Auth URL Configuration, confirm the public Site URL and necessary callback/preview redirect URLs.
+- [ ] When Auth work resumes, configure and verify Site URL and Preview callbacks only in `ARO.club Staging` (`mibydnerayobemhnlfyl`); do not change Tonguee.
 - [ ] In Supabase aro-platform, identify the five auth accounts and the project owner/purpose without copying personal data into Git.
 - [ ] Search Vercel projects/local configs/external services for references to jjgccfrwjkwknyjtbtxa.
 - [ ] Tell the director whether aro-platform is confirmed disposable, archival or owned by another product.

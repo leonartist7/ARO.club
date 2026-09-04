@@ -1,13 +1,14 @@
 # ARO — Build Playbook
 
-> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`
+> **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`
 > after the isolated migration/Auth/RLS/Storage/recovery/reset and responsive
 > authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
 > VERIFIED** in the disposable lane. GitHub `main` protection now requires the
 > stable `static`, `browser-smoke` and `platform` checks. Isolated hosted
-> capacity and CI reset equivalence now pass; parent-I0 hosted configuration/recovery,
-> domain and I0.2's required independent implementation review remain separate
-> gates; P1 is still not authorized to start.
+> capacity and CI reset equivalence now pass; parent-I0 Preview literal-value
+> matching, Auth/recovery, domain and I0.2's required independent implementation
+> review remain separate gates. UX0 is SPEC-READY as a synthetic frontend-only
+> prototype; P1 is still not authorized to start.
 
 ## Operating contract
 
@@ -21,23 +22,31 @@ Terminology is locked by `DECISIONS.md`: **Opportunity** is the universal arrang
 2. **ARO-SEC0 — Repository Secret Hygiene (must complete before P1).**
 3. R1 — repository/provider separation and platform identity.
 4. M0 → I0 → Q0 — master delivery governance, isolated infrastructure and deterministic reliability foundation.
-5. P1 — Capability + Goal Foundation.
-6. N1 → X1 — governed platform/Next.js decision and ARO experience foundation.
-7. P2 — Explicit Intent + Demand Signals.
-8. A1 — AI Runtime, Evaluation and Safety Foundation.
-9. P3 → P4 → P5 in order.
-10. P6 only after the V1 loop is reliable and its category gate is approved.
+5. UX0 — synthetic Opportunity Formation frontend prototype; does not unlock P1.
+6. P1 — Capability + Goal Foundation.
+7. N1 → X1 — governed platform/Next.js decision and ARO experience foundation.
+8. P2 — Explicit Intent + Demand Signals.
+9. A1 — AI Runtime, Evaluation and Safety Foundation.
+10. P3 → P4 → P5 in order.
+11. P6 only after the V1 loop is reliable and its category gate is approved.
 
-The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, Q0, N1, X1 and A1 are enabling packages defined by `ARO_MASTER_DELIVERY_PLAN.md`; none may implement downstream product behavior by implication.
+The semantic product dependency remains P1 → P2 → P3 → P4 → P5. M0, I0, Q0, N1, X1 and A1 are enabling packages defined by `ARO_MASTER_DELIVERY_PLAN.md`; none may implement downstream product behavior by implication. UX0 is a synthetic, non-semantic frontend prototype and cannot add or stand in for those packages.
 
-Current enabling-state record (2026-09-02): M0 is **VERIFIED**; I0.1 is
+Current enabling-state record (2026-09-03): M0 is **VERIFIED**; I0.1 is
 **SHIPPED**; I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED** in the disposable
 lane. Parent I0 is **IN-PROGRESS / GATES BLOCKED** after provisioning isolated
 hosted capacity and accepting protected CI reset equivalence; hosted
-configuration/recovery and domain remain.
+value matching, Auth/recovery and domain remain. Preview-only Supabase variable
+names/scopes and a READY rendering deployment are now verified.
 P1 remains **SPEC-READY / BASELINE BLOCKED** and does
 not start from this CI fixture alone. The branch-protection provider gate passed
 on 2026-09-02.
+
+UX0 is **SPEC-READY** at
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`. The founder authorized this
+frontend-first prototype while Auth is deferred. It uses deterministic fixtures
+and local UI state only; no P1 runtime, backend, provider, account, AI, location,
+money, Google, Stripe or Production change is allowed.
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 

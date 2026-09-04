@@ -3,11 +3,11 @@
 ## 0. Metadata
 
 - **Status:** IN-PROGRESS / GATES BLOCKED
-- **Spec version:** 1.1.0
+- **Spec version:** 1.1.1
 - **Owner/director:** ARO founder/director
 - **Specification branch / PR:** `spec/aro-i0-isolated-infrastructure` / #25, merged at `3e66b60`
-- **Current governance-gate branch:** `spec/aro-i0-ci-reset-equivalence`
-- **Current governance-gate PR:** #33
+- **Current governance-gate branch:** `spec/aro-ux0-opportunity-prototype`
+- **Current governance-gate PR:** pending
 - **Depends on:** SEC0 VERIFIED; R1 SHIPPED; M0 VERIFIED
 - **Blocks:** Q0 hosted verification; P1 authenticated/RLS baseline and runtime implementation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_INFRASTRUCTURE.md`, `ARO_ARCHITECTURE.md`, `ARO_DATA_MODEL.md`, `ARO_TRUST_SAFETY.md`, ADR-025 through ADR-027
@@ -143,10 +143,10 @@ founder approval and backup/recovery evidence.
 |---|---|---|---|---|---|
 | Local | optional local Supabase containers | synthetic only | none / `.env.local` ignored | disposable | OPTIONAL: compatible container runtime absent |
 | CI | pinned loopback-only Supabase services on GitHub-hosted Linux | synthetic only | no hosted credentials | disposable | VERIFIED: I0.1/I0.2 clean reset, replay and cleanup |
-| Preview | `mibydnerayobemhnlfyl` after scoped variable/callback approval | synthetic/test only | Preview | staging | TARGET ACTIVE / CONFIGURATION BLOCKED |
+| Preview | `mibydnerayobemhnlfyl` after scoped variable/callback approval | synthetic/test only | Preview | staging | TARGET ACTIVE / VARIABLE SCOPES VERIFIED / VALUE MATCH + AUTH BLOCKED |
 | Production | dedicated approved ARO hosted project | real ARO data after release | Production | durable | target unassigned |
 | Tonguee | `ybhecubqnhukgpvchjay` | preserved Tonguee data | Tonguee project only | durable | ACTIVE, read-only for I0 |
-| Quarantine | `jjgccfrwjkwknyjtbtxa` | unknown legacy Auth/dependencies | none for ARO | preserve | ACTIVE, do not use |
+| Quarantine | `jjgccfrwjkwknyjtbtxa` | unknown legacy Auth/dependencies | none for ARO | preserve | INACTIVE, do not restore or use |
 
 ### Migration rules
 
@@ -277,7 +277,7 @@ No user analytics are added. Operational evidence records deployment status, mig
 - [ ] project status/region/ownership and cost are recorded;
 - [ ] Supabase advisors reviewed;
 - [ ] Site URL and redirect allow-list verified;
-- [ ] Preview and Production env names/categories/scopes verified without exposing values;
+- [ ] Preview and Production env names/categories/scopes verified without exposing values; Preview names/scopes pass, literal value/category matching and Production remain open;
 - [ ] Preview cannot reach Tonguee or `aro-platform`;
 - [ ] backup/export and recovery drill passes before Production.
 
@@ -297,7 +297,7 @@ No user analytics are added. Operational evidence records deployment status, mig
 | I0-003 | literal provider key values are absent from active documentation/source | repository pattern scan | `artifacts/ARO-I0/VERIFICATION.md` | PASS |
 | I0-004 | disposable isolated stack is reproducible | protected CI clean reset/replay/cleanup | `artifacts/ARO-I0.1/VERIFICATION.md`, PR #31 platform check | PASS |
 | I0-005 | hosted isolated ARO project exists | connector project inspection | `artifacts/ARO-I0/VERIFICATION.md` | PASS — `mibydnerayobemhnlfyl`, $0/month, `ca-central-1` |
-| I0-006 | Preview/Production variable scopes match the approved target | provider dashboard/connector audit | future verification | BLOCKED |
+| I0-006 | Preview/Production variable scopes match the approved target | provider dashboard/connector audit | `artifacts/ARO-I0/VERIFICATION.md` | PARTIAL — Preview names/scopes and READY render pass; literal value matching and Production remain blocked |
 | I0-007 | Auth URLs/callbacks are allow-listed correctly | provider configuration + E2E | future verification | BLOCKED |
 | I0-008 | backup/export and forward recovery are tested | restore drill | future verification | BLOCKED |
 | I0-009 | GitHub required checks and branch protection are active | GitHub API | `artifacts/ARO-I0/VERIFICATION.md` | PASS — 2026-09-02 |
@@ -328,10 +328,12 @@ No user analytics are added. Operational evidence records deployment status, mig
 - **Reviewer:** Codex using the Supabase security workflow; independent/founder review still required for provider mutation
 - **Date:** 2026-09-03 refresh of the 2026-08-28 review
 - **Findings:** the original baseline lacked an isolated target, branch protection
-  and reproducible reset evidence; the host still lacks a local container runtime
+  and reproducible reset evidence; Preview literal value matching, Auth/recovery
+  and domain ownership remain unverified
 - **Resolution:** literal key removal, branch protection, hosted staging and the
   protected CI reset/replay/cleanup lane are complete; the founder approved CI
-  equivalence so local Docker is optional; Preview/Auth/recovery/domain remain
+  equivalence so local Docker is optional; Preview names/scopes now pass, while
+  value matching, Auth/recovery/domain remain
 - **Approved:** CI-reset equivalence and $0 hosted staging yes; production mutation no
 
 ## 28. Product / design review
@@ -349,7 +351,7 @@ I0 is VERIFIED only when:
 - [x] spec is versioned and governance/status documents point to it;
 - [x] protected disposable CI runtime and reproducible reset/replay/cleanup pass;
 - [x] isolated hosted project is approved, active and recorded;
-- [ ] Preview/Production scopes and Auth callbacks pass;
+- [ ] Preview/Production scopes and Auth callbacks pass; Preview names/scopes are verified but value matching and Production remain open;
 - [ ] migrations, advisors, hostile RLS and authenticated E2E pass in the isolated target;
 - [ ] backup/export and recovery drill pass;
 - [x] GitHub required checks/branch protection are active;
@@ -362,22 +364,22 @@ I0 is VERIFIED only when:
 
 ```text
 Package: ARO-I0
-Spec version: 1.1.0
-Branch: spec/aro-i0-ci-reset-equivalence
-PR: #33
-Base: bce0675
-Acceptance: 7 pass-to-date / 3 blocked / 1 fail
+Spec version: 1.1.1
+Branch: spec/aro-ux0-opportunity-prototype
+PR: pending
+Base: 58bf3da
+Acceptance: 7 pass-to-date / 1 partial / 2 blocked / 1 fail
 Unit: 61/61 passed
 Build: passed; inherited large-chunk warning unchanged
 Lint: zero errors / warnings
-Integration: disposable CI and hosted SQL matrices pass; Preview/Auth recovery blocked
-E2E: disposable authenticated evidence passes; hosted Auth/callback evidence blocked
+Integration: disposable CI and hosted SQL matrices pass; Preview scopes/render pass; value matching/Auth recovery blocked
+E2E: disposable authenticated evidence and public Preview render pass; hosted Auth/callback evidence blocked
 RLS/security: disposable and hosted 21+60 SQL matrices pass; advisors clean
 A11y: inherited R1/P1 fail-closed evidence
 Performance: no runtime delta
 Screenshots/evidence: artifacts/ARO-I0/BASELINE.md; artifacts/ARO-I0/VERIFICATION.md
 Reviewers: founder approved CI-reset equivalence; independent I0.2 review remains open
-Known follow-ups: Vercel scopes, Auth callbacks, recovery, domain ownership
+Known follow-ups: Preview value matching, Auth callbacks, recovery, domain ownership
 Release environment: none
 Status: IN-PROGRESS / GATES BLOCKED
 ```
