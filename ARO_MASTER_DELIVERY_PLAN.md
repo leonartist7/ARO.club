@@ -228,9 +228,9 @@ time visibly form one explainable opportunity.
 ### Authority and boundary
 
 `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md` is **SPEC-READY** after the
-founder's 2026-09-03 frontend-first sequencing decision. UX0 may use deterministic
-fixtures, local UI state and original generated imagery. It may not add Auth,
-schema/RLS, P1 behavior, remote persistence, realtime subscriptions, AI,
+founder’s 2026-09-03 frontend-first sequencing decision. UX0 may use deterministic
+fixtures, local UI state and original generated imagery. It must keep Auth
+fail-closed and may not enable accounts, add schema/RLS, P1 behavior, remote persistence, realtime subscriptions, AI,
 location, Stripe, Google, payments, paid resources or Production changes.
 
 UX0 does not pass I0, authorize P1 runtime or reorder P1 → P5. Its implementation

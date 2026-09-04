@@ -200,5 +200,5 @@ This file records durable choices. Package-specific implementation details belon
 
 **Rationale:** The current shell validates deployment but does not yet communicate ARO's product difference. A bounded prototype allows the visual language and core interaction to be discovered without coupling that work to accounts, live data or P1 semantics.
 
-**Consequences:** UX0 uses fixtures and deterministic client interaction only. It cannot add Supabase Realtime, AI, backend/Auth work, P1 schema, production data or new dependencies, and it does not waive any I0/P1 gate. Founder visual approval is required before the implementation package merges.
+**Consequences:** UX0 uses fixtures and deterministic client interaction only. It cannot add Supabase Realtime, AI, connected backend/Auth behavior, P1 schema, production data or new dependencies, and it does not waive any I0/P1 gate. A fail-closed source guard and zero-network assertion are required while Preview values remain unverified. Founder visual approval is required before the implementation package merges.
 

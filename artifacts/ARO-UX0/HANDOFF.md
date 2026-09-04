@@ -18,6 +18,9 @@
   READY and the public application renders.
 - The founder intentionally deferred hosted Auth callbacks, recovery E2E and
   domain resolution while a synthetic frontend prototype is developed.
+- Until the masked Preview values are verified, UX0 must ship a source-controlled,
+  default-on prototype mode that prevents Supabase/Auth initialization and is
+  proven by a zero-Supabase-network browser assertion.
 - I0 remains IN-PROGRESS / GATES BLOCKED. P1 remains SPEC-READY / BASELINE
   BLOCKED. UX0 does not waive either gate.
 - Tonguee stays untouched. `aro-platform` (`jjgccfrwjkwknyjtbtxa`) stays
@@ -44,8 +47,9 @@ spec's accessibility, provenance and performance rules.
 Create `feat/aro-ux0-opportunity-prototype` from current `main` only after the
 UX0 specification PR has merged. Read the canonical documents in `AGENTS.md`
 order, then the UX0 spec, `ARO_EXPERIENCE_SYSTEM.md` and `ARO_DESIGN_SYSTEM.md`.
-Baseline before editing, keep one package/branch/PR, and do not touch backend,
-Auth, P1 schema, Tonguee, `aro-platform`, payments, Google or Production.
+Baseline before editing, keep one package/branch/PR, keep Auth fail-closed, and
+do not enable a backend/account, add P1 schema, touch Tonguee or `aro-platform`,
+or mutate payments, Google or Production configuration/data.
 
 ## Copy/paste starter prompt
 
@@ -99,7 +103,11 @@ Execution requirements:
 - If imagery is useful, use the image-generation skill and commit optimized,
   locally served assets with source prompts/provenance recorded in evidence.
 - Keep input feedback perceptibly immediate, honor reduced motion, preserve
-  keyboard access and focus, and verify 360px and 1440px in light and dark modes.
+  keyboard access and focus, and verify 360px, 390px, 430px, 768x1024 tablet and
+  1440px in light and dark modes.
+- Preserve the existing `en`, `fr` and `es` locale contract: every control,
+  validation, provenance and formed-result string must use tested translation
+  keys.
 - Add focused automated tests for formation logic and interaction states. Run
   lint, tests and production build with zero unexplained warnings.
 - Capture visual/browser evidence, console status and performance/bundle evidence
@@ -107,8 +115,9 @@ Execution requirements:
 - Update the canonical status, plan, index, playbook and changelog documents in
   the same PR. Keep all claims exact; do not claim live matching or hosted Auth.
 - Push through one GitHub PR, wait for required checks and resolve review threads.
-  Stop for founder visual approval before merging the implementation PR or
-  promoting anything to Production.
+  Stop for founder visual approval before merging. Because `main` deploys
+  automatically, that merge approval is also the explicit Production release
+  decision; leave the PR open if release is not approved.
 
 Do not start P1. Do not broaden the package because infrastructure credentials
 exist. If a genuine external/provider gate appears, stop and give one short,

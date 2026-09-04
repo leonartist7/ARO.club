@@ -28,8 +28,8 @@ within accessibility, provenance and performance budgets.
 
 Hosted Auth/callback/recovery work is intentionally deferred during UX0. This is
 not an I0 pass or a P1 waiver: I0 remains **IN-PROGRESS / GATES BLOCKED**, P1
-remains **SPEC-READY / BASELINE BLOCKED**, and UX0 may not add backend, accounts,
-schema/RLS, realtime provider behavior, AI, location, money, Stripe, Google,
+remains **SPEC-READY / BASELINE BLOCKED**, and UX0 may not add connected backend
+or accounts, schema/RLS, realtime provider behavior, AI, location, money, Stripe, Google,
 paid resources or Production changes. Tonguee remains untouched and
 `aro-platform` remains quarantined.
 

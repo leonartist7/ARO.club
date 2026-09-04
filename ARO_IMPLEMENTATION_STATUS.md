@@ -89,7 +89,7 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | P0.1 — Director Pack completion | **VERIFIED** | design, trust/safety, money, growth, Shipathon, decisions, executable playbook | governance-only scope preserved | none |
 | SEC0 — secret hygiene | **VERIFIED** after finalization PR merge | branch `agent/aro-sec0-finalize`; `.env` removed; ignore rules hardened; founder decision recorded | `ARO_SEC0_REPORT.md` | keep deployment/local configuration outside Git |
 | R1 — repository separation + platform rebrand | **SHIPPED** | independent ARO.club repository and Vercel project, ARO shell/home/metadata, preserved Tonguee vertical | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor production; keep backend fail-closed until approved |
-| I0 — isolated infrastructure | **IN-PROGRESS / GATES BLOCKED** | active $0 isolated staging target, CI reset equivalence, both migrations applied, hosted 21+60 SQL assertions pass, active branch protection, Preview-only Supabase variable scopes and READY deployment | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` v1.1.1, `artifacts/ARO-I0/VERIFICATION.md` | verify Preview values; complete Auth/recovery and domain gates |
+| I0 — isolated infrastructure | **IN-PROGRESS / GATES BLOCKED** | active $0 isolated staging target, CI reset equivalence, both migrations applied, hosted 21+60 SQL assertions pass, active branch protection; later status observations record Preview-only variable scopes and READY deployment | `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` v1.1.0, `artifacts/ARO-I0/VERIFICATION.md`; current snapshot in `ARO_INFRASTRUCTURE.md` | verify Preview values in a dedicated I0 package; complete Auth/recovery and domain gates |
 | I0.2 — application/Auth/Trust baseline | **IMPLEMENTED / CI VERIFIED** | PR #28 merged `5976928`; disposable migration/Auth/RLS/Storage/recovery/reset/browser matrix | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, PR #28 | obtain required independent implementation review; preserve isolated scope |
 | Q0 — reliability foundation | **IMPLEMENTED / CI VERIFIED** | zero-warning lint, portable browser runner, public and authenticated isolated CI, stable required checks on protected `main` | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, `artifacts/ARO-Q0/VERIFICATION.md`, PR #28 | parent-I0 hosted configuration/recovery remains separate |
 | P1 — capability + goal foundation | **SPEC-READY / BASELINE BLOCKED** | approved package spec plus executed repository/provider baseline | `artifacts/ARO-P1-BASELINE/VERIFICATION.md`; no runtime implementation | complete parent-I0 and authenticated/RLS gates |
@@ -246,7 +246,10 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`M0 governance → I0 isolated capacity → Q0 reliability → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
+`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
+
+UX0 may proceed while the remaining parent-I0 gates are deferred, but it does
+not satisfy them or authorize P1.
 
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 

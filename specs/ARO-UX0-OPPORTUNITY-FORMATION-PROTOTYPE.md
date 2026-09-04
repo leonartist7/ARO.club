@@ -86,6 +86,10 @@ Anything in the master vision not named in Goals remains out of scope.
 9. Existing stack and dependencies remain unchanged.
 10. Generated imagery may be used, but no stock-license ambiguity, human identity
     claim or unverifiable real-world proof may be introduced.
+11. Until I0 verifies the masked Preview values, source-controlled UX0 prototype
+    mode remains on by default. It must prevent Supabase client/AuthProvider
+    initialization, keep every account action fail-closed and produce zero
+    Supabase-domain requests across the UX0 and account-route browser audit.
 
 ## 7. Personas and permissions
 
@@ -128,10 +132,15 @@ Anything in the master vision not named in Goals remains out of scope.
 
 ```text
 INTRO → SIGNALS_PARTIAL → READY_TO_FORM → FORMING → FORMED
-  ↑             └──────────── EDITING ←────────────┘
-  └────────────────────────── RESET
+  ↑                                      │
+  └──────────── RESET ←────────────── EDITING
+                    EDITING + valid change → FORMING → FORMED
+                    EDITING + cleared signal → SIGNALS_PARTIAL
 ```
 
+Selecting or changing the final required signal automatically enters `FORMING`;
+there is no second submit action. Editing a valid signal recomputes the result
+immediately through `FORMING`, while clearing one returns to `SIGNALS_PARTIAL`.
 All transitions are visitor-controlled and local. `FORMING` is bounded visual
 feedback, not network work. Reset removes only ephemeral client state.
 
@@ -140,6 +149,46 @@ feedback, not network work. Reset removes only ephemeral client state.
 No persistent entity, migration or provider data is added. Inputs are bounded
 fixture IDs and local presentation state. No name, email, precise location,
 availability, free text, analytics identifier or user profile is stored.
+
+### Fixture catalog
+
+Fixture IDs are language-neutral. Every visible label and output clause must be
+a translation key implemented for `en`, `fr` and `es`.
+
+| Want ID | English review label | Output title | Need clause |
+|---|---|---|---|
+| `conversational-spanish` | Practice conversational Spanish | Spanish through shared stories | You want relaxed Spanish conversation rather than a formal lesson. |
+| `confidence-speaking` | Feel confident speaking | A confidence-building conversation circle | You want a small setting where speaking feels easier. |
+| `new-city-connections` | Meet people in a new city | A neighbourhood welcome circle | You want genuine local connection through a shared activity. |
+
+| Bring ID | English review label | Contribution clause |
+|---|---|---|
+| `weeknight-energy` | Weeknight energy | You can bring steady weeknight momentum. |
+| `cooking-stories` | A recipe and its story | You can bring a recipe and the story behind it. |
+| `patient-practice` | Patient peer practice | You can bring patient, encouraging practice. |
+
+| Context ID | English review label | People | Place | Time | Fit clause |
+|---|---|---|---|---|---|
+| `library-tuesday` | Library · Tuesday evening | 4–6 curious adults | Central Library commons | Tuesday, 18:30 | A small public-space circle is plausible on Tuesday evening. |
+| `kitchen-saturday` | Community kitchen · Saturday | 6 neighbours | Community kitchen | Saturday, 11:00 | A shared table gives the group a natural activity and meeting point. |
+| `riverside-sunday` | Riverside walk · Sunday | 4 peers | Public riverside route | Sunday, 10:00 | A short public walk keeps the first gathering light and social. |
+
+### Deterministic mapping contract
+
+- Exactly one ID from each table is required. The complete allowed set is their
+  3 × 3 × 3 cross-product: 27 combinations; there are no hidden exclusions.
+- The stable result ID is `{wantId}--{bringId}--{contextId}`.
+- The title is the selected Want row's Output title. People, place and time copy
+  comes exactly from the selected Context row.
+- The rationale is the selected Need clause, Contribution clause and Fit clause,
+  in that order. It must also label the result “Prototype possibility — not a
+  live match” in the active locale.
+- Example: `conversational-spanish--cooking-stories--kitchen-saturday` produces
+  “Spanish through shared stories,” 6 neighbours, Community kitchen, Saturday
+  at 11:00, followed by those three source clauses.
+- An unknown/missing ID produces no result, keeps recognized selections, returns
+  to `SIGNALS_PARTIAL` and names the anchor that must be selected again. Never
+  reuse the previous formed result as a fallback.
 
 ## 11. RLS and authorization matrix
 
@@ -202,6 +251,8 @@ permission state or synthetic success toast.
 - Tablet: field and controls may share space only when reading order remains clear.
 - 1440px: use spatial relationships and editorial pacing; do not stretch a mobile
   card stack across the viewport.
+- New controls, validation, provenance and formed-result copy must use the
+  existing language system and be complete in English, French and Spanish.
 
 ## 19. Accessibility
 
@@ -259,6 +310,9 @@ contract and privacy review.
 
 - [ ] public route renders with Supabase unavailable
 - [ ] no new provider/API dependency
+- [ ] source-controlled prototype mode blocks Supabase/Auth initialization
+- [ ] UX0 flow and account routes make zero requests to Supabase domains
+- [ ] all UX0 translation keys exist and render in `en`, `fr` and `es`
 
 ### E2E
 
@@ -269,6 +323,8 @@ contract and privacy review.
 ### Visual / accessibility
 
 - [ ] 360px light and dark
+- [ ] 390px and 430px light and dark
+- [ ] 768x1024 tablet light and dark
 - [ ] 1440px light and dark
 - [ ] keyboard complete
 - [ ] reduced motion
@@ -286,19 +342,22 @@ contract and privacy review.
 | UX0-001 | first viewport communicates the ARO thesis and three anchors | founder review + visual captures | `artifacts/ARO-UX0/VERIFICATION.md` | TODO |
 | UX0-002 | user-controlled signals form one deterministic, explainable result | unit + E2E | same | TODO |
 | UX0-003 | prototype content is visibly synthetic and non-binding | copy assertion + review | same | TODO |
-| UX0-004 | no backend, Auth, P1, payment, Google, AI or live-location behavior is added | diff/route/network audit | same | TODO |
-| UX0-005 | 360px/1440px, light/dark experience passes | visual matrix | same | TODO |
+| UX0-004 | source-controlled prototype mode keeps Supabase/Auth fail-closed with zero Supabase-domain requests; no backend, P1, payment, Google, AI or live-location behavior is added | diff/route/network audit | same | TODO |
+| UX0-005 | 360px, 390px, 430px, 768x1024 and 1440px light/dark experience passes | visual matrix | same | TODO |
 | UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | TODO |
 | UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | TODO |
 | UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | TODO |
 | UX0-009 | existing required CI and public-route smoke remain green | CI | package PR | TODO |
 | UX0-010 | founder approves the distinct creative direction before merge | founder review | package PR | TODO |
+| UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | TODO |
 
 ## 25. Rollout
 
-Implement in one dedicated branch and PR. Preview is the only review environment.
-Do not promote the prototype to Production without a separate founder release
-decision after visual, accessibility, performance and regression evidence.
+Implement in one dedicated branch and PR. The PR Preview is the review
+environment. Because merging to `main` automatically creates a Vercel Production
+deployment, founder approval to merge the implementation PR is also the explicit
+Production release decision. If the founder approves the design but not release,
+leave the PR open; do not merge or mutate the deployment integration.
 
 ## 26. Rollback / forward recovery
 
@@ -335,7 +394,7 @@ Spec version: 1.0.0
 Branch: feat/aro-ux0-opportunity-prototype (future)
 Specification PR: #34
 Commit: pending
-Acceptance: 0/10 passed
+Acceptance: 0/11 passed
 Unit: pending
 Integration: pending
 E2E: pending

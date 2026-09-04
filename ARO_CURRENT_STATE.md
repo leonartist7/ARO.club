@@ -177,7 +177,7 @@ work while ARO validates a frontend-only prototype. UX0 is governed by
 marketplace-first creative direction with a real-time, deterministic three-point
 interaction: **what you want + what you can bring + people · place · time → one
 explainable synthetic opportunity**. Original generated imagery is authorized
-where useful. No backend, account, P1, realtime provider, AI, location, money,
+where useful. No connected backend/account, P1, realtime provider, AI, location, money,
 Stripe, Google or Production behavior is authorized.
 
 ---

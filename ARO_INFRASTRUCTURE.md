@@ -30,7 +30,7 @@
 - Google authentication is not configured by the founder, even though a Google sign-in UI affordance exists in source.
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is SHIPPED. M0 is VERIFIED as governance.
-- I0 spec 1.1.1 and live provider evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass.
+- I0 spec 1.1.0 and its package evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass. Later Preview scope observations are recorded here and in the current-state/changelog layer pending a separate I0 package.
 - ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-UX0 is SPEC-READY as a synthetic frontend-only prototype. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview literal-value matching, Auth/recovery and domain gates remain open.
 
 ---
