@@ -18,7 +18,7 @@ Post-merge verification reconciliation: `docs/aro-i0-hosted-verification`, PR
 CI-reset-equivalence amendment: `spec/aro-i0-ci-reset-equivalence`, PR #33.
 
 Preview-scope and frontend-sequencing reconciliation:
-`spec/aro-ux0-opportunity-prototype`, PR pending.
+`spec/aro-ux0-opportunity-prototype`, PR #34.
 
 ## 2026-09-03 hosted-staging execution
 

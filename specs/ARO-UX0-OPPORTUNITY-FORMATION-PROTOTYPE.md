@@ -7,7 +7,7 @@
 - **Owner/director:** ARO founder/director
 - **Specification branch:** `spec/aro-ux0-opportunity-prototype`
 - **Implementation branch:** `feat/aro-ux0-opportunity-prototype` after this spec reaches `main`
-- **PR:** pending
+- **Specification PR:** #34
 - **Depends on:** R1 SHIPPED; Q0 IMPLEMENTED / CI VERIFIED
 - **Blocks:** no semantic package; informs the later X1 experience foundation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_CURRENT_STATE.md`, `ARO_EXPERIENCE_SYSTEM.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_TRUST_SAFETY.md`
@@ -333,7 +333,7 @@ documented, the founder approves the Preview, and status documents match truth.
 Package: ARO-UX0
 Spec version: 1.0.0
 Branch: feat/aro-ux0-opportunity-prototype (future)
-PR: pending
+Specification PR: #34
 Commit: pending
 Acceptance: 0/10 passed
 Unit: pending
