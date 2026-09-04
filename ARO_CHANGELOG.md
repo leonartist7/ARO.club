@@ -6,6 +6,33 @@
 
 ---
 
+## 2026-09-03 — Preview scope verified; frontend-first UX0 authorized
+
+The founder removed the two overlapping ARO Supabase Production+Preview
+variables and created `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` entries
+scoped only to Preview. Read-only Vercel inspection verified their names/scopes
+without exposing values. Preview deployment
+`dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh` for merged `main` `58bf3da` reached READY and
+the public application rendered. Literal value-to-project matching, Auth
+callbacks, recovery, Production configuration and `aro.club` ownership remain
+open. Existing inherited masked Stripe/Google entries were not modified or used.
+
+After reviewing the Preview, the founder rejected the generic marketplace-first
+creative direction and authorized **ARO-UX0 — Opportunity Formation Frontend
+Prototype**. UX0 is SPEC-READY at
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`. It focuses on an ownable
+visual language and a deterministic real-time three-point interaction: what the
+visitor wants, what they can bring, and people/place/time visibly form one
+synthetic, explainable opportunity. Original generated imagery is authorized
+within accessibility, provenance and performance budgets.
+
+Hosted Auth/callback/recovery work is intentionally deferred during UX0. This is
+not an I0 pass or a P1 waiver: I0 remains **IN-PROGRESS / GATES BLOCKED**, P1
+remains **SPEC-READY / BASELINE BLOCKED**, and UX0 may not add connected backend
+or accounts, schema/RLS, realtime provider behavior, AI, location, money, Stripe, Google,
+paid resources or Production changes. Tonguee remains untouched and
+`aro-platform` remains quarantined.
+
 ## 2026-09-03 — I0 protected-CI reset equivalence approved
 
 The founder approved a versioned I0 amendment that accepts the existing

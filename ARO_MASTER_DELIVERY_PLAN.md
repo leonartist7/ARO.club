@@ -1,13 +1,16 @@
 # ARO — Master Delivery Plan
 
-> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > The disposable application baseline and Q0 authenticated regression gate
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
 > 360px/1440px light/dark browser checks. GitHub `main` protection now requires
 > the stable `static`, `browser-smoke` and `platform` checks. An isolated $0
-> hosted staging project now exists; CI reset equivalence passes, while hosted configuration/recovery,
-> domain gates and I0.2's required independent review remain open; P1
-> is still not authorized to start.
+> hosted staging project now exists; CI reset equivalence and Preview variable
+> scoping pass, while value matching, Auth/recovery, domain gates and I0.2's
+> required independent review remain open. P1 is still not authorized to start.
+> The founder authorized a separate synthetic-only UX0 frontend prototype so
+> ARO's visual language and opportunity-formation thesis can be validated while
+> those gates remain open.
 
 > **Status:** ACTIVE GOVERNED DELIVERY MAP
 >
@@ -110,6 +113,11 @@ R1 SHIPPED
 
 Q0, N1, X1 and A1 are enabling packages. They do not reorder the semantic dependency P1 → P2 → P3 → P4 → P5 and may not smuggle downstream product behavior into infrastructure work.
 
+UX0 is a non-semantic, synthetic-only experience prototype that may run after
+Q0 without unlocking P1 or changing the graph above. Its only authority is
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`; connected data, Auth and
+P1 behavior remain prohibited.
+
 ---
 
 ## 4. Phase M0 — Master delivery governance
@@ -162,7 +170,7 @@ Provide a safe ARO.club development, migration, Preview and Production boundary 
 
 ### Current blocker
 
-`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is active and `artifacts/ARO-I0/VERIFICATION.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. PR #31 merged at `1415113`; both ordered migrations are applied, and the hosted 21 platform plus 60 application Trust/RLS assertions pass transactionally. The founder approved the protected disposable CI reset/replay/cleanup evidence as I0-004, so local Docker is optional. GitHub branch protection is active; Preview variables, Auth callbacks, recovery and domain ownership remain open.
+`specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` is active and `artifacts/ARO-I0/VERIFICATION.md` records the live boundary. On 2026-09-03 the founder-approved $0/month `ARO.club Staging` project `mibydnerayobemhnlfyl` became `ACTIVE_HEALTHY` in `ca-central-1`; Tonguee remained `ACTIVE_HEALTHY`, and quarantined `aro-platform` remained `INACTIVE` and untouched. PR #31 merged at `1415113`; both ordered migrations are applied, and the hosted 21 platform plus 60 application Trust/RLS assertions pass transactionally. The founder approved the protected disposable CI reset/replay/cleanup evidence as I0-004, so local Docker is optional. GitHub branch protection is active. On 2026-09-03 the founder replaced the two overlapping Supabase variables with Preview-only entries; dashboard scope inspection passed and Preview deployment `dpl_6WhPjb9B8hY8uFiRGoTyMXZKbkqh` for `58bf3da` reached READY and rendered. Literal value-to-project matching, Auth callbacks, recovery and domain ownership remain open.
 
 ---
 
@@ -205,6 +213,28 @@ tests, production build, public smoke and authenticated isolated
 Auth/RLS/browser evidence passed. Parent I0's hosted capacity/domain gates
 remain outside this fixture; branch protection passed on 2026-09-02. Evidence
 includes PR #28 and `artifacts/ARO-Q0/VERIFICATION.md`.
+
+---
+
+## 6A. ARO-UX0 — Opportunity Formation Frontend Prototype
+
+### Outcome
+
+Replace the generic marketplace-first impression with a bounded, synthetic
+prototype that makes ARO's three-point formation model understandable and
+emotionally distinctive: what you want, what you can bring, and people · place ·
+time visibly form one explainable opportunity.
+
+### Authority and boundary
+
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md` is **SPEC-READY** after the
+founder’s 2026-09-03 frontend-first sequencing decision. UX0 may use deterministic
+fixtures, local UI state and original generated imagery. It must keep Auth
+fail-closed and may not enable accounts, add schema/RLS, P1 behavior, remote persistence, realtime subscriptions, AI,
+location, Stripe, Google, payments, paid resources or Production changes.
+
+UX0 does not pass I0, authorize P1 runtime or reorder P1 → P5. Its implementation
+uses a new branch and PR after this specification reaches `main`.
 
 ---
 

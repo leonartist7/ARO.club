@@ -1,11 +1,12 @@
 # ARO — Canonical Spec Index
 
-> **2026-09-02 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+> **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > The disposable lane passed migration, 81 SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset and authenticated responsive browser evidence.
-> I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**. Parent-I0 capacity/domain/
-> hosted capacity/domain and I0.2's independent-review follow-up remain explicit.
-> GitHub `main` protection now requires the three stable CI checks.
+> I0.2 and Q0 are **IMPLEMENTED / CI VERIFIED**. Hosted staging and CI reset
+> equivalence pass; Preview literal-value matching, Auth/recovery, domain and
+> I0.2's independent-review follow-up remain explicit. UX0 is SPEC-READY as a
+> synthetic frontend-only prototype and does not authorize P1.
 
 > **Purpose:** make ARO spec-driven, traceable, and resistant to product drift. This file is the registry for what is vision, what is approved, what is implemented, what is verified, and what remains blocked or exploratory.
 >
@@ -82,13 +83,14 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
 | Infrastructure/environment registry | **VERIFIED** as documentation snapshot | `ARO_INFRASTRUCTURE.md` | complete founder Vercel/project-dependency checks; update on every target/config decision |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
+| UX0 Opportunity Formation frontend prototype | **SPEC-READY** | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/HANDOFF.md` | implement on one new branch/PR with synthetic local state only; founder Preview review |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
 | M0 Master Delivery Governance | **VERIFIED** | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027, merged PR #24 | keep plan, status, evidence and cloud-task handoff synchronized |
 | ARO-SEC0 repository secret hygiene | **VERIFIED** after finalization PR merge | `ARO_SEC0_REPORT.md`, branch `agent/aro-sec0-finalize`; active tree removes `.env` | keep local/deployment configuration outside Git; continue RLS review in P1 baseline |
 | R1 ARO platform rebrand + repository separation | **SHIPPED** | `specs/ARO-R1-FULL-REBRAND.md`, `artifacts/ARO-R1/VERIFICATION.md`, merged PR #22 | monitor independent production; preserve Tonguee recovery boundary |
-| I0 Isolated Infrastructure | **IN-PROGRESS / GATES BLOCKED** | v1.1.0, `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, PR #31 / `1415113`, hosted target `mibydnerayobemhnlfyl` | complete Preview/Auth/recovery and `aro.club` ownership; local Docker optional |
+| I0 Isolated Infrastructure | **IN-PROGRESS / GATES BLOCKED** | v1.1.0, `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md`, `artifacts/ARO-I0/VERIFICATION.md`, hosted target `mibydnerayobemhnlfyl`; later Preview observations live in current-state docs pending a dedicated I0 package | verify Preview values, then complete Auth/recovery and `aro.club` ownership; local Docker optional |
 | I0.2 Application/Auth/Trust Baseline | **IMPLEMENTED / CI VERIFIED** | `specs/ARO-I0.2-APPLICATION-BASELINE.md`, merged PR #28 / `5976928` | required independent implementation review remains open |
 | Q0 Reliability Foundation | **IMPLEMENTED / CI VERIFIED** | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, Quality + PR #28 isolated evidence | finish parent-I0 hosted configuration/recovery; branch protection passed 2026-09-02 |
 | P1 Capability + Goal Foundation | **SPEC-READY / BASELINE BLOCKED** | `specs/ARO-P1-CAPABILITY-GOAL.md`, `specs/ARO-P1-BASELINE.md`, `artifacts/ARO-P1-BASELINE/VERIFICATION.md` | complete parent-I0 gates and authenticated/RLS baseline before runtime code |

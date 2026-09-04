@@ -192,3 +192,13 @@ This file records durable choices. Package-specific implementation details belon
 
 **Consequences:** Every phase remains one spec, branch, PR and review. The master plan does not authorize runtime implementation by itself. Production 3D/AR, Seasons, P6, money providers and consequential autonomous AI remain separately gated.
 
+## ADR-028 — Prototype the Opportunity Formation experience before hosted Auth completion
+
+**Status:** Accepted
+
+**Decision:** ARO may deliver UX0 as a synthetic frontend-only prototype while parent-I0 hosted Auth, recovery, Preview literal-value matching and domain gates remain open. UX0 must make the three-point formation model—what a person wants, what they can bring, and people · place · time—feel immediate, distinctive and explainable. Original generated imagery is authorized when it satisfies the package's provenance, accessibility and performance rules.
+
+**Rationale:** The current shell validates deployment but does not yet communicate ARO's product difference. A bounded prototype allows the visual language and core interaction to be discovered without coupling that work to accounts, live data or P1 semantics.
+
+**Consequences:** UX0 uses fixtures and deterministic client interaction only. It cannot add Supabase Realtime, AI, connected backend/Auth behavior, P1 schema, production data or new dependencies, and it does not waive any I0/P1 gate. A fail-closed source guard and zero-network assertion are required while Preview values remain unverified. Founder visual approval is required before the implementation package merges.
+
