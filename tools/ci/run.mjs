@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { exerciseAuth } from './auth.mjs';
-import { exerciseAuthenticatedBrowser } from './browser.mjs';
+import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -103,7 +103,12 @@ try {
       const status = JSON.parse(cli(['status', '-o', 'json']));
       validateTarget(status.API_URL, API, '/');
       validateTarget(status.INBUCKET_URL ?? status.MAILPIT_URL, MAIL, '/');
-      const confirmReset = await exerciseAuth(status.ANON_KEY, phase, exerciseAuthenticatedBrowser);
+      const confirmReset = await exerciseAuth(
+        status.ANON_KEY,
+        phase,
+        exerciseAuthenticatedBrowser,
+        browserVerificationPhase
+      );
       await phase('synthetic-account-count', () => userCount(2));
       await phase('reset-removes-accounts', async () => {
         cli(['db', 'reset', '--local', '--no-seed'], 180000);

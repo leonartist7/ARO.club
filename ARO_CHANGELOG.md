@@ -30,6 +30,12 @@ a translated unavailable state without simulating sign-in success. No provider, 
 RLS, P1, realtime, AI, location, analytics, payment, Google, Production,
 Tonguee or quarantined `aro-platform` state changed.
 
+The disposable platform lane retains its 81 SQL assertions and synthetic
+Auth/API/Storage lifecycle. Its application-browser phase now follows the
+source-controlled UX0 mode: it verifies fail-closed account UI, callback and
+protected-route behavior with zero local-Supabase requests instead of claiming
+an authenticated application browser. Parent-I0 hosted Auth gates remain open.
+
 Status is **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING**:
 8/11 acceptance rows pass. Hosted PR CI and founder visual approval remain. Any
 merge approval must explicitly include the automatic Production release. I0

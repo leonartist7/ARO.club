@@ -115,6 +115,15 @@ of initializing the connected `AuthProvider` while UX0 mode is on.
 No API, migration, RLS, realtime channel, analytics, remote write, P1 field,
 payment, Google, AI or location behavior was added.
 
+The first hosted `platform` run passed fresh-runner, loopback binding, clean
+reset, 81/81 SQL, synthetic Auth/API and Trust phases, then correctly exposed an
+outdated browser assumption that login would be enabled. The hosted browser
+phase now follows the source-controlled mode: while UX0 is on it verifies
+disabled login inputs, the non-redirecting callback, protected-route rejection,
+light/dark responsiveness and zero application requests to the local Supabase
+API. The underlying disposable Auth lifecycle continues separately. This makes
+the required check truthful; it does not satisfy or waive parent-I0 hosted Auth.
+
 ## Performance and bundle evidence
 
 | Measure | Baseline | UX0 | Delta / budget |
