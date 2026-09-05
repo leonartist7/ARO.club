@@ -69,15 +69,19 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           colorScheme: theme,
         });
         await context.addInitScript((selectedTheme) => localStorage.setItem('theme', selectedTheme), theme);
-        const page = await context.newPage();
-        const pageErrors = [];
-        const platformRequests = [];
-        page.on('pageerror', error => pageErrors.push(String(error)));
-        page.on('request', request => {
-          if (request.url().startsWith(API)) platformRequests.push(request.url());
-        });
 
         for (const width of [360, 1440]) {
+          // Use an isolated page per viewport. The protected-route redirect is
+          // intentionally exercised below; allowing that router transition to
+          // overlap the next page.goto() makes the desktop pass flaky on a
+          // heavily loaded CI worker.
+          const page = await context.newPage();
+          const pageErrors = [];
+          const platformRequests = [];
+          page.on('pageerror', error => pageErrors.push(String(error)));
+          page.on('request', request => {
+            if (request.url().startsWith(API)) platformRequests.push(request.url());
+          });
           await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
           const started = performance.now();
           stage = `PROTOTYPE_LOGIN_${width}_${theme.toUpperCase()}`;
@@ -117,6 +121,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
             fullPage: false,
             timeout: 10000,
           });
+          await page.close();
         }
         await context.close();
       }
