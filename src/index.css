@@ -62,6 +62,64 @@
       linear-gradient(to right, rgb(246 240 230 / 0.055) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(246 240 230 / 0.055) 1px, transparent 1px);
   }
+
+  .aro-ambient-field {
+    background:
+      radial-gradient(circle at 88% 5%, rgb(222 67 37 / 0.16), transparent 27rem),
+      radial-gradient(circle at 5% 54%, rgb(239 193 75 / 0.12), transparent 25rem),
+      linear-gradient(to right, rgb(40 36 32 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(40 36 32 / 0.045) 1px, transparent 1px);
+    background-size: auto, auto, 56px 56px, 56px 56px;
+    mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
+  }
+
+  .dark .aro-ambient-field {
+    background:
+      radial-gradient(circle at 88% 5%, rgb(222 67 37 / 0.18), transparent 27rem),
+      radial-gradient(circle at 5% 54%, rgb(239 193 75 / 0.1), transparent 25rem),
+      linear-gradient(to right, rgb(246 240 230 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(246 240 230 / 0.045) 1px, transparent 1px);
+    background-size: auto, auto, 56px 56px, 56px 56px;
+  }
+
+  .aro-field-grid {
+    background:
+      radial-gradient(circle at center, rgb(239 193 75 / 0.18), transparent 31%),
+      linear-gradient(to right, rgb(246 240 230 / 0.065) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(246 240 230 / 0.065) 1px, transparent 1px);
+    background-size: auto, 40px 40px, 40px 40px;
+  }
+
+  .aro-signal-path {
+    fill: none;
+    stroke: rgb(246 240 230 / 0.12);
+    stroke-width: 2;
+    stroke-dasharray: 5 9;
+    transition: stroke 180ms ease, stroke-width 180ms ease, stroke-dashoffset 500ms ease;
+  }
+
+  .aro-signal-path.is-active {
+    stroke: rgb(239 193 75 / 0.9);
+    stroke-width: 3;
+    stroke-dashoffset: -28;
+  }
+
+  .aro-aperture {
+    box-shadow:
+      0 0 0 12px rgb(246 240 230 / 0.05),
+      0 24px 60px rgb(0 0 0 / 0.28);
+    transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .aro-aperture.is-forming {
+    animation: aro-forming 240ms ease-out both;
+  }
+
+  .aro-aperture.is-formed {
+    box-shadow:
+      0 0 0 12px rgb(239 193 75 / 0.16),
+      0 24px 60px rgb(0 0 0 / 0.3);
+  }
 }
 
 
@@ -77,5 +135,26 @@
 
   .aro-orbit-motion {
     animation: none !important;
+  }
+
+  .aro-aperture,
+  .aro-signal-path,
+  [class*='transition-'] {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes aro-forming {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }

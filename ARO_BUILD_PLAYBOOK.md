@@ -10,6 +10,11 @@
 > review remain separate gates. UX0 is SPEC-READY as a synthetic frontend-only
 > prototype; P1 is still not authorized to start.
 
+> **2026-09-04 UX0 update:** the synthetic formation prototype is implemented
+> and locally verified on its package branch. Eight of eleven acceptance rows
+> pass; hosted CI and founder Preview/Production release approval remain. Parent
+> I0 and P1 remain blocked exactly as before.
+
 ## Operating contract
 
 Read `AGENTS.md` first. The director authors product, design, data, Trust/Safety, money, and architecture decisions; an implementation agent executes one approved package. One package = one branch = one PR. Any unresolved security, privacy, Trust, money, legal, or materially different product decision stops for director review.
@@ -42,11 +47,12 @@ P1 remains **SPEC-READY / BASELINE BLOCKED** and does
 not start from this CI fixture alone. The branch-protection provider gate passed
 on 2026-09-02.
 
-UX0 is **SPEC-READY** at
-`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`. The founder authorized this
-frontend-first prototype while Auth is deferred. It uses deterministic fixtures
-and local UI state only; no P1 runtime, backend, provider, account, AI, location,
-money, Google, Stripe or Production change is allowed.
+UX0 is **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING** at
+`specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`. It uses the exact
+27-combination deterministic fixture contract and local state only. The compiled
+UX0/account audit makes zero Supabase-domain requests with source-controlled
+prototype mode on. No P1 runtime, backend, provider, account, AI, location,
+money, Google, Stripe or Production change is allowed; merge remains gated.
 
 No package authorizes the next package automatically. The director reviews delivery evidence and opens the next package.
 

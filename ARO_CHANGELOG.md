@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-09-04 — UX0 opportunity formation prototype implemented locally
+
+`feat/aro-ux0-opportunity-prototype` replaces the homepage’s static orbit and
+dominant marketplace-card wall with an authored ARO Field. A visitor selects
+one bounded want, contribution and people/place/time context; the browser uses
+the exact 3×3×3 fixture cross-product to form one explainable synthetic
+possibility, recompute edits immediately and clear/reset ephemeral state.
+
+The package adds complete English, French and Spanish keys, semantic text and a
+live region, native keyboard controls, reduced-motion behavior and an original
+face-free community-table image in responsive WebP variants. The full
+360/390/430/768×1024/1440 light/dark matrix has zero overflow, console errors or
+failed requests. Formation response begins in 1.8 ms, maximum measured CLS is
+0.001616, the home chunk increases 3.36 kB gzip and named initial JS/CSS is
+36.73 kB gzip smaller than baseline.
+
+Source-controlled prototype mode remains on and mounts a static fail-closed
+account boundary instead of initializing connected Auth. A compiled build with
+synthetic Supabase-shaped variables made zero requests to Supabase domains
+across UX0, login, signup, recovery and callback routes. The callback now shows
+a translated unavailable state without simulating sign-in success. No provider, schema,
+RLS, P1, realtime, AI, location, analytics, payment, Google, Production,
+Tonguee or quarantined `aro-platform` state changed.
+
+The disposable platform lane retains its 81 SQL assertions and synthetic
+Auth/API/Storage lifecycle. Its application-browser phase now follows the
+source-controlled UX0 mode: it verifies fail-closed account UI, callback and
+protected-route behavior with zero local-Supabase requests instead of claiming
+an authenticated application browser. Parent-I0 hosted Auth gates remain open.
+
+Status is **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING**:
+8/11 acceptance rows pass. Hosted PR CI and founder visual approval remain. Any
+merge approval must explicitly include the automatic Production release. I0
+remains gates-blocked and P1 remains unauthorized.
+
 ## 2026-09-03 — Preview scope verified; frontend-first UX0 authorized
 
 The founder removed the two overlapping ARO Supabase Production+Preview

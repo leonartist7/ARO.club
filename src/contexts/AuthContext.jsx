@@ -3,6 +3,22 @@ import { isSupabaseConfigured, supabase, supabaseConfigError } from '../lib/supa
 
 const AuthContext = createContext({});
 
+const prototypeBlocked = async () => ({ data: null, user: null, error: supabaseConfigError });
+
+const prototypeAuthValue = {
+  user: null,
+  profile: null,
+  loading: false,
+  isBackendConfigured: false,
+  signUp: prototypeBlocked,
+  signIn: prototypeBlocked,
+  signInWithGoogle: prototypeBlocked,
+  signOut: async () => undefined,
+  updateProfile: prototypeBlocked,
+  resetPassword: prototypeBlocked,
+  updatePassword: prototypeBlocked,
+};
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -235,5 +251,10 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+/** Static, network-free account boundary used while UX0 prototype mode is active. */
+export const PrototypeAuthProvider = ({ children }) => (
+  <AuthContext.Provider value={prototypeAuthValue}>{children}</AuthContext.Provider>
+);
 
 export default AuthContext;

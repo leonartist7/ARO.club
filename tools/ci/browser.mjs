@@ -4,6 +4,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { API, requireCondition } from './boundary.mjs';
+import { UX0_PROTOTYPE_MODE } from '../../src/config/ux0.js';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const base = 'http://127.0.0.1:5173';
@@ -12,6 +13,10 @@ const screenshotDir = fileURLToPath(new URL('../../artifacts/ARO-I0.2/ci-screens
 // baseline bundle. Keep readiness bounded, but do not confuse cold-start CPU
 // contention with an application failure.
 const uiReadyTimeout = 20000;
+
+export const browserVerificationPhase = UX0_PROTOTYPE_MODE
+  ? 'prototype-browser-boundary'
+  : 'authenticated-browser-matrix';
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -55,6 +60,77 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     await waitForServer();
     stage = 'LAUNCH';
     browser = await chromium.launch();
+
+    if (UX0_PROTOTYPE_MODE) {
+      for (const theme of ['light', 'dark']) {
+        stage = `PROTOTYPE_CONTEXT_${theme.toUpperCase()}`;
+        const context = await browser.newContext({
+          viewport: { width: 360, height: 800 },
+          colorScheme: theme,
+        });
+        await context.addInitScript((selectedTheme) => localStorage.setItem('theme', selectedTheme), theme);
+
+        for (const width of [360, 1440]) {
+          // Use an isolated page per viewport. The protected-route redirect is
+          // intentionally exercised below; allowing that router transition to
+          // overlap the next page.goto() makes the desktop pass flaky on a
+          // heavily loaded CI worker.
+          const page = await context.newPage();
+          const pageErrors = [];
+          const platformRequests = [];
+          page.on('pageerror', error => pageErrors.push(String(error)));
+          page.on('request', request => {
+            if (request.url().startsWith(API)) platformRequests.push(request.url());
+          });
+          await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
+          const started = performance.now();
+          stage = `PROTOTYPE_LOGIN_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
+          const emailInput = page.locator('input[type="email"]');
+          const passwordInput = page.locator('input[type="password"]');
+          await emailInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          await passwordInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          requireCondition(await emailInput.isDisabled(), 'PROTOTYPE_EMAIL_ENABLED');
+          requireCondition(await passwordInput.isDisabled(), 'PROTOTYPE_PASSWORD_ENABLED');
+          requireCondition(
+            await page.locator('form').getByRole('button', { name: 'Sign In' }).isDisabled(),
+            'PROTOTYPE_LOGIN_ENABLED'
+          );
+
+          stage = `PROTOTYPE_CALLBACK_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/auth/callback`, { waitUntil: 'domcontentloaded' });
+          await page.getByRole('heading', { name: 'Account callbacks are unavailable in this prototype.' })
+            .waitFor({ timeout: uiReadyTimeout });
+          if (width === 360) {
+            await page.waitForTimeout(2100);
+            requireCondition(new URL(page.url()).pathname === '/auth/callback', 'PROTOTYPE_CALLBACK_REDIRECTED');
+          }
+
+          stage = `PROTOTYPE_PROTECTED_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
+          await page.waitForURL(url => url.pathname === '/login', { timeout: uiReadyTimeout });
+          const layout = await page.evaluate(() => ({
+            dark: document.documentElement.classList.contains('dark'),
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          }));
+          requireCondition(layout.dark === (theme === 'dark'), 'THEME_MISMATCH');
+          requireCondition(!layout.overflow, 'HORIZONTAL_OVERFLOW');
+          requireCondition(pageErrors.length === 0, 'PROTOTYPE_BROWSER_PAGE_ERROR');
+          requireCondition(platformRequests.length === 0, 'PROTOTYPE_PLATFORM_REQUEST');
+          requireCondition(performance.now() - started < 15000, 'PROTOTYPE_BROWSER_BUDGET');
+          await page.screenshot({
+            path: `${screenshotDir}/${width}-${theme}-prototype-boundary.png`,
+            animations: 'disabled',
+            fullPage: false,
+            timeout: 10000,
+          });
+          await page.close();
+        }
+        await context.close();
+      }
+      return;
+    }
+
     for (const theme of ['light', 'dark']) {
       stage = `CONTEXT_${theme.toUpperCase()}`;
       const context = await browser.newContext({
