@@ -25,7 +25,7 @@ AI, realtime, location, payment or persistence work.
 | UX0-004 | `UX0_PROTOTYPE_MODE = true`, `PrototypeAuthProvider`, guarded client | unit boundary test + compiled five-route network audit with synthetic Supabase-shaped build variables: 0 domain requests | PASS |
 | UX0-005 | responsive field/control/result composition | 360, 390, 430, 768×1024, 1440 in light/dark; 0 overflow; no clipped field anchors | PASS |
 | UX0-006 | native radio controls, restored edit/reset focus, state-aware semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; rendered contrast evidence | PASS |
-| UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 2.3 ms response, CLS ≤0.000753, image budgets | PASS |
+| UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 1.8 ms response, CLS ≤0.001616, image budgets | PASS |
 | UX0-008 | original face-free editorial image + responsive variants | `ASSET_MANIFEST.md`, generated asset review and sizes | PASS |
 | UX0-009 | existing tests/build pass locally; required hosted checks | PR #35 required checks pending | PENDING CI |
 | UX0-010 | Preview creative approval | founder review pending; do not merge or release | PENDING FOUNDER |
@@ -36,11 +36,15 @@ gates remaining. This is not VERIFIED or SHIPPED.
 
 ## Review resolution
 
-The first substantive PR review raised six P2 findings. All six are resolved in
-the package: the callback is truthfully unavailable, rendered rationale contrast
-is 5.74:1, canonical measurements match machine evidence, figure semantics track
-zero/one/two/three selections, edit/reset restore focus, and the formation owns a
-level-two heading. Focused E2E assertions cover each behavioral resolution.
+The substantive PR passes raised ten actionable findings: six from Codex review
+and four from CodeRabbit. All ten are resolved in the package: the callback is
+truthfully unavailable, rendered rationale contrast is 5.74:1, canonical
+measurements match machine evidence, figure semantics track zero/one/two/three
+selections, edit/reset restore focus, and the formation owns a level-two heading.
+The release sequence names both Preview and Production approval, account-route
+errors are included in evidence, both timing observers are bounded, and the
+initial implementation commit is recorded. Focused E2E assertions cover each
+behavioral resolution.
 
 ## Automated checks
 
@@ -120,9 +124,9 @@ payment, Google, AI or location behavior was added.
 | Shared entry JS gzip | 230.09 kB | 188.86 kB | −41.23 kB |
 | Initial JS+CSS gzip (named assets) | 246.76 kB | 210.03 kB | −36.73 kB; ≤+35 kB PASS |
 | Generated image selected per viewport | none | 52.43 or 126.30 kB | ≤250 kB PASS |
-| Formation response begins | N/A | 2.3 ms | ≤100 ms PASS |
-| CLS across matrix | 0.000103 at 1440 baseline | max 0.000753 | ≤0.10 PASS |
-| Local compiled FCP across matrix | 1,036 ms dev baseline | 652–812 ms | diagnostic only |
+| Formation response begins | N/A | 1.8 ms | ≤100 ms PASS |
+| CLS across matrix | 0.000103 at 1440 baseline | max 0.001616 | ≤0.10 PASS |
+| Local compiled FCP across matrix | 1,036 ms dev baseline | 652–768 ms | diagnostic only |
 
 Compiled homepage loads used 10 requests per capture. Mobile/tablet transferred
 266,016 bytes and desktop transferred 339,888 bytes in the local production

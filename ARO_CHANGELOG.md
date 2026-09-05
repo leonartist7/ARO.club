@@ -18,8 +18,8 @@ The package adds complete English, French and Spanish keys, semantic text and a
 live region, native keyboard controls, reduced-motion behavior and an original
 face-free community-table image in responsive WebP variants. The full
 360/390/430/768×1024/1440 light/dark matrix has zero overflow, console errors or
-failed requests. Formation response begins in 2.3 ms, maximum measured CLS is
-0.000753, the home chunk increases 3.36 kB gzip and named initial JS/CSS is
+failed requests. Formation response begins in 1.8 ms, maximum measured CLS is
+0.001616, the home chunk increases 3.36 kB gzip and named initial JS/CSS is
 36.73 kB gzip smaller than baseline.
 
 Source-controlled prototype mode remains on and mounts a static fail-closed

@@ -393,6 +393,7 @@ Package: ARO-UX0
 Spec version: 1.0.0
 Branch: feat/aro-ux0-opportunity-prototype
 Specification PR: #34
+Implementation commit: 2609a54be31c47bb3b31d5356348610d4efab0d7
 Delivery PR: #35 (open; merge commit pending)
 Acceptance: 8/11 passed; UX0-001/009/010 pending founder/CI
 Unit: 73/73 PASS
@@ -400,7 +401,7 @@ Integration: prototype/provider/locale boundary PASS
 E2E: focused UX0 9/9 PASS; complete suite 25/25 PASS
 RLS/security: no data change; zero Supabase-domain requests across UX0/account audit
 A11y: keyboard, semantics, live region, 44px targets, reduced motion and token contrast PASS
-Performance: +3.36 kB home gzip, total named initial JS/CSS -36.73 kB; response 2.3 ms; max CLS 0.000753
+Performance: +3.36 kB home gzip, total named initial JS/CSS -36.73 kB; response 1.8 ms; max CLS 0.001616
 Screenshots/evidence: artifacts/ARO-UX0/VERIFICATION.md
 Reviewers: founder/product-design required
 Known follow-ups: I0 Auth/recovery/domain; P1 runtime remains blocked

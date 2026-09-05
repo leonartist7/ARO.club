@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:4173",
-  "capturedAt": "2026-09-05T19:11:18.562Z",
+  "capturedAt": "2026-09-05T19:18:46.486Z",
   "matrix": [
     {
       "colorScheme": "light",
@@ -31,7 +31,7 @@
         "cls": 0,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 812
+        "fcpMs": 744
       }
     },
     {
@@ -60,10 +60,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00003854485948434591,
+        "cls": 0.001615306576729276,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 660
+        "fcpMs": 652
       }
     },
     {
@@ -92,7 +92,7 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.0003066029426064726,
+        "cls": 0,
         "resources": 7,
         "transferBytes": 266016,
         "fcpMs": 652
@@ -127,7 +127,7 @@
         "cls": 0.0007528599041203657,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 712
+        "fcpMs": 664
       }
     },
     {
@@ -156,10 +156,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00010343035662615742,
+        "cls": 0.0005990987141927083,
         "resources": 7,
         "transferBytes": 339888,
-        "fcpMs": 652
+        "fcpMs": 676
       }
     },
     {
@@ -188,10 +188,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00004647650824652778,
+        "cls": 0,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 652
+        "fcpMs": 664
       }
     },
     {
@@ -220,10 +220,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0,
+        "cls": 0.00003854485948434591,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 656
+        "fcpMs": 768
       }
     },
     {
@@ -255,7 +255,7 @@
         "cls": 0,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 660
+        "fcpMs": 696
       }
     },
     {
@@ -284,10 +284,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00030069627488652867,
+        "cls": 0.00030639410639802617,
         "resources": 7,
         "transferBytes": 266016,
-        "fcpMs": 660
+        "fcpMs": 700
       }
     },
     {
@@ -319,7 +319,7 @@
         "cls": 0.00010343035662615742,
         "resources": 7,
         "transferBytes": 339888,
-        "fcpMs": 652
+        "fcpMs": 668
       }
     }
   ],
@@ -395,7 +395,7 @@
     ]
   },
   "performance": {
-    "responseMs": 2.3
+    "responseMs": 1.8
   },
   "accessibility": {
     "reducedMotionDuration": "1e-06s",

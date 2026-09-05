@@ -41,14 +41,22 @@ export default async function ux0() {
     const responseMs = await page.evaluate(() => new Promise((resolve, reject) => {
       const status = document.querySelector('[data-testid="formation-status"]');
       const input = document.querySelector('input[value="kitchen-saturday"]');
-      if (!status || !input) reject(new Error('missing formation controls'));
+      if (!status || !input) {
+        reject(new Error('missing formation controls'));
+        return;
+      }
       const started = performance.now();
       const observer = new MutationObserver(() => {
         if (/Ready|Forming/.test(status.textContent)) {
+          window.clearTimeout(timeout);
           observer.disconnect();
           resolve(performance.now() - started);
         }
       });
+      const timeout = window.setTimeout(() => {
+        observer.disconnect();
+        reject(new Error('formation status did not respond within 1 second'));
+      }, 1000);
       observer.observe(status, { childList: true, subtree: true, characterData: true });
       input.click();
     }));

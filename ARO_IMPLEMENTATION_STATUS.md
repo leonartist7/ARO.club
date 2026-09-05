@@ -253,7 +253,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype (Preview approval pending) → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
+`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype (Preview/Production release approval pending) → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
 
 UX0 may proceed while the remaining parent-I0 gates are deferred, but it does
 not satisfy them or authorize P1.

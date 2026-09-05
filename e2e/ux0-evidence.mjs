@@ -122,6 +122,15 @@ async function captureBrowserEvidence() {
   const boundaryPage = await boundaryContext.newPage();
   const boundaryRequests = [];
   boundaryPage.on('request', (request) => boundaryRequests.push(request.url()));
+  boundaryPage.on('console', (message) => {
+    if (message.type() === 'error' || message.type() === 'warning') {
+      allErrors.push(`account-routes ${message.type()}: ${message.text()}`);
+    }
+  });
+  boundaryPage.on('pageerror', (error) => allErrors.push(`account-routes pageerror: ${String(error)}`));
+  boundaryPage.on('requestfailed', (request) => {
+    allFailedRequests.push(`account-routes ${request.url()} :: ${request.failure()?.errorText}`);
+  });
   for (const route of ['/', '/login', '/signup', '/forgot-password', '/auth/callback']) {
     await navigate(boundaryPage, BASE + route, { waitUntil: 'networkidle' });
   }
@@ -129,16 +138,25 @@ async function captureBrowserEvidence() {
   await navigate(boundaryPage, BASE, { waitUntil: 'domcontentloaded' });
   await boundaryPage.locator('input[value="conversational-spanish"]').evaluate((input) => input.click());
   await boundaryPage.locator('input[value="cooking-stories"]').evaluate((input) => input.click());
-  const responseMs = await boundaryPage.evaluate(() => new Promise((resolve) => {
+  const responseMs = await boundaryPage.evaluate(() => new Promise((resolve, reject) => {
     const status = document.querySelector('[data-testid="formation-status"]');
     const input = document.querySelector('input[value="kitchen-saturday"]');
+    if (!status || !input) {
+      reject(new Error('missing formation controls'));
+      return;
+    }
     const started = performance.now();
     const observer = new MutationObserver(() => {
       if (/Ready|Forming/.test(status.textContent)) {
+        window.clearTimeout(timeout);
         observer.disconnect();
         resolve(performance.now() - started);
       }
     });
+    const timeout = window.setTimeout(() => {
+      observer.disconnect();
+      reject(new Error('formation status did not respond within 1 second'));
+    }, 1000);
     observer.observe(status, { childList: true, subtree: true, characterData: true });
     input.click();
   }));
