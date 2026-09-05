@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { ArrowRight, Check, Pencil, RotateCcw, Sparkles, X } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ANCHORS, FIXTURES_BY_ANCHOR, fixtureFor } from './fixtures';
@@ -35,6 +35,13 @@ const STATUS_KEYS = {
   [FORMATION_STATUS.EDITING]: 'home.formation.status.editing',
 };
 
+const SEMANTIC_KEYS = [
+  'home.formation.field.semanticEmpty',
+  'home.formation.field.semanticOne',
+  'home.formation.field.semanticTwo',
+  'home.formation.field.semanticThree',
+];
+
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(
     () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
@@ -51,7 +58,7 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function SignalControl({ anchor, selectedId, validationAnchor, onSelect, onClear }) {
+function SignalControl({ anchor, selectedId, validationAnchor, onSelect, onClear, firstInputRef }) {
   const { t } = useLanguage();
   const details = ANCHOR_KEYS[anchor];
   const selected = fixtureFor(anchor, selectedId);
@@ -90,7 +97,7 @@ function SignalControl({ anchor, selectedId, validationAnchor, onSelect, onClear
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label={t(details.titleKey)}>
-            {FIXTURES_BY_ANCHOR[anchor].map((fixture) => {
+            {FIXTURES_BY_ANCHOR[anchor].map((fixture, index) => {
               const active = fixture.id === selectedId;
               return (
                 <label
@@ -102,6 +109,7 @@ function SignalControl({ anchor, selectedId, validationAnchor, onSelect, onClear
                   }`}
                 >
                   <input
+                    ref={index === 0 ? firstInputRef : undefined}
                     className="sr-only"
                     type="radio"
                     name={`formation-${anchor}`}
@@ -197,7 +205,7 @@ function FormationField({ state }) {
       </div>
 
       <figcaption id="formation-field-caption" className="absolute bottom-3 left-4 right-4 text-center text-xs text-bone/55 sm:bottom-5">
-        {t('home.formation.field.semantic')}
+        {t(SEMANTIC_KEYS[selectedCount])}
       </figcaption>
     </figure>
   );
@@ -257,10 +265,12 @@ function FormedResult({ result, onEdit, onReset }) {
       </div>
 
       <div className="mt-8 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
-        <div className="bg-primary-600 p-6 text-white sm:p-7">
+        <div className="bg-primary-600 p-6 text-white sm:p-7" data-testid="formation-rationale-intro">
           <Sparkles className="h-5 w-5 text-secondary-200" aria-hidden="true" />
           <p className="mt-5 font-display text-2xl leading-tight">{t('home.formation.result.whyTitle')}</p>
-          <p className="mt-3 text-base leading-7 text-white/75">{t('home.formation.result.whyIntro')}</p>
+          <p className="mt-3 text-base leading-7 text-white" data-testid="formation-rationale-explanation">
+            {t('home.formation.result.whyIntro')}
+          </p>
         </div>
         <ol className="divide-y divide-ink/10 border-y border-ink/10 dark:divide-bone/10 dark:border-bone/10">
           {result.rationaleKeys.map((key, index) => (
@@ -284,6 +294,7 @@ export default function OpportunityFormation() {
   const { t } = useLanguage();
   const [state, dispatch] = useReducer(formationReducer, undefined, createInitialFormationState);
   const reducedMotion = usePrefersReducedMotion();
+  const firstSignalRef = useRef(null);
 
   useEffect(() => {
     if (state.status !== FORMATION_STATUS.READY_TO_FORM) return undefined;
@@ -302,6 +313,14 @@ export default function OpportunityFormation() {
 
   const selectSignal = (anchor, id) => dispatch({ type: 'SELECT_SIGNAL', anchor, id });
   const clearSignal = (anchor) => dispatch({ type: 'CLEAR_SIGNAL', anchor });
+  const editSignals = () => {
+    firstSignalRef.current?.focus();
+    dispatch({ type: 'START_EDIT' });
+  };
+  const resetSignals = () => {
+    firstSignalRef.current?.focus();
+    dispatch({ type: 'RESET' });
+  };
   const isFormed = state.status === FORMATION_STATUS.FORMED && state.result;
 
   const announcement = isFormed
@@ -309,7 +328,10 @@ export default function OpportunityFormation() {
     : '';
 
   return (
-    <div className="mt-10" data-testid="opportunity-formation">
+    <section className="mt-10" data-testid="opportunity-formation" aria-labelledby="opportunity-formation-title">
+      <h2 id="opportunity-formation-title" className="sr-only">
+        {t('home.formation.heading')}
+      </h2>
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start xl:gap-12">
         <div className="order-2 lg:order-1">
           <div className="flex items-center justify-between gap-4 border-b border-ink/15 pb-4 dark:border-bone/15">
@@ -329,6 +351,7 @@ export default function OpportunityFormation() {
               validationAnchor={state.validationAnchor}
               onSelect={selectSignal}
               onClear={clearSignal}
+              firstInputRef={anchor === 'want' ? firstSignalRef : undefined}
             />
           ))}
 
@@ -347,14 +370,14 @@ export default function OpportunityFormation() {
       {isFormed ? (
         <FormedResult
           result={state.result}
-          onEdit={() => dispatch({ type: 'START_EDIT' })}
-          onReset={() => dispatch({ type: 'RESET' })}
+          onEdit={editSignals}
+          onReset={resetSignals}
         />
       ) : null}
 
       <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="formation-announcement">
         {announcement}
       </p>
-    </div>
+    </section>
   );
 }

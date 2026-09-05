@@ -32,6 +32,13 @@ export const translations = {
       dayStreak: 'day streak',
     },
 
+    prototypeAccess: {
+      label: 'Local prototype · Account access off',
+      callbackTitle: 'Account callbacks are unavailable in this prototype.',
+      callbackBody: 'No sign-in was completed and no session was created. Return to the local opportunity-formation experience while connected account work remains deferred.',
+      backToPrototype: 'Return to the prototype',
+    },
+
     // Role Selection
     roleSelection: {
       chooseYourJourney: 'Choose your journey',
@@ -73,6 +80,7 @@ export const translations = {
         context: 'People · place · time',
       },
       formation: {
+        heading: 'Form an opportunity',
         prototypeBadge: 'Prototype possibility · Local only',
         hero: {
           title: 'Tell the field what matters.',
@@ -101,7 +109,10 @@ export const translations = {
           aperture: 'ARO aperture',
           awaiting: 'Awaiting signal',
           forming: 'Forming…',
-          semantic: 'Three selected signals connect to one central prototype possibility.',
+          semanticEmpty: 'The field is empty. Three signals are needed to form a prototype possibility.',
+          semanticOne: 'One selected signal enters the field. Two more signals are needed.',
+          semanticTwo: 'Two selected signals enter the field. One more signal is needed.',
+          semanticThree: 'Three selected signals connect to one central prototype possibility.',
         },
         result: {
           prototypeLabel: 'Prototype possibility — not a live match',
@@ -565,6 +576,13 @@ export const translations = {
       dayStreak: 'jours de suite',
     },
 
+    prototypeAccess: {
+      label: 'Prototype local · Accès au compte désactivé',
+      callbackTitle: 'Les retours de connexion sont indisponibles dans ce prototype.',
+      callbackBody: 'Aucune connexion n’a été effectuée et aucune session n’a été créée. Revenez à l’expérience locale de formation d’opportunités pendant que le travail sur les comptes connectés reste différé.',
+      backToPrototype: 'Revenir au prototype',
+    },
+
     // Role Selection
     roleSelection: {
       chooseYourJourney: 'Choisissez votre parcours',
@@ -606,6 +624,7 @@ export const translations = {
         context: 'Personnes · lieu · moment',
       },
       formation: {
+        heading: 'Former une opportunité',
         prototypeBadge: 'Possibilité prototype · Locale uniquement',
         hero: {
           title: 'Dites au champ ce qui compte.',
@@ -634,7 +653,10 @@ export const translations = {
           aperture: 'Ouverture ARO',
           awaiting: 'Signal attendu',
           forming: 'Formation…',
-          semantic: 'Trois signaux choisis se relient à une possibilité prototype centrale.',
+          semanticEmpty: 'Le champ est vide. Trois signaux sont nécessaires pour former une possibilité prototype.',
+          semanticOne: 'Un signal choisi entre dans le champ. Deux autres signaux sont nécessaires.',
+          semanticTwo: 'Deux signaux choisis entrent dans le champ. Un autre signal est nécessaire.',
+          semanticThree: 'Trois signaux choisis se relient à une possibilité prototype centrale.',
         },
         result: {
           prototypeLabel: 'Possibilité prototype — pas une correspondance en direct',
@@ -1079,6 +1101,13 @@ export const translations = {
       dayStreak: 'días seguidos',
     },
 
+    prototypeAccess: {
+      label: 'Prototipo local · Acceso a la cuenta desactivado',
+      callbackTitle: 'Los retornos de autenticación no están disponibles en este prototipo.',
+      callbackBody: 'No se completó ningún inicio de sesión ni se creó una sesión. Vuelve a la experiencia local de formación de oportunidades mientras el trabajo de cuentas conectadas sigue aplazado.',
+      backToPrototype: 'Volver al prototipo',
+    },
+
     // Role Selection
     roleSelection: {
       chooseYourJourney: 'Elige tu camino',
@@ -1120,6 +1149,7 @@ export const translations = {
         context: 'Personas · lugar · momento',
       },
       formation: {
+        heading: 'Formar una oportunidad',
         prototypeBadge: 'Posibilidad prototipo · Solo local',
         hero: {
           title: 'Dile al campo qué importa.',
@@ -1148,7 +1178,10 @@ export const translations = {
           aperture: 'Apertura ARO',
           awaiting: 'Esperando señal',
           forming: 'Formando…',
-          semantic: 'Tres señales elegidas se conectan con una posibilidad prototipo central.',
+          semanticEmpty: 'El campo está vacío. Se necesitan tres señales para formar una posibilidad prototipo.',
+          semanticOne: 'Una señal elegida entra en el campo. Se necesitan dos señales más.',
+          semanticTwo: 'Dos señales elegidas entran en el campo. Se necesita una señal más.',
+          semanticThree: 'Tres señales elegidas se conectan con una posibilidad prototipo central.',
         },
         result: {
           prototypeLabel: 'Posibilidad prototipo — no es una coincidencia en vivo',

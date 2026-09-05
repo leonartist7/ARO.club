@@ -142,6 +142,16 @@ async function captureBrowserEvidence() {
     observer.observe(status, { childList: true, subtree: true, characterData: true });
     input.click();
   }));
+  await boundaryPage.getByTestId('formed-result').waitFor();
+  const rationaleColors = await boundaryPage.getByTestId('formation-rationale-explanation').evaluate((element) => ({
+    foreground: getComputedStyle(element).color,
+    background: getComputedStyle(element.parentElement).backgroundColor,
+  }));
+  const parseColor = (value) => value.match(/[\d.]+/g).slice(0, 3).map(Number);
+  const rationaleContrast = ratio(
+    parseColor(rationaleColors.foreground),
+    parseColor(rationaleColors.background)
+  );
 
   const reducedContext = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const reducedPage = await reducedContext.newPage();
@@ -172,6 +182,10 @@ async function captureBrowserEvidence() {
         whiteOnPrimary600: ratio([255, 255, 255], [190, 50, 25]),
         boneOnInk: ratio([246, 240, 230], [40, 36, 32]),
         secondary300OnInk: ratio([239, 193, 75], [40, 36, 32]),
+      },
+      renderedRationaleContrast: {
+        ...rationaleColors,
+        ratio: rationaleContrast,
       },
     },
   };

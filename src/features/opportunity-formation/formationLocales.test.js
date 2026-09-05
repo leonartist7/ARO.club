@@ -3,7 +3,12 @@ import { translations } from '../../i18n/translations';
 import { BRINGS, CONTEXTS, WANTS } from './fixtures';
 
 const requiredStaticKeys = [
+  'prototypeAccess.label',
+  'prototypeAccess.callbackTitle',
+  'prototypeAccess.callbackBody',
+  'prototypeAccess.backToPrototype',
   'home.formation.prototypeBadge',
+  'home.formation.heading',
   'home.formation.hero.title',
   'home.formation.hero.highlight',
   'home.formation.instructions',
@@ -25,6 +30,10 @@ const requiredStaticKeys = [
   'home.formation.result.whyTitle',
   'home.formation.result.nextTitle',
   'home.formation.result.announcement',
+  'home.formation.field.semanticEmpty',
+  'home.formation.field.semanticOne',
+  'home.formation.field.semanticTwo',
+  'home.formation.field.semanticThree',
   'home.formation.editorial.imageAlt',
   'home.formation.editorial.imageCaption',
   'home.formation.truth.confirmed.body',

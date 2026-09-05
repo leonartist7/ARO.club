@@ -28,11 +28,15 @@ export default async function ux0() {
     assert(/what you want/i.test(body), 'missing want anchor');
     assert(/what you can bring/i.test(body), 'missing bring anchor');
     assert(/people · place · time/i.test(body), 'missing context anchor');
+    assert(await page.getByRole('heading', { level: 2, name: 'Form an opportunity' }).count(), 'formation h2 is missing');
+    assert(/field is empty/i.test(await page.locator('#formation-field-caption').innerText()), 'empty-field semantic state is missing');
   });
 
   await run.step('third signal begins visible response within 100 ms', async () => {
     await page.locator('input[value="conversational-spanish"]').check({ force: true });
+    assert(/one selected signal/i.test(await page.locator('#formation-field-caption').innerText()), 'one-signal semantic state is missing');
     await page.locator('input[value="cooking-stories"]').check({ force: true });
+    assert(/two selected signals/i.test(await page.locator('#formation-field-caption').innerText()), 'two-signal semantic state is missing');
 
     const responseMs = await page.evaluate(() => new Promise((resolve, reject) => {
       const status = document.querySelector('[data-testid="formation-status"]');
@@ -64,10 +68,28 @@ export default async function ux0() {
     assert(result.includes('You can bring a recipe and the story behind it.'), 'missing contribution clause');
     assert(result.includes('A shared table gives the group a natural activity and meeting point.'), 'missing fit clause');
     assert((await page.getByTestId('formation-announcement').innerText()).includes('Prototype possibility formed'), 'live region was not updated');
+    assert(/three selected signals/i.test(await page.locator('#formation-field-caption').innerText()), 'formed semantic state is missing');
+    const rationaleContrast = await page.evaluate(() => {
+      const parse = (value) => value.match(/[\d.]+/g).slice(0, 3).map(Number);
+      const luminance = (value) => {
+        const channels = parse(value).map((channel) => {
+          const normalized = channel / 255;
+          return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+      };
+      const foreground = getComputedStyle(document.querySelector('[data-testid="formation-rationale-explanation"]')).color;
+      const background = getComputedStyle(document.querySelector('[data-testid="formation-rationale-intro"]')).backgroundColor;
+      const light = Math.max(luminance(foreground), luminance(background));
+      const dark = Math.min(luminance(foreground), luminance(background));
+      return (light + 0.05) / (dark + 0.05);
+    });
+    assert(rationaleContrast >= 4.5, `rationale contrast is ${rationaleContrast.toFixed(2)}:1`);
   });
 
   await run.step('editing recomputes immediately and clearing returns to partial', async () => {
     await page.getByRole('button', { name: 'Edit signals' }).click();
+    await page.waitForFunction(() => document.activeElement?.value === 'conversational-spanish');
     assert(/editing/i.test(await page.getByTestId('formation-status').innerText()), 'editing state missing');
     await page.locator('input[value="patient-practice"]').check({ force: true });
     await page.getByText('You can bring patient, encouraging practice.', { exact: true }).waitFor();
@@ -86,6 +108,7 @@ export default async function ux0() {
     await page.locator('input[value="kitchen-saturday"]').check({ force: true });
     await page.getByTestId('formed-result').waitFor();
     await page.getByRole('button', { name: 'Reset field' }).click();
+    await page.waitForFunction(() => document.activeElement?.value === 'conversational-spanish');
     assert(!(await page.getByTestId('formed-result').count()), 'formed result survived reset');
     assert(/field open/i.test(await page.getByTestId('formation-status').innerText()), 'intro state was not restored');
     assert((await page.locator('input[name^="formation-"]:checked').count()) === 0, 'selected fixture survived reset');
@@ -184,6 +207,13 @@ export default async function ux0() {
       await navigate(page, BASE + route, { waitUntil: 'domcontentloaded' });
       await page.waitForTimeout(300);
     }
+    const callbackBoundary = page.getByRole('heading', {
+      name: 'Account callbacks are unavailable in this prototype.',
+    });
+    await callbackBoundary.waitFor();
+    assert(await callbackBoundary.count(), 'callback route does not explain the prototype account boundary');
+    await page.waitForTimeout(2100);
+    assert(new URL(page.url()).pathname === '/auth/callback', 'prototype callback route simulated a completed sign-in');
     assert(supabaseRequests.length === 0, supabaseRequests.join(', '));
   });
 

@@ -24,8 +24,8 @@ AI, realtime, location, payment or persistence work.
 | UX0-003 | translated prototype labels and truth section | locale test + E2E copy assertions + captures | PASS |
 | UX0-004 | `UX0_PROTOTYPE_MODE = true`, `PrototypeAuthProvider`, guarded client | unit boundary test + compiled five-route network audit with synthetic Supabase-shaped build variables: 0 domain requests | PASS |
 | UX0-005 | responsive field/control/result composition | 360, 390, 430, 768×1024, 1440 in light/dark; 0 overflow; no clipped field anchors | PASS |
-| UX0-006 | native radio controls, focus, semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; token contrast evidence | PASS |
-| UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 2.6 ms response, CLS ≤0.001616, image budgets | PASS |
+| UX0-006 | native radio controls, restored edit/reset focus, state-aware semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; rendered contrast evidence | PASS |
+| UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 2.3 ms response, CLS ≤0.000753, image budgets | PASS |
 | UX0-008 | original face-free editorial image + responsive variants | `ASSET_MANIFEST.md`, generated asset review and sizes | PASS |
 | UX0-009 | existing tests/build pass locally; required hosted checks | PR #35 required checks pending | PENDING CI |
 | UX0-010 | Preview creative approval | founder review pending; do not merge or release | PENDING FOUNDER |
@@ -33,6 +33,14 @@ AI, realtime, location, payment or persistence work.
 
 Current acceptance: **8/11 PASS**, with only founder review and hosted CI/release
 gates remaining. This is not VERIFIED or SHIPPED.
+
+## Review resolution
+
+The first substantive PR review raised six P2 findings. All six are resolved in
+the package: the callback is truthfully unavailable, rendered rationale contrast
+is 5.74:1, canonical measurements match machine evidence, figure semantics track
+zero/one/two/three selections, edit/reset restore focus, and the formation owns a
+level-two heading. Focused E2E assertions cover each behavioral resolution.
 
 ## Automated checks
 
@@ -75,11 +83,14 @@ measurements and request inventories are in `browser-evidence.json`.
 - formed people/place/time and all three rationale clauses exist in text;
 - the completed result is announced through a polite atomic live region;
 - reduced motion shortens transitions to `0.000001s` and preserves the same result;
+- edit and reset return focus to the first signal control instead of the document;
 - all UX0 interactive targets measure at least 44×44 CSS pixels;
 - each captured page has one `main`, one `h1`, a non-empty image alternative,
   no unnamed visible interactive controls and no clipped diagram anchors;
 - representative approved token contrast ratios: Ink/Bone 13.59:1,
   white/Primary-600 5.74:1, Bone/Ink 13.59:1 and Secondary-300/Ink 9.09:1.
+- the actual rendered rationale paragraph computes to white `rgb(255, 255, 255)`
+  on Primary-600 `rgb(190, 50, 25)`, or **5.74:1**.
 
 ## Network and account boundary
 
@@ -92,8 +103,9 @@ Audited compiled routes:
 - `/auth/callback`
 
 Result: **0 Supabase-domain requests**, **0 failed requests**, **0 console
-warnings/errors**. Login, signup and recovery remain disabled with the existing
-truthful unavailable copy. The static `PrototypeAuthProvider` is mounted instead
+warnings/errors**. Login, signup and recovery remain disabled. The callback
+route shows translated unavailable copy, creates no session and does not perform
+the prior success redirect. The static `PrototypeAuthProvider` is mounted instead
 of initializing the connected `AuthProvider` while UX0 mode is on.
 
 No API, migration, RLS, realtime channel, analytics, remote write, P1 field,
@@ -103,17 +115,17 @@ payment, Google, AI or location behavior was added.
 
 | Measure | Baseline | UX0 | Delta / budget |
 |---|---:|---:|---:|
-| Home chunk gzip | 2.75 kB | 5.96 kB | +3.21 kB |
+| Home chunk gzip | 2.75 kB | 6.11 kB | +3.36 kB |
 | Global CSS gzip | 13.92 kB | 15.06 kB | +1.14 kB |
-| Shared entry JS gzip | 230.09 kB | 188.22 kB | −41.87 kB |
-| Initial JS+CSS gzip (named assets) | 246.76 kB | 209.23 kB | −37.53 kB; ≤+35 kB PASS |
+| Shared entry JS gzip | 230.09 kB | 188.86 kB | −41.23 kB |
+| Initial JS+CSS gzip (named assets) | 246.76 kB | 210.03 kB | −36.73 kB; ≤+35 kB PASS |
 | Generated image selected per viewport | none | 52.43 or 126.30 kB | ≤250 kB PASS |
-| Formation response begins | N/A | 2.6 ms | ≤100 ms PASS |
-| CLS across matrix | 0.000103 at 1440 baseline | max 0.001616 | ≤0.10 PASS |
-| Local compiled FCP across matrix | 1,036 ms dev baseline | 716–936 ms | diagnostic only |
+| Formation response begins | N/A | 2.3 ms | ≤100 ms PASS |
+| CLS across matrix | 0.000103 at 1440 baseline | max 0.000753 | ≤0.10 PASS |
+| Local compiled FCP across matrix | 1,036 ms dev baseline | 652–812 ms | diagnostic only |
 
 Compiled homepage loads used 10 requests per capture. Mobile/tablet transferred
-265,221 bytes and desktop transferred 339,093 bytes in the local production
+266,016 bytes and desktop transferred 339,888 bytes in the local production
 preview. The image is below-fold and lazy-loaded. Exact generated asset and all
 dist sizes are in `bundle-evidence.json`.
 

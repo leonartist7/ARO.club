@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:4173",
-  "capturedAt": "2026-09-04T23:36:50.376Z",
+  "capturedAt": "2026-09-05T19:11:18.562Z",
   "matrix": [
     {
       "colorScheme": "light",
@@ -30,8 +30,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 936
+        "transferBytes": 266016,
+        "fcpMs": 812
       }
     },
     {
@@ -62,8 +62,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0.00003854485948434591,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 756
+        "transferBytes": 266016,
+        "fcpMs": 660
       }
     },
     {
@@ -94,8 +94,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0.0003066029426064726,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 728
+        "transferBytes": 266016,
+        "fcpMs": 652
       }
     },
     {
@@ -124,10 +124,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0,
+        "cls": 0.0007528599041203657,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 936
+        "transferBytes": 266016,
+        "fcpMs": 712
       }
     },
     {
@@ -158,8 +158,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0.00010343035662615742,
         "resources": 7,
-        "transferBytes": 339093,
-        "fcpMs": 804
+        "transferBytes": 339888,
+        "fcpMs": 652
       }
     },
     {
@@ -188,10 +188,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0,
+        "cls": 0.00004647650824652778,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 808
+        "transferBytes": 266016,
+        "fcpMs": 652
       }
     },
     {
@@ -220,10 +220,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.001615306576729276,
+        "cls": 0,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 716
+        "transferBytes": 266016,
+        "fcpMs": 656
       }
     },
     {
@@ -254,8 +254,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 724
+        "transferBytes": 266016,
+        "fcpMs": 660
       }
     },
     {
@@ -284,10 +284,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.0007528599041203657,
+        "cls": 0.00030069627488652867,
         "resources": 7,
-        "transferBytes": 265221,
-        "fcpMs": 740
+        "transferBytes": 266016,
+        "fcpMs": 660
       }
     },
     {
@@ -318,8 +318,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0.00010343035662615742,
         "resources": 7,
-        "transferBytes": 339093,
-        "fcpMs": 752
+        "transferBytes": 339888,
+        "fcpMs": 652
       }
     }
   ],
@@ -334,12 +334,12 @@
         "type": "document"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/index-vjPfikqN.js",
+        "url": "http://127.0.0.1:4173/assets/index-ByRlCLEt.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/index-Ct7tyDQT.css",
+        "url": "http://127.0.0.1:4173/assets/index-D7MuKO3V.css",
         "method": "GET",
         "type": "stylesheet"
       },
@@ -349,17 +349,17 @@
         "type": "stylesheet"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/HomePage-BUBoqipQ.js",
+        "url": "http://127.0.0.1:4173/assets/HomePage-cYQRHPyw.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/rotate-ccw-ODi9CV3n.js",
+        "url": "http://127.0.0.1:4173/assets/rotate-ccw-IQpyVUkE.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/sparkles-CQyDl0p5.js",
+        "url": "http://127.0.0.1:4173/assets/sparkles-Cc34OYyT.js",
         "method": "GET",
         "type": "script"
       },
@@ -395,7 +395,7 @@
     ]
   },
   "performance": {
-    "responseMs": 2.6
+    "responseMs": 2.3
   },
   "accessibility": {
     "reducedMotionDuration": "1e-06s",
@@ -404,6 +404,11 @@
       "whiteOnPrimary600": 5.74,
       "boneOnInk": 13.59,
       "secondary300OnInk": 9.09
+    },
+    "renderedRationaleContrast": {
+      "foreground": "rgb(255, 255, 255)",
+      "background": "rgb(190, 50, 25)",
+      "ratio": 5.74
     }
   }
 }
