@@ -92,7 +92,10 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           await passwordInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           requireCondition(await emailInput.isDisabled(), 'PROTOTYPE_EMAIL_ENABLED');
           requireCondition(await passwordInput.isDisabled(), 'PROTOTYPE_PASSWORD_ENABLED');
-          requireCondition(await page.getByRole('button', { name: 'Sign In' }).isDisabled(), 'PROTOTYPE_LOGIN_ENABLED');
+          requireCondition(
+            await page.locator('form').getByRole('button', { name: 'Sign In' }).isDisabled(),
+            'PROTOTYPE_LOGIN_ENABLED'
+          );
 
           stage = `PROTOTYPE_CALLBACK_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/auth/callback`, { waitUntil: 'domcontentloaded' });
