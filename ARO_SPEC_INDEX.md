@@ -8,9 +8,10 @@
 > I0.2's independent-review follow-up remain explicit. UX0 is SPEC-READY as a
 > synthetic frontend-only prototype and does not authorize P1.
 
-> **2026-09-04 UX0 update:** UX0 is implemented and locally verified on its
-> package branch. Eight of eleven criteria pass; hosted CI and founder
-> Preview/Production release approval remain pending. I0/P1 gates are unchanged.
+> **2026-09-05 UX0 update:** UX0 is implemented and CI verified on its package
+> branch. All required PR #35 checks are green and nine of eleven criteria pass;
+> founder Preview/Production release approval remains pending. I0/P1 gates are
+> unchanged.
 
 > **Purpose:** make ARO spec-driven, traceable, and resistant to product drift. This file is the registry for what is vision, what is approved, what is implemented, what is verified, and what remains blocked or exploratory.
 >
@@ -87,7 +88,7 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
 | Infrastructure/environment registry | **VERIFIED** as documentation snapshot | `ARO_INFRASTRUCTURE.md` | complete founder Vercel/project-dependency checks; update on every target/config decision |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
-| UX0 Opportunity Formation frontend prototype | **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING** | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/VERIFICATION.md` | pass hosted PR checks; founder reviews Preview and explicitly approves or declines Production release |
+| UX0 Opportunity Formation frontend prototype | **IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING** | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/VERIFICATION.md` | founder reviews Preview and explicitly approves or declines Production release |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |

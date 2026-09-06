@@ -5,8 +5,8 @@
 > **Base:** `main` `2e0a97f` (PR #34 merge)
 > **Branch:** `feat/aro-ux0-opportunity-prototype`
 > **Pull request:** [#35](https://github.com/leonartist7/ARO.club/pull/35)
-> **Status:** IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
-> **Captured:** 2026-09-04
+> **Status:** IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING
+> **Captured:** 2026-09-05
 
 ## Verified story
 
@@ -27,12 +27,12 @@ AI, realtime, location, payment or persistence work.
 | UX0-006 | native radio controls, restored edit/reset focus, state-aware semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; rendered contrast evidence | PASS |
 | UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 1.8 ms response, CLS ≤0.001616, image budgets | PASS |
 | UX0-008 | original face-free editorial image + responsive variants | `ASSET_MANIFEST.md`, generated asset review and sizes | PASS |
-| UX0-009 | existing tests/build pass locally; required hosted checks | PR #35 required checks pending | PENDING CI |
+| UX0-009 | existing tests/build and required hosted checks | PR #35 `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `f19fb31`; platform run `33987770971`, quality run `33987770974` | PASS |
 | UX0-010 | Preview creative approval | founder review pending; do not merge or release | PENDING FOUNDER |
 | UX0-011 | all controls, validation, provenance, fixtures and result clauses use locale keys | complete key test for `en`, `fr`, `es`; E2E locale spot check | PASS |
 
-Current acceptance: **8/11 PASS**, with only founder review and hosted CI/release
-gates remaining. This is not VERIFIED or SHIPPED.
+Current acceptance: **9/11 PASS**, with only founder Preview and explicit
+Production release approval remaining. This is not VERIFIED or SHIPPED.
 
 ## Review resolution
 
@@ -123,6 +123,9 @@ disabled login inputs, the non-redirecting callback, protected-route rejection,
 light/dark responsiveness and zero application requests to the local Supabase
 API. The underlying disposable Auth lifecycle continues separately. This makes
 the required check truthful; it does not satisfy or waive parent-I0 hosted Auth.
+The corrected hosted run passed the complete disposable sequence, including
+81/81 SQL checks and the prototype browser boundary, in run `33987770971`;
+`static` and `browser-smoke` passed in run `33987770974`.
 
 ## Performance and bundle evidence
 

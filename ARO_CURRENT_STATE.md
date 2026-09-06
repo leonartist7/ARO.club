@@ -10,10 +10,10 @@
 > I0.2 implementation review remain open. P1 is blocked. A separate synthetic-
 > only UX0 frontend prototype is SPEC-READY and does not waive those gates.
 
-> **2026-09-04 UX0 update:** the opportunity-formation prototype is implemented
-> and locally verified on `feat/aro-ux0-opportunity-prototype`. Eight of eleven
-> criteria pass; required PR CI and founder Preview/Production release approval
-> remain pending. No I0/P1/provider gate changed.
+> **2026-09-05 UX0 update:** the opportunity-formation prototype is implemented
+> and CI verified on `feat/aro-ux0-opportunity-prototype`. All required PR #35
+> checks are green and nine of eleven criteria pass; founder Preview/Production
+> release approval remains pending. No I0/P1/provider gate changed.
 
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
@@ -174,7 +174,7 @@ so this review does not authorize P1.
 
 ### ARO-UX0 — frontend-first opportunity prototype
 
-**State:** IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING.
+**State:** IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING.
 
 On 2026-09-03 the founder deliberately deferred hosted Auth/callback/recovery
 work while ARO validates a frontend-only prototype. UX0 is governed by
@@ -189,7 +189,8 @@ The implementation uses the exact 27-combination fixture cross-product, a
 source-controlled default-on prototype mode, a static fail-closed account
 boundary and zero Supabase-domain requests across the compiled UX0/account
 route audit. English, French and Spanish, keyboard, reduced motion and the full
-360–1440 light/dark matrix pass locally. Founder review of the PR Preview and
+360–1440 light/dark matrix pass, and PR #35's required hosted checks are green.
+Founder review of the PR Preview and
 explicit approval of the automatic Production release remain mandatory before
 merge.
 
@@ -207,7 +208,7 @@ Current governed sequence:
 5. **Q0** — reliability foundation (**IMPLEMENTED / CI VERIFIED** in the
    disposable lane).
 6. **UX0** — synthetic Opportunity Formation frontend prototype
-   (**IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING; does not
+   (**IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING; does not
    unlock P1**).
 7. **P1** — Capability + Goal foundation (**SPEC-READY; baseline waits on complete parent-I0 verification, not capacity alone**).
 8. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.

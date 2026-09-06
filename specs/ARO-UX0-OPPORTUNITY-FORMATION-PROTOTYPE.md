@@ -2,17 +2,17 @@
 
 ## 0. Metadata
 
-- **Status:** IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
+- **Status:** IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING
 - **Spec version:** 1.0.0
 - **Owner/director:** ARO founder/director
 - **Specification branch:** `spec/aro-ux0-opportunity-prototype`
-- **Implementation branch:** `feat/aro-ux0-opportunity-prototype` after this spec reaches `main`
+- **Implementation branch:** `feat/aro-ux0-opportunity-prototype`
 - **Specification PR:** #34
 - **Depends on:** R1 SHIPPED; Q0 IMPLEMENTED / CI VERIFIED
 - **Blocks:** no semantic package; informs the later X1 experience foundation
 - **Governing docs:** `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_CURRENT_STATE.md`, `ARO_EXPERIENCE_SYSTEM.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_TRUST_SAFETY.md`
 - **Required reviewers:** founder/product-design; accessibility/performance self-review
-- **Last updated:** 2026-09-03
+- **Last updated:** 2026-09-05
 
 The founder authorized a frontend-first prototype while hosted Auth, recovery and
 domain work remains deferred. This package does not waive I0, authorize P1
@@ -347,7 +347,7 @@ contract and privacy review.
 | UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | PASS |
 | UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | PASS |
 | UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | PASS |
-| UX0-009 | existing required CI and public-route smoke remain green | CI | PR #35 | PENDING CI |
+| UX0-009 | existing required CI and public-route smoke remain green | CI | PR #35: `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `f19fb31` | PASS |
 | UX0-010 | founder approves the distinct creative direction before merge | founder review | PR #35 | PENDING FOUNDER |
 | UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | PASS |
 
@@ -395,7 +395,7 @@ Branch: feat/aro-ux0-opportunity-prototype
 Specification PR: #34
 Implementation commit: 2609a54be31c47bb3b31d5356348610d4efab0d7
 Delivery PR: #35 (open; merge commit pending)
-Acceptance: 8/11 passed; UX0-001/009/010 pending founder/CI
+Acceptance: 9/11 passed; UX0-001/010 pending founder Preview/Production approval
 Unit: 73/73 PASS
 Integration: prototype/provider/locale boundary PASS
 E2E: focused UX0 9/9 PASS; complete suite 25/25 PASS
@@ -406,5 +406,5 @@ Screenshots/evidence: artifacts/ARO-UX0/VERIFICATION.md
 Reviewers: founder/product-design required
 Known follow-ups: I0 Auth/recovery/domain; P1 runtime remains blocked
 Release environment: Preview only
-Status: IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING
+Status: IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING
 ```

@@ -6,6 +6,21 @@
 
 ---
 
+## 2026-09-05 — UX0 required PR checks passed
+
+PR #35's required `static`, `browser-smoke` and disposable `platform` checks,
+plus the Vercel Preview and review integrations, are green on `f19fb31`.
+The platform run retained the local migration, 81/81 SQL, Auth/API/Trust,
+reset/replay and cleanup checks while proving the source-controlled prototype
+browser boundary at 360px and 1440px in light and dark modes with no request to
+the disposable Supabase API.
+
+UX0 is now **IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL
+PENDING** with 9/11 acceptance rows passing. Only UX0-001 and UX0-010 remain:
+founder review of the Preview and explicit approval that merging PR #35 will
+release the same change to Production. The PR remains open. Parent-I0 hosted
+Auth/recovery/domain gates remain blocked, and P1 remains unauthorized.
+
 ## 2026-09-04 — UX0 opportunity formation prototype implemented locally
 
 `feat/aro-ux0-opportunity-prototype` replaces the homepage’s static orbit and

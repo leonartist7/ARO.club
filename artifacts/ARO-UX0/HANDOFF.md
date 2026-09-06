@@ -6,10 +6,10 @@
 >
 > **Prepared:** 2026-09-03
 
-> **2026-09-04 update:** `feat/aro-ux0-opportunity-prototype` now contains the
-> locally verified implementation. This file preserves the start conditions;
-> it is no longer the current execution handoff. Founder Preview/Production
-> release approval and hosted PR checks remain pending.
+> **2026-09-05 update:** `feat/aro-ux0-opportunity-prototype` now contains the
+> CI-verified implementation. This file preserves the start conditions; it is
+> no longer the current execution handoff. Founder Preview/Production release
+> approval remains pending.
 
 ## Current truth
 
@@ -20,8 +20,8 @@
   21+60 SQL assertions pass, with no retained synthetic users.
 - Vercel contains exactly the two Supabase browser variables under Preview scope.
   Their literal values were not exposed or independently read back.
-- The prior PR #33 Preview proved the public baseline could render; the UX0
-  branch still requires its own green hosted checks and founder visual review.
+- PR #35's required hosted checks are green; founder visual review and explicit
+  Production release approval remain.
 - The founder intentionally deferred hosted Auth callbacks, recovery E2E and
   domain resolution while a synthetic frontend prototype is developed.
 - Until the masked Preview values are verified, UX0 must ship a source-controlled,
