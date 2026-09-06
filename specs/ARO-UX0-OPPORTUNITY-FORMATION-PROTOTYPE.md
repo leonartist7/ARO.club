@@ -347,7 +347,7 @@ contract and privacy review.
 | UX0-006 | keyboard, semantics, contrast and reduced motion pass | accessibility matrix | same | PASS |
 | UX0-007 | bundle, image, responsiveness and CLS budgets pass | build + browser measurement | same | PASS |
 | UX0-008 | generated assets are original, optimized and correctly labelled | asset manifest + review | same | PASS |
-| UX0-009 | existing required CI and public-route smoke remain green | CI | PR #35: `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `f19fb31` | PASS |
+| UX0-009 | existing required CI and public-route smoke remain green | CI | PR #35: `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `db41760` | PASS |
 | UX0-010 | founder approves the distinct creative direction before merge | founder review | PR #35 | PENDING FOUNDER |
 | UX0-011 | all new UX0 copy and states render through translation keys in English, French and Spanish | locale test + E2E spot check | same | PASS |
 

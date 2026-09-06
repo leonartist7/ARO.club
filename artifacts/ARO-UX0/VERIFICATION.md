@@ -27,7 +27,7 @@ AI, realtime, location, payment or persistence work.
 | UX0-006 | native radio controls, restored edit/reset focus, state-aware semantic figure/text result, live region, reduced-motion CSS | keyboard/reduced-motion E2E; 44×44 minimum; rendered contrast evidence | PASS |
 | UX0-007 | no dependency; route-local code; responsive WebP | bundle delta, 2.1 ms response, CLS ≤0.000301, image budgets | PASS |
 | UX0-008 | original face-free editorial image + responsive variants | `ASSET_MANIFEST.md`, generated asset review and sizes | PASS |
-| UX0-009 | existing tests/build and required hosted checks | PR #35 `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `f19fb31`; platform run `33987770971`, quality run `33987770974` | PASS |
+| UX0-009 | existing tests/build and required hosted checks | PR #35 `static`, `browser-smoke`, `platform`, Vercel and review integrations green on `db41760`; platform run `34001252147`, quality run `34001252035` | PASS |
 | UX0-010 | Preview creative approval | founder review pending; do not merge or release | PENDING FOUNDER |
 | UX0-011 | all controls, validation, provenance, fixtures and result clauses use locale keys | complete key test for `en`, `fr`, `es`; E2E locale spot check | PASS |
 
@@ -131,9 +131,9 @@ disabled login inputs, the non-redirecting callback, protected-route rejection,
 light/dark responsiveness and zero application requests to the local Supabase
 API. The underlying disposable Auth lifecycle continues separately. This makes
 the required check truthful; it does not satisfy or waive parent-I0 hosted Auth.
-The corrected hosted run passed the complete disposable sequence, including
-81/81 SQL checks and the prototype browser boundary, in run `33987770971`;
-`static` and `browser-smoke` passed in run `33987770974`.
+The review-fix hosted run passed the complete disposable sequence, including
+81/81 SQL checks and the expanded prototype browser boundary, in run
+`34001252147`; `static` and `browser-smoke` passed in run `34001252035`.
 
 ## Performance and bundle evidence
 

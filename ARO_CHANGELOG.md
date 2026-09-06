@@ -27,8 +27,9 @@ instead of creating a legacy local player, clearing an anchor restores focus to
 that anchor's first radio, and the small People/Place/Time result labels now
 render at 13.59:1. The refreshed seven-route audit includes `/choose-role` and
 `/leaderboard`, reports zero Supabase-domain requests and no simulated player,
-and the full unit/E2E/build evidence remains green locally pending the required
-hosted rerun for this revision.
+and the full unit/E2E/build evidence remains green. The required hosted rerun
+also passed on `db41760` (`platform` run `34001252147`; `static` and
+`browser-smoke` run `34001252035`).
 
 ## 2026-09-04 — UX0 opportunity formation prototype implemented locally
 
