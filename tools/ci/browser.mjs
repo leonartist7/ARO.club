@@ -97,6 +97,14 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
             'PROTOTYPE_LOGIN_ENABLED'
           );
 
+          stage = `PROTOTYPE_LEGACY_ACCOUNT_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/choose-role`, { waitUntil: 'domcontentloaded' });
+          await page.waitForURL(url => url.pathname === '/login', { timeout: uiReadyTimeout });
+          requireCondition(
+            !(await page.evaluate(() => JSON.parse(localStorage.getItem('conversa-player') ?? '{"state":{}}').state?.user)),
+            'PROTOTYPE_LOCAL_PLAYER_CREATED'
+          );
+
           stage = `PROTOTYPE_CALLBACK_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/auth/callback`, { waitUntil: 'domcontentloaded' });
           await page.getByRole('heading', { name: 'Account callbacks are unavailable in this prototype.' })

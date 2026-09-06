@@ -235,7 +235,10 @@ function FormedResult({ result, onEdit, onReset }) {
               ['time', result.timeKey],
             ].map(([key, valueKey]) => (
               <div key={key} className="border-l-2 border-secondary-400 pl-4">
-                <dt className="text-xs font-bold uppercase tracking-[0.14em] text-ink/55 dark:text-bone/55">
+                <dt
+                  className="text-xs font-bold uppercase tracking-[0.14em] text-ink dark:text-bone"
+                  data-testid="formed-logistics-label"
+                >
                   {t(`home.formation.result.${key}`)}
                 </dt>
                 <dd className="mt-1 text-base font-semibold text-ink dark:text-bone">{t(valueKey)}</dd>
@@ -295,6 +298,7 @@ export default function OpportunityFormation() {
   const [state, dispatch] = useReducer(formationReducer, undefined, createInitialFormationState);
   const reducedMotion = usePrefersReducedMotion();
   const firstSignalRef = useRef(null);
+  const firstInputByAnchorRef = useRef({});
 
   useEffect(() => {
     if (state.status !== FORMATION_STATUS.READY_TO_FORM) return undefined;
@@ -312,7 +316,10 @@ export default function OpportunityFormation() {
   }, [reducedMotion, state.status, state.revision]);
 
   const selectSignal = (anchor, id) => dispatch({ type: 'SELECT_SIGNAL', anchor, id });
-  const clearSignal = (anchor) => dispatch({ type: 'CLEAR_SIGNAL', anchor });
+  const clearSignal = (anchor) => {
+    firstInputByAnchorRef.current[anchor]?.focus();
+    dispatch({ type: 'CLEAR_SIGNAL', anchor });
+  };
   const editSignals = () => {
     firstSignalRef.current?.focus();
     dispatch({ type: 'START_EDIT' });
@@ -351,7 +358,10 @@ export default function OpportunityFormation() {
               validationAnchor={state.validationAnchor}
               onSelect={selectSignal}
               onClear={clearSignal}
-              firstInputRef={anchor === 'want' ? firstSignalRef : undefined}
+              firstInputRef={(element) => {
+                firstInputByAnchorRef.current[anchor] = element;
+                if (anchor === 'want') firstSignalRef.current = element;
+              }}
             />
           ))}
 

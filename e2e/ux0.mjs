@@ -93,6 +93,23 @@ export default async function ux0() {
       return (light + 0.05) / (dark + 0.05);
     });
     assert(rationaleContrast >= 4.5, `rationale contrast is ${rationaleContrast.toFixed(2)}:1`);
+    const logisticsLabelContrast = await page.evaluate(() => {
+      const parse = (value) => value.match(/[\d.]+/g).slice(0, 3).map(Number);
+      const luminance = (value) => {
+        const channels = parse(value).map((channel) => {
+          const normalized = channel / 255;
+          return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+      };
+      const label = document.querySelector('[data-testid="formed-logistics-label"]');
+      const foreground = getComputedStyle(label).color;
+      const background = getComputedStyle(document.body).backgroundColor;
+      const light = Math.max(luminance(foreground), luminance(background));
+      const dark = Math.min(luminance(foreground), luminance(background));
+      return (light + 0.05) / (dark + 0.05);
+    });
+    assert(logisticsLabelContrast >= 4.5, `logistics label contrast is ${logisticsLabelContrast.toFixed(2)}:1`);
   });
 
   await run.step('editing recomputes immediately and clearing returns to partial', async () => {
@@ -110,6 +127,7 @@ export default async function ux0() {
     );
     assert(await page.locator('input[value="conversational-spanish"]').isChecked(), 'want selection was lost');
     assert(await page.locator('input[value="patient-practice"]').isChecked(), 'bring selection was lost');
+    await page.waitForFunction(() => document.activeElement?.value === 'library-tuesday');
   });
 
   await run.step('reset removes only ephemeral formation state', async () => {
@@ -222,6 +240,14 @@ export default async function ux0() {
     assert(await callbackBoundary.count(), 'callback route does not explain the prototype account boundary');
     await page.waitForTimeout(2100);
     assert(new URL(page.url()).pathname === '/auth/callback', 'prototype callback route simulated a completed sign-in');
+    await navigate(page, BASE + '/choose-role', { waitUntil: 'domcontentloaded' });
+    await page.waitForURL((url) => url.pathname === '/login');
+    assert(
+      !(await page.evaluate(() => JSON.parse(localStorage.getItem('conversa-player') ?? '{"state":{}}').state?.user)),
+      'legacy role route created a local player'
+    );
+    await navigate(page, BASE + '/leaderboard', { waitUntil: 'domcontentloaded' });
+    assert(!(await page.getByText('Your Rank', { exact: true }).count()), 'leaderboard rendered a simulated signed-in player');
     assert(supabaseRequests.length === 0, supabaseRequests.join(', '));
   });
 

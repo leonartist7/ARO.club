@@ -1,10 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import AdminRoute from '../components/auth/AdminRoute';
 import AdminLayout from '../components/admin/AdminLayout';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { UX0_PROTOTYPE_MODE } from '../config/ux0';
 
 const AdminPageLoader = (
   <div className="flex items-center justify-center h-64">
@@ -227,7 +228,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'choose-role',
-        element: <ChooseRolePage />,
+        element: UX0_PROTOTYPE_MODE ? <Navigate to="/login" replace /> : <ChooseRolePage />,
       },
       {
         path: 'signup',

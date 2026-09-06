@@ -1,6 +1,6 @@
 {
-  "baseUrl": "http://127.0.0.1:4173",
-  "capturedAt": "2026-09-05T19:18:46.486Z",
+  "baseUrl": "http://127.0.0.1:4174",
+  "capturedAt": "2026-09-06T00:23:13.576Z",
   "matrix": [
     {
       "colorScheme": "light",
@@ -30,8 +30,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 744
+        "transferBytes": 266007,
+        "fcpMs": 936
       }
     },
     {
@@ -60,10 +60,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.001615306576729276,
+        "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 652
+        "transferBytes": 266007,
+        "fcpMs": 732
       }
     },
     {
@@ -94,8 +94,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 652
+        "transferBytes": 266007,
+        "fcpMs": 740
       }
     },
     {
@@ -124,10 +124,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.0007528599041203657,
+        "cls": 0.00030069627488652867,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 664
+        "transferBytes": 266007,
+        "fcpMs": 708
       }
     },
     {
@@ -156,10 +156,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.0005990987141927083,
+        "cls": 0.00010343035662615742,
         "resources": 7,
-        "transferBytes": 339888,
-        "fcpMs": 676
+        "transferBytes": 339879,
+        "fcpMs": 728
       }
     },
     {
@@ -190,8 +190,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 664
+        "transferBytes": 266007,
+        "fcpMs": 712
       }
     },
     {
@@ -220,10 +220,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00003854485948434591,
+        "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 768
+        "transferBytes": 266007,
+        "fcpMs": 720
       }
     },
     {
@@ -254,8 +254,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 696
+        "transferBytes": 266007,
+        "fcpMs": 728
       }
     },
     {
@@ -284,10 +284,10 @@
         "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
         "figureDescription": "Three selected signals connect to one central prototype possibility.",
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
-        "cls": 0.00030639410639802617,
+        "cls": 0.00030069627488652867,
         "resources": 7,
-        "transferBytes": 266016,
-        "fcpMs": 700
+        "transferBytes": 266007,
+        "fcpMs": 728
       }
     },
     {
@@ -318,8 +318,8 @@
         "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
         "cls": 0.00010343035662615742,
         "resources": 7,
-        "transferBytes": 339888,
-        "fcpMs": 668
+        "transferBytes": 339879,
+        "fcpMs": 728
       }
     }
   ],
@@ -329,17 +329,17 @@
   "network": {
     "uniqueRequests": [
       {
-        "url": "http://127.0.0.1:4173/",
+        "url": "http://127.0.0.1:4174/",
         "method": "GET",
         "type": "document"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/index-ByRlCLEt.js",
+        "url": "http://127.0.0.1:4174/assets/index-BiU_FMCO.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/index-D7MuKO3V.css",
+        "url": "http://127.0.0.1:4174/assets/index-U_-2aTEo.css",
         "method": "GET",
         "type": "stylesheet"
       },
@@ -349,17 +349,17 @@
         "type": "stylesheet"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/HomePage-cYQRHPyw.js",
+        "url": "http://127.0.0.1:4174/assets/HomePage-CFNoCHxx.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/rotate-ccw-IQpyVUkE.js",
+        "url": "http://127.0.0.1:4174/assets/rotate-ccw-mDouXm5j.js",
         "method": "GET",
         "type": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/assets/sparkles-Cc34OYyT.js",
+        "url": "http://127.0.0.1:4174/assets/sparkles-Df2yvxPf.js",
         "method": "GET",
         "type": "script"
       },
@@ -374,12 +374,12 @@
         "type": "font"
       },
       {
-        "url": "http://127.0.0.1:4173/ux0/opportunity-table-800.webp",
+        "url": "http://127.0.0.1:4174/ux0/opportunity-table-800.webp",
         "method": "GET",
         "type": "image"
       },
       {
-        "url": "http://127.0.0.1:4173/ux0/opportunity-table-1440.webp",
+        "url": "http://127.0.0.1:4174/ux0/opportunity-table-1440.webp",
         "method": "GET",
         "type": "image"
       }
@@ -391,11 +391,13 @@
       "/login",
       "/signup",
       "/forgot-password",
-      "/auth/callback"
+      "/auth/callback",
+      "/choose-role",
+      "/leaderboard"
     ]
   },
   "performance": {
-    "responseMs": 1.8
+    "responseMs": 2.1
   },
   "accessibility": {
     "reducedMotionDuration": "1e-06s",
@@ -409,6 +411,11 @@
       "foreground": "rgb(255, 255, 255)",
       "background": "rgb(190, 50, 25)",
       "ratio": 5.74
+    },
+    "renderedLogisticsLabelContrast": {
+      "foreground": "rgb(40, 36, 32)",
+      "background": "rgb(246, 240, 230)",
+      "ratio": 13.59
     }
   }
 }

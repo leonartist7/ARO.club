@@ -131,7 +131,7 @@ async function captureBrowserEvidence() {
   boundaryPage.on('requestfailed', (request) => {
     allFailedRequests.push(`account-routes ${request.url()} :: ${request.failure()?.errorText}`);
   });
-  for (const route of ['/', '/login', '/signup', '/forgot-password', '/auth/callback']) {
+  for (const route of ['/', '/login', '/signup', '/forgot-password', '/auth/callback', '/choose-role', '/leaderboard']) {
     await navigate(boundaryPage, BASE + route, { waitUntil: 'networkidle' });
   }
 
@@ -170,6 +170,14 @@ async function captureBrowserEvidence() {
     parseColor(rationaleColors.foreground),
     parseColor(rationaleColors.background)
   );
+  const logisticsLabelColors = await boundaryPage.getByTestId('formed-logistics-label').first().evaluate((element) => ({
+    foreground: getComputedStyle(element).color,
+    background: getComputedStyle(document.body).backgroundColor,
+  }));
+  const logisticsLabelContrast = ratio(
+    parseColor(logisticsLabelColors.foreground),
+    parseColor(logisticsLabelColors.background)
+  );
 
   const reducedContext = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const reducedPage = await reducedContext.newPage();
@@ -190,7 +198,7 @@ async function captureBrowserEvidence() {
       uniqueRequests: [...allRequests.values()],
       failedRequests: allFailedRequests,
       supabaseDomainRequests: boundaryRequests.filter((url) => new URL(url).hostname.includes('supabase')),
-      auditedRoutes: ['/', '/login', '/signup', '/forgot-password', '/auth/callback'],
+      auditedRoutes: ['/', '/login', '/signup', '/forgot-password', '/auth/callback', '/choose-role', '/leaderboard'],
     },
     performance: { responseMs: Number(responseMs.toFixed(2)) },
     accessibility: {
@@ -204,6 +212,10 @@ async function captureBrowserEvidence() {
       renderedRationaleContrast: {
         ...rationaleColors,
         ratio: rationaleContrast,
+      },
+      renderedLogisticsLabelContrast: {
+        ...logisticsLabelColors,
+        ratio: logisticsLabelContrast,
       },
     },
   };

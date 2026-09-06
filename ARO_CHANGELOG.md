@@ -21,6 +21,15 @@ founder review of the Preview and explicit approval that merging PR #35 will
 release the same change to Production. The PR remains open. Parent-I0 hosted
 Auth/recovery/domain gates remain blocked, and P1 remains unauthorized.
 
+A subsequent Codex pass found three additional prototype-boundary and
+accessibility gaps. `/choose-role` now redirects to the disabled login boundary
+instead of creating a legacy local player, clearing an anchor restores focus to
+that anchor's first radio, and the small People/Place/Time result labels now
+render at 13.59:1. The refreshed seven-route audit includes `/choose-role` and
+`/leaderboard`, reports zero Supabase-domain requests and no simulated player,
+and the full unit/E2E/build evidence remains green locally pending the required
+hosted rerun for this revision.
+
 ## 2026-09-04 — UX0 opportunity formation prototype implemented locally
 
 `feat/aro-ux0-opportunity-prototype` replaces the homepage’s static orbit and
