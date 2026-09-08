@@ -158,6 +158,12 @@ test('imports reject missing and conflicting provenance before copying', t => {
     { ...run, authority: 'implementation' },
     { ...run, auditSha: SHA },
     { ...run, inputs: [] },
+    { ...run, workerProvider: 'paid-api' },
+    { ...run, paidApiEnabled: true },
+    { ...run, implementationEligible: true },
+    { ...run, workerProvider: undefined },
+    { ...run, paidApiEnabled: undefined },
+    { ...run, implementationEligible: undefined },
     { ...run, inputs: run.inputs.map((v, i) => i === 0 ? { ...v, sha256: 'b'.repeat(64) } : v) },
     { ...run, inputs: run.inputs.map((v, i) => i === 0 ? run.inputs[1] : v) },
   ]) {

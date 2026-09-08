@@ -125,6 +125,7 @@ export function taskDirectory(task, sha) {
 }
 export function validateManifest(run, sha, expectedInputs) {
   if (run?.schemaVersion !== 1 || run.auditSha !== sha || run.repository !== REPOSITORY || run.authority !== 'audit-only') throw Error('Run manifest mismatch');
+  if (run.workerProvider !== 'existing-chatgpt-cloud' || run.paidApiEnabled !== false || run.implementationEligible !== false) throw Error('Run manifest execution authority mismatch');
   if (!Array.isArray(run.inputs) || run.inputs.length !== REQUIRED.length) throw Error('Run manifest inputs incomplete');
   const inputs = new Map();
   for (const input of run.inputs) {
