@@ -12,8 +12,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "537f7880d548328ea7932d61d872e5e34e5168ecb4245d027fa223b512627627",
-      "bytes": 1804
+      "sha256": "c383e0a9764b2db1c210324d88642dd741156afed58d19ae851c85b2320be8e9",
+      "bytes": 2077
     },
     {
       "path": "RECOVERY.md",
@@ -22,8 +22,8 @@
     },
     {
       "path": "packets.json",
-      "sha256": "c67c243643fc6765ab29aa138302e609506b14b4bfb1fb11dd2c4f1057ee9625",
-      "bytes": 4332
+      "sha256": "63f853712d6bc1d0f3c2465acacd50c4e02b746e4e99e794766e6d8d386c9c00",
+      "bytes": 4860
     },
     {
       "path": "proposed-ARO-FV-1.md",
@@ -32,38 +32,38 @@
     },
     {
       "path": "tasks/F1.md",
-      "sha256": "47d101e7680eb121235db16c89a7d6942ebcc23da2f31304b0403ed4fb0da824",
-      "bytes": 6824
+      "sha256": "fc06e8e8ec7729cb316b529f5d1a8ca74b7075d3a283f32eddf00ca6825f6aa8",
+      "bytes": 6983
     },
     {
       "path": "tasks/F2.md",
-      "sha256": "c34ecf3df221b9e9e81ba0bf1dc70ddf6752053aa161002d00dfbe6d27c10fae",
-      "bytes": 3707
+      "sha256": "63dfca6efbc5d75b1b1c71cea7dfb69a3e0b6abcc31d7e5a61faf8198049591e",
+      "bytes": 3866
     },
     {
       "path": "tasks/F3.md",
-      "sha256": "173f8ccd543d1e7f7de2514be6dedc181274fdb0ad33ea5945abc9760bef39d3",
-      "bytes": 4021
+      "sha256": "26468048814f70414e53e4b634344fb141a13a2d1fa8bfa3cd4624639e05926f",
+      "bytes": 4180
     },
     {
       "path": "tasks/F4.md",
-      "sha256": "e578985ed67a22787e7bc802c3fb8818da9f40656aa3d8794007e246f9496309",
-      "bytes": 3671
+      "sha256": "41ac4b06f91f7f675fc3ee820cf0d738d1b0adcf0e6f31ee6584ab8c0ae7b72d",
+      "bytes": 3830
     },
     {
       "path": "tasks/F5.md",
-      "sha256": "9ccc778e0658cabab092f1141185d85cb77f069cda4a9856541da10679243911",
-      "bytes": 3629
+      "sha256": "0a41f1fdc84d358b4c0d12b0a1a10282c24986a5dfc8566ff2b576dafc61bc58",
+      "bytes": 3788
     },
     {
       "path": "tasks/F6.md",
-      "sha256": "cad0c138b9dc0c8fba85fe4261a51dea76395dd3ae6648a6372874c725826ff0",
-      "bytes": 3846
+      "sha256": "847edc7d768a9f36643f22ffa12346affcc1b142007b377833ca50abcccab692",
+      "bytes": 4005
     },
     {
       "path": "tasks/F7.md",
-      "sha256": "19ad6046541746004996b69284fc083524ce613ad98a790d64560e3d96c4bd6e",
-      "bytes": 4167
+      "sha256": "b11a3990afe20ffdd2b8941599a6316c33aa74f5995bfcc906fd9f761bbe54f7",
+      "bytes": 4326
     },
     {
       "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",

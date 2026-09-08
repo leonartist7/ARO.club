@@ -15,7 +15,8 @@
       "file": "tasks/F1.md",
       "taskBaseRule": "approved documentation merge commit A containing SPEC-READY spec",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F2",
@@ -31,7 +32,8 @@
       "file": "tasks/F2.md",
       "taskBaseRule": "accepted F1 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F3",
@@ -47,7 +49,8 @@
       "file": "tasks/F3.md",
       "taskBaseRule": "accepted F2 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F4",
@@ -63,7 +66,8 @@
       "file": "tasks/F4.md",
       "taskBaseRule": "accepted F3 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F5",
@@ -79,7 +83,8 @@
       "file": "tasks/F5.md",
       "taskBaseRule": "accepted F4 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F6",
@@ -95,7 +100,8 @@
       "file": "tasks/F6.md",
       "taskBaseRule": "accepted F5 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     },
     {
       "id": "F7",
@@ -111,12 +117,13 @@
       "file": "tasks/F7.md",
       "taskBaseRule": "accepted F6 commit on the single implementation branch",
       "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "specVersion": "0.2.0"
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138"
     }
   ],
   "specPath": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
   "specVersion": "0.2.0",
-  "candidateSpecSha": null,
+  "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
   "implementationBranch": "codex/fv1-visual-release-evidence",
   "implementationPr": null,
   "baseResolution": "Spec section 25: F1 uses actual approved documentation merge SHA A; F2\u2013F7 use accepted predecessor commits on the same branch/PR. Record full execution/spec SHAs in that existing PR before each slice. Null blocks dispatch."
