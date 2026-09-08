@@ -2,12 +2,12 @@
 
 ## 0. Metadata and authority
 
-- Status: **SPEC-REQUIRED — final approval candidate; implementation NOT authorized**.
-- Version: **0.2.0**, dated 2026-09-08. Owner/director: ARO founder/product-design.
+- Status: **SPEC-READY — founder approved F1–F7 implementation; release approval WITHHELD**.
+- Version: **0.2.0**, approved 2026-09-08; behavior unchanged from candidate commit `a576640cc5b9828486d8bdd0f970636b3ff07138`. Owner/director: ARO founder/product-design.
 - Authoritative FV-1 specification: this file. The recovered v0.1.0 proposal and cloud handoff are historical inputs; this edition supersedes their open choices and execution-base instructions.
 - Product source baseline: `6495e67798ad14876f6c04815f9f5e13eaf52b83`; historical audit revision: `06730c74b44d1a6ee1da24c4d1d1ed721313df5c`. All five saved audit bundles have already been recovered and validated. Do not rerun them.
-- Documentation PR: [#40](https://github.com/leonartist7/ARO.club/pull/40). Proposed sole implementation branch: `codex/fv1-visual-release-evidence`; implementation PR not created. F1–F7 are sequential slices in that ONE branch/PR, with one writer at a time.
-- Depends on existing UX0–UX3 static prototype and recovered A1/A2/A3/A4/S1 evidence. Blocks FV-1 implementation until explicit approval; does not unlock I0/P1 or later runtime packages.
+- Documentation PR: [#40](https://github.com/leonartist7/ARO.club/pull/40). Approved sole implementation branch: `codex/fv1-visual-release-evidence`; implementation PR not created. F1–F7 are sequential slices in that ONE branch/PR, with one writer at a time.
+- Depends on existing UX0–UX3 static prototype and recovered A1/A2/A3/A4/S1 evidence. Implementation approval is recorded in section 28; dispatch requires the merged revision binding in section 25; does not unlock I0/P1 or later runtime packages.
 - Governing chain: AGENTS.md, ARO_MASTER_DELIVERY_PLAN.md, ARO_CURRENT_STATE.md, ARO_INFRASTRUCTURE.md, ARO_SPEC_INDEX.md, ARO_IMPLEMENTATION_STATUS.md, ARO_AUTONOMOUS_WORKBOARD.md, ARO_BUILD_PLAYBOOK.md, DECISIONS.md, this package, and applicable UX0–UX3 specifications. ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md, ARO_EXPERIENCE_SYSTEM.md, ARO_DESIGN_SYSTEM.md, ARO_ARCHITECTURE.md, ARO_DATA_MODEL.md, ARO_TRUST_SAFETY.md and ARO_MONEY.md continue to constrain it.
 - Required reviewers: founder for scope/design/release; independent nonwriting implementation reviewer for final diff/evidence; competent human screen-reader tester for the scoped accessibility pass.
 
@@ -33,7 +33,7 @@ No new artwork, destinations, generic redesign, backend, Auth, persistence, actu
 
 ## 6. Selected defaults and invariants
 
-These are exact recommendations for approval as one package, not options left for workers to choose.
+These defaults were approved by the founder as one package on 2026-09-08; workers may not reinterpret them.
 
 | User-visible decision | Default and brief before → after example |
 |---|---|
@@ -165,11 +165,11 @@ Each slice records full base/spec/tested commit, commands/exits and retrievable 
 
 ## 25. Approval, base reconciliation and rollout
 
-**Three separate permissions:** documentation merge publishes the reviewed specification and recovery records; implementation approval authorizes F1–F7 coding within it; release approval authorizes the eventual product merge/deployment. None implies the others. Documentation merge alone leaves SPEC-REQUIRED and workers stopped. No implementation branch, product PR, audit or release is dispatched by this candidate.
+**Three separate permissions:** documentation merge publishes the reviewed specification and recovery records; implementation approval authorizes F1–F7 coding within it; release approval authorizes the eventual product merge/deployment. None implies the others. The founder explicitly approved documentation merge and F1–F7 implementation on 2026-09-08 (section 28). Release remains withheld. No implementation branch or product PR has yet been created; this documentation change does not itself dispatch a worker.
 
 After explicit founder implementation approval identifying the reviewed documentation revision, record approval and SPEC-READY in this spec plus the existing index/status/current-state/changelog. Commit that record through the documentation PR (or a documentation-only follow-up if #40 was already merged). Let **A** be the actual full main commit that contains that approved spec. Resolve A from GitHub only after the merge exists; APPROVED_SPEC_SHA = A and F1 TASK_BASE_SHA = A. Verify git show A:specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md has version 0.2.0, SPEC-READY and the explicit founder approval record. Verify A contains all seven packets. The old 6495... SHA is the product comparison baseline, NEVER an executable F1 base.
 
-Start the ONE implementation branch from A only after that check. In its ONE PR record the full A and governing path/version before F1 writes. F2 uses the actual accepted F1 commit, F3 the accepted F2 commit, continuing through F7. For every handoff record the full predecessor SHA and fixed APPROVED_SPEC_SHA=A in that same PR, verify ancestry and a clean checkout, then allow the next writer. These future SHAs do not exist at proposal time; null in packets.json is a deliberate dispatch lock, not permission to use main/HEAD or guess a hash. Do not introduce a dispatch receipt subsystem. If main changed product files since 6495..., stop for a bounded compatibility diff/reconciliation, never repeat completed audits.
+Start the ONE implementation branch from A only after that check. In its ONE PR record the full A and governing path/version before F1 writes. F2 uses the actual accepted F1 commit, F3 the accepted F2 commit, continuing through F7. For every handoff record the full predecessor SHA and fixed APPROVED_SPEC_SHA=A in that same PR, verify ancestry and a clean checkout, then allow the next writer. The documentation merge SHA cannot be embedded in its own commit. Null base/spec fields in packets.json must therefore be bound to the actual PR #40 merge commit in the Terra handoff and the ONE implementation PR before F1; they do not negate the recorded approval. F2–F7 remain locked until their actual accepted predecessor SHAs exist. Never use floating main/HEAD or guess a hash. Do not introduce a dispatch receipt subsystem. If main changed product files since 6495..., stop for a bounded compatibility diff/reconciliation, never repeat completed audits.
 
 No deployment is part of these packets. Existing repository CI may create its normal documentation preview; that is not FV-1 release approval. Founder reviews the completed implementation and evidence before package merge, consistent with ADR-028. Preview/Production publication requires explicit named-environment approval. No runtime gates are waived.
 
@@ -187,12 +187,18 @@ Security/privacy/Trust diff reviewer: the independent reviewer above. Approval/f
 
 ## 28. Product/design approval record
 
-Founder: pending. Reviewed commit: pending. Decision/date: pending. Documentation merge: not approved by this file. Implementation: not approved. Release: not approved. All substantive defaults are selected in this candidate; the remaining decision is founder acceptance or requested changes, not delegation of technical choices back to the founder.
+- Approver: ARO founder/user, explicit approval in the current recovery task on **2026-09-08**.
+- Approved specification: **FV-1 v0.2.0**, path `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md`, candidate commit `a576640cc5b9828486d8bdd0f970636b3ff07138`; approved candidate Git blob `e01d450bb41394b13763cf090bdf4fd63d4f8628`. The same candidate content was present in reviewed documentation head `78005892071b7996917f8f10d04e5cd601f124d2`.
+- Founder decision: “I approve: 1. Merging PR #40. 2. The proposed FV-1 defaults described in your approval summary. 3. Implementation of F1–F7 sequentially on ONE isolated branch/PR.” This records approval of the linked v0.2.0 scope/defaults and its specified technical execution/verification plan. This commit changes approval metadata and handoff state only; it does not change approved behavior or acceptance thresholds.
+- Documentation: **merge PR #40 authorized through normal checks**.
+- Implementation: **F1–F7 authorized sequentially on ONE isolated branch/PR**, after binding the actual merged base/spec revision as section 25 requires.
+- Release: **WITHHELD**, including product merge and Preview/Production publication. The founder explicitly requires independent review, human NVDA testing and founder visual review before any full-verification claim.
+- All future product acceptance, independent review, human NVDA testing and founder visual review remain pending. No implementation has been performed by this approval-recording change.
 
 ## 29. Definition of done
 
-VERIFIED requires approved immutable spec, all eight rows passing, scoped tests/required CI, responsive/theme/keyboard/motion/human screen-reader evidence, every budget passing, independent review of the exact final product diff, no unrelated changes, and factual existing registry updates. Founder visual review and explicit merge/release permissions remain separate. Do not mark SHIPPED from documentation or CI alone.
+VERIFIED requires approved immutable spec, all eight rows passing, scoped tests/required CI, responsive/theme/keyboard/motion/human screen-reader evidence, every budget passing, independent review of the exact final product diff, completed founder visual review, no unrelated changes, and factual existing registry updates. The founder's 2026-09-08 approval explicitly withholds any full-verification claim until independent review, human NVDA testing and founder visual review are complete. Product merge/release permissions remain separate and WITHHELD. Do not mark SHIPPED from documentation or CI alone.
 
 ## 30. Delivery record
 
-Package FV-1; candidate 0.2.0; documentation PR #40; product branch/PR not created; product acceptance/unit/E2E/a11y/performance/independent review NOT RUN; release environment none; status SPEC-REQUIRED. Recovery provenance remains in [RECOVERY.md](../docs/fv1-recovery/RECOVERY.md). Encoder-only preflight evidence and its limits are recorded in [F1](../docs/fv1-recovery/tasks/F1.md).
+Package FV-1; approved spec 0.2.0; documentation PR #40; product branch/PR not created; product acceptance/unit/E2E/a11y/performance/independent review NOT RUN; release environment none; status SPEC-READY, implementation authorized, release WITHHELD. Recovery provenance remains in [RECOVERY.md](../docs/fv1-recovery/RECOVERY.md). Encoder-only preflight evidence and its limits are recorded in [F1](../docs/fv1-recovery/tasks/F1.md).

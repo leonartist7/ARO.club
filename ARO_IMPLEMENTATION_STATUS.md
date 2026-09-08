@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **2026-09-08 FV-1 approval candidate:** [FV-1 v0.2.0](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is **SPEC-REQUIRED**, with selected defaults, budgets/profile, review plan and seven sequential packets for ONE implementation branch/PR. Five saved audit bundles were recovered/validated without reruns; cloud encoder preflight passed. Documentation PR #40 is pending approval. No implementation or release is authorized; I0/P1 and later gates are unchanged.
+> **2026-09-08 FV-1 approval:** [FV-1 v0.2.0](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is **SPEC-READY**. Founder approved PR #40 documentation merge and F1–F7 sequential implementation on ONE isolated branch/PR, against candidate `a576640cc5b9828486d8bdd0f970636b3ff07138` (reviewed head `78005892071b7996917f8f10d04e5cd601f124d2`). Bind actual documentation merge SHA before F1; use accepted predecessor SHAs thereafter. No product implementation or full verification is claimed. Independent review, human NVDA testing and founder visual review remain pending; release/product merge approval is WITHHELD. I0/P1 and later gates are unchanged.
 
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
 
