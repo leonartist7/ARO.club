@@ -1,3 +1,5 @@
+> Historical recovered synthesis. The [authoritative v0.2.0 candidate](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) supersedes its unresolved choices and proposed execution bases. This historical evidence does not authorize implementation.
+
 # Recovered cloud handoff
 
 Source: existing task `Schedule audit tasks`, response `6548a81c-1d72-5bca-a69e-96b93236a90b`, retrieved 2026-09-08. Text reproduced below; attachment-only references replaced with filenames. This is the cloud worker's validation account, not a second local import. The raw bundles remain in the user's cloud Library.

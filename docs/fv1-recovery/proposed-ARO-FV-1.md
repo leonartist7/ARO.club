@@ -1,5 +1,7 @@
 # FV-1 — Truthful visual prototype and release evidence
 
+> Historical v0.1.0 recovery proposal. Superseded for all decisions and execution bases by the [authoritative v0.2.0 candidate](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md). Preserve this text as provenance, not worker instructions.
+
 Version: 0.1.0. Status: **PROPOSED / SPEC-REQUIRED**. Owner: ARO founder/product-design. This documentation edition packages the recovered cloud proposal for review; it does not authorize implementation.
 
 ## Authority, revisions and dependencies

@@ -61,3 +61,10 @@ This GitHub edition supplies the reviewed proposed scope, full cloud handoff tex
 A combined cloud request to retrieve and publish unreviewed bundles was rejected by automatic approval review for potentially sensitive export. A narrower in-cloud retrieval/validation request was accepted. This PR contains reviewed technical documentation, not those bundles or private URLs. No blocked raw export is attempted.
 
 Founder preference: Terra/high for subsequent implementation. Actual cloud selection was not certified by cloud controls; the visible task selector read GPT-6 Astra Medium. No new model/API billing was added. Implementation still requires recorded product-design approval and exact dispatch pins.
+
+
+## Final approval preparation — 2026-09-08
+
+The [authoritative candidate](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) v0.2.0 selects the prior unresolved defaults and reconciles execution bases. Historical recovery evidence above is unchanged. Cloud preflight and environment inventory were bounded capability checks, not audit reruns. F1 records the exact synthetic encoder command/result. Spec section 20 records the actual cloud profile and missing Chromium binary; no install or product test was performed.
+
+Documentation validation checks relative links, all seven packet sections, finite exclusive ownership, ordered dependencies, intentionally blocked execution fields, and normalized UTF-8/LF SHA-256 manifest entries including the authoritative specification. Runtime acceptance remains NOT RUN. Product source/config/assets are unchanged from the proposal baseline. Prior build/lint and PR checks apply only to their tested revisions; new PR checks must be inspected at the updated head. No implementation or release approval is inferred from any documentation check.

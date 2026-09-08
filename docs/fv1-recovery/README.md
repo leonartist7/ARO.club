@@ -1,16 +1,15 @@
-# FV-1 recovery handoff
+# FV-1 — final approval package
 
-**PROPOSED / SPEC-REQUIRED. No product implementation is authorized by this documentation PR.**
+**SPEC-REQUIRED. Documentation, implementation and release approvals are separate. No product work is dispatched.**
 
-- [Proposed FV-1 specification v0.1.0](proposed-ARO-FV-1.md)
-- [Recovery provenance, bundle hashes and retrieval map](RECOVERY.md)
-- [Recovered cloud synthesis and handoff](CLOUD_HANDOFF.md)
-- [First packet: F1 media foundation](tasks/F1.md)
-- Ordered remainder: [F2 shell/routes](tasks/F2.md) → [F3 journey state](tasks/F3.md) → [F4 discovery/Create](tasks/F4.md) → [F5 Profile/Express](tasks/F5.md) → [F6 return/Library/Settings](tasks/F6.md) → [F7 acceptance/review](tasks/F7.md)
-- [Machine-readable dispatch status](packets.json); [documentation integrity manifest](manifest.json)
+- [Authoritative FV-1 v0.2.0 candidate](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md): selected defaults (§6), budgets/profile (§20), approval/base reconciliation (§25), independent/human review (§27).
+- [First packet F1, including passed cloud encoder preflight](tasks/F1.md).
+- One implementation branch/PR, sequential slices: [F1](tasks/F1.md) → [F2](tasks/F2.md) → [F3](tasks/F3.md) → [F4](tasks/F4.md) → [F5](tasks/F5.md) → [F6](tasks/F6.md) → [F7](tasks/F7.md).
+- [Packet metadata](packets.json); [integrity manifest](manifest.json).
+- Preserved evidence: [five-bundle recovery](RECOVERY.md), [historical cloud synthesis](CLOUD_HANDOFF.md), [superseded v0.1.0 proposal](proposed-ARO-FV-1.md).
 
-All five saved audits were freshly retrieved and validated in their existing cloud task; none were rerun. Their evidence base is `06730c74b44d1a6ee1da24c4d1d1ed721313df5c`; corrected tooling and proposal base are `6495e67798ad14876f6c04815f9f5e13eaf52b83`.
+All five saved audits were already recovered and validated; none were rerun. Exact audit base: `06730c74b44d1a6ee1da24c4d1d1ed721313df5c`; unchanged product comparison baseline: `6495e67798ad14876f6c04815f9f5e13eaf52b83`.
 
-Approve scope, local preview/reset behavior, navigation/copy, budgets and verification profile; name the independent reviewer; then record the approved spec SHA and first execution base. Later execution SHAs must come from actual accepted predecessor commits. Do not substitute an invented future SHA or an audit SHA for that handoff.
+F1 must start from the actual approved documentation merge commit containing the SPEC-READY spec, never the old product baseline. Future merge/predecessor SHAs cannot be known now; null execution fields deliberately block dispatch until full SHAs are recorded in the single implementation PR. No additional planning infrastructure is needed.
 
-One implementation writer at a time, one FV-1 package branch/PR, independent review after the finished diff. Preserve I0/P1 and all later runtime gates.
+Approval checklist: approve documentation publication; separately approve the selected FV-1 scope/defaults for F1–F7 implementation; reserve product merge/Preview/Production release for completed evidence and founder approval. Human screen-reader and final visual review remain mandatory before verification/release. I0/P1 and later runtime gates remain unchanged.

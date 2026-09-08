@@ -804,3 +804,8 @@ Implement a repository-only cloud execution toolkit: exact-SHA disposable bootst
 ## September 8, 2026 — AUTO0 report contract repair
 
 Follow-up tooling correction on codex/auto0-report-contract-fixes: validate imported run provenance before copying evidence, align C1 revision-scoped packet/import/status paths, and capture browser evidence on every main push. Eighteen tooling tests pass locally. No runtime scope, product gate or billing authority changes.
+
+
+## 2026-09-08 — FV-1 final approval candidate and reconciled handoff
+
+Prepared authoritative `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md` v0.2.0, still SPEC-REQUIRED. It selects the outstanding user-visible defaults, technical budgets, reproducible lab profile and independent/human review plan. F1 cloud encoder availability passed an in-memory synthetic test; no audits were rerun and no product changes were implemented. F1 now requires the actual approved documentation merge revision; F2–F7 require accepted predecessor commits on ONE implementation branch/PR. Documentation merge, implementation and release approvals remain separate. Existing recovery provenance is preserved; no new planning infrastructure was added.

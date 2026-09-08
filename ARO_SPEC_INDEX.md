@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-08 FV-1 approval candidate:** [FV-1 v0.2.0](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is **SPEC-REQUIRED**, with selected defaults, budgets/profile, review plan and seven sequential packets for ONE implementation branch/PR. Five saved audit bundles were recovered/validated without reruns; cloud encoder preflight passed. Documentation PR #40 is pending approval. No implementation or release is authorized; I0/P1 and later gates are unchanged.
+
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
 
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
