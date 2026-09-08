@@ -81,3 +81,7 @@ node tools/autonomy/cli.mjs verify-capture --sha FULL_AUDIT_SHA --bundle /tmp/do
 ```
 
 The adapter validates source identity, file hashes and screenshot references. It reports incomplete coverage separately and always returns auditCompleted=false: the ChatGPT worker must perform the actual audit and cite these files. Do not accept a passing workflow alone as product acceptance. This alternative supplies browser observations; it does not claim ChatGPT itself can access the local app URL. Additional interactions outside the collector's documented coverage remain explicit findings or follow-up evidence needs.
+
+### Report provenance and C1 exports
+
+Every import requires run.json at the extracted bundle root, beside report.json. It must match the dispatcher repository, full SHA, audit-only authority and all required source fingerprints; differing sandbox paths are expected. C1 output is AUDIT_OUTPUT_ROOT/C1/AUDIT_SHA. Export that folder with the top-level run.json copied alongside report.json. For compare --previous, pass this extracted historical bundle root. The browser workflow runs on every main push so changes to dependencies, build configuration and governing inputs cannot silently omit evidence for the new revision.

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
-import { REPOSITORY, TASKS, assertSha, hash, sourceHash, inside, realDestination, separateRoots, safeFile, verifySource, prepare, readiness, reportValidation, writeJson } from './core.mjs';
+import { REPOSITORY, TASKS, taskDirectory, validateManifest, assertSha, hash, sourceHash, inside, realDestination, separateRoots, safeFile, verifySource, prepare, readiness, reportValidation, writeJson } from './core.mjs';
 
 function options(args) {
   const result = {};
@@ -17,24 +17,26 @@ function readRun(out, sha) {
   assertSha(sha);
   const root = fs.realpathSync(out);
   const run = JSON.parse(fs.readFileSync(safeFile(root, 'run.json'), 'utf8'));
-  if (run.schemaVersion !== 1 || run.auditSha !== sha || run.repository !== REPOSITORY || run.authority !== 'audit-only') throw Error('Run manifest mismatch');
+  validateManifest(run, sha);
   return { root, run };
 }
 export function importReport(output, sha, task, bundle) {
   if (!TASKS.includes(task)) throw Error('Unknown task');
-  const { root } = readRun(output, sha);
+  const { root, run } = readRun(output, sha);
   const input = fs.realpathSync(bundle);
   if (inside(root, input) || inside(input, root)) throw Error('Import source must be a separate extracted bundle');
+  const provenance = JSON.parse(fs.readFileSync(safeFile(input, 'run.json'), 'utf8'));
+  validateManifest(provenance, sha, run.inputs);
   const report = JSON.parse(fs.readFileSync(safeFile(input, 'report.json'), 'utf8'));
   const errors = reportValidation(report, task, sha, input);
   if (errors.length) throw Error(errors.join('; '));
-  const destination = fs.realpathSync(path.join(root, task));
+  const destination = fs.realpathSync(path.join(root, taskDirectory(task, sha)));
   if (!inside(root, destination)) throw Error('Task directory escapes output');
   if (fs.existsSync(path.join(destination, 'report.json'))) throw Error('Report already imported; use a new run instead of overwriting history');
   const names = new Set();
   for (const evidence of report.evidence) {
     const normalized = path.posix.normalize(evidence.path);
-    if (normalized !== evidence.path || ['report.json', 'PROMPT.md'].includes(normalized) || names.has(normalized)) throw Error('Reserved, duplicate or noncanonical evidence path');
+    if (normalized !== evidence.path || ['report.json', 'PROMPT.md', 'run.json'].includes(normalized) || names.has(normalized)) throw Error('Reserved, duplicate or noncanonical evidence path');
     names.add(normalized);
     const target = realDestination(path.resolve(destination, normalized));
     if (!inside(destination, target) || fs.existsSync(target)) throw Error('Evidence destination exists or escapes output');
@@ -44,6 +46,7 @@ export function importReport(output, sha, task, bundle) {
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(safeFile(input, evidence.path), target, fs.constants.COPYFILE_EXCL);
   }
+  writeJson(path.join(destination, 'run.json'), provenance);
   writeJson(path.join(destination, 'report.json'), report);
   return { taskId: task, imported: true, auditSha: sha, independentlyVerified: false };
 }

@@ -800,3 +800,7 @@ Founder requested all current material on GitHub default branch (`main`). Packag
 ## 2026-09-08 — AUTO0 autonomous execution and memory
 
 Implement a repository-only cloud execution toolkit: exact-SHA disposable bootstrap, generated task packets, source/evidence hashing, dependency-gated report imports, browser evidence on GitHub-hosted Playwright and Obsidian-compatible durable memory. Founder selected existing ChatGPT cloud workers with no new API billing. Cloud schedule availability and actual audit completion remain separate verification facts. Product source and I0/P1/FV-1 gates are unchanged.
+
+## September 8, 2026 — AUTO0 report contract repair
+
+Follow-up tooling correction on codex/auto0-report-contract-fixes: validate imported run provenance before copying evidence, align C1 revision-scoped packet/import/status paths, and capture browser evidence on every main push. Eighteen tooling tests pass locally. No runtime scope, product gate or billing authority changes.

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { REQUIRED, TASKS, DEPENDENCIES, REPOSITORY, hash, sourceHash, assertSha, separateRoots, safeFile, prepare, verifySource, reportValidation, readiness, writeJson } from './core.mjs';
+import { REQUIRED, TASKS, taskDirectory, DEPENDENCIES, REPOSITORY, hash, sourceHash, assertSha, separateRoots, safeFile, prepare, verifySource, reportValidation, readiness, writeJson } from './core.mjs';
 import { importReport, runCli } from './cli.mjs';
 
 const SHA = 'a'.repeat(40);
@@ -57,7 +57,7 @@ test('preparation pins provenance and generates all seven concrete packets', t =
   const f = fixture(t); const run = prepare(f.source, f.sha, f.out);
   assert.equal(run.auditSha, f.sha); assert.equal(run.inputs.length, REQUIRED.length);
   for (const task of TASKS) {
-    const packet = fs.readFileSync(path.join(f.out, task, 'PROMPT.md'), 'utf8');
+    const packet = fs.readFileSync(path.join(f.out, taskDirectory(task, f.sha), 'PROMPT.md'), 'utf8');
     assert.ok(packet.includes(`AUDIT_SHA=${f.sha}`)); assert.ok(packet.includes(f.source)); assert.ok(packet.includes(f.out));
   }
   assert.equal(readiness(f.out, f.sha).leadEligible, false);
@@ -107,6 +107,7 @@ test('lead requires five valid same-revision completed bundles', t => {
 test('cross-task imports preserve existing history and validate identity', t => {
   const f = fixture(t); prepare(f.source, f.sha, f.out);
   const incoming = path.join(f.base, 'incoming'); bundle(incoming, 'A1', f.sha);
+  fs.copyFileSync(path.join(f.out, 'run.json'), path.join(incoming, 'run.json'));
   assert.throws(() => importReport(f.out, f.sha, 'A2', incoming), /identity/);
   assert.equal(importReport(f.out, f.sha, 'A1', incoming).imported, true);
   assert.throws(() => importReport(f.out, f.sha, 'A1', incoming), /already imported/);
@@ -146,4 +147,41 @@ test('browser capture adapter rejects stale and tampered artifacts', t => {
   assert.throws(() => runCli(['verify-capture', '--sha', 'b'.repeat(40), '--bundle', root]));
   fs.appendFileSync(path.join(root, 'browser-evidence.json'), ' ');
   assert.throws(() => runCli(['verify-capture', '--sha', SHA, '--bundle', root]), /tampered/);
+});
+
+test('imports reject missing and conflicting provenance before copying', t => {
+  const f = fixture(t); const run = prepare(f.source, f.sha, f.out);
+  const incoming = path.join(f.base, 'incoming'); bundle(incoming, 'A1', f.sha);
+  assert.throws(() => importReport(f.out, f.sha, 'A1', incoming));
+  for (const bad of [
+    { ...run, repository: 'https://example.invalid' },
+    { ...run, authority: 'implementation' },
+    { ...run, auditSha: SHA },
+    { ...run, inputs: [] },
+    { ...run, workerProvider: 'paid-api' },
+    { ...run, paidApiEnabled: true },
+    { ...run, implementationEligible: true },
+    { ...run, workerProvider: undefined },
+    { ...run, paidApiEnabled: undefined },
+    { ...run, implementationEligible: undefined },
+    { ...run, inputs: run.inputs.map((v, i) => i === 0 ? { ...v, sha256: 'b'.repeat(64) } : v) },
+    { ...run, inputs: run.inputs.map((v, i) => i === 0 ? run.inputs[1] : v) },
+  ]) {
+    writeJson(path.join(incoming, 'run.json'), bad);
+    assert.throws(() => importReport(f.out, f.sha, 'A1', incoming));
+    assert.equal(fs.existsSync(path.join(f.out, 'A1/report.md')), false);
+  }
+  writeJson(path.join(incoming, 'run.json'), { ...run, checkoutRoot: '/other/cloud/source', outputRoot: '/other/cloud/output', inputs: [...run.inputs].reverse() });
+  assert.equal(importReport(f.out, f.sha, 'A1', incoming).imported, true);
+});
+test('C1 packets imports and status use revision-scoped output', t => {
+  const f = fixture(t); const run = prepare(f.source, f.sha, f.out);
+  const destination = path.join(f.out, 'C1', f.sha);
+  assert.ok(fs.readFileSync(path.join(destination, 'PROMPT.md'), 'utf8').includes(`TASK_OUTPUT_ROOT=${destination}`));
+  const incoming = path.join(f.base, 'incoming'); bundle(incoming, 'C1', f.sha);
+  writeJson(path.join(incoming, 'run.json'), run);
+  importReport(f.out, f.sha, 'C1', incoming);
+  assert.equal(readiness(f.out, f.sha).tasks.C1.state, 'COMPLETED');
+  assert.equal(fs.existsSync(path.join(f.out, 'C1/report.json')), false);
+  assert.equal(runCli(['compare', '--out', f.out, '--sha', f.sha, '--previous', destination]).changedInputs.length, 0);
 });
