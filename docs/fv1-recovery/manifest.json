@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "kind": "documentation-edition",
+  "encoding": "utf8-lf",
+  "auditSha": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+  "baseSha": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+  "files": [
+    {
+      "path": "CLOUD_HANDOFF.md",
+      "sha256": "bb55227272d06ff8075c240cfadfb0618d0c442d2f69f164f0b4ea2b572e515c",
+      "bytes": 12108
+    },
+    {
+      "path": "README.md",
+      "sha256": "18d50ccab1578e9585445e7f1638b815e4cb50ce464fba07f81846d388af100b",
+      "bytes": 2243
+    },
+    {
+      "path": "RECOVERY.md",
+      "sha256": "3e2b332e114a42cd5e427607f510d47e2ae40c1cfb1c88ae0dcf593ff797f82a",
+      "bytes": 6766
+    },
+    {
+      "path": "packets.json",
+      "sha256": "ff6028b0d3ea86102f4ac81a5f1c9863081397cc6d36dd34d9dd4ad488f18103",
+      "bytes": 5919
+    },
+    {
+      "path": "proposed-ARO-FV-1.md",
+      "sha256": "ac5019f07320ed613835276f68a293c26defbf287c804e379e36713890334bc4",
+      "bytes": 14330
+    },
+    {
+      "path": "tasks/F1.md",
+      "sha256": "c4cbd0f7b3c070bf6f398ea679eb3ddd01554a60ce50e751cca7cbb3101160b2",
+      "bytes": 7247
+    },
+    {
+      "path": "tasks/F2.md",
+      "sha256": "c5911b7e7e77448f256b86b94098c7cd7ebd3a0a5e9fba8e6284bcef48b5e426",
+      "bytes": 4062
+    },
+    {
+      "path": "tasks/F3.md",
+      "sha256": "1612bd874712f68e80d0b86c0c493624d5ad91fded4ee25b6bd2802112656857",
+      "bytes": 4376
+    },
+    {
+      "path": "tasks/F4.md",
+      "sha256": "6b8c51bd83b435d95fafd576a2df3b75fa652d61dc636be8a5d9789ff89cbbe2",
+      "bytes": 4026
+    },
+    {
+      "path": "tasks/F5.md",
+      "sha256": "95273d1451569860bd3dbbfde83390fabeaf838cea57a56eebb9b5d5802e8cdd",
+      "bytes": 3984
+    },
+    {
+      "path": "tasks/F6.md",
+      "sha256": "8d47243892bfb6ea489f5175c6f21094468dcb2e0bd997fe72d278154623229d",
+      "bytes": 4201
+    },
+    {
+      "path": "tasks/F7.md",
+      "sha256": "86112a05187d55d1a4f7d4b21620049b1979592a4f7b17967842dfeba3f61238",
+      "bytes": 4522
+    },
+    {
+      "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "sha256": "b45453aafb28a472bfc9c1e2bbff4d0120bbb4ea947989cf5dd285819498d578",
+      "bytes": 30887
+    }
+  ]
+}

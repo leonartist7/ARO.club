@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "approved": true,
+  "implementationEligible": false,
+  "packets": [
+    {
+      "id": "F1",
+      "title": "Responsive media foundation",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F1.md",
+      "taskBaseRule": "approved documentation merge commit A containing SPEC-READY spec",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F2",
+      "title": "Shell, navigation and recovery",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F1"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F2.md",
+      "taskBaseRule": "accepted F1 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F3",
+      "title": "Truthful opportunity/Circle state",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F2"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F3.md",
+      "taskBaseRule": "accepted F2 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F4",
+      "title": "Discovery and Create integration",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F3"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F4.md",
+      "taskBaseRule": "accepted F3 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F5",
+      "title": "Profile and Express",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F4"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F5.md",
+      "taskBaseRule": "accepted F4 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F6",
+      "title": "Return, Library and Settings",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F5"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F6.md",
+      "taskBaseRule": "accepted F5 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    },
+    {
+      "id": "F7",
+      "title": "Focused acceptance and independent review",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F6"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "SPEC-READY",
+      "file": "tasks/F7.md",
+      "taskBaseRule": "accepted F6 commit on the single implementation branch",
+      "governingSpec": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "specVersion": "0.2.0",
+      "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+      "implementationApproved": true
+    }
+  ],
+  "specPath": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+  "specVersion": "0.2.0",
+  "candidateSpecSha": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+  "implementationBranch": "codex/fv1-visual-release-evidence",
+  "implementationPr": null,
+  "baseResolution": "Spec section 25: F1 uses verified actual PR #40 merge SHA A; APPROVED_SPEC_SHA=A. F2\u2013F7 use accepted predecessor commits on the same isolated branch/PR. Record full bound SHAs in that existing PR before each slice. No floating refs.",
+  "approval": {
+    "date": "2026-09-08",
+    "approver": "ARO founder/user",
+    "specVersion": "0.2.0",
+    "candidateCommit": "a576640cc5b9828486d8bdd0f970636b3ff07138",
+    "candidateGitBlob": "e01d450bb41394b13763cf090bdf4fd63d4f8628",
+    "reviewedDocumentationCommit": "78005892071b7996917f8f10d04e5cd601f124d2",
+    "documentationMergeAuthorized": true,
+    "implementationAuthorized": true,
+    "releaseAuthorized": false,
+    "record": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md#28-productdesign-approval-record"
+  },
+  "bindingStatus": "Bind A to the verified actual PR #40 merge commit in the Terra handoff and ONE implementation PR. Null fields avoid a self-referential merge SHA, not an approval request. F2\u2013F7 require accepted predecessor commits."
+}

@@ -804,3 +804,13 @@ Implement a repository-only cloud execution toolkit: exact-SHA disposable bootst
 ## September 8, 2026 — AUTO0 report contract repair
 
 Follow-up tooling correction on codex/auto0-report-contract-fixes: validate imported run provenance before copying evidence, align C1 revision-scoped packet/import/status paths, and capture browser evidence on every main push. Eighteen tooling tests pass locally. No runtime scope, product gate or billing authority changes.
+
+
+## 2026-09-08 — FV-1 final approval candidate and reconciled handoff
+
+Prepared authoritative `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md` v0.2.0, still SPEC-REQUIRED. It selects the outstanding user-visible defaults, technical budgets, reproducible lab profile and independent/human review plan. F1 cloud encoder availability passed an in-memory synthetic test; no audits were rerun and no product changes were implemented. F1 now requires the actual approved documentation merge revision; F2–F7 require accepted predecessor commits on ONE implementation branch/PR. Documentation merge, implementation and release approvals remain separate. Existing recovery provenance is preserved; no new planning infrastructure was added.
+
+
+## 2026-09-08 — Founder approves FV-1 documentation merge and implementation
+
+Founder explicitly approved merging PR #40 through normal checks, the proposed defaults and F1–F7 sequentially on ONE isolated branch/PR. Approval is recorded against FV-1 v0.2.0 candidate `a576640cc5b9828486d8bdd0f970636b3ff07138` (identical spec at reviewed head `78005892071b7996917f8f10d04e5cd601f124d2`). Package is SPEC-READY; actual documentation merge SHA governs F1 and the approved spec, followed by exact accepted predecessor SHAs. No product changes or audit reruns accompany this record. Release/product merge approval remains WITHHELD; independent review, human NVDA testing and founder visual review are required before full verification.

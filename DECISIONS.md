@@ -210,3 +210,12 @@ This file records durable choices. Package-specific implementation details belon
 **Decision:** Existing ChatGPT cloud tasks perform AI audit/reasoning work. AUTO0 prepares exact-revision disposable checkouts, validates evidence and report dependencies, and preserves navigable memory. GitHub-hosted Playwright may collect browser evidence; it is not a model worker. No new model API billing is authorized.
 
 **Consequences:** Run memory and inferred lessons do not change package authority. Product implementation requires its approved package, independent verification and recorded founder decisions. Cross-task evidence must be exported and verified; sandbox paths are not durable shared storage. No automatic product merger is introduced.
+
+
+## ADR-030 — FV-1 final approval candidate and single-package execution
+
+**Status:** Accepted by founder 2026-09-08 for documentation merge and F1–F7 implementation; release WITHHELD. Exact approved v0.2.0 candidate: `a576640cc5b9828486d8bdd0f970636b3ff07138`; approval record in spec section 28.
+
+**Decision:** Adopt `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md` v0.2.0 defaults, bounded fictional/local semantics, fixed lab budgets/profile and independent/human review requirements. Execute F1–F7 sequentially on `codex/fv1-visual-release-evidence` in ONE implementation PR after explicit approval. F1 starts from the actual main commit containing the approved SPEC-READY specification; later slices use accepted predecessor commits. The historical product baseline is not an executable F1 base.
+
+**Consequences:** Documentation merge, implementation approval and product merge/release approval remain distinct. Cloud encoder preflight passed; its locked Chromium test binary still requires scoped provisioning after approval. No completed audits rerun, product work dispatched, new planning infrastructure added or I0/P1 gate waived. ADR-028/029 continue to govern.
