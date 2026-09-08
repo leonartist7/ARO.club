@@ -511,3 +511,7 @@ And the game/AR layer should obey one final rule:
 ## 2026-09-08 — Shipaton execution audit
 
 The founder requested a competition-focused launch/evidence program. `SHIPATON_MASTER_PLAN.md` records the current readiness, conditional launch dates, store-account testing risk and award strategy. Its linked metrics, award evidence, public-content drafts, demo script and Devpost draft distinguish proposals from verified results. `shipaton/evidence/launch/2026-09-08-audit.md` records fresh lint, 73 unit tests and production build PASS; native/device/provider checks were not performed. The existing synthetic UX and I0/P1 gates remain unchanged. Account/device access and exact native release history still need confirmation; the founder reports this is the first time. This planning overlay does not authorize a runtime package or Production release.
+
+## 2026-09-08 — AUTO0 execution foundation
+
+The founder authorized a spec-driven cloud orchestration/memory system using existing ChatGPT cloud tasks only, with no new API billing. `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` governs repository-only bootstrap, worker packets, report validation, a GitHub-hosted browser evidence adapter and Obsidian-compatible memory. See `ARO_AUTONOMY.md` for exact capability and reported schedule state. Audit execution is separate from product implementation; I0/P1/FV-1 gates remain open. Tooling delivery does not establish that every cloud schedule is enabled.

@@ -202,3 +202,11 @@ This file records durable choices. Package-specific implementation details belon
 
 **Consequences:** UX0 uses fixtures and deterministic client interaction only. It cannot add Supabase Realtime, AI, connected backend/Auth behavior, P1 schema, production data or new dependencies, and it does not waive any I0/P1 gate. A fail-closed source guard and zero-network assertion are required while Preview values remain unverified. Founder visual approval is required before the implementation package merges.
 
+
+## ADR-029 — Separate autonomous execution from implementation authority
+
+**Status:** Accepted for repository tooling under the September 8 founder request.
+
+**Decision:** Existing ChatGPT cloud tasks perform AI audit/reasoning work. AUTO0 prepares exact-revision disposable checkouts, validates evidence and report dependencies, and preserves navigable memory. GitHub-hosted Playwright may collect browser evidence; it is not a model worker. No new model API billing is authorized.
+
+**Consequences:** Run memory and inferred lessons do not change package authority. Product implementation requires its approved package, independent verification and recorded founder decisions. Cross-task evidence must be exported and verified; sandbox paths are not durable shared storage. No automatic product merger is introduced.

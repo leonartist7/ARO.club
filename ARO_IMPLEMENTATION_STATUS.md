@@ -271,3 +271,7 @@ Do not move Seasons/AR into runtime simply because the strategic direction is no
 ## 2026-09-08 — H0 publication handoff
 
 The existing local prototype and supporting plans are packaged under `specs/ARO-H0-CLOUD-AUDIT-HANDOFF.md`. Fresh delivery checks and their limits are in `artifacts/ARO-H0/VERIFICATION.md`. Use `ARO_CLOUD_HANDOFF.md` for task dispatch; do not infer complete visual acceptance from smoke tests.
+
+## AUTO0 — autonomous execution foundation
+
+IMPLEMENTED / VERIFICATION IN PROGRESS. Repository tooling only; no product runtime, schema, dependency or paid model API changes. Specification: `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md`; execution map: `ARO_AUTONOMY.md`; evidence: `artifacts/ARO-AUTO0/VERIFICATION.md`. Cloud schedules are independently verified through the cloud coordinator.

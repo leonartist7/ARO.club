@@ -521,3 +521,7 @@ Next authorized package:
 ```
 
 The current plan is intentionally ambitious, but it is not permission to perform unrelated work in one branch. Autonomous delivery comes from a durable objective, explicit boundaries and repeatable verification—not from removing governance.
+
+## AUTO0 cloud execution adapter
+
+The founder authorized AUTO0 repository orchestration on September 8 using existing ChatGPT cloud workers only. `ARO_AUTONOMY.md` connects approved task contracts to pinned disposable checkouts, browser evidence, validated report dependencies and reviewed memory. This enabling package does not reorder runtime work or supply missing package approvals.

@@ -308,3 +308,7 @@ Anything less remains work in progress.
 ## Audit snapshot package
 
 ARO-H0: snapshot publication and audit dispatch only. Specification: `specs/ARO-H0-CLOUD-AUDIT-HANDOFF.md` 1.0.0. Fresh local verification: `artifacts/ARO-H0/VERIFICATION.md`. Resolve merged remote revision before dispatch; this package does not mark UX1–UX3 VERIFIED or authorize FV-1.
+
+## AUTO0 — repository autonomy enabling package
+
+`specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` v1.0.0: SPEC-READY for repository orchestration and memory under the September 8 founder request; implementation/evidence tracked in `ARO_IMPLEMENTATION_STATUS.md`. Does not authorize ARO-A1 AI runtime, FV-1 product writing or bypass I0/P1. `ARO_AUTONOMY.md` and `memory/HOME.md` are navigation/evidence, not higher authority.
