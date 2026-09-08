@@ -13,11 +13,6 @@ on:
         required: false
   push:
     branches: [main]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'tools/autonomy/**'
-      - '.github/workflows/autonomy-evidence.yml'
 
 permissions:
   contents: read
