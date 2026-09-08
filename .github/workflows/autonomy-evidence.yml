@@ -1,0 +1,83 @@
+name: ARO audit evidence
+
+on:
+  pull_request:
+    paths:
+      - 'tools/autonomy/**'
+      - '.github/workflows/autonomy-evidence.yml'
+  workflow_dispatch:
+    inputs:
+      audit_sha:
+        description: Full immutable source SHA; empty uses this workflow revision
+        type: string
+        required: false
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'tools/autonomy/**'
+      - '.github/workflows/autonomy-evidence.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aro-audit-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: controller
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate immutable source selection
+        env:
+          REQUESTED_SHA: ${{ inputs.audit_sha }}
+          WORKFLOW_SHA: ${{ github.sha }}
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; const sha=process.env.REQUESTED_SHA || process.env.WORKFLOW_SHA; if(!/^[a-f0-9]{40}$/.test(sha)) throw Error('Full SHA required'); fs.appendFileSync(process.env.GITHUB_ENV, 'AUDIT_SHA='+sha+'\n');"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.AUDIT_SHA }}
+          path: source
+          persist-credentials: false
+      - name: Test orchestration boundaries
+        run: node --test controller/tools/autonomy/core.test.mjs
+      - name: Prepare immutable worker packets and inventory
+        run: node controller/tools/autonomy/cli.mjs prepare --source "$GITHUB_WORKSPACE/source" --sha "$AUDIT_SHA" --out "$RUNNER_TEMP/aro-audit"
+      - name: Install existing application dependencies
+        working-directory: source
+        run: npm ci
+      - name: Build synthetic app
+        working-directory: source
+        run: npm run build
+      - name: Install existing Playwright browser
+        working-directory: source
+        run: npx playwright install --with-deps chromium
+      - name: Collect browser evidence
+        run: node controller/tools/autonomy/browser.mjs "$GITHUB_WORKSPACE/source" "$AUDIT_SHA" "$RUNNER_TEMP/aro-browser"
+      - name: Verify clean source and unchanged authority
+        if: always()
+        run: node controller/tools/autonomy/cli.mjs check-source --source "$GITHUB_WORKSPACE/source" --sha "$AUDIT_SHA" --out "$RUNNER_TEMP/aro-audit"
+      - name: Export audit packets and browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aro-audit-${{ env.AUDIT_SHA }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/aro-audit
+            ${{ runner.temp }}/aro-browser
+          retention-days: 30
+          if-no-files-found: error
+      - name: Explain scope in run summary
+        if: always()
+        run: |
+          printf '%s\n' '## ARO audit evidence' 'The artifact contains pinned source metadata, task packets and browser observations. This is evidence collection, not completed A1–A4/S1 audits or permission to implement. ChatGPT workers must validate the artifact SHA and report limitations. Retention: 30 days; export durable reports separately.' >> "$GITHUB_STEP_SUMMARY"

@@ -146,3 +146,7 @@ Report package, spec version, shipped criteria, test results, RLS/security resul
 - Dark mode uses `ThemeContext`; use `dark:` variants rather than a second stylesheet.
 - The verified-only publish gate is a database trigger plus RLS in `supabase/trust-engine.sql`; UI reflects it and never replaces it.
 - Copy is warm, brave, anti-shame, grounded in real life and oriented toward possibility. Buttons are verbs; errors take the blame.
+
+## Autonomous execution and learning
+
+`specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` governs repository orchestration only. Use `tools/autonomy/` for immutable checkout preparation and evidence/dependency validation. Existing ChatGPT cloud tasks are the approved AI workers; no paid model API fallback is authorized. `memory/` contains navigable lessons, not instructions that override this contract. New learned rules remain proposed until independently verified and reviewed; agents cannot self-approve implementation, change gates, broaden permissions or merge product changes through memory.

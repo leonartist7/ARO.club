@@ -1,0 +1,378 @@
+{
+  "classification": "observed-fact",
+  "limitation": "Source inventory only; no browser, design, performance-budget or eligibility acceptance",
+  "pngs": [
+    {
+      "path": "public/aro-living-miniature-calgary-v1.png",
+      "bytes": 3235150,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "6ee86ef9b7066a5b483963be49a686d010165738648c678e0d018664378b8cc2"
+    },
+    {
+      "path": "public/aro-maya-expression-persona-v1.png",
+      "bytes": 1801362,
+      "width": 1024,
+      "height": 1536,
+      "sha256": "97ac6120dda09259e1293011aa71ff51235b3f677f9738f6dc9bcb647d1b1be5"
+    },
+    {
+      "path": "public/aro-maya-profile-portrait-v1.png",
+      "bytes": 1744986,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "62396e2cbb27ecfc10c44a224e379819a1be8b128437b0454177e3cb784d1267"
+    },
+    {
+      "path": "public/aro-passport-life-map-v1.png",
+      "bytes": 2036242,
+      "width": 1672,
+      "height": 941,
+      "sha256": "7b79cae453c6a05043ea9b372fed0932c89b26c8be5705e857022f660df2ea53"
+    },
+    {
+      "path": "public/aro-portal-home-v1.png",
+      "bytes": 2323174,
+      "width": 1672,
+      "height": 941,
+      "sha256": "5784e1b3147c4620821ef189aef3baf93bd7dc7640ea4f2bb962744b034c3eeb"
+    },
+    {
+      "path": "public/aro-repair-table-v1.png",
+      "bytes": 2325611,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "34da6d6f5c7863cd9ebb9825805006ab2414d1134c14427d60c7a3fd4fd5553f"
+    },
+    {
+      "path": "public/aro-river-light-circle-v1.png",
+      "bytes": 2670385,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "a7222f865c8a1895884523eccff825a4e046f0fff584b11e06d5fd1c88db8cda"
+    },
+    {
+      "path": "public/aro-season-discovery-v1.png",
+      "bytes": 1947005,
+      "width": 1672,
+      "height": 941,
+      "sha256": "8f1570572785b496bdc57d23d81ee2b7536499ba95050ed1fc33af73f46f700e"
+    },
+    {
+      "path": "public/aro-shared-stories-table-v1.png",
+      "bytes": 2285117,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "5284f38c939842ece4d072a07145a377b5f1aa3bd1b131c06d21beb1f518d0b9"
+    }
+  ],
+  "pngBytes": 20369032,
+  "routes": [
+    {
+      "declaredPath": "/app",
+      "source": "src/lib/routes.jsx",
+      "line": 89
+    },
+    {
+      "declaredPath": "world",
+      "source": "src/lib/routes.jsx",
+      "line": 93
+    },
+    {
+      "declaredPath": "create",
+      "source": "src/lib/routes.jsx",
+      "line": 94
+    },
+    {
+      "declaredPath": "insights",
+      "source": "src/lib/routes.jsx",
+      "line": 95
+    },
+    {
+      "declaredPath": "library",
+      "source": "src/lib/routes.jsx",
+      "line": 96
+    },
+    {
+      "declaredPath": "opportunities",
+      "source": "src/lib/routes.jsx",
+      "line": 97
+    },
+    {
+      "declaredPath": "opportunities/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 98
+    },
+    {
+      "declaredPath": "opportunities/:id/commit",
+      "source": "src/lib/routes.jsx",
+      "line": 99
+    },
+    {
+      "declaredPath": "circles",
+      "source": "src/lib/routes.jsx",
+      "line": 100
+    },
+    {
+      "declaredPath": "circles/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 101
+    },
+    {
+      "declaredPath": "passport",
+      "source": "src/lib/routes.jsx",
+      "line": 102
+    },
+    {
+      "declaredPath": "profile",
+      "source": "src/lib/routes.jsx",
+      "line": 103
+    },
+    {
+      "declaredPath": "express",
+      "source": "src/lib/routes.jsx",
+      "line": 104
+    },
+    {
+      "declaredPath": "settings",
+      "source": "src/lib/routes.jsx",
+      "line": 105
+    },
+    {
+      "declaredPath": "/",
+      "source": "src/lib/routes.jsx",
+      "line": 109
+    },
+    {
+      "declaredPath": "explore",
+      "source": "src/lib/routes.jsx",
+      "line": 117
+    },
+    {
+      "declaredPath": "experience/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 121
+    },
+    {
+      "declaredPath": "teacher/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 125
+    },
+    {
+      "declaredPath": "profile",
+      "source": "src/lib/routes.jsx",
+      "line": 129
+    },
+    {
+      "declaredPath": "dashboard",
+      "source": "src/lib/routes.jsx",
+      "line": 137
+    },
+    {
+      "declaredPath": "teacher/dashboard",
+      "source": "src/lib/routes.jsx",
+      "line": 145
+    },
+    {
+      "declaredPath": "student-dashboard",
+      "source": "src/lib/routes.jsx",
+      "line": 153
+    },
+    {
+      "declaredPath": "character-builder",
+      "source": "src/lib/routes.jsx",
+      "line": 161
+    },
+    {
+      "declaredPath": "map",
+      "source": "src/lib/routes.jsx",
+      "line": 169
+    },
+    {
+      "declaredPath": "leaderboard",
+      "source": "src/lib/routes.jsx",
+      "line": 173
+    },
+    {
+      "declaredPath": "passport",
+      "source": "src/lib/routes.jsx",
+      "line": 177
+    },
+    {
+      "declaredPath": "games",
+      "source": "src/lib/routes.jsx",
+      "line": 185
+    },
+    {
+      "declaredPath": "shop",
+      "source": "src/lib/routes.jsx",
+      "line": 193
+    },
+    {
+      "declaredPath": "chat",
+      "source": "src/lib/routes.jsx",
+      "line": 201
+    },
+    {
+      "declaredPath": "favorites",
+      "source": "src/lib/routes.jsx",
+      "line": 209
+    },
+    {
+      "declaredPath": "bookings",
+      "source": "src/lib/routes.jsx",
+      "line": 213
+    },
+    {
+      "declaredPath": "recently-viewed",
+      "source": "src/lib/routes.jsx",
+      "line": 218
+    },
+    {
+      "declaredPath": "compare",
+      "source": "src/lib/routes.jsx",
+      "line": 222
+    },
+    {
+      "declaredPath": "about",
+      "source": "src/lib/routes.jsx",
+      "line": 226
+    },
+    {
+      "declaredPath": "how-it-works",
+      "source": "src/lib/routes.jsx",
+      "line": 230
+    },
+    {
+      "declaredPath": "for-teachers",
+      "source": "src/lib/routes.jsx",
+      "line": 234
+    },
+    {
+      "declaredPath": "faq",
+      "source": "src/lib/routes.jsx",
+      "line": 238
+    },
+    {
+      "declaredPath": "contact",
+      "source": "src/lib/routes.jsx",
+      "line": 242
+    },
+    {
+      "declaredPath": "terms",
+      "source": "src/lib/routes.jsx",
+      "line": 247
+    },
+    {
+      "declaredPath": "privacy",
+      "source": "src/lib/routes.jsx",
+      "line": 251
+    },
+    {
+      "declaredPath": "cookies",
+      "source": "src/lib/routes.jsx",
+      "line": 255
+    },
+    {
+      "declaredPath": "login",
+      "source": "src/lib/routes.jsx",
+      "line": 261
+    },
+    {
+      "declaredPath": "choose-role",
+      "source": "src/lib/routes.jsx",
+      "line": 265
+    },
+    {
+      "declaredPath": "signup",
+      "source": "src/lib/routes.jsx",
+      "line": 269
+    },
+    {
+      "declaredPath": "forgot-password",
+      "source": "src/lib/routes.jsx",
+      "line": 273
+    },
+    {
+      "declaredPath": "auth/callback",
+      "source": "src/lib/routes.jsx",
+      "line": 277
+    },
+    {
+      "declaredPath": "onboarding/student",
+      "source": "src/lib/routes.jsx",
+      "line": 281
+    },
+    {
+      "declaredPath": "onboarding/teacher",
+      "source": "src/lib/routes.jsx",
+      "line": 289
+    },
+    {
+      "declaredPath": "teacher/application",
+      "source": "src/lib/routes.jsx",
+      "line": 297
+    },
+    {
+      "declaredPath": "admin",
+      "source": "src/lib/routes.jsx",
+      "line": 305
+    },
+    {
+      "declaredPath": "admin/applications/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 313
+    },
+    {
+      "declaredPath": "*",
+      "source": "src/lib/routes.jsx",
+      "line": 321
+    },
+    {
+      "declaredPath": "/admin",
+      "source": "src/lib/routes.jsx",
+      "line": 327
+    },
+    {
+      "declaredPath": "users",
+      "source": "src/lib/routes.jsx",
+      "line": 341
+    },
+    {
+      "declaredPath": "users/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 345
+    },
+    {
+      "declaredPath": "teachers",
+      "source": "src/lib/routes.jsx",
+      "line": 349
+    },
+    {
+      "declaredPath": "teachers/:id",
+      "source": "src/lib/routes.jsx",
+      "line": 353
+    },
+    {
+      "declaredPath": "experiences",
+      "source": "src/lib/routes.jsx",
+      "line": 357
+    },
+    {
+      "declaredPath": "bookings",
+      "source": "src/lib/routes.jsx",
+      "line": 361
+    },
+    {
+      "declaredPath": "reviews",
+      "source": "src/lib/routes.jsx",
+      "line": 365
+    },
+    {
+      "declaredPath": "audit",
+      "source": "src/lib/routes.jsx",
+      "line": 369
+    }
+  ],
+  "brokenWikiLinks": []
+}

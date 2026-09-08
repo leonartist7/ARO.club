@@ -796,3 +796,7 @@ remains read-only and aro-platform remains **QUARANTINED — KEEP**.
 ## 2026-09-08 — ARO-H0 cloud audit snapshot publication
 
 Founder requested all current material on GitHub default branch (`main`). Package existing static `/app` prototype, local UX1–UX3 specs/assets and Shipaton planning material with `ARO_CLOUD_HANDOFF.md`. Correct stale SEC0/infra assertions, commit-route documentation and unrestricted task-selection/writing prompts. Audit tasks use one immutable merged revision and external evidence folders. Publication does not certify visual acceptance, approve FV-1, close I0 or unlock runtime packages. Fresh delivery evidence is recorded under `artifacts/ARO-H0/`.
+
+## 2026-09-08 — AUTO0 autonomous execution and memory
+
+Implement a repository-only cloud execution toolkit: exact-SHA disposable bootstrap, generated task packets, source/evidence hashing, dependency-gated report imports, browser evidence on GitHub-hosted Playwright and Obsidian-compatible durable memory. Founder selected existing ChatGPT cloud workers with no new API billing. Cloud schedule availability and actual audit completion remain separate verification facts. Product source and I0/P1/FV-1 gates are unchanged.

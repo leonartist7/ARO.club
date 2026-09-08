@@ -92,3 +92,9 @@ This prevents ARO from depending on any single chat conversation.
 ## Cloud audit snapshot
 
 Read [[ARO_CLOUD_HANDOFF]] for immutable revision setup, complete A1–A4/S1/lead/C1 prompts, publication authority and unresolved findings.
+
+## Autonomous execution and memory
+
+- [[ARO_AUTONOMY]] — cloud execution, browser evidence adapter and explicit limits
+- [[memory/HOME]] — durable lessons, proposed learning and provenance
+- [[tools/autonomy/README]] — runnable cloud bootstrap and report validation

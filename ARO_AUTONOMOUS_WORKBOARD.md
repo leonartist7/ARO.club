@@ -146,3 +146,7 @@ Next eligible task:
 ```
 
 The lead returns proposed status corrections only. A separately authorized documentation package may update the registry after review. Audit tasks never write shared status files.
+
+## AUTO0 dispatcher implementation
+
+Use `ARO_AUTONOMY.md` and `tools/autonomy/README.md` to provision worker paths and validate report bundles. ChatGPT cloud workers may consume verified GitHub browser captures when their own browser runtime is unavailable; they must identify coverage gaps and may not promote source inspection into browser acceptance. The collector is not an AI worker or an audit-completion signal. Schedules and complete report retrieval remain coordinator-verified.
