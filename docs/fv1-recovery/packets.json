@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "approved": false,
+  "implementationEligible": false,
+  "packets": [
+    {
+      "id": "F1",
+      "title": "Responsive media foundation",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [],
+      "taskBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F1.md"
+    },
+    {
+      "id": "F2",
+      "title": "Shell, navigation and recovery",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F1"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F2.md"
+    },
+    {
+      "id": "F3",
+      "title": "Truthful opportunity/Circle state",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F2"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F3.md"
+    },
+    {
+      "id": "F4",
+      "title": "Discovery and Create integration",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F3"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F4.md"
+    },
+    {
+      "id": "F5",
+      "title": "Profile and Express",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F4"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F5.md"
+    },
+    {
+      "id": "F6",
+      "title": "Return, Library and Settings",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F5"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F6.md"
+    },
+    {
+      "id": "F7",
+      "title": "Focused acceptance and independent review",
+      "proposalBase": "6495e67798ad14876f6c04815f9f5e13eaf52b83",
+      "auditBase": "06730c74b44d1a6ee1da24c4d1d1ed721313df5c",
+      "dependsOn": [
+        "F6"
+      ],
+      "taskBase": null,
+      "approvedSpecSha": null,
+      "status": "PROPOSED",
+      "file": "tasks/F7.md"
+    }
+  ]
+}

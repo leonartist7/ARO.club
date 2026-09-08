@@ -41,6 +41,7 @@ Open [http://localhost:5173](http://localhost:5173) to view the app.
 
 ## 📚 Documentation
 
+- [FV-1 proposed recovery handoff](docs/fv1-recovery/README.md) — recovered synthesis, bounded task packets and provenance; SPEC-REQUIRED, not implementation approval
 - **`AGENTS.md`** — operating contract for contributors and agents (read first)
 - **`ARO_MASTER_DELIVERY_PLAN.md`** — canonical V1 delivery objective, phase map, gates and cloud-task handoff
 - **`ARO_CURRENT_STATE.md`** — current governed truth, blockers and next action
