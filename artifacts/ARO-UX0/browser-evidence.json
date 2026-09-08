@@ -1,0 +1,421 @@
+{
+  "baseUrl": "http://127.0.0.1:4174",
+  "capturedAt": "2026-09-06T00:23:13.576Z",
+  "matrix": [
+    {
+      "colorScheme": "light",
+      "viewport": {
+        "name": "360",
+        "width": 360,
+        "height": 800
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\360-light.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 936
+      }
+    },
+    {
+      "colorScheme": "light",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\390-light.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 732
+      }
+    },
+    {
+      "colorScheme": "light",
+      "viewport": {
+        "name": "430",
+        "width": 430,
+        "height": 932
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\430-light.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 740
+      }
+    },
+    {
+      "colorScheme": "light",
+      "viewport": {
+        "name": "tablet-768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\tablet-768x1024-light.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0.00030069627488652867,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 708
+      }
+    },
+    {
+      "colorScheme": "light",
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\desktop-1440-light.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0.00010343035662615742,
+        "resources": 7,
+        "transferBytes": 339879,
+        "fcpMs": 728
+      }
+    },
+    {
+      "colorScheme": "dark",
+      "viewport": {
+        "name": "360",
+        "width": 360,
+        "height": 800
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\360-dark.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 712
+      }
+    },
+    {
+      "colorScheme": "dark",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\390-dark.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 720
+      }
+    },
+    {
+      "colorScheme": "dark",
+      "viewport": {
+        "name": "430",
+        "width": 430,
+        "height": 932
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\430-dark.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 728
+      }
+    },
+    {
+      "colorScheme": "dark",
+      "viewport": {
+        "name": "tablet-768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\tablet-768x1024-dark.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0.00030069627488652867,
+        "resources": 7,
+        "transferBytes": 266007,
+        "fcpMs": 728
+      }
+    },
+    {
+      "colorScheme": "dark",
+      "viewport": {
+        "name": "desktop-1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "artifacts\\ARO-UX0\\screenshots\\desktop-1440-dark.jpg",
+      "errors": [],
+      "failedRequests": [],
+      "requests": 10,
+      "layout": {
+        "h1Count": 1,
+        "mainCount": 1,
+        "overflowPx": 0,
+        "anchorInside": [
+          true,
+          true,
+          true
+        ],
+        "minTargetWidth": 44,
+        "minTargetHeight": 44,
+        "unnamed": [],
+        "liveRegion": "Prototype possibility formed: Spanish through shared stories. 6 neighbours. Community kitchen. Saturday, 11:00.",
+        "figureDescription": "Three selected signals connect to one central prototype possibility.",
+        "imageAlt": "Adult hands around a worn community table with a map, notebook, cups and herbs.",
+        "cls": 0.00010343035662615742,
+        "resources": 7,
+        "transferBytes": 339879,
+        "fcpMs": 728
+      }
+    }
+  ],
+  "console": {
+    "errorsAndWarnings": []
+  },
+  "network": {
+    "uniqueRequests": [
+      {
+        "url": "http://127.0.0.1:4174/",
+        "method": "GET",
+        "type": "document"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/index-BiU_FMCO.js",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/index-U_-2aTEo.css",
+        "method": "GET",
+        "type": "stylesheet"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap",
+        "method": "GET",
+        "type": "stylesheet"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/HomePage-CFNoCHxx.js",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/rotate-ccw-mDouXm5j.js",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/sparkles-Df2yvxPf.js",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2",
+        "method": "GET",
+        "type": "font"
+      },
+      {
+        "url": "https://fonts.gstatic.com/s/dmserifdisplay/v17/-nFnOHM81r4j6k0gjAW3mujVU2B2G_Bx0g.woff2",
+        "method": "GET",
+        "type": "font"
+      },
+      {
+        "url": "http://127.0.0.1:4174/ux0/opportunity-table-800.webp",
+        "method": "GET",
+        "type": "image"
+      },
+      {
+        "url": "http://127.0.0.1:4174/ux0/opportunity-table-1440.webp",
+        "method": "GET",
+        "type": "image"
+      }
+    ],
+    "failedRequests": [],
+    "supabaseDomainRequests": [],
+    "auditedRoutes": [
+      "/",
+      "/login",
+      "/signup",
+      "/forgot-password",
+      "/auth/callback",
+      "/choose-role",
+      "/leaderboard"
+    ]
+  },
+  "performance": {
+    "responseMs": 2.1
+  },
+  "accessibility": {
+    "reducedMotionDuration": "1e-06s",
+    "tokenContrastRatios": {
+      "inkOnBone": 13.59,
+      "whiteOnPrimary600": 5.74,
+      "boneOnInk": 13.59,
+      "secondary300OnInk": 9.09
+    },
+    "renderedRationaleContrast": {
+      "foreground": "rgb(255, 255, 255)",
+      "background": "rgb(190, 50, 25)",
+      "ratio": 5.74
+    },
+    "renderedLogisticsLabelContrast": {
+      "foreground": "rgb(40, 36, 32)",
+      "background": "rgb(246, 240, 230)",
+      "ratio": 13.59
+    }
+  }
+}

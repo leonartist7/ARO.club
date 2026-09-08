@@ -1,0 +1,26 @@
+import { ArrowRight, Compass, HeartHandshake, MapPin, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { passportEntries } from '../data/aroApp';
+import { AppPanel, AppSectionHeading } from '../components/app/AppPrimitives';
+
+export default function AppPassportPage() {
+  return (
+    <div className="mx-auto max-w-[1200px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
+      <AppSectionHeading eyebrow="A record of lived things" title="Your Passport"><Link to="/app/opportunities" className="inline-flex items-center gap-2 text-sm font-bold text-primary-700 dark:text-primary-300">Make the next memory <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></AppSectionHeading>
+      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)]">
+        <AppPanel className="overflow-hidden">
+          <div className="relative min-h-[320px] overflow-hidden bg-ink p-6 text-bone aro-grid dark:bg-plum sm:p-8">
+            <img src="/aro-passport-life-map-v1.png" alt="A twilight riverside neighbourhood with three connected moments of dinner, photography, and welcome" className="absolute inset-0 h-full w-full object-cover object-[69%_center]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,25,33,0.96)_0%,rgba(18,25,33,0.79)_44%,rgba(18,25,33,0.18)_100%),linear-gradient(0deg,rgba(18,25,33,0.5),transparent_58%)]" />
+            <div className="absolute left-[20%] top-[28%] h-3 w-3 rounded-full bg-primary-400 shadow-[0_0_0_10px_rgba(222,67,37,0.12)]" /><div className="absolute left-[44%] top-[47%] h-3 w-3 rounded-full bg-secondary-300 shadow-[0_0_0_10px_rgba(239,193,75,0.12)]" /><div className="absolute right-[22%] top-[30%] h-3 w-3 rounded-full bg-moss shadow-[0_0_0_10px_rgba(104,115,90,0.18)]" />
+            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 600 320" fill="none" aria-hidden="true"><path d="M120 95C240 225 330 80 480 155" stroke="rgba(246,240,230,0.32)" strokeDasharray="5 8" /><path d="M260 145C330 80 390 80 480 155" stroke="rgba(239,193,75,0.5)" /></svg>
+            <div className="relative z-10 max-w-sm"><p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary-300">Life map · Calgary</p><h1 className="mt-6 font-display text-5xl leading-[0.9]">A life made larger by showing up.</h1><p className="mt-4 text-sm leading-6 text-bone/70">Your Passport keeps the meaningful evidence, not a score.</p><p className="mt-6 inline-flex items-center gap-2 rounded-full border border-bone/15 bg-ink/30 px-3 py-2 text-xs font-semibold text-bone/75 backdrop-blur-md"><span className="h-1.5 w-1.5 rounded-full bg-secondary-300" aria-hidden="true" /> Your last three moments, connected</p></div>
+          </div>
+          <div className="grid grid-cols-3 border-t border-ink/10 dark:border-bone/10"><div className="p-5"><p className="font-display text-3xl">7</p><p className="mt-1 text-xs text-ink/55 dark:text-bone/55">people met</p></div><div className="border-l border-ink/10 p-5 dark:border-bone/10"><p className="font-display text-3xl">4</p><p className="mt-1 text-xs text-ink/55 dark:text-bone/55">skills practiced</p></div><div className="border-l border-ink/10 p-5 dark:border-bone/10"><p className="font-display text-3xl">3</p><p className="mt-1 text-xs text-ink/55 dark:text-bone/55">places explored</p></div></div>
+        </AppPanel>
+        <div className="space-y-6"><AppPanel className="p-6"><HeartHandshake className="h-6 w-6 text-primary-500" aria-hidden="true" /><h2 className="mt-5 font-display text-3xl">Contribution is part of your identity.</h2><p className="mt-3 text-sm leading-6 text-ink/60 dark:text-bone/60">ARO remembers what you helped make possible: a table hosted, a skill shared, a person welcomed.</p></AppPanel><AppPanel className="p-6"><Compass className="h-6 w-6 text-sky" aria-hidden="true" /><h2 className="mt-5 font-display text-3xl">Keep moving with intention.</h2><p className="mt-3 text-sm leading-6 text-ink/60 dark:text-bone/60">There are no streaks to protect here. Return when something in your real life is ready to grow.</p></AppPanel></div>
+      </div>
+      <section className="mt-14"><AppSectionHeading eyebrow="Recent proof" title="What has happened"><span className="text-sm text-ink/50 dark:text-bone/50">Participant record · editable</span></AppSectionHeading><div className="mt-5 divide-y divide-ink/10 border-y border-ink/10 dark:divide-bone/10 dark:border-bone/10">{passportEntries.map((entry) => <article key={entry.title} className="grid gap-4 py-5 sm:grid-cols-[80px_92px_1fr_auto] sm:items-center"><div className="flex items-center gap-2 sm:block"><span className="text-[11px] font-bold tracking-[0.18em] text-primary-600 dark:text-primary-300">{entry.month}</span><span className="font-display text-3xl">{entry.day}</span></div><img src={entry.image} alt="" loading="lazy" className={`h-20 w-full rounded-2xl object-cover ${entry.imagePosition}`} /><div><h2 className="font-display text-2xl">{entry.title}</h2><p className="mt-1 text-sm text-ink/55 dark:text-bone/55">{entry.meta}</p></div><span className="inline-flex items-center gap-2 text-xs font-bold text-ink/55 dark:text-bone/55"><Sparkles className="h-4 w-4 text-secondary-500" aria-hidden="true" /> Recorded</span></article>)}</div></section>
+    </div>
+  );
+}

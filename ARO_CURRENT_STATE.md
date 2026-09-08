@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > Its disposable CI lane passed 81 transactional SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset flows and authenticated 360px/1440px
@@ -10,9 +12,14 @@
 > I0.2 implementation review remain open. P1 is blocked. A separate synthetic-
 > only UX0 frontend prototype is SPEC-READY and does not waive those gates.
 
+> **2026-09-05 UX0 update:** the opportunity-formation prototype is implemented
+> and CI verified on `feat/aro-ux0-opportunity-prototype`. All required PR #35
+> checks are green and nine of eleven criteria pass; founder Preview/Production
+> release approval remains pending. No I0/P1/provider gate changed.
+
 > **Canonical current snapshot.** Read this before using old chat history, generated concepts or recovery artifacts.
 >
-> **Last strategic update:** 2026-09-03
+> **Last coordination update:** 2026-09-08
 >
 > This file answers: **What is ARO now? What is actually implemented? What is active? What is only strategic? What changed most recently?**
 >
@@ -58,8 +65,9 @@ Master loop:
 4. `ARO_INFRASTRUCTURE.md` — repository, branch, deployment, environment and Supabase operational truth.
 5. `ARO_SPEC_INDEX.md` — canonical package/status registry.
 6. `ARO_IMPLEMENTATION_STATUS.md` — implementation ledger.
-7. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
-8. Assigned package spec.
+7. `ARO_AUTONOMOUS_WORKBOARD.md` — eligible task lanes, founder-only gates and cloud/local handoff rules.
+8. `ARO_BUILD_PLAYBOOK.md` — package sequence/gates.
+9. Assigned package spec.
 
 ### Master context
 
@@ -167,9 +175,11 @@ so this review does not authorize P1.
 
 `ARO_MASTER_DELIVERY_PLAN.md` now governs the autonomous, spec-driven path through the verified P5 V1 loop. It inserts isolated-infrastructure, reliability, platform/Next.js, experience-system and AI-foundation packages at explicit dependency gates without reordering P1 → P2 → P3 → P4 → P5 or authorizing exploratory 3D/AR runtime work.
 
+`ARO_AUTONOMOUS_WORKBOARD.md` is the companion dispatch map for cloud/local tasks. It separates safe visual review and documentation work from founder-only I0/UX0 gates and from blocked runtime implementation. It does not change any package status or authority.
+
 ### ARO-UX0 — frontend-first opportunity prototype
 
-**State:** SPEC-READY; implementation has not started.
+**State:** IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING.
 
 On 2026-09-03 the founder deliberately deferred hosted Auth/callback/recovery
 work while ARO validates a frontend-only prototype. UX0 is governed by
@@ -179,6 +189,38 @@ interaction: **what you want + what you can bring + people · place · time → 
 explainable synthetic opportunity**. Original generated imagery is authorized
 where useful. No connected backend/account, P1, realtime provider, AI, location, money,
 Stripe, Google or Production behavior is authorized.
+
+The implementation uses the exact 27-combination fixture cross-product, a
+source-controlled default-on prototype mode, a static fail-closed account
+boundary and zero Supabase-domain requests across the compiled UX0/account
+route audit. English, French and Spanish, keyboard, reduced motion and the full
+360–1440 light/dark matrix pass, and PR #35's required hosted checks are green.
+Founder review of the PR Preview and
+explicit approval of the automatic Production release remain mandatory before
+merge.
+
+### ARO-UX1 — Personal Field visual prototype
+
+**State:** IMPLEMENTED / PARTIAL VERIFICATION. The founder has approved a separate,
+local-only visual-design track to make later P1–P5 screens tangible before their
+governed data/runtime packages are eligible. UX1 starts with Profile as a
+Personal Field of static wants, contributions, context and boundaries. It makes
+no Auth, Supabase, persistence, intent, location, matching, Trust, money or AI
+claim, and does not change the P1 gate or runtime sequence. Local node interaction,
+scope audit, lint and production build pass; full light/dark responsive capture remains.
+
+UX2 is the companion local-only Seed Studio on Create: choosing Learn, Share, or
+Gather updates static composition visuals only. It does not record intent,
+represent live demand, call AI, create an Opportunity, or change P2/P3 gates.
+
+UX3 is **IMPLEMENTED / PARTIAL VERIFICATION**: it adds an original local
+visual-evidence pack with Maya portrait/persona art, contextual opportunity
+scenes, a Passport Life Map, and a Season of Discovery cover. Profile now links
+to a local-only Express Your World preview with component-state selections. Route
+review, a static scope audit, lint, and the production build pass. It is UI
+imagery only—not user media, identity verification, venue evidence, remote
+storage, inventory, checkout, or AI runtime behavior. Full responsive and
+image-performance evidence remains.
 
 ---
 
@@ -193,16 +235,18 @@ Current governed sequence:
    CI VERIFIED**; hosted target provisioned, remaining parent gates blocked).
 5. **Q0** — reliability foundation (**IMPLEMENTED / CI VERIFIED** in the
    disposable lane).
-6. **UX0** — synthetic Opportunity Formation frontend prototype (**SPEC-READY;
-   may proceed independently; does not unlock P1**).
-7. **P1** — Capability + Goal foundation (**SPEC-READY; baseline waits on complete parent-I0 verification, not capacity alone**).
-8. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
-9. **P2** — Explicit Intent + privacy-preserving Demand Signals.
-10. **A1** — AI Runtime, Evaluation and Safety Foundation.
-11. **P3** — ARO Catalyst / language Opportunity Suggestions.
-12. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
-13. **P5** — ARO Proof + outcomes + Passport evolution.
-14. **P6** — carefully gated adjacent vertical after the V1 release audit.
+6. **UX0** — synthetic Opportunity Formation frontend prototype
+   (**IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING; does not
+   unlock P1**).
+7. **UX1 → UX3 / FV** — static visual-design continuation track (**IMPLEMENTED / PARTIAL VERIFICATION; does not unlock runtime**).
+8. **P1** — Capability + Goal foundation (**SPEC-READY; baseline waits on complete parent-I0 verification, not capacity alone**).
+9. **N1 / X1** — governed platform/Next.js decision and experience-system foundation.
+10. **P2** — Explicit Intent + privacy-preserving Demand Signals.
+11. **A1** — AI Runtime, Evaluation and Safety Foundation.
+12. **P3** — ARO Catalyst / language Opportunity Suggestions.
+13. **P4** — Commitment + minimum viability + booking mechanics; money remains separately gated.
+14. **P5** — ARO Proof + outcomes + Passport evolution.
+15. **P6** — carefully gated adjacent vertical after the V1 release audit.
 
 Do not skip the sequence because a future concept is exciting.
 
@@ -463,3 +507,7 @@ This is how ARO stops depending on chat history.
 And the game/AR layer should obey one final rule:
 
 > **ARO uses game design to make real life more discoverable, social, rewarding and memorable — not to keep people staring at the game.**
+
+## 2026-09-08 — Shipaton execution audit
+
+The founder requested a competition-focused launch/evidence program. `SHIPATON_MASTER_PLAN.md` records the current readiness, conditional launch dates, store-account testing risk and award strategy. Its linked metrics, award evidence, public-content drafts, demo script and Devpost draft distinguish proposals from verified results. `shipaton/evidence/launch/2026-09-08-audit.md` records fresh lint, 73 unit tests and production build PASS; native/device/provider checks were not performed. The existing synthetic UX and I0/P1 gates remain unchanged. Account/device access and exact native release history still need confirmation; the founder reports this is the first time. This planning overlay does not authorize a runtime package or Production release.

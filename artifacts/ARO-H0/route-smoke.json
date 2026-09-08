@@ -1,0 +1,790 @@
+{
+  "date": "2026-09-08T07:31:54.395Z",
+  "method": "Playwright on isolated Vite 5198; 14 routes x 2 widths x 2 themes; DOM theme forced for static route inspection, not proof of theme-control behavior",
+  "results": [
+    {
+      "route": "/app",
+      "width": 390,
+      "theme": "light",
+      "textLength": 602,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/world",
+      "width": 390,
+      "theme": "light",
+      "textLength": 722,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/create",
+      "width": 390,
+      "theme": "light",
+      "textLength": 1102,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/insights",
+      "width": 390,
+      "theme": "light",
+      "textLength": 535,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/library",
+      "width": 390,
+      "theme": "light",
+      "textLength": 369,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities",
+      "width": 390,
+      "theme": "light",
+      "textLength": 1181,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories",
+      "width": 390,
+      "theme": "light",
+      "textLength": 887,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories/commit",
+      "width": 390,
+      "theme": "light",
+      "textLength": 944,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles",
+      "width": 390,
+      "theme": "light",
+      "textLength": 641,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles/shared-stories",
+      "width": 390,
+      "theme": "light",
+      "textLength": 1050,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/passport",
+      "width": 390,
+      "theme": "light",
+      "textLength": 877,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/profile",
+      "width": 390,
+      "theme": "light",
+      "textLength": 1113,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/express",
+      "width": 390,
+      "theme": "light",
+      "textLength": 1122,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/settings",
+      "width": 390,
+      "theme": "light",
+      "textLength": 485,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 602,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/world",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 722,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/create",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 1102,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/insights",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 535,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/library",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 369,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 1181,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 887,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories/commit",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 944,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 641,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles/shared-stories",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 1050,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/passport",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 877,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/profile",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 1113,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/express",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 1122,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/settings",
+      "width": 390,
+      "theme": "dark",
+      "textLength": 485,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 623,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/world",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 809,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/create",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 1123,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/insights",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 556,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/library",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 410,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 1202,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 908,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories/commit",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 965,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 662,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles/shared-stories",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 1071,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/passport",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 895,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/profile",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 1148,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/express",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 1158,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/settings",
+      "width": 1440,
+      "theme": "light",
+      "textLength": 506,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 623,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/world",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 809,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/create",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 1123,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/insights",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 556,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/library",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 410,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 1202,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 908,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/opportunities/shared-stories/commit",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 965,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 662,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/circles/shared-stories",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 1071,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/passport",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 895,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/profile",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 1148,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/express",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 1158,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    },
+    {
+      "route": "/app/settings",
+      "width": 1440,
+      "theme": "dark",
+      "textLength": 506,
+      "overflow": false,
+      "overlay": false,
+      "brokenImages": [],
+      "errors": [],
+      "external": [
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ]
+    }
+  ]
+}

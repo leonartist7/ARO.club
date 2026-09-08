@@ -1,10 +1,12 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import AdminRoute from '../components/auth/AdminRoute';
 import AdminLayout from '../components/admin/AdminLayout';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { UX0_PROTOTYPE_MODE } from '../config/ux0';
+import AppShell from '../components/app/AppShell';
 
 const AdminPageLoader = (
   <div className="flex items-center justify-center h-64">
@@ -48,6 +50,20 @@ const GamesPage = lazy(() => import('../pages/GamesPage'));
 const ShopPage = lazy(() => import('../pages/ShopPage'));
 const ChatPage = lazy(() => import('../pages/ChatPage'));
 const MyBookingsPage = lazy(() => import('../pages/MyBookingsPage'));
+const AppHomePage = lazy(() => import('../pages/AppHomePage'));
+const AppWorldPage = lazy(() => import('../pages/AppWorldPage'));
+const AppCreatePage = lazy(() => import('../pages/AppCreatePage'));
+const AppInsightsPage = lazy(() => import('../pages/AppInsightsPage'));
+const AppLibraryPage = lazy(() => import('../pages/AppLibraryPage'));
+const AppOpportunitiesPage = lazy(() => import('../pages/AppOpportunitiesPage'));
+const AppOpportunityDetailPage = lazy(() => import('../pages/AppOpportunityDetailPage'));
+const AppCommitPage = lazy(() => import('../pages/AppCommitPage'));
+const AppCirclesPage = lazy(() => import('../pages/AppCirclesPage'));
+const AppCircleRoomPage = lazy(() => import('../pages/AppCircleRoomPage'));
+const AppPassportPage = lazy(() => import('../pages/AppPassportPage'));
+const AppProfilePage = lazy(() => import('../pages/AppProfilePage'));
+const AppExpressPage = lazy(() => import('../pages/AppExpressPage'));
+const AppSettingsPage = lazy(() => import('../pages/AppSettingsPage'));
 
 // Teacher application + Admin (Trust & Quality Engine)
 const TeacherApplicationStatus = lazy(() => import('../pages/teacher/TeacherApplicationStatus'));
@@ -69,6 +85,26 @@ const AdminAuditPage = lazy(() => import('../pages/admin/AdminAuditPage'));
  * App routes configuration
  */
 export const router = createBrowserRouter([
+  {
+    path: '/app',
+    element: <AppShell />,
+    children: [
+      { index: true, element: <AppHomePage /> },
+      { path: 'world', element: <AppWorldPage /> },
+      { path: 'create', element: <AppCreatePage /> },
+      { path: 'insights', element: <AppInsightsPage /> },
+      { path: 'library', element: <AppLibraryPage /> },
+      { path: 'opportunities', element: <AppOpportunitiesPage /> },
+      { path: 'opportunities/:id', element: <AppOpportunityDetailPage /> },
+      { path: 'opportunities/:id/commit', element: <AppCommitPage /> },
+      { path: 'circles', element: <AppCirclesPage /> },
+      { path: 'circles/:id', element: <AppCircleRoomPage /> },
+      { path: 'passport', element: <AppPassportPage /> },
+      { path: 'profile', element: <AppProfilePage /> },
+      { path: 'express', element: <AppExpressPage /> },
+      { path: 'settings', element: <AppSettingsPage /> },
+    ],
+  },
   {
     path: '/',
     element: <Layout />,
@@ -227,7 +263,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'choose-role',
-        element: <ChooseRolePage />,
+        element: UX0_PROTOTYPE_MODE ? <Navigate to="/login" replace /> : <ChooseRolePage />,
       },
       {
         path: 'signup',

@@ -1,5 +1,7 @@
 # ARO — Infrastructure, Environment, and Operations Registry
 
+> September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > Its disposable CI lane passed the application migration, 81 transactional SQL
 > assertions, Auth/API/Storage/recovery/reset flows and authenticated responsive
@@ -8,6 +10,11 @@
 > requires the three stable CI checks. Hosted staging and CI reset equivalence
 > pass; Preview literal-value matching, Auth/recovery and domain gates remain.
 > UX0 is SPEC-READY as a synthetic frontend-only prototype; P1 is not authorized.
+
+> **2026-09-05 UX0 update:** UX0 is implemented and CI verified with its
+> source-controlled prototype mode enabled. A compiled synthetic-variable audit
+> recorded zero Supabase-domain requests. No provider or Production state was
+> changed; founder Preview/release approval remains pending.
 
 > **Canonical operational map.** Agents must read this before changing Git branches, deployment configuration, Supabase projects, authentication providers, environment variables, migrations or production state.
 >
@@ -22,7 +29,7 @@
 - ARO now has an independent GitHub repository: `leonartist7/ARO.club`.
 - Tonguee remains ARO's first language vertical; `leonartist7/Tonguee`, its `main` branch, deployment and Supabase project remain the untouched production foundation and recovery path.
 - The governed ARO history through `9394cb7` is present in ARO.club. M0, I0.1, I0.2 and Q0 delivery history is merged through PR #28; infrastructure follow-ups are merged through PR #33 at `58bf3da`.
-- Requested baseline `5c3d55c` remains in current `main` ancestry; live `main` and its READY Vercel production deployment are at `58bf3da`.
+- Requested baseline `5c3d55c` remains in current `main` ancestry; the September 3 provider snapshot recorded `main` and its READY Vercel production deployment at `58bf3da`. This is historical, not a live Git or deployment assertion; resolve the current revision as described in `ARO_CLOUD_HANDOFF.md`.
 - ARO.club now has an independent Vercel project named `aro-club` and isolated Supabase staging project `mibydnerayobemhnlfyl`. Preview variable names/scopes are verified; their masked literal values are not independently verified.
 - Supabase project Tonguee, ref `ybhecubqnhukgpvchjay`, is preserved for the original Tonguee product. Reuse or migration into a new ARO environment requires a new explicit provider/cutover decision.
 - The separate Supabase project named aro-platform, ref jjgccfrwjkwknyjtbtxa, is `INACTIVE`, is not the ARO migration backend and must not be restored, deleted or repurposed until its five auth accounts and any external dependencies are identified.
@@ -31,7 +38,7 @@
 - ARO-SEC0 is VERIFIED.
 - ARO-R1 is SHIPPED. M0 is VERIFIED as governance.
 - I0 spec 1.1.0 and its package evidence are recorded under `specs/ARO-I0-ISOLATED-INFRASTRUCTURE.md` and `artifacts/ARO-I0/VERIFICATION.md`; branch protection, CI reset equivalence and $0 hosted staging pass. Later Preview scope observations are recorded here and in the current-state/changelog layer pending a separate I0 package.
-- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-UX0 is SPEC-READY as a synthetic frontend-only prototype. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview literal-value matching, Auth/recovery and domain gates remain open.
+- ARO-I0.2 and Q0 are IMPLEMENTED / CI VERIFIED. ARO-UX0 is IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING as a synthetic frontend-only prototype. UX1–UX3 are separate IMPLEMENTED / PARTIAL VERIFICATION static visual packages with no provider or environment effect; see `ARO_IMPLEMENTATION_STATUS.md` and `ARO_AUTONOMOUS_WORKBOARD.md`. ARO-P1 remains SPEC-READY / BASELINE BLOCKED because parent I0 Preview literal-value matching, Auth/recovery and domain gates remain open.
 
 ---
 
@@ -40,8 +47,8 @@
 | Item | Current value | Rule |
 |---|---|---|
 | ARO runtime repository | `leonartist7/ARO.club` | Independent ARO product repository |
-| ARO.club reviewed source | current `main` `58bf3da`; requested baseline `5c3d55c` is an ancestor | Default-branch protection active with stable required checks |
-| Active governed package | `ARO-UX0` SPEC-READY; parent `ARO-I0` remains gates-blocked | UX0 may implement synthetic frontend behavior only; do not start P1 before its gates pass |
+| ARO.club reviewed source | September 3 reviewed snapshot `58bf3da`; requested baseline `5c3d55c` is an ancestor | Default-branch protection active with stable required checks |
+| Active governed package | `ARO-UX0` IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING; parent `ARO-I0` remains gates-blocked | keep UX0 synthetic and unmerged until founder Preview/Production release approval; do not start P1 |
 | Governed source history | `leonartist7/Tonguee`, `feat/aro-p0-director-reset`, through `9394cb7` | Historical governance source; preserve, do not develop new ARO runtime there |
 | Original production repository | `leonartist7/Tonguee`, branch `main` | Untouched Tonguee production and recovery path |
 | P0 Director Pack commit | fc9d3c0 | Historical P0 installation commit |
@@ -241,7 +248,7 @@ Until these steps pass, status is **QUARANTINED — KEEP**.
 | ARO-Q0 reliability foundation | IMPLEMENTED / CI VERIFIED in disposable lane | `specs/ARO-Q0-RELIABILITY-FOUNDATION.md`, PR #28 | finish parent-I0 hosted configuration and recovery; branch protection passed 2026-09-02 |
 | ARO-P1 spec | SPEC-READY / BASELINE BLOCKED | specs/ARO-P1-CAPABILITY-GOAL.md, specs/ARO-P1-BASELINE.md, artifacts/ARO-P1-BASELINE/VERIFICATION.md | complete parent-I0 Preview value-matching/Auth/recovery/domain gates and authenticated baseline |
 | ARO-P1 runtime | Not IN-PROGRESS | no runtime branch/migration/UI work | pass the safe-environment baseline first |
-| ARO-UX0 frontend prototype | SPEC-READY | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md` | implement synthetic-only visual/interaction prototype on a new branch/PR |
+| ARO-UX0 frontend prototype | IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/VERIFICATION.md` | obtain explicit founder Preview/Production release approval |
 | ARO-P2–P6 | SPEC-REQUIRED | ARO_BUILD_PLAYBOOK.md | remain blocked by sequence |
 
 P1's locked data direction:

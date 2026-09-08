@@ -6,7 +6,7 @@ The `Isolated database / platform` GitHub check runs this workdir on a standard 
 
 Safe local verification: `node --test tools/ci/boundary.test.mjs` and `node --check tools/ci/run.mjs`.
 
-CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth/API/Storage lifecycle → authenticated 360/1440 light/dark browser matrix → local recovery email → reset/account-erasure proof → SQL repeat → project-specific cleanup. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
+CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth/API/Storage lifecycle → browser boundary matrix → local recovery email → reset/account-erasure proof → SQL repeat → project-specific cleanup. While source-controlled UX0 prototype mode is enabled, the browser phase is named `prototype-browser-boundary` and proves disabled account inputs, truthful callback behavior, protected-route rejection, responsive light/dark rendering and zero application requests to the local Supabase API. When prototype mode is separately authorized off, the existing authenticated 360/1440 light/dark browser matrix resumes. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
 
 ## What this proves—and does not
 
@@ -14,14 +14,14 @@ CI sequence: pinned CLI → loopback-only Docker network → platform start → 
 - `platform.test.sql` and `application.test.sql` are transactional and roll back their synthetic rows.
 - The only loaded application migration is the reviewed I0.2 baseline under `supabase/migrations`. Repository-root legacy SQL remains excluded; `clean-schema.sql` drops existing tables and must never be used as a bootstrap.
 - The I0.2 migration was created through the pinned CLI and is append-only. It has no hosted project reference, production dump or real user data.
-- This does not verify hosted recovery/deliverability, production rollout, provider capacity, or full I0 acceptance. It does verify the migrated local Auth/profile/application/verification/publication/booking/storage boundaries asserted by the test matrix.
+- This does not verify hosted recovery/deliverability, production rollout, provider capacity, or full I0 acceptance. In UX0 prototype mode it does not claim an authenticated application-browser flow; local Auth API lifecycle checks remain separate and the browser proves the fail-closed boundary. It does verify the migrated local Auth/profile/application/verification/publication/booking/storage boundaries asserted by the test matrix.
 - Hosted capacity, scoped variables/callbacks, recovery, domain ownership and branch protection remain separate gates.
 
 ## Boundaries and retention
 
 Project: `aro-i0-ci`. Network: `aro-i0-ci-net`, labeled with the current GitHub run/attempt/job. Cleanup requires that exact ownership label and removes only that project's disposable volumes. Existing resources cause preflight rejection. The workflow repeats cleanup with `always()`; GitHub runner disposal is the final containment boundary after a hard cancellation.
 
-CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. Four synthetic authenticated screenshots are retained for seven days and contain no credential or real-user data. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
+CLI and HTTP payloads are held in memory, not uploaded. Synthetic addresses end in `.invalid`; credentials are random per run. Four synthetic browser screenshots are retained for seven days and contain no credential or real-user data. While UX0 mode is on they show the fail-closed account boundary; otherwise they show the authenticated baseline. CLI telemetry is disabled. Do not add a raw-output artifact upload, Supabase access token, linked-project file or production credentials.
 
 ## Sources checked 2026-08-30
 

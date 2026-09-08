@@ -6,6 +6,134 @@
 
 ---
 
+## 2026-09-08 — Autonomous workboard and visual-track master sync
+
+The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for
+separate cloud/local tasks. It distinguishes eligible read-only visual reviews,
+future visual implementation after package approval, documentation health
+checks, blocked runtime work, and founder-only gates. It does not create any new
+product or runtime authority.
+
+`AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_CURRENT_STATE.md`,
+`ARO_IMPLEMENTATION_STATUS.md`, `ARO_SPEC_INDEX.md`, and `ARO_HOME.md` now
+link the workboard and explicitly carry the UX1–UX3 static visual continuation
+track beside UX0. The governed P1 → P5 order, I0 blocker, UX0 release decision,
+and all product/runtime boundaries are unchanged.
+
+---
+
+## 2026-09-07 — UX1 personal-field visual-design track started
+
+The founder authorized a deliberate frontend-first design track while P1's
+authenticated/RLS implementation remains blocked. `ARO-UX1-PERSONAL-FIELD-
+VISUAL-PROTOTYPE.md` scopes the first slice: a local-only Personal Field on the
+ARO Profile route. It can visualize static wants, contributions, context and
+boundaries, but cannot add P1 data, Auth, Supabase, persistence, intent,
+location, matching, Trust, money or AI behavior. This does not alter the
+governed P1 → P5 sequence or the production release posture.
+
+The next companion slice, `ARO-UX2-SEED-STUDIO-VISUAL-PROTOTYPE.md`, scopes a
+static Learn / Share / Gather Create experience. Its ingredient composition is
+design-only and cannot create an intent, demand signal, AI output, host proposal
+or opportunity.
+
+On the local preview, UX1 signal selection/privacy explanation and UX2 Learn →
+Share composition transitions were exercised. Both pages passed `npm run lint`
+and `npm run build`; a targeted static audit found no fetch, Supabase, storage,
+Stripe, geolocation or AI reference. They remain **IMPLEMENTED / PARTIAL
+VERIFICATION** pending the dedicated light/dark responsive evidence pass.
+
+## 2026-09-07 — UX3 Lived Moments visual asset prototype started
+
+The founder requested stronger visual representation while preserving ARO's
+warm, human, editorial DNA. UX3 scopes a small local asset pack: a fictional
+Maya portrait and distinct static scenes for shared stories and repair. The pack
+enhances Profile and opportunity surfaces only; functional controls remain
+code-native, and no user media, identity verification, remote storage, API, or
+AI runtime behavior is introduced.
+
+The local implementation now maps the portrait and each contextual scene across
+Profile, opportunity list/detail, Circle Room, and Library. Browser checks
+confirmed the Shared Stories detail and Circle conversation use matching visual
+and host language; a targeted source audit found no connected runtime behavior,
+and lint plus the production build pass. UX3 moves to **IMPLEMENTED / PARTIAL
+VERIFICATION**. Responsive/image-performance capture and founder design review
+remain before any visual-track release decision.
+
+The asset pack was extended with a connected twilight Life Map for Passport and
+a people-first Season of Discovery cover for Insights. Passport proof rows now
+use small contextual memory crops rather than anonymous records. Both routes
+were visually checked in the local preview and the updated production build
+passes. This remains a local static visual layer; it does not create Proof,
+attendance, Identity, or P5 Passport behavior.
+
+Profile now links to a new local-only **Express Your World** preview. It uses an
+original fictional full-body Maya persona, composed Look/Carry/Atmosphere
+controls, and a local apply state so the founder can judge the interaction and
+layout. The choices reset on reload and do not create an account identity,
+inventory, purchase, saved appearance, or data record. Route, interaction,
+lint, and production-build checks pass.
+
+## 2026-09-05 — UX0 required PR checks passed
+
+PR #35's required `static`, `browser-smoke` and disposable `platform` checks,
+plus the Vercel Preview and review integrations, are green on `f19fb31`.
+The platform run retained the local migration, 81/81 SQL, Auth/API/Trust,
+reset/replay and cleanup checks while proving the source-controlled prototype
+browser boundary at 360px and 1440px in light and dark modes with no request to
+the disposable Supabase API.
+
+UX0 is now **IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL
+PENDING** with 9/11 acceptance rows passing. Only UX0-001 and UX0-010 remain:
+founder review of the Preview and explicit approval that merging PR #35 will
+release the same change to Production. The PR remains open. Parent-I0 hosted
+Auth/recovery/domain gates remain blocked, and P1 remains unauthorized.
+
+A subsequent Codex pass found three additional prototype-boundary and
+accessibility gaps. `/choose-role` now redirects to the disabled login boundary
+instead of creating a legacy local player, clearing an anchor restores focus to
+that anchor's first radio, and the small People/Place/Time result labels now
+render at 13.59:1. The refreshed seven-route audit includes `/choose-role` and
+`/leaderboard`, reports zero Supabase-domain requests and no simulated player,
+and the full unit/E2E/build evidence remains green. The required hosted rerun
+also passed on `db41760` (`platform` run `34001252147`; `static` and
+`browser-smoke` run `34001252035`).
+
+## 2026-09-04 — UX0 opportunity formation prototype implemented locally
+
+`feat/aro-ux0-opportunity-prototype` replaces the homepage’s static orbit and
+dominant marketplace-card wall with an authored ARO Field. A visitor selects
+one bounded want, contribution and people/place/time context; the browser uses
+the exact 3×3×3 fixture cross-product to form one explainable synthetic
+possibility, recompute edits immediately and clear/reset ephemeral state.
+
+The package adds complete English, French and Spanish keys, semantic text and a
+live region, native keyboard controls, reduced-motion behavior and an original
+face-free community-table image in responsive WebP variants. The full
+360/390/430/768×1024/1440 light/dark matrix has zero overflow, console errors or
+failed requests. Formation response begins in 1.8 ms, maximum measured CLS is
+0.001616, the home chunk increases 3.36 kB gzip and named initial JS/CSS is
+36.73 kB gzip smaller than baseline.
+
+Source-controlled prototype mode remains on and mounts a static fail-closed
+account boundary instead of initializing connected Auth. A compiled build with
+synthetic Supabase-shaped variables made zero requests to Supabase domains
+across UX0, login, signup, recovery and callback routes. The callback now shows
+a translated unavailable state without simulating sign-in success. No provider, schema,
+RLS, P1, realtime, AI, location, analytics, payment, Google, Production,
+Tonguee or quarantined `aro-platform` state changed.
+
+The disposable platform lane retains its 81 SQL assertions and synthetic
+Auth/API/Storage lifecycle. Its application-browser phase now follows the
+source-controlled UX0 mode: it verifies fail-closed account UI, callback and
+protected-route behavior with zero local-Supabase requests instead of claiming
+an authenticated application browser. Parent-I0 hosted Auth gates remain open.
+
+Status is **IMPLEMENTED / LOCAL VERIFIED / FOUNDER PREVIEW APPROVAL PENDING**:
+8/11 acceptance rows pass. Hosted PR CI and founder visual approval remain. Any
+merge approval must explicitly include the automatic Production release. I0
+remains gates-blocked and P1 remains unauthorized.
+
 ## 2026-09-03 — Preview scope verified; frontend-first UX0 authorized
 
 The founder removed the two overlapping ARO Supabase Production+Preview
@@ -656,3 +784,15 @@ Fresh August 30 lint, 61/61 unit tests and build passed; they do not test the
 identified application database behaviours. Next gate is bounded isolated-only
 approval and reviewed exact contracts, not a paid-resource purchase. Tonguee
 remains read-only and aro-platform remains **QUARANTINED — KEEP**.
+
+## 2026-09-08 — Shipaton master execution preparation
+
+- Added SHIPATON_MASTER_PLAN.md and the requested metrics, monetization/design/OneSignal evidence, BuildInPublic log/drafts, demo storyboard and Devpost working draft.
+- Added shipaton/AWARD_MATRIX.md and the evidence vault with a dated local baseline audit.
+- Recorded the native packaging/RevenueCat/OneSignal gaps, synthetic runtime boundary, unresolved provider gates and conditional new-Google-personal-account testing schedule.
+- Fresh baseline: lint PASS; 73 tests PASS; build PASS with existing data-age/chunk warnings. Sandbox access failures resolved by approved reruns, without source changes.
+- No runtime, schema, provider, publishing, package status or release gate changed. Existing uncommitted UX work preserved.
+
+## 2026-09-08 — ARO-H0 cloud audit snapshot publication
+
+Founder requested all current material on GitHub default branch (`main`). Package existing static `/app` prototype, local UX1–UX3 specs/assets and Shipaton planning material with `ARO_CLOUD_HANDOFF.md`. Correct stale SEC0/infra assertions, commit-route documentation and unrestricted task-selection/writing prompts. Audit tasks use one immutable merged revision and external evidence folders. Publication does not certify visual acceptance, approve FV-1, close I0 or unlock runtime packages. Fresh delivery evidence is recorded under `artifacts/ARO-H0/`.

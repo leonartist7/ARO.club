@@ -1,3 +1,5 @@
+> Historical Tonguee/Conversa evidence only. Not active ARO implementation authority; follow AGENTS.md and the assigned ARO package specification.
+
 # 📋 PROJECT MASTER PLAN
 
 > **Project:** Conversa - Language Learning Experience Marketplace
