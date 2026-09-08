@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > The disposable lane passed migration, 81 SQL assertions, synthetic
 > Auth/API/Storage/recovery/reset and authenticated responsive browser evidence.
@@ -58,7 +60,9 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 | Package order, gates, acceptance criteria | `ARO_BUILD_PLAYBOOK.md` |
 | Master recovered product map | `ARO_MASTER.md` |
 | Current implementation/resume status | `ARO_IMPLEMENTATION_STATUS.md` |
+| Autonomous task lanes and cloud/local handoff | `ARO_AUTONOMOUS_WORKBOARD.md` (coordination only; does not override package gates) |
 | Latest experience / visual / mobile direction | `ARO_EXPERIENCE_SYSTEM.md` + approved package spec when implementing |
+| Frontend visual continuation / swarm handoff | `ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md` (design-only; does not override package gates) |
 | Seasons / quests / AR / Beacons strategy | `ARO_SEASONS_AR.md` + approved package spec when implementing |
 | Durable accepted decisions | `DECISIONS.md` |
 | Vision | `ARO_VISION.md` |
@@ -86,9 +90,13 @@ Never use “done” without identifying whether it means IMPLEMENTED, VERIFIED,
 |---|---|---|---|
 | ARO recovery + master synthesis | **VERIFIED** as documentation recovery | `ARO_MASTER.md`, `ARO_RECOVERY_STATUS.md` | keep synchronized with durable decisions |
 | Always-current state + changelog protocol | **VERIFIED** as governance/documentation | `ARO_CURRENT_STATE.md`, `ARO_CHANGELOG.md`, `AGENTS.md` | update on every material strategy/status PR |
+| Autonomous workboard | **IMPLEMENTED / AUDIT DISPATCH PREPARED** | `ARO_AUTONOMOUS_WORKBOARD.md`, `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md` | keep eligible lanes and founder-only gates synchronized |
 | Infrastructure/environment registry | **VERIFIED** as documentation snapshot | `ARO_INFRASTRUCTURE.md` | complete founder Vercel/project-dependency checks; update on every target/config decision |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | adopt selectively in package specs; validate accessibility/performance |
 | UX0 Opportunity Formation frontend prototype | **IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING** | `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`, `artifacts/ARO-UX0/VERIFICATION.md` | founder reviews Preview and explicitly approves or declines Production release |
+| UX1 Personal Field visual prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | `specs/ARO-UX1-PERSONAL-FIELD-VISUAL-PROTOTYPE.md` | complete dedicated light/dark responsive evidence; it does not authorize P1 data/Auth/RLS work |
+| UX2 Seed Studio visual prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | `specs/ARO-UX2-SEED-STUDIO-VISUAL-PROTOTYPE.md` | complete visual-track release review; it does not authorize P2/P3 intent, demand, AI, or creation work |
+| UX3 Lived Moments asset prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | `specs/ARO-UX3-LIVED-MOMENTS-ASSET-PROTOTYPE.md` | complete responsive/image-performance review; it does not implement Proof, identity/media/API, or runtime behavior |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | core Proof loop first; later progression spec |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | location/privacy/safety/place layer proven before AR |
 | P0 / P0.1 Director Pack | **VERIFIED** as governance/documentation | ARO Director Pack + `ARO_P0_AUDIT.md` | none for documentation |
@@ -296,3 +304,7 @@ A package is truly complete only when:
 `approved spec + implementation + automated verification + visual/operational evidence + security/privacy/trust review where applicable + status registry update + current-state/changelog update when material`
 
 Anything less remains work in progress.
+
+## Audit snapshot package
+
+ARO-H0: snapshot publication and audit dispatch only. Specification: `specs/ARO-H0-CLOUD-AUDIT-HANDOFF.md` 1.0.0. Fresh local verification: `artifacts/ARO-H0/VERIFICATION.md`. Resolve merged remote revision before dispatch; this package does not mark UX1–UX3 VERIFIED or authorize FV-1.

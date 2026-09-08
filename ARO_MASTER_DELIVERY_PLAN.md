@@ -1,5 +1,7 @@
 # ARO — Master Delivery Plan
 
+> September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > The disposable application baseline and Q0 authenticated regression gate
 > passed migration, 81 SQL assertions, Auth/API/Storage/recovery/reset and
@@ -125,6 +127,15 @@ Q0 without unlocking P1 or changing the graph above. Its only authority is
 `specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md`; connected data, Auth and
 P1 behavior remain prohibited.
 
+UX1 Personal Field, UX2 Seed Studio and UX3 Lived Moments are a separate
+static/local visual continuation track. They are **IMPLEMENTED / PARTIAL
+VERIFICATION** in the current working program and are governed by their
+respective `specs/ARO-UX*.md` files plus
+`ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md`. They may improve visual evidence
+but never unlock P1, alter the P1 → P5 graph, or claim runtime behavior.
+`ARO_AUTONOMOUS_WORKBOARD.md` is the dispatch map for safely reviewing and
+continuing this work across separate tasks.
+
 ---
 
 ## 4. Phase M0 — Master delivery governance
@@ -139,6 +150,7 @@ Every new cloud/local task can discover the current objective, package order, au
 - sequence/status synchronized in the build playbook, spec index and implementation ledger;
 - durable sequencing decision recorded;
 - cloud-task starter prompt maintained below.
+- autonomous workboard kept synchronized with eligible lanes and founder-only gates.
 
 ### Gate
 
@@ -480,9 +492,9 @@ Each remains preserved strategic direction and requires its own legal, privacy, 
 
 Use this in a new cloud task:
 
-> Read `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_CURRENT_STATE.md`, `ARO_INFRASTRUCTURE.md`, `ARO_SPEC_INDEX.md`, `ARO_IMPLEMENTATION_STATUS.md`, `ARO_BUILD_PLAYBOOK.md`, `DECISIONS.md`, and the active package specification. Continue the first incomplete phase of the Master Delivery Plan autonomously. Work spec-first; use one package, branch and PR; preserve Tonguee production and quarantined `aro-platform`; do not add cost, dependencies, providers, money, public/private visibility changes or consequential AI authority without the required approval. Run all applicable tests, browser/accessibility/performance/security checks, record evidence, update status documents and stop only for a genuinely founder-only decision. Do not claim completion while any required gate fails.
+> Read `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_CURRENT_STATE.md`, `ARO_INFRASTRUCTURE.md`, `ARO_SPEC_INDEX.md`, `ARO_IMPLEMENTATION_STATUS.md`, `ARO_AUTONOMOUS_WORKBOARD.md`, `ARO_BUILD_PLAYBOOK.md`, `DECISIONS.md`, and the named package specification. Execute only the explicitly assigned task ID and immutable base SHA under `ARO_CLOUD_HANDOFF.md`; never select or broaden work autonomously. Confirm required package authority before any writing task. Work spec-first; use one package, branch and PR; preserve Tonguee production and quarantined `aro-platform`; do not add cost, dependencies, providers, money, public/private visibility changes or consequential AI authority without the required approval. Run all applicable tests, browser/accessibility/performance/security checks, record evidence, update status documents and stop only for a genuinely founder-only decision. Do not claim completion while any required gate fails.
 
-If the active blocker is unchanged, continue safe documentation, test, architecture, design-system or audit work that does not invent downstream product authority. Never bypass an infrastructure or security gate to appear productive.
+If the active blocker is unchanged, continue only the safe documentation, test, design-system or audit work explicitly listed in the workboard. Never bypass an infrastructure or security gate to appear productive.
 
 ---
 

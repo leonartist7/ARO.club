@@ -4,7 +4,7 @@ Read this file fully before touching code, configuration, or data. You are an im
 
 ## Read order and authority
 
-Read `AGENTS.md` → `ARO_MASTER_DELIVERY_PLAN.md` → `ARO_CURRENT_STATE.md` → `ARO_INFRASTRUCTURE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
+Read `AGENTS.md` → `ARO_MASTER_DELIVERY_PLAN.md` → `ARO_CURRENT_STATE.md` → `ARO_INFRASTRUCTURE.md` → `ARO_SPEC_INDEX.md` → `ARO_IMPLEMENTATION_STATUS.md` → `ARO_AUTONOMOUS_WORKBOARD.md` → `ARO_BUILD_PLAYBOOK.md` → the assigned package specification and every governing document it names → only the source files needed for that package. Read `ARO_MASTER.md` once for recovered cross-system context and `ARO_VISION.md` once for concise vision context.
 
 When the assigned work concerns visual/product experience, also read `ARO_EXPERIENCE_SYSTEM.md`. When it concerns progression, quests, Seasons, AR, Beacons, Trails, Expeditions or related monetization, also read `ARO_SEASONS_AR.md`.
 
@@ -36,6 +36,8 @@ Higher authority wins only within its intended scope; a playbook cannot silently
 ## Current-state and recovery context
 
 `ARO_CURRENT_STATE.md` is the concise answer to **what is true now**: current definition, active blocker, runtime sequence, latest strategic direction and implementation boundary.
+
+`ARO_AUTONOMOUS_WORKBOARD.md` identifies safe review, evidence, documentation and implementation lanes for separate cloud/local tasks. It coordinates work but never grants package authority or bypasses a founder-only gate.
 
 `ARO_MASTER_DELIVERY_PLAN.md` is the canonical cross-package objective and cloud-task handoff. It coordinates the governed path through P5 but never authorizes implementation without the narrower SPEC-READY package required by this contract.
 
@@ -96,7 +98,7 @@ Do not add Obsidian or Graphify to the product runtime bundle. They are reposito
 ## Execution rules
 
 - One work package = one branch = one PR = one self-review. Run only the assigned package and respect dependencies/gates.
-- ARO-SEC0 must complete before P1 because tracked environment configuration is an unresolved repository-security risk.
+- ARO-SEC0 is VERIFIED; preserve secret hygiene and keep environment configuration outside Git. P1 remains blocked by its I0 and independent-review gates.
 - Stack remains React 19, Vite 7, Tailwind v3, Supabase JS v2, React Router v7, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Any dependency change needs director approval.
 - Reuse existing UI primitives, route patterns, dark mode, i18n, reduced-motion guards, keyboard access, and focus treatment.
 - Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.

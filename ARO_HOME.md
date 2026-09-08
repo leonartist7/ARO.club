@@ -20,6 +20,7 @@ aliases:
 - [[ARO_MASTER]] — recovered and optimized master vision
 - [[ARO_SPEC_INDEX]] — canonical spec registry and status vocabulary
 - [[ARO_IMPLEMENTATION_STATUS]] — what exists, what is verified, what is blocked, what comes next
+- [[ARO_AUTONOMOUS_WORKBOARD]] — eligible task lanes, founder-only gates and cloud/local task handoff
 - [[ARO_BUILD_PLAYBOOK]] — package sequence, gates, acceptance criteria
 - [[DECISIONS]] — durable accepted architecture/product decisions
 - [[ARO_CHANGELOG]] — append-only product/architecture evolution history
@@ -30,6 +31,7 @@ aliases:
 - [[specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE|ARO-UX0 Opportunity Formation Prototype]] — SPEC-READY synthetic frontend package for the real-time three-point formation interaction
 - [[artifacts/ARO-UX0/HANDOFF|ARO-UX0 New-Task Handoff]] — bounded implementation context and copy/paste starter prompt
 - [[ARO_EXPERIENCE_SYSTEM]] — Living Opportunity OS, ARO Field, Orbit/Portal/Path/Constellation, mobile UX, visual identity, motion, voice and ethical engagement
+- [[ARO_FRONTEND_VISUAL_CONTINUATION_PLAN]] — current static frontend route map, visual completion sequence, swarm handoff and boundaries
 - [[ARO_SEASONS_AR]] — Seasons, quests, real-life progression, AR, Beacons, Trails, Expeditions and strategic monetization
 
 These are approved strategic direction, but runtime implementation remains package/spec gated.
@@ -56,7 +58,7 @@ These are approved strategic direction, but runtime implementation remains packa
 
 ### Current sequence
 
-`SEC0 → R1 → M0 → I0 → Q0 → UX0 (synthetic only) → P1 → N1 → X1 → P2 → A1 → P3 → P4 → P5 → V1 release audit`
+`SEC0 → R1 → M0 → I0 → Q0 → UX0 (synthetic only) → UX1–UX3 / FV (static visual only) → P1 → N1 → X1 → P2 → A1 → P3 → P4 → P5 → V1 release audit`
 
 P6, production 3D/AR, Seasons and money remain outside the V1 release gate unless a separately approved package changes that scope.
 
@@ -86,3 +88,7 @@ This prevents ARO from depending on any single chat conversation.
 **KNOW → SENSE → COMPOSE → QUALIFY → COMMIT → DIRECT → LIVE → PROVE → BECOME → COMPOUND**
 
 **AI organizes. Humans approve. Real life happens.**
+
+## Cloud audit snapshot
+
+Read [[ARO_CLOUD_HANDOFF]] for immutable revision setup, complete A1–A4/S1/lead/C1 prompts, publication authority and unresolved findings.

@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
 > Its isolated database and Quality workflows passed, including 81 SQL
 > assertions, synthetic Auth/API/Storage/recovery/reset exercises and the
@@ -27,8 +29,9 @@
 ### Program state
 
 **ARO R1 is shipped; I0.2, Q0 and UX0 CI gates pass; UX0 is implemented pending
-Preview/Production release approval; P1 remains pre-implementation at its
-parent-I0 gate.**
+Preview/Production release approval; UX1–UX3 are implemented static visual
+packages pending their visual evidence pass; P1 remains pre-implementation at
+its parent-I0 gate.**
 
 The master vision, product boundaries, architecture, migration strategy, trust/safety, money, growth, design, Shipathon scope and P1–P6 sequence have been recovered and preserved in GitHub. `ARO_MASTER_DELIVERY_PLAN.md` is the canonical durable objective and cloud-task handoff through the verified P5 V1 loop.
 
@@ -90,6 +93,9 @@ P1 is **SPEC-READY** and is not yet IN-PROGRESS. Its executable baseline is reco
 | M0 — master delivery governance | **VERIFIED** | durable objective, phase graph, autonomy boundaries, V1 stopping condition and cloud starter prompt | `ARO_MASTER_DELIVERY_PLAN.md`, ADR-027, merged PR #24 | synchronize every material package/release transition |
 | Living Opportunity OS experience direction | **SPEC-REQUIRED** | `ARO_EXPERIENCE_SYSTEM.md` | strategic doctrine preserved | adopt selectively inside package specs; validate accessibility/performance |
 | UX0 — opportunity formation frontend prototype | **IMPLEMENTED / CI VERIFIED / FOUNDER PREVIEW/PRODUCTION APPROVAL PENDING** | deterministic 27-combination field, local state machine, translated result/provenance, original imagery and fail-closed source mode | `artifacts/ARO-UX0/VERIFICATION.md`; 73 unit tests, focused browser matrix, zero-Supabase audit and required PR #35 checks pass | founder Preview + Production release decision |
+| UX1 — Personal Field visual prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | local-only Profile redesign around static wants, contributions, context and boundaries | `specs/ARO-UX1-PERSONAL-FIELD-VISUAL-PROTOTYPE.md`; live interaction, lint/build pass | complete light/dark responsive evidence; it does not implement P1 |
+| UX2 — Seed Studio visual prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | local-only Create redesign around static Learn/Share/Gather seed modes | `specs/ARO-UX2-SEED-STUDIO-VISUAL-PROTOTYPE.md`; live interaction, lint/build pass | complete visual-track release review; it does not implement P2/P3 |
+| UX3 — Lived Moments asset prototype | **IMPLEMENTED / PARTIAL VERIFICATION** | original local portrait/persona, opportunity scenes, Life Map, and season cover for static ARO surfaces | `specs/ARO-UX3-LIVED-MOMENTS-ASSET-PROTOTYPE.md`; route/browser interaction, static scope audit, lint/build pass | complete responsive/image-performance review; it does not implement media, identity, inventory, or runtime behavior |
 | ARO Seasons / real-life progression | **EXPLORATORY / SPEC-REQUIRED** | `ARO_SEASONS_AR.md` | strategy preserved | wait for reliable P5 Proof/Passport base, then specify lightweight progression |
 | ARO AR / Beacons / Trails / Expeditions | **EXPLORATORY** | `ARO_SEASONS_AR.md` | strategy preserved | prove place/privacy/safety model before AR |
 | P0 — Director reset | **VERIFIED** | ARO-first operating authority and migration direction | `ARO_P0_AUDIT.md` | none |
@@ -253,7 +259,7 @@ Do not delete older records; status history is useful operational evidence.
 
 ## 8. Immediate next sequence
 
-`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype (Preview/Production release approval pending) → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
+`M0 governance → I0 isolated capacity → Q0 reliability → UX0 synthetic frontend prototype (Preview/Production release approval pending) → UX1–UX3 / FV static visual continuation (partial verification; no runtime unlock) → P1 → N1 platform decision → X1 experience foundation → P2 → A1 AI foundation → P3 → P4 → P5 → V1 release audit`
 
 UX0 may proceed while the remaining parent-I0 gates are deferred, but it does
 not satisfy them or authorize P1.
@@ -261,3 +267,7 @@ not satisfy them or authorize P1.
 Do not parallelize downstream packages in a way that invents schema or assumptions P1/P2 are supposed to establish.
 
 Do not move Seasons/AR into runtime simply because the strategic direction is now documented. The fastest path is not maximum simultaneous coding. It is **maximum parallelism inside a stable specification boundary**.
+
+## 2026-09-08 — H0 publication handoff
+
+The existing local prototype and supporting plans are packaged under `specs/ARO-H0-CLOUD-AUDIT-HANDOFF.md`. Fresh delivery checks and their limits are in `artifacts/ARO-H0/VERIFICATION.md`. Use `ARO_CLOUD_HANDOFF.md` for task dispatch; do not infer complete visual acceptance from smoke tests.

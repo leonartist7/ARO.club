@@ -1,3 +1,5 @@
+> Historical Tonguee/Conversa evidence only. Not active ARO implementation authority; follow AGENTS.md and the assigned ARO package specification.
+
 # 🎨 TONGUEE — DESIGN EXECUTION PLAN
 
 > **What this is:** the complete creative + execution plan to make the entire MVP look stunning and feel alive. It sits on top of `DESIGN_SYSTEM.md` (tokens, a11y rules, foundations, the 4 hero-page specs) and `BUILD_PLAYBOOK.md` (feature phases). This document covers **how every screen looks, moves, and delights** — batched into work packages (DP1–DP10) that separate agent sessions can execute independently.
