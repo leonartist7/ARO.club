@@ -64,6 +64,7 @@ const AppPassportPage = lazy(() => import('../pages/AppPassportPage'));
 const AppProfilePage = lazy(() => import('../pages/AppProfilePage'));
 const AppExpressPage = lazy(() => import('../pages/AppExpressPage'));
 const AppSettingsPage = lazy(() => import('../pages/AppSettingsPage'));
+const AppNotFoundPage = lazy(() => import('../pages/AppNotFoundPage'));
 
 // Teacher application + Admin (Trust & Quality Engine)
 const TeacherApplicationStatus = lazy(() => import('../pages/teacher/TeacherApplicationStatus'));
@@ -103,6 +104,7 @@ export const router = createBrowserRouter([
       { path: 'profile', element: <AppProfilePage /> },
       { path: 'express', element: <AppExpressPage /> },
       { path: 'settings', element: <AppSettingsPage /> },
+      { path: '*', element: <AppNotFoundPage /> },
     ],
   },
   {
