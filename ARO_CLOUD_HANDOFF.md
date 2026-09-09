@@ -4,7 +4,7 @@ Date: 2026-09-08. Package: ARO-H0, snapshot publication and audit dispatch only.
 
 ## Publication authority and limits
 
-The founder requested: “ensure you push all to master github so the agents got all the info necessary and we are working on a clean up to date version”. GitHub's default branch is `main`, not `master`. This authorizes publishing the existing static prototype and supporting documents through the normal reviewed PR process. It is not a completed founder visual review, approval of FV-1, certification of UX1–UX3, or permission to implement runtime work. Older statements that snapshot publication is awaiting permission are superseded only for this publication; outstanding design and infrastructure gates remain open.
+GitHub's default branch is `main`, not `master`. Current FV-1 work is on the ONE implementation PR #41. Its governing spec is v0.2.2; F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298` and F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress through normal checks so future workers start from an up-to-date `main`. This is not release/deployment approval or full FV-1 verification; F3–F7, independent review, human NVDA testing and founder visual review remain required.
 
 This package collects the previously local work without adding runtime APIs, schemas or dependencies. Wider `/app` scaffolding has incomplete package attribution and verification. Publishing it preserves an auditable baseline, not retrospective feature approval. Reports below must distinguish observed facts, historical reports, assumptions and recommendations.
 
