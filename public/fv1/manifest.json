@@ -1,0 +1,351 @@
+{
+  "assets": {
+    "/aro-living-miniature-calgary-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 69270,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-living-miniature-calgary-v1-640.webp",
+          "height": 427,
+          "lossless": false,
+          "method": 6,
+          "quality": 76,
+          "sha256": "0cb2800ab83786b110c26a91d3b2aace8bb0a3ac2c5d2f628e3eb669ed72fea9",
+          "width": 640
+        },
+        {
+          "bytes": 305264,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-living-miniature-calgary-v1-1440.webp",
+          "height": 960,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "7223e27dfe6d7d43a08384ffe06ff748c928af7e1d7fdc4e234f1968d982858d",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 1024,
+      "sourceSHA256": "6ee86ef9b7066a5b483963be49a686d010165738648c678e0d018664378b8cc2",
+      "sourceWidth": 1536
+    },
+    "/aro-maya-expression-persona-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 162660,
+          "ceiling": 250000,
+          "exact": true,
+          "file": "aro-maya-expression-persona-v1-480.webp",
+          "height": 720,
+          "lossless": true,
+          "method": 6,
+          "quality": 100,
+          "sha256": "6aa26e0ec89f777e952f4c6a353098c7f7378fb93ab63e98758f8e4663e60010",
+          "width": 480
+        },
+        {
+          "bytes": 629998,
+          "ceiling": 640000,
+          "exact": true,
+          "file": "aro-maya-expression-persona-v1-960.webp",
+          "height": 1440,
+          "lossless": true,
+          "method": 6,
+          "quality": 100,
+          "sha256": "10912cefff4e6607a5c9ada9addcd29f161b99593bb7aaf7737c1df954e97e2b",
+          "width": 960
+        }
+      ],
+      "sourceHeight": 1536,
+      "sourceSHA256": "97ac6120dda09259e1293011aa71ff51235b3f677f9738f6dc9bcb647d1b1be5",
+      "sourceWidth": 1024
+    },
+    "/aro-maya-profile-portrait-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 9472,
+          "ceiling": 40000,
+          "exact": false,
+          "file": "aro-maya-profile-portrait-v1-256.webp",
+          "height": 256,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "0116ca614196d6427d7116b3c6d9bd161cc847b18b4a88cf7869610942b8b067",
+          "width": 256
+        },
+        {
+          "bytes": 16206,
+          "ceiling": 40000,
+          "exact": false,
+          "file": "aro-maya-profile-portrait-v1-384.webp",
+          "height": 384,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "bb2667534aac1ff093bdef174712db10dae30fe93c3dd111b4a0a9ca9721185e",
+          "width": 384
+        }
+      ],
+      "sourceHeight": 1254,
+      "sourceSHA256": "62396e2cbb27ecfc10c44a224e379819a1be8b128437b0454177e3cb784d1267",
+      "sourceWidth": 1254
+    },
+    "/aro-passport-life-map-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 2910,
+          "ceiling": 20000,
+          "exact": false,
+          "file": "aro-passport-life-map-v1-160.webp",
+          "height": 90,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "5a24ffb395f913ee5f24b998f8481bc9ae030e64df18f6ac58c8e8365451a5ff",
+          "width": 160
+        },
+        {
+          "bytes": 31250,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-passport-life-map-v1-640.webp",
+          "height": 360,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "31d5118cb1f0584a8e56ef18a941ea9873346c8237ac1d3eb96faa499052aeb4",
+          "width": 640
+        },
+        {
+          "bytes": 111906,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-passport-life-map-v1-1440.webp",
+          "height": 810,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "0ed402984c9781450d9bb0365533b5e3a40cde15bf46af93e979b366e2c13821",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 941,
+      "sourceSHA256": "7b79cae453c6a05043ea9b372fed0932c89b26c8be5705e857022f660df2ea53",
+      "sourceWidth": 1672
+    },
+    "/aro-portal-home-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 4936,
+          "ceiling": 20000,
+          "exact": false,
+          "file": "aro-portal-home-v1-160.webp",
+          "height": 90,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "96e8e5041e16cab4d1c89fdd985afaf3a10627042826b8a39ef6800636ec390f",
+          "width": 160
+        },
+        {
+          "bytes": 49572,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-portal-home-v1-640.webp",
+          "height": 360,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "7fdb070032ac7067053859e7551c7353d5be0a4c9d6093b8c47bd67420530d94",
+          "width": 640
+        },
+        {
+          "bytes": 160930,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-portal-home-v1-1440.webp",
+          "height": 810,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "964dd849ab4322c91fc9bcc522d4562c2f935d3ad66c7f6e5b4a55c0d558c450",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 941,
+      "sourceSHA256": "5784e1b3147c4620821ef189aef3baf93bd7dc7640ea4f2bb962744b034c3eeb",
+      "sourceWidth": 1672
+    },
+    "/aro-repair-table-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 5094,
+          "ceiling": 20000,
+          "exact": false,
+          "file": "aro-repair-table-v1-160.webp",
+          "height": 107,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "68493ffcad3bf16f787619ea4f107ede5efcc92cf6cfb72a86d5f02ac5d4a843",
+          "width": 160
+        },
+        {
+          "bytes": 44704,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-repair-table-v1-640.webp",
+          "height": 427,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "c39a8b2ca8abdc9df18afe9a9924ef017e6ce7feeb6cdf05c3666149297a625f",
+          "width": 640
+        },
+        {
+          "bytes": 136758,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-repair-table-v1-1440.webp",
+          "height": 960,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "0f2dd123ef2992e3aed9c618819ed5aaaeca97805fe4597629bda180e090b00f",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 1024,
+      "sourceSHA256": "34da6d6f5c7863cd9ebb9825805006ab2414d1134c14427d60c7a3fd4fd5553f",
+      "sourceWidth": 1536
+    },
+    "/aro-river-light-circle-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 5510,
+          "ceiling": 20000,
+          "exact": false,
+          "file": "aro-river-light-circle-v1-160.webp",
+          "height": 107,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "4ec8c75c3e43b4b0436b6615b5c50c001c6fb624986e0f2da2ada87955c77eba",
+          "width": 160
+        },
+        {
+          "bytes": 61112,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-river-light-circle-v1-640.webp",
+          "height": 427,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "cc4c834c3f8ae1fc07468d48359c55633a1fd7b84265ae73b9909c8e4d1575dd",
+          "width": 640
+        },
+        {
+          "bytes": 197316,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-river-light-circle-v1-1440.webp",
+          "height": 960,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "2391c7980aed663e293e8242ba57c481b50626d177b4456c11bc8f781eac5295",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 1024,
+      "sourceSHA256": "a7222f865c8a1895884523eccff825a4e046f0fff584b11e06d5fd1c88db8cda",
+      "sourceWidth": 1536
+    },
+    "/aro-season-discovery-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 21404,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-season-discovery-v1-640.webp",
+          "height": 360,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "23ae742e78103fb7f2c5cebbd51262ca7afef38cc44839c96eebac4ef5ee318f",
+          "width": 640
+        },
+        {
+          "bytes": 85302,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-season-discovery-v1-1440.webp",
+          "height": 810,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "c8659eadfe0880ef2f3d14a4090164df057d186ee2ac36a16c45e229bd5c721f",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 941,
+      "sourceSHA256": "8f1570572785b496bdc57d23d81ee2b7536499ba95050ed1fc33af73f46f700e",
+      "sourceWidth": 1672
+    },
+    "/aro-shared-stories-table-v1.png": {
+      "derivatives": [
+        {
+          "bytes": 4610,
+          "ceiling": 20000,
+          "exact": false,
+          "file": "aro-shared-stories-table-v1-160.webp",
+          "height": 107,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "331b49949492c665df8d0e66ce79873cf279566bf4b8558724cece0db8783f72",
+          "width": 160
+        },
+        {
+          "bytes": 35560,
+          "ceiling": 80000,
+          "exact": false,
+          "file": "aro-shared-stories-table-v1-640.webp",
+          "height": 427,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "e8ad740bf7d34e0290f1b692f9fc32713abeb1881a3ff42c2d94fd3f1b0a062b",
+          "width": 640
+        },
+        {
+          "bytes": 116010,
+          "ceiling": 400000,
+          "exact": false,
+          "file": "aro-shared-stories-table-v1-1440.webp",
+          "height": 960,
+          "lossless": false,
+          "method": 6,
+          "quality": 82,
+          "sha256": "a4637f3bc1426ccdd253d0425c7ec36da5bf3b8eefa1e54df9f7fed4b4491848",
+          "width": 1440
+        }
+      ],
+      "sourceHeight": 1024,
+      "sourceSHA256": "5284f38c939842ece4d072a07145a377b5f1aa3bd1b131c06d21beb1f518d0b9",
+      "sourceWidth": 1536
+    }
+  },
+  "encoder": {
+    "libwebp": "1.6.0",
+    "pillow": "12.3.0",
+    "python": "3.13.5",
+    "resize": "LANCZOS",
+    "stripMetadata": true
+  },
+  "version": 1
+}
