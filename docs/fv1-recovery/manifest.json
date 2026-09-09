@@ -32,8 +32,8 @@
     },
     {
       "path": "tasks/F1.md",
-      "sha256": "c4cbd0f7b3c070bf6f398ea679eb3ddd01554a60ce50e751cca7cbb3101160b2",
-      "bytes": 7247
+      "sha256": "47bbcaecc6f59e222e122306ddd4c4e910ebb45b44710bb931037fa464697ea8",
+      "bytes": 8528
     },
     {
       "path": "tasks/F2.md",
@@ -67,8 +67,8 @@
     },
     {
       "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
-      "sha256": "b45453aafb28a472bfc9c1e2bbff4d0120bbb4ea947989cf5dd285819498d578",
-      "bytes": 30887
+      "sha256": "8e980fce9e775120d4d44a8d4f09a2c6e7fae7ee4ff95b7615dafbdc3a77f1cd",
+      "bytes": 33540
     }
   ]
 }
