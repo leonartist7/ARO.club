@@ -1,4 +1,4 @@
-> Historical recovered synthesis. The [authoritative v0.2.0 candidate](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) supersedes its unresolved choices and proposed execution bases. This historical evidence does not authorize implementation.
+> Historical recovered synthesis. The [authoritative v0.2.2 specification](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) supersedes its unresolved choices and proposed execution bases. Current progress is on PR #41: F1 accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. This historical evidence does not authorize further implementation by itself.
 
 # Recovered cloud handoff
 
