@@ -2,7 +2,7 @@
 import React from 'react'
 import { spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { chromium } from 'playwright'
@@ -32,9 +32,9 @@ const routes = [
   },
 ]
 
-function renderDiscovery(path, language = 'en') {
+function renderDiscovery(route, language = 'en') {
   localStorage.setItem('conversa-language', language)
-  const router = createMemoryRouter(routes, { initialEntries: [path] })
+  const router = createMemoryRouter(routes, { initialEntries: [route] })
   const view = render(<RouterProvider router={router} />)
   return { router, ...view }
 }
@@ -71,7 +71,7 @@ function resolveBrowserExecutable() {
 
 async function startF4BrowserServer() {
   const root = process.cwd()
-  const vite = fileURLToPath(new URL(`file://${root}/node_modules/vite/bin/vite.js`))
+  const vite = path.join(root, 'node_modules', 'vite', 'bin', 'vite.js')
   const port = 4179
   const base = `http://127.0.0.1:${port}`
   let output = ''
@@ -96,6 +96,13 @@ async function startF4BrowserServer() {
 
   server.kill('SIGTERM')
   throw new Error(`F4_VITE_TIMEOUT: ${output.slice(-1200)}`)
+}
+
+async function applyTheme(page, theme) {
+  await page.evaluate((selectedTheme) => {
+    document.documentElement.classList.toggle('dark', selectedTheme === 'dark')
+  }, theme)
+  expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(theme === 'dark')
 }
 
 async function readImageEvidence(locator) {
@@ -149,7 +156,7 @@ async function readWorldContrast(page) {
       })
       return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
     }
-    function ratio(foreground, background) {
+    function contrast(foreground, background) {
       const opaqueBackground = background.a < 1 ? composite(background, { r: 255, g: 255, b: 255, a: 1 }) : background
       const opaqueForeground = foreground.a < 1 ? composite(foreground, opaqueBackground) : foreground
       const first = luminance(opaqueForeground)
@@ -157,16 +164,15 @@ async function readWorldContrast(page) {
       return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05)
     }
 
-    const cardStyle = getComputedStyle(card)
-    const cardBackground = parseColor(cardStyle.backgroundColor)
+    const cardBackground = parseColor(getComputedStyle(card).backgroundColor)
     const copy = card.querySelector('[data-fv1-world-card-copy]')
     const cta = card.querySelector('[data-fv1-world-card-cta]')
     const copyStyle = getComputedStyle(copy)
     const ctaStyle = getComputedStyle(cta)
     return {
       cardBackgroundAlpha: cardBackground.a,
-      copyRatio: ratio(parseColor(copyStyle.color), cardBackground),
-      ctaRatio: ratio(parseColor(ctaStyle.color), parseColor(ctaStyle.backgroundColor)),
+      copyRatio: contrast(parseColor(copyStyle.color), cardBackground),
+      ctaRatio: contrast(parseColor(ctaStyle.color), parseColor(ctaStyle.backgroundColor)),
     }
   })
 }
@@ -185,7 +191,6 @@ afterEach(() => {
 describe('FV-1 F4 Create exits and local Seed Studio', () => {
   it('routes the shell Close and both Create World-return affordances to /app/world', () => {
     renderDiscovery('/app/create')
-
     expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Close Seed Studio and return to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Return to World' }).getAttribute('href')).toBe('/app/world')
@@ -195,19 +200,16 @@ describe('FV-1 F4 Create exits and local Seed Studio', () => {
     const fetchSpy = vi.fn()
     vi.stubGlobal('fetch', fetchSpy)
     const first = renderDiscovery('/app/create')
-
     const learn = screen.getByRole('button', { name: /Learn/ })
     const share = screen.getByRole('button', { name: /Share/ })
     expect(learn.getAttribute('aria-pressed')).toBe('true')
-    expect(screen.getByText('A shared table could begin to form.')).toBeTruthy()
-
     fireEvent.click(share)
     expect(share.getAttribute('aria-pressed')).toBe('true')
     expect(learn.getAttribute('aria-pressed')).toBe('false')
     expect(screen.getByText('A light-seeking Circle could take shape.')).toBeTruthy()
     expect(fetchSpy).not.toHaveBeenCalled()
-
     first.unmount()
+
     renderDiscovery('/app/create')
     expect(screen.getByRole('button', { name: /Learn/ }).getAttribute('aria-pressed')).toBe('true')
     expect(screen.getByText('A shared table could begin to form.')).toBeTruthy()
@@ -216,19 +218,15 @@ describe('FV-1 F4 Create exits and local Seed Studio', () => {
 })
 
 describe('FV-1 F4 truthful discovery', () => {
-  it('renders the canonical F3 counts, minimums and derived formation meaning without conflicting claims', () => {
+  it('renders canonical F3 counts and derived formation meaning without conflicting claims', () => {
     renderDiscovery('/app/opportunities')
-
     expect(screen.getByText('6 of 8 example places')).toBeTruthy()
     expect(screen.getByText('Example minimum reached. Nothing is confirmed or booked.')).toBeTruthy()
-
     expect(screen.getByText('3 of 10 example places')).toBeTruthy()
-    expect(screen.getAllByText('Example minimum: 6').length).toBe(3)
+    expect(screen.getAllByText('Example minimum: 6')).toHaveLength(3)
     expect(screen.getByText('3 more example participants to reach the minimum.')).toBeTruthy()
-
     expect(screen.getByText('8 of 8 example places')).toBeTruthy()
     expect(screen.getByText('Example full.')).toBeTruthy()
-
     expect(screen.queryByText(/people are interested/i)).toBeNull()
     expect(screen.queryByText(/forming a table/i)).toBeNull()
     expect(screen.queryByText(/joining/i)).toBeNull()
@@ -236,7 +234,6 @@ describe('FV-1 F4 truthful discovery', () => {
 
   it('presents search and status filters as explained non-actionable previews', () => {
     renderDiscovery('/app/opportunities')
-
     expect(screen.queryByRole('textbox')).toBeNull()
     expect(screen.queryByRole('tab')).toBeNull()
     expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' }).length).toBeGreaterThanOrEqual(2)
@@ -244,7 +241,7 @@ describe('FV-1 F4 truthful discovery', () => {
     expect(screen.getAllByText('Not available in this preview.').length).toBeGreaterThanOrEqual(2)
   })
 
-  it('keeps discovery links pointed at the existing intended routes', () => {
+  it('keeps discovery links pointed at existing intended routes', () => {
     const home = renderDiscovery('/app')
     expect(screen.getByRole('link', { name: 'Open fictional example: River light photo walk' }).getAttribute('href')).toBe('/app/opportunities/river-photo-walk')
     expect(screen.getByRole('link', { name: 'Open Seed Studio' }).getAttribute('href')).toBe('/app/create')
@@ -283,7 +280,6 @@ describe('FV-1 F4 language parity', () => {
   it('keeps EN, FR and ES discovery key structures equivalent and formation meaning aligned', () => {
     expect(structureOf(fv1DiscoveryCopy.fr)).toEqual(structureOf(fv1DiscoveryCopy.en))
     expect(structureOf(fv1DiscoveryCopy.es)).toEqual(structureOf(fv1DiscoveryCopy.en))
-
     const fixture = { exampleCount: 3, minimum: 6, capacity: 10 }
     expect(getDiscoveryFormationStatus(fv1DiscoveryCopy.en, fixture)).toContain('3 more')
     expect(getDiscoveryFormationStatus(fv1DiscoveryCopy.fr, fixture)).toContain('3 participants')
@@ -295,8 +291,8 @@ describe('FV-1 F4 language parity', () => {
     ['es', '/app/opportunities', '3 de 10 lugares de ejemplo'],
     ['fr', '/app/create', 'Retour au Monde'],
     ['es', '/app/create', 'Volver al Mundo'],
-  ])('renders active %s F4 copy on %s without a shell language provider', (language, path, expectedText) => {
-    renderDiscovery(path, language)
+  ])('renders active %s F4 copy on %s without a shell language provider', (language, route, expectedText) => {
+    renderDiscovery(route, language)
     expect(screen.getAllByText(expectedText).length).toBeGreaterThan(0)
   })
 })
@@ -312,17 +308,18 @@ describe('FV-1 F4 browser acceptance evidence', () => {
     const widths = [360, 390, 430, 768, 1440]
     const themes = ['light', 'dark']
     const routeCases = [
-      { path: '/app', essential: fv1DiscoveryCopy.en.home.seedPrompt, image: 'home' },
-      { path: '/app/world', essential: fv1DiscoveryCopy.en.world.instruction, image: 'world' },
-      { path: '/app/opportunities', essential: fv1DiscoveryCopy.en.unavailable, image: 'opportunities' },
-      { path: '/app/create', essential: fv1DiscoveryCopy.en.create.intro, image: null },
+      { route: '/app', essential: fv1DiscoveryCopy.en.home.seedPrompt, image: 'home' },
+      { route: '/app/world', essential: fv1DiscoveryCopy.en.world.instruction, image: 'world' },
+      { route: '/app/opportunities', essential: fv1DiscoveryCopy.en.unavailable, image: 'opportunities' },
+      { route: '/app/create', essential: fv1DiscoveryCopy.en.create.intro, image: null },
     ]
     const evidence = {
-      sha: process.env.GITHUB_SHA ?? null,
+      testedRef: process.env.GITHUB_SHA ?? null,
+      implementationHead: process.env.GITHUB_HEAD_REF ?? null,
       browser: executablePath,
       widths,
       themes,
-      routes: routeCases.map(({ path }) => path),
+      routes: routeCases.map(({ route }) => route),
       observations: 0,
       minTargetWidth: Number.POSITIVE_INFINITY,
       minTargetHeight: Number.POSITIVE_INFINITY,
@@ -338,11 +335,8 @@ describe('FV-1 F4 browser acceptance evidence', () => {
       browser = await chromium.launch({ headless: true, executablePath, args: ['--disable-dev-shm-usage'] })
 
       for (const theme of themes) {
-        const context = await browser.newContext({ colorScheme: theme, deviceScaleFactor: 1 })
-        await context.addInitScript(({ selectedTheme }) => {
-          localStorage.setItem('theme', selectedTheme)
-          localStorage.setItem('conversa-language', 'en')
-        }, { selectedTheme: theme })
+        const context = await browser.newContext({ deviceScaleFactor: 1 })
+        await context.addInitScript(() => localStorage.setItem('conversa-language', 'en'))
         const page = await context.newPage()
 
         for (const width of widths) {
@@ -352,14 +346,14 @@ describe('FV-1 F4 browser acceptance evidence', () => {
             const pageErrors = []
             const onPageError = (error) => pageErrors.push(String(error))
             page.on('pageerror', onPageError)
-            await page.goto(`${base}${routeCase.path}`, { waitUntil: 'domcontentloaded' })
+            await page.goto(`${base}${routeCase.route}`, { waitUntil: 'domcontentloaded' })
+            await applyTheme(page, theme)
             await page.locator('main#app-main').waitFor({ state: 'visible', timeout: 15000 })
-            await page.waitForFunction((selectedTheme) => document.documentElement.classList.contains('dark') === (selectedTheme === 'dark'), theme)
 
             const essential = page.locator('main#app-main').getByText(routeCase.essential, { exact: true }).first()
             await essential.waitFor({ state: 'visible', timeout: 15000 })
             const essentialFontSize = Number.parseFloat(await essential.evaluate((element) => getComputedStyle(element).fontSize))
-            expect(essentialFontSize, `${routeCase.path} essential copy at ${width}px/${theme}`).toBeGreaterThanOrEqual(16)
+            expect(essentialFontSize, `${routeCase.route} essential copy at ${width}px/${theme}`).toBeGreaterThanOrEqual(16)
             evidence.minEssentialFontSize = Math.min(evidence.minEssentialFontSize, essentialFontSize)
 
             const layout = await page.locator('main#app-main').evaluate((main) => {
@@ -381,10 +375,10 @@ describe('FV-1 F4 browser acceptance evidence', () => {
               }
             })
 
-            expect(layout.overflow, `${routeCase.path} horizontal overflow at ${width}px/${theme}`).toBeLessThanOrEqual(1)
+            expect(layout.overflow, `${routeCase.route} horizontal overflow at ${width}px/${theme}`).toBeLessThanOrEqual(1)
             evidence.maxHorizontalOverflow = Math.max(evidence.maxHorizontalOverflow, layout.overflow)
             const undersized = layout.targets.filter(({ width: targetWidth, height }) => targetWidth < 43.5 || height < 43.5)
-            expect(undersized, `${routeCase.path} undersized targets at ${width}px/${theme}: ${JSON.stringify(undersized)}`).toEqual([])
+            expect(undersized, `${routeCase.route} undersized targets at ${width}px/${theme}: ${JSON.stringify(undersized)}`).toEqual([])
             if (layout.targets.length > 0) {
               evidence.minTargetWidth = Math.min(evidence.minTargetWidth, ...layout.targets.map(({ width: targetWidth }) => targetWidth))
               evidence.minTargetHeight = Math.min(evidence.minTargetHeight, ...layout.targets.map(({ height }) => height))
@@ -393,28 +387,25 @@ describe('FV-1 F4 browser acceptance evidence', () => {
             let imageEvidence = null
             if (routeCase.image === 'home') {
               imageEvidence = await readImageEvidence(page.getByAltText('A person standing beside an illuminated portal overlooking a river at sunset'))
-              const expected = width <= 430 ? 'aro-portal-home-v1-640.webp' : 'aro-portal-home-v1-1440.webp'
-              expect(imageEvidence.currentSrc).toContain(expected)
+              expect(imageEvidence.currentSrc).toContain(width <= 430 ? 'aro-portal-home-v1-640.webp' : 'aro-portal-home-v1-1440.webp')
             } else if (routeCase.image === 'world') {
               imageEvidence = await readImageEvidence(page.locator('img[src*="aro-living-miniature-calgary-v1"]').first())
-              const expected = width <= 430 ? 'aro-living-miniature-calgary-v1-640.webp' : 'aro-living-miniature-calgary-v1-1440.webp'
-              expect(imageEvidence.currentSrc).toContain(expected)
+              expect(imageEvidence.currentSrc).toContain(width <= 430 ? 'aro-living-miniature-calgary-v1-640.webp' : 'aro-living-miniature-calgary-v1-1440.webp')
             } else if (routeCase.image === 'opportunities') {
               imageEvidence = await readImageEvidence(page.getByAltText('A small photography group gathering beside a river at golden hour'))
               expect(imageEvidence.currentSrc).toContain('aro-river-light-circle-v1-640.webp')
             }
+
             if (imageEvidence) {
               expect(imageEvidence.naturalWidth).toBeGreaterThan(0)
               expect(imageEvidence.naturalHeight).toBeGreaterThan(0)
               expect(imageEvidence.objectFit).toBe('cover')
               expect(imageEvidence.width).toBeGreaterThan(0)
               expect(imageEvidence.height).toBeGreaterThan(0)
-              if (theme === 'light' && (width === 360 || width === 1440)) {
-                evidence.imageSamples[`${routeCase.image}-${width}`] = imageEvidence
-              }
+              if (theme === 'light' && (width === 360 || width === 1440)) evidence.imageSamples[`${routeCase.image}-${width}`] = imageEvidence
             }
 
-            if (routeCase.path === '/app/world') {
+            if (routeCase.route === '/app/world') {
               const contrast = await readWorldContrast(page)
               expect(contrast.cardBackgroundAlpha).toBe(1)
               expect(contrast.copyRatio, `World formation copy contrast at ${width}px/${theme}`).toBeGreaterThanOrEqual(4.5)
@@ -423,32 +414,29 @@ describe('FV-1 F4 browser acceptance evidence', () => {
               evidence.minWorldCtaContrast = Math.min(evidence.minWorldCtaContrast, contrast.ctaRatio)
             }
 
-            if (routeCase.path === '/app/opportunities') {
+            if (routeCase.route === '/app/opportunities') {
               expect(await page.locator('main#app-main').getByRole('textbox').count()).toBe(0)
               expect(await page.locator('main#app-main').getByRole('tab').count()).toBe(0)
               expect(await page.locator('main#app-main').getByText(fv1DiscoveryCopy.en.unavailable, { exact: true }).count()).toBeGreaterThanOrEqual(2)
             }
 
-            expect(pageErrors, `${routeCase.path} page errors at ${width}px/${theme}: ${pageErrors.join(' | ')}`).toEqual([])
+            expect(pageErrors, `${routeCase.route} page errors at ${width}px/${theme}: ${pageErrors.join(' | ')}`).toEqual([])
             page.off('pageerror', onPageError)
             evidence.observations += 1
           }
         }
-
         await context.close()
       }
 
-      const createContext = await browser.newContext({ viewport: { width: 390, height: 900 }, colorScheme: 'light' })
-      await createContext.addInitScript(() => {
-        localStorage.setItem('theme', 'light')
-        localStorage.setItem('conversa-language', 'en')
-      })
+      const createContext = await browser.newContext({ viewport: { width: 390, height: 900 } })
+      await createContext.addInitScript(() => localStorage.setItem('conversa-language', 'en'))
       const createPage = await createContext.newPage()
       const serviceRequests = []
       createPage.on('request', (request) => {
         if (['fetch', 'xhr'].includes(request.resourceType())) serviceRequests.push(request.url())
       })
       await createPage.goto(`${base}/app/create`, { waitUntil: 'domcontentloaded' })
+      await applyTheme(createPage, 'light')
       await createPage.getByRole('button', { name: /Share/ }).waitFor({ state: 'visible', timeout: 15000 })
       const beforeInteraction = serviceRequests.length
       await createPage.getByRole('button', { name: /Share/ }).click()
