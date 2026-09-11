@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, CalendarDays, Camera, CheckCircle2, MapPin, MessageCircle, Send, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
 import { AppAvatar, StatusPill } from '../components/app/AppPrimitives';
