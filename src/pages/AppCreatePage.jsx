@@ -9,21 +9,21 @@ const seedModeLayout = [
     icon: Sparkles,
     tone: 'border-secondary-200 bg-secondary-300 text-ink',
     softTone: 'bg-secondary-300/15',
-    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[18%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[14%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
+    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[28%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[28%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
   },
   {
     id: 'share',
     icon: Compass,
     tone: 'border-primary-400 bg-primary-600 text-white',
     softTone: 'bg-primary-500/15',
-    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[18%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[14%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
+    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[28%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[28%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
   },
   {
     id: 'gather',
     icon: UsersRound,
     tone: 'border-moss/70 bg-moss text-white',
     softTone: 'bg-moss/15',
-    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[18%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[14%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
+    positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[28%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[28%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
   },
 ];
 
@@ -58,7 +58,7 @@ function CompositionField({ config, mode, copy }) {
   const Icon = config.icon;
 
   return (
-    <section className="relative isolate min-h-[590px] overflow-hidden border border-bone/10 bg-ink px-5 py-6 shadow-[0_28px_80px_rgba(0,0,0,0.24)] sm:min-h-[620px] sm:px-8 sm:py-8" aria-label={copy.create.possibleShape}>
+    <section className="relative isolate min-h-[620px] overflow-hidden border border-bone/10 bg-ink px-5 py-6 shadow-[0_28px_80px_rgba(0,0,0,0.24)] sm:min-h-[620px] sm:px-8 sm:py-8" aria-label={copy.create.possibleShape}>
       <div className={`pointer-events-none absolute inset-0 ${config.softTone}`} aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 opacity-85" aria-hidden="true">
         <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full border border-bone/10" />
@@ -86,13 +86,14 @@ function CompositionField({ config, mode, copy }) {
 }
 
 export default function AppCreatePage() {
-  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
+  const language = localStorage.getItem('conversa-language') ?? 'en';
+  const copy = getFv1DiscoveryCopy(language);
   const [activeModeId, setActiveModeId] = useState('learn');
   const activeConfig = seedModeLayout.find((mode) => mode.id === activeModeId) ?? seedModeLayout[0];
   const activeMode = copy.create.modes[activeConfig.id];
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-ink px-4 py-7 text-bone dark:bg-plum sm:px-8 sm:py-10">
+    <div lang={language} className="min-h-[calc(100vh-5rem)] bg-ink px-4 py-7 text-bone dark:bg-plum sm:px-8 sm:py-10">
       <div className="mx-auto max-w-[1180px]">
         <Link to="/app/world" aria-label={copy.create.closeToWorld} className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-bold text-bone transition hover:text-secondary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.create.backToWorld}</Link>
 
