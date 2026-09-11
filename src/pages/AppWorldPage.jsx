@@ -28,7 +28,7 @@ function SignalMarker({ signal, active, onSelect, copy }) {
     <button
       type="button"
       aria-pressed={active}
-      aria-label={copy.opportunities.openExample(signal.title)}
+      aria-label={signal.title}
       onClick={() => onSelect(signal.id)}
       className="group absolute z-20 min-h-11 min-w-11 -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
       style={{ left: `${signal.x}%`, top: `${signal.y}%` }}
@@ -48,12 +48,13 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
   const formationStatus = getDiscoveryFormationStatus(copy, activeSignal);
 
   return (
-    <div className="relative isolate overflow-hidden bg-[#293735]" style={{ minHeight: 'clamp(560px, 58vw, 700px)' }}>
+    <div className="relative isolate overflow-hidden bg-[#293735]" style={{ minHeight: 'clamp(720px, 58vw, 760px)' }}>
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <AppImage
           src="/aro-living-miniature-calgary-v1.png"
           alt=""
           variant="hero"
+          priority
           cropClass="scale-[1.06]"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none"
         />
@@ -89,13 +90,13 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
 
       <div className="absolute inset-x-0 bottom-0 z-20 p-3 sm:p-5">
         <div data-fv1-world-card className="relative mx-auto overflow-hidden rounded-2xl border border-white p-4 text-ink shadow-[0_18px_48px_rgba(11,19,17,0.38)] sm:p-5" style={{ maxWidth: '31rem', backgroundColor: '#F6F0E6' }}>
-          <div className="relative flex items-start justify-between gap-3">
-            <div className="min-w-0">
+          <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill><span className="text-xs font-bold uppercase tracking-[0.14em] text-ink/70">{activeSignal.area}</span></div>
               <h2 className="mt-2.5 font-display text-xl leading-[0.98] tracking-[-0.02em] sm:text-2xl">{activeSignal.title}</h2>
               <p data-fv1-world-card-copy className="mt-3 max-w-md text-base leading-6 text-ink/80">{formationStatus}</p>
             </div>
-            <div className="shrink-0 rounded-xl border border-ink/15 bg-white px-3 py-2 text-center"><p className="text-xl font-extrabold leading-none text-primary-700">{activeSignal.exampleCount}/{activeSignal.capacity}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-ink/70">{copy.exampleMinimum(activeSignal.minimum)}</p></div>
+            <div className="self-start rounded-xl border border-ink/15 bg-white px-3 py-2 text-center sm:shrink-0"><p className="text-xl font-extrabold leading-none text-primary-700">{activeSignal.exampleCount}/{activeSignal.capacity}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-ink/70">{copy.exampleMinimum(activeSignal.minimum)}</p></div>
           </div>
           <div className="relative mt-4 flex flex-col gap-3 border-t border-ink/15 pt-4 sm:flex-row sm:items-center sm:justify-between">
             <span className="flex min-w-0 items-center gap-2 text-base font-semibold text-ink/75"><MapPin className="h-4 w-4 shrink-0 text-primary-700" aria-hidden="true" />{activeSignal.place}</span>
@@ -108,12 +109,13 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
 }
 
 export default function AppWorldPage() {
-  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
+  const language = localStorage.getItem('conversa-language') ?? 'en';
+  const copy = getFv1DiscoveryCopy(language);
   const [activeSignalId, setActiveSignalId] = useState('river-photo-walk');
   const activeSignal = miniatureSignals.find((signal) => signal.id === activeSignalId) ?? miniatureSignals[0];
 
   return (
-    <div className="px-4 pb-5 pt-6 sm:px-8 sm:pt-9">
+    <div lang={language} className="px-4 pb-5 pt-6 sm:px-8 sm:pt-9">
       <section aria-labelledby="world-title">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
