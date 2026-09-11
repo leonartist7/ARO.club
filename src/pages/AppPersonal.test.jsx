@@ -41,12 +41,6 @@ function structureOf(value) {
   return typeof value
 }
 
-function resolveBrowserExecutable() {
-  const bundledBrowser = chromium.executablePath()
-  if (bundledBrowser && existsSync(bundledBrowser)) return bundledBrowser
-  throw new Error(`F5_BROWSER_CAPABILITY_MISSING: lockfile-managed Chromium unavailable at ${bundledBrowser || 'unknown path'}`)
-}
-
 async function runCommand(command, args, cwd) {
   let output = ''
   const child = spawn(command, args, { cwd, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] })
@@ -58,6 +52,19 @@ async function runCommand(command, args, cwd) {
   })
   if (exitCode !== 0) throw new Error(`${command} ${args.join(' ')} exited ${exitCode}\n${output.slice(-3000)}`)
   return output
+}
+
+async function resolveBrowserExecutable() {
+  let bundledBrowser = chromium.executablePath()
+  if (bundledBrowser && existsSync(bundledBrowser)) return bundledBrowser
+
+  const playwrightCli = `${process.cwd()}/node_modules/playwright/cli.js`
+  if (!existsSync(playwrightCli)) throw new Error('F5_BROWSER_CAPABILITY_MISSING: Playwright CLI unavailable')
+  await runCommand(process.execPath, [playwrightCli, 'install', 'chromium'], process.cwd())
+
+  bundledBrowser = chromium.executablePath()
+  if (bundledBrowser && existsSync(bundledBrowser)) return bundledBrowser
+  throw new Error(`F5_BROWSER_CAPABILITY_MISSING: lockfile-managed Chromium unavailable at ${bundledBrowser || 'unknown path'}`)
 }
 
 async function startF5BrowserServer() {
@@ -322,7 +329,7 @@ const browserEvidenceIt = process.env.CI === 'true' ? it : it.skip
 
 describe('FV-1 F5 browser acceptance evidence', () => {
   browserEvidenceIt('verifies production Profile/Express responsive, zoom, keyboard, focus, contrast, media and local-only behavior', async () => {
-    const executablePath = resolveBrowserExecutable()
+    const executablePath = await resolveBrowserExecutable()
     const { base, server, output } = await startF5BrowserServer()
     let browser
     const widths = [360, 390, 430, 768, 1440]
