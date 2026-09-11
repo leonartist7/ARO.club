@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { opportunities } from '../data/aroApp';
 import { AppPanel, AppSectionHeading, StatusPill } from '../components/app/AppPrimitives';
 import { AppImage } from '../components/app/AppImage';
-import { useLanguage } from '../contexts/LanguageContext';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 
 function OpportunityCard({ opportunity, copy }) {
@@ -51,8 +50,7 @@ function OpportunityCard({ opportunity, copy }) {
 }
 
 export default function AppOpportunitiesPage() {
-  const { language } = useLanguage();
-  const copy = getFv1DiscoveryCopy(language);
+  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
 
   return (
     <div className="mx-auto max-w-[1260px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
