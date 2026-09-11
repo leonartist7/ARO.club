@@ -23,7 +23,7 @@ function FieldNode({ id, node, isActive, onSelect }) {
       data-fv1-profile-node={id}
       onClick={() => onSelect(id)}
       aria-pressed={isActive}
-      className={`flex min-h-12 w-full min-w-0 max-w-full flex-col items-start gap-2 overflow-hidden rounded-2xl border px-3 py-3 text-left text-base font-bold transition duration-300 motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-3 sm:px-4 ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-secondary-200`}
+      className={`flex min-h-12 w-full min-w-0 max-w-full flex-col items-start gap-[8px] overflow-hidden rounded-2xl border px-[12px] py-[12px] text-left text-base font-bold transition duration-300 motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-3 sm:px-4 sm:py-3 ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-secondary-200`}
     >
       <span className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-current/25 bg-white/10"><Icon className="h-5 w-5" aria-hidden="true" /></span>
       <span data-fv1-profile-node-label className="w-full min-w-0 max-w-full break-words leading-5">{node.label}</span>
@@ -50,7 +50,7 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
   const nodes = copy.profile.nodes;
 
   return (
-    <section data-fv1-personal-field className="relative isolate rounded-[2.25rem] bg-ink px-5 py-6 text-bone shadow-[0_28px_80px_rgba(40,36,32,0.24)] sm:px-8 sm:py-8">
+    <section data-fv1-personal-field className="relative isolate rounded-[2.25rem] bg-ink px-[20px] py-[24px] text-bone shadow-[0_28px_80px_rgba(40,36,32,0.24)] sm:px-8 sm:py-8">
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2.25rem] opacity-80" aria-hidden="true">
         <div className="absolute -left-28 top-16 h-72 w-72 rounded-full border border-primary-500/35" />
         <div className="absolute -right-24 -top-28 h-[27rem] w-[27rem] rounded-full border border-secondary-300/20" />
@@ -65,19 +65,19 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
       </div>
 
       <header data-fv1-profile-headline className="relative z-10 max-w-3xl">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-secondary-200"><span className="h-2 w-2 rounded-full bg-secondary-300" aria-hidden="true" /> {copy.profile.fieldEyebrow}</p>
-          <span className="rounded-full border border-bone/20 bg-bone/[0.08] px-3 py-2 text-sm font-bold text-bone/80">{copy.profile.previewLabel}</span>
+        <div className="flex flex-wrap items-center justify-between gap-[12px] sm:gap-3">
+          <p className="flex items-center gap-[8px] text-sm font-bold uppercase tracking-[0.16em] text-secondary-200 sm:gap-2"><span className="h-2 w-2 rounded-full bg-secondary-300" aria-hidden="true" /> {copy.profile.fieldEyebrow}</p>
+          <span className="rounded-full border border-bone/20 bg-bone/[0.08] px-[12px] py-[8px] text-sm font-bold text-bone/80 sm:px-3 sm:py-2">{copy.profile.previewLabel}</span>
         </div>
-        <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[0.94] tracking-[-0.04em] sm:text-6xl">{copy.profile.fieldTitle}</h1>
+        <h1 className="mt-[16px] max-w-2xl font-display text-4xl leading-[0.94] tracking-[-0.04em] sm:mt-4 sm:text-6xl">{copy.profile.fieldTitle}</h1>
       </header>
 
-      <div data-fv1-profile-stage className="relative z-10 mt-8 min-w-0 rounded-[1.75rem] border border-bone/10 bg-bone/[0.04] p-4 sm:p-6">
-        <div className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4">
+      <div data-fv1-profile-stage className="relative z-10 mt-[32px] min-w-0 rounded-[1.75rem] border border-bone/10 bg-bone/[0.04] p-[16px] sm:mt-8 sm:p-6">
+        <div className="grid min-w-0 gap-[12px] sm:grid-cols-2 sm:gap-4">
           {nodeIds.slice(0, 2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
-          <div className="py-5 sm:col-span-2"><Portrait copy={copy} /></div>
+          <div className="py-[20px] sm:col-span-2 sm:py-5"><Portrait copy={copy} /></div>
           {nodeIds.slice(2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
-          <p data-fv1-profile-instruction className="pt-2 text-center text-base leading-6 text-bone/80 sm:col-span-2">{copy.profile.instruction}</p>
+          <p data-fv1-profile-instruction className="pt-[8px] text-center text-base leading-6 text-bone/80 sm:col-span-2 sm:pt-2">{copy.profile.instruction}</p>
         </div>
       </div>
     </section>
@@ -94,7 +94,7 @@ export default function AppProfilePage() {
   const activeItems = activeNode.items ?? [];
 
   return (
-    <div lang={language} className="mx-auto max-w-[1180px] px-4 py-6 sm:px-8 sm:py-9">
+    <div lang={language} className="mx-auto max-w-[1180px] px-[16px] py-[24px] sm:px-8 sm:py-9">
       <div className="mb-5 flex items-center justify-between gap-4">
         <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300"><Sprout className="h-4 w-4" aria-hidden="true" /> {copy.profile.eyebrow}</p>
         <Link to="/app/settings" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/15 text-ink/70 transition hover:border-primary-500 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-bone/15 dark:text-bone/75" aria-label={copy.profile.settingsLabel}><Settings className="h-5 w-5" aria-hidden="true" /></Link>
