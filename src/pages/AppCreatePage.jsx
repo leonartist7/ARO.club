@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Compass, HeartHandshake, Sparkles, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 
 const seedModeLayout = [
@@ -15,7 +14,7 @@ const seedModeLayout = [
   {
     id: 'share',
     icon: Compass,
-    tone: 'border-primary-400 bg-primary-500 text-white',
+    tone: 'border-primary-400 bg-primary-600 text-white',
     softTone: 'bg-primary-500/15',
     positions: ['left-[7%] top-[17%] sm:left-[13%] sm:top-[20%]', 'right-[6%] top-[12%] sm:right-[12%] sm:top-[18%]', 'bottom-[18%] left-[6%] sm:bottom-[18%] sm:left-[12%]', 'bottom-[14%] right-[6%] sm:bottom-[18%] sm:right-[12%]'],
   },
@@ -87,8 +86,7 @@ function CompositionField({ config, mode, copy }) {
 }
 
 export default function AppCreatePage() {
-  const { language } = useLanguage();
-  const copy = getFv1DiscoveryCopy(language);
+  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
   const [activeModeId, setActiveModeId] = useState('learn');
   const activeConfig = seedModeLayout.find((mode) => mode.id === activeModeId) ?? seedModeLayout[0];
   const activeMode = copy.create.modes[activeConfig.id];
