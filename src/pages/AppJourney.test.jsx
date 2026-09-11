@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { circles, findOpportunity, opportunities, opportunityFormation } from '../data/aroApp'
@@ -110,14 +110,15 @@ describe('FV-1 F3 local join preview', () => {
   })
 
   it('resets after leaving and re-entering the commit route', async () => {
-    const { router } = renderJourney('/app/opportunities/river-photo-walk/commit')
+    renderJourney('/app/opportunities/river-photo-walk/commit')
     fireEvent.click(screen.getByRole('button', { name: /Try joining this example/ }))
     expect(screen.getByText('4/10')).toBeTruthy()
 
-    await act(async () => router.navigate('/app/world'))
-    await act(async () => router.navigate('/app/opportunities/river-photo-walk/commit'))
+    fireEvent.click(screen.getByRole('link', { name: 'Back to example opportunity' }))
+    expect((await screen.findAllByText('3 of 10 example places')).length).toBeGreaterThan(0)
 
-    expect(screen.getByText('3/10')).toBeTruthy()
+    fireEvent.click(await screen.findByRole('link', { name: 'Open local join preview' }))
+    expect(await screen.findByText('3/10')).toBeTruthy()
     expect(screen.queryByText('Added to this example only. Nothing booked.')).toBeNull()
   })
 
