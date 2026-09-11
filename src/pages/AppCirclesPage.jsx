@@ -3,6 +3,7 @@ import { ArrowRight, CalendarDays, MapPin, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { circles } from '../data/aroApp';
 import { AppPanel, AppSectionHeading, SignalBar, StatusPill } from '../components/app/AppPrimitives';
+import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
 
 function CircleRow({ circle, copy }) {
@@ -24,7 +25,8 @@ function CircleRow({ circle, copy }) {
 }
 
 export default function AppCirclesPage() {
-  const copy = getFv1JourneyCopy();
+  const { language } = useLanguage();
+  const copy = getFv1JourneyCopy(language);
 
   return (
     <div className="mx-auto max-w-[1100px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
