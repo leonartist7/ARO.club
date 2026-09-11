@@ -30,10 +30,10 @@ export default function AppSettingsPage() {
         {copy.settings.rows.map((row) => {
           const Icon = icons[row.id];
           return (
-            <article key={row.id} data-fv1-setting-row={row.id} className="flex min-h-[92px] min-w-0 items-center gap-4 px-5 py-4 sm:px-6">
+            <article key={row.id} data-fv1-setting-row={row.id} className="flex min-h-[92px] min-w-0 flex-wrap items-center gap-4 px-5 py-4 sm:flex-nowrap sm:px-6">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary-50 text-secondary-700 dark:bg-secondary-900/20 dark:text-secondary-300"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-              <div className="min-w-0 flex-1"><h2 className="text-base font-bold">{row.label}</h2><p data-fv1-essential-copy className="mt-1 text-base leading-6 text-ink/60 dark:text-bone/65">{row.detail}</p></div>
-              <span className="max-w-[12rem] shrink-0 text-right text-sm font-bold text-ink/50 dark:text-bone/55">{copy.common.unavailable}</span>
+              <div className="min-w-[10rem] flex-1"><h2 className="text-base font-bold">{row.label}</h2><p data-fv1-essential-copy className="mt-1 text-base leading-6 text-ink/60 dark:text-bone/65">{row.detail}</p></div>
+              <span className="w-full min-w-0 break-words text-left text-sm font-bold text-ink/50 dark:text-bone/55 sm:w-auto sm:max-w-[12rem] sm:shrink-0 sm:text-right">{copy.common.unavailable}</span>
             </article>
           );
         })}
