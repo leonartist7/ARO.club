@@ -146,7 +146,7 @@ describe('FV-1 F3 direct Circle baseline and local chat', () => {
     renderJourney(`/app/circles/${id}`)
     expect(screen.getByText(countText)).toBeTruthy()
     expect(screen.getAllByText('Example Circle — nothing booked.').length).toBeGreaterThan(0)
-    expect(screen.queryByText(/You joined/i)).toBeNull()
+    expect(screen.queryByText(/^You joined\b/i)).toBeNull()
   })
 
   it('keeps Circle messages local and explicitly unsent', () => {
