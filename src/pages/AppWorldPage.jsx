@@ -20,7 +20,7 @@ const miniatureSignals = signalLayout.map((layout) => ({
 
 function SignalMarker({ signal, active, onSelect, copy }) {
   const toneClasses = {
-    clay: 'bg-primary-500 text-white shadow-[0_0_0_8px_rgba(222,67,37,0.16),0_10px_22px_rgba(78,24,12,0.35)]',
+    clay: 'bg-primary-600 text-white shadow-[0_0_0_8px_rgba(190,50,25,0.16),0_10px_22px_rgba(78,24,12,0.35)]',
     saffron: 'bg-secondary-300 text-ink shadow-[0_0_0_8px_rgba(239,193,75,0.17),0_10px_22px_rgba(78,58,12,0.28)]',
     moss: 'bg-moss text-white shadow-[0_0_0_8px_rgba(104,115,90,0.17),0_10px_22px_rgba(31,43,28,0.32)]',
   };
@@ -89,20 +89,18 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
       {miniatureSignals.map((signal) => <SignalMarker key={signal.id} signal={signal} active={activeSignal.id === signal.id} onSelect={onSelect} copy={copy} />)}
 
       <div className="absolute inset-x-0 bottom-0 z-20 p-3 sm:p-5">
-        <div className="relative mx-auto overflow-hidden rounded-2xl border border-white/80 p-4 text-ink shadow-[0_18px_48px_rgba(11,19,17,0.38)] backdrop-blur-2xl sm:p-5" style={{ maxWidth: '31rem', background: 'linear-gradient(135deg, rgba(255,255,255,0.96), rgba(246,240,230,0.92))', WebkitBackdropFilter: 'blur(24px) saturate(130%)', backdropFilter: 'blur(24px) saturate(130%)' }}>
-          <span className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-secondary-200/30 blur-2xl" aria-hidden="true" />
-          <span className="pointer-events-none absolute -bottom-16 left-1/3 h-24 w-24 rounded-full bg-primary-100/25 blur-2xl" aria-hidden="true" />
+        <div data-fv1-world-card className="relative mx-auto overflow-hidden rounded-2xl border border-white p-4 text-ink shadow-[0_18px_48px_rgba(11,19,17,0.38)] sm:p-5" style={{ maxWidth: '31rem', backgroundColor: '#F6F0E6' }}>
           <div className="relative flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2"><StatusPill tone={activeSignal.status}>{copy.fictionalLabel}</StatusPill><span className="text-xs font-bold uppercase tracking-[0.14em] text-ink/70">{activeSignal.area}</span></div>
+              <div className="flex flex-wrap items-center gap-2"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill><span className="text-xs font-bold uppercase tracking-[0.14em] text-ink/70">{activeSignal.area}</span></div>
               <h2 className="mt-2.5 font-display text-xl leading-[0.98] tracking-[-0.02em] sm:text-2xl">{activeSignal.title}</h2>
-              <p className="mt-3 max-w-md text-base leading-6 text-ink/80">{formationStatus}</p>
+              <p data-fv1-world-card-copy className="mt-3 max-w-md text-base leading-6 text-ink/80">{formationStatus}</p>
             </div>
-            <div className="shrink-0 rounded-xl border border-ink/15 bg-white/70 px-3 py-2 text-center"><p className="text-xl font-extrabold leading-none text-primary-700">{activeSignal.exampleCount}/{activeSignal.capacity}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-ink/70">{copy.exampleMinimum(activeSignal.minimum)}</p></div>
+            <div className="shrink-0 rounded-xl border border-ink/15 bg-white px-3 py-2 text-center"><p className="text-xl font-extrabold leading-none text-primary-700">{activeSignal.exampleCount}/{activeSignal.capacity}</p><p className="mt-1 text-xs font-bold uppercase tracking-[0.08em] text-ink/70">{copy.exampleMinimum(activeSignal.minimum)}</p></div>
           </div>
           <div className="relative mt-4 flex flex-col gap-3 border-t border-ink/15 pt-4 sm:flex-row sm:items-center sm:justify-between">
-            <span className="flex min-w-0 items-center gap-2 text-base font-semibold text-ink/75"><MapPin className="h-4 w-4 shrink-0 text-primary-600" aria-hidden="true" />{activeSignal.place}</span>
-            <Link to={`/app/opportunities/${activeSignal.id}`} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-500 px-4 py-2 text-sm font-bold text-white shadow-[0_7px_16px_rgba(190,50,25,0.27)] transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2">{copy.world.openExample} <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <span className="flex min-w-0 items-center gap-2 text-base font-semibold text-ink/75"><MapPin className="h-4 w-4 shrink-0 text-primary-700" aria-hidden="true" />{activeSignal.place}</span>
+            <Link data-fv1-world-card-cta to={`/app/opportunities/${activeSignal.id}`} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-600 px-4 py-2 text-sm font-bold text-white shadow-[0_7px_16px_rgba(153,39,22,0.24)] transition hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2">{copy.world.openExample} <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </div>
       </div>
