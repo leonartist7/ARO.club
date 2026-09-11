@@ -1,3 +1,4 @@
+import React from 'react';
 import { ArrowRight, CalendarDays, MapPin, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { circles } from '../data/aroApp';
