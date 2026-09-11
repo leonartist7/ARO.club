@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { aroUser, opportunities } from '../data/aroApp';
 import { AppAvatar } from '../components/app/AppPrimitives';
 import { AppImage } from '../components/app/AppImage';
-import { useLanguage } from '../contexts/LanguageContext';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 
 const homeOpportunityIds = ['river-photo-walk', 'shared-stories', 'repair-table'];
@@ -24,7 +23,7 @@ function OpeningCard({ opportunity, copy }) {
         <Link
           to={`/app/opportunities/${opportunity.id}`}
           aria-label={copy.opportunities.openExample(opportunity.title)}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-500 text-white transition hover:-translate-y-0.5 hover:bg-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-600 text-white transition hover:-translate-y-0.5 hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2"
         >
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -102,7 +101,7 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
                 aria-pressed={opportunity.id === activeOpportunity.id}
                 aria-label={copy.opportunities.openExample(opportunity.title)}
                 onClick={() => onSelect(opportunity.id)}
-                className={`h-11 w-11 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 ${opportunity.id === activeOpportunity.id ? 'border-bone bg-primary-500 shadow-[0_0_0_3px_rgba(222,67,37,0.26)]' : 'border-white/40 bg-white/15 hover:bg-white/25'}`}
+                className={`h-11 w-11 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 ${opportunity.id === activeOpportunity.id ? 'border-bone bg-primary-600 shadow-[0_0_0_3px_rgba(190,50,25,0.26)]' : 'border-white/40 bg-white/15 hover:bg-white/25'}`}
               >
                 <span className="sr-only">{opportunity.title}</span>
                 <span className="mx-auto block h-2 w-2 rounded-full bg-white" aria-hidden="true" />
@@ -116,8 +115,7 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
 }
 
 export default function AppHomePage() {
-  const { language } = useLanguage();
-  const copy = getFv1DiscoveryCopy(language);
+  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
   const [activeOpportunityId, setActiveOpportunityId] = useState('river-photo-walk');
   const activeOpportunity = homeOpportunities.find((opportunity) => opportunity.id === activeOpportunityId) ?? homeOpportunities[0];
 
