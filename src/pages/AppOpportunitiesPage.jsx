@@ -50,10 +50,11 @@ function OpportunityCard({ opportunity, copy }) {
 }
 
 export default function AppOpportunitiesPage() {
-  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
+  const language = localStorage.getItem('conversa-language') ?? 'en';
+  const copy = getFv1DiscoveryCopy(language);
 
   return (
-    <div className="mx-auto max-w-[1260px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
+    <div lang={language} className="mx-auto max-w-[1260px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
       <AppSectionHeading eyebrow={copy.opportunities.eyebrow} title={copy.opportunities.title}>
         <div className="w-full sm:w-72">
           <div role="img" aria-label={`${copy.opportunities.searchPreview}. ${copy.unavailable}`} className="flex min-h-11 items-center gap-3 border border-ink/15 bg-white/50 px-3 text-base text-ink/65 dark:border-bone/15 dark:bg-gray-900/50 dark:text-bone/70">
