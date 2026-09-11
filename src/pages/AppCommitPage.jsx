@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, Check, CircleDollarSign, Clock3, MapPin, RotateCcw, ShieldCheck } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
