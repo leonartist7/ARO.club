@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Camera, Clock3, MapPin, ShieldCheck, Sparkles, U
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
 import { AppAvatar, AppPanel, SignalBar, StatusPill } from '../components/app/AppPrimitives';
+import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
 
 const orbitMembers = [
@@ -37,7 +38,8 @@ function FormationOrbit({ count, capacity, status, copy }) {
 
 export default function AppOpportunityDetailPage() {
   const { id } = useParams();
-  const copy = getFv1JourneyCopy();
+  const { language } = useLanguage();
+  const copy = getFv1JourneyCopy(language);
   const opportunity = findOpportunity(id);
 
   if (!opportunity) return <MissingExample copy={copy} />;
