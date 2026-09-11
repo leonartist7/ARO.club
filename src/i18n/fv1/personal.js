@@ -1,44 +1,34 @@
 import { profileSignals } from '../../data/aroApp';
 
-const signalTranslations = {
+const canonicalSignals = [...profileSignals.wants, ...profileSignals.brings, ...profileSignals.boundaries];
+
+const translatedSignals = {
   fr: {
-    wants: {
-      'Practice conversational Spanish': 'Pratiquer l’espagnol conversationnel',
-      'Make more time for making things': 'Prendre plus de temps pour créer',
-      'Meet people outside my usual circles': 'Rencontrer des gens hors de mes cercles habituels',
-    },
-    brings: {
-      'A warm table and good questions': 'Une table chaleureuse et de bonnes questions',
-      'Beginner photography': 'Photographie débutante',
-      'Patient facilitation': 'Animation patiente',
-    },
-    boundaries: {
-      'Show my first name only': 'Afficher seulement mon prénom',
-      'Keep precise location private': 'Garder ma localisation précise privée',
-      'Ask before sharing contact details': 'Demander avant de partager mes coordonnées',
-    },
+    'Practice conversational Spanish': 'Pratiquer l’espagnol conversationnel',
+    'Make more time for making things': 'Prendre plus de temps pour créer',
+    'Meet people outside my usual circles': 'Rencontrer des gens hors de mes cercles habituels',
+    'A warm table and good questions': 'Une table chaleureuse et de bonnes questions',
+    'Beginner photography': 'Photographie débutante',
+    'Patient facilitation': 'Animation patiente',
+    'Show my first name only': 'Afficher seulement mon prénom',
+    'Keep precise location private': 'Garder ma localisation précise privée',
+    'Ask before sharing contact details': 'Demander avant de partager mes coordonnées',
   },
   es: {
-    wants: {
-      'Practice conversational Spanish': 'Practicar español conversacional',
-      'Make more time for making things': 'Hacer más tiempo para crear cosas',
-      'Meet people outside my usual circles': 'Conocer gente fuera de mis círculos habituales',
-    },
-    brings: {
-      'A warm table and good questions': 'Una mesa cálida y buenas preguntas',
-      'Beginner photography': 'Fotografía para principiantes',
-      'Patient facilitation': 'Facilitación paciente',
-    },
-    boundaries: {
-      'Show my first name only': 'Mostrar solo mi nombre',
-      'Keep precise location private': 'Mantener privada mi ubicación precisa',
-      'Ask before sharing contact details': 'Preguntar antes de compartir datos de contacto',
-    },
+    'Practice conversational Spanish': 'Practicar español conversacional',
+    'Make more time for making things': 'Hacer más tiempo para crear cosas',
+    'Meet people outside my usual circles': 'Conocer gente fuera de mis círculos habituales',
+    'A warm table and good questions': 'Una mesa cálida y buenas preguntas',
+    'Beginner photography': 'Fotografía para principiantes',
+    'Patient facilitation': 'Facilitación paciente',
+    'Show my first name only': 'Mostrar solo mi nombre',
+    'Keep precise location private': 'Mantener privada mi ubicación precisa',
+    'Ask before sharing contact details': 'Preguntar antes de compartir datos de contacto',
   },
 };
 
-function localizedSignals(language, group) {
-  return profileSignals[group].map((signal) => signalTranslations[language]?.[group]?.[signal] ?? signal);
+function signalItems(language) {
+  return Object.fromEntries(canonicalSignals.map((signal) => [signal, translatedSignals[language]?.[signal] ?? signal]));
 }
 
 export const fv1PersonalCopy = {
@@ -65,11 +55,12 @@ export const fv1PersonalCopy = {
       privacyDetail: 'P1 will require explicit consent, owner-only storage, editing, and deletion controls before personal signals can influence anything. None of that exists on this screen yet.',
       closing: 'ARO is not trying to calculate your worth. It is trying to make a little more room for the life you mean to live.',
       createLink: 'Bring a small possibility forward',
+      signalItems: signalItems('en'),
       nodes: {
-        wants: { label: 'I am reaching for', title: 'Wants', copy: 'The kinds of moments that would make life feel larger right now.', items: localizedSignals('en', 'wants') },
-        brings: { label: 'I can bring', title: 'Contributions', copy: 'Things you can share without needing to turn yourself into a listing.', items: localizedSignals('en', 'brings') },
+        wants: { label: 'I am reaching for', title: 'Wants', copy: 'The kinds of moments that would make life feel larger right now.' },
+        brings: { label: 'I can bring', title: 'Contributions', copy: 'Things you can share without needing to turn yourself into a listing.' },
         context: { label: 'Life has room for', title: 'Context', copy: 'A gentle sketch of the conditions that help a good opportunity fit.', items: ['Slow Sunday mornings', 'Calgary neighbourhoods', 'Small groups, not crowds'] },
-        boundaries: { label: 'I keep safe', title: 'Boundaries', copy: 'Personal limits stay part of the field. They are not a reason to be less visible as a person.', items: localizedSignals('en', 'boundaries') },
+        boundaries: { label: 'I keep safe', title: 'Boundaries', copy: 'Personal limits stay part of the field. They are not a reason to be less visible as a person.' },
       },
     },
     express: {
@@ -88,12 +79,12 @@ export const fv1PersonalCopy = {
   },
   fr: {
     profile: {
-      eyebrow: 'Identité en mouvement', settingsLabel: 'Ouvrir les paramètres', fieldEyebrow: 'Votre champ personnel', fieldTitle: 'Les parts de vous qui rendent une prochaine chose possible.', previewLabel: 'Champ d’aperçu', portraitAlt: 'Portrait illustré de Maya à Calgary à l’heure dorée', portraitCaption: 'Maya · pas un score', instruction: 'Choisissez un signal pour voir un fil de la vie de Maya. Rien n’est enregistré ni partagé dans cet aperçu.', expressEyebrow: 'Une couche visuelle pour vous', expressTitle: 'Exprimez votre monde.', expressBody: 'Prévisualisez un personnage en pied, les petites choses que vous portez et l’atmosphère qui vous ressemble.', expressLink: 'Ouvrir l’aperçu d’expression', selectedEyebrow: 'Signal sélectionné', connectionNote: 'Dans un vrai parcours ARO, ce sont des connexions, pas des étiquettes. Elles aident à montrer ce qui pourrait prendre forme.', privacyEyebrow: 'Privé par conception', privacyTitle: 'Vous décidez de ce qui appartient au champ.', privacyBody: 'Ce prototype visuel utilise uniquement les données statiques fictives de Maya. Il n’a rien enregistré, associé ni partagé.', privacyButton: 'Comment cela deviendra réel plus tard', privacyDetail: 'P1 exigera un consentement explicite, un stockage réservé au propriétaire, ainsi que des contrôles de modification et de suppression avant qu’un signal personnel puisse influencer quoi que ce soit. Rien de cela n’existe encore ici.', closing: 'ARO ne cherche pas à calculer votre valeur. Il cherche à faire un peu plus de place à la vie que vous voulez vivre.', createLink: 'Faire avancer une petite possibilité',
+      eyebrow: 'Identité en mouvement', settingsLabel: 'Ouvrir les paramètres', fieldEyebrow: 'Votre champ personnel', fieldTitle: 'Les parts de vous qui rendent une prochaine chose possible.', previewLabel: 'Champ d’aperçu', portraitAlt: 'Portrait illustré de Maya à Calgary à l’heure dorée', portraitCaption: 'Maya · pas un score', instruction: 'Choisissez un signal pour voir un fil de la vie de Maya. Rien n’est enregistré ni partagé dans cet aperçu.', expressEyebrow: 'Une couche visuelle pour vous', expressTitle: 'Exprimez votre monde.', expressBody: 'Prévisualisez un personnage en pied, les petites choses que vous portez et l’atmosphère qui vous ressemble.', expressLink: 'Ouvrir l’aperçu d’expression', selectedEyebrow: 'Signal sélectionné', connectionNote: 'Dans un vrai parcours ARO, ce sont des connexions, pas des étiquettes. Elles aident à montrer ce qui pourrait prendre forme.', privacyEyebrow: 'Privé par conception', privacyTitle: 'Vous décidez de ce qui appartient au champ.', privacyBody: 'Ce prototype visuel utilise uniquement les données statiques fictives de Maya. Il n’a rien enregistré, associé ni partagé.', privacyButton: 'Comment cela deviendra réel plus tard', privacyDetail: 'P1 exigera un consentement explicite, un stockage réservé au propriétaire, ainsi que des contrôles de modification et de suppression avant qu’un signal personnel puisse influencer quoi que ce soit. Rien de cela n’existe encore ici.', closing: 'ARO ne cherche pas à calculer votre valeur. Il cherche à faire un peu plus de place à la vie que vous voulez vivre.', createLink: 'Faire avancer une petite possibilité', signalItems: signalItems('fr'),
       nodes: {
-        wants: { label: 'Je tends vers', title: 'Envies', copy: 'Les moments qui pourraient rendre la vie plus vaste en ce moment.', items: localizedSignals('fr', 'wants') },
-        brings: { label: 'Je peux apporter', title: 'Contributions', copy: 'Ce que vous pouvez partager sans devoir vous transformer en annonce.', items: localizedSignals('fr', 'brings') },
+        wants: { label: 'Je tends vers', title: 'Envies', copy: 'Les moments qui pourraient rendre la vie plus vaste en ce moment.' },
+        brings: { label: 'Je peux apporter', title: 'Contributions', copy: 'Ce que vous pouvez partager sans devoir vous transformer en annonce.' },
         context: { label: 'Ma vie a de la place pour', title: 'Contexte', copy: 'Une esquisse douce des conditions qui aident une bonne opportunité à convenir.', items: ['Dimanches matin tranquilles', 'Quartiers de Calgary', 'Petits groupes, pas de foule'] },
-        boundaries: { label: 'Je protège', title: 'Limites', copy: 'Les limites personnelles restent dans le champ. Elles ne rendent pas une personne moins visible.', items: localizedSignals('fr', 'boundaries') },
+        boundaries: { label: 'Je protège', title: 'Limites', copy: 'Les limites personnelles restent dans le champ. Elles ne rendent pas une personne moins visible.' },
       },
     },
     express: {
@@ -112,12 +103,12 @@ export const fv1PersonalCopy = {
   },
   es: {
     profile: {
-      eyebrow: 'Identidad en movimiento', settingsLabel: 'Abrir ajustes', fieldEyebrow: 'Tu campo personal', fieldTitle: 'Las partes de ti que hacen posible lo que viene después.', previewLabel: 'Campo de vista previa', portraitAlt: 'Retrato ilustrado de Maya en Calgary durante la hora dorada', portraitCaption: 'Maya · no es una puntuación', instruction: 'Elige una señal para ver un hilo de la vida de Maya. Nada se guarda ni se comparte en esta vista previa.', expressEyebrow: 'Una capa visual para ti', expressTitle: 'Expresa tu mundo.', expressBody: 'Previsualiza una figura de cuerpo completo, las pequeñas cosas que llevas y la atmósfera que se siente como tú.', expressLink: 'Abrir vista previa de expresión', selectedEyebrow: 'Señal seleccionada', connectionNote: 'En un flujo real de ARO, son conexiones, no etiquetas. Ayudan a mostrar qué podría formarse después.', privacyEyebrow: 'Privado por diseño', privacyTitle: 'Tú decides qué pertenece al campo.', privacyBody: 'Este prototipo visual usa solo datos estáticos ficticios de Maya. No ha guardado, relacionado ni compartido nada.', privacyButton: 'Cómo se vuelve real más adelante', privacyDetail: 'P1 requerirá consentimiento explícito, almacenamiento solo del propietario y controles de edición y eliminación antes de que las señales personales puedan influir en algo. Nada de eso existe todavía aquí.', closing: 'ARO no intenta calcular tu valor. Intenta crear un poco más de espacio para la vida que quieres vivir.', createLink: 'Llevar una pequeña posibilidad adelante',
+      eyebrow: 'Identidad en movimiento', settingsLabel: 'Abrir ajustes', fieldEyebrow: 'Tu campo personal', fieldTitle: 'Las partes de ti que hacen posible lo que viene después.', previewLabel: 'Campo de vista previa', portraitAlt: 'Retrato ilustrado de Maya en Calgary durante la hora dorada', portraitCaption: 'Maya · no es una puntuación', instruction: 'Elige una señal para ver un hilo de la vida de Maya. Nada se guarda ni se comparte en esta vista previa.', expressEyebrow: 'Una capa visual para ti', expressTitle: 'Expresa tu mundo.', expressBody: 'Previsualiza una figura de cuerpo completo, las pequeñas cosas que llevas y la atmósfera que se siente como tú.', expressLink: 'Abrir vista previa de expresión', selectedEyebrow: 'Señal seleccionada', connectionNote: 'En un flujo real de ARO, son conexiones, no etiquetas. Ayudan a mostrar qué podría formarse después.', privacyEyebrow: 'Privado por diseño', privacyTitle: 'Tú decides qué pertenece al campo.', privacyBody: 'Este prototipo visual usa solo datos estáticos ficticios de Maya. No ha guardado, relacionado ni compartido nada.', privacyButton: 'Cómo se vuelve real más adelante', privacyDetail: 'P1 requerirá consentimiento explícito, almacenamiento solo del propietario y controles de edición y eliminación antes de que las señales personales puedan influir en algo. Nada de eso existe todavía aquí.', closing: 'ARO no intenta calcular tu valor. Intenta crear un poco más de espacio para la vida que quieres vivir.', createLink: 'Llevar una pequeña posibilidad adelante', signalItems: signalItems('es'),
       nodes: {
-        wants: { label: 'Estoy buscando', title: 'Deseos', copy: 'Los momentos que harían que la vida se sintiera más amplia ahora.', items: localizedSignals('es', 'wants') },
-        brings: { label: 'Puedo aportar', title: 'Contribuciones', copy: 'Cosas que puedes compartir sin convertirte en un anuncio.', items: localizedSignals('es', 'brings') },
+        wants: { label: 'Estoy buscando', title: 'Deseos', copy: 'Los momentos que harían que la vida se sintiera más amplia ahora.' },
+        brings: { label: 'Puedo aportar', title: 'Contribuciones', copy: 'Cosas que puedes compartir sin convertirte en un anuncio.' },
         context: { label: 'Mi vida tiene espacio para', title: 'Contexto', copy: 'Un boceto amable de las condiciones que ayudan a que una buena oportunidad encaje.', items: ['Domingos tranquilos por la mañana', 'Barrios de Calgary', 'Grupos pequeños, no multitudes'] },
-        boundaries: { label: 'Mantengo seguro', title: 'Límites', copy: 'Los límites personales siguen siendo parte del campo. No hacen que una persona sea menos visible.', items: localizedSignals('es', 'boundaries') },
+        boundaries: { label: 'Mantengo seguro', title: 'Límites', copy: 'Los límites personales siguen siendo parte del campo. No hacen que una persona sea menos visible.' },
       },
     },
     express: {
