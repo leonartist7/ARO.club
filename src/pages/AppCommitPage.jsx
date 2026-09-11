@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, CircleDollarSign, Clock3, MapPin, RotateC
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
+import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
 
 const orbitPeople = [
@@ -40,7 +41,8 @@ function CommitmentOrbit({ count, capacity, status, copy }) {
 
 export default function AppCommitPage() {
   const { id } = useParams();
-  const copy = getFv1JourneyCopy();
+  const { language } = useLanguage();
+  const copy = getFv1JourneyCopy(language);
   const opportunity = findOpportunity(id);
   const [previewState, setPreviewState] = useState({ id, joined: false });
 
