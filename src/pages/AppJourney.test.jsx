@@ -1,7 +1,7 @@
 import React from 'react'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { circles, findOpportunity, opportunities, opportunityFormation } from '../data/aroApp'
 import { fv1JourneyCopy, getFv1FormationStatus } from '../i18n/fv1/journey'
 import AppCircleRoomPage from './AppCircleRoomPage'
@@ -22,6 +22,10 @@ function renderJourney(path) {
   const view = render(<RouterProvider router={router} />)
   return { router, ...view }
 }
+
+beforeEach(() => {
+  vi.stubGlobal('React', React)
+})
 
 afterEach(() => {
   cleanup()
