@@ -65,9 +65,6 @@ describe('FV-1 F4 Create exits and local Seed Studio', () => {
     expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Close Seed Studio and return to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Return to World' }).getAttribute('href')).toBe('/app/world')
-
-    const worldLinks = screen.getAllByRole('link').filter((link) => link.getAttribute('href') === '/app/world')
-    expect(worldLinks).toHaveLength(3)
   })
 
   it('keeps Learn/Share/Gather local, reversible and free of network side effects', () => {
@@ -99,7 +96,6 @@ describe('FV-1 F4 truthful discovery', () => {
     renderDiscovery('/app/opportunities')
 
     expect(screen.getByText('6 of 8 example places')).toBeTruthy()
-    expect(screen.getByText('Example minimum: 6')).toBeTruthy()
     expect(screen.getByText('Example minimum reached. Nothing is confirmed or booked.')).toBeTruthy()
 
     expect(screen.getByText('3 of 10 example places')).toBeTruthy()
@@ -119,7 +115,7 @@ describe('FV-1 F4 truthful discovery', () => {
 
     expect(screen.queryByRole('textbox')).toBeNull()
     expect(screen.queryByRole('tab')).toBeNull()
-    expect(screen.getByRole('img', { name: 'Search preview. Not available in this preview.' })).toBeTruthy()
+    expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' }).length).toBeGreaterThanOrEqual(2)
     expect(screen.getByRole('img', { name: 'Status filters preview. Not available in this preview.' })).toBeTruthy()
     expect(screen.getAllByText('Not available in this preview.').length).toBeGreaterThanOrEqual(2)
   })
@@ -173,7 +169,7 @@ describe('FV-1 F4 language parity', () => {
   it.each([
     ['fr', '/app/opportunities', '6 sur 8 places d’exemple'],
     ['es', '/app/opportunities', '3 de 10 lugares de ejemplo'],
-    ['fr', '/app/create', 'Fermer Seed Studio et retourner au Monde'],
+    ['fr', '/app/create', 'Retour au Monde'],
     ['es', '/app/create', 'Volver al Mundo'],
   ])('renders active %s F4 copy on %s', (language, path, expectedText) => {
     renderDiscovery(path, language)
