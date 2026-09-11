@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ArrowRight, Compass, HeartHandshake, Settings, ShieldCheck, Sparkles, Sprout, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AppImage } from '../components/app/AppImage';
-import { profileSignals } from '../data/aroApp';
 import { getFv1PersonalCopy } from '../i18n/fv1/personal';
 
 const nodeConfig = {
@@ -92,8 +91,7 @@ export default function AppProfilePage() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const activeNode = copy.profile.nodes[activeNodeId] ?? copy.profile.nodes.wants;
   const ActiveIcon = nodeConfig[activeNodeId]?.icon ?? HeartHandshake;
-  const sourceItems = profileSignals[activeNodeId] ?? activeNode.items ?? [];
-  const activeItems = sourceItems.map((item) => copy.profile.signalItems[item] ?? item);
+  const activeItems = activeNode.items ?? [];
 
   return (
     <div lang={language} className="mx-auto max-w-[1180px] px-4 py-6 sm:px-8 sm:py-9">
