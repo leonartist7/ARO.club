@@ -1,3 +1,4 @@
+/* global process */
 import React from 'react'
 import { spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
