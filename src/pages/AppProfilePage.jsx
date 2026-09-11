@@ -23,10 +23,10 @@ function FieldNode({ id, node, isActive, onSelect }) {
       data-fv1-profile-node={id}
       onClick={() => onSelect(id)}
       aria-pressed={isActive}
-      className={`flex min-h-12 w-full min-w-0 flex-col items-start gap-2 rounded-2xl border px-3 py-3 text-left text-base font-bold transition duration-300 motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-3 sm:px-4 ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-secondary-200`}
+      className={`flex min-h-12 w-full min-w-0 max-w-full flex-col items-start gap-2 overflow-hidden rounded-2xl border px-3 py-3 text-left text-base font-bold transition duration-300 motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-3 sm:px-4 ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-secondary-200`}
     >
       <span className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-current/25 bg-white/10"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-      <span data-fv1-profile-node-label className="min-w-0 max-w-full break-words leading-5">{node.label}</span>
+      <span data-fv1-profile-node-label className="w-full min-w-0 max-w-full break-words leading-5">{node.label}</span>
     </button>
   );
 }
@@ -50,8 +50,8 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
   const nodes = copy.profile.nodes;
 
   return (
-    <section data-fv1-personal-field className="relative isolate overflow-hidden rounded-[2.25rem] bg-ink px-5 py-6 text-bone shadow-[0_28px_80px_rgba(40,36,32,0.24)] sm:px-8 sm:py-8">
-      <div className="pointer-events-none absolute inset-0 opacity-80" aria-hidden="true">
+    <section data-fv1-personal-field className="relative isolate rounded-[2.25rem] bg-ink px-5 py-6 text-bone shadow-[0_28px_80px_rgba(40,36,32,0.24)] sm:px-8 sm:py-8">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2.25rem] opacity-80" aria-hidden="true">
         <div className="absolute -left-28 top-16 h-72 w-72 rounded-full border border-primary-500/35" />
         <div className="absolute -right-24 -top-28 h-[27rem] w-[27rem] rounded-full border border-secondary-300/20" />
         <div className="absolute bottom-[-18rem] left-1/2 h-[35rem] w-[35rem] -translate-x-1/2 rounded-full border border-sky/20" />
@@ -72,8 +72,8 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
         <h1 className="mt-4 max-w-2xl font-display text-4xl leading-[0.94] tracking-[-0.04em] sm:text-6xl">{copy.profile.fieldTitle}</h1>
       </header>
 
-      <div data-fv1-profile-stage className="relative z-10 mt-8 rounded-[1.75rem] border border-bone/10 bg-bone/[0.04] p-4 sm:p-6">
-        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+      <div data-fv1-profile-stage className="relative z-10 mt-8 min-w-0 rounded-[1.75rem] border border-bone/10 bg-bone/[0.04] p-4 sm:p-6">
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4">
           {nodeIds.slice(0, 2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
           <div className="py-5 sm:col-span-2"><Portrait copy={copy} /></div>
           {nodeIds.slice(2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
