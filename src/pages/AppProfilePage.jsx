@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, Compass, HeartHandshake, Settings, ShieldCheck, Sparkles, Sprout, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AppImage } from '../components/app/AppImage';
+import { profileSignals } from '../data/aroApp';
 import { getFv1PersonalCopy } from '../i18n/fv1/personal';
 
 const nodeConfig = {
@@ -23,10 +24,10 @@ function FieldNode({ id, node, isActive, onSelect }) {
       data-fv1-profile-node={id}
       onClick={() => onSelect(id)}
       aria-pressed={isActive}
-      className={`flex min-h-12 w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left text-base font-bold transition duration-300 motion-reduce:transition-none ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-secondary-200`}
+      className={`flex min-h-12 w-full min-w-0 flex-col items-start gap-2 rounded-2xl border px-3 py-3 text-left text-base font-bold transition duration-300 motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-3 sm:px-4 ${config.accent} ${isActive ? 'ring-4 ring-secondary-200/70' : 'hover:-translate-y-0.5'} focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-secondary-200`}
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current/25 bg-white/10"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-      <span className="leading-5">{node.label}</span>
+      <span className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-current/25 bg-white/10"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+      <span data-fv1-profile-node-label className="min-w-0 max-w-full break-words leading-5">{node.label}</span>
     </button>
   );
 }
@@ -91,6 +92,8 @@ export default function AppProfilePage() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const activeNode = copy.profile.nodes[activeNodeId] ?? copy.profile.nodes.wants;
   const ActiveIcon = nodeConfig[activeNodeId]?.icon ?? HeartHandshake;
+  const sourceItems = profileSignals[activeNodeId] ?? activeNode.items ?? [];
+  const activeItems = sourceItems.map((item) => copy.profile.signalItems[item] ?? item);
 
   return (
     <div lang={language} className="mx-auto max-w-[1180px] px-4 py-6 sm:px-8 sm:py-9">
@@ -109,7 +112,7 @@ export default function AppProfilePage() {
         <div className="border border-ink/10 bg-white/60 p-6 dark:border-bone/10 dark:bg-gray-900/50 sm:p-8">
           <div className="flex items-start justify-between gap-5"><div><p className="text-sm font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300">{copy.profile.selectedEyebrow}</p><h2 className="mt-3 font-display text-4xl leading-[0.92]">{activeNode.title}</h2></div><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary-100 text-ink dark:bg-secondary-900/40 dark:text-secondary-200"><ActiveIcon className="h-5 w-5" aria-hidden="true" /></span></div>
           <p className="mt-4 max-w-xl text-base leading-7 text-ink/70 dark:text-bone/75">{activeNode.copy}</p>
-          <div className="mt-7 flex flex-wrap gap-2">{activeNode.items.map((item) => <span key={item} className="border border-ink/10 bg-secondary-50 px-3 py-2 text-base font-semibold dark:border-bone/10 dark:bg-secondary-900/20">{item}</span>)}</div>
+          <div className="mt-7 flex flex-wrap gap-2">{activeItems.map((item) => <span key={item} className="border border-ink/10 bg-secondary-50 px-3 py-2 text-base font-semibold dark:border-bone/10 dark:bg-secondary-900/20">{item}</span>)}</div>
           <p className="mt-7 flex items-start gap-2 border-t border-ink/10 pt-5 text-base leading-6 text-ink/65 dark:border-bone/10 dark:text-bone/70"><Sparkles className="mt-1 h-4 w-4 shrink-0 text-secondary-700 dark:text-secondary-300" aria-hidden="true" /> {copy.profile.connectionNote}</p>
         </div>
 
