@@ -2,6 +2,7 @@ import React from 'react'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { LanguageProvider } from '../contexts/LanguageContext'
 import { circles, findOpportunity, opportunities, opportunityFormation } from '../data/aroApp'
 import { fv1JourneyCopy, getFv1FormationStatus } from '../i18n/fv1/journey'
 import AppCircleRoomPage from './AppCircleRoomPage'
@@ -17,18 +18,25 @@ const routes = [
   { path: '/app/circles/:id', element: <AppCircleRoomPage /> },
 ]
 
-function renderJourney(path) {
+function renderJourney(path, language = 'en') {
+  localStorage.setItem('conversa-language', language)
   const router = createMemoryRouter(routes, { initialEntries: [path] })
-  const view = render(<RouterProvider router={router} />)
+  const view = render(
+    <LanguageProvider>
+      <RouterProvider router={router} />
+    </LanguageProvider>,
+  )
   return { router, ...view }
 }
 
 beforeEach(() => {
+  localStorage.clear()
   vi.stubGlobal('React', React)
 })
 
 afterEach(() => {
   cleanup()
+  localStorage.clear()
   vi.unstubAllGlobals()
 })
 
@@ -149,6 +157,12 @@ describe('FV-1 F3 direct Circle baseline and local chat', () => {
     expect(screen.queryByText(/^You joined\b/i)).toBeNull()
   })
 
+  it('labels the Circle return link with its actual commitment destination', () => {
+    renderJourney('/app/circles/river-photo-walk')
+    const returnLink = screen.getByRole('link', { name: 'Back to commitment' })
+    expect(returnLink.getAttribute('href')).toBe('/app/opportunities/river-photo-walk/commit')
+  })
+
   it('keeps Circle messages local and explicitly unsent', () => {
     const fetchSpy = vi.fn()
     vi.stubGlobal('fetch', fetchSpy)
@@ -185,5 +199,15 @@ describe('FV-1 F3 missing examples and translations', () => {
     expect(getFv1FormationStatus(fv1JourneyCopy.en, fixture)).toContain('3 more')
     expect(getFv1FormationStatus(fv1JourneyCopy.fr, fixture)).toContain('3 participants')
     expect(getFv1FormationStatus(fv1JourneyCopy.es, fixture)).toContain('3 participantes')
+  })
+
+  it.each([
+    ['fr', '/app/opportunities/river-photo-walk', '3 sur 10 places d’exemple'],
+    ['es', '/app/opportunities/river-photo-walk/commit', 'Prueba el flujo de compromiso sin reservar nada.'],
+    ['fr', '/app/circles', 'Circles d’exemple'],
+    ['es', '/app/circles/river-photo-walk', 'Circle de ejemplo — nada reservado.'],
+  ])('renders active %s journey copy on %s', (language, path, expectedText) => {
+    renderJourney(path, language)
+    expect(screen.getAllByText(expectedText).length).toBeGreaterThan(0)
   })
 })
