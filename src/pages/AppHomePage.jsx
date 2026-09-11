@@ -99,7 +99,7 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
                 key={opportunity.id}
                 type="button"
                 aria-pressed={opportunity.id === activeOpportunity.id}
-                aria-label={copy.opportunities.openExample(opportunity.title)}
+                aria-label={opportunity.title}
                 onClick={() => onSelect(opportunity.id)}
                 className={`h-11 w-11 shrink-0 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 ${opportunity.id === activeOpportunity.id ? 'border-bone bg-primary-600 shadow-[0_0_0_3px_rgba(190,50,25,0.26)]' : 'border-white/40 bg-white/15 hover:bg-white/25'}`}
               >
@@ -115,12 +115,13 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
 }
 
 export default function AppHomePage() {
-  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
+  const language = localStorage.getItem('conversa-language') ?? 'en';
+  const copy = getFv1DiscoveryCopy(language);
   const [activeOpportunityId, setActiveOpportunityId] = useState('river-photo-walk');
   const activeOpportunity = homeOpportunities.find((opportunity) => opportunity.id === activeOpportunityId) ?? homeOpportunities[0];
 
   return (
-    <div className="px-4 py-5 sm:px-8 sm:py-8">
+    <div lang={language} className="px-4 py-5 sm:px-8 sm:py-8">
       <div className="mb-5 flex items-start justify-between gap-3 sm:mb-6 sm:items-center">
         <div className="flex items-center gap-2 text-base font-semibold text-ink/70 dark:text-bone/75"><span className="h-2 w-2 rounded-full bg-moss" aria-hidden="true" /> {copy.home.previewState}</div>
         <div className="flex max-w-[190px] items-center justify-end gap-2 sm:max-w-none">
