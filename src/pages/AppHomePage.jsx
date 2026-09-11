@@ -101,7 +101,7 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
                 aria-pressed={opportunity.id === activeOpportunity.id}
                 aria-label={copy.opportunities.openExample(opportunity.title)}
                 onClick={() => onSelect(opportunity.id)}
-                className={`h-11 w-11 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 ${opportunity.id === activeOpportunity.id ? 'border-bone bg-primary-600 shadow-[0_0_0_3px_rgba(190,50,25,0.26)]' : 'border-white/40 bg-white/15 hover:bg-white/25'}`}
+                className={`h-11 w-11 shrink-0 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200 ${opportunity.id === activeOpportunity.id ? 'border-bone bg-primary-600 shadow-[0_0_0_3px_rgba(190,50,25,0.26)]' : 'border-white/40 bg-white/15 hover:bg-white/25'}`}
               >
                 <span className="sr-only">{opportunity.title}</span>
                 <span className="mx-auto block h-2 w-2 rounded-full bg-white" aria-hidden="true" />
