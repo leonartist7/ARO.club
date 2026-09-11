@@ -26,7 +26,7 @@ function OpportunityCard({ opportunity, copy }) {
               className="h-full w-full object-cover transition duration-700 group-hover:scale-105 motion-reduce:transition-none"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent sm:bg-gradient-to-r" />
-            <div className="absolute bottom-3 left-3"><StatusPill tone={opportunity.status}>{copy.fictionalLabel}</StatusPill></div>
+            <div className="absolute bottom-3 left-3"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill></div>
           </div>
           <div className="min-w-0 flex-1 p-5 sm:p-7">
             <div className="flex items-start gap-4">
