@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
 import { AppAvatar, StatusPill } from '../components/app/AppPrimitives';
+import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
 
 function buildConversation(opportunity) {
@@ -29,7 +30,8 @@ function MissingExample({ copy }) {
 
 export default function AppCircleRoomPage() {
   const { id } = useParams();
-  const copy = getFv1JourneyCopy();
+  const { language } = useLanguage();
+  const copy = getFv1JourneyCopy(language);
   const opportunity = findOpportunity(id);
   const baselineMessages = opportunity ? buildConversation(opportunity) : [];
   const [localChat, setLocalChat] = useState(() => ({ id, messages: baselineMessages, draft: '' }));
@@ -52,7 +54,7 @@ export default function AppCircleRoomPage() {
 
   return (
     <div className="mx-auto max-w-[1180px] px-4 py-6 sm:px-8 sm:py-9">
-      <Link to={`/app/opportunities/${opportunity.id}/commit`} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink/55 transition hover:text-ink dark:text-bone/55 dark:hover:text-bone"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.backToExample}</Link>
+      <Link to={`/app/opportunities/${opportunity.id}/commit`} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink/55 transition hover:text-ink dark:text-bone/55 dark:hover:text-bone"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.backToCommitment}</Link>
 
       <section className="mt-4 overflow-hidden rounded-[2rem] bg-ink text-bone shadow-[0_22px_60px_rgba(40,36,32,0.22)]">
         <div className="relative min-h-[350px] sm:min-h-[420px]"><img src={opportunity.image} alt={opportunity.imageAlt} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,13,0.18)_0%,rgba(12,15,13,0.18)_30%,rgba(12,15,13,0.9)_100%)]" />
