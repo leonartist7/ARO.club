@@ -77,7 +77,7 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-secondary-100"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-300 opacity-70 motion-reduce:animate-none" /><span className="relative inline-flex h-2 w-2 rounded-full bg-secondary-300" /></span> {copy.world.fieldEyebrow}</p>
           <p className="mt-1 text-base font-bold">{copy.world.fieldTitle}</p>
         </div>
-        <button type="button" onClick={onCenter} aria-label={copy.world.resetView} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-ink/90 text-bone shadow-lg backdrop-blur-md transition hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200"><Crosshair className="h-4 w-4" aria-hidden="true" /></button>
+        <button type="button" onClick={onCenter} aria-label={copy.world.resetView} className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/40 bg-ink/90 text-bone shadow-lg backdrop-blur-md transition hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-200"><Crosshair className="h-4 w-4" aria-hidden="true" /></button>
       </div>
 
       <div className="absolute left-4 z-20 hidden max-w-[220px] border-l border-secondary-200 pl-3 text-bone drop-shadow-lg sm:block" style={{ top: '29%' }}>
