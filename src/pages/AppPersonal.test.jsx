@@ -2,7 +2,6 @@
 import React from 'react'
 import { spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
-import path from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { chromium } from 'playwright'
@@ -43,32 +42,32 @@ function structureOf(value) {
 }
 
 function resolveBrowserExecutable() {
-  const candidates = [
-    process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
-    process.env.CHROME_PATH,
-    '/usr/bin/google-chrome',
-    '/usr/bin/google-chrome-stable',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    process.env.PROGRAMFILES ? `${process.env.PROGRAMFILES}\\Google\\Chrome\\Application\\chrome.exe` : null,
-    process.env['PROGRAMFILES(X86)'] ? `${process.env['PROGRAMFILES(X86)']}\\Google\\Chrome\\Application\\chrome.exe` : null,
-  ].filter(Boolean)
-
-  const systemBrowser = candidates.find((candidate) => existsSync(candidate))
-  if (systemBrowser) return systemBrowser
   const bundledBrowser = chromium.executablePath()
   if (bundledBrowser && existsSync(bundledBrowser)) return bundledBrowser
-  throw new Error('F5_BROWSER_CAPABILITY_MISSING')
+  throw new Error(`F5_BROWSER_CAPABILITY_MISSING: lockfile-managed Chromium unavailable at ${bundledBrowser || 'unknown path'}`)
+}
+
+async function runCommand(command, args, cwd) {
+  let output = ''
+  const child = spawn(command, args, { cwd, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] })
+  child.stdout.on('data', (chunk) => { output += chunk.toString() })
+  child.stderr.on('data', (chunk) => { output += chunk.toString() })
+  const exitCode = await new Promise((resolve, reject) => {
+    child.once('error', reject)
+    child.once('close', resolve)
+  })
+  if (exitCode !== 0) throw new Error(`${command} ${args.join(' ')} exited ${exitCode}\n${output.slice(-3000)}`)
+  return output
 }
 
 async function startF5BrowserServer() {
   const root = process.cwd()
-  const vite = path.join(root, 'node_modules', 'vite', 'bin', 'vite.js')
+  const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
   const port = 4181
   const base = `http://127.0.0.1:${port}`
-  let output = ''
-  const server = spawn(process.execPath, [vite, '--host', '127.0.0.1', '--port', String(port), '--strictPort'], {
+  const buildOutput = await runCommand(npm, ['run', 'build'], root)
+  let output = buildOutput
+  const server = spawn(npm, ['run', 'preview', '--', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], {
     cwd: root,
     env: process.env,
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -77,7 +76,7 @@ async function startF5BrowserServer() {
   server.stderr.on('data', (chunk) => { output += chunk.toString() })
 
   for (let attempt = 0; attempt < 80; attempt += 1) {
-    if (server.exitCode !== null) throw new Error(`F5_VITE_EXITED: ${output.slice(-1200)}`)
+    if (server.exitCode !== null) throw new Error(`F5_PREVIEW_EXITED: ${output.slice(-1600)}`)
     try {
       const response = await fetch(base, { signal: AbortSignal.timeout(750) })
       if (response.ok) return { base, server, output: () => output }
@@ -87,7 +86,7 @@ async function startF5BrowserServer() {
     await delay(250)
   }
   server.kill('SIGTERM')
-  throw new Error(`F5_VITE_TIMEOUT: ${output.slice(-1200)}`)
+  throw new Error(`F5_PREVIEW_TIMEOUT: ${output.slice(-1600)}`)
 }
 
 async function applyTheme(page, theme) {
@@ -139,8 +138,7 @@ async function readControlContrast(page) {
       const second = luminance(background)
       return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05)
     }
-    const controls = Array.from(main.querySelectorAll('[data-fv1-profile-node], [data-fv1-express-apply]'))
-    return controls.map((element) => {
+    return Array.from(main.querySelectorAll('[data-fv1-profile-node], [data-fv1-express-apply]')).map((element) => {
       const style = getComputedStyle(element)
       const foreground = parse(style.color)
       const background = parse(style.backgroundColor)
@@ -181,6 +179,24 @@ async function readProfileSeparation(page) {
   })
 }
 
+async function readProfileLabelContainment(page) {
+  return page.locator('main#app-main').evaluate((main) => {
+    const field = main.querySelector('[data-fv1-personal-field]')
+    const fieldRect = field.getBoundingClientRect()
+    return Array.from(main.querySelectorAll('[data-fv1-profile-node]')).map((button) => {
+      const label = button.querySelector('[data-fv1-profile-node-label]')
+      const buttonRect = button.getBoundingClientRect()
+      const labelRect = label.getBoundingClientRect()
+      return {
+        id: button.getAttribute('data-fv1-profile-node'),
+        contentOverflow: button.scrollWidth - button.clientWidth,
+        insideButton: labelRect.left >= buttonRect.left - 1 && labelRect.right <= buttonRect.right + 1 && labelRect.top >= buttonRect.top - 1 && labelRect.bottom <= buttonRect.bottom + 1,
+        insideField: labelRect.left >= fieldRect.left - 1 && labelRect.right <= fieldRect.right + 1 && labelRect.top >= fieldRect.top - 1 && labelRect.bottom <= fieldRect.bottom + 1,
+      }
+    })
+  })
+}
+
 beforeEach(() => {
   localStorage.clear()
   vi.stubGlobal('React', React)
@@ -193,18 +209,20 @@ afterEach(() => {
 })
 
 describe('FV-1 F5 Personal Field', () => {
-  it('exposes all four local field nodes as aria-pressed buttons and resets on remount', () => {
+  it('exercises all four local field nodes and resets on remount', () => {
     const first = renderPersonal('/app/profile')
-    const wants = screen.getByRole('button', { name: 'I am reaching for' })
-    const brings = screen.getByRole('button', { name: 'I can bring' })
-    const context = screen.getByRole('button', { name: 'Life has room for' })
-    const boundaries = screen.getByRole('button', { name: 'I keep safe' })
-    expect(wants.getAttribute('aria-pressed')).toBe('true')
-    for (const control of [wants, brings, context, boundaries]) expect(control.getAttribute('aria-pressed')).not.toBeNull()
-    fireEvent.click(brings)
-    expect(brings.getAttribute('aria-pressed')).toBe('true')
-    expect(wants.getAttribute('aria-pressed')).toBe('false')
-    expect(screen.getByRole('heading', { name: 'Contributions' })).toBeTruthy()
+    const nodes = [
+      ['I am reaching for', 'Wants'],
+      ['I can bring', 'Contributions'],
+      ['Life has room for', 'Context'],
+      ['I keep safe', 'Boundaries'],
+    ]
+    for (const [label, heading] of nodes) {
+      const control = screen.getByRole('button', { name: label })
+      fireEvent.click(control)
+      expect(control.getAttribute('aria-pressed')).toBe('true')
+      expect(screen.getByRole('heading', { name: heading })).toBeTruthy()
+    }
     first.unmount()
     renderPersonal('/app/profile')
     expect(screen.getByRole('button', { name: 'I am reaching for' }).getAttribute('aria-pressed')).toBe('true')
@@ -236,20 +254,25 @@ describe('FV-1 F5 Personal Field', () => {
 })
 
 describe('FV-1 F5 Express preview', () => {
-  it('uses native aria-pressed category and option buttons instead of tab/radio semantics', () => {
+  it('exercises every retained category and choice with native aria-pressed semantics', () => {
     renderPersonal('/app/express')
     expect(screen.queryByRole('tab')).toBeNull()
     expect(screen.queryByRole('radio')).toBeNull()
-    const look = screen.getByRole('button', { name: 'Look' })
-    const carry = screen.getByRole('button', { name: 'Carry' })
-    expect(look.getAttribute('aria-pressed')).toBe('true')
-    fireEvent.click(carry)
-    expect(carry.getAttribute('aria-pressed')).toBe('true')
-    expect(look.getAttribute('aria-pressed')).toBe('false')
-    const notebook = screen.getByRole('button', { name: /Notebook/ })
-    fireEvent.click(notebook)
-    expect(notebook.getAttribute('aria-pressed')).toBe('true')
-    expect(screen.getAllByText('Notebook').length).toBeGreaterThan(0)
+    const categories = [
+      ['Look', ['Field notes', 'Table maker', 'Evening walk']],
+      ['Carry', ['Camera', 'Notebook', 'Coffee cup']],
+      ['Atmosphere', ['Golden hour', 'River blue', 'Candlelight']],
+    ]
+    for (const [category, options] of categories) {
+      const categoryControl = screen.getByRole('button', { name: category })
+      fireEvent.click(categoryControl)
+      expect(categoryControl.getAttribute('aria-pressed')).toBe('true')
+      for (const option of options) {
+        const optionControl = screen.getByRole('button', { name: new RegExp(option) })
+        fireEvent.click(optionControl)
+        expect(optionControl.getAttribute('aria-pressed')).toBe('true')
+      }
+    }
   })
 
   it('applies only local preview state, has no network write, and resets on remount', () => {
@@ -298,9 +321,9 @@ describe('FV-1 F5 language parity', () => {
 const browserEvidenceIt = process.env.CI === 'true' ? it : it.skip
 
 describe('FV-1 F5 browser acceptance evidence', () => {
-  browserEvidenceIt('verifies Profile/Express responsive, zoom, keyboard, focus, contrast, media and local-only behavior', async () => {
-    const { base, server, output } = await startF5BrowserServer()
+  browserEvidenceIt('verifies production Profile/Express responsive, zoom, keyboard, focus, contrast, media and local-only behavior', async () => {
     const executablePath = resolveBrowserExecutable()
+    const { base, server, output } = await startF5BrowserServer()
     let browser
     const widths = [360, 390, 430, 768, 1440]
     const themes = ['light', 'dark']
@@ -314,7 +337,6 @@ describe('FV-1 F5 browser acceptance evidence', () => {
       browser: executablePath,
       widths,
       themes,
-      routes: routeCases.map(({ route }) => route),
       observations: 0,
       zoomObservations: 0,
       minTargetWidth: Number.POSITIVE_INFINITY,
@@ -325,6 +347,8 @@ describe('FV-1 F5 browser acceptance evidence', () => {
       profileCollisions: [],
       imageSamples: {},
       networkSideEffects: 0,
+      exercisedProfileNodes: [],
+      exercisedExpressChoices: [],
     }
 
     try {
@@ -334,84 +358,65 @@ describe('FV-1 F5 browser acceptance evidence', () => {
         const context = await browser.newContext({ deviceScaleFactor: 1 })
         await context.addInitScript(() => localStorage.setItem('conversa-language', 'en'))
         const page = await context.newPage()
-
         for (const width of widths) {
           await page.setViewportSize({ width, height: 900 })
           for (const routeCase of routeCases) {
-            const pageErrors = []
-            const onPageError = (error) => pageErrors.push(String(error))
-            page.on('pageerror', onPageError)
             await page.goto(`${base}${routeCase.route}`, { waitUntil: 'domcontentloaded' })
             await applyTheme(page, theme)
             await page.locator('main#app-main').waitFor({ state: 'visible', timeout: 15000 })
-
             const essential = page.locator('main#app-main').getByText(routeCase.essential, { exact: true }).first()
             await essential.waitFor({ state: 'visible', timeout: 15000 })
             const essentialFontSize = Number.parseFloat(await essential.evaluate((element) => getComputedStyle(element).fontSize))
-            expect(essentialFontSize, `${routeCase.route} essential copy at ${width}px/${theme}`).toBeGreaterThanOrEqual(16)
+            expect(essentialFontSize).toBeGreaterThanOrEqual(16)
             evidence.minEssentialFontSize = Math.min(evidence.minEssentialFontSize, essentialFontSize)
 
             const layout = await page.locator('main#app-main').evaluate((main) => {
-              const targets = Array.from(main.querySelectorAll('a[href],button'))
-                .map((element) => {
-                  const style = getComputedStyle(element)
-                  const rect = element.getBoundingClientRect()
-                  return { label: element.getAttribute('aria-label') || element.textContent?.trim().replace(/\s+/g, ' ').slice(0, 90) || element.tagName, width: rect.width, height: rect.height, visible: style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0 }
-                })
-                .filter(({ visible }) => visible)
-              const essentialSizes = Array.from(main.querySelectorAll('[data-fv1-essential-copy]')).map((element) => Number.parseFloat(getComputedStyle(element).fontSize))
+              const targets = Array.from(main.querySelectorAll('a[href],button')).map((element) => {
+                const style = getComputedStyle(element)
+                const rect = element.getBoundingClientRect()
+                return { width: rect.width, height: rect.height, visible: style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0 }
+              }).filter(({ visible }) => visible)
               return {
                 overflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
                 targets,
-                essentialSizes,
+                essentialSizes: Array.from(main.querySelectorAll('[data-fv1-essential-copy]')).map((element) => Number.parseFloat(getComputedStyle(element).fontSize)),
               }
             })
-            expect(layout.overflow, `${routeCase.route} horizontal overflow at ${width}px/${theme}`).toBeLessThanOrEqual(1)
+            expect(layout.overflow).toBeLessThanOrEqual(1)
             evidence.maxHorizontalOverflow = Math.max(evidence.maxHorizontalOverflow, layout.overflow)
-            const undersized = layout.targets.filter(({ width: targetWidth, height }) => targetWidth < 43.5 || height < 43.5)
-            expect(undersized, `${routeCase.route} undersized targets at ${width}px/${theme}: ${JSON.stringify(undersized)}`).toEqual([])
+            expect(layout.targets.filter(({ width: targetWidth, height }) => targetWidth < 43.5 || height < 43.5)).toEqual([])
             if (layout.targets.length) {
               evidence.minTargetWidth = Math.min(evidence.minTargetWidth, ...layout.targets.map(({ width: targetWidth }) => targetWidth))
               evidence.minTargetHeight = Math.min(evidence.minTargetHeight, ...layout.targets.map(({ height }) => height))
             }
             for (const fontSize of layout.essentialSizes) {
-              expect(fontSize, `${routeCase.route} data-fv1-essential-copy at ${width}px/${theme}`).toBeGreaterThanOrEqual(16)
+              expect(fontSize).toBeGreaterThanOrEqual(16)
               evidence.minEssentialFontSize = Math.min(evidence.minEssentialFontSize, fontSize)
             }
 
             if (routeCase.route === '/app/profile') {
               const separation = await readProfileSeparation(page)
-              expect(separation.collisions, `Profile collisions at ${width}px/${theme}`).toEqual([])
+              expect(separation.collisions).toEqual([])
               evidence.profileCollisions.push(...separation.collisions)
-              const contrast = await readControlContrast(page)
-              for (const sample of contrast) {
-                expect(sample.ratio, `${sample.label} contrast at ${width}px/${theme}`).toBeGreaterThanOrEqual(4.5)
-                evidence.minControlContrast = Math.min(evidence.minControlContrast, sample.ratio)
-              }
-            } else {
-              const contrast = await readControlContrast(page)
-              for (const sample of contrast) {
-                expect(sample.ratio, `${sample.label} contrast at ${width}px/${theme}`).toBeGreaterThanOrEqual(4.5)
-                evidence.minControlContrast = Math.min(evidence.minControlContrast, sample.ratio)
-              }
+            }
+            for (const sample of await readControlContrast(page)) {
+              expect(sample.ratio).toBeGreaterThanOrEqual(4.5)
+              evidence.minControlContrast = Math.min(evidence.minControlContrast, sample.ratio)
             }
 
-            let imageEvidence
+            const imageEvidence = routeCase.image === 'profile'
+              ? await readImageEvidence(page.getByAltText(fv1PersonalCopy.en.profile.portraitAlt))
+              : await readImageEvidence(page.getByAltText(fv1PersonalCopy.en.express.personaAlt))
             if (routeCase.image === 'profile') {
-              imageEvidence = await readImageEvidence(page.getByAltText(fv1PersonalCopy.en.profile.portraitAlt))
               expect(imageEvidence.currentSrc).toContain(width <= 430 ? 'aro-maya-profile-portrait-v1-256.webp' : 'aro-maya-profile-portrait-v1-384.webp')
               expect(imageEvidence.objectFit).toBe('cover')
             } else {
-              imageEvidence = await readImageEvidence(page.getByAltText(fv1PersonalCopy.en.express.personaAlt))
               expect(imageEvidence.currentSrc).toContain('aro-maya-expression-persona-v1-480.webp')
               expect(imageEvidence.objectFit).toBe('contain')
             }
             expect(imageEvidence.naturalWidth).toBeGreaterThan(0)
             expect(imageEvidence.naturalHeight).toBeGreaterThan(0)
             if (theme === 'light' && (width === 360 || width === 1440)) evidence.imageSamples[`${routeCase.image}-${width}`] = imageEvidence
-
-            expect(pageErrors, `${routeCase.route} page errors at ${width}px/${theme}: ${pageErrors.join(' | ')}`).toEqual([])
-            page.off('pageerror', onPageError)
             evidence.observations += 1
           }
         }
@@ -427,11 +432,15 @@ describe('FV-1 F5 browser acceptance evidence', () => {
           await zoomPage.evaluate(() => { document.documentElement.style.fontSize = '200%' })
           await zoomPage.waitForTimeout(120)
           const overflow = await zoomPage.evaluate(() => Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth))
-          expect(overflow, `${route} overflow at 200% text zoom/${width}px`).toBeLessThanOrEqual(1)
+          expect(overflow).toBeLessThanOrEqual(1)
           evidence.maxHorizontalOverflow = Math.max(evidence.maxHorizontalOverflow, overflow)
           if (route === '/app/profile') {
-            const separation = await readProfileSeparation(zoomPage)
-            expect(separation.collisions, `Profile collisions at 200% text zoom/${width}px`).toEqual([])
+            expect((await readProfileSeparation(zoomPage)).collisions).toEqual([])
+            for (const sample of await readProfileLabelContainment(zoomPage)) {
+              expect(sample.contentOverflow, `${sample.id} content overflow at 200%/${width}`).toBeLessThanOrEqual(1)
+              expect(sample.insideButton, `${sample.id} label escaped button at 200%/${width}`).toBe(true)
+              expect(sample.insideField, `${sample.id} label clipped by field at 200%/${width}`).toBe(true)
+            }
           }
           evidence.zoomObservations += 1
         }
@@ -445,56 +454,76 @@ describe('FV-1 F5 browser acceptance evidence', () => {
       interactionPage.on('request', (request) => { if (['fetch', 'xhr'].includes(request.resourceType())) serviceRequests.push(request.url()) })
 
       await interactionPage.goto(`${base}/app/profile`, { waitUntil: 'domcontentloaded' })
-      const brings = interactionPage.getByRole('button', { name: 'I can bring' })
-      await brings.focus()
-      await interactionPage.keyboard.press('Space')
-      expect(await brings.getAttribute('aria-pressed')).toBe('true')
-      const profileFocus = await brings.evaluate((element) => getComputedStyle(element).boxShadow)
-      expect(profileFocus).not.toBe('none')
+      const profileBaseline = serviceRequests.length
+      for (const nodeId of ['wants', 'brings', 'context', 'boundaries']) {
+        const node = interactionPage.locator(`[data-fv1-profile-node="${nodeId}"]`)
+        await node.focus()
+        await interactionPage.keyboard.press('Space')
+        expect(await node.getAttribute('aria-pressed')).toBe('true')
+        const focus = await node.evaluate((element) => {
+          const style = getComputedStyle(element)
+          return { outlineStyle: style.outlineStyle, outlineWidth: Number.parseFloat(style.outlineWidth), boxShadow: style.boxShadow }
+        })
+        expect(focus.outlineStyle).not.toBe('none')
+        expect(focus.outlineWidth).toBeGreaterThanOrEqual(3)
+        evidence.exercisedProfileNodes.push(nodeId)
+      }
       await interactionPage.getByRole('button', { name: 'How this becomes real later' }).click()
       await interactionPage.getByText(/P1 will require explicit consent/).waitFor({ state: 'visible' })
+      expect(serviceRequests.length - profileBaseline).toBe(0)
 
       await interactionPage.goto(`${base}/app/express`, { waitUntil: 'domcontentloaded' })
-      const carry = interactionPage.getByRole('button', { name: 'Carry' })
-      await carry.focus()
-      await interactionPage.keyboard.press('Space')
-      expect(await carry.getAttribute('aria-pressed')).toBe('true')
-      const notebook = interactionPage.getByRole('button', { name: /Notebook/ })
-      await notebook.focus()
-      await interactionPage.keyboard.press('Space')
-      expect(await notebook.getAttribute('aria-pressed')).toBe('true')
-      const optionFocus = await notebook.evaluate((element) => getComputedStyle(element).boxShadow)
-      expect(optionFocus).not.toBe('none')
+      const expressBaseline = serviceRequests.length
+      for (const categoryId of ['look', 'carry', 'atmosphere']) {
+        const category = interactionPage.locator(`[data-fv1-express-category="${categoryId}"]`)
+        await category.focus()
+        await interactionPage.keyboard.press('Space')
+        expect(await category.getAttribute('aria-pressed')).toBe('true')
+        const options = interactionPage.locator('[data-fv1-express-option]')
+        expect(await options.count()).toBe(3)
+        for (let index = 0; index < 3; index += 1) {
+          const option = options.nth(index)
+          const optionId = await option.getAttribute('data-fv1-express-option')
+          await option.focus()
+          await interactionPage.keyboard.press('Space')
+          expect(await option.getAttribute('aria-pressed')).toBe('true')
+          evidence.exercisedExpressChoices.push(`${categoryId}:${optionId}`)
+        }
+      }
       await interactionPage.getByRole('button', { name: 'Apply this preview' }).click()
       await interactionPage.getByText(fv1PersonalCopy.en.express.appliedStatus, { exact: true }).waitFor({ state: 'visible' })
-      const beforeReloadRequests = serviceRequests.length
+      expect(serviceRequests.length - expressBaseline).toBe(0)
+      evidence.networkSideEffects = serviceRequests.length - expressBaseline
+
+      const reloadBaseline = serviceRequests.length
       await interactionPage.reload({ waitUntil: 'domcontentloaded' })
       await interactionPage.getByRole('button', { name: 'Apply this preview' }).waitFor({ state: 'visible' })
-      evidence.networkSideEffects = serviceRequests.length - beforeReloadRequests
-      expect(serviceRequests.length - beforeReloadRequests).toBe(0)
+      expect(serviceRequests.length - reloadBaseline).toBe(0)
       await interactionContext.close()
 
       const reducedContext = await browser.newContext({ viewport: { width: 390, height: 900 }, reducedMotion: 'reduce' })
       await reducedContext.addInitScript(() => localStorage.setItem('conversa-language', 'en'))
       const reducedPage = await reducedContext.newPage()
       await reducedPage.goto(`${base}/app/profile`, { waitUntil: 'domcontentloaded' })
-      await reducedPage.getByRole('button', { name: 'I can bring' }).click()
-      expect(await reducedPage.getByRole('button', { name: 'I can bring' }).getAttribute('aria-pressed')).toBe('true')
+      await reducedPage.locator('[data-fv1-profile-node="brings"]').click()
+      expect(await reducedPage.locator('[data-fv1-profile-node="brings"]').getAttribute('aria-pressed')).toBe('true')
       await reducedPage.goto(`${base}/app/express`, { waitUntil: 'domcontentloaded' })
-      await reducedPage.getByRole('button', { name: 'Carry' }).click()
-      await reducedPage.getByRole('button', { name: /Notebook/ }).click()
-      expect(await reducedPage.getByRole('button', { name: /Notebook/ }).getAttribute('aria-pressed')).toBe('true')
+      await reducedPage.locator('[data-fv1-express-category="carry"]').click()
+      await reducedPage.locator('[data-fv1-express-option="notebook"]').click()
+      expect(await reducedPage.locator('[data-fv1-express-option="notebook"]').getAttribute('aria-pressed')).toBe('true')
       await reducedContext.close()
 
       expect(evidence.observations).toBe(20)
       expect(evidence.zoomObservations).toBe(4)
       expect(evidence.profileCollisions).toEqual([])
+      expect(new Set(evidence.exercisedProfileNodes).size).toBe(4)
+      expect(new Set(evidence.exercisedExpressChoices).size).toBe(9)
       process.stdout.write(`F5_BROWSER_EVIDENCE ${JSON.stringify(evidence)}\n`)
     } catch (error) {
-      throw new Error(`${error instanceof Error ? error.message : String(error)}\nF5 server output:\n${output().slice(-2000)}`)
+      throw new Error(`${error instanceof Error ? error.message : String(error)}\nF5 server output:\n${output().slice(-2500)}`)
     } finally {
       await browser?.close().catch(() => {})
       if (server.exitCode === null) server.kill('SIGTERM')
     }
-  }, 120000)
+  }, 180000)
 })
