@@ -1,3 +1,4 @@
+import React from 'react';
 import { ArrowLeft, ArrowRight, Camera, Clock3, MapPin, ShieldCheck, Sparkles, UsersRound } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { findOpportunity } from '../data/aroApp';
