@@ -33,7 +33,7 @@ function FieldNode({ id, node, isActive, onSelect }) {
 
 function Portrait({ copy }) {
   return (
-    <div data-fv1-profile-portrait className="relative mx-auto aspect-square w-40 overflow-hidden rounded-full border-[8px] border-primary-600 bg-bone text-ink shadow-[0_0_0_8px_rgba(239,193,75,0.14),0_24px_50px_rgba(0,0,0,0.28)] sm:w-48">
+    <div data-fv1-profile-portrait className="relative mx-auto aspect-square w-full max-w-40 overflow-hidden rounded-full border-[8px] border-primary-600 bg-bone text-ink shadow-[0_0_0_8px_rgba(239,193,75,0.14),0_24px_50px_rgba(0,0,0,0.28)] sm:max-w-48">
       <AppImage
         src="/aro-maya-profile-portrait-v1.png"
         alt={copy.profile.portraitAlt}
@@ -75,7 +75,7 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
       <div data-fv1-profile-stage className="relative z-10 mt-[32px] min-w-0 rounded-[1.75rem] border border-bone/10 bg-bone/[0.04] p-[16px] sm:mt-8 sm:p-6">
         <div className="grid min-w-0 gap-[12px] sm:grid-cols-2 sm:gap-4">
           {nodeIds.slice(0, 2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
-          <div className="py-[20px] sm:col-span-2 sm:py-5"><Portrait copy={copy} /></div>
+          <div className="min-w-0 py-[20px] sm:col-span-2 sm:py-5"><Portrait copy={copy} /></div>
           {nodeIds.slice(2).map((id) => <FieldNode key={id} id={id} node={nodes[id]} isActive={activeNodeId === id} onSelect={onSelect} />)}
           <p data-fv1-profile-instruction className="pt-[8px] text-center text-base leading-6 text-bone/80 sm:col-span-2 sm:pt-2">{copy.profile.instruction}</p>
         </div>
@@ -114,7 +114,7 @@ export default function AppProfilePage() {
           <p className="mt-7 flex items-start gap-2 border-t border-ink/10 pt-5 text-base leading-6 text-ink/65 dark:border-bone/10 dark:text-bone/70"><Sparkles className="mt-1 h-4 w-4 shrink-0 text-secondary-700 dark:text-secondary-300" aria-hidden="true" /> {copy.profile.connectionNote}</p>
         </div>
 
-        <aside className="flex flex-col justify-between bg-primary-50 p-6 dark:bg-primary-900/15 sm:p-7"><div><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300"><ShieldCheck className="h-4 w-4" aria-hidden="true" /> {copy.profile.privacyEyebrow}</p><h2 className="mt-4 font-display text-3xl leading-[0.96]">{copy.profile.privacyTitle}</h2><p className="mt-4 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.profile.privacyBody}</p></div><button type="button" onClick={() => setShowPrivacy((value) => !value)} aria-expanded={showPrivacy} className="mt-7 inline-flex min-h-11 items-center gap-2 self-start px-1 text-base font-bold text-primary-700 transition hover:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:text-primary-300">{copy.profile.privacyButton} <ArrowRight className={`h-4 w-4 transition-transform motion-reduce:transition-none ${showPrivacy ? 'rotate-90' : ''}`} aria-hidden="true" /></button>{showPrivacy && <p className="mt-4 border-t border-primary-500/15 pt-4 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.profile.privacyDetail}</p>}</aside>
+        <aside className="flex flex-col justify-between bg-primary-50 p-6 dark:bg-primary-900/15 sm:p-7"><div><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300"><ShieldCheck className="h-4 w-4" aria-hidden="true" /> {copy.profile.privacyEyebrow}</p><h2 className="mt-4 font-display text-3xl leading-[0.96]">{copy.profile.privacyTitle}</h2><p className="mt-4 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.profile.privacyBody}</p></div><button type="button" onClick={() => setShowPrivacy((value) => !value)} aria-expanded={showPrivacy} className="mt-7 inline-flex min-h-11 items-center gap-2 self-start px-1 text-base font-bold text-primary-700 transition hover:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:text-primary-300">{copy.profile.privacyButton} <ArrowRight className={`h-4 w-4 transition-transform motion-reduce:transition-none ${showPrivacy ? 'rotate-90' : ''}`} aria-hidden="true" /></button>{showPrivacy && <p className="mt-4 border-t border-primary-500/15 pt-4 text-base leading-6 text-ink/70 dark:border-bone/10 dark:text-bone/75">{copy.profile.privacyDetail}</p>}</aside>
       </section>
 
       <section className="mt-7 flex flex-col gap-5 border-y border-ink/10 py-6 dark:border-bone/10 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-start gap-3"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-moss/10 text-moss dark:text-green-200"><UsersRound className="h-5 w-5" aria-hidden="true" /></span><p className="max-w-xl text-base leading-6 text-ink/70 dark:text-bone/75">{copy.profile.closing}</p></div><Link to="/app/create" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 transition hover:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:text-primary-300">{copy.profile.createLink} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></section>
