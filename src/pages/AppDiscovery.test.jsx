@@ -70,8 +70,8 @@ function resolveBrowserExecutable() {
 }
 
 async function startF4BrowserServer() {
-  const root = fileURLToPath(new URL('../../', import.meta.url))
-  const vite = fileURLToPath(new URL('../../node_modules/vite/bin/vite.js', import.meta.url))
+  const root = process.cwd()
+  const vite = fileURLToPath(new URL(`file://${root}/node_modules/vite/bin/vite.js`))
   const port = 4179
   const base = `http://127.0.0.1:${port}`
   let output = ''
