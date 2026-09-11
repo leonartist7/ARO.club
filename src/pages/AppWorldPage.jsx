@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { opportunities } from '../data/aroApp';
 import { StatusPill } from '../components/app/AppPrimitives';
 import { AppImage } from '../components/app/AppImage';
-import { useLanguage } from '../contexts/LanguageContext';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 
 const signalLayout = [
@@ -109,8 +108,7 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
 }
 
 export default function AppWorldPage() {
-  const { language } = useLanguage();
-  const copy = getFv1DiscoveryCopy(language);
+  const copy = getFv1DiscoveryCopy(localStorage.getItem('conversa-language') ?? 'en');
   const [activeSignalId, setActiveSignalId] = useState('river-photo-walk');
   const activeSignal = miniatureSignals.find((signal) => signal.id === activeSignalId) ?? miniatureSignals[0];
 
