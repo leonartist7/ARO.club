@@ -139,6 +139,7 @@ async function readImageEvidence(locator) {
 
 async function focusHrefWithKeyboard(page, href) {
   const target = page.locator(`main#app-main a[href="${href}"]`).first()
+  await target.waitFor({ state: 'visible', timeout: 15000 })
   expect(await target.count(), `missing retained F6 link ${href}`).toBeGreaterThan(0)
   await target.scrollIntoViewIfNeeded()
 
