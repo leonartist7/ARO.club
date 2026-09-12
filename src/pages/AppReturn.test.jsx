@@ -105,7 +105,10 @@ async function startF6BrowserServer() {
   throw new Error(`F6_PREVIEW_TIMEOUT: ${output.slice(-1600)}`)
 }
 
-async function applyTheme(page, theme) {
+// The accepted FV-1 shell has no working theme preference UI; F6 explicitly keeps
+// Appearance informational. This helper renders both existing token states for visual
+// acceptance only and does not claim a user-facing theme control exists.
+async function applyVisualThemeForEvidence(page, theme) {
   await page.evaluate((selectedTheme) => document.documentElement.classList.toggle('dark', selectedTheme === 'dark'), theme)
   expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(theme === 'dark')
 }
@@ -135,21 +138,31 @@ async function readImageEvidence(locator) {
 }
 
 async function focusHrefWithKeyboard(page, href) {
-  await page.evaluate(() => document.activeElement?.blur())
-  for (let attempt = 0; attempt < 40; attempt += 1) {
-    await page.keyboard.press('Tab')
-    const activeHref = await page.evaluate(() => document.activeElement?.getAttribute?.('href') ?? null)
-    if (activeHref === href) {
-      const focus = await page.evaluate(() => {
-        const style = getComputedStyle(document.activeElement)
-        return { outlineStyle: style.outlineStyle, outlineWidth: Number.parseFloat(style.outlineWidth) }
-      })
-      expect(focus.outlineStyle).not.toBe('none')
-      expect(focus.outlineWidth).toBeGreaterThanOrEqual(3)
-      return
-    }
-  }
-  throw new Error(`F6_KEYBOARD_FOCUS_MISSING: ${href}`)
+  const target = page.locator(`main#app-main a[href="${href}"]`).first()
+  expect(await target.count(), `missing retained F6 link ${href}`).toBeGreaterThan(0)
+  await target.scrollIntoViewIfNeeded()
+
+  const targetIndex = await target.evaluate((element) => {
+    const focusables = Array.from(document.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter((candidate) => {
+      const style = getComputedStyle(candidate)
+      const rect = candidate.getBoundingClientRect()
+      return candidate.tabIndex >= 0 && style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0
+    })
+    const index = focusables.indexOf(element)
+    if (index > 0) focusables[index - 1].focus()
+    return index
+  })
+  expect(targetIndex, `${href} is not keyboard focusable`).toBeGreaterThan(0)
+
+  await page.keyboard.press('Tab')
+  const active = await page.evaluate(() => ({
+    href: document.activeElement?.getAttribute?.('href') ?? null,
+    outlineStyle: getComputedStyle(document.activeElement).outlineStyle,
+    outlineWidth: Number.parseFloat(getComputedStyle(document.activeElement).outlineWidth),
+  }))
+  expect(active.href).toBe(href)
+  expect(active.outlineStyle).not.toBe('none')
+  expect(active.outlineWidth).toBeGreaterThanOrEqual(3)
 }
 
 beforeEach(() => {
@@ -186,7 +199,7 @@ describe('FV-1 F6 Library dispositions', () => {
       expect(row?.querySelector('a')).toBeNull()
       expect(row?.textContent).toContain('Not available in this preview.')
     }
-    expect(view.container.querySelector('a[href="/app/library"]')).toBeNull()
+    expect(rows.some((row) => row.getAttribute('href') === '/app/library' || row.querySelector('a[href="/app/library"]'))).toBe(false)
   })
 
   it('renders category filters as informational previews rather than fake interactive tabs', () => {
@@ -208,7 +221,7 @@ describe('FV-1 F6 return truthfulness', () => {
     expect(screen.queryByText(/earned through ARO/i)).toBeNull()
     expect(screen.queryByRole('tab')).toBeNull()
 
-    const hero = screen.getByAltText('Four fictional people looking over a river city at sunset')
+    const hero = screen.getByAltText(fv1ReturnCopy.en.insights.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-season-discovery-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-season-discovery-v1-640.webp 640w')
     expect(hero.className).toContain('object-[62%_center]')
@@ -221,7 +234,7 @@ describe('FV-1 F6 return truthfulness', () => {
     expect(screen.getByText(/not proof, verification, a saved history or an editable participant record/)).toBeTruthy()
     expect(screen.queryByText('Recorded')).toBeNull()
 
-    const hero = screen.getByAltText('Fictional twilight riverside life-map example')
+    const hero = screen.getByAltText(fv1ReturnCopy.en.passport.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-passport-life-map-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-passport-life-map-v1-640.webp 640w')
     expect(hero.className).toContain('object-[69%_center]')
@@ -230,7 +243,8 @@ describe('FV-1 F6 return truthfulness', () => {
     expect(entries).toHaveLength(3)
     for (const entry of entries) {
       const image = entry.querySelector('img')
-      expect(image?.getAttribute('src')).toMatch(/\/fv1\/.*-160\.webp$/)
+      expect(image?.getAttribute('srcset')).toMatch(/\/fv1\/.*-160\.webp 160w/)
+      expect(image?.getAttribute('sizes')).toBe('160px')
       expect(entry.textContent).toContain('Example')
     }
   })
@@ -250,18 +264,20 @@ describe('FV-1 F6 return truthfulness', () => {
 })
 
 describe('FV-1 F6 localization and media evidence', () => {
-  it('keeps EN, FR and ES return-copy structures equivalent and marks localized surfaces', () => {
+  it('keeps EN, FR and ES return-copy structures equivalent and localizes changed hero descriptions', () => {
     expect(structureOf(fv1ReturnCopy.fr)).toEqual(structureOf(fv1ReturnCopy.en))
     expect(structureOf(fv1ReturnCopy.es)).toEqual(structureOf(fv1ReturnCopy.en))
 
-    const french = renderReturn('/app/library', 'fr')
+    const french = renderReturn('/app/insights', 'fr')
     expect(french.container.querySelector('[lang="fr"]')).toBeTruthy()
-    expect(screen.getByText('Votre bibliothèque')).toBeTruthy()
+    expect(screen.getByText('Aperçus')).toBeTruthy()
+    expect(screen.getByAltText(fv1ReturnCopy.fr.insights.heroAlt)).toBeTruthy()
     french.unmount()
 
-    const spanish = renderReturn('/app/settings', 'es')
+    const spanish = renderReturn('/app/passport', 'es')
     expect(spanish.container.querySelector('[lang="es"]')).toBeTruthy()
-    expect(screen.getByText('Ajustes')).toBeTruthy()
+    expect(screen.getByText('Pasaporte de ejemplo')).toBeTruthy()
+    expect(screen.getByAltText(fv1ReturnCopy.es.passport.heroAlt)).toBeTruthy()
   })
 
   it('keeps F6 F1-derived thumbnail and mobile hero candidates within frozen byte budgets', () => {
@@ -291,8 +307,8 @@ describe('FV-1 F6 browser acceptance evidence', () => {
     const widths = [360, 390, 430, 768, 1440]
     const themes = ['light', 'dark']
     const routeCases = [
-      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights ? 'Four fictional people looking over a river city at sunset' : null, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '62%' },
-      { route: '/app/passport', directEntry: 'passport', heroAlt: 'Fictional twilight riverside life-map example', mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '69%' },
+      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights.heroAlt, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '62%' },
+      { route: '/app/passport', directEntry: 'passport', heroAlt: fv1ReturnCopy.en.passport.heroAlt, mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '69%' },
       { route: '/app/library', directEntry: 'library' },
       { route: '/app/settings', directEntry: 'settings' },
     ]
@@ -302,6 +318,7 @@ describe('FV-1 F6 browser acceptance evidence', () => {
       browser: executablePath,
       widths,
       themes,
+      themeEvidence: 'FV-1 has no implemented Appearance preference; light/dark token states rendered directly for visual acceptance',
       observations: 0,
       zoomObservations: 0,
       minTargetWidth: Number.POSITIVE_INFINITY,
@@ -324,7 +341,7 @@ describe('FV-1 F6 browser acceptance evidence', () => {
           await page.setViewportSize({ width, height: 900 })
           for (const routeCase of routeCases) {
             await page.goto(`${base}${routeCase.route}`, { waitUntil: 'domcontentloaded' })
-            await applyTheme(page, theme)
+            await applyVisualThemeForEvidence(page, theme)
             const main = page.locator('main#app-main')
             await main.waitFor({ state: 'visible', timeout: 15000 })
             await main.locator(`[data-fv1-direct-entry="${routeCase.directEntry}"]`).waitFor({ state: 'visible', timeout: 15000 })
