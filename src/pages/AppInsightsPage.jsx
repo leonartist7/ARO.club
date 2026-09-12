@@ -24,14 +24,14 @@ export default function AppInsightsPage() {
       </aside>
 
       <div className="mt-6 border-b border-ink/10 pb-4 dark:border-bone/10">
-        <p className="text-sm font-bold text-ink/60 dark:text-bone/65">{copy.insights.filterLabel}</p>
+        <p className="text-sm font-bold text-ink/70 dark:text-bone/75">{copy.insights.filterLabel}</p>
         <div className="mt-3 flex flex-wrap gap-2" aria-label={copy.insights.filterLabel}>
-          {copy.insights.filters.map((filter) => <span key={filter} className="border border-ink/10 bg-white/60 px-3 py-2 text-sm font-semibold text-ink/55 dark:border-bone/10 dark:bg-gray-900/50 dark:text-bone/60">{filter} · {copy.common.unavailable}</span>)}
+          {copy.insights.filters.map((filter) => <span key={filter} className="border border-ink/10 bg-white/60 px-3 py-2 text-sm font-semibold text-ink/70 dark:border-bone/10 dark:bg-gray-900/50 dark:text-bone/75">{filter} · {copy.common.unavailable}</span>)}
         </div>
       </div>
 
       <AppPanel className="relative mt-6 min-h-[330px] overflow-hidden bg-ink text-bone dark:bg-plum">
-        <AppImage src="/aro-season-discovery-v1.png" alt="Four fictional people looking over a river city at sunset" variant="hero" cropClass="object-[62%_center]" className="absolute inset-0 h-full w-full object-cover" />
+        <AppImage src="/aro-season-discovery-v1.png" alt={copy.insights.heroAlt} variant="hero" cropClass="object-[62%_center]" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,25,33,0.94)_0%,rgba(18,25,33,0.82)_35%,rgba(18,25,33,0.28)_70%,rgba(18,25,33,0.12)_100%),linear-gradient(0deg,rgba(18,25,33,0.55),transparent_56%)]" />
         <div className="relative flex min-h-[330px] max-w-xl flex-col p-6 sm:p-8">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-secondary-300">{copy.insights.seasonLabel}</p>
@@ -47,7 +47,7 @@ export default function AppInsightsPage() {
       </section>
 
       <section className="mt-10">
-        <div className="flex items-end justify-between gap-4"><div><p className="text-sm font-bold uppercase tracking-[0.16em] text-ink/55 dark:text-bone/60">{copy.insights.milestonesEyebrow}</p><h2 className="mt-2 font-display text-3xl">{copy.insights.milestonesTitle}</h2></div><BookOpen className="h-6 w-6 text-primary-500" aria-hidden="true" /></div>
+        <div className="flex items-end justify-between gap-4"><div><p className="text-sm font-bold uppercase tracking-[0.16em] text-ink/70 dark:text-bone/75">{copy.insights.milestonesEyebrow}</p><h2 className="mt-2 font-display text-3xl">{copy.insights.milestonesTitle}</h2></div><BookOpen className="h-6 w-6 text-primary-500" aria-hidden="true" /></div>
         <div className="mt-5 divide-y divide-ink/10 border-y border-ink/10 dark:divide-bone/10 dark:border-bone/10">
           {copy.insights.milestones.map((item, index) => <div key={item} className="flex flex-wrap items-center gap-4 py-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary-50 font-bold text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-300">{index + 1}</span><p className="min-w-0 flex-1 text-base font-semibold">{item}</p><span className="text-sm font-bold text-moss dark:text-green-200">{copy.insights.milestoneStatus}</span></div>)}
         </div>
@@ -57,5 +57,5 @@ export default function AppInsightsPage() {
 }
 
 function Metric({ icon: Icon, value, label, example }) {
-  return <div className="bg-bone p-5 dark:bg-gray-900"><div className="flex items-center justify-between gap-3"><Icon className="h-5 w-5 text-primary-500" aria-hidden="true" /><span className="text-sm font-bold uppercase tracking-[0.12em] text-ink/45 dark:text-bone/50">{example}</span></div><p className="mt-4 font-display text-3xl">{value}</p><p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/65 dark:text-bone/70">{label}</p></div>;
+  return <div className="bg-bone p-5 dark:bg-gray-900"><div className="flex items-center justify-between gap-3"><Icon className="h-5 w-5 text-primary-500" aria-hidden="true" /><span className="text-sm font-bold uppercase tracking-[0.12em] text-ink/70 dark:text-bone/75">{example}</span></div><p className="mt-4 font-display text-3xl">{value}</p><p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{label}</p></div>;
 }
