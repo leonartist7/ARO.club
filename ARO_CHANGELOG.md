@@ -818,3 +818,8 @@ Founder explicitly approved merging PR #40 through normal checks, the proposed d
 ## 2026-09-09 — FV-1 F1/F2 progress synchronized to main
 
 FV-1 v0.2.2 records the founder-authorized, narrow 640,000-byte limit for the required 960px lossless persona derivative; all other F1 budgets and release gates remain unchanged. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298` after deterministic media checks, local validation and passing PR CI. F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`, adding truthful shell disclosure, non-actionable previews, navigation ownership, recovery and focus support. The founder authorized the current PR #41 progress to merge to GitHub `main` through normal checks. No release/deployment or full FV-1 verification is authorized; F3–F7, independent review, human NVDA testing and founder visual review remain pending.
+
+
+## 2026-09-14 — FV-1 F7 lab-profile amendment approved
+
+Founder approved a narrow documentation-only FV-1 §20 amendment permitting Intel Xeon Platinum 8272CL for F7 measurement only. Every other frozen condition and acceptance threshold remains unchanged, including the exact lockfile-managed Playwright 1.62.0 / Chromium 151.0.7922.34 revision 1234 prerequisite, 4× CPU throttle, three-run method, independent review and release WITHHELD. This approval does not record a measurement, functional test, merge, deployment or release.
