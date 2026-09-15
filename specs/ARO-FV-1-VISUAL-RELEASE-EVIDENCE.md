@@ -1,5 +1,7 @@
 # FV-1 — Truthful visual prototype and release evidence
 
+> **Factual execution update — 2026-09-15 (no acceptance/profile amendment):** F1–F6 are integrated at `79603ae1af60a30f86c105e0f2a4d841043eb727`; the original PR #41/B rebinding and NOT RUN/no-F1 delivery statements below describe the original approval snapshot. Current ownership is draft PR #48, branch `codex/fv1-f7-acceptance-evidence`. Lab amendment PR #47 remains open at inspection. See [current execution record](../docs/autonomous-handoff-20260915/README.md) for actual slice integrations and remaining F7 gates. All normative behavior, allowlists, §20 budgets/profile and §27 independent/human requirements remain unchanged. No acceptance row is upgraded here; no permission to merge, deploy or release is granted.
+
 ## 0. Metadata and authority
 
 - Status: **SPEC-READY — founder approved F1–F7 implementation and v0.2.1 encoder-profile amendment; release approval WITHHELD**.

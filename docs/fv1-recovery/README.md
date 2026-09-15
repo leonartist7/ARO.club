@@ -1,3 +1,5 @@
+> **2026-09-15 execution pointer:** use [current progress and ownership](../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
+
 # FV-1 — final approval package
 
 **SPEC-READY. Founder approved documentation merge and sequential F1–F7 implementation on 2026-09-08. Release approval remains WITHHELD. No product worker has been dispatched.**

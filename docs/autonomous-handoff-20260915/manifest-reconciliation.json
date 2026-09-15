@@ -1,0 +1,141 @@
+{
+  "sourceSha": "79603ae1af60a30f86c105e0f2a4d841043eb727",
+  "kind": "current-documentation-edition-repair",
+  "originalAuditBundlesChanged": false,
+  "productAcceptanceClaimed": false,
+  "changes": [
+    {
+      "path": "CLOUD_HANDOFF.md",
+      "previous": {
+        "sha256": "bb55227272d06ff8075c240cfadfb0618d0c442d2f69f164f0b4ea2b572e515c",
+        "bytes": 12108
+      },
+      "current": {
+        "sha256": "7a424dcfd91dc321d7b14488510351412452e74ee84ea7542f733af57ecd15ab",
+        "bytes": 12672
+      }
+    },
+    {
+      "path": "README.md",
+      "previous": {
+        "sha256": "18d50ccab1578e9585445e7f1638b815e4cb50ce464fba07f81846d388af100b",
+        "bytes": 2243
+      },
+      "current": {
+        "sha256": "5d28550cc335dc0450829ae545f8c638707ca0853c04e8e564c6bd89814b767e",
+        "bytes": 2619
+      }
+    },
+    {
+      "path": "RECOVERY.md",
+      "previous": {
+        "sha256": "3e2b332e114a42cd5e427607f510d47e2ae40c1cfb1c88ae0dcf593ff797f82a",
+        "bytes": 6766
+      },
+      "current": {
+        "sha256": "d03ddcccb064798dc4bfeacc7475d6119918195d43d0210edc775b194b9b358a",
+        "bytes": 7142
+      }
+    },
+    {
+      "path": "packets.json",
+      "previous": {
+        "sha256": "ff6028b0d3ea86102f4ac81a5f1c9863081397cc6d36dd34d9dd4ad488f18103",
+        "bytes": 5919
+      },
+      "current": {
+        "sha256": "2af809325672510e38eec9f3ad1bc431b8226f9617d8b1431c3ceb79f98e037b",
+        "bytes": 6030
+      }
+    },
+    {
+      "path": "tasks/F1.md",
+      "previous": {
+        "sha256": "47bbcaecc6f59e222e122306ddd4c4e910ebb45b44710bb931037fa464697ea8",
+        "bytes": 8528
+      },
+      "current": {
+        "sha256": "a7c6a18d0785ab65b56913065bf387451e9e7934ac18579b25eca5d94effb555",
+        "bytes": 9026
+      }
+    },
+    {
+      "path": "tasks/F2.md",
+      "previous": {
+        "sha256": "c5911b7e7e77448f256b86b94098c7cd7ebd3a0a5e9fba8e6284bcef48b5e426",
+        "bytes": 4062
+      },
+      "current": {
+        "sha256": "c8d5a6875ce5205e25a4cb5165fbff466db8b955d6d9963408b2b1ceb34247d4",
+        "bytes": 4291
+      }
+    },
+    {
+      "path": "tasks/F3.md",
+      "previous": {
+        "sha256": "1612bd874712f68e80d0b86c0c493624d5ad91fded4ee25b6bd2802112656857",
+        "bytes": 4376
+      },
+      "current": {
+        "sha256": "f439f9441667aafc4b0a0c1360f6e5b88aecc5a959beb9c2f3cd8ef8755336fc",
+        "bytes": 4755
+      }
+    },
+    {
+      "path": "tasks/F4.md",
+      "previous": {
+        "sha256": "6b8c51bd83b435d95fafd576a2df3b75fa652d61dc636be8a5d9789ff89cbbe2",
+        "bytes": 4026
+      },
+      "current": {
+        "sha256": "a1b84be018d02895a646e00abd468d6ec903170952f5b80e5df9c19744626816",
+        "bytes": 4405
+      }
+    },
+    {
+      "path": "tasks/F5.md",
+      "previous": {
+        "sha256": "95273d1451569860bd3dbbfde83390fabeaf838cea57a56eebb9b5d5802e8cdd",
+        "bytes": 3984
+      },
+      "current": {
+        "sha256": "e8df6fea6f0f4f6119f20342e6009b96c4e686f345d814e0f3b88267d6307543",
+        "bytes": 4363
+      }
+    },
+    {
+      "path": "tasks/F6.md",
+      "previous": {
+        "sha256": "8d47243892bfb6ea489f5175c6f21094468dcb2e0bd997fe72d278154623229d",
+        "bytes": 4201
+      },
+      "current": {
+        "sha256": "f76e63ce0a77d612497b5e191fb974e4e48506793a3e8187eb11585e513e04f9",
+        "bytes": 4580
+      }
+    },
+    {
+      "path": "tasks/F7.md",
+      "previous": {
+        "sha256": "86112a05187d55d1a4f7d4b21620049b1979592a4f7b17967842dfeba3f61238",
+        "bytes": 4522
+      },
+      "current": {
+        "sha256": "00b6abe0392601e8eefce879b04b4eca2805631eda3ee552a6203b2b4feaefb8",
+        "bytes": 4901
+      }
+    },
+    {
+      "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+      "previous": {
+        "sha256": "8e980fce9e775120d4d44a8d4f09a2c6e7fae7ee4ff95b7615dafbdc3a77f1cd",
+        "bytes": 33540
+      },
+      "current": {
+        "sha256": "5616eff7c8b6d23f7591bba9cf2c84a6c190a3a9be3e9c4ed2444717fe7432b4",
+        "bytes": 35012
+      }
+    }
+  ],
+  "note": "Original manifest available at sourceSha. Updates cover intended documentation changes and pre-existing drift; not audit-bundle provenance repair. Future edits to listed spec/packets require manifest regeneration."
+}

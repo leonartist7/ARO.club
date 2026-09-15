@@ -1,5 +1,7 @@
 # ARO — Autonomous Workboard
 
+> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
+
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
 
 **Status:** ACTIVE / COORDINATION MAP
