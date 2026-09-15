@@ -146,5 +146,7 @@
     "releaseAuthorized": false,
     "record": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md#28-productdesign-approval-record"
   },
-  "bindingStatus": "Bind A to the verified actual PR #40 merge commit in the Terra handoff and ONE implementation PR. Null fields avoid a self-referential merge SHA, not an approval request. F2\u2013F7 require accepted predecessor commits."
+  "bindingStatus": "Historical original dispatch metadata; do not dispatch using null bases or closed PR #41. See currentExecutionRecord for merged slices and existing F7 ownership. Implementation eligibility remains false for automatic dispatch.",
+  "historicalSnapshot": true,
+  "currentExecutionRecord": "docs/autonomous-handoff-20260915/README.md"
 }

@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
+
 > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
 
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
