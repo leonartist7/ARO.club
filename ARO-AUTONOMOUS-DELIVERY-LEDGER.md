@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 10
+- **Ledger version:** 11
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -129,7 +129,7 @@ FV2/FV3 are already complete proposal deliverables at the verified external iden
 | Schedule | ID | Enabled | Limit / termination | Purpose |
 |---|---|---:|---|---|
 | ARO C1 Documentation Health | `6a9fc0ca3f14819191ddb24e1bbd6ff0` | yes | existing weekly cadence | preserve; no duplicate |
-| ARO Overnight Delivery Controller | \`6aaa6e5567ac81919a0793a4e1c73eae\` | yes | 90-minute recurrence, COUNT=8; final tick no later than 12 hours after activation | serialized controller only |
+| ARO Overnight Delivery Controller | `6aaa6e5567ac81919a0793a4e1c73eae` | no | disabled early after immediate controller run: all remaining work requires founder B1B decision or an existing external owner | serialized controller only; no automatic renewal |
 
 The scheduler can express finite recurrence and termination. It exposes no dependency-trigger or model-selection control. Therefore the controller itself re-fetches this ledger and validates every dependency/claim before dispatch; time never proves completion.
 
@@ -148,3 +148,4 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | 2026-09-16 | 8 | B1A verified; B1 remains repair-required | Fresh isolated clone at `998b39b7fc9af32d632882442a53dad47e8710ce` passed `node --test tools/ci/boundary.test.mjs`; durable result blob `295629217a9499bfb322dbe10ed76f11fdf7b1b6` was re-fetched. The initial wrong-directory invocation is retained in that result. No assertion was weakened. B1 still requires hosted disposable CI, then a separate independent reviewer. |
 | 2026-09-16 | 9 | B1 repair cycle 1 claimed | Hosted Quality and Isolated database runs succeeded and the artifact digest was independently retrieved, but its four screenshots are only inherited prototype-boundary evidence. Result blob `b08ac99c143c84466a5eb252ae3bf58958e59c98` records the R7 failure. Claim `B1-R1-20260916-001` routes the fix to the existing B1 writer in a fresh isolated source/evidence root; one repair cycle remains after this. |
 | 2026-09-16 | 10 | B1 R7 blocked; exact amendment prepared | Existing B1 writer verified that `src/config/ux0.js` hard-codes prototype mode and `tools/ci/browser.mjs` returns from its prototype branch, so the compiled app cannot supply genuine authenticated evidence. No source edit was made. Blocker blob `d2b6b0da589bb20bac82c543691a39de30bab613`; proposed founder decision/amendment blob `43083433b54e1fab5fb1ff4f039ba9b7dcc68f29`. |
+| 2026-09-16 | 11 | Overnight controller disabled early | The finite controller schedule was disabled after the immediate run because B1B requires a founder decision, B2 depends on final B1 review, FV2/FV3 remain F7-gated, and F7/PR #47/#49 retain external owners. C1 was preserved unchanged. |
