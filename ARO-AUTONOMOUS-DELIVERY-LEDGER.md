@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 1
+- **Ledger version:** 2
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -96,7 +96,7 @@ FV2/FV3 are already complete proposal deliverables at the verified external iden
 | Schedule | ID | Enabled | Limit / termination | Purpose |
 |---|---|---:|---|---|
 | ARO C1 Documentation Health | `6a9fc0ca3f14819191ddb24e1bbd6ff0` | yes | existing weekly cadence | preserve; no duplicate |
-| ARO Overnight Delivery Controller | pending activation | pending | finite 8 invocations; hard stop within 12 hours | serialized controller only |
+| ARO Overnight Delivery Controller | \`6aaa6e5567ac81919a0793a4e1c73eae\` | yes | 90-minute recurrence, COUNT=8; final tick no later than 12 hours after activation | serialized controller only |
 
 The scheduler can express finite recurrence and termination. It exposes no dependency-trigger or model-selection control. Therefore the controller itself re-fetches this ledger and validates every dependency/claim before dispatch; time never proves completion.
 
@@ -105,4 +105,4 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | UTC time | Ledger version | Event | Evidence / result |
 |---|---:|---|---|
 | 2026-09-16T10:19:39Z | 1 | Controller preflight | Main `79603ae…`; PR #47/#48/#49 read; C1 preserved; corrected inputs retrieved and hashes verified; F7 left with existing owner |
-| 2026-09-16T10:19:39Z | 1 | I0.2 reconciliation | Corrected independent review confirms R1–R7 plus timestamp/partial-upload gaps against unchanged reviewed source. Corrective packet prepared; R3 separated as a founder retention decision. |
+| 2026-09-16T10:19:39Z | 1 | I0.2 reconciliation | Corrected independent review confirms R1–R7 plus timestamp/partial-upload gaps against unchanged reviewed source. Corrective packet prepared; R3 separated as a founder retention decision. |\n| 2026-09-16T10:24:21Z | 2 | Controller schedule activated | Schedule \`6aaa6e5567ac81919a0793a4e1c73eae\` uses a finite 90-minute RRULE with COUNT=8. Ledger/packet branch was re-fetched before activation; C1 remains unchanged. |
