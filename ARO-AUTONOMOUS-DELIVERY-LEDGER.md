@@ -105,4 +105,5 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | UTC time | Ledger version | Event | Evidence / result |
 |---|---:|---|---|
 | 2026-09-16T10:19:39Z | 1 | Controller preflight | Main `79603ae…`; PR #47/#48/#49 read; C1 preserved; corrected inputs retrieved and hashes verified; F7 left with existing owner |
-| 2026-09-16T10:19:39Z | 1 | I0.2 reconciliation | Corrected independent review confirms R1–R7 plus timestamp/partial-upload gaps against unchanged reviewed source. Corrective packet prepared; R3 separated as a founder retention decision. |\n| 2026-09-16T10:24:21Z | 2 | Controller schedule activated | Schedule \`6aaa6e5567ac81919a0793a4e1c73eae\` uses a finite 90-minute RRULE with COUNT=8. Ledger/packet branch was re-fetched before activation; C1 remains unchanged. |
+| 2026-09-16T10:19:39Z | 1 | I0.2 reconciliation | Corrected independent review confirms R1–R7 plus timestamp/partial-upload gaps against unchanged reviewed source. Corrective packet prepared; R3 separated as a founder retention decision. |
+| 2026-09-16T10:24:21Z | 2 | Controller schedule activated | Schedule \`6aaa6e5567ac81919a0793a4e1c73eae\` uses a finite 90-minute RRULE with COUNT=8. Ledger/packet branch was re-fetched before activation; C1 remains unchanged. |
