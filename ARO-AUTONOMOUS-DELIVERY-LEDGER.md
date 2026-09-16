@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 4
+- **Ledger version:** 5
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -61,7 +61,7 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 | C-FV2-preparation | PACKAGE_ACCEPTED / IMPLEMENTATION_BLOCKED | founder approval recorded; F7 acceptance/reconciliation, pinned base, exclusive ownership and evidence/review still required | controller/product-design | verified external input; founder approval record | no implementation claim until all gates validate |
 | D-FV3-preparation | PACKAGE_ACCEPTED / IMPLEMENTATION_BLOCKED | founder approval recorded; F7 acceptance/reconciliation, pinned base, exclusive ownership and evidence/review still required | controller/product-design | verified external input; founder approval record | no implementation claim until all gates validate |
 | E-documentation-integrity | REPAIR_REQUIRED | PR #47 has review findings; PR #49 is a draft and shares registries | existing PR owners, serialized | PR #47/#49 heads above | owner repairs/reconciles; controller must not overwrite their paths |
-| F1-I0-gate-matrix | READY | read-only, no provider access necessary | unassigned read-only worker | source `79603ae…`; unique external output | current-vs-historical I0/I0.2/P1 evidence matrix, no live claim |
+| F1-I0-gate-matrix | RUNNING | claim `F1-20260916-001`; read-only and provider-free | F1 read-only worker (gpt-5.6-terra, high) | base `79603ae…`; source `/workspace/scratch/95edc6c9ef6a/aro-f1-20260916-claim-001/source`; evidence `/workspace/scratch/95edc6c9ef6a/aro-f1-20260916-claim-001/evidence` | return a fact-labelled result bundle; controller validates/retrieves before state change |
 | F2-plan-gap-register | READY | read-only, after F1 only if no more urgent eligible task | unassigned read-only worker | source `79603ae…`; unique external output | at most two isolated non-product gaps, no new feature design |
 
 ## Dispatch packets
@@ -122,3 +122,4 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | 2026-09-16T10:24:21Z | 2 | Controller schedule activated | Schedule \`6aaa6e5567ac81919a0793a4e1c73eae\` uses a finite 90-minute RRULE with COUNT=8. Ledger/packet branch was re-fetched before activation; C1 remains unchanged. |
 | 2026-09-16 | 3 | Founder approvals recorded | Direct founder instruction approved the R3 protected Trust-record rule and FV2/FV3 proposal content. Record: `docs/autonomous-control-20260916/FOUNDER-APPROVAL-20260916.md` at `a114c6f879984e1d661bfa2896d9cf60ced3d91d`. B2 is serialized after B1 review; FV2/FV3 stay implementation-blocked on F7 and all required gates. |
 | 2026-09-16 | 4 | B1 implementation claimed | Claim `B1-20260916-001`; exact base `79603ae1af60a30f86c105e0f2a4d841043eb727`; product branch `codex/i02-corrective-repairs-20260916`; isolated source/evidence roots recorded. Scope is the existing B1 corrective packet only; R3 remains reserved for sequential B2. |
+| 2026-09-16 | 5 | F1 read-only matrix claimed | Claim `F1-20260916-001`; base `79603ae1af60a30f86c105e0f2a4d841043eb727`; isolated source/evidence roots recorded. No source, provider, secret, or product status mutation is allowed. |
