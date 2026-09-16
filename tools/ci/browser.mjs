@@ -180,6 +180,40 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
           stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
           await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+
+          // This lane is deliberately real-client proof: onboarding must leave
+          // an editable draft, collect documents on the status surface, and
+          // submit only through that explicit journey.
+          stage = `ONBOARDING_DRAFT_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/onboarding/teacher`, { waitUntil: 'domcontentloaded' });
+          await page.getByPlaceholder("What's your name?").fill('Synthetic Teacher');
+          await page.getByRole('button', { name: 'Continue' }).click();
+          await page.locator('button').evaluateAll((buttons) => {
+            if (buttons.length !== 2) throw new Error('LANGUAGE_SELECTION_CONTROLS_MISSING');
+            buttons[1].click();
+          });
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          await page.locator('button').evaluateAll((buttons) => {
+            if (buttons.length !== 2) throw new Error('EXPERIENCE_SELECTION_CONTROLS_MISSING');
+            buttons[1].click();
+          });
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          await page.getByRole('button', { name: 'Continue' }).click();
+          await page.getByPlaceholder("I'm passionate about teaching...")
+            .fill('Synthetic browser evidence confirms this editable application draft before submission.');
+          await page.getByRole('button', { name: 'Continue' }).click();
+          await page.getByRole('heading', { name: 'Ready to Submit!' }).waitFor({ timeout: uiReadyTimeout });
+          const submitResponse = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
+          ), { timeout: uiReadyTimeout });
+          await page.getByRole('button', { name: 'Submit for Verification' }).click();
+          requireCondition((await submitResponse).status() === 201, 'ONBOARDING_DRAFT_PERSIST_FAILED');
+          await page.waitForURL(url => url.pathname === '/teacher/application', { timeout: uiReadyTimeout });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.getByText('Add your portfolio below, then submit for verification.').count() === 1,
+            'DOCUMENT_COLLECTION_SURFACE_MISSING');
+          await page.reload({ waitUntil: 'domcontentloaded' });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
         }
 
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;

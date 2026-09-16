@@ -133,8 +133,8 @@ async function saveReview(applicationId, review) {
 }
 
 /** Claim an application for review (submitted -> in_review). */
-export async function startReview(application, adminId) {
-  await saveReview(application.id, { reviewed_by: adminId, reviewed_at: new Date().toISOString() });
+export async function startReview(application) {
+  await saveReview(application.id, {});
   const { data, error } = await supabase
     .from('teacher_applications')
     .update({ status: 'in_review' })
@@ -149,16 +149,12 @@ export async function startReview(application, adminId) {
  * APPROVE: flip the teacher to verified + active, set tier, and stamp the
  * application. Upserts the teachers row in case onboarding already created it.
  */
-export async function approveApplication(application, { adminId, tier, rubricScores, adminNotes }) {
-  const now = new Date().toISOString();
-
+export async function approveApplication(application, { tier, rubricScores, adminNotes }) {
   await saveReview(application.id, {
     tier,
     rubric_scores: rubricScores || {},
     admin_notes: adminNotes || null,
     decision_reason: null,
-    reviewed_by: adminId,
-    reviewed_at: now,
   });
 
   const { error: appErr } = await supabase
@@ -169,12 +165,10 @@ export async function approveApplication(application, { adminId, tier, rubricSco
 }
 
 /** REJECT with a reason shown to the applicant. */
-export async function rejectApplication(application, { adminId, reason, adminNotes }) {
+export async function rejectApplication(application, { reason, adminNotes }) {
   await saveReview(application.id, {
     admin_notes: adminNotes || null,
     decision_reason: reason,
-    reviewed_by: adminId,
-    reviewed_at: new Date().toISOString(),
   });
   const { error } = await supabase
     .from('teacher_applications')
@@ -184,12 +178,10 @@ export async function rejectApplication(application, { adminId, reason, adminNot
 }
 
 /** REQUEST CHANGES — sends it back to the applicant to edit and resubmit. */
-export async function requestChanges(application, { adminId, reason, adminNotes }) {
+export async function requestChanges(application, { reason, adminNotes }) {
   await saveReview(application.id, {
     admin_notes: adminNotes || null,
     decision_reason: reason,
-    reviewed_by: adminId,
-    reviewed_at: new Date().toISOString(),
   });
   const { error } = await supabase
     .from('teacher_applications')
