@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 6
+- **Ledger version:** 7
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -46,6 +46,7 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 - No merge, deployment, release, provider/secret/account/infrastructure mutation, billing, payments, AI, real location, AR, Seasons, Beacons or P1+ implementation.
 - Founder approval is recorded in `docs/autonomous-control-20260916/FOUNDER-APPROVAL-20260916.md` (commit `a114c6f879984e1d661bfa2896d9cf60ced3d91d`). FV2/FV3 are **PACKAGE ACCEPTED / IMPLEMENTATION BLOCKED** pending final F7 acceptance/reconciliation, a pinned post-F7 base, exclusive ownership, evidence and independent review. No runtime or visual implementation dispatch is permitted now.
 - The founder-approved I0.2 R3 rule is: direct owner deletion is allowed only before any `teacher_verifications` history exists; a protected record (including suspended or banned) requires a separately defined authorized support/retention process. B2 is a later, separate repair after B1’s final independent review.
+- B1’s initial candidate is **REPAIR_REQUIRED**, not failed silently: the approved append-only migration makes the required boundary test fail only because that test hard-codes the old two-file list. The exact, non-product B1A scope amendment is `docs/autonomous-control-20260916/B1-SCOPE-AMENDMENT-20260916.md`; it adds only the boundary test path and preserves all assertions.
 - I0.2 is **IMPLEMENTED / CI-VERIFIED historically** but **I02-08 NOT PASS** after the corrected independent review. No status upgrade is permitted.
 - Human NVDA/Chromium-on-Windows and founder visual review remain human gates. CI or an AI review cannot fabricate them.
 - Historic migrations stay unchanged; every SQL repair is append-only and runs only in disposable CI.
@@ -56,7 +57,8 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 |---|---|---|---|---|---|
 | A-F7-existing | BLOCKED | PR #47 must be corrected/merged; exact bundled Chromium revision 1234 must install and launch; retain §20 | existing PR #48 owner only | branch `codex/fv1-f7-acceptance-evidence` / its existing evidence root | owner records only legitimate F7 evidence; independent review follows finished diff |
 | B-I02-corrective-packet | REVIEW_READY | corrected review + current source reconciled | controller | `docs/autonomous-control-20260916/I02-CORRECTIVE-PACKET.md` | approve/claim only the package rows that restore literal I0.2 contract |
-| B1-I02-repair-within-contract | RUNNING | claim `B1-20260916-001`; F7 no active execution claim observed; one product writer reserved | B1 writer (gpt-5.6-terra, high) | base `79603ae…`; branch `codex/i02-corrective-repairs-20260916`; source `/workspace/scratch/95edc6c9ef6a/aro-b1-20260916-claim-001/source`; evidence `/workspace/scratch/95edc6c9ef6a/aro-b1-20260916-claim-001/evidence` | exact allowlist repair, focused CI, immutable result, independent review |
+| B1-I02-repair-within-contract | REPAIR_REQUIRED | candidate PR #51 awaits only the B1A boundary acknowledgement plus disposable CI; it is not accepted or reviewed | controller | base `79603ae…`; candidate `deb9db3f5e6937c48892b818740022e8b54421e3`; result blob `4feff493d22feb94ae8a298a270a99c1e0231e6e` | B1A then disposable CI (pgTAP 86/Auth/Storage/browser), then independent review |
+| B1A-I02-boundary-acknowledgement | RUNNING | claim `B1A-20260916-001`; B1 candidate exact head revalidated; no other product writer | controller writer (gpt-5.6-terra, high) | PR #51 branch; amendment blob `6edaf254820d617db21bde1a6b091b4868761802` | add only new migration filename to boundary expected list; boundary test must pass |
 | B2-I02-R3-protected-Trust-repair | READY_AFTER_B1 | founder decision is recorded; wait for B1’s final independent review, then revalidate single-writer/host conditions and current base | unassigned | founder approval record; new branch/evidence root after B1 | append-only policy repair, focused disposable-CI proof, final independent review |
 | C-FV2-preparation | PACKAGE_ACCEPTED / IMPLEMENTATION_BLOCKED | founder approval recorded; F7 acceptance/reconciliation, pinned base, exclusive ownership and evidence/review still required | controller/product-design | verified external input; founder approval record | no implementation claim until all gates validate |
 | D-FV3-preparation | PACKAGE_ACCEPTED / IMPLEMENTATION_BLOCKED | founder approval recorded; F7 acceptance/reconciliation, pinned base, exclusive ownership and evidence/review still required | controller/product-design | verified external input; founder approval record | no implementation claim until all gates validate |
@@ -77,6 +79,16 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 - **Review:** after a finished immutable diff, a separate non-writing security/privacy/Trust reviewer must review it. The writer cannot sign acceptance.
 - **Stop/retry:** maximum two repair cycles; one transient transfer retry. On ambiguous storage/network/claim state, scope drift, failed database isolation, or B2 decision dependency, mark BLOCKED and continue a different ready task.
 - **Worker result format:** `taskId, claimNonce, baseSHA, headSHA, changedFiles, migrationChecksum, tests[{command,exit}], evidenceRoot, findings, criteriaStatus, nextState`.
+
+### B1A-I02-boundary-acknowledgement
+
+- **Outcome:** preserve the approved append-only-migration guard by adding only `20260916103000_i02_corrective_repairs.sql` to its expected migration list.
+- **Authority:** B1 scope amendment above, which is a bounded existing-contract test repair, not a product/Trust/retention/authorization/UX decision. Candidate base/head must be revalidated.
+- **Base:** PR #51 candidate head `deb9db3f5e6937c48892b818740022e8b54421e3`; exact write allowlist is `tools/ci/boundary.test.mjs` only.
+- **Non-goals:** changing any existing guard, migration body/list besides the new filename, CI runner restriction, SQL policy, test count, workflow, dependency, provider or source behavior.
+- **Acceptance/evidence:** `node --test tools/ci/boundary.test.mjs` passes; controller records resulting head, changed path and command exit. The B1 package remains REPAIR_REQUIRED until disposable CI and later independent review.
+- **Stop/retry:** one edit only; any added path/semantic guard weakening, drift, failed boundary test or provider/CI bypass is BLOCKED.
+- **Worker result format:** `taskId, claimNonce, baseSHA, headSHA, changedFiles, tests[{command,exit}], evidenceRoot, findings, criteriaStatus, nextState`.
 
 ### B2-I02-R3-protected-Trust-repair
 
@@ -124,3 +136,4 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | 2026-09-16 | 4 | B1 implementation claimed | Claim `B1-20260916-001`; exact base `79603ae1af60a30f86c105e0f2a4d841043eb727`; product branch `codex/i02-corrective-repairs-20260916`; isolated source/evidence roots recorded. Scope is the existing B1 corrective packet only; R3 remains reserved for sequential B2. |
 | 2026-09-16 | 5 | F1 read-only matrix claimed | Claim `F1-20260916-001`; base `79603ae1af60a30f86c105e0f2a4d841043eb727`; isolated source/evidence roots recorded. No source, provider, secret, or product status mutation is allowed. |
 | 2026-09-16 | 6 | F1 matrix verified and preserved | Controller re-read the isolated report, verified `sha256sum -c manifest.sha256`, then persisted and re-fetched result blob `7cec72d3e05719ce874ecb5fe6408f0213414e6b`. It confirms I0 provider gates, Q0 and P1 remain blocked; next non-provider work is B1 followed by separate B2 and independent review. |
+| 2026-09-16 | 7 | B1 candidate preserved; B1A claimed | B1 exact allowlist candidate is draft PR #51 at `deb9db3f5e6937c48892b818740022e8b54421e3`; local unit/lint/build checks pass but boundary rejects the new migration only due to the stale two-file expected list and CI-only commands truthfully stop outside disposable CI. Result blob `4feff493d22feb94ae8a298a270a99c1e0231e6e`; exact amendment blob `6edaf254820d617db21bde1a6b091b4868761802`; B1A claim `B1A-20260916-001` is limited to that list acknowledgement. |
