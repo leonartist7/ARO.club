@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
-import { getOrCreateDraft, updateApplication, submitApplication } from '../lib/teacherApplications';
+import { getOrCreateDraft, updateApplication } from '../lib/teacherApplications';
 import { Check, X } from 'lucide-react';
 import Button from '../components/ui/Button';
 
@@ -43,6 +43,47 @@ const OUTFITS = [
   { id: 'sporty', name: 'Sporty', emoji: '⚽' },
   { id: 'artsy', name: 'Artsy', emoji: '🎨' },
 ];
+
+async function persistTeacherOnboardingDraft({
+  userId,
+  name,
+  avatar,
+  bio,
+  selectedLanguages,
+  selectedExperiences,
+  profileClient = supabase,
+  createDraft = getOrCreateDraft,
+  updateDraft = updateApplication,
+}) {
+  const { error: profileError } = await profileClient
+    .from('profiles')
+    .update({
+      name,
+      user_type: 'teacher',
+      avatar,
+      bio,
+      experience_types: selectedExperiences,
+      onboarding_completed: true,
+    })
+    .eq('id', userId);
+
+  if (profileError) throw profileError;
+
+  const draft = await createDraft(userId, { display_name: name });
+  await updateDraft(draft.id, {
+    display_name: name,
+    bio,
+    languages: selectedLanguages.map((code) => ({
+      code,
+      name: LANGUAGES.find((language) => language.code === code)?.name,
+      proficiency: 'native',
+    })),
+    experience_types: selectedExperiences,
+    teaches_in_person: true,
+    agreed_to_standards: true,
+  });
+  return draft;
+}
 
 const SwipeCard = ({ data, onSwipe, isLanguage = false }) => {
   const x = useMotionValue(0);
@@ -128,40 +169,16 @@ export default function TeacherOnboarding() {
   const handleComplete = async () => {
     setLoading(true);
     try {
-      // Save profile onboarding data. NOTE: we do NOT create a live `teachers`
-      // row or set verified — the teacher only goes live after an admin
-      // approves their application (see the Trust & Quality Engine).
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({
-          name,
-          user_type: 'teacher',
-          avatar,
-          bio,
-          experience_types: selectedExperiences,
-          onboarding_completed: true,
-        })
-        .eq('id', user.id);
-
-      if (profileError) throw profileError;
-
-      // Create + submit a teacher application for human review.
-      const draft = await getOrCreateDraft(user.id, { display_name: name });
-      await updateApplication(draft.id, {
-        display_name: name,
+      // Persist only an editable application draft. The existing status route
+      // collects private documents and exposes the explicit submit action.
+      await persistTeacherOnboardingDraft({
+        userId: user.id,
+        name,
+        avatar,
         bio,
-        languages: selectedLanguages.map((code) => ({
-          code,
-          name: LANGUAGES.find((l) => l.code === code)?.name,
-          proficiency: 'native',
-        })),
-        experience_types: selectedExperiences,
-        teaches_in_person: true,
-        agreed_to_standards: true,
+        selectedLanguages,
+        selectedExperiences,
       });
-      await submitApplication(draft.id);
-
-      // Go to the application status page to add portfolio + track review.
       navigate('/teacher/application');
     } catch (error) {
       console.error('Error completing onboarding:', error);

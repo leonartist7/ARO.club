@@ -70,7 +70,7 @@ export async function updateApplication(id, updates) {
 export async function submitApplication(id) {
   const { data, error } = await supabase
     .from('teacher_applications')
-    .update({ status: 'submitted', submitted_at: new Date().toISOString() })
+    .update({ status: 'submitted' })
     .eq('id', id)
     .select()
     .single();
@@ -123,7 +123,13 @@ export async function uploadDocument({ userId, applicationId, docType, file, lab
     })
     .select()
     .single();
-  if (error) throw error;
+  if (error) {
+    // The metadata write is authoritative. If it fails after a successful
+    // upload, make one best-effort compensating delete without replacing the
+    // original error with a cleanup error.
+    await supabase.storage.from(bucket).remove([path]).catch(() => undefined);
+    throw error;
+  }
   const { data: signed, error: signedError } = await supabase.storage
     .from(bucket)
     .createSignedUrl(path, 60 * 10);
