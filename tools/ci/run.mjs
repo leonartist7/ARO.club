@@ -1,9 +1,10 @@
-import { spawnSync } from 'node:child_process';
+import { fork, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { exerciseAuth } from './auth.mjs';
-import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
+
+const browserChildPath = fileURLToPath(new URL('browser.mjs', import.meta.url));
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -63,8 +64,8 @@ function userCount(expected) {
 }
 function sqlTests() {
   const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=81\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 81/81 (transactions rolled back)\n');
+  requireCondition(/Tests=86\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write('PASS pgTAP 86/86 (transactions rolled back)\n');
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -77,6 +78,39 @@ function cleanup() {
   noProjectResources();
   run('docker', ['network', 'rm', network]);
   requireCondition(!names('network').includes(network), 'NETWORK_SURVIVED');
+}
+function exerciseAuthenticatedBrowser(credentials) {
+  return new Promise((resolve, reject) => {
+    const { VITE_ARO_DISPOSABLE_CI_AUTH_BROWSER: _inheritedMarker, ...sanitizedEnvironment } = process.env;
+    const child = fork(browserChildPath, [], {
+      cwd: workdir,
+      // The compile marker lives only in this disposable child. Credentials
+      // are delivered only after spawn through IPC and are never logged.
+      env: { ...sanitizedEnvironment, ARO_I02_DISPOSABLE_CI_BROWSER_CHILD: 'true' },
+      stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
+    });
+    const timer = setTimeout(() => {
+      child.kill('SIGTERM');
+      reject(new Error('AUTHENTICATED_BROWSER_TIMEOUT'));
+    }, 180000);
+    let finished = false;
+    const finish = (error) => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      child.removeAllListeners();
+      if (error) reject(error); else resolve();
+    };
+    child.once('error', () => finish(new Error('AUTHENTICATED_BROWSER_CHILD_FAILED')));
+    child.once('exit', (code) => {
+      if (code !== 0) finish(new Error('AUTHENTICATED_BROWSER_CHILD_FAILED'));
+    });
+    child.once('message', (message) => {
+      if (message?.type === 'success') finish();
+      else finish(new Error(message?.code || 'AUTHENTICATED_BROWSER_CHILD_FAILED'));
+    });
+    child.send({ type: 'run-authenticated-browser', ...credentials });
+  });
 }
 
 try {
@@ -107,7 +141,7 @@ try {
         status.ANON_KEY,
         phase,
         exerciseAuthenticatedBrowser,
-        browserVerificationPhase
+        'authenticated-synthetic-applicant-journey'
       );
       await phase('synthetic-account-count', () => userCount(2));
       await phase('reset-removes-accounts', async () => {

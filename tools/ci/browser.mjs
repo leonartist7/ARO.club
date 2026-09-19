@@ -4,7 +4,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { API, requireCondition } from './boundary.mjs';
-import { UX0_PROTOTYPE_MODE } from '../../src/config/ux0.js';
+import { UX0_PROTOTYPE_MODE, allowsDisposableCiAuthenticatedBrowser } from '../../src/config/ux0.js';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const base = 'http://127.0.0.1:5173';
@@ -14,9 +14,11 @@ const screenshotDir = fileURLToPath(new URL('../../artifacts/ARO-I0.2/ci-screens
 // contention with an application failure.
 const uiReadyTimeout = 20000;
 
-export const browserVerificationPhase = UX0_PROTOTYPE_MODE
-  ? 'prototype-browser-boundary'
-  : 'authenticated-browser-matrix';
+const disposableCiBrowserChild = process.env.ARO_I02_DISPOSABLE_CI_BROWSER_CHILD === 'true';
+
+export const browserVerificationPhase = disposableCiBrowserChild
+  ? 'authenticated-synthetic-applicant-journey'
+  : 'prototype-browser-boundary';
 
 async function waitForServer() {
   for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -31,14 +33,38 @@ async function waitForServer() {
   throw new Error('BROWSER_SERVER_TIMEOUT');
 }
 
+async function waitForOnboardingSwipeControls(page, headingName, failureCode) {
+  const heading = page.getByRole('heading', { name: headingName });
+  await heading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+  // AnimatePresence can retain the prior screen briefly. Scope to the screen
+  // identified by its semantic heading, then wait until its two swipe controls
+  // (skip / choose) are the only rounded controls in that screen.
+  const screen = heading.locator('xpath=../..');
+  const controls = screen.locator('button.rounded-full');
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    if (await controls.count() === 2) return controls;
+    await delay(50);
+  }
+  throw new Error(failureCode);
+}
+
 export async function exerciseAuthenticatedBrowser({ anonKey, email, password }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
+  if (disposableCiBrowserChild) {
+    // This is the exact pure guard used by the client. The marker alone and
+    // loopback alone fail; a remote origin remains prototype-only.
+    requireCondition(allowsDisposableCiAuthenticatedBrowser(true, base), 'DISPOSABLE_CI_LOOPBACK_GUARD_REJECTED');
+    requireCondition(!allowsDisposableCiAuthenticatedBrowser(false, base), 'DISPOSABLE_CI_MARKER_ONLY_GUARD_BYPASSED');
+    requireCondition(!allowsDisposableCiAuthenticatedBrowser(true, 'https://aro.club'), 'DISPOSABLE_CI_REMOTE_ORIGIN_GUARD_BYPASSED');
+  }
   mkdirSync(screenshotDir, { recursive: true });
   const vite = fileURLToPath(new URL('../../node_modules/vite/bin/vite.js', import.meta.url));
+  const { VITE_ARO_DISPOSABLE_CI_AUTH_BROWSER: _inheritedMarker, ...sanitizedEnvironment } = process.env;
   const appEnvironment = {
-    ...process.env,
+    ...sanitizedEnvironment,
     VITE_SUPABASE_URL: API,
     VITE_SUPABASE_ANON_KEY: anonKey,
+    ...(disposableCiBrowserChild ? { VITE_ARO_DISPOSABLE_CI_AUTH_BROWSER: 'true' } : {}),
   };
   const build = spawnSync(process.execPath, [vite, 'build'], {
     cwd: root,
@@ -54,6 +80,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     env: appEnvironment,
   });
   let browser;
+  let onboardingPage;
+  let onboardingDiagnosticCaptured = false;
   let stage = 'START';
   try {
     stage = 'SERVER';
@@ -61,7 +89,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     stage = 'LAUNCH';
     browser = await chromium.launch();
 
-    if (UX0_PROTOTYPE_MODE) {
+    if (!disposableCiBrowserChild) {
+      requireCondition(UX0_PROTOTYPE_MODE, 'PROTOTYPE_BOUNDARY_NOT_FAIL_CLOSED');
       for (const theme of ['light', 'dark']) {
         stage = `PROTOTYPE_CONTEXT_${theme.toUpperCase()}`;
         const context = await browser.newContext({
@@ -158,7 +187,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         // the same authenticated session survives a responsive resize, rather
         // than creating a fourth cold browser boot under a heavily loaded CI
         // worker.
-        if (width === 360) {
+        if (width === 360 && theme === 'light') {
           stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
           stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
@@ -180,6 +209,124 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
           stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
           await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+
+          // This lane is deliberately real-client proof: onboarding must leave
+          // an editable draft, collect documents on the status surface, and
+          // submit only through that explicit journey.
+          stage = `ONBOARDING_NAVIGATE_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/onboarding/teacher`, { waitUntil: 'domcontentloaded' });
+          onboardingPage = page;
+          stage = `ONBOARDING_NAME_INPUT_${width}_${theme.toUpperCase()}`;
+          await page.getByPlaceholder("What's your name?").fill('Synthetic Teacher');
+          stage = `ONBOARDING_NAME_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_LANGUAGE_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const languageControls = await waitForOnboardingSwipeControls(
+            page,
+            'What languages do you teach?',
+            'LANGUAGE_SELECTION_CONTROLS_MISSING',
+          );
+          stage = `ONBOARDING_LANGUAGE_CHOOSE_${width}_${theme.toUpperCase()}`;
+          await languageControls.nth(1).click();
+          stage = `ONBOARDING_LANGUAGE_SKIP_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_EXPERIENCE_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const experienceControls = await waitForOnboardingSwipeControls(
+            page,
+            'What experiences can you offer?',
+            'EXPERIENCE_SELECTION_CONTROLS_MISSING',
+          );
+          stage = `ONBOARDING_EXPERIENCE_CHOOSE_${width}_${theme.toUpperCase()}`;
+          await experienceControls.nth(1).click();
+          stage = `ONBOARDING_EXPERIENCE_SKIP_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_AVATAR_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const avatarHeading = page.getByRole('heading', { name: 'Create Your Avatar' });
+          await avatarHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const avatarScreen = avatarHeading.locator('xpath=..');
+          stage = `ONBOARDING_AVATAR_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await avatarScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_BIO_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const bioHeading = page.getByRole('heading', { name: 'Tell Students About Yourself' });
+          await bioHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const bioScreen = bioHeading.locator('xpath=..');
+          stage = `ONBOARDING_BIO_INPUT_${width}_${theme.toUpperCase()}`;
+          await bioScreen.getByPlaceholder("I'm passionate about teaching...")
+            .fill('Synthetic browser evidence confirms this editable application draft before explicit submission.');
+          stage = `ONBOARDING_BIO_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await bioScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_READY_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const readyHeading = page.getByRole('heading', { name: 'Ready to Submit!' });
+          await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const readyScreen = readyHeading.locator('xpath=..');
+          stage = `ONBOARDING_DRAFT_CREATE_REQUEST_${width}_${theme.toUpperCase()}`;
+          const submitResponse = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
+          ), { timeout: uiReadyTimeout });
+          await readyScreen.getByRole('button', { name: 'Submit for Verification' }).click();
+          requireCondition((await submitResponse).status() === 201, 'ONBOARDING_DRAFT_PERSIST_FAILED');
+          await page.waitForURL(url => url.pathname === '/teacher/application', { timeout: uiReadyTimeout });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.getByText('Add your portfolio below, then submit for verification.').count() === 1,
+            'DOCUMENT_COLLECTION_SURFACE_MISSING');
+          await page.reload({ waitUntil: 'domcontentloaded' });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.locator('input[type="file"]').count() >= 1, 'DOCUMENT_COLLECTION_NOT_EDITABLE');
+          requireCondition(await page.getByRole('button', { name: 'Submit for verification' }).isEnabled(), 'DRAFT_NOT_EDITABLE');
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-draft-before-submit.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+
+          stage = 'DOCUMENT_FAILURE_AND_RETRY_360_LIGHT';
+          let metadataRequestAborted = false;
+          const metadataRoute = async (route) => {
+            if (!metadataRequestAborted && route.request().method() === 'POST') {
+              metadataRequestAborted = true;
+              await route.abort('failed');
+              return;
+            }
+            await route.continue();
+          };
+          await page.route(`${API}/rest/v1/teacher_documents**`, metadataRoute);
+          const documentInput = page.locator('input[type="file"]').first();
+          await documentInput.setInputFiles({
+            name: 'synthetic-intro.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video'),
+          });
+          await page.getByText(/Failed to fetch|Upload failed/).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(metadataRequestAborted, 'DOCUMENT_METADATA_FAILURE_NOT_INDUCED');
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-failure.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+          await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
+          const metadataRetry = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'POST'
+          ), { timeout: uiReadyTimeout });
+          await documentInput.setInputFiles({
+            name: 'synthetic-intro-retry.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video-retry'),
+          });
+          requireCondition((await metadataRetry).status() === 201, 'DOCUMENT_METADATA_RETRY_FAILED');
+          await page.getByText('Uploaded ✓').waitFor({ timeout: uiReadyTimeout });
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-retry.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+
+          stage = 'EXPLICIT_SUBMIT_SERVER_TIMESTAMP_360_LIGHT';
+          const explicitSubmit = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'PATCH'
+          ), { timeout: uiReadyTimeout });
+          await page.getByRole('button', { name: 'Submit for verification' }).click();
+          const submittedResponse = await explicitSubmit;
+          requireCondition(submittedResponse.status() === 200, `EXPLICIT_SUBMIT_HTTP_${submittedResponse.status()}`);
+          const submitted = await submittedResponse.json();
+          requireCondition(submitted?.status === 'submitted' && Boolean(submitted.submitted_at), 'SERVER_SUBMISSION_TIMESTAMP_MISSING');
+          await page.getByRole('heading', { name: 'Application submitted' }).waitFor({ timeout: uiReadyTimeout });
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-submitted-server-timestamp.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
         }
 
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
@@ -189,7 +336,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         // diagnosable without printing account or service data to CI logs.
         await page.waitForTimeout(500);
         await page.screenshot({
-          path: `${screenshotDir}/${width}-${theme}-profile-arrival.png`,
+          path: `${screenshotDir}/authenticated-synthetic-journey-${width}-${theme}-profile-arrival.png`,
           animations: 'disabled',
           fullPage: false,
           timeout: 10000,
@@ -207,7 +354,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         requireCondition(performance.now() - started < 15000, 'AUTH_BROWSER_BUDGET');
         stage = `SCREENSHOT_${width}_${theme.toUpperCase()}`;
         await page.screenshot({
-          path: `${screenshotDir}/${width}-${theme}.png`,
+          path: `${screenshotDir}/authenticated-synthetic-journey-${width}-${theme}-profile.png`,
           animations: 'disabled',
           fullPage: false,
           timeout: 10000,
@@ -216,6 +363,20 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
       await context.close();
     }
   } catch (error) {
+    if (stage.startsWith('ONBOARDING_') && onboardingPage && !onboardingDiagnosticCaptured) {
+      try {
+        const credentialInputs = onboardingPage.locator('input[type="email"], input[type="password"]');
+        requireCondition(await credentialInputs.count() === 0, 'ONBOARDING_DIAGNOSTIC_CREDENTIAL_INPUT_PRESENT');
+        await onboardingPage.screenshot({
+          path: `${screenshotDir}/authenticated-synthetic-journey-360-light-onboarding-diagnostic.png`,
+          animations: 'disabled', fullPage: false, timeout: 10000,
+        });
+        onboardingDiagnosticCaptured = true;
+      } catch {
+        // Preserve the original failing stage; diagnostic capture never makes
+        // an unauthenticated or potentially credential-bearing image valid.
+      }
+    }
     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
     throw new Error(`BROWSER_${stage}`);
   } finally {
@@ -226,4 +387,24 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
       // The isolated child already exited.
     }
   }
+}
+
+// `run.mjs` supplies the compile marker only to this disposable child. The
+// credentials arrive over its private IPC channel and are never command-line
+// arguments, environment values, screenshots, or emitted logs.
+if (disposableCiBrowserChild && process.send) {
+  const reply = (message) => process.send(message, () => process.disconnect());
+  process.once('message', async (message) => {
+    if (message?.type !== 'run-authenticated-browser') {
+      reply({ type: 'failure', code: 'DISPOSABLE_CI_BROWSER_MESSAGE_INVALID' });
+      return;
+    }
+    try {
+      await exerciseAuthenticatedBrowser(message);
+      reply({ type: 'success' });
+    } catch (error) {
+      const code = /^[A-Z][A-Z0-9_]+$/.test(error?.message) ? error.message : 'AUTHENTICATED_BROWSER_FAILED';
+      reply({ type: 'failure', code });
+    }
+  });
 }
