@@ -33,6 +33,21 @@ async function waitForServer() {
   throw new Error('BROWSER_SERVER_TIMEOUT');
 }
 
+async function waitForOnboardingSwipeControls(page, headingName, failureCode) {
+  const heading = page.getByRole('heading', { name: headingName });
+  await heading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+  // AnimatePresence can retain the prior screen briefly. Scope to the screen
+  // identified by its semantic heading, then wait until its two swipe controls
+  // (skip / choose) are the only rounded controls in that screen.
+  const screen = heading.locator('xpath=../..');
+  const controls = screen.locator('button.rounded-full');
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    if (await controls.count() === 2) return controls;
+    await delay(50);
+  }
+  throw new Error(failureCode);
+}
+
 export async function exerciseAuthenticatedBrowser({ anonKey, email, password }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
   if (disposableCiBrowserChild) {
@@ -200,25 +215,37 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           await page.goto(`${base}/onboarding/teacher`, { waitUntil: 'domcontentloaded' });
           await page.getByPlaceholder("What's your name?").fill('Synthetic Teacher');
           await page.getByRole('button', { name: 'Continue' }).click();
-          await page.locator('button').evaluateAll((buttons) => {
-            if (buttons.length !== 2) throw new Error('LANGUAGE_SELECTION_CONTROLS_MISSING');
-            buttons[1].click();
-          });
+          const languageControls = await waitForOnboardingSwipeControls(
+            page,
+            'What languages do you teach?',
+            'LANGUAGE_SELECTION_CONTROLS_MISSING',
+          );
+          await languageControls.nth(1).click();
           await page.getByRole('button', { name: 'Skip remaining' }).click();
-          await page.locator('button').evaluateAll((buttons) => {
-            if (buttons.length !== 2) throw new Error('EXPERIENCE_SELECTION_CONTROLS_MISSING');
-            buttons[1].click();
-          });
+          const experienceControls = await waitForOnboardingSwipeControls(
+            page,
+            'What experiences can you offer?',
+            'EXPERIENCE_SELECTION_CONTROLS_MISSING',
+          );
+          await experienceControls.nth(1).click();
           await page.getByRole('button', { name: 'Skip remaining' }).click();
-          await page.getByRole('button', { name: 'Continue' }).click();
-          await page.getByPlaceholder("I'm passionate about teaching...")
+          const avatarHeading = page.getByRole('heading', { name: 'Create Your Avatar' });
+          await avatarHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const avatarScreen = avatarHeading.locator('xpath=..');
+          await avatarScreen.getByRole('button', { name: 'Continue' }).click();
+          const bioHeading = page.getByRole('heading', { name: 'Tell Students About Yourself' });
+          await bioHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const bioScreen = bioHeading.locator('xpath=..');
+          await bioScreen.getByPlaceholder("I'm passionate about teaching...")
             .fill('Synthetic browser evidence confirms this editable application draft before explicit submission.');
-          await page.getByRole('button', { name: 'Continue' }).click();
-          await page.getByRole('heading', { name: 'Ready to Submit!' }).waitFor({ timeout: uiReadyTimeout });
+          await bioScreen.getByRole('button', { name: 'Continue' }).click();
+          const readyHeading = page.getByRole('heading', { name: 'Ready to Submit!' });
+          await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const readyScreen = readyHeading.locator('xpath=..');
           const submitResponse = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
           ), { timeout: uiReadyTimeout });
-          await page.getByRole('button', { name: 'Submit for Verification' }).click();
+          await readyScreen.getByRole('button', { name: 'Submit for Verification' }).click();
           requireCondition((await submitResponse).status() === 201, 'ONBOARDING_DRAFT_PERSIST_FAILED');
           await page.waitForURL(url => url.pathname === '/teacher/application', { timeout: uiReadyTimeout });
           await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
