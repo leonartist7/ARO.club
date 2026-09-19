@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, app_private, extensions;
-select plan(65);
+select plan(70);
 
 -- 01-10: required objects and boundaries exist.
 select has_table('public','profiles','01 private profiles table exists');
@@ -214,6 +214,75 @@ select is((select count(*) from storage.buckets where id in (
   'verification-docs','teacher-portfolio') and not public),2::bigint,'64 both buckets are private');
 select is((select count(*) from pg_policies where schemaname='storage'
   and tablename='objects' and policyname like 'aro_docs_%'),4::bigint,'65 four storage policies exist');
+
+-- 66-70: direct owner deletion preserves every verification-history state.
+reset role;
+insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_confirmed_at,
+  raw_app_meta_data,raw_user_meta_data,created_at,updated_at)
+values
+ (null,'00000000-0000-4000-8000-000000000004','authenticated','authenticated',
+  'unreviewed@aro.invalid',crypt('Synthetic-pass-004',gen_salt('bf')),now(),'{}','{"name":"Unreviewed"}',now(),now());
+set local role authenticated;
+set local request.jwt.claims =
+  '{"sub":"00000000-0000-4000-8000-000000000004","role":"authenticated"}';
+insert into public.teachers(id,user_id,name)
+values('30000000-0000-4000-8000-000000000004',
+  '00000000-0000-4000-8000-000000000004','Unreviewed teacher');
+select results_eq($$with deleted as (
+  delete from public.teachers
+  where id='30000000-0000-4000-8000-000000000004'
+  returning id
+)
+select count(*) from deleted$$,array[1::bigint],
+  '66 owner with no verification history can delete teacher');
+
+reset role;
+update app_private.teacher_verifications
+set verified=true,status='active'
+where application_id='10000000-0000-4000-8000-000000000001';
+set local role authenticated;
+set local request.jwt.claims =
+  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+select results_eq($$with deleted as (
+  delete from public.teachers
+  where user_id='00000000-0000-4000-8000-000000000001'
+  returning id
+)
+select count(*) from deleted$$,array[0::bigint],
+  '67 verified owner cannot delete teacher with verification history');
+
+reset role;
+update app_private.teacher_verifications
+set verified=false,status='suspended'
+where application_id='10000000-0000-4000-8000-000000000001';
+set local role authenticated;
+set local request.jwt.claims =
+  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+select results_eq($$with deleted as (
+  delete from public.teachers
+  where user_id='00000000-0000-4000-8000-000000000001'
+  returning id
+)
+select count(*) from deleted$$,array[0::bigint],
+  '68 suspended owner cannot delete teacher with verification history');
+
+reset role;
+update app_private.teacher_verifications
+set verified=false,status='banned'
+where application_id='10000000-0000-4000-8000-000000000001';
+set local role authenticated;
+set local request.jwt.claims =
+  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+select results_eq($$with deleted as (
+  delete from public.teachers
+  where user_id='00000000-0000-4000-8000-000000000001'
+  returning id
+)
+select count(*) from deleted$$,array[0::bigint],
+  '69 banned owner cannot delete teacher with verification history');
+select is((select count(*) from app_private.teacher_verifications
+  where application_id='10000000-0000-4000-8000-000000000001'),1::bigint,
+  '70 denied owner deletes preserve verification history');
 
 select * from finish();
 rollback;
