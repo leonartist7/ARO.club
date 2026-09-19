@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 14
+- **Ledger version:** 15
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -65,7 +65,7 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 | D-FV3-preparation | PACKAGE_ACCEPTED / IMPLEMENTATION_BLOCKED | founder approval recorded; F7 acceptance/reconciliation, pinned base, exclusive ownership and evidence/review still required | controller/product-design | verified external input; founder approval record | no implementation claim until all gates validate |
 | E-documentation-integrity | REPAIR_REQUIRED | PR #47 has review findings; PR #49 is a draft and shares registries | existing PR owners, serialized | PR #47/#49 heads above | owner repairs/reconciles; controller must not overwrite their paths |
 | F1-I0-gate-matrix | VERIFIED | read-only claim `F1-20260916-001` completed; no product/provider status changed | controller validated | result `docs/autonomous-control-20260916/results/F1-I0-GATE-MATRIX-20260916.md` commit `db68b2cd7631dcda5096cf250e9302e8fcf370fe`, blob `7cec72d3e05719ce874ecb5fe6408f0213414e6b` | 13 fact-labelled rows; B1 then B2 + review remains next non-provider path |
-| F2-plan-gap-register | READY | read-only, after F1 only if no more urgent eligible task | unassigned read-only worker | source `79603ae…`; unique external output | at most two isolated non-product gaps, no new feature design |
+| F2-plan-gap-register | CLAIMED | claim `F2-20260919-001`; read-only and independent of B1B hosted rerun | F2 read-only worker (gpt-5.6-terra, high) | source `/workspace/scratch/95edc6c9ef6a/aro-f2-20260919-claim-001/source`; output `/workspace/scratch/95edc6c9ef6a/aro-f2-20260919-claim-001/evidence` | return at most two exact, independent candidates or none; controller validates/persists result |
 
 ## Dispatch packets
 
@@ -120,6 +120,18 @@ The older repository record `artifacts/ARO-I0.2/INDEPENDENT_REVIEW.md` hashes to
 - **Stop:** unavailable source/input, secret request, provider mutation requirement or scope beyond evidence matrix.
 - **Result format:** `taskId, baseSHA, inspectedPaths, evidenceRows, blockers, proposedNextAction, outputLocation`.
 
+### F2-plan-gap-register
+
+- **Task ID / outcome:** F2; produce a fact-labelled, maximum-two-item register of genuinely independent, currently known remaining gaps from the master delivery plan. It must identify only preparation or approved-contract repair candidates; it must not start an audit or invent product work.
+- **Authority:** documentation/evidence preparation under AGENTS.md and docs/MASTER_PLAN.md; this is preparation-only, not a product decision.
+- **Immutable base:** 79603ae1af60a30f86c105e0f2a4d841043eb727; read-only dependencies: governing chain, approved specs/status/workboard, current PR #47/#48/#49/#51/#52 metadata, canonical ledger.
+- **Write allowlist:** no repository files, branches, PRs or ledger. Output exactly one immutable local result bundle under /workspace/scratch/95edc6c9ef6a/aro-f2-20260919-claim-001/evidence/; the controller alone may later preserve it under its documentation branch.
+- **Non-goals / interface:** no F7 measurement, no I0.2 code/policy decision, no provider call, no F1–F6 restart, no FV2/FV3 runtime design. Each row must state its authority, why it does not depend on unresolved F7/I0/P1 gates, exact non-overlapping prospective ownership, deliverable, acceptance condition and blocker.
+- **Acceptance / reproducible checks:** full-read cited input paths; a machine-readable manifest with inspected path/blob or SHA; sha256sum -c manifest.sha256; no source diff. Return no more than two candidates, or explicit “none eligible”.
+- **Evidence / review:** result bundle includes F2-PLAN-GAP-REGISTER-20260919.md, manifest.sha256, and a concise controller-result record. Controller re-fetches/preserves it before any status change; any later implementation requires its own claim and independent review.
+- **Stop/retry:** stop for missing governing source, a proposed product/retention/authorization decision, scope overlap, or a provider/secret request. One transient retrieval retry only.
+- **Required result format:** taskId, claimNonce, baseSHA, inspectedPaths, candidates[{authority,independence,writeAllowlist,deliverable,acceptance,blocker}], evidenceRoot, manifestSHA, findings, nextState.
+
 ### C/D preparation handling
 
 FV2/FV3 are already complete proposal deliverables at the verified external identities above. A worker may only check their source drift and package completeness, returning a result bundle; it may not turn either into SPEC-READY, write UI code, alter routes/shared files, or claim F7 acceptance.
@@ -152,3 +164,4 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | 2026-09-19 | 12 | Founder approved B1B; build claimed | Founder approval commit `030ecd1d9b45781a832bf0ce58af051d696262be` authorizes the exact loopback-only disposable-CI mode. Claim `B1B-20260919-001` starts a fresh isolated writer on branch `codex/i02-r7-authenticated-ci-20260919` from candidate `998b39b7fc9af32d632882442a53dad47e8710ce`. |
 | 2026-09-19 | 13 | B1B candidate published; CI running | Draft PR #52 pins composite head `6c65965758c7c695aecd343d84287e54b0e53d73` to main `79603ae…`. Writer result was persisted and independently re-fetched as blob `f13c35079dd54a593c43bbc175d9c4f0ca7ded6a`. Hosted Quality run `35430717521` and disposable Isolated database run `35430717532` are the only active validation; no reviewer, acceptance, merge, deployment or release has occurred. |
 | 2026-09-19 | 14 | B1B R7 CI failure recorded; repair claimed | Quality succeeded, but isolated DB run `35430717532` passed 11/11 boundary tests, pgTAP 86/86, auth/Trust phases and cleanup before failing `BROWSER_ONBOARDING_DRAFT_360_LIGHT`; no screenshot artifact existed. The controller re-fetched failure result blob `c0732dfc3ef681e0adde8c59d6042e643ec55fb2`, then claimed `B1B-R1-20260919-001` for one test-driver-only repair on a fresh branch from the failed immutable head. |
+| 2026-09-19 | 15 | F2 read-only preparation claimed | Claim `F2-20260919-001` uses immutable main `79603ae…`, a distinct source/evidence root and no repository writes. It may return at most two independent non-product candidates; it cannot approve or implement them. |
