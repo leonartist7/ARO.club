@@ -80,6 +80,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     env: appEnvironment,
   });
   let browser;
+  let onboardingPage;
+  let onboardingDiagnosticCaptured = false;
   let stage = 'START';
   try {
     stage = 'SERVER';
@@ -211,37 +213,53 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           // This lane is deliberately real-client proof: onboarding must leave
           // an editable draft, collect documents on the status surface, and
           // submit only through that explicit journey.
-          stage = `ONBOARDING_DRAFT_${width}_${theme.toUpperCase()}`;
+          stage = `ONBOARDING_NAVIGATE_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/onboarding/teacher`, { waitUntil: 'domcontentloaded' });
+          onboardingPage = page;
+          stage = `ONBOARDING_NAME_INPUT_${width}_${theme.toUpperCase()}`;
           await page.getByPlaceholder("What's your name?").fill('Synthetic Teacher');
+          stage = `ONBOARDING_NAME_CONTINUE_${width}_${theme.toUpperCase()}`;
           await page.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_LANGUAGE_TRANSITION_${width}_${theme.toUpperCase()}`;
           const languageControls = await waitForOnboardingSwipeControls(
             page,
             'What languages do you teach?',
             'LANGUAGE_SELECTION_CONTROLS_MISSING',
           );
+          stage = `ONBOARDING_LANGUAGE_CHOOSE_${width}_${theme.toUpperCase()}`;
           await languageControls.nth(1).click();
+          stage = `ONBOARDING_LANGUAGE_SKIP_${width}_${theme.toUpperCase()}`;
           await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_EXPERIENCE_TRANSITION_${width}_${theme.toUpperCase()}`;
           const experienceControls = await waitForOnboardingSwipeControls(
             page,
             'What experiences can you offer?',
             'EXPERIENCE_SELECTION_CONTROLS_MISSING',
           );
+          stage = `ONBOARDING_EXPERIENCE_CHOOSE_${width}_${theme.toUpperCase()}`;
           await experienceControls.nth(1).click();
+          stage = `ONBOARDING_EXPERIENCE_SKIP_${width}_${theme.toUpperCase()}`;
           await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_AVATAR_TRANSITION_${width}_${theme.toUpperCase()}`;
           const avatarHeading = page.getByRole('heading', { name: 'Create Your Avatar' });
           await avatarHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           const avatarScreen = avatarHeading.locator('xpath=..');
+          stage = `ONBOARDING_AVATAR_CONTINUE_${width}_${theme.toUpperCase()}`;
           await avatarScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_BIO_TRANSITION_${width}_${theme.toUpperCase()}`;
           const bioHeading = page.getByRole('heading', { name: 'Tell Students About Yourself' });
           await bioHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           const bioScreen = bioHeading.locator('xpath=..');
+          stage = `ONBOARDING_BIO_INPUT_${width}_${theme.toUpperCase()}`;
           await bioScreen.getByPlaceholder("I'm passionate about teaching...")
             .fill('Synthetic browser evidence confirms this editable application draft before explicit submission.');
+          stage = `ONBOARDING_BIO_CONTINUE_${width}_${theme.toUpperCase()}`;
           await bioScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_READY_TRANSITION_${width}_${theme.toUpperCase()}`;
           const readyHeading = page.getByRole('heading', { name: 'Ready to Submit!' });
           await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           const readyScreen = readyHeading.locator('xpath=..');
+          stage = `ONBOARDING_DRAFT_CREATE_REQUEST_${width}_${theme.toUpperCase()}`;
           const submitResponse = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
           ), { timeout: uiReadyTimeout });
@@ -345,6 +363,20 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
       await context.close();
     }
   } catch (error) {
+    if (stage.startsWith('ONBOARDING_') && onboardingPage && !onboardingDiagnosticCaptured) {
+      try {
+        const credentialInputs = onboardingPage.locator('input[type="email"], input[type="password"]');
+        requireCondition(await credentialInputs.count() === 0, 'ONBOARDING_DIAGNOSTIC_CREDENTIAL_INPUT_PRESENT');
+        await onboardingPage.screenshot({
+          path: `${screenshotDir}/authenticated-synthetic-journey-360-light-onboarding-diagnostic.png`,
+          animations: 'disabled', fullPage: false, timeout: 10000,
+        });
+        onboardingDiagnosticCaptured = true;
+      } catch {
+        // Preserve the original failing stage; diagnostic capture never makes
+        // an unauthenticated or potentially credential-bearing image valid.
+      }
+    }
     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
     throw new Error(`BROWSER_${stage}`);
   } finally {
