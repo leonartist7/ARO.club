@@ -55,23 +55,25 @@ function observeDataTimings(page) {
   } };
 }
 
-async function keyboardChooseFile(page, name, file) {
+async function keyboardFileChooser(page, name, onStage) {
   const button = page.getByRole('button', { name, exact: true });
+  onStage('FOCUS');
   for (let tab = 0; tab < 80; tab += 1) {
-    await page.keyboard.press('Tab');
     if (await button.evaluate(element => element === document.activeElement)) break;
+    await page.keyboard.press('Tab');
   }
   requireCondition(await button.evaluate(element => element === document.activeElement), 'UPLOAD_NOT_KEYBOARD_REACHABLE');
+  onStage('FOCUS_STYLE');
   requireCondition(await button.evaluate(element => {
     const style = getComputedStyle(element);
     return parseFloat(style.outlineWidth) >= 2 && style.outlineStyle !== 'none';
   }), 'UPLOAD_FOCUS_NOT_VISIBLE');
+  onStage('CHOOSER');
   const [chooser] = await Promise.all([
     page.waitForEvent('filechooser', { timeout: uiReadyTimeout }),
     page.keyboard.press('Enter'),
   ]);
-  await chooser.setFiles(file);
-  return button;
+  return { button, chooser };
 }
 
 async function captureJourney(page, caseId, state) {
@@ -194,6 +196,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
     for (const theme of ['light', 'dark']) {
       for (const width of [360, 1440]) {
       const caseId = `${width}-${theme}`;
+      const caseCode = `${width}_${theme.toUpperCase()}`;
       stage = `CONTEXT_${width}_${theme.toUpperCase()}`;
       const context = await browser.newContext({
         viewport: { width, height: width === 360 ? 800 : 1000 },
@@ -303,7 +306,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           requireCondition(await page.getByRole('button', { name: 'Submit for verification' }).isEnabled(), 'DRAFT_NOT_EDITABLE');
           await captureJourney(page, caseId, 'draft-before-submit');
 
-          stage = `DOCUMENT_FAILURE_AND_RETRY_${caseId.toUpperCase()}`;
+          stage = `DOCUMENT_FAILURE_AND_RETRY_${caseCode}`;
           let metadataRequestAborted = false;
           let releaseMetadata;
           const metadataGate = new Promise(resolve => { releaseMetadata = resolve; });
@@ -317,7 +320,11 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
             await route.continue();
           };
           await page.route(`${API}/rest/v1/teacher_documents**`, metadataRoute);
-          const uploadButton = await keyboardChooseFile(page, 'Upload Intro video', {
+          const { button: uploadButton, chooser: initialChooser } = await keyboardFileChooser(
+            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_INITIAL_${subphase}_${caseCode}`; },
+          );
+          stage = `DOCUMENT_INITIAL_SET_FILES_${caseCode}`;
+          await initialChooser.setFiles({
             name: 'synthetic-intro.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video'),
           });
           await page.getByRole('status').filter({ hasText: 'Uploading Intro video.' }).waitFor({ timeout: uiReadyTimeout });
@@ -328,13 +335,20 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           requireCondition(metadataRequestAborted, 'DOCUMENT_METADATA_FAILURE_NOT_INDUCED');
           await captureJourney(page, caseId, 'document-failure');
           await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
-          const metadataRetry = page.waitForResponse((response) => (
-            response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'POST'
-          ), { timeout: uiReadyTimeout });
-          await keyboardChooseFile(page, 'Upload Intro video', {
-            name: 'synthetic-intro-retry.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video-retry'),
-          });
-          requireCondition((await metadataRetry).status() === 201, 'DOCUMENT_METADATA_RETRY_FAILED');
+          const { chooser: retryChooser } = await keyboardFileChooser(
+            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_RETRY_${subphase}_${caseCode}`; },
+          );
+          stage = `DOCUMENT_RETRY_RESPONSE_${caseCode}`;
+          // Arm immediately before the triggering action and attach rejection
+          // handling at once. Keyboard traversal is not response latency.
+          const [metadataRetry] = await Promise.all([
+            page.waitForResponse(response => response.url().includes('/rest/v1/teacher_documents')
+              && response.request().method() === 'POST', { timeout: uiReadyTimeout }),
+            retryChooser.setFiles({
+              name: 'synthetic-intro-retry.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video-retry'),
+            }),
+          ]);
+          requireCondition(metadataRetry.status() === 201, 'DOCUMENT_METADATA_RETRY_FAILED');
           await page.getByText('Uploaded ✓').waitFor({ timeout: uiReadyTimeout });
           await page.getByRole('status').filter({ hasText: 'Intro video uploaded.' }).waitFor({ timeout: uiReadyTimeout });
           const persistedDocuments = page.waitForResponse(response => response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'GET');
@@ -345,7 +359,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           await page.getByRole('button', { name: 'Replace Intro video', exact: true }).waitFor();
           await captureJourney(page, caseId, 'document-retry');
 
-          stage = `EXPLICIT_SUBMIT_SERVER_TIMESTAMP_${caseId.toUpperCase()}`;
+          stage = `EXPLICIT_SUBMIT_SERVER_TIMESTAMP_${caseCode}`;
           const explicitSubmit = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'PATCH'
           ), { timeout: uiReadyTimeout });
