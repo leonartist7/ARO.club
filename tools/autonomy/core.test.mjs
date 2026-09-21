@@ -33,7 +33,7 @@ function fixture(t, router = 'legacy') {
     fs.mkdirSync(path.join(source, 'src/lib'), { recursive: true });
     fs.writeFileSync(path.join(source, 'src/lib/routes.jsx'), "export const routes = [{path: '/app'}];\n");
   } else {
-    for (const file of ['src/app/(public)/page.tsx', 'src/app/app/opportunities/[id]/page.tsx', 'src/app/app/[...missing]/page.tsx', 'src/app/_private/page.tsx']) {
+    for (const file of ['src/app/(public)/page.tsx', 'src/app/app/opportunities/[id]/page.tsx', 'src/app/app/[...missing]/page.tsx', 'src/app/auth/callback/route.ts', 'src/app/_private/page.tsx']) {
       fs.mkdirSync(path.dirname(path.join(source, file)), { recursive: true });
       fs.writeFileSync(path.join(source, file), 'export default function Page() {}\n');
     }
@@ -71,7 +71,7 @@ test('preparation pins provenance and generates all seven concrete packets', t =
   assert.equal(readiness(f.out, f.sha).implementationEligible, false);
   assert.throws(() => prepare(f.source, f.sha, f.out), /never overwrite/);
 });
-test('route inventory supports legacy literal routes and Next.js App Router pages', t => {
+test('route inventory supports legacy literal routes and Next.js App Router pages and handlers', t => {
   const legacy = fixture(t); prepare(legacy.source, legacy.sha, legacy.out);
   const legacyInventory = JSON.parse(fs.readFileSync(path.join(legacy.out, 'inventory.json'), 'utf8'));
   assert.equal(legacyInventory.routeFramework, 'legacy-literal');
@@ -80,7 +80,7 @@ test('route inventory supports legacy literal routes and Next.js App Router page
   const next = fixture(t, 'next'); prepare(next.source, next.sha, next.out);
   const nextInventory = JSON.parse(fs.readFileSync(path.join(next.out, 'inventory.json'), 'utf8'));
   assert.equal(nextInventory.routeFramework, 'next-app-router');
-  assert.deepEqual(nextInventory.routes.map(route => route.declaredPath), ['/', '/app/[...missing]', '/app/opportunities/[id]']);
+  assert.deepEqual(nextInventory.routes.map(route => [route.declaredPath, route.kind]), [['/', 'page'], ['/app/[...missing]', 'page'], ['/app/opportunities/[id]', 'page'], ['/auth/callback', 'route-handler']]);
   assert.ok(nextInventory.routes.every(route => route.source.startsWith('src/app/')));
 });
 test('wrong revision and dirty source fail before output creation', t => {
