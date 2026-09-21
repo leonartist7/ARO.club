@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
+import { frameworkInventory } from './framework.mjs';
 
 export const REPOSITORY = 'https://github.com/leonartist7/ARO.club';
 export const TASKS = ['A1', 'A2', 'A3', 'A4', 'S1', 'lead', 'C1'];
@@ -80,11 +81,7 @@ export function inventory(root, tracked) {
     if (data.length < 24 || data.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a') throw Error(`Invalid PNG: ${file}`);
     return { path: file, bytes: data.length, width: data.readUInt32BE(16), height: data.readUInt32BE(20), sha256: hash(data) };
   });
-  const routesFile = 'src/lib/routes.jsx';
-  const routes = fs.readFileSync(safeFile(root, routesFile), 'utf8').split('\n').flatMap((line, i) => {
-    const matches = [...line.matchAll(/path:\s*['"]([^'"]+)['"]/g)];
-    return matches.map(m => ({ declaredPath: m[1], source: routesFile, line: i + 1 }));
-  });
+  const { framework, routes } = frameworkInventory(root, tracked, safeFile);
   const markdown = tracked.filter(f => f.endsWith('.md'));
   const brokenWikiLinks = [];
   for (const file of markdown) {
@@ -95,7 +92,7 @@ export function inventory(root, tracked) {
       if (!found) brokenWikiLinks.push({ file, target });
     }
   }
-  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
+  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', framework, pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
 }
 export function reportValidation(report, task, sha, taskRoot) {
   const errors = [];

@@ -6,8 +6,78 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { REQUIRED, TASKS, taskDirectory, DEPENDENCIES, REPOSITORY, hash, sourceHash, assertSha, separateRoots, safeFile, prepare, verifySource, reportValidation, readiness, writeJson } from './core.mjs';
 import { importReport, runCli } from './cli.mjs';
+import { frameworkInventory, frameworkCommands, syntheticEnvironment, freshBuildDirectory } from './framework.mjs';
 
 const SHA = 'a'.repeat(40);
+test('committed App Router pages preserve groups, dynamic segments and source provenance', t => {
+  const source = workspace(t);
+  const files = {
+    'package.json': JSON.stringify({ scripts: { build: 'next build' }, dependencies: { next: '16.3.5' }, devDependencies: { vite: '^7' } }),
+    'src/app/layout.tsx': 'export default function Layout() {}',
+    'src/app/(public)/page.tsx': 'export default function Page() {}',
+    'src/app/(public)/teachers/[id]/page.tsx': '',
+    'src/app/app/[...missing]/page.tsx': '',
+    'src/app/docs/[[...slug]]/page.tsx': '',
+    'src/app/_private/page.tsx': '',
+  };
+  for (const [file, data] of Object.entries(files)) { fs.mkdirSync(path.dirname(path.join(source, file)), { recursive: true }); fs.writeFileSync(path.join(source, file), data); }
+  const tracked = Object.keys(files);
+  const result = frameworkInventory(source, tracked, safeFile);
+  assert.equal(result.framework, 'next');
+  assert.deepEqual(result.routes.map(r => r.declaredPath), ['/', '/teachers/[id]', '/app/[...missing]', '/docs/[[...slug]]']);
+  assert.equal(result.routes[1].source, 'src/app/(public)/teachers/[id]/page.tsx');
+  assert.match(frameworkCommands(result.framework).executable, /next\/dist\/bin\/next$/);
+  assert.deepEqual(frameworkCommands(result.framework).serve, ['start', '--hostname', '127.0.0.1', '--port', '5199']);
+  assert.throws(() => frameworkInventory(source, tracked.filter(f => f !== 'package.json'), safeFile), /not committed/);
+  assert.throws(() => frameworkInventory(source, [...tracked, 'src/app/missing/page.tsx'], safeFile), /Missing/);
+  fs.mkdirSync(path.join(source, 'src/app/@slot'), { recursive: true });
+  fs.writeFileSync(path.join(source, 'src/app/@slot/page.tsx'), '');
+  assert.throws(() => frameworkInventory(source, [...tracked, 'src/app/@slot/page.tsx'], safeFile), /Unsupported/);
+  fs.mkdirSync(path.join(source, 'src/app/(other)'), { recursive: true });
+  fs.writeFileSync(path.join(source, 'src/app/(other)/page.tsx'), '');
+  assert.throws(() => frameworkInventory(source, [...tracked, 'src/app/(other)/page.tsx'], safeFile), /Ambiguous/);
+  const outside = workspace(t); fs.writeFileSync(path.join(outside, 'page.tsx'), '');
+  fs.symlinkSync(outside, path.join(source, 'src/app/escape'), 'junction');
+  assert.throws(() => frameworkInventory(source, [...tracked, 'src/app/escape/page.tsx'], safeFile), /Missing or escaping/);
+  fs.writeFileSync(path.join(source, 'next.config.ts'), 'export default { distDir: "elsewhere" }');
+  assert.throws(() => frameworkInventory(source, [...tracked, 'next.config.ts'], safeFile), /Unsupported Next output/);
+});
+
+test('historical Vite launch stays fixed and unsupported build commands fail closed', t => {
+  const f = fixture(t);
+  const tracked = ['package.json', 'src/lib/routes.jsx'];
+  const result = frameworkInventory(f.source, tracked, safeFile);
+  assert.equal(result.framework, 'vite');
+  assert.equal(result.routes[0].declaredPath, '/app');
+  assert.deepEqual(frameworkCommands('vite').serve, ['preview', '--host', '127.0.0.1', '--port', '5199', '--strictPort']);
+  assert.throws(() => frameworkCommands('arbitrary command'), /Unsupported/);
+  fs.writeFileSync(path.join(f.source, 'package.json'), JSON.stringify({ scripts: { build: 'next build && arbitrary' }, dependencies: { next: '16.3.5' } }));
+  assert.throws(() => frameworkInventory(f.source, tracked, safeFile), /Unsupported/);
+});
+
+test('synthetic rebuild rejects provider inputs and local env without leaking values', t => {
+  const root = workspace(t);
+  const secret = 'synthetic-secret-not-for-output';
+  for (const key of ['NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS', 'NEXT_PUBLIC_ENABLE_PRODUCTION_ACCOUNTS', 'NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'VITE_SUPABASE_URL', 'NODE_OPTIONS', 'OPENAI_API_KEY']) {
+    assert.throws(() => syntheticEnvironment(root, { [key]: secret }), error => !error.message.includes(secret) && /rejects/.test(error.message));
+  }
+  const env = syntheticEnvironment(root, { PATH: 'synthetic-path', GITHUB_TOKEN: secret, NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS: 'false' });
+  assert.equal(env.GITHUB_TOKEN, undefined);
+  assert.equal(env.NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS, 'false');
+  assert.equal(env.NEXT_PUBLIC_ENABLE_PRODUCTION_ACCOUNTS, 'false');
+  assert.equal(env.NEXT_PUBLIC_SUPABASE_URL, '');
+  fs.writeFileSync(path.join(root, '.env.production.local'), secret);
+  assert.throws(() => syntheticEnvironment(root, {}), error => !error.message.includes(secret) && /environment files/.test(error.message));
+});
+
+test('fresh build cleanup cannot select tracked, arbitrary or escaping output', t => {
+  const root = workspace(t), outside = workspace(t);
+  assert.equal(freshBuildDirectory(root, [], '.next'), path.join(fs.realpathSync(root), '.next'));
+  assert.throws(() => freshBuildDirectory(root, ['.next/source'], '.next'), /overlaps/);
+  assert.throws(() => freshBuildDirectory(root, [], '../outside'), /Unsupported/);
+  fs.symlinkSync(outside, path.join(root, '.next'), 'junction');
+  assert.throws(() => freshBuildDirectory(root, [], '.next'), /symlink/);
+});
 test('source fingerprints are portable across Windows and Linux checkouts', () => {
   assert.equal(sourceHash(Buffer.from('source\r\n')), sourceHash(Buffer.from('source\n')));
   assert.notEqual(hash(Buffer.from('evidence\r\n')), hash(Buffer.from('evidence\n')));
@@ -31,6 +101,7 @@ function fixture(t) {
   fs.writeFileSync(path.join(source, 'ARO_CLOUD_HANDOFF.md'), TASKS.map(t => `### ${t === 'lead' ? 'Lead' : t} — audit\nRead-only bounded contract.\n`).join('\n'));
   fs.mkdirSync(path.join(source, 'src/lib'), { recursive: true });
   fs.writeFileSync(path.join(source, 'src/lib/routes.jsx'), "export const routes = [{path: '/app'}];\n");
+  fs.writeFileSync(path.join(source, 'package.json'), JSON.stringify({ scripts: { build: 'vite build' }, devDependencies: { vite: '^7' } }));
   const git = (...args) => execFileSync('git', args, { cwd: source, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   git('init'); git('add', '.'); git('-c', 'user.name=AUTO0 fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-m', 'fixture');
   return { base, source, out, sha: git('rev-parse', 'HEAD') };
