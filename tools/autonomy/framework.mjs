@@ -23,8 +23,10 @@ export function frameworkInventory(root, tracked, safeFile) {
       if (!/^next\.config\.(js|mjs|ts)$/.test(file) || /\b(?:pageExtensions|distDir)\b|\boutput\s*:/.test(read(file))) throw Error('Unsupported Next output or page configuration');
     }
     if (tracked.some(f => /^src\/app\/(?:.*\/)?page\./.test(f) && !pages.includes(f))) throw Error('Unsupported page extension');
+    const handlers = tracked.filter(f => /^src\/app\/(?:.*\/)?route\.(tsx|ts|jsx|js)$/.test(f));
+    if (tracked.some(f => /^src\/app\/(?:.*\/)?route\./.test(f) && !handlers.includes(f))) throw Error('Unsupported route extension');
     const routes = [], seen = new Set();
-    for (const source of pages) {
+    for (const source of [...pages, ...handlers].sort()) {
       read(source);
       const segments = source.slice('src/app/'.length).split('/').slice(0, -1);
       if (segments.some(s => s.startsWith('_'))) continue;
@@ -38,7 +40,7 @@ export function frameworkInventory(root, tracked, safeFile) {
       const identity = declaredPath.replace(/\[\[\.\.\.[^\]]+\]\]/g, '[[...param]]').replace(/\[\.\.\.[^\]]+\]/g, '[...param]').replace(/(?<!\[)\[(?!\.|\[)[^\]]+\]/g, '[param]');
       if (seen.has(identity)) throw Error('Ambiguous App Router page');
       seen.add(identity);
-      routes.push({ declaredPath, source, line: 1 });
+      routes.push({ declaredPath, source, line: 1, kind: handlers.includes(source) ? 'route-handler' : 'page' });
     }
     return { framework: 'next', routes };
   }

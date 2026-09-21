@@ -82,6 +82,7 @@ export function inventory(root, tracked) {
     return { path: file, bytes: data.length, width: data.readUInt32BE(16), height: data.readUInt32BE(20), sha256: hash(data) };
   });
   const { framework, routes } = frameworkInventory(root, tracked, safeFile);
+  const routeFramework = framework === 'next' ? 'next-app-router' : 'legacy-literal';
   const markdown = tracked.filter(f => f.endsWith('.md'));
   const brokenWikiLinks = [];
   for (const file of markdown) {
@@ -92,7 +93,7 @@ export function inventory(root, tracked) {
       if (!found) brokenWikiLinks.push({ file, target });
     }
   }
-  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', framework, pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
+  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', framework, routeFramework, pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
 }
 export function reportValidation(report, task, sha, taskRoot) {
   const errors = [];
