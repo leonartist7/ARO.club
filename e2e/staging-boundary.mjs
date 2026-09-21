@@ -1,4 +1,4 @@
-import { launch } from "./harness.mjs";
+import { launch, authenticatePreview, requireAppOrigin } from "./harness.mjs";
 import { writeFile } from "node:fs/promises";
 const base = process.env.E2E_STAGING_BASE || "http://localhost:5175";
 const browser = await launch();
@@ -7,8 +7,10 @@ let page;
 try {
   const context = await browser.newContext();
   page = await context.newPage();
+  await authenticatePreview(page, base);
   page.on("pageerror", (error) => report.errors.push(String(error)));
   await page.goto(base + "/login", { waitUntil: "networkidle" });
+  requireAppOrigin(page, base);
   report.checks.push({
     name: "email login enabled",
     passed: await page.getByLabel("Email Address").isEnabled(),

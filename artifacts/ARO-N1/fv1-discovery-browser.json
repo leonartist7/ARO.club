@@ -1,0 +1,98 @@
+{
+  "testedRef": "cfa78a3f95ea6d28c8f997b4e3323ccc25066660",
+  "implementationHead": "codex/nextjs-vercel-rollout",
+  "browser": "chrome.exe",
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "routes": [
+    "/app",
+    "/app/world",
+    "/app/opportunities",
+    "/app/create"
+  ],
+  "observations": 40,
+  "minTargetWidth": 44,
+  "minTargetHeight": 44,
+  "minEssentialFontSize": 16,
+  "maxHorizontalOverflow": 0,
+  "minWorldCopyContrast": 7.409701087189333,
+  "minWorldCtaContrast": 5.738162390571451,
+  "imageSamples": {
+    "home-360": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-portal-home-v1-640.webp",
+      "naturalWidth": 360,
+      "naturalHeight": 202,
+      "objectFit": "cover",
+      "objectPosition": "53% 50%",
+      "width": 328,
+      "height": 814,
+      "parentWidth": 328,
+      "parentHeight": 814
+    },
+    "world-360": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-living-miniature-calgary-v1-640.webp",
+      "naturalWidth": 360,
+      "naturalHeight": 240,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 346,
+      "height": 763,
+      "parentWidth": 326,
+      "parentHeight": 720
+    },
+    "opportunities-360": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-river-light-circle-v1-640.webp",
+      "naturalWidth": 360,
+      "naturalHeight": 240,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 326,
+      "height": 208,
+      "parentWidth": 326,
+      "parentHeight": 208
+    },
+    "home-1440": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-portal-home-v1-1440.webp",
+      "naturalWidth": 1440,
+      "naturalHeight": 810,
+      "objectFit": "cover",
+      "objectPosition": "53% 50%",
+      "width": 1116,
+      "height": 781,
+      "parentWidth": 1116,
+      "parentHeight": 781
+    },
+    "world-1440": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-living-miniature-calgary-v1-1440.webp",
+      "naturalWidth": 1440,
+      "naturalHeight": 960,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 1181,
+      "height": 806,
+      "parentWidth": 1114,
+      "parentHeight": 760
+    },
+    "opportunities-1440": {
+      "currentSrc": "http://127.0.0.1:4180/fv1/aro-river-light-circle-v1-640.webp",
+      "naturalWidth": 640,
+      "naturalHeight": 427,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 208,
+      "height": 465,
+      "parentWidth": 208,
+      "parentHeight": 465
+    }
+  },
+  "createNetworkSideEffects": 0
+}

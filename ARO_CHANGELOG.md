@@ -821,3 +821,5 @@ FV-1 v0.2.2 records the founder-authorized, narrow 640,000-byte limit for the re
 
 ## 2026-09-21 — N1 current-main reconciliation (IN-PROGRESS)
 Ported the local Next.js migration onto current main 79603ae while preserving newer F1–F6 assets, translations, pages and tests. Added versioned Vercel framework configuration and adapted retained browser suites to Next.js. Enlarged-text verification exposed app-shell reflow issues, corrected without changing normal layout intent. Provider audit confirms Vercel production is still Vite, Supabase staging is healthy, and OIDC is enabled. Preview deployment and hosted auth evidence are pending. See specs/ARO-N1-VERCEL-ROLLOUT.md.
+
+N1 verification update: required static/browser-smoke/platform checks pass at 2a3dd35. READY protected Next.js preview, 71 hosted parity checks, six hosted staging-boundary checks and complete disposable Auth/RLS checks pass. Real hosted email/SMTP, production backend/domain, independent review and AI Gateway activation remain open. Existing production /app direct entry returns 404; Preview resolves it. JavaScript payload regression is recorded in N1 evidence.

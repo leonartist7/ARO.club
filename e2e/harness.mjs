@@ -1,7 +1,21 @@
 import { chromium } from 'playwright';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 export const BASE = process.env.E2E_BASE ?? 'http://localhost:5173';
+
+export async function authenticatePreview(page, base) {
+  const accessFile = process.env.E2E_PREVIEW_ACCESS_FILE;
+  if (!accessFile) return;
+  const url = readFileSync(accessFile, 'utf8').trim();
+  if (new URL(url).origin !== new URL(base).origin) throw new Error('Preview access URL does not match the target deployment');
+  await page.goto(url, { waitUntil: 'networkidle' });
+}
+
+export function requireAppOrigin(page, base) {
+  if (new URL(page.url()).origin !== new URL(base).origin) {
+    throw new Error('Deployment protection prevented access to the application; no application assertion was made');
+  }
+}
 
 const launchOptions = () => {
   const candidates = [

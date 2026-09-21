@@ -1,0 +1,73 @@
+{
+  "testedRef": "cfa78a3f95ea6d28c8f997b4e3323ccc25066660",
+  "implementationHead": "codex/nextjs-vercel-rollout",
+  "browser": "chrome.exe",
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "themeEvidence": "FV-1 has no implemented Appearance preference; light/dark token states rendered directly for visual acceptance",
+  "observations": 40,
+  "zoomObservations": 8,
+  "minTargetWidth": 134.78125,
+  "minTargetHeight": 44,
+  "minEssentialFontSize": 16,
+  "maxHorizontalOverflow": 0,
+  "heroSamples": {
+    "insights-360": {
+      "currentSrc": "http://127.0.0.1:4182/fv1/aro-season-discovery-v1-640.webp",
+      "naturalWidth": 360,
+      "naturalHeight": 202,
+      "objectFit": "cover",
+      "objectPosition": "62% 50%",
+      "width": 326,
+      "height": 439
+    },
+    "passport-360": {
+      "currentSrc": "http://127.0.0.1:4182/fv1/aro-passport-life-map-v1-640.webp",
+      "naturalWidth": 360,
+      "naturalHeight": 202,
+      "objectFit": "cover",
+      "objectPosition": "69% 50%",
+      "width": 326,
+      "height": 400
+    },
+    "insights-1440": {
+      "currentSrc": "http://127.0.0.1:4182/fv1/aro-season-discovery-v1-1440.webp",
+      "naturalWidth": 1440,
+      "naturalHeight": 810,
+      "objectFit": "cover",
+      "objectPosition": "62% 50%",
+      "width": 1114,
+      "height": 330
+    },
+    "passport-1440": {
+      "currentSrc": "http://127.0.0.1:4182/fv1/aro-passport-life-map-v1-1440.webp",
+      "naturalWidth": 1440,
+      "naturalHeight": 810,
+      "objectFit": "cover",
+      "objectPosition": "69% 50%",
+      "width": 687,
+      "height": 348
+    }
+  },
+  "libraryThumbnailSamples": [
+    "http://127.0.0.1:4182/fv1/aro-river-light-circle-v1-160.webp",
+    "http://127.0.0.1:4182/fv1/aro-portal-home-v1-160.webp",
+    "http://127.0.0.1:4182/fv1/aro-shared-stories-table-v1-160.webp"
+  ],
+  "keyboardDestinations": [
+    "/app/passport",
+    "/app/opportunities",
+    "/app/opportunities/river-photo-walk",
+    "/app/opportunities/shared-stories",
+    "/app/profile"
+  ]
+}

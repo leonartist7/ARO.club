@@ -1,6 +1,6 @@
 # ARO-N1 — Current-main reconciliation and Vercel rollout
 
-Version 1.1.0. Status: SPEC-READY for implementation and Preview verification.
+Version 1.1.0. Status: IMPLEMENTED / PARTIALLY VERIFIED. Preview deployment and required CI pass; production/provider release gates remain open.
 Owner: founder. Authorization: explicit Next.js migration request and September 21 request to verify/deploy Vercel, Supabase and GitHub integration, including AI Gateway readiness.
 Branch: `codex/nextjs-vercel-rollout`. Baseline: `79603ae1af60a30f86c105e0f2a4d841043eb727`.
 
@@ -20,13 +20,13 @@ Verify Vercel OIDC and Gateway availability; document the server-only integratio
 ## Verification and acceptance
 | Requirement | Evidence | Initial state |
 |---|---|---|
-| Preserve latest upstream content | upstream diff and retained F1–F6 tests | pending |
-| Lint, unit, type and production build | baseline and migrated logs | baseline lint/build PASS; 131 tests PASS, 3 skipped |
-| Direct routes, navigation, mobile/dark/hydration | N1 browser and F1–F6 browser suites | pending |
-| Isolated preview provider mapping | Vercel/Supabase live audit | old Vite configuration identified |
+| Preserve latest upstream content | upstream diff and retained F1–F6 tests | PASS |
+| Lint, unit, type and production build | local evidence and static CI | PASS; migrated 147 unit tests |
+| Direct routes, navigation, mobile/dark/hydration | N1 browser and F1–F6 browser suites | PASS; 71 hosted checks plus retained suites |
+| Isolated preview provider mapping | Vercel/Supabase live audit | PASS; branch-scoped staging variables |
 | Real email confirmation/recovery/session refresh | hosted synthetic account evidence | pending dashboard/email access |
-| Preview build/runtime | deployment ID, logs and browser results | pending |
-| Security and rollout review | independent review plus required CI | pending |
+| Preview build/runtime | deployment ID, logs and browser results | PASS; see N1 verification |
+| Security and rollout review | independent review plus required CI | CI PASS; independent review and production/provider gates pending |
 
 ## Reliability, data, privacy, UI and performance
 No schema, retention, money or new analytics changes. Reuse existing account error/loading/retry states and preview disclosure. Preserve keyboard access, reduced motion, 360px/1440px light/dark layouts and browser preferences. Compare payload/performance evidence with the actual current-main baseline; do not claim optimization without measurements. Provider failures disable live actions without fabricating success. Never commit environment values or credentials.

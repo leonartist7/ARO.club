@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
-import { launch, BASE } from "./harness.mjs";
+import { launch, BASE, authenticatePreview, requireAppOrigin } from "./harness.mjs";
 const inventory = JSON.parse(
   await readFile(
     new URL("../artifacts/ARO-N1/route-inventory.json", import.meta.url),
@@ -16,6 +16,7 @@ const context = await browser.newContext({
   reducedMotion: "reduce",
 });
 const page = await context.newPage();
+await authenticatePreview(page, BASE);
 page.on("pageerror", (e) => errors.push(String(e)));
 page.on("console", (m) => {
   if (
@@ -37,6 +38,7 @@ try {
       waitUntil: "networkidle",
     });
     await page.locator("body").waitFor();
+    requireAppOrigin(page, BASE);
     const text = await page.locator("body").innerText();
     const passed =
       response.status() < 500 &&

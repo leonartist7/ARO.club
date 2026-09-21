@@ -1,0 +1,408 @@
+{
+  "results": [
+    {
+      "route": "/app",
+      "status": 200,
+      "destination": "/app",
+      "passed": true
+    },
+    {
+      "route": "/app/world",
+      "status": 200,
+      "destination": "/app/world",
+      "passed": true
+    },
+    {
+      "route": "/app/create",
+      "status": 200,
+      "destination": "/app/create",
+      "passed": true
+    },
+    {
+      "route": "/app/insights",
+      "status": 200,
+      "destination": "/app/insights",
+      "passed": true
+    },
+    {
+      "route": "/app/library",
+      "status": 200,
+      "destination": "/app/library",
+      "passed": true
+    },
+    {
+      "route": "/app/opportunities",
+      "status": 200,
+      "destination": "/app/opportunities",
+      "passed": true
+    },
+    {
+      "route": "/app/opportunities/shared-stories",
+      "status": 200,
+      "destination": "/app/opportunities/shared-stories",
+      "passed": true
+    },
+    {
+      "route": "/app/opportunities/shared-stories/commit",
+      "status": 200,
+      "destination": "/app/opportunities/shared-stories/commit",
+      "passed": true
+    },
+    {
+      "route": "/app/circles",
+      "status": 200,
+      "destination": "/app/circles",
+      "passed": true
+    },
+    {
+      "route": "/app/circles/shared-stories",
+      "status": 200,
+      "destination": "/app/circles/shared-stories",
+      "passed": true
+    },
+    {
+      "route": "/app/passport",
+      "status": 200,
+      "destination": "/app/passport",
+      "passed": true
+    },
+    {
+      "route": "/app/profile",
+      "status": 200,
+      "destination": "/app/profile",
+      "passed": true
+    },
+    {
+      "route": "/app/express",
+      "status": 200,
+      "destination": "/app/express",
+      "passed": true
+    },
+    {
+      "route": "/app/settings",
+      "status": 200,
+      "destination": "/app/settings",
+      "passed": true
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "destination": "/",
+      "passed": true
+    },
+    {
+      "route": "//",
+      "status": 200,
+      "destination": "/",
+      "passed": true
+    },
+    {
+      "route": "/explore",
+      "status": 200,
+      "destination": "/explore",
+      "passed": true
+    },
+    {
+      "route": "/experience/exp1",
+      "status": 200,
+      "destination": "/experience/exp1",
+      "passed": true
+    },
+    {
+      "route": "/teacher/t1",
+      "status": 200,
+      "destination": "/teacher/t1",
+      "passed": true
+    },
+    {
+      "route": "/profile",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/dashboard",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/teacher/dashboard",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/student-dashboard",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/character-builder",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/map",
+      "status": 200,
+      "destination": "/map",
+      "passed": true
+    },
+    {
+      "route": "/leaderboard",
+      "status": 200,
+      "destination": "/leaderboard",
+      "passed": true
+    },
+    {
+      "route": "/passport",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/games",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/shop",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/chat",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/favorites",
+      "status": 200,
+      "destination": "/favorites",
+      "passed": true
+    },
+    {
+      "route": "/bookings",
+      "status": 200,
+      "destination": "/bookings",
+      "passed": true
+    },
+    {
+      "route": "/recently-viewed",
+      "status": 200,
+      "destination": "/recently-viewed",
+      "passed": true
+    },
+    {
+      "route": "/compare",
+      "status": 200,
+      "destination": "/compare",
+      "passed": true
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "destination": "/about",
+      "passed": true
+    },
+    {
+      "route": "/how-it-works",
+      "status": 200,
+      "destination": "/how-it-works",
+      "passed": true
+    },
+    {
+      "route": "/for-teachers",
+      "status": 200,
+      "destination": "/for-teachers",
+      "passed": true
+    },
+    {
+      "route": "/faq",
+      "status": 200,
+      "destination": "/faq",
+      "passed": true
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "destination": "/contact",
+      "passed": true
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "destination": "/terms",
+      "passed": true
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "destination": "/privacy",
+      "passed": true
+    },
+    {
+      "route": "/cookies",
+      "status": 200,
+      "destination": "/cookies",
+      "passed": true
+    },
+    {
+      "route": "/login",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/choose-role",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/signup",
+      "status": 200,
+      "destination": "/signup",
+      "passed": true
+    },
+    {
+      "route": "/forgot-password",
+      "status": 200,
+      "destination": "/forgot-password",
+      "passed": true
+    },
+    {
+      "route": "/onboarding/student",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/onboarding/teacher",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/teacher/application",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/applications/1",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/users",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/users/1",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/teachers",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/teachers/1",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/experiences",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/bookings",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/reviews",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "route": "/admin/audit",
+      "status": 200,
+      "destination": "/login",
+      "passed": true
+    },
+    {
+      "scenario": "real experience parameter",
+      "passed": true
+    },
+    {
+      "scenario": "real teacher parameter",
+      "passed": true
+    },
+    {
+      "scenario": "protected query preserved",
+      "passed": true
+    },
+    {
+      "scenario": "invalid callback stays local",
+      "passed": true
+    },
+    {
+      "scenario": "unknown route",
+      "passed": true
+    },
+    {
+      "scenario": "FV1 shell fallback preserved",
+      "passed": true
+    },
+    {
+      "scenario": "app 360 light",
+      "passed": true
+    },
+    {
+      "scenario": "app 360 dark",
+      "passed": true
+    },
+    {
+      "scenario": "app 1440 light",
+      "passed": true
+    },
+    {
+      "scenario": "app 1440 dark",
+      "passed": true
+    },
+    {
+      "scenario": "client navigation and history",
+      "passed": true
+    },
+    {
+      "scenario": "no page or hydration errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "consoleErrors": []
+}
