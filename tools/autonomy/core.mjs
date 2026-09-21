@@ -81,8 +81,8 @@ export function inventory(root, tracked) {
     return { path: file, bytes: data.length, width: data.readUInt32BE(16), height: data.readUInt32BE(20), sha256: hash(data) };
   });
   const legacyRoutesFile = 'src/lib/routes.jsx';
-  const appPages = tracked.filter(file => /^src\/app\/(?:.*\/)?page\.(?:js|jsx|ts|tsx)$/.test(file)).sort();
-  if (tracked.includes(legacyRoutesFile) && appPages.length) throw Error('Ambiguous mixed route inventory');
+  const appRoutes = tracked.filter(file => /^src\/app\/(?:.*\/)?(?:page|route)\.(?:js|jsx|ts|tsx)$/.test(file)).sort();
+  if (tracked.includes(legacyRoutesFile) && appRoutes.length) throw Error('Ambiguous mixed route inventory');
   let routeFramework, routes;
   if (tracked.includes(legacyRoutesFile)) {
     routeFramework = 'legacy-literal';
@@ -92,14 +92,20 @@ export function inventory(root, tracked) {
     });
   } else {
     routeFramework = 'next-app-router';
-    routes = appPages.flatMap(source => {
+    routes = appRoutes.flatMap(source => {
       safeFile(root, source);
       const segments = source.slice('src/app/'.length).split('/').slice(0, -1);
       if (segments.some(segment => segment.startsWith('_'))) return [];
       const url = segments.filter(segment => /^\([^/]+\)$/.test(segment) === false);
       if (url.some(segment => segment.startsWith('@') || segment.startsWith('('))) throw Error(`Unsupported Next.js route segment: ${source}`);
-      return [{ declaredPath: `/${url.join('/')}`, source, line: 1 }];
+      return [{ declaredPath: `/${url.join('/')}`, source, line: 1, kind: /\/route\.(?:js|jsx|ts|tsx)$/.test(source) ? 'route-handler' : 'page' }];
     });
+    const identities = new Set();
+    for (const route of routes) {
+      const identity = `${route.declaredPath}\0${route.kind}`;
+      if (identities.has(identity)) throw Error(`Duplicate Next.js route inventory: ${route.declaredPath} (${route.kind})`);
+      identities.add(identity);
+    }
   }
   if (!routes.length) throw Error('No supported route inventory');
   const markdown = tracked.filter(f => f.endsWith('.md'));
