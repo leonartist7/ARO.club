@@ -28,6 +28,19 @@ describe("account boundaries", () => {
       allowedAuthTarget("https://mibydnerayobemhnlfyl.supabase.co", "false"),
     ).toBe(false);
   });
+  it("requires an explicitly selected separate production project and activation", () => {
+    const projectRef = "abcdefghijklmnopqrst";
+    const production = { enabled: "true", projectRef };
+    const url = `https://${projectRef}.supabase.co`;
+    expect(allowedAuthTarget(url, "false", "production", production)).toBe(true);
+    expect(allowedAuthTarget(url, "true", "production")).toBe(false);
+    expect(allowedAuthTarget(url, "true", "preview", production)).toBe(false);
+    expect(allowedAuthTarget(url, "true", "production", { ...production, enabled: "false" })).toBe(false);
+    for (const ref of ["mibydnerayobemhnlfyl", "jjgccfrwjkwknyjtbtxa", "ybhecubqnhukgpvchjay"])
+      expect(allowedAuthTarget(`https://${ref}.supabase.co`, "true", "production", { enabled: "true", projectRef: ref })).toBe(false);
+    for (const bad of [url + ".evil.test", url + "/rest/v1", url + "?key=value", url.replace("https:", "http:"), url.replace("https://", "https://user:pass@")])
+      expect(allowedAuthTarget(bad, "true", "production", production)).toBe(false);
+  });
   it("preserves local navigation and rejects redirect attacks", () => {
     expect(safeReturnPath("/profile?tab=saved#details")).toBe(
       "/profile?tab=saved#details",

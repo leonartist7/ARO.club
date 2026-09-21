@@ -9,7 +9,11 @@ export async function proxy(request: NextRequest) {
     request.nextUrl.pathname + request.nextUrl.search,
   );
   let response = NextResponse.next({ request: { headers: requestHeaders } });
-  if (!accountsEnabled || process.env.VERCEL_ENV === "production")
+  if (
+    !accountsEnabled ||
+    (process.env.VERCEL_ENV &&
+      process.env.VERCEL_ENV !== process.env.NEXT_PUBLIC_VERCEL_ENV)
+  )
     return response;
   const client = createServerClient(supabaseUrl, supabaseKey, {
     cookies: {

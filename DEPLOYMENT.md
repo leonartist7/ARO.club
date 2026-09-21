@@ -1,16 +1,18 @@
-# Next.js staging deployment
+# Next.js deployment
 
 Framework preset: Next.js. Build: npm run build. Clear the old dist output-directory override. Node.js 24. No static-export or SPA rewrite is required.
 
-Use .env.local for local values and scoped Preview variables in Vercel. Map VITE_SUPABASE_URL to NEXT_PUBLIC_SUPABASE_URL and the browser key to NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (legacy NEXT_PUBLIC_SUPABASE_ANON_KEY remains supported). Never copy server/service credentials into public variables. Set NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS=true only for verified isolated staging, and NEXT_PUBLIC_VERCEL_ENV=preview in Preview. Rebuild after public environment changes. VERCEL_ENV=production disables server accounts regardless of the public flag.
+Use .env.local for local values and scoped Preview variables in Vercel. Map VITE_SUPABASE_URL to NEXT_PUBLIC_SUPABASE_URL and the browser key to NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (legacy NEXT_PUBLIC_SUPABASE_ANON_KEY remains supported). Never copy server/service credentials into public variables. Set NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS=true only for verified isolated staging. Next config derives NEXT_PUBLIC_VERCEL_ENV from VERCEL_ENV; mismatched deployment values disable the server client. Rebuild after public environment changes.
 
-The only hosted target accepted is mibydnerayobemhnlfyl.supabase.co. Tonguee and aro-platform are excluded. Keep synthetic /app features synthetic.
+Preview accepts only mibydnerayobemhnlfyl.supabase.co. Production requires NEXT_PUBLIC_ENABLE_PRODUCTION_ACCOUNTS=true and NEXT_PUBLIC_PRODUCTION_SUPABASE_REF matching the separately provisioned production URL exactly. Existing staging, quarantined and unrelated projects are rejected even if selected as that ref. Leave production activation false until backend/RLS, roles, SMTP and hosted auth verification pass. Keep synthetic /app features synthetic.
 
 ## Auth configuration
 Allow the actual approved staging origin plus http://localhost:5173/auth/callback in Supabase redirect URLs. Set the staging Site URL to the approved staging deployment, not aro.club until domain ownership is resolved. PKCE signup/recovery use /auth/callback. For cross-device email confirmation, configure the confirmation template with {{ .RedirectTo }}?token_hash={{ .TokenHash }}&type=email; recovery token-hash links must target /auth/callback?token_hash={{ .TokenHash }}&type=recovery. Test both link expiry and single-use behavior with synthetic accounts. Google remains disabled.
 
 ## Release and rollback
-No Production promotion is included in N1. Require hosted Auth/recovery evidence, independent security review and explicit release approval. Roll back by restoring the prior Vite deployment and its environment-name mapping; no schema/data rollback is needed. Keep the previous deployment available until staging verification completes.
+The founder authorized production release under N1 rollout v1.2. Initial public origin: https://aro-club.vercel.app. Require hosted Auth/recovery evidence and independent security review before account activation. Build a new Production-target deployment using Production variables; never promote a staging-configured preview, because its public values are compiled into the browser bundle. Verify direct loads, auth redirects and private/no-store responses before assigning the public alias. Roll back by restoring the prior deployment and its environment mapping; do not destructively roll back database data. Keep the prior deployment available.
+
+Provider evidence and remaining external steps: [production readiness](artifacts/ARO-N1/PRODUCTION-READINESS.md).
 
 # 🚀 Langgie Deployment Guide
 

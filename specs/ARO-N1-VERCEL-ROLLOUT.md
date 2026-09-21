@@ -1,10 +1,14 @@
 # ARO-N1 — Current-main reconciliation and Vercel rollout
 
-Version 1.1.0. Status: IMPLEMENTED / PARTIALLY VERIFIED. Preview deployment and required CI pass; production/provider release gates remain open.
+Version 1.2.0. Production-readiness extension: SPEC-READY / IN-PROGRESS. Preview deployment and required CI pass; production/provider verification remains in progress.
 Owner: founder. Authorization: explicit Next.js migration request and September 21 request to verify/deploy Vercel, Supabase and GitHub integration, including AI Gateway readiness.
 Branch: `codex/nextjs-vercel-rollout`. Baseline: `79603ae1af60a30f86c105e0f2a4d841043eb727`.
 
 ## Scope and sequencing
+On September 21 the founder explicitly authorized production readiness, deployment and necessary provider configuration with full autonomy. This supersedes the earlier preview-only release boundary. Use `https://aro-club.vercel.app` for the initial public release. Provision a separate ARO production Supabase project after the provider-required organization/cost selection, preserve staging, and configure confirmation/recovery redirects and email delivery. Production accounts must remain unavailable until the separate backend, authoritative roles/RLS and email delivery have evidence. Existing unmerged security fixes require inspection and regression verification; authorization is not evidence of a passing review.
+
+Production preparation may add deployment-scoped account configuration, provider checks, security fixes necessary for this release and operational documentation. It does not authorize paid subscriptions without a quoted cost, reuse of quarantined databases, or connecting fictional product data to live users. Gateway readiness uses Vercel OIDC; activation requiring a card remains a provider step. No unbounded public AI endpoint is part of this release.
+
 Port the existing N1 App Router and staging-account implementation onto current GitHub main. Both earlier local checkouts share the same remote; preserve current F1–F6 pages, images, translations and assertions. This scoped stack exception precedes P1 without unlocking synthetic product data, payments, Google OAuth, Trust/schema changes or unrelated packages.
 Governing documents: AGENTS.md, ARO_BUILD_PLAYBOOK.md, ARO_ARCHITECTURE.md, ARO_INFRASTRUCTURE.md and ARO_TRUST_SAFETY.md. N1's original acceptance requirements continue to apply.
 
@@ -12,7 +16,7 @@ Governing documents: AGENTS.md, ARO_BUILD_PLAYBOOK.md, ARO_ARCHITECTURE.md, ARO_
 Next.js routes/layouts use TypeScript; existing JavaScript components remain. Cookie-based Supabase SSR verifies identity and authoritative database roles. Only the registered isolated staging project may serve enabled preview accounts. Missing configuration fails closed. Authenticated responses use private/no-store caching. Logout clears account state. Callback destinations are validated same-origin paths. RLS and verified-teacher publishing remain unchanged.
 
 ## Provider work
-Verify GitHub → Vercel linkage, framework/build settings, environment scopes, preview deployment, runtime errors and Supabase project health. Use branch-scoped preview variables and versioned framework settings. Never replace existing production with a staging backend. Production backend and public domain decisions are pending founder answers. Preserve required CI names and independent security/Trust review gates; failing draft security PRs are not merged by this package.
+Verify GitHub → Vercel linkage, framework/build settings, environment scopes, preview deployment, runtime errors and Supabase project health. Use branch-scoped preview variables and versioned framework settings. Never replace existing production with a staging backend. Production uses the existing Vercel public domain and a separate backend. Preserve required CI names and independent security/Trust review gates; failing draft security PRs are not merged by this package.
 
 ## AI boundary
 Verify Vercel OIDC and Gateway availability; document the server-only integration contract. No public unrestricted generation endpoint, automatic consequential actions, personal-data prompts, purchased credits or new AI product behavior. Product AI activation needs an explicit feature contract, model/budget/rate limits and evaluations. Existing fictional experiences remain fictional.

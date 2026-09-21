@@ -10,7 +10,11 @@ import {
 } from "./config";
 
 export async function serverSupabase() {
-  if (!accountsEnabled || process.env.VERCEL_ENV === "production") return null;
+  if (
+    !accountsEnabled ||
+    (process.env.VERCEL_ENV &&
+      process.env.VERCEL_ENV !== process.env.NEXT_PUBLIC_VERCEL_ENV)
+  ) return null;
   const jar = await cookies();
   return createServerClient(supabaseUrl, supabaseKey, {
     global: {

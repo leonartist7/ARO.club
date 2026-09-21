@@ -2,10 +2,24 @@ export function allowedAuthTarget(
   url: string,
   enabled: string | undefined,
   deployment?: string,
+  production?: { enabled?: string; projectRef?: string },
 ) {
-  if (enabled !== "true" || deployment === "production") return false;
   try {
     const target = new URL(url);
+    if (target.username || target.password || target.search || target.hash || target.pathname !== "/")
+      return false;
+    if (deployment === "production") {
+      const ref = production?.projectRef || "";
+      // Existing staging and quarantined/unrelated projects are never production targets.
+      const excluded = [
+        "mibydnerayobemhnlfyl", "jjgccfrwjkwknyjtbtxa", "ybhecubqnhukgpvchjay",
+        "aqhsjyvophxmxgbdgjtl", "gymigzfkkjcfcmunkkzh", "bbqdhqcbjkuszfjalkcn",
+        "rztxxajwpcszbgsitnup", "ugppbaavzevmdkblniim",
+      ];
+      return production?.enabled === "true" && /^[a-z]{20}$/.test(ref) &&
+        !excluded.includes(ref) && target.origin === `https://${ref}.supabase.co`;
+    }
+    if (enabled !== "true") return false;
     return (
       target.origin === "https://mibydnerayobemhnlfyl.supabase.co" ||
       (deployment !== "preview" &&
@@ -28,6 +42,10 @@ export const accountsEnabled =
     supabaseUrl,
     process.env.NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS,
     process.env.NEXT_PUBLIC_VERCEL_ENV,
+    {
+      enabled: process.env.NEXT_PUBLIC_ENABLE_PRODUCTION_ACCOUNTS,
+      projectRef: process.env.NEXT_PUBLIC_PRODUCTION_SUPABASE_REF,
+    },
   );
 
 export function safeReturnPath(

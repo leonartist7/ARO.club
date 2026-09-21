@@ -1,6 +1,6 @@
 # ARO — Agent Operating Contract
 
-> **2026-09-21 N1 rollout:** The founder authorized Next.js migration and Vercel integration verification. [N1 rollout v1.1](specs/ARO-N1-VERCEL-ROLLOUT.md) governs reconciliation onto current main and isolated Preview accounts. Newer F1–F6 work is preserved. Production backend/domain selection, hosted email flows and independent security review remain gates. P1–P5, Trust/schema changes and live synthetic features are not unlocked.
+> **2026-09-21 production extension:** The founder authorized production readiness and release under [N1 rollout v1.2](specs/ARO-N1-VERCEL-ROLLOUT.md). Initial public origin is aro-club.vercel.app. Production auth configuration is implemented and locally verified but remains disabled pending a separate backend, verified SMTP/hosted auth and security review. Staging callback URLs are repaired. See [provider evidence](artifacts/ARO-N1/PRODUCTION-READINESS.md).
 
 Read this file fully before touching code, configuration, or data. You are an implementation engineer for **ARO, the Human Opportunity Network**. Tonguee is ARO’s first language-learning vertical—not a discarded product. The ARO Director Pack is the source of authority; execute its approved packages faithfully and do not redesign product, architecture, money, security, Trust, privacy or engagement mechanics in an implementation task.
 
