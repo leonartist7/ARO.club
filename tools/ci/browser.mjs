@@ -55,7 +55,7 @@ function observeDataTimings(page) {
   } };
 }
 
-async function keyboardFileChooser(page, name, onStage) {
+async function keyboardFileChooser(page, name, onStage, diagnosticId) {
   const button = page.getByRole('button', { name, exact: true });
   onStage('FOCUS');
   for (let tab = 0; tab < 80; tab += 1) {
@@ -69,11 +69,83 @@ async function keyboardFileChooser(page, name, onStage) {
     return parseFloat(style.outlineWidth) >= 2 && style.outlineStyle !== 'none';
   }), 'UPLOAD_FOCUS_NOT_VISIBLE');
   onStage('CHOOSER');
-  const [chooser] = await Promise.all([
-    page.waitForEvent('filechooser', { timeout: uiReadyTimeout }),
-    page.keyboard.press('Enter'),
-  ]);
-  return { button, chooser };
+  const errorType = error => ['TimeoutError', 'TargetClosedError', 'Error'].includes(error?.name) ? error.name : 'Other';
+  const diagnostic = {};
+  let observer;
+  try {
+    observer = await button.evaluateHandle(element => {
+      const input = element.parentElement?.querySelector('input[type="file"]');
+      const events = {
+        enter: false, enterTrusted: false,
+        buttonClick: false, buttonClickTrusted: false,
+        inputClick: false, inputClickTrusted: false,
+      };
+      const onKey = event => {
+        if (event.target === element && event.key === 'Enter') {
+          events.enter = true;
+          events.enterTrusted = event.isTrusted;
+        }
+      };
+      const onClick = event => {
+        if (event.target === element) {
+          events.buttonClick = true;
+          events.buttonClickTrusted = event.isTrusted;
+        }
+        if (event.target === input) {
+          events.inputClick = true;
+          events.inputClickTrusted = event.isTrusted;
+        }
+      };
+      document.addEventListener('keydown', onKey, true);
+      document.addEventListener('click', onClick, true);
+      return {
+        before: {
+          focused: element === document.activeElement,
+          connected: element.isConnected,
+          ariaDisabled: element.getAttribute('aria-disabled') === 'true',
+          documentFocused: document.hasFocus(),
+          pairedInputPresent: Boolean(input),
+          pairedInputConnected: Boolean(input?.isConnected),
+        },
+        events,
+        remove() {
+          document.removeEventListener('keydown', onKey, true);
+          document.removeEventListener('click', onClick, true);
+        },
+      };
+    });
+    const started = performance.now();
+    const record = (operation, promise) => promise.then(value => {
+      diagnostic[operation] = { outcome: operation === 'enter' ? 'completed' : 'observed', elapsedMs: Math.round(performance.now() - started) };
+      return value;
+    }, error => {
+      const type = errorType(error);
+      diagnostic[operation] = {
+        outcome: operation === 'enter' ? 'failed' : type === 'TimeoutError' ? 'timeout' : 'other',
+        errorType: type, elapsedMs: Math.round(performance.now() - started),
+      };
+      throw error;
+    });
+    const [chooserResult, enterResult] = await Promise.allSettled([
+      record('chooser', page.waitForEvent('filechooser', { timeout: uiReadyTimeout })),
+      record('enter', page.keyboard.press('Enter')),
+    ]);
+    if (enterResult.status === 'rejected') throw enterResult.reason;
+    if (chooserResult.status === 'rejected') throw chooserResult.reason;
+    return { button, chooser: chooserResult.value };
+  } finally {
+    try {
+      if (observer) Object.assign(diagnostic, await observer.evaluate(state => {
+        try { return { before: state.before, events: state.events }; }
+        finally { state.remove(); }
+      }));
+    } catch (error) {
+      diagnostic.observerErrorType = errorType(error);
+    } finally {
+      await observer?.dispose().catch(() => {});
+      writeFileSync(`${screenshotDir}/chooser-${diagnosticId}.json`, JSON.stringify(diagnostic, null, 2));
+    }
+  }
 }
 
 async function captureJourney(page, caseId, state) {
@@ -342,7 +414,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           };
           await page.route(`${API}/rest/v1/teacher_documents**`, metadataRoute);
           const { button: uploadButton, chooser: initialChooser } = await keyboardFileChooser(
-            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_INITIAL_${subphase}_${caseCode}`; },
+            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_INITIAL_${subphase}_${caseCode}`; }, `${caseId}-initial`,
           );
           stage = `DOCUMENT_INITIAL_SET_FILES_${caseCode}`;
           await initialChooser.setFiles({
@@ -357,7 +429,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           await captureJourney(page, caseId, 'document-failure');
           await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
           const { chooser: retryChooser } = await keyboardFileChooser(
-            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_RETRY_${subphase}_${caseCode}`; },
+            page, 'Upload Intro video', subphase => { stage = `DOCUMENT_RETRY_${subphase}_${caseCode}`; }, `${caseId}-retry`,
           );
           stage = `DOCUMENT_RETRY_RESPONSE_${caseCode}`;
           // Arm immediately before the triggering action and attach rejection

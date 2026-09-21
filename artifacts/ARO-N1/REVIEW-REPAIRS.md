@@ -1,5 +1,10 @@
 # N1 independent-review repairs
 
+## Diagnostic-only claim N1-CHOOSER-DIAG-20260921-001
+Contrast candidate `f72cff12e256b84979b36451072b300197a70b88` passed Quality `35607520825` but platform `35607520836` failed at `BROWSER_DOCUMENT_RETRY_CHOOSER_1440_LIGHT`. Artifact `10642441844` SHA-256 `7f20d95f6b16bc083fc46d6a2dee86c8b8ad9fb49663d2d5a327da86422e2cdd` is preserved by owner and controller. Both light-mode heading captures are legible with computed contrast 14.679:1; dark cases were not reached. The claim remains BLOCKED, not accepted.
+
+Controller ledger v36 authorizes one diagnostic-only CI attempt after independent delta review. The existing real Enter/chooser helper now records pre-Enter focus, connectivity, aria-disabled, document focus and paired-input booleans; passive capture listeners record only Enter/button-click/file-input-click occurrence and trust booleans. Separate settled outcomes retain only whitelisted error types and elapsed milliseconds. Listener cleanup runs in finally, and synthetic-case JSON is saved even when chooser acquisition fails. There is no event synthesis, direct input bypass, retry, product change or timeout/budget relaxation. Existing four-case assertions remain. Final immutable diagnostic evidence is pending; no product cause is inferred.
+
 ## Contrast-only claim N1-CONTRAST-20260921-001
 Controller ledger v34 closes N1-WAIT as CI-VERIFIED at `d664d094650f1f74097b5775b12d64305705709f`: Quality `35590975053` and platform `35590974916` pass. Final artifact `10635021454` has verified SHA-256 `97b35b8cb533b2dc8057a0ed467db96abcf842fd315da9d9e33c88fb64f0d8b6` and is archived locally by both owner and controller. Human/hosted/full-package acceptance remains open.
 
