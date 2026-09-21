@@ -1,5 +1,12 @@
 # N1 independent-review repairs
 
+## Contrast-only claim N1-CONTRAST-20260921-001
+Controller ledger v34 closes N1-WAIT as CI-VERIFIED at `d664d094650f1f74097b5775b12d64305705709f`: Quality `35590975053` and platform `35590974916` pass. Final artifact `10635021454` has verified SHA-256 `97b35b8cb533b2dc8057a0ed467db96abcf842fd315da9d9e33c88fb64f0d8b6` and is archived locally by both owner and controller. Human/hosted/full-package acceptance remains open.
+
+Baseline images show the “Your Profile” heading inheriting pale body text on an unchanged white card in dark mode at 360/1440. N1 v1.3.1 binds only that heading: apply existing `text-gray-800`, matching the neighboring onboarding title. The existing four-case browser journey now computes WCAG relative-luminance contrast from actual heading/card computed RGB values, rejects translucent colors, requires at least 4.5:1, and saves only foreground/background/ratio alongside existing screenshots. No layout, navigation, global CSS, dependency, provider or SQL changes. Required exact-head CI, image inspection and independent minimal-diff review remain pending.
+
+Mobile fixed-navigation overlap in prior full-page images remains an observation at particular captured scroll positions, not proof of permanent obstruction. No navigation change is included. Unchanged database evidence is reused except the required CI run.
+
 Baseline: b431fb59981458f82c635deb2d60e7ffb4077d43. Owning PR: #54. Scope: N1 v1.3, September 21 controller handoff. One writer; no SQL, provider or production changes.
 
 ## N1-U

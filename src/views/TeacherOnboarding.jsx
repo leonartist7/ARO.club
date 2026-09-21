@@ -514,7 +514,7 @@ export default function TeacherOnboarding() {
                 </p>
 
                 <div className="bg-white rounded-2xl p-6 mb-8 text-left">
-                  <h3 className="font-bold text-lg mb-4">Your Profile</h3>
+                  <h3 className="font-bold text-lg text-gray-800 mb-4">Your Profile</h3>
                   <div className="space-y-2 text-gray-700">
                     <p><strong>Name:</strong> {name}</p>
                     <p><strong>Languages:</strong> {selectedLanguages.length} selected</p>

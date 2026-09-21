@@ -277,6 +277,27 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           const readyHeading = page.getByRole('heading', { name: 'Ready to add your documents' });
           await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           const readyScreen = readyHeading.locator('xpath=..');
+          stage = `ONBOARDING_PROFILE_CONTRAST_${caseCode}`;
+          const profileContrast = await readyScreen.getByRole('heading', { name: 'Your Profile', exact: true }).evaluate(element => {
+            const foreground = getComputedStyle(element).color;
+            const background = getComputedStyle(element.parentElement).backgroundColor;
+            const rgb = color => {
+              const channels = color.match(/^rgba?\(([^)]+)\)$/)?.[1].split(/[,\s]+/).map(Number);
+              if (!channels || channels.length < 3 || (channels.length === 4 && channels[3] !== 1)) {
+                throw new Error('PROFILE_CONTRAST_REQUIRES_OPAQUE_RGB');
+              }
+              return channels.slice(0, 3);
+            };
+            const luminance = color => rgb(color).map(channel => {
+              const value = channel / 255;
+              return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+            }).reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+            const a = luminance(foreground);
+            const b = luminance(background);
+            return { foreground, background, ratio: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) };
+          });
+          requireCondition(profileContrast.ratio >= 4.5, 'ONBOARDING_PROFILE_CONTRAST_BELOW_4_5');
+          writeFileSync(`${screenshotDir}/authenticated-synthetic-journey-${caseId}-contrast.json`, JSON.stringify(profileContrast, null, 2));
           await captureJourney(page, caseId, 'onboarding-ready');
           stage = `ONBOARDING_DRAFT_CREATE_REQUEST_${width}_${theme.toUpperCase()}`;
           const submitResponse = page.waitForResponse((response) => (
