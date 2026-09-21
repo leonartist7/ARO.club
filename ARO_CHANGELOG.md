@@ -826,3 +826,7 @@ N1 verification update: required static/browser-smoke/platform checks pass at 2a
 
 ## 2026-09-21 — N1 production readiness extension
 Founder authorized production release. Added separate production-project auth activation with staging/quarantine exclusions; repaired staging Site URL and exact callback allowlist. Local lint, type checking, production build and eight focused auth tests pass. Production provisioning, custom SMTP, hosted email flows and independent security review remain open; Gateway still requires card verification. No production cutover or database mutation occurred.
+
+## 2026-09-21 — MERGE1 latest-work reconciliation
+
+Preserve merged Next.js runtime; integrate controller/Shipaton records and reconcile AUTO0 page/handler capture tooling. All open PRs have immutable inclusion/supersession/preservation dispositions in docs/merge-reconciliation-20260921/README.md. Historical failures and F7/hosted/human gates remain. No product, schema, dependency, workflow or provider changes.

@@ -64,6 +64,8 @@ node tools/autonomy/cli.mjs compare --out /tmp/current/evidence --sha FULL_CURRE
 
 If no prior export is retrievable, record a first-run baseline or MEMORY_UNAVAILABLE; never fabricate continuity. Quiet on unchanged, non-actionable findings. One retry for transient errors, then a blocked report naming the action and owner. Never recursively schedule retries or overwrite a completed report.
 
+Route inventory supports both the historical literal routes in `src/lib/routes.jsx` and committed Next.js App Router pages and route handlers matching `src/app/**/{page,route}.{js,jsx,ts,tsx}`. Next.js route groups are omitted from declared URLs, private folders are excluded, and dynamic/catch-all segment notation is preserved. Each App Router entry is classified as a `page` or `route-handler`; mixed legacy/App Router inputs, duplicate route identities and unsupported parallel or intercepting segments fail closed. This is source inventory only; it does not execute redirects, rewrites, middleware or handlers and is not browser acceptance.
+
 ## Scheduling and persistence limits
 
 The cloud dispatcher must verify actual schedule IDs and tools in the destination. A1–A4/S1 are one-time; lead needs actual completed bundles, not an assumed time gap; C1 is weekly Monday 09:00 America/Edmonton. If no completion trigger or shared artifact retrieval exists, leave automatic synthesis blocked. ChatGPT sandbox paths are not shared between tasks and are not permanent storage.
@@ -73,6 +75,12 @@ Every run exports its vault/report bundle and records its retrievable attachment
 Tests: `node --test tools/autonomy/*.test.mjs`. No dependency installation is needed for these tooling tests.
 
 ## Browser evidence adapter
+
+AUTO0 Next.js compatibility is governed by `specs/ARO-AUTO0-NEXTJS-COMPAT.md`. Framework selection requires a committed package manifest with the exact `next build` or historical `vite build` script and matching dependency. Next's retained Vite test dependency does not select Vite. Inventory recognizes committed `src/app/**/page.{js,jsx,ts,tsx}` files, omits private folders and route groups from URLs, and preserves `[id]`, `[...slug]` and `[[...slug]]` notation with source paths. Literal Vite route paths remain supported. Parallel/intercepting routes, alternative router roots, custom page extensions/output directories, duplicate URL patterns and mixed framework inputs fail closed. Redirects, rewrites, middleware and route handlers are not executable routing acceptance from this source inventory.
+
+Capture always uses the existing fixed loopback port and installed framework CLI (Next start or Vite preview), never a package-supplied shell command. It requires the committed UX0 synthetic flag **and** rejects local `.env*` files (except unloaded example/sample files), enabled public account flags, provider configuration and Node injection variables. Unrelated runner credentials are omitted from the child environment, never copied or logged. The adapter discards only validated untracked `.next`/`dist` output and builds afresh with the same minimal environment used at runtime: both account flags false and Supabase configuration empty. Build output is suppressed on failure. This extra build intentionally prevents an inherited compiled artifact from carrying previously inlined live configuration; the workflow's earlier build alone is not synthetic proof. `synthetic-build.json` records this procedure, not provider or human acceptance. Source cleanliness is rechecked after rebuild and capture.
+
+The 15-route × five-width × two-theme matrix, reduced-motion behavior, request restrictions and evidence manifest are unchanged. Browser egress restrictions do not independently prove server egress isolation; synthetic safety additionally relies on the reviewed committed account/configuration code and the fresh sanitized build/runtime. Arbitrary future configuration or new provider logic requires fresh review; it is not enabled by this tooling package.
 
 The **ARO audit evidence** GitHub workflow uses the repository's existing Playwright dependency on a GitHub-hosted runner. Download the artifact for the exact audit SHA using the connected GitHub tools, extract it safely, locate aro-browser and run:
 
