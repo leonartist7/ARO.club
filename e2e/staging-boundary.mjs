@@ -3,9 +3,10 @@ import { writeFile } from "node:fs/promises";
 const base = process.env.E2E_STAGING_BASE || "http://localhost:5175";
 const browser = await launch();
 const report = { checks: [], errors: [] };
+let page;
 try {
   const context = await browser.newContext();
-  const page = await context.newPage();
+  page = await context.newPage();
   page.on("pageerror", (error) => report.errors.push(String(error)));
   await page.goto(base + "/login", { waitUntil: "networkidle" });
   report.checks.push({
@@ -61,6 +62,9 @@ try {
   console.log(JSON.stringify(report, null, 2));
   if (report.errors.length || report.checks.some((c) => !c.passed))
     process.exitCode = 1;
+} catch (error) {
+  console.error(JSON.stringify({ error: String(error), url: page?.url(), fields: page ? await page.locator('input').evaluateAll(inputs => inputs.map(input => ({ type: input.type, id: input.id, disabled: input.disabled }))) : [] }));
+  throw error;
 } finally {
   await browser.close();
 }

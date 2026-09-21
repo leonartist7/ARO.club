@@ -87,7 +87,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
           const started = performance.now();
           stage = `PROTOTYPE_LOGIN_${width}_${theme.toUpperCase()}`;
-          await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
+          await page.goto(`${base}/login`, { waitUntil: 'networkidle' });
           const emailInput = page.locator('input[type="email"]');
           const passwordInput = page.locator('input[type="password"]');
           await emailInput.waitFor({ state: 'visible', timeout: uiReadyTimeout });
@@ -100,7 +100,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           );
 
           stage = `PROTOTYPE_LEGACY_ACCOUNT_${width}_${theme.toUpperCase()}`;
-          await page.goto(`${base}/choose-role`, { waitUntil: 'domcontentloaded' });
+          await page.goto(`${base}/choose-role`, { waitUntil: 'networkidle' });
           await page.waitForURL(url => url.pathname === '/login', { timeout: uiReadyTimeout });
           requireCondition(
             !(await page.evaluate(() => JSON.parse(localStorage.getItem('conversa-player') ?? '{"state":{}}').state?.user)),
@@ -108,7 +108,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           );
 
           stage = `PROTOTYPE_CALLBACK_${width}_${theme.toUpperCase()}`;
-          await page.goto(`${base}/auth/callback`, { waitUntil: 'domcontentloaded' });
+          await page.goto(`${base}/auth/callback`, { waitUntil: 'networkidle' });
           await page.getByRole('heading', { name: 'Account callbacks are unavailable in this prototype.' })
             .waitFor({ timeout: uiReadyTimeout });
           if (width === 360) {
@@ -117,7 +117,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           }
 
           stage = `PROTOTYPE_PROTECTED_${width}_${theme.toUpperCase()}`;
-          await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
+          await page.goto(`${base}/profile`, { waitUntil: 'networkidle' });
           await page.waitForURL(url => url.pathname === '/login', { timeout: uiReadyTimeout });
           const layout = await page.evaluate(() => ({
             dark: document.documentElement.classList.contains('dark'),
@@ -162,7 +162,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         // worker.
         if (width === 360) {
           stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
-          await page.goto(`${base}/login`, { waitUntil: 'domcontentloaded' });
+          await page.goto(`${base}/login`, { waitUntil: 'networkidle' });
           stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
           const emailInput = page.locator('input[type="email"]');
           const passwordInput = page.locator('input[type="password"]');
@@ -185,7 +185,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
         }
 
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;
-        await page.goto(`${base}/profile`, { waitUntil: 'domcontentloaded' });
+        await page.goto(`${base}/profile`, { waitUntil: 'networkidle' });
         // Keep one synthetic, viewport-sized arrival image even when the
         // readiness assertion below fails. It makes a browser-only failure
         // diagnosable without printing account or service data to CI logs.
