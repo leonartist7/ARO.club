@@ -7,7 +7,7 @@
 - **Ledger path:** `ARO-AUTONOMOUS-DELIVERY-LEDGER.md`
 - **Ledger branch:** `codex/aro-overnight-controller-20260916`
 - **Initial controller run:** 2026-09-16T10:19:39Z
-- **Ledger version:** 28
+- **Ledger version:** 29
 - **Concurrency rule:** a controller fetches this file, verifies its recorded version and Git blob SHA, writes a `CLAIMED` transition with that SHA as the GitHub contents-update precondition, then performs exactly one bounded task. A conflicting update, unavailable readback, or ambiguous write stops the controller. Workers never edit this file; they return immutable result bundles to the controller.
 - **Source/output isolation:** every task uses a new clean checkout/source path and a distinct external evidence/output root. No shared `node_modules`, build output, browser cache, evidence root, database resource or F7 measurement host.
 - **One product writer:** no product repair writer starts while any other product writer claim is RUNNING. F7’s owner remains reserved; a later I0.2 writer must revalidate that PR #48 has no active execution claim and must not use F7’s measurement host.
@@ -183,6 +183,26 @@ FV2/FV3 are already complete proposal deliverables at the verified external iden
 
 The scheduler can express finite recurrence and termination. It exposes no dependency-trigger or model-selection control. Therefore the controller itself re-fetches this ledger and validates every dependency/claim before dispatch; time never proves completion.
 
+
+## September 21 sprint reconciliation
+
+This dated section supersedes September 19 next-action assumptions only for the newer N1 candidate. Earlier lane evidence and dispositions remain historical facts; no retroactive I02-08 acceptance is granted.
+
+| Task | State | Immutable evidence | Owner / next action |
+|---|---|---|---|
+| SH1-20260921-001 | VERIFIED preparation / CLOSED | PR #55, head 1dbff390562a1a13483dd6c5c62e2aa0e9b2b8bb; spec ARO-SH1 v1.0.0; shipaton/sprint-20260921/VERIFICATION.md and manifest.sha256 | Controller; docs-only build/lint/link/diff checks pass; independent review no blocking findings |
+| N1 Trust reconciliation | SQL CI VERIFIED on candidate; package REPAIR_REQUIRED | PR #54 b431fb59981458f82c635deb2d60e7ffb4077d43; platform run 35585633732/job/106288198241; 91 assertions twice, authenticated journey/reset/cleanup pass; artifact SHA256 06e4d702ac2fac14c5d4feda57171419e2f0ad5482ce7ab67091f520f4fad4d0 | Existing N1 owner; independent report in SH1 requires observable failed-upload cleanup, keyboard upload and full R7 changed-journey evidence |
+| N1-U/R7/A11Y | RUNNING in existing owner lane | Owner task Plan full migration to Next.js acknowledged b431fb5 and N1 v1.3 scope binding before edits | One product writer only; fresh head/checks and independent review required; hosted/human gates remain |
+| F7 / FV2 / FV3 | Unchanged BLOCKED / accepted preparation | SH1 UNBLOCK-PACKETS.md preserves exact source and owner gates | Existing #47/#48/#49 owners; serialize shared registries, exact Chromium, independent and human acceptance |
+| S01/S08/S14 | Accounts unknown / native and Pro PROPOSED | SH1 native feasibility and release checklist | Founder eligibility/enrollment/access facts; separate approved native/money packages before implementation |
+| S09–S13 / S18–S20 | Core/release/submission still gated | SH1 SPRINT.md and truthful submission drafts | Existing product/release owners; no full-core or store/publication claim |
+
+Founder September 21 scope: full language-focused P1–P5, free real-world Circles, paid digital Pro; Seasons/AR/extra verticals/marketplace charges/host payouts excluded. This strategic decision does not make downstream specs ready.
+
+Controller's bounded N1 fixture approval: tools/ci/auth.mjs and tools/ci/run.mjs may be bound into N1 v1.3 solely to create four independent browser applicants plus one API owner in existing disposable signup, assert five before reset and zero after. Submitted applications are immutable, so independent cases are needed. No hosted account, RLS, auth-mode, provider or isolation-guard change. Existing N1 owner retains implementation and registry authority.
+
+No new schedule, merge, release or external submission was performed by SH1. Prior schedule rows are historical, not a fresh scheduler-status assertion.
+
 ## Append-only execution history
 
 | UTC time | Ledger version | Event | Evidence / result |
@@ -217,3 +237,5 @@ The scheduler can express finite recurrence and termination. It exposes no depen
 | 2026-09-19 | 27 | Final controller close and handoff verified | Controller created and re-fetched `docs/autonomous-control-20260916/HANDOFF-20260919.md` (blob `3ebd7cda1300e31e98e2ad7d744699d447d0a2b3`). No eligible work remains: B1B/R7 and B2 are BLOCKED with exact next actions; F7 remains reserved to its existing owner; FV2/FV3 remain implementation-blocked. The temporary controller schedule remains disabled; C1 remains enabled and unchanged. No product merge, deployment, release, provider or live-data action occurred. |
 
 | 2026-09-21 | 28 | SH1 documentation preparation CLAIMED | Claim SH1-20260921-001; controller task Prepare ARO for Shipathon, explicit founder instruction to implement approved sprint. Source 2c564a974a2ac221425b40184c7192327cd9f205, branch codex/shipaton-sprint-20260921, isolated checkout ARO-shipaton-sprint. Exactly one bounded documentation/evidence package: refresh existing competition materials, record immutable N1 independent review, prepare F7 and native/monetization handoffs. No product writer, provider mutation, runtime approval, merge, release or schedule change. Existing F7/N1 owners and accepted FV2/FV3 preparation preserved. |
+
+| 2026-09-21 | 29 | SH1 preparation verified and closed; N1 owner repair coordinated | PR #55 at 1dbff390562a1a13483dd6c5c62e2aa0e9b2b8bb contains 17 documentation files and LF-normalized manifest. Independent documentation review has no blocking findings; build/lint pass. Newer N1 CI proves repaired SQL/POST, but independent review retains R7/UPLOAD/accessibility gaps. Existing N1 owner is executing the bounded follow-up with disposable fixture extension recorded above. F7 ownership, human gates and FV2/FV3 accepted preparation preserved. |
