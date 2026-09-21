@@ -24,7 +24,6 @@ export function frameworkInventory(root, tracked, safeFile) {
     }
     if (tracked.some(f => /^src\/app\/(?:.*\/)?page\./.test(f) && !pages.includes(f))) throw Error('Unsupported page extension');
     const handlers = tracked.filter(f => /^src\/app\/(?:.*\/)?route\.(tsx|ts|jsx|js)$/.test(f));
-    if (tracked.some(f => /^src\/app\/(?:.*\/)?route\./.test(f) && !handlers.includes(f))) throw Error('Unsupported route extension');
     const routes = [], seen = new Set();
     for (const source of [...pages, ...handlers].sort()) {
       read(source);

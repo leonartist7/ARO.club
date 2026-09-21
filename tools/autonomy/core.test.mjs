@@ -61,6 +61,10 @@ test('route handlers retain provenance and cannot bypass route source boundaries
   const callback = frameworkInventory(f.source, tracked, safeFile).routes.find(r => r.declaredPath === '/auth/callback');
   assert.equal(callback.kind, 'route-handler');
   assert.equal(callback.source, 'src/app/auth/callback/route.ts');
+  const colocatedTest = 'src/app/auth/callback/route.test.ts';
+  fs.writeFileSync(path.join(f.source, colocatedTest), '');
+  assert.deepEqual(frameworkInventory(f.source, [...tracked, colocatedTest], safeFile).routes,
+    frameworkInventory(f.source, tracked, safeFile).routes);
   const collision = 'src/app/auth/callback/page.tsx';
   fs.writeFileSync(path.join(f.source, collision), '');
   assert.throws(() => frameworkInventory(f.source, [...tracked, collision], safeFile), /Ambiguous/);
