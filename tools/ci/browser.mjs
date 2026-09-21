@@ -219,7 +219,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           requireCondition(await page.getByLabel('Password').count() === 1, 'PASSWORD_LABEL_MISSING');
           await emailInput.fill(email);
           await passwordInput.fill(password);
-          const signInButton = page.getByRole('button', { name: 'Sign In' });
+          const signInButton = page.locator('form').getByRole('button', { name: 'Sign In' });
           requireCondition(await signInButton.isEnabled(), 'LOGIN_DISABLED');
           stage = `LOGIN_AUTH_${width}_${theme.toUpperCase()}`;
           const [authResponse] = await Promise.all([

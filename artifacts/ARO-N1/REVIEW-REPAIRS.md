@@ -17,3 +17,8 @@ Successful browser Auth/data request durations are collected without URLs, query
 Local lint, type checking, production build, boundary tests and cleanup unit tests pass. Full unit suite passed before the final additional unconfirmed-removal test; the final seven-case cleanup suite also passed. Bundle comparison covers all client chunk files under the same Next.js toolchain; JSON evidence records the incremental delta. This is not a claim that the earlier Vite-to-Next.js payload regression is resolved.
 
 Exact-head hosted CI and independent finished-diff review remain required. Hosted email, production backend/SMTP, human acceptance and release gates remain separate. The controller reconciles final acceptance; these implementation notes do not self-approve it.
+
+## First CI result and bounded selector correction
+Candidate `5ef1377d1fdabea7c6977cca488a475644e7cdc1` received independent code-review acceptance. Platform run `35588997825` passed the initial 91 SQL assertions, five-user setup and Auth/Trust API checks, then failed `BROWSER_LOGIN_INPUTS_1440_LIGHT`. Artifact `10633378336`, ZIP SHA-256 `0f11671c91a2896fdebfae27e24ec3ddd2a01bde1473fe483a7b51f7ddc08333`, retains the successful 360-light evidence; it is not full-matrix acceptance.
+
+The 1440px deployed login DOM confirms two matches for the original non-exact Sign In button selector, but one within the login form. The controller authorized scoping that assertion to `page.locator('form')` only. All login assertions and the entire matrix remain intact; no product change or timeout relaxation is included. A fresh exact-head run and narrow-delta review are required.
