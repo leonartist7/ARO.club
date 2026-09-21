@@ -21,7 +21,7 @@ function workspace(t) {
   });
   return base;
 }
-function fixture(t) {
+function fixture(t, router = 'legacy') {
   const base = workspace(t), source = path.join(base, 'source'), out = path.join(base, 'out');
   fs.mkdirSync(source);
   for (const file of REQUIRED) {
@@ -29,8 +29,15 @@ function fixture(t) {
     fs.writeFileSync(path.join(source, file), `# ${file}\n`);
   }
   fs.writeFileSync(path.join(source, 'ARO_CLOUD_HANDOFF.md'), TASKS.map(t => `### ${t === 'lead' ? 'Lead' : t} — audit\nRead-only bounded contract.\n`).join('\n'));
-  fs.mkdirSync(path.join(source, 'src/lib'), { recursive: true });
-  fs.writeFileSync(path.join(source, 'src/lib/routes.jsx'), "export const routes = [{path: '/app'}];\n");
+  if (router === 'legacy') {
+    fs.mkdirSync(path.join(source, 'src/lib'), { recursive: true });
+    fs.writeFileSync(path.join(source, 'src/lib/routes.jsx'), "export const routes = [{path: '/app'}];\n");
+  } else {
+    for (const file of ['src/app/(public)/page.tsx', 'src/app/app/opportunities/[id]/page.tsx', 'src/app/app/[...missing]/page.tsx', 'src/app/_private/page.tsx']) {
+      fs.mkdirSync(path.dirname(path.join(source, file)), { recursive: true });
+      fs.writeFileSync(path.join(source, file), 'export default function Page() {}\n');
+    }
+  }
   const git = (...args) => execFileSync('git', args, { cwd: source, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   git('init'); git('add', '.'); git('-c', 'user.name=AUTO0 fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-m', 'fixture');
   return { base, source, out, sha: git('rev-parse', 'HEAD') };
@@ -63,6 +70,18 @@ test('preparation pins provenance and generates all seven concrete packets', t =
   assert.equal(readiness(f.out, f.sha).leadEligible, false);
   assert.equal(readiness(f.out, f.sha).implementationEligible, false);
   assert.throws(() => prepare(f.source, f.sha, f.out), /never overwrite/);
+});
+test('route inventory supports legacy literal routes and Next.js App Router pages', t => {
+  const legacy = fixture(t); prepare(legacy.source, legacy.sha, legacy.out);
+  const legacyInventory = JSON.parse(fs.readFileSync(path.join(legacy.out, 'inventory.json'), 'utf8'));
+  assert.equal(legacyInventory.routeFramework, 'legacy-literal');
+  assert.deepEqual(legacyInventory.routes, [{ declaredPath: '/app', source: 'src/lib/routes.jsx', line: 1 }]);
+
+  const next = fixture(t, 'next'); prepare(next.source, next.sha, next.out);
+  const nextInventory = JSON.parse(fs.readFileSync(path.join(next.out, 'inventory.json'), 'utf8'));
+  assert.equal(nextInventory.routeFramework, 'next-app-router');
+  assert.deepEqual(nextInventory.routes.map(route => route.declaredPath), ['/', '/app/[...missing]', '/app/opportunities/[id]']);
+  assert.ok(nextInventory.routes.every(route => route.source.startsWith('src/app/')));
 });
 test('wrong revision and dirty source fail before output creation', t => {
   const f = fixture(t); assert.throws(() => prepare(f.source, SHA, f.out), /HEAD/);
