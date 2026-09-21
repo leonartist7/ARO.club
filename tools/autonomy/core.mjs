@@ -80,11 +80,28 @@ export function inventory(root, tracked) {
     if (data.length < 24 || data.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a') throw Error(`Invalid PNG: ${file}`);
     return { path: file, bytes: data.length, width: data.readUInt32BE(16), height: data.readUInt32BE(20), sha256: hash(data) };
   });
-  const routesFile = 'src/lib/routes.jsx';
-  const routes = fs.readFileSync(safeFile(root, routesFile), 'utf8').split('\n').flatMap((line, i) => {
-    const matches = [...line.matchAll(/path:\s*['"]([^'"]+)['"]/g)];
-    return matches.map(m => ({ declaredPath: m[1], source: routesFile, line: i + 1 }));
-  });
+  const legacyRoutesFile = 'src/lib/routes.jsx';
+  const appPages = tracked.filter(file => /^src\/app\/(?:.*\/)?page\.(?:js|jsx|ts|tsx)$/.test(file)).sort();
+  if (tracked.includes(legacyRoutesFile) && appPages.length) throw Error('Ambiguous mixed route inventory');
+  let routeFramework, routes;
+  if (tracked.includes(legacyRoutesFile)) {
+    routeFramework = 'legacy-literal';
+    routes = fs.readFileSync(safeFile(root, legacyRoutesFile), 'utf8').split('\n').flatMap((line, i) => {
+      const matches = [...line.matchAll(/path:\s*['"]([^'"]+)['"]/g)];
+      return matches.map(m => ({ declaredPath: m[1], source: legacyRoutesFile, line: i + 1 }));
+    });
+  } else {
+    routeFramework = 'next-app-router';
+    routes = appPages.flatMap(source => {
+      safeFile(root, source);
+      const segments = source.slice('src/app/'.length).split('/').slice(0, -1);
+      if (segments.some(segment => segment.startsWith('_'))) return [];
+      const url = segments.filter(segment => /^\([^/]+\)$/.test(segment) === false);
+      if (url.some(segment => segment.startsWith('@') || segment.startsWith('('))) throw Error(`Unsupported Next.js route segment: ${source}`);
+      return [{ declaredPath: `/${url.join('/')}`, source, line: 1 }];
+    });
+  }
+  if (!routes.length) throw Error('No supported route inventory');
   const markdown = tracked.filter(f => f.endsWith('.md'));
   const brokenWikiLinks = [];
   for (const file of markdown) {
@@ -95,7 +112,7 @@ export function inventory(root, tracked) {
       if (!found) brokenWikiLinks.push({ file, target });
     }
   }
-  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
+  return { classification: 'observed-fact', limitation: 'Source inventory only; no browser, design, performance-budget or eligibility acceptance', routeFramework, pngs, pngBytes: pngs.reduce((n, f) => n + f.bytes, 0), routes, brokenWikiLinks };
 }
 export function reportValidation(report, task, sha, taskRoot) {
   const errors = [];
