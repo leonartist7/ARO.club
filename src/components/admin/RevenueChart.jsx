@@ -1,3 +1,4 @@
+'use client';
 import { formatPrice } from '../../utils/helpers';
 
 const CHART_H = 100;

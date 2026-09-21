@@ -52,10 +52,10 @@ describe('badge reachability', () => {
     // awardBadge('x') called anywhere in the app, including pages.
     const sources = [
       store,
-      readSrc('pages/GamesPage.jsx'),
-      readSrc('pages/ChatPage.jsx'),
-      readSrc('pages/ExperienceDetailPage.jsx'),
-      readSrc('pages/StudentDashboard.jsx'),
+      readSrc('views/GamesPage.jsx'),
+      readSrc('views/ChatPage.jsx'),
+      readSrc('views/ExperienceDetailPage.jsx'),
+      readSrc('views/StudentDashboard.jsx'),
     ].join('\n');
     return new Set([...sources.matchAll(/awardBadge\('([a-z-]+)'\)/g)].map((m) => m[1]));
   })();

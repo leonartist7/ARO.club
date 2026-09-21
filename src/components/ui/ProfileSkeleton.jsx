@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardBody, CardHeader } from './Card';
 import Skeleton, { SkeletonText, SkeletonTitle, SkeletonAvatar, SkeletonButton } from './Skeleton';
 

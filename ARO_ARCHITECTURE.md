@@ -1,5 +1,7 @@
 # ARO — Architecture Direction
 
+> **2026-09-21 N1 rollout:** The founder authorized Next.js migration and Vercel integration verification. [N1 rollout v1.1](specs/ARO-N1-VERCEL-ROLLOUT.md) governs reconciliation onto current main and isolated Preview accounts. Newer F1–F6 work is preserved. Production backend/domain selection, hosted email flows and independent security review remain gates. P1–P5, Trust/schema changes and live synthetic features are not unlocked.
+
 ## Scope and posture
 
 ARO evolves the current React/Vite/Supabase application. The client, Supabase Auth, RLS policies, Trust Engine, admin tooling, routes, reusable UI, Passport, and tests are assets to preserve. This document sets boundaries; it authorizes no schema or code changes by itself.

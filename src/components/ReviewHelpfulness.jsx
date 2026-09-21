@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import { motion } from 'framer-motion';

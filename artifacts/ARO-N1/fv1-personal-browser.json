@@ -1,0 +1,80 @@
+{
+  "testedRef": "cfa78a3f95ea6d28c8f997b4e3323ccc25066660",
+  "implementationHead": "codex/nextjs-vercel-rollout",
+  "browser": "chrome.exe",
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "observations": 20,
+  "zoomObservations": 4,
+  "minTargetWidth": 44,
+  "minTargetHeight": 44,
+  "minEssentialFontSize": 16,
+  "maxHorizontalOverflow": 0,
+  "minControlContrast": 5.0136780363936335,
+  "profileCollisions": [],
+  "imageSamples": {
+    "profile-360": {
+      "currentSrc": "http://127.0.0.1:4181/fv1/aro-maya-profile-portrait-v1-256.webp",
+      "naturalWidth": 256,
+      "naturalHeight": 256,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 144,
+      "height": 144
+    },
+    "express-360": {
+      "currentSrc": "http://127.0.0.1:4181/fv1/aro-maya-expression-persona-v1-480.webp",
+      "naturalWidth": 480,
+      "naturalHeight": 720,
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "width": 286,
+      "height": 429
+    },
+    "profile-1440": {
+      "currentSrc": "http://127.0.0.1:4181/fv1/aro-maya-profile-portrait-v1-384.webp",
+      "naturalWidth": 384,
+      "naturalHeight": 384,
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "width": 176,
+      "height": 176
+    },
+    "express-1440": {
+      "currentSrc": "http://127.0.0.1:4181/fv1/aro-maya-expression-persona-v1-480.webp",
+      "naturalWidth": 480,
+      "naturalHeight": 720,
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "width": 412,
+      "height": 520
+    }
+  },
+  "networkSideEffects": 0,
+  "exercisedProfileNodes": [
+    "wants",
+    "brings",
+    "context",
+    "boundaries"
+  ],
+  "exercisedExpressChoices": [
+    "look:field-notes",
+    "look:table-maker",
+    "look:night-walker",
+    "carry:camera",
+    "carry:notebook",
+    "carry:cup",
+    "atmosphere:golden",
+    "atmosphere:river",
+    "atmosphere:candlelight"
+  ]
+}

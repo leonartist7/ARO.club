@@ -63,8 +63,8 @@ function userCount(expected) {
 }
 function sqlTests() {
   const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=81\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 81/81 (transactions rolled back)\n');
+  requireCondition(/Tests=91\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write('PASS pgTAP 91/91 (transactions rolled back)\n');
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -109,7 +109,7 @@ try {
         exerciseAuthenticatedBrowser,
         browserVerificationPhase
       );
-      await phase('synthetic-account-count', () => userCount(2));
+      await phase('synthetic-account-count', () => userCount(5));
       await phase('reset-removes-accounts', async () => {
         cli(['db', 'reset', '--local', '--no-seed'], 180000);
         userCount(0);

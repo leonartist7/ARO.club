@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-21 production extension:** The founder authorized production readiness and release under [N1 rollout v1.2](specs/ARO-N1-VERCEL-ROLLOUT.md). Initial public origin is aro-club.vercel.app. Production auth configuration is implemented and locally verified but remains disabled pending a separate backend, verified SMTP/hosted auth and security review. Staging callback URLs are repaired. See [provider evidence](artifacts/ARO-N1/PRODUCTION-READINESS.md).
+
 > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
 
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.

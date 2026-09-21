@@ -1,0 +1,56 @@
+{
+  "environment": "https://aro-club.vercel.app, desktop Chromium, no throttling; observational samples, not a release benchmark.",
+  "samples": [
+    {
+      "route": "/",
+      "sample": 0,
+      "status": 200,
+      "available": true,
+      "ttfbMs": 117.80000001192093,
+      "domContentLoadedMs": 355.69999998807907,
+      "javascriptDecodedBytes": 629951,
+      "lcp": 1392,
+      "cls": 0.00010343035662615742
+    },
+    {
+      "route": "/",
+      "sample": 1,
+      "status": 200,
+      "available": true,
+      "ttfbMs": 105.40000003576279,
+      "domContentLoadedMs": 447.5,
+      "javascriptDecodedBytes": 629951,
+      "lcp": 1128,
+      "cls": 0.00010343035662615742
+    },
+    {
+      "route": "/",
+      "sample": 2,
+      "status": 200,
+      "available": true,
+      "ttfbMs": 106.40000003576279,
+      "domContentLoadedMs": 367.30000001192093,
+      "javascriptDecodedBytes": 629951,
+      "lcp": 1036,
+      "cls": 0.00010343035662615742
+    },
+    {
+      "route": "/app",
+      "sample": 0,
+      "status": 404,
+      "available": false
+    },
+    {
+      "route": "/app",
+      "sample": 1,
+      "status": 404,
+      "available": false
+    },
+    {
+      "route": "/app",
+      "sample": 2,
+      "status": 404,
+      "available": false
+    }
+  ]
+}

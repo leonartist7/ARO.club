@@ -1,7 +1,15 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+'use client';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { isSupabaseConfigured, supabase, supabaseConfigError } from '../lib/supabase';
 
-const AuthContext = createContext({});
+import {useRouter} from 'next/navigation';
+import {usePlayerStore} from '../store/usePlayerStore';
+import {useStore} from '../store/useStore';
+function clearAccountState() {
+  usePlayerStore.getState().signOut();
+  useStore.setState({currentUser: null, isTeacher: false, bookings: [], teacherExperiences: [], notifications: []});
+}
+const AuthContext = createContext(null);
 
 const prototypeBlocked = async () => ({ data: null, user: null, error: supabaseConfigError });
 
@@ -28,6 +36,8 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const router=useRouter();
+  const activeUser=useRef(null);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,10 +53,13 @@ export const AuthProvider = ({ children }) => {
     // spinner forever, even though Supabase had already authenticated the
     // user. Role-gated screens remain safe: they still require `profile`.
     const applySession = (session) => {
+      if (usePlayerStore.getState().user?.id !== session?.user?.id) clearAccountState();
+      activeUser.current=session?.user?.id??null;
+      setProfile(null);
       setUser(session?.user ?? null);
       if (session?.user) {
         setLoading(false);
-        void loadProfile(session.user.id);
+        queueMicrotask(()=>{void loadProfile(session.user.id);});
       } else {
         setProfile(null);
         setLoading(false);
@@ -73,10 +86,14 @@ export const AuthProvider = ({ children }) => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       authEventRevision += 1;
       applySession(session);
+      if (_event === 'SIGNED_OUT') {
+        clearAccountState();
+        router.refresh();
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [router]);
 
   const loadProfile = async (userId) => {
     try {
@@ -88,8 +105,17 @@ export const AuthProvider = ({ children }) => {
       if (profileResult.error) throw profileResult.error;
       if (roleResult.error) throw roleResult.error;
       const role = roleResult.data.role === 'participant' ? 'student' : roleResult.data.role;
+      if(activeUser.current!==userId)return;
       setProfile({ ...profileResult.data, role, is_teacher: role === 'teacher' });
+      usePlayerStore.getState().signIn({
+        id: userId,
+        name: profileResult.data.name,
+        photo: profileResult.data.photo,
+        role,
+        isTeacher: role === 'teacher',
+      });
     } catch (error) {
+      if(activeUser.current===userId)setProfile(null);
       console.error('Error loading profile:', error);
     } finally {
       setLoading(false);
@@ -106,6 +132,7 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
         options: {
+          emailRedirectTo: window.location.origin+'/auth/callback',
           data: {
             name,
             photo,
@@ -140,25 +167,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signInWithGoogle = async () => {
-    if (!isSupabaseConfigured) {
-      return { data: null, error: supabaseConfigError };
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) throw error;
-      return { data, error: null };
-    } catch (error) {
-      return { data: null, error };
-    }
-  };
+  const signInWithGoogle = async () => ({data:null,error:new Error('Google sign-in is not enabled. Please use email and password.')});
 
   const signOut = async () => {
     if (!isSupabaseConfigured) {
@@ -170,8 +179,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
+      activeUser.current=null;
       setUser(null);
       setProfile(null);
+      clearAccountState();
+      router.refresh();
     } catch (error) {
       console.error('Error signing out:', error);
       throw error;
@@ -208,7 +220,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+        redirectTo: `${window.location.origin}/auth/callback?next=/auth/reset-password`,
       });
 
       if (error) throw error;
