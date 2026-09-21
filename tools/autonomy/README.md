@@ -64,7 +64,7 @@ node tools/autonomy/cli.mjs compare --out /tmp/current/evidence --sha FULL_CURRE
 
 If no prior export is retrievable, record a first-run baseline or MEMORY_UNAVAILABLE; never fabricate continuity. Quiet on unchanged, non-actionable findings. One retry for transient errors, then a blocked report naming the action and owner. Never recursively schedule retries or overwrite a completed report.
 
-Route inventory supports both the historical literal routes in `src/lib/routes.jsx` and committed Next.js App Router pages matching `src/app/**/page.{js,jsx,ts,tsx}`. Next.js route groups are omitted from declared URLs, private folders are excluded, and dynamic/catch-all segment notation is preserved. Mixed legacy/App Router inputs and unsupported parallel or intercepting segments fail closed. This is source inventory only; it does not execute redirects, rewrites, middleware or route handlers and is not browser acceptance.
+Route inventory supports both the historical literal routes in `src/lib/routes.jsx` and committed Next.js App Router pages and route handlers matching `src/app/**/{page,route}.{js,jsx,ts,tsx}`. Next.js route groups are omitted from declared URLs, private folders are excluded, and dynamic/catch-all segment notation is preserved. Each App Router entry is classified as a `page` or `route-handler`; mixed legacy/App Router inputs, duplicate route identities and unsupported parallel or intercepting segments fail closed. This is source inventory only; it does not execute redirects, rewrites, middleware or handlers and is not browser acceptance.
 
 ## Scheduling and persistence limits
 
