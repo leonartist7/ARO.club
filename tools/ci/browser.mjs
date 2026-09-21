@@ -85,7 +85,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
             if (request.url().startsWith(API)) platformRequests.push(request.url());
           });
           await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
-          const started = performance.now();
+          let started = performance.now();
           stage = `PROTOTYPE_LOGIN_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/login`, { waitUntil: 'networkidle' });
           const emailInput = page.locator('input[type="email"]');
@@ -154,7 +154,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
 
       for (const width of [360, 1440]) {
         await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
-        const started = performance.now();
+        let started = performance.now();
 
         // One real sign-in per color-scheme. The desktop capture then proves
         // the same authenticated session survives a responsive resize, rather
@@ -182,6 +182,120 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           requireCondition(authResponse.status() === 200, `LOGIN_AUTH_HTTP_${authResponse.status()}`);
           stage = `LOGIN_NAVIGATION_${width}_${theme.toUpperCase()}`;
           await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
+        }
+
+        if (width === 360 && theme === 'light') {
+          const journeyStarted = performance.now();
+          // This lane is deliberately real-client proof: onboarding must leave
+          // an editable draft, collect documents on the status surface, and
+          // submit only through that explicit journey.
+          stage = `ONBOARDING_NAVIGATE_${width}_${theme.toUpperCase()}`;
+          await page.goto(`${base}/onboarding/teacher`, { waitUntil: 'networkidle' });
+          stage = `ONBOARDING_NAME_INPUT_${width}_${theme.toUpperCase()}`;
+          await page.getByPlaceholder("What's your name?").fill('Synthetic Teacher');
+          stage = `ONBOARDING_NAME_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_LANGUAGE_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const languageControls = page.getByRole('button', { name: 'Choose language', exact: true });
+          stage = `ONBOARDING_LANGUAGE_CHOOSE_${width}_${theme.toUpperCase()}`;
+          await languageControls.click();
+          stage = `ONBOARDING_LANGUAGE_SKIP_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_EXPERIENCE_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const experienceControls = page.getByRole('button', { name: 'Choose experience', exact: true });
+          stage = `ONBOARDING_EXPERIENCE_CHOOSE_${width}_${theme.toUpperCase()}`;
+          await experienceControls.click();
+          stage = `ONBOARDING_EXPERIENCE_SKIP_${width}_${theme.toUpperCase()}`;
+          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          stage = `ONBOARDING_AVATAR_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const avatarHeading = page.getByRole('heading', { name: 'Create Your Avatar' });
+          await avatarHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const avatarScreen = avatarHeading.locator('xpath=..');
+          stage = `ONBOARDING_AVATAR_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await avatarScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_BIO_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const bioHeading = page.getByRole('heading', { name: 'Tell Students About Yourself' });
+          await bioHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const bioScreen = bioHeading.locator('xpath=..');
+          stage = `ONBOARDING_BIO_INPUT_${width}_${theme.toUpperCase()}`;
+          await bioScreen.getByPlaceholder("I'm passionate about teaching...")
+            .fill('Synthetic browser evidence confirms this editable application draft before explicit submission.');
+          stage = `ONBOARDING_BIO_CONTINUE_${width}_${theme.toUpperCase()}`;
+          await bioScreen.getByRole('button', { name: 'Continue' }).click();
+          stage = `ONBOARDING_READY_TRANSITION_${width}_${theme.toUpperCase()}`;
+          const readyHeading = page.getByRole('heading', { name: 'Ready to add your documents' });
+          await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
+          const readyScreen = readyHeading.locator('xpath=..');
+          stage = `ONBOARDING_DRAFT_CREATE_REQUEST_${width}_${theme.toUpperCase()}`;
+          const submitResponse = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
+          ), { timeout: uiReadyTimeout });
+          await readyScreen.getByRole('button', { name: 'Continue to documents' }).click();
+          requireCondition((await submitResponse).status() === 201, 'ONBOARDING_DRAFT_PERSIST_FAILED');
+          await page.waitForURL(url => url.pathname === '/teacher/application', { timeout: uiReadyTimeout });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.getByText('Add your portfolio below, then submit for verification.').count() === 1,
+            'DOCUMENT_COLLECTION_SURFACE_MISSING');
+          await page.reload({ waitUntil: 'networkidle' });
+          await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.locator('input[type="file"]').count() >= 1, 'DOCUMENT_COLLECTION_NOT_EDITABLE');
+          requireCondition(await page.getByRole('button', { name: 'Submit for verification' }).isEnabled(), 'DRAFT_NOT_EDITABLE');
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-draft-before-submit.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+
+          stage = 'DOCUMENT_FAILURE_AND_RETRY_360_LIGHT';
+          let metadataRequestAborted = false;
+          const metadataRoute = async (route) => {
+            if (!metadataRequestAborted && route.request().method() === 'POST') {
+              metadataRequestAborted = true;
+              await route.abort('failed');
+              return;
+            }
+            await route.continue();
+          };
+          await page.route(`${API}/rest/v1/teacher_documents**`, metadataRoute);
+          const documentInput = page.locator('input[type="file"]').first();
+          await documentInput.setInputFiles({
+            name: 'synthetic-intro.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video'),
+          });
+          await page.getByText(/Failed to fetch|Upload failed/).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(metadataRequestAborted, 'DOCUMENT_METADATA_FAILURE_NOT_INDUCED');
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-failure.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+          await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
+          const metadataRetry = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'POST'
+          ), { timeout: uiReadyTimeout });
+          await documentInput.setInputFiles({
+            name: 'synthetic-intro-retry.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video-retry'),
+          });
+          requireCondition((await metadataRetry).status() === 201, 'DOCUMENT_METADATA_RETRY_FAILED');
+          await page.getByText('Uploaded ✓').waitFor({ timeout: uiReadyTimeout });
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-retry.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+
+          stage = 'EXPLICIT_SUBMIT_SERVER_TIMESTAMP_360_LIGHT';
+          const explicitSubmit = page.waitForResponse((response) => (
+            response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'PATCH'
+          ), { timeout: uiReadyTimeout });
+          await page.getByRole('button', { name: 'Submit for verification' }).click();
+          const submittedResponse = await explicitSubmit;
+          requireCondition(submittedResponse.status() === 200, `EXPLICIT_SUBMIT_HTTP_${submittedResponse.status()}`);
+          const submitted = await submittedResponse.json();
+          requireCondition(submitted?.status === 'submitted' && Boolean(submitted.submitted_at), 'SERVER_SUBMISSION_TIMESTAMP_MISSING');
+          await page.getByRole('heading', { name: 'Application submitted' }).waitFor({ timeout: uiReadyTimeout });
+          await page.screenshot({
+            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-submitted-server-timestamp.png`,
+            animations: 'disabled', fullPage: false, timeout: 10000,
+          });
+          requireCondition(performance.now() - journeyStarted < 120000, 'APPLICANT_JOURNEY_TIMEOUT');
+          started = performance.now();
         }
 
         stage = `PROFILE_${width}_${theme.toUpperCase()}`;

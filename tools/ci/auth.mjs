@@ -141,12 +141,21 @@ export async function exerciseAuth(
     await platform(`rest/v1/teacher_applications?id=eq.${application.id}`, {
       method: 'PATCH', token: ownerToken, body: { status: 'submitted' }, statuses: [204],
     });
+    const [submitted] = await platform(`rest/v1/teacher_applications?id=eq.${application.id}&select=status,submitted_at`, {
+      token: ownerToken,
+    });
+    requireCondition(submitted?.status === 'submitted' && submitted.submitted_at, 'APPLICATION_SUBMISSION_TIMESTAMP_MISSING');
+    await platform(`storage/v1/object/verification-docs/${objectPath}`, {
+      method: 'DELETE', token: ownerToken, statuses: [400, 403, 404],
+    });
     await platform('rest/v1/bookings', {
       method: 'POST', token: ownerToken, body: { student_id: userId, total_minor: 1, currency: 'CAD' },
       statuses: [401, 403],
     });
   });
-  await phase(browserPhase, () => browserCheck({ anonKey, email, password }));
+  // The API owner's application is already submitted. Use the second isolated
+  // account for a fresh browser draft; never weaken submitted-evidence RLS.
+  await phase(browserPhase, () => browserCheck({ anonKey, email: otherEmail, password }));
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
     const link = recoveryLink(await recoveryMail(email));

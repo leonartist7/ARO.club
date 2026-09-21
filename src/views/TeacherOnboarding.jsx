@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { useNavigate } from '../lib/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
-import { getOrCreateDraft, updateApplication, submitApplication } from '../lib/teacherApplications';
+import { getOrCreateDraft, updateApplication } from '../lib/teacherApplications';
 import { Check, X } from 'lucide-react';
 import Button from '../components/ui/Button';
 
@@ -44,6 +44,47 @@ const OUTFITS = [
   { id: 'sporty', name: 'Sporty', emoji: '⚽' },
   { id: 'artsy', name: 'Artsy', emoji: '🎨' },
 ];
+
+async function persistTeacherOnboardingDraft({
+  userId,
+  name,
+  avatar,
+  bio,
+  selectedLanguages,
+  selectedExperiences,
+  profileClient = supabase,
+  createDraft = getOrCreateDraft,
+  updateDraft = updateApplication,
+}) {
+  const { error: profileError } = await profileClient
+    .from('profiles')
+    .update({
+      name,
+      user_type: 'teacher',
+      avatar,
+      bio,
+      experience_types: selectedExperiences,
+      onboarding_completed: true,
+    })
+    .eq('id', userId);
+
+  if (profileError) throw profileError;
+
+  const draft = await createDraft(userId, { display_name: name });
+  await updateDraft(draft.id, {
+    display_name: name,
+    bio,
+    languages: selectedLanguages.map((code) => ({
+      code,
+      name: LANGUAGES.find((language) => language.code === code)?.name,
+      proficiency: 'native',
+    })),
+    experience_types: selectedExperiences,
+    teaches_in_person: true,
+    agreed_to_standards: true,
+  });
+  return draft;
+}
 
 const SwipeCard = ({ data, onSwipe, isLanguage = false }) => {
   const x = useMotionValue(0);
@@ -129,40 +170,16 @@ export default function TeacherOnboarding() {
   const handleComplete = async () => {
     setLoading(true);
     try {
-      // Save profile onboarding data. NOTE: we do NOT create a live `teachers`
-      // row or set verified — the teacher only goes live after an admin
-      // approves their application (see the Trust & Quality Engine).
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({
-          name,
-          user_type: 'teacher',
-          avatar,
-          bio,
-          experience_types: selectedExperiences,
-          onboarding_completed: true,
-        })
-        .eq('id', user.id);
-
-      if (profileError) throw profileError;
-
-      // Create + submit a teacher application for human review.
-      const draft = await getOrCreateDraft(user.id, { display_name: name });
-      await updateApplication(draft.id, {
-        display_name: name,
+      // Persist only an editable application draft. The existing status route
+      // collects private documents and exposes the explicit submit action.
+      await persistTeacherOnboardingDraft({
+        userId: user.id,
+        name,
+        avatar,
         bio,
-        languages: selectedLanguages.map((code) => ({
-          code,
-          name: LANGUAGES.find((l) => l.code === code)?.name,
-          proficiency: 'native',
-        })),
-        experience_types: selectedExperiences,
-        teaches_in_person: true,
-        agreed_to_standards: true,
+        selectedLanguages,
+        selectedExperiences,
       });
-      await submitApplication(draft.id);
-
-      // Go to the application status page to add portfolio + track review.
       navigate('/teacher/application');
     } catch (error) {
       console.error('Error completing onboarding:', error);
@@ -262,12 +279,14 @@ export default function TeacherOnboarding() {
 
                 <div className="flex justify-center gap-4 mt-8">
                   <button
+                    aria-label="Skip language"
                     onClick={() => handleSwipe('left', true)}
                     className="w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <X className="w-8 h-8" />
                   </button>
                   <button
+                    aria-label="Choose language"
                     onClick={() => handleSwipe('right', true)}
                     className="w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
@@ -325,12 +344,14 @@ export default function TeacherOnboarding() {
 
                 <div className="flex justify-center gap-4 mt-8">
                   <button
+                    aria-label="Skip experience"
                     onClick={() => handleSwipe('left')}
                     className="w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
                     <X className="w-8 h-8" />
                   </button>
                   <button
+                    aria-label="Choose experience"
                     onClick={() => handleSwipe('right')}
                     className="w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                   >
@@ -487,11 +508,9 @@ export default function TeacherOnboarding() {
                 >
                   🎉
                 </motion.div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-4">Ready to Submit!</h2>
-                <p className="text-xl text-gray-600 mb-2">Welcome bonus: +100 points 🌟</p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">Ready to add your documents</h2>
                 <p className="text-base text-gray-500 mb-8">
-                  Next: add your portfolio (intro video + ID) and our team will personally verify you
-                  before you go live.
+                  Save your draft, add your portfolio and identity document, then submit for human review.
                 </p>
 
                 <div className="bg-white rounded-2xl p-6 mb-8 text-left">
@@ -509,7 +528,7 @@ export default function TeacherOnboarding() {
                   disabled={loading}
                   className="w-full py-4 text-xl"
                 >
-                  {loading ? 'Submitting...' : 'Submit for Verification'}
+                  {loading ? 'Saving...' : 'Continue to documents'}
                 </Button>
               </motion.div>
             )}

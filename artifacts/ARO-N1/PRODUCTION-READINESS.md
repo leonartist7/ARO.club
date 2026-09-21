@@ -13,7 +13,7 @@ Production release is authorized; it has not been performed. N1 rollout v1.2 cov
 - Only ARO.club Staging is active. New isolated production project is not provisioned; the connector requires the user to select its organization and confirm the quoted cost. Organization selection was requested.
 - Custom SMTP is disabled. The default Supabase sender is restricted to team addresses and is not production email delivery. No email provider appears among existing Vercel integration resources. A verified sending domain and SMTP provider must be connected before public signup/recovery can pass.
 - Vercel AI Gateway still shows Get Started / Add a Card for identity verification. OIDC is enabled, but no generation or billing activation is claimed.
-- Existing security repair PRs #51–53 remain draft and unmerged. Their Trust/RLS changes need reconciliation, regression evidence and the required independent review before live sensitive workflows.
+- Existing security repair PRs #51–53 remain draft and unmerged. Their necessary Trust/RLS corrections are now reconciled into the Next.js candidate for disposable CI verification; no hosted schema has changed. The fresh browser applicant uses the second synthetic account, and the protected-history integrity assertion runs as the auditor. Independent review remains required before live sensitive workflows.
 - Production still serves the previous Vite deployment; PR #54 is the Next.js rollout candidate. Prior migration CI and hosted parity evidence is in VERIFICATION.md. Do not confuse those passes with a completed production cutover.
 
 ## Activation sequence
@@ -24,3 +24,6 @@ Production release is authorized; it has not been performed. N1 rollout v1.2 cov
 5. Pass required CI and independent security review, release, and verify the public origin including direct `/app` loads and protected routes. Retain the previous deployment for rollback.
 
 Reference: https://supabase.com/docs/guides/auth/auth-smtp
+
+## Trust correction verification
+Local lint, TypeScript, 153 unit tests (three CI-only browser cases skipped) and all 11 infrastructure boundary tests pass. The production build is checked before pushing. The CI target now requires 91 SQL assertions twice, submitted-document deletion rejection, and the real browser draft/document-failure/retry/explicit-submission journey. Hosted CI results must be linked to the exact candidate SHA; these rows are not considered passed merely because the prior 81-assertion baseline passed.
