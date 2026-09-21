@@ -1,0 +1,26 @@
+{
+  "bundlePath": "C:\\Users\\leona\\Documents\\Web dev\\ARO\\shipaton-evidence\\all-branches-before-reconciliation-20260921.bundle",
+  "sha256": "703672c8c62bc66981d21614d7f9c66ea8ee92fdbf9c1805195bad55f6e8e7c2",
+  "refs": 124,
+  "verification": "git bundle verify passed; complete history. Keep private local recovery archive; never upload historical Git objects indiscriminately.",
+  "historicalPatches": [
+    {
+      "pr": 47,
+      "head": "eec03532558e18e3ea0ce600efbda8a584be4880",
+      "file": "historical-pr47.patch.txt",
+      "sha256": "8b4bb50e8dc586122b721a7006a837d130587a48459599dd511ac5319ece0de4"
+    },
+    {
+      "pr": 48,
+      "head": "123a31f25ed5ce5faae7d5484f578622b2f57ca2",
+      "file": "historical-pr48.patch.txt",
+      "sha256": "9375b46b5665d5d3769cea9a84ddf544a43efdcb56fcfbe1b3ef69a59bf3da56"
+    },
+    {
+      "pr": 49,
+      "head": "871c7bebf61386aab65e9957bf5b1b48d274379e",
+      "file": "historical-pr49.patch.txt",
+      "sha256": "6ed9d7254eeeb3ae8100d793fe4c11d9c85e8470ea9c6ed081e8d75ba5046402"
+    }
+  ]
+}
