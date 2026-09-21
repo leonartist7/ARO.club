@@ -109,7 +109,7 @@ try {
         exerciseAuthenticatedBrowser,
         browserVerificationPhase
       );
-      await phase('synthetic-account-count', () => userCount(2));
+      await phase('synthetic-account-count', () => userCount(5));
       await phase('reset-removes-accounts', async () => {
         cli(['db', 'reset', '--local', '--no-seed'], 180000);
         userCount(0);

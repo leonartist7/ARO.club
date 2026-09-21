@@ -64,17 +64,24 @@ export async function exerciseAuth(
   const request = authClient(anonKey);
   const email = `i0-${randomUUID()}@example.invalid`;
   const otherEmail = `i0-${randomUUID()}@example.invalid`;
+  const browserEmails = [otherEmail, ...Array.from({ length: 3 }, () => `i0-${randomUUID()}@example.invalid`)];
   const password = `Aa1!${randomBytes(24).toString('hex')}`;
   const newPassword = `Bb2!${randomBytes(24).toString('hex')}`;
   let userId;
   let otherUserId;
   let otherSession;
-  await phase('auth-signup-two-users', async () => {
+  await phase('auth-signup-five-users', async () => {
     const owner = await request('signup', { method: 'POST', body: { email, password } });
     const other = await request('signup', { method: 'POST', body: { email: otherEmail, password } });
     userId = owner.user?.id;
     otherUserId = other.user?.id;
     requireCondition(userId && otherUserId && userId !== otherUserId, 'DISTINCT_USERS_REQUIRED');
+    const identities = new Set([userId, otherUserId]);
+    for (const browserEmail of browserEmails.slice(1)) {
+      const applicant = await request('signup', { method: 'POST', body: { email: browserEmail, password } });
+      requireCondition(applicant.user?.id && !identities.has(applicant.user.id), 'DISTINCT_BROWSER_APPLICANT_REQUIRED');
+      identities.add(applicant.user.id);
+    }
   });
   const signIn = (candidate, statuses = [200], candidateEmail = email) => request('token?grant_type=password', {
     method: 'POST', body: { email: candidateEmail, password: candidate }, statuses,
@@ -155,7 +162,7 @@ export async function exerciseAuth(
   });
   // The API owner's application is already submitted. Use the second isolated
   // account for a fresh browser draft; never weaken submitted-evidence RLS.
-  await phase(browserPhase, () => browserCheck({ anonKey, email: otherEmail, password }));
+  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password }));
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
     const link = recoveryLink(await recoveryMail(email));

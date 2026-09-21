@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from '../../lib/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -22,6 +22,7 @@ import {
   getMyApplication,
   getDocuments,
   uploadDocument,
+  getUploadCleanupOutcome,
   submitApplication,
   computeCompleteness,
   PORTFOLIO_REQUIREMENTS,
@@ -52,6 +53,8 @@ export default function TeacherApplicationStatus() {
   const [uploadingType, setUploadingType] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState('');
+  const fileInputs = useRef({});
 
   const load = async () => {
     if (!profile?.id) return;
@@ -76,11 +79,19 @@ export default function TeacherApplicationStatus() {
     if (!file) return;
     setUploadingType(docType);
     setError(null);
+    setUploadStatus(`Uploading ${label}.`);
     try {
       await uploadDocument({ userId: profile.id, applicationId: application.id, docType, file, label });
       setDocuments(await getDocuments(application.id));
+      setUploadStatus(`${label} uploaded.`);
     } catch (e) {
-      setError(e.message || 'Upload failed');
+      const cleanup = getUploadCleanupOutcome(e);
+      setUploadStatus('');
+      setError(cleanup === 'failed'
+        ? 'Upload failed. We could not confirm removal of the uploaded file. Please contact support before retrying.'
+        : cleanup === 'removed'
+          ? 'Upload failed. The uploaded file was removed. Please try again.'
+          : e.message || 'Upload failed');
     } finally {
       setUploadingType(null);
     }
@@ -181,25 +192,40 @@ export default function TeacherApplicationStatus() {
             return (
               <div key={req.docType} className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
                 <Icon className={`w-5 h-5 flex-shrink-0 ${uploaded ? 'text-green-500' : 'text-gray-400'}`} />
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-gray-900 dark:text-white">
                     {req.label} {req.required && <span className="text-red-400">*</span>}
                   </div>
                   {uploaded && <div className="text-xs text-green-600">Uploaded ✓</div>}
                 </div>
                 {canResubmit && (
-                  <label className="cursor-pointer">
+                  <div>
                     <input
+                      ref={(element) => { fileInputs.current[req.docType] = element; }}
                       type="file"
                       className="hidden"
+                      aria-label={`${req.label} file`}
                       accept={req.docType === 'intro_video' ? 'video/*' : req.docType === 'portfolio_image' ? 'image/*' : 'image/*,application/pdf'}
-                      onChange={(e) => handleUpload(req.docType, e.target.files?.[0], req.label)}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        e.target.value = '';
+                        handleUpload(req.docType, file, req.label);
+                      }}
                     />
-                    <span className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                      <Upload className="w-4 h-4" />
+                    <button
+                      type="button"
+                      aria-label={`${uploaded ? 'Replace' : 'Upload'} ${req.label}`}
+                      aria-disabled={uploadingType !== null}
+                      aria-describedby="document-upload-status"
+                      onClick={() => {
+                        if (!uploadingType) fileInputs.current[req.docType]?.click();
+                      }}
+                      className="inline-flex min-h-11 min-w-11 items-center gap-1 text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-500"
+                    >
+                      <Upload className="w-4 h-4" aria-hidden="true" />
                       {uploadingType === req.docType ? 'Uploading…' : uploaded ? 'Replace' : 'Upload'}
-                    </span>
-                  </label>
+                    </button>
+                  </div>
                 )}
               </div>
             );
@@ -207,7 +233,8 @@ export default function TeacherApplicationStatus() {
         </CardBody>
       </Card>
 
-      {error && <p className="text-sm text-red-500 mb-4">{error}</p>}
+      <p id="document-upload-status" role="status" aria-live="polite" aria-atomic="true" className="text-sm text-gray-600 dark:text-gray-300 mb-4">{uploadStatus}</p>
+      {error && <p role="alert" className="text-sm text-red-700 dark:text-red-300 mb-4">{error}</p>}
 
       {canResubmit && (
         <Button onClick={handleResubmit} loading={submitting} className="w-full"

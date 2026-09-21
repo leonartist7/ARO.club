@@ -12,7 +12,7 @@ vi.mock('./supabase', () => ({
   },
 }))
 
-import { submitApplication, uploadDocument } from './teacherApplications'
+import { getUploadCleanupOutcome, submitApplication, uploadDocument } from './teacherApplications'
 
 function updateResult(result) {
   const chain = {
@@ -50,7 +50,7 @@ describe('teacher application client contracts', () => {
   it('removes the uploaded object once when document metadata persistence fails', async () => {
     const metadataError = new Error('metadata write failed')
     const docs = documentInsertResult({ data: null, error: metadataError })
-    const remove = vi.fn(async () => ({ error: null }))
+    const remove = vi.fn(async ([path]) => ({ data: [{ name: path }], error: null }))
     const upload = vi.fn(async () => ({ error: null }))
     mocks.from.mockReturnValue(docs)
     mocks.storageFrom.mockReturnValue({ upload, remove })
@@ -61,8 +61,29 @@ describe('teacher application client contracts', () => {
     })).rejects.toBe(metadataError)
 
     expect(remove).toHaveBeenCalledTimes(1)
-    expect(remove.mock.calls[0][0]).toHaveLength(1)
+    expect(remove).toHaveBeenCalledWith([upload.mock.calls[0][0]])
+    expect(getUploadCleanupOutcome(metadataError)).toBe('removed')
     expect(upload).toHaveBeenCalledTimes(1)
+  })
+
+  it.each(['resolved-error', 'rejected', 'unconfirmed'])('reports %s cleanup failure without replacing or exposing provider errors', async (mode) => {
+    const metadataError = Object.freeze(new Error('metadata write failed'))
+    const cleanupError = new Error('private-bucket/user/path?token=secret')
+    const upload = vi.fn(async () => ({ error: null }))
+    const remove = vi.fn(() => mode === 'rejected'
+      ? Promise.reject(cleanupError)
+      : Promise.resolve(mode === 'unconfirmed' ? { data: [], error: null } : { error: cleanupError }))
+    mocks.from.mockReturnValue(documentInsertResult({ data: null, error: metadataError }))
+    mocks.storageFrom.mockReturnValue({ upload, remove })
+
+    await expect(uploadDocument({ userId: 'user-id', applicationId: 'application-id', docType: 'id',
+      file: new File(['x'], 'identity.png', { type: 'image/png' }), label: 'ID' })).rejects.toBe(metadataError)
+
+    expect(remove).toHaveBeenCalledTimes(1)
+    expect(remove).toHaveBeenCalledWith([upload.mock.calls[0][0]])
+    expect(getUploadCleanupOutcome(metadataError)).toBe('failed')
+    expect(metadataError.message).toBe('metadata write failed')
+    expect(getUploadCleanupOutcome(cleanupError)).toBeUndefined()
   })
 
   it('does not attempt cleanup when object upload itself fails', async () => {

@@ -1,5 +1,5 @@
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
@@ -31,8 +31,57 @@ async function waitForServer() {
   throw new Error('BROWSER_SERVER_TIMEOUT');
 }
 
-export async function exerciseAuthenticatedBrowser({ anonKey, email, password }) {
+function observeDataTimings(page) {
+  const samples = { auth: [], data: [] };
+  const pending = [];
+  page.on('requestfinished', (request) => {
+    const url = new URL(request.url());
+    if (url.origin !== new URL(API).origin) return;
+    const category = url.pathname.startsWith('/auth/v1/') ? 'auth'
+      : /^\/(rest|storage)\/v1\//.test(url.pathname) ? 'data' : null;
+    if (!category) return;
+    pending.push((async () => {
+      const response = await request.response();
+      const duration = request.timing().responseEnd;
+      if (response?.ok() && duration >= 0) samples[category].push(duration);
+    })());
+  });
+  return { async finish() {
+    await Promise.all(pending);
+    return Object.fromEntries(Object.entries(samples).map(([category, values]) => {
+      values.sort((a, b) => a - b);
+      return [category, { count: values.length, p95Ms: values[Math.max(0, Math.ceil(values.length * 0.95) - 1)] ?? 0 }];
+    }));
+  } };
+}
+
+async function keyboardChooseFile(page, name, file) {
+  const button = page.getByRole('button', { name, exact: true });
+  for (let tab = 0; tab < 80; tab += 1) {
+    await page.keyboard.press('Tab');
+    if (await button.evaluate(element => element === document.activeElement)) break;
+  }
+  requireCondition(await button.evaluate(element => element === document.activeElement), 'UPLOAD_NOT_KEYBOARD_REACHABLE');
+  requireCondition(await button.evaluate(element => {
+    const style = getComputedStyle(element);
+    return parseFloat(style.outlineWidth) >= 2 && style.outlineStyle !== 'none';
+  }), 'UPLOAD_FOCUS_NOT_VISIBLE');
+  const [chooser] = await Promise.all([
+    page.waitForEvent('filechooser', { timeout: uiReadyTimeout }),
+    page.keyboard.press('Enter'),
+  ]);
+  await chooser.setFiles(file);
+  return button;
+}
+
+async function captureJourney(page, caseId, state) {
+  requireCondition(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), 'JOURNEY_HORIZONTAL_OVERFLOW');
+  await page.screenshot({ path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-${state}.png`, animations: 'disabled', fullPage: true, timeout: 10000 });
+}
+
+export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
+  requireCondition(Array.isArray(emails) && emails.length === 4 && new Set(emails).size === 4, 'FOUR_DISTINCT_APPLICANTS_REQUIRED');
   mkdirSync(screenshotDir, { recursive: true });
   const nextCli = fileURLToPath(new URL('../../node_modules/next/dist/bin/next', import.meta.url));
   const appEnvironment = {
@@ -142,9 +191,11 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
     }
 
     for (const theme of ['light', 'dark']) {
-      stage = `CONTEXT_${theme.toUpperCase()}`;
+      for (const width of [360, 1440]) {
+      const caseId = `${width}-${theme}`;
+      stage = `CONTEXT_${width}_${theme.toUpperCase()}`;
       const context = await browser.newContext({
-        viewport: { width: 360, height: 800 },
+        viewport: { width, height: width === 360 ? 800 : 1000 },
         colorScheme: theme,
       });
       await context.addInitScript((selectedTheme) => localStorage.setItem('theme', selectedTheme), theme);
@@ -152,15 +203,11 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
       const pageErrors = [];
       page.on('pageerror', error => pageErrors.push(String(error)));
 
-      for (const width of [360, 1440]) {
-        await page.setViewportSize({ width, height: width === 360 ? 800 : 1000 });
+        const timing = observeDataTimings(page);
         let started = performance.now();
 
-        // One real sign-in per color-scheme. The desktop capture then proves
-        // the same authenticated session survives a responsive resize, rather
-        // than creating a fourth cold browser boot under a heavily loaded CI
-        // worker.
-        if (width === 360) {
+        {
+          const email = emails[(theme === 'light' ? 0 : 2) + (width === 360 ? 0 : 1)];
           stage = `LOGIN_PAGE_${width}_${theme.toUpperCase()}`;
           await page.goto(`${base}/login`, { waitUntil: 'networkidle' });
           stage = `LOGIN_INPUTS_${width}_${theme.toUpperCase()}`;
@@ -184,7 +231,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           await page.waitForURL(url => url.pathname !== '/login', { timeout: 10000 });
         }
 
-        if (width === 360 && theme === 'light') {
+        {
           const journeyStarted = performance.now();
           // This lane is deliberately real-client proof: onboarding must leave
           // an editable draft, collect documents on the status surface, and
@@ -226,6 +273,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           const readyHeading = page.getByRole('heading', { name: 'Ready to add your documents' });
           await readyHeading.waitFor({ state: 'visible', timeout: uiReadyTimeout });
           const readyScreen = readyHeading.locator('xpath=..');
+          await captureJourney(page, caseId, 'onboarding-ready');
           stage = `ONBOARDING_DRAFT_CREATE_REQUEST_${width}_${theme.toUpperCase()}`;
           const submitResponse = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'POST'
@@ -236,51 +284,76 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
           requireCondition(await page.getByText('Add your portfolio below, then submit for verification.').count() === 1,
             'DOCUMENT_COLLECTION_SURFACE_MISSING');
+          const persistedApplication = page.waitForResponse(response => response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'GET');
+          const persistedProfile = page.waitForResponse(response => response.url().includes('/rest/v1/profiles') && response.request().method() === 'GET');
           await page.reload({ waitUntil: 'networkidle' });
+          const applicationPayload = await (await persistedApplication).json();
+          const application = Array.isArray(applicationPayload) ? applicationPayload[0] : applicationPayload;
+          const profilePayload = await (await persistedProfile).json();
+          const profile = Array.isArray(profilePayload) ? profilePayload[0] : profilePayload;
+          requireCondition(application?.status === 'draft' && application.display_name === 'Synthetic Teacher'
+            && application.bio === 'Synthetic browser evidence confirms this editable application draft before explicit submission.'
+            && application.languages?.[0]?.code === 'es' && application.experience_types?.[0] === 'cooking', 'DRAFT_VALUES_NOT_PERSISTED');
+          requireCondition(profile?.name === 'Synthetic Teacher' && profile.user_type === 'teacher'
+            && profile.onboarding_completed === true && profile.bio === application.bio
+            && profile.experience_types?.[0] === 'cooking', 'PROFILE_VALUES_NOT_PERSISTED');
           await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
           requireCondition(await page.locator('input[type="file"]').count() >= 1, 'DOCUMENT_COLLECTION_NOT_EDITABLE');
           requireCondition(await page.getByRole('button', { name: 'Submit for verification' }).isEnabled(), 'DRAFT_NOT_EDITABLE');
           await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-draft-before-submit.png`,
+            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-draft-before-submit.png`,
             animations: 'disabled', fullPage: false, timeout: 10000,
           });
 
-          stage = 'DOCUMENT_FAILURE_AND_RETRY_360_LIGHT';
+          stage = `DOCUMENT_FAILURE_AND_RETRY_${caseId.toUpperCase()}`;
           let metadataRequestAborted = false;
+          let releaseMetadata;
+          const metadataGate = new Promise(resolve => { releaseMetadata = resolve; });
           const metadataRoute = async (route) => {
             if (!metadataRequestAborted && route.request().method() === 'POST') {
               metadataRequestAborted = true;
+              await metadataGate;
               await route.abort('failed');
               return;
             }
             await route.continue();
           };
           await page.route(`${API}/rest/v1/teacher_documents**`, metadataRoute);
-          const documentInput = page.locator('input[type="file"]').first();
-          await documentInput.setInputFiles({
+          const uploadButton = await keyboardChooseFile(page, 'Upload Intro video', {
             name: 'synthetic-intro.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video'),
           });
-          await page.getByText(/Failed to fetch|Upload failed/).waitFor({ timeout: uiReadyTimeout });
+          await page.getByRole('status').filter({ hasText: 'Uploading Intro video.' }).waitFor({ timeout: uiReadyTimeout });
+          await captureJourney(page, caseId, 'document-pending');
+          releaseMetadata();
+          await page.getByRole('alert').filter({ hasText: 'Upload failed. The uploaded file was removed. Please try again.' }).waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await uploadButton.evaluate(element => element === document.activeElement), 'UPLOAD_ERROR_LOST_FOCUS');
           requireCondition(metadataRequestAborted, 'DOCUMENT_METADATA_FAILURE_NOT_INDUCED');
           await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-failure.png`,
+            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-document-failure.png`,
             animations: 'disabled', fullPage: false, timeout: 10000,
           });
           await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
           const metadataRetry = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'POST'
           ), { timeout: uiReadyTimeout });
-          await documentInput.setInputFiles({
+          await keyboardChooseFile(page, 'Upload Intro video', {
             name: 'synthetic-intro-retry.mp4', mimeType: 'video/mp4', buffer: Buffer.from('synthetic-local-ci-video-retry'),
           });
           requireCondition((await metadataRetry).status() === 201, 'DOCUMENT_METADATA_RETRY_FAILED');
           await page.getByText('Uploaded ✓').waitFor({ timeout: uiReadyTimeout });
+          await page.getByRole('status').filter({ hasText: 'Intro video uploaded.' }).waitFor({ timeout: uiReadyTimeout });
+          const persistedDocuments = page.waitForResponse(response => response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'GET');
+          await page.reload({ waitUntil: 'networkidle' });
+          const documents = await (await persistedDocuments).json();
+          requireCondition(Array.isArray(documents) && documents.length === 1 && documents[0].doc_type === 'intro_video'
+            && documents[0].label === 'Intro video', 'DOCUMENT_RETRY_NOT_PERSISTED');
+          await page.getByRole('button', { name: 'Replace Intro video', exact: true }).waitFor();
           await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-document-retry.png`,
+            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-document-retry.png`,
             animations: 'disabled', fullPage: false, timeout: 10000,
           });
 
-          stage = 'EXPLICIT_SUBMIT_SERVER_TIMESTAMP_360_LIGHT';
+          stage = `EXPLICIT_SUBMIT_SERVER_TIMESTAMP_${caseId.toUpperCase()}`;
           const explicitSubmit = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'PATCH'
           ), { timeout: uiReadyTimeout });
@@ -290,8 +363,14 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           const submitted = await submittedResponse.json();
           requireCondition(submitted?.status === 'submitted' && Boolean(submitted.submitted_at), 'SERVER_SUBMISSION_TIMESTAMP_MISSING');
           await page.getByRole('heading', { name: 'Application submitted' }).waitFor({ timeout: uiReadyTimeout });
+          const reloadedSubmission = page.waitForResponse(response => response.url().includes('/rest/v1/teacher_applications') && response.request().method() === 'GET');
+          await page.reload({ waitUntil: 'networkidle' });
+          const submissionPayload = await (await reloadedSubmission).json();
+          const persistedSubmission = Array.isArray(submissionPayload) ? submissionPayload[0] : submissionPayload;
+          requireCondition(persistedSubmission?.status === 'submitted' && persistedSubmission.submitted_at === submitted.submitted_at, 'SUBMISSION_NOT_PERSISTED');
+          requireCondition(await page.getByRole('button', { name: 'Replace Intro video', exact: true }).count() === 0, 'SUBMITTED_UPLOAD_STILL_EDITABLE');
           await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-360-light-submitted-server-timestamp.png`,
+            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-submitted-server-timestamp.png`,
             animations: 'disabled', fullPage: false, timeout: 10000,
           });
           requireCondition(performance.now() - journeyStarted < 120000, 'APPLICANT_JOURNEY_TIMEOUT');
@@ -328,8 +407,12 @@ export async function exerciseAuthenticatedBrowser({ anonKey, email, password })
           fullPage: false,
           timeout: 10000,
         });
+        const report = await timing.finish();
+        requireCondition(report.auth.count > 0 && report.data.count > 0, 'DATA_TIMINGS_MISSING');
+        writeFileSync(`${screenshotDir}/authenticated-synthetic-journey-${caseId}-timings.json`, JSON.stringify({ caseId, budgetMs: 1000, ...report }, null, 2));
+        requireCondition(report.auth.p95Ms < 1000 && report.data.p95Ms < 1000, 'AUTH_DATA_P95_BUDGET');
+        await context.close();
       }
-      await context.close();
     }
   } catch (error) {
     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;

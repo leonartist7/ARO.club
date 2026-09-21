@@ -1,6 +1,6 @@
 # ARO-N1 — Current-main reconciliation and Vercel rollout
 
-Version 1.2.0. Production-readiness extension: SPEC-READY / IN-PROGRESS. Preview deployment and required CI pass; production/provider verification remains in progress.
+Version 1.3.0. Bounded independent-review repairs: SPEC-READY / IN-PROGRESS. Baseline b431fb59981458f82c635deb2d60e7ffb4077d43 passes required CI; production/provider verification remains open.
 Owner: founder. Authorization: explicit Next.js migration request and September 21 request to verify/deploy Vercel, Supabase and GitHub integration, including AI Gateway readiness.
 Branch: `codex/nextjs-vercel-rollout`. Baseline: `79603ae1af60a30f86c105e0f2a4d841043eb727`.
 
@@ -15,6 +15,10 @@ Port the existing N1 App Router and staging-account implementation onto current 
 Governing documents: AGENTS.md, ARO_BUILD_PLAYBOOK.md, ARO_ARCHITECTURE.md, ARO_INFRASTRUCTURE.md and ARO_TRUST_SAFETY.md. N1's original acceptance requirements continue to apply.
 
 ## Runtime and permissions
+The September 21 controller handoff binds N1-U, N1-R7 and N1-A11Y to this sole owning branch. Repair paths are `src/lib/teacherApplications.js`, `src/lib/teacherApplications.test.js`, `src/views/teacher/TeacherApplicationStatus.jsx`, and `tools/ci/browser.mjs`; existing spec/evidence/status documentation is included. Cleanup must preserve the original metadata error and expose only a safe removed/failed outcome, including rejected and resolved-error removal results. Upload controls must be keyboard reachable/activatable with visible focus, and pending/success/error states must be announced. Browser verification covers the entire changed journey at 360/1440 in light/dark, reload persistence, keyboard activation, status semantics and sanitized data-call timing. No SQL, role, retention, dependency, provider or auth-mode changes are authorized by this repair. Additional fixture paths require the controller's bounded amendment; no parallel writer starts. A new exact-head independent review is required after the repair.
+
+Controller decision (September 21, task 01a0c346-9e61-7f63-a511-f72097fbf59c): `tools/ci/auth.mjs` and `tools/ci/run.mjs` are explicitly included for four distinct synthetic browser applicants plus the API owner. Assert exactly five accounts before reset and zero afterwards; retain disposable-only isolation and secret suppression. Measure successful browser Auth/data requests by safe operation category, without URLs/query strings, credentials or payloads; p95 remains below 1 s under I0.2 §20. Capture draft, pending upload, induced error, successful retry, submitted state and profile in every matrix case. This decision does not authorize hosted accounts or alter RLS.
+
 Next.js routes/layouts use TypeScript; existing JavaScript components remain. Cookie-based Supabase SSR verifies identity and authoritative database roles. Only the registered isolated staging project may serve enabled preview accounts. Missing configuration fails closed. Authenticated responses use private/no-store caching. Logout clears account state. Callback destinations are validated same-origin paths. RLS and verified-teacher publishing remain unchanged.
 
 ## Provider work
