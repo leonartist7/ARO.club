@@ -75,6 +75,7 @@ async function keyboardChooseFile(page, name, file) {
 }
 
 async function captureJourney(page, caseId, state) {
+  requireCondition(await page.locator('input[type="email"], input[type="password"]').count() === 0, 'JOURNEY_CAPTURE_CREDENTIAL_INPUT_PRESENT');
   requireCondition(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), 'JOURNEY_HORIZONTAL_OVERFLOW');
   await page.screenshot({ path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-${state}.png`, animations: 'disabled', fullPage: true, timeout: 10000 });
 }
@@ -300,10 +301,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           await page.getByRole('heading', { name: 'Finish your application' }).waitFor({ timeout: uiReadyTimeout });
           requireCondition(await page.locator('input[type="file"]').count() >= 1, 'DOCUMENT_COLLECTION_NOT_EDITABLE');
           requireCondition(await page.getByRole('button', { name: 'Submit for verification' }).isEnabled(), 'DRAFT_NOT_EDITABLE');
-          await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-draft-before-submit.png`,
-            animations: 'disabled', fullPage: false, timeout: 10000,
-          });
+          await captureJourney(page, caseId, 'draft-before-submit');
 
           stage = `DOCUMENT_FAILURE_AND_RETRY_${caseId.toUpperCase()}`;
           let metadataRequestAborted = false;
@@ -328,10 +326,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           await page.getByRole('alert').filter({ hasText: 'Upload failed. The uploaded file was removed. Please try again.' }).waitFor({ timeout: uiReadyTimeout });
           requireCondition(await uploadButton.evaluate(element => element === document.activeElement), 'UPLOAD_ERROR_LOST_FOCUS');
           requireCondition(metadataRequestAborted, 'DOCUMENT_METADATA_FAILURE_NOT_INDUCED');
-          await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-document-failure.png`,
-            animations: 'disabled', fullPage: false, timeout: 10000,
-          });
+          await captureJourney(page, caseId, 'document-failure');
           await page.unroute(`${API}/rest/v1/teacher_documents**`, metadataRoute);
           const metadataRetry = page.waitForResponse((response) => (
             response.url().includes('/rest/v1/teacher_documents') && response.request().method() === 'POST'
@@ -348,10 +343,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           requireCondition(Array.isArray(documents) && documents.length === 1 && documents[0].doc_type === 'intro_video'
             && documents[0].label === 'Intro video', 'DOCUMENT_RETRY_NOT_PERSISTED');
           await page.getByRole('button', { name: 'Replace Intro video', exact: true }).waitFor();
-          await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-document-retry.png`,
-            animations: 'disabled', fullPage: false, timeout: 10000,
-          });
+          await captureJourney(page, caseId, 'document-retry');
 
           stage = `EXPLICIT_SUBMIT_SERVER_TIMESTAMP_${caseId.toUpperCase()}`;
           const explicitSubmit = page.waitForResponse((response) => (
@@ -369,10 +361,7 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           const persistedSubmission = Array.isArray(submissionPayload) ? submissionPayload[0] : submissionPayload;
           requireCondition(persistedSubmission?.status === 'submitted' && persistedSubmission.submitted_at === submitted.submitted_at, 'SUBMISSION_NOT_PERSISTED');
           requireCondition(await page.getByRole('button', { name: 'Replace Intro video', exact: true }).count() === 0, 'SUBMITTED_UPLOAD_STILL_EDITABLE');
-          await page.screenshot({
-            path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-submitted-server-timestamp.png`,
-            animations: 'disabled', fullPage: false, timeout: 10000,
-          });
+          await captureJourney(page, caseId, 'submitted-server-timestamp');
           requireCondition(performance.now() - journeyStarted < 120000, 'APPLICANT_JOURNEY_TIMEOUT');
           started = performance.now();
         }
