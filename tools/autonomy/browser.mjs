@@ -1,21 +1,34 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { verifySource, separateRoots, hash, writeJson } from './core.mjs';
+import { verifySource, separateRoots, safeFile, hash, writeJson } from './core.mjs';
+import { frameworkInventory, frameworkCommands, syntheticEnvironment, freshBuildDirectory } from './framework.mjs';
 
 // Evidence collection only. AI audit completion remains a separate worker report.
 const [source, sha, output] = process.argv.slice(2);
-const { root } = verifySource(source, sha);
+const { root, tracked } = verifySource(source, sha);
 const { out } = separateRoots(root, output);
-if (!/UX0_PROTOTYPE_MODE\s*=\s*true/.test(fs.readFileSync(path.join(root, 'src/config/ux0.js'), 'utf8'))) throw Error('Browser evidence requires synthetic mode');
+if (!tracked.includes('src/config/ux0.js') || !/UX0_PROTOTYPE_MODE\s*=\s*true/.test(fs.readFileSync(safeFile(root, 'src/config/ux0.js'), 'utf8'))) throw Error('Browser evidence requires synthetic mode');
+const { framework } = frameworkInventory(root, tracked, safeFile);
+const commands = frameworkCommands(framework);
+const environment = syntheticEnvironment(root, process.env);
 if (fs.existsSync(out)) throw Error('Browser output must be a new directory');
 fs.mkdirSync(out, { recursive: true });
+// Never launch a prior build whose public variables might have been inlined.
+// Only the validated, ignored framework output in this disposable root is removed.
+fs.rmSync(freshBuildDirectory(root, tracked, commands.output), { recursive: true, force: true });
+const executable = safeFile(root, commands.executable);
+const build = spawnSync(process.execPath, [executable, ...commands.build], { cwd: root, env: environment, stdio: 'ignore', timeout: 300000 });
+if (build.error || build.status !== 0) throw Error('Synthetic rebuild failed; output suppressed');
+verifySource(root, sha);
+syntheticEnvironment(root, process.env);
+writeJson(path.join(out, 'synthetic-build.json'), { auditSha: sha, framework, freshBuild: true, accountsEnabled: false, providerConfiguration: false, localEnvironmentFiles: false, inheritedBuildUsed: false });
 const require = createRequire(path.join(root, 'package.json'));
 const { chromium } = require('playwright');
 const base = 'http://127.0.0.1:5199';
-const server = spawn(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'preview', '--host', '127.0.0.1', '--port', '5199', '--strictPort'], { cwd: root, stdio: 'ignore' });
+const server = spawn(process.execPath, [executable, ...commands.serve], { cwd: root, env: environment, stdio: 'ignore' });
 let browser;
 const results = [], failures = [];
 try {
