@@ -1,3 +1,4 @@
+'use client';
 import { Card } from './Card';
 import Skeleton, { SkeletonText, SkeletonTitle, SkeletonAvatar } from './Skeleton';
 

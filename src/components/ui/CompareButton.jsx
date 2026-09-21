@@ -1,3 +1,4 @@
+'use client';
 import { Plus, Check } from 'lucide-react';
 import clsx from 'clsx';
 import { useCompare } from '../../hooks/useCompare';

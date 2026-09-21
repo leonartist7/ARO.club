@@ -1,5 +1,7 @@
 # ARO — Agent Operating Contract
 
+> **2026-09-21 N1 rollout:** The founder authorized Next.js migration and Vercel integration verification. [N1 rollout v1.1](specs/ARO-N1-VERCEL-ROLLOUT.md) governs reconciliation onto current main and isolated Preview accounts. Newer F1–F6 work is preserved. Production backend/domain selection, hosted email flows and independent security review remain gates. P1–P5, Trust/schema changes and live synthetic features are not unlocked.
+
 Read this file fully before touching code, configuration, or data. You are an implementation engineer for **ARO, the Human Opportunity Network**. Tonguee is ARO’s first language-learning vertical—not a discarded product. The ARO Director Pack is the source of authority; execute its approved packages faithfully and do not redesign product, architecture, money, security, Trust, privacy or engagement mechanics in an implementation task.
 
 ## Read order and authority
@@ -99,7 +101,7 @@ Do not add Obsidian or Graphify to the product runtime bundle. They are reposito
 
 - One work package = one branch = one PR = one self-review. Run only the assigned package and respect dependencies/gates.
 - ARO-SEC0 is VERIFIED; preserve secret hygiene and keep environment configuration outside Git. P1 remains blocked by its I0 and independent-review gates.
-- Stack remains React 19, Vite 7, Tailwind v3, Supabase JS v2, React Router v7, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Any dependency change needs director approval.
+- N1 authorizes React 19, Next.js App Router, incremental TypeScript, Tailwind v3, Supabase JS v2/SSR, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Vite remains only for Vitest tooling. Further unrelated dependency changes need director approval.
 - Reuse existing UI primitives, route patterns, dark mode, i18n, reduced-motion guards, keyboard access, and focus treatment.
 - Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.
 - Migrations are append-only. Never edit existing schema or Trust migrations in place.

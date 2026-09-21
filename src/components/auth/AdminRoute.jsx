@@ -1,4 +1,5 @@
-import { Navigate, useLocation } from 'react-router-dom';
+'use client';
+import { Navigate, useLocation } from '../../lib/navigation';
 import { useAuth } from '../../contexts/AuthContext';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
@@ -16,7 +17,7 @@ export default function AdminRoute({ children }) {
 
   // Not authenticated — send to login so they can return after sign-in
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to={"/login?next="+encodeURIComponent(location.pathname+location.search)} replace />;
   }
 
   // Authenticated but not admin — generic not-found

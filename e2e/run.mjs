@@ -24,7 +24,7 @@ const isUp = async () => {
   }
 };
 
-const waitForServer = async (attempts = 40) => {
+const waitForServer = async (attempts = 120) => {
   for (let i = 0; i < attempts; i++) {
     if (await isUp()) return true;
     await sleep(500);
@@ -49,14 +49,15 @@ if (await isUp()) {
   console.log(`Using the dev server already running at ${BASE}`);
 } else {
   console.log(`Starting a dev server for ${BASE}`);
-  const viteCli = fileURLToPath(new URL('../node_modules/vite/bin/vite.js', import.meta.url));
-  server = spawn(process.execPath, [viteCli, '--host', '127.0.0.1'], {
+  const nextCli = fileURLToPath(new URL('../node_modules/next/dist/bin/next', import.meta.url));
+  server = spawn(process.execPath, [nextCli, 'dev', '--hostname', '127.0.0.1', '--port', new URL(BASE).port || '5173'], {
     stdio: 'ignore',
     detached: process.platform !== 'win32',
     env: {
       ...process.env,
-      VITE_SUPABASE_URL: 'https://ux0-network-boundary.supabase.co',
-      VITE_SUPABASE_ANON_KEY: 'synthetic-browser-key-for-network-boundary-test',
+      NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS: 'false',
+      NEXT_PUBLIC_SUPABASE_URL: 'https://ux0-network-boundary.supabase.co',
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: 'synthetic-browser-key-for-network-boundary-test',
     },
   });
 

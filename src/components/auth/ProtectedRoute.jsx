@@ -1,4 +1,5 @@
-import { Navigate, useLocation } from 'react-router-dom';
+'use client';
+import { Navigate, useLocation } from '../../lib/navigation';
 import { useAuth } from '../../contexts/AuthContext';
 
 /**
@@ -26,7 +27,7 @@ export default function ProtectedRoute({ children, requireRole }) {
   }
 
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to={"/login?next="+encodeURIComponent(location.pathname+location.search)} replace />;
   }
 
   if (requireRole && profile?.role !== requireRole) {

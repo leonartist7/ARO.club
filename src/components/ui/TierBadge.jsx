@@ -1,4 +1,5 @@
-﻿import { ShieldCheck, BadgeCheck, Crown } from 'lucide-react';
+'use client';
+import { ShieldCheck, BadgeCheck, Crown } from 'lucide-react';
 import Badge from './Badge';
 import { cn } from '../../utils/cn';
 
