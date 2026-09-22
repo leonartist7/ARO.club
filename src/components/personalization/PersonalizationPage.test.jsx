@@ -92,12 +92,25 @@ describe("personalization preview interactions", () => {
     expect(count()).toBe(3);
     expect(host.querySelector(".pv-save").disabled).toBe(true);
   });
+  it("preserves chapter selection between world and list and previews a keepsake", async () => {
+    await render("season");
+    await click(host.querySelectorAll('.sx-chapters button')[2]);
+    expect(host.querySelector('.sx-selected h2').textContent).toBe('Contribute');
+    await click(button('List'));
+    expect(host.querySelector('.sx-world')).toBeNull();
+    expect(host.querySelector('.sx-selected .pv-action').getAttribute('href')).toBe('/app/opportunities/repair-table');
+    await click(button('World'));
+    expect(host.querySelector('.sx-point-2').getAttribute('aria-pressed')).toBe('true');
+    await click(host.querySelector('.sx-object-grid button'));
+    expect(host.querySelector('dialog .pv-action').getAttribute('href')).toBe('/app/personalize/space?item=plant');
+  });
   it("opens each seasonal chapter without a purchase or claim action", async () => {
     await render("season");
-    const chapterButtons = [...host.querySelectorAll(".pv-chapters button")];
+    const chapterButtons = [...host.querySelectorAll(".sx-chapters button")];
     expect(chapterButtons).toHaveLength(4);
     for (const chapter of chapterButtons) {
       await click(chapter);
+      await click(button("Chapter details"));
       expect(host.querySelector("dialog").textContent).toContain("preview");
       await click(host.querySelector(".pv-dialog-header button"));
     }

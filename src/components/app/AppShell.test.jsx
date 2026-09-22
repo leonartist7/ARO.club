@@ -4,6 +4,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import AppShell from './AppShell'
 import AppNotFoundPage from '../../views/AppNotFoundPage'
 
+vi.mock('../../contexts/LanguageContext', () => ({ useLanguage: () => ({ language: 'en' }) }))
+
 const navigation = vi.hoisted(() => ({ pathname: '/app' }))
 afterEach(cleanup)
 vi.mock('next/navigation', () => ({
@@ -21,16 +23,16 @@ function renderApp(path) {
 }
 
 describe('FV-1 app shell', () => {
-  it('discloses the fictional preview and keeps unavailable controls non-actionable', () => {
+  it('discloses the fictional preview and offers useful navigation', () => {
     renderApp('/app')
     expect(screen.getByText('Fictional preview. No live accounts, reservations or payments.')).toBeTruthy()
-    expect(screen.getByLabelText(/Search preview/).tagName).toBe('SPAN')
-    expect(screen.getByLabelText(/Notifications preview/).tagName).toBe('SPAN')
+    expect(screen.getByLabelText('Explore opportunities').getAttribute('href')).toBe('/app/opportunities')
+    expect(screen.getByLabelText('Your world').getAttribute('href')).toBe('/app/personalize')
   })
 
   it('sends the Create close control to World', () => {
     renderApp('/app/create')
-    expect(screen.getByLabelText('Back to World').getAttribute('href')).toBe('/app/world')
+    expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
   })
 
   it('recovers unknown app routes inside the shell', () => {
@@ -39,9 +41,9 @@ describe('FV-1 app shell', () => {
     expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
   })
 
-  it('keeps World selected for opportunity routes', () => {
+  it('keeps Explore selected for opportunity routes', () => {
     renderApp('/app/opportunities/shared-stories')
     const navigation = screen.getAllByRole('navigation', { name: 'Primary app navigation' }).at(-1)
-    expect(within(navigation).getByRole('link', { name: 'World' }).getAttribute('aria-current')).toBe('page')
+    expect(within(navigation).getByRole('link', { name: 'Explore' }).getAttribute('aria-current')).toBe('page')
   })
 })
