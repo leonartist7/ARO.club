@@ -862,8 +862,11 @@
 
 .pv-avatar-layers {
   position: absolute;
-
-  inset: 60px 18px 35px;
+  width: min(calc(100% - 40px), 420px);
+  aspect-ratio: 1;
+  left: 50%;
+  bottom: 35px;
+  transform: translateX(-50%);
 }
 
 .pv-avatar-base {
@@ -876,17 +879,11 @@
 
 .pv-avatar-hat {
   position: absolute;
-
-  width: 39%;
-
-  height: 29%;
-
+  width: 30%;
+  height: 30%;
   object-fit: contain;
-
-  top: -14%;
-
-  left: 30%;
-
+  top: -16%;
+  left: 35%;
   transform: rotate(-5deg);
 }
 
@@ -2060,7 +2057,7 @@
 
 @media (max-width: 600px) {
   .pv {
-    padding-top: 4px;
+    padding: 4px 16px 0;
   }
 
   .pv-topline {
@@ -2191,9 +2188,7 @@
     min-height: 430px;
   }
 
-  .pv-avatar-layers {
-    inset: 45px 20px 28px;
-  }
+
 
   .pv-stage-label {
     top: 17px;
@@ -2512,9 +2507,12 @@
 }
 .pv-scene-person > .pv-scene-hat {
   position: absolute;
-  top: -17%;
-  left: 26%;
-  width: 48%;
-  height: 27%;
+  top: -16%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
   transform: rotate(-5deg);
 }
+
+/* One square coordinate system keeps the hat anchored at every width. */
+.pv-scene-person{height:auto;aspect-ratio:1}
