@@ -522,3 +522,8 @@ The founder requested a competition-focused launch/evidence program. `SHIPATON_M
 ## 2026-09-08 — AUTO0 execution foundation
 
 The founder authorized a spec-driven cloud orchestration/memory system using existing ChatGPT cloud tasks only, with no new API billing. `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` governs repository-only bootstrap, worker packets, report validation, a GitHub-hosted browser evidence adapter and Obsidian-compatible memory. See `ARO_AUTONOMY.md` for exact capability and reported schedule state. Audit execution is separate from product implementation; I0/P1/FV-1 gates remain open. Tooling delivery does not establish that every cloud schedule is enabled.
+
+
+## 2026-09-22 — PV1 personalization frontend preview
+
+Founder-authorized profile, character, shop, courtyard and Season pages implemented under [PV1](specs/ARO-PV1-PERSONALIZATION-PREVIEW.md) on `codex/aro-personalization-preview-20260922`. Status: IMPLEMENTED / LOCAL CHECKS PASSED / VISUAL ACCEPTANCE PENDING. Build, lint, types and seven targeted tests pass; browser/device evidence remains pending due to unavailable local preview access. Original optimized assets and EN/FR/ES/theme/responsive code included. See [handoff](docs/personalization-preview/VERIFICATION.md). Synthetic in-memory state only; no new production capabilities or gate changes.
