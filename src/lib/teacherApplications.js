@@ -44,7 +44,15 @@ export async function getMyApplication(userId) {
     .limit(1)
     .maybeSingle();
   if (error) throw error;
-  return data;
+  if (!data) return null;
+
+  const { data: decision, error: decisionError } = await supabase
+    .from('teacher_application_decisions')
+    .select('application_id, decision_reason')
+    .eq('application_id', data.id)
+    .maybeSingle();
+  if (decisionError) throw decisionError;
+  return { ...data, decision_reason: decision?.decision_reason ?? null };
 }
 
 /** Get an existing draft/changes_requested application or create a fresh draft. */
