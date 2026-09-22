@@ -1,0 +1,11 @@
+# READY1 foundation reconciliation receipt
+
+Date: 2026-09-22. Claim READY1-20260922-001. Base f37dc084d7172415f581a41e90d2edd9ba3738b9. Candidate 0e935e1f2a53d3edc7fca3dbe21feef5ab9d032d. Draft PR https://github.com/leonartist7/ARO.club/pull/62.
+
+Ten documentation files only. Separate independent reviewer accepted corrective R1-R7/TIME/UPLOAD on unchanged N1 source with digest-verified existing evidence; full I02-08 remains open. Reviewer also accepted the finished readiness documentation with no blocking finding. Local pinned install, lint, build/TypeScript, source-diff scope, links, manifest and whitespace checks pass. Remote manifest readback blob d6297c4b14fe928515367793e744b90bb8736127. PR checks are pending at publication; no merge requested or performed.
+
+Live staging remains ACTIVE_HEALTHY but lacks the two corrective migrations and their grants/functions/policies. Only original20260903072838/20260903074227 migrations recorded; reputation INSERT still allowed, corrective functions absent, old owner-delete policies present. Read-only catalogues only; no customer rows queried. Advisor no-lint does not close this gap. Exact two staging callback URLs confirmed; SMTP OFF. Separate production backend not found. Production web deployment dpl_9yTw523u4SEYYSLUEmWFnz3vV35E READY at merged main; not hosted account readiness.
+
+R1 preparation and R2 corrective successor review completed. R3/R5 hosted/P1 gates remain blocked. F7 existing owner recovered and bounded #47 repair request actually dispatched, result pending. N1 owner asked to prepare a concrete test-only contract for the genuinely missing §21/reviewer lifecycle scenarios, not to execute tests or change providers yet. No product writer dispatched. Sponsor public offers confirmed; actual balances/redemption unverified; Devpost browser session logged out. Founder sender/provider information requested asynchronously. No new schedule, deployment, provider mutation or cost.
+
+Next: review returned N1 verification specification, obtain exclusive test-only claim, execute only missing tests; resolve hosted migration contract/SMTP/production-resource gates; preserve existing F7 human/lab ownership. READY1 is verified preparation, not product/store acceptance.
