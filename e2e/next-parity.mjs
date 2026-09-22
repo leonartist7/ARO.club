@@ -105,7 +105,7 @@ try {
       });
     }
   await page.goto(BASE + "/app", { waitUntil: "networkidle" });
-  await page.getByRole("link", { name: "World", exact: true }).click();
+  await page.getByRole("link", { name: "Explore", exact: true }).click();
   await page.waitForURL("**/app/world");
   await page.goBack();
   await page.waitForURL("**/app");

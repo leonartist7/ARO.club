@@ -840,3 +840,7 @@ Founder-authorized profile, character, shop, courtyard and Season pages implemen
 ### 2026-09-22 — PV1 hosted review continuation
 
 Runtime source `200df2171dded3a664c3662404f6bfe863ba277e` now has 60 passing hosted width/theme/language overflow checks and screenshots. Fixed hat alignment and mobile gutters. Eight local tests, build/lint pass; runtime-head static/browser-smoke/platform CI green. Earlier upload-chooser CI failure passed on the subsequent commit without platform changes; root cause not established. [Evidence and remaining native-device/independent/founder acceptance](docs/personalization-preview/VERIFICATION.md). PR60 remains draft, no production merge/release or gate change.
+
+
+### 2026-09-22 — EF1 experience foundation
+Founder approved the master frontend blueprint with “Go ahead”. EF1 implements the first synthetic visual wave on `codex/aro-experience-foundation-20260922`, PR #61 stacked on PV1/#60: localized navigation, Messages/Saved preview destinations, Your World access and richer Season exploration. Status: IMPLEMENTED / TARGETED CHECKS VERIFIED / ACCEPTANCE PENDING. See [EF1 spec](specs/ARO-EF1-EXPERIENCE-FOUNDATION.md), [master blueprint](docs/experience-foundation/MASTER-BLUEPRINT.md) and [verification handoff](docs/experience-foundation/VERIFICATION.md). No live data, money, rewards, provider or F7/I0/P1/release gate changes.
