@@ -1,0 +1,427 @@
+[
+  {
+    "route": "My world",
+    "theme": "light",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "My world",
+    "theme": "light",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "My world",
+    "theme": "light",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "My world",
+    "theme": "light",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "My world",
+    "theme": "light",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Character",
+    "theme": "light",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "heading": "A little more you.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Character",
+    "theme": "light",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "heading": "A little more you.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Character",
+    "theme": "light",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "heading": "A little more you.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Character",
+    "theme": "light",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "heading": "A little more you.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Character",
+    "theme": "light",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "heading": "A little more you.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Collection shop",
+    "theme": "light",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "heading": "Make it yours.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Collection shop",
+    "theme": "light",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "heading": "Make it yours.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Collection shop",
+    "theme": "light",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "heading": "Make it yours.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Collection shop",
+    "theme": "light",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "heading": "Make it yours.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Collection shop",
+    "theme": "light",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "heading": "Make it yours.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "My space",
+    "theme": "light",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "My space",
+    "theme": "light",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "My space",
+    "theme": "light",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "My space",
+    "theme": "light",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "My space",
+    "theme": "light",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Season",
+    "theme": "light",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "heading": "Awaken your city.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Season",
+    "theme": "light",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "heading": "Awaken your city.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Season",
+    "theme": "light",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "heading": "Awaken your city.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Season",
+    "theme": "light",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "heading": "Awaken your city.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Season",
+    "theme": "light",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "heading": "Awaken your city.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "My world",
+    "theme": "dark",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "dark": true,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "My world",
+    "theme": "dark",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "dark": true,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "My world",
+    "theme": "dark",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "dark": true,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "My world",
+    "theme": "dark",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "dark": true,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "My world",
+    "theme": "dark",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "dark": true,
+    "heading": "A little world.\nEntirely yours.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Character",
+    "theme": "dark",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "dark": true,
+    "heading": "A little more you.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Character",
+    "theme": "dark",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "dark": true,
+    "heading": "A little more you.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Character",
+    "theme": "dark",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "dark": true,
+    "heading": "A little more you.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Character",
+    "theme": "dark",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "dark": true,
+    "heading": "A little more you.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Character",
+    "theme": "dark",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "dark": true,
+    "heading": "A little more you.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Collection shop",
+    "theme": "dark",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "dark": true,
+    "heading": "Make it yours.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Collection shop",
+    "theme": "dark",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "dark": true,
+    "heading": "Make it yours.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Collection shop",
+    "theme": "dark",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "dark": true,
+    "heading": "Make it yours.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Collection shop",
+    "theme": "dark",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "dark": true,
+    "heading": "Make it yours.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Collection shop",
+    "theme": "dark",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "dark": true,
+    "heading": "Make it yours.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "My space",
+    "theme": "dark",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "dark": true,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "My space",
+    "theme": "dark",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "dark": true,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "My space",
+    "theme": "dark",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "dark": true,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "My space",
+    "theme": "dark",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "dark": true,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "My space",
+    "theme": "dark",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "dark": true,
+    "heading": "Make yourself\nat home.",
+    "scrollWidth": 1425
+  },
+  {
+    "route": "Season",
+    "theme": "dark",
+    "requestedWidth": 360,
+    "clientWidth": 345,
+    "dark": true,
+    "heading": "Awaken your city.",
+    "scrollWidth": 345
+  },
+  {
+    "route": "Season",
+    "theme": "dark",
+    "requestedWidth": 390,
+    "clientWidth": 375,
+    "dark": true,
+    "heading": "Awaken your city.",
+    "scrollWidth": 375
+  },
+  {
+    "route": "Season",
+    "theme": "dark",
+    "requestedWidth": 430,
+    "clientWidth": 415,
+    "dark": true,
+    "heading": "Awaken your city.",
+    "scrollWidth": 415
+  },
+  {
+    "route": "Season",
+    "theme": "dark",
+    "requestedWidth": 768,
+    "clientWidth": 753,
+    "dark": true,
+    "heading": "Awaken your city.",
+    "scrollWidth": 753
+  },
+  {
+    "route": "Season",
+    "theme": "dark",
+    "requestedWidth": 1440,
+    "clientWidth": 1425,
+    "dark": true,
+    "heading": "Awaken your city.",
+    "scrollWidth": 1425
+  }
+]

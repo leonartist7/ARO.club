@@ -1,0 +1,72 @@
+[
+  {
+    "locale": "fr",
+    "route": "/app/personalize",
+    "clientWidth": 345,
+    "heading": "Un petit monde.\nTout à vous.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "fr",
+    "route": "/app/personalize/character",
+    "clientWidth": 345,
+    "heading": "Un peu plus vous.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "fr",
+    "route": "/app/personalize/shop",
+    "clientWidth": 345,
+    "heading": "À votre image.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "fr",
+    "route": "/app/personalize/space",
+    "clientWidth": 345,
+    "heading": "Faites comme\nchez vous.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "fr",
+    "route": "/app/personalize/season",
+    "clientWidth": 345,
+    "heading": "Éveillez votre ville.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "es",
+    "route": "/app/personalize",
+    "clientWidth": 345,
+    "heading": "Un pequeño mundo.\nMuy tuyo.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "es",
+    "route": "/app/personalize/character",
+    "clientWidth": 345,
+    "heading": "Un poco más tú.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "es",
+    "route": "/app/personalize/shop",
+    "clientWidth": 345,
+    "heading": "Hazlo tuyo.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "es",
+    "route": "/app/personalize/space",
+    "clientWidth": 345,
+    "heading": "Siéntete\nen casa.",
+    "scrollWidth": 345
+  },
+  {
+    "locale": "es",
+    "route": "/app/personalize/season",
+    "clientWidth": 345,
+    "heading": "Despierta tu ciudad.",
+    "scrollWidth": 345
+  }
+]

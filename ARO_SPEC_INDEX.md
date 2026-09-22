@@ -324,3 +324,8 @@ ARO-H0: snapshot publication and audit dispatch only. Specification: `specs/ARO-
 ## 2026-09-22 — PV1 personalization frontend preview
 
 Founder-authorized profile, character, shop, courtyard and Season pages implemented under [PV1](specs/ARO-PV1-PERSONALIZATION-PREVIEW.md) on `codex/aro-personalization-preview-20260922`. Status: IMPLEMENTED / LOCAL CHECKS PASSED / VISUAL ACCEPTANCE PENDING. Build, lint, types and seven targeted tests pass; browser/device evidence remains pending due to unavailable local preview access. Original optimized assets and EN/FR/ES/theme/responsive code included. See [handoff](docs/personalization-preview/VERIFICATION.md). Synthetic in-memory state only; no new production capabilities or gate changes.
+
+
+### 2026-09-22 — PV1 hosted review continuation
+
+Runtime source `200df2171dded3a664c3662404f6bfe863ba277e` now has 60 passing hosted width/theme/language overflow checks and screenshots. Fixed hat alignment and mobile gutters. Eight local tests, build/lint pass; runtime-head static/browser-smoke/platform CI green. Earlier upload-chooser CI failure passed on the subsequent commit without platform changes; root cause not established. [Evidence and remaining native-device/independent/founder acceptance](docs/personalization-preview/VERIFICATION.md). PR60 remains draft, no production merge/release or gate change.

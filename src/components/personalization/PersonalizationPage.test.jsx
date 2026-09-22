@@ -49,6 +49,16 @@ async function render(section) {
   );
 }
 describe("personalization preview interactions", () => {
+  it("offers a working retry when artwork fails", async () => {
+    await render("character");
+    const artwork = host.querySelector(".pv-avatar-base");
+    await act(() => artwork.dispatchEvent(new Event("error")));
+    expect(host.querySelector(".pv-art-error").textContent).toContain("Image unavailable");
+    await click(button("Retry image"));
+    expect(host.querySelector(".pv-avatar-base").tagName).toBe("IMG");
+    expect(host.querySelector(".pv-art-error")).toBeNull();
+  });
+
   it("separates character drafts, saves and cancellation", async () => {
     await render("character");
     expect(button("Save preview look").disabled).toBe(true);
