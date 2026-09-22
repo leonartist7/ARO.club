@@ -84,3 +84,6 @@ package cannot certify those systems.
 ## Delivery record
 To be recorded in docs/personalization-preview/VERIFICATION.md with exact results,
 limitations, route links, assets, baseline and release posture.
+
+### Visual review continuation — 2026-09-22
+The existing GitHub integration created a protected Vercel branch preview automatically. Inspecting that existing preview is authorized review, not a production release. A static `/personalization/review.html` harness inside the existing owned public tree embeds the actual app at exact 360/390/430/768/1440 CSS widths. This reviewer-only page is not linked from product navigation, does not impersonate mobile browsers, and changes no platform configuration. Hosted review found an incorrectly placed hat; correcting its anchor is within PV1 acceptance scope.

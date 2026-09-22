@@ -883,7 +883,7 @@
 
   object-fit: contain;
 
-  top: -1%;
+  top: -14%;
 
   left: 30%;
 
@@ -2512,7 +2512,7 @@
 }
 .pv-scene-person > .pv-scene-hat {
   position: absolute;
-  top: -2%;
+  top: -17%;
   left: 26%;
   width: 48%;
   height: 27%;
