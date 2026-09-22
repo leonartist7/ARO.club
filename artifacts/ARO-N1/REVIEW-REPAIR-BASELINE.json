@@ -1,0 +1,7 @@
+{
+  "source": "b431fb59981458f82c635deb2d60e7ffb4077d43 pre-repair production build",
+  "scope": "all .next/static/chunks/*.js",
+  "files": 80,
+  "minifiedBytes": 2405729,
+  "gzipBytes": 738085
+}

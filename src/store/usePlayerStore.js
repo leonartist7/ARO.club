@@ -541,6 +541,7 @@ export const usePlayerStore = create(
     }),
     {
       name: 'conversa-player',
+      skipHydration: true,
       version: 1,
     }
   )

@@ -1,3 +1,9 @@
+# ARO — Next.js migration preview
+
+Use Node.js 24.15 or newer. Run `npm ci`, `npm run dev`, `npm run build` and `npm start`. Validate with `npm run lint`, `npm run type-check`, `npm test` and `npm run test:e2e`. Existing F4–F6 production browser suites run after a build with `FV1_BROWSER_EVIDENCE=true`.
+
+See [deployment audit](artifacts/ARO-N1/VERIFICATION.md) and [rollout specification](specs/ARO-N1-VERCEL-ROLLOUT.md). Accounts remain staging-only; copy names from .env.example into ignored local configuration. Provider values never belong in Git.
+
 # ARO — The Human Opportunity Network
 
 **Learn languages through real experiences with local teachers in cities around the world.**

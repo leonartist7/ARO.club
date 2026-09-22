@@ -1,5 +1,7 @@
 # ARO — Shipaton 2026 master plan
 
+> **September 21 controlling sprint overlay:** use [the approved seven-day workboard](shipaton/sprint-20260921/SPRINT.md), [current unblock packets](shipaton/sprint-20260921/UNBLOCK-PACKETS.md) and [release checklist](shipaton/sprint-20260921/RELEASE-CHECKLIST.md). Everything below is retained September 8 history, including its readiness estimates, architecture and award priorities. It is not current release evidence. Operational claims remain solely in the controller-owned ARO-AUTONOMOUS-DELIVERY-LEDGER.md on its canonical branch.
+
 > September 8 publication note: historical working-tree and test statements below describe preparation, not current remote availability or complete acceptance. See ARO_CLOUD_HANDOFF.md and artifacts/ARO-H0/VERIFICATION.md for snapshot publication and fresh smoke evidence. Original package status remains partial; no runtime gate changes.
 
 Updated: 2026-09-08. Status: IN-PROGRESS — audit and launch preparation; NOT launch-ready.

@@ -1,6 +1,11 @@
 # ARO — Canonical Spec Index
 
-> **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
+> **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
+
+
+> **2026-09-21 production extension:** The founder authorized production readiness and release under [N1 rollout v1.2](specs/ARO-N1-VERCEL-ROLLOUT.md). Initial public origin is aro-club.vercel.app. Production auth configuration is implemented and locally verified but remains disabled pending a separate backend, verified SMTP/hosted auth and security review. Staging callback URLs are repaired. See [provider evidence](artifacts/ARO-N1/PRODUCTION-READINESS.md).
+
+> **2026-09-22 FV-1 F7 binding candidate:** Founder-approved FV-1 v0.2.3 is reconciled in documentation-only PR #47 onto MERGE1 `main` `f37dc084d7172415f581a41e90d2edd9ba3738b9`. Its normal merge commit C will be the fixed `F7_APPROVED_SPEC_SHA`. F1–F6 are accepted predecessors; F7 alone is owned by existing PR #48 / `codex/fv1-f7-acceptance-evidence` with immutable F6 `F7_TASK_BASE_SHA` `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 is **BLOCKED**: no measurement may start until C exists and exact Playwright Chromium 151.0.7922.34 revision 1234 installs and launches headlessly. The 8272CL amendment changes no other §20 limit; independent review, NVDA/Windows, founder visual review and release remain pending.
 
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
 

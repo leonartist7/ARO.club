@@ -1,0 +1,228 @@
+diff --git a/ARO_CHANGELOG.md b/ARO_CHANGELOG.md
+index cb3b92f..df43634 100644
+--- a/ARO_CHANGELOG.md
++++ b/ARO_CHANGELOG.md
+@@ -818,3 +818,7 @@ Founder explicitly approved merging PR #40 through normal checks, the proposed d
+ ## 2026-09-09 — FV-1 F1/F2 progress synchronized to main
+ 
+ FV-1 v0.2.2 records the founder-authorized, narrow 640,000-byte limit for the required 960px lossless persona derivative; all other F1 budgets and release gates remain unchanged. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298` after deterministic media checks, local validation and passing PR CI. F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`, adding truthful shell disclosure, non-actionable previews, navigation ownership, recovery and focus support. The founder authorized the current PR #41 progress to merge to GitHub `main` through normal checks. No release/deployment or full FV-1 verification is authorized; F3–F7, independent review, human NVDA testing and founder visual review remain pending.
++
++## 2026-09-14 — FV-1 F7 bounded lab preflight stopped on host drift
++
++F7 resumed the exact remote branch `codex/fv1-f7-acceptance-evidence` at accepted F6 SHA `79603ae1af60a30f86c105e0f2a4d841043eb727` with a clean tree and valid ancestry. Its required preflight found Ubuntu 24.04.3 LTS/x86_64, 8 CPU-equivalent cgroup quota, 20 GiB memory, 9 affinity CPUs, Node 24.19.0, npm 11.9.0 and Playwright 1.62.0, but a CPU-model mismatch (Intel Xeon Platinum 8272CL rather than frozen 8573C). The exact lockfile-managed Chromium 151.0.7922.34 revision 1234 executable was also absent after the permitted provisioning attempts, so launch verification was impossible. The founder subsequently approved the narrow 8272CL-only F7 lab amendment while retaining every other §20 condition, all thresholds, independent review and release WITHHELD; its documentation-only merge remains pending. No F7 runner, build, preview, performance measurement, audit rerun, independent review, product merge, deployment or release was performed. `artifacts/ARO-FV-1/VERIFICATION.md` records factual evidence and the approval boundary.
+diff --git a/ARO_CURRENT_STATE.md b/ARO_CURRENT_STATE.md
+index 435afef..5160621 100644
+--- a/ARO_CURRENT_STATE.md
++++ b/ARO_CURRENT_STATE.md
+@@ -1,6 +1,6 @@
+ # ARO — Current State
+ 
+-> **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
++> **2026-09-14 FV-1 F7 preflight update:** F1–F6 are accepted, with F6 at `79603ae1af60a30f86c105e0f2a4d841043eb727`. The founder approved the narrow 8272CL F7 lab-profile amendment while retaining every §20 condition and gate; its documentation-only merge is pending. The exact lockfile-managed Chromium executable still could not be provisioned/launch-checked, so F7 remains blocked before measurement. The full fingerprint and approval record are in `artifacts/ARO-FV-1/VERIFICATION.md`. No audit rerun, product merge, deployment, release, independent-review claim, NVDA test, or founder visual review occurred. I0/P1 and later gates are unchanged.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+diff --git a/ARO_IMPLEMENTATION_STATUS.md b/ARO_IMPLEMENTATION_STATUS.md
+index 2c47b50..a265ed6 100644
+--- a/ARO_IMPLEMENTATION_STATUS.md
++++ b/ARO_IMPLEMENTATION_STATUS.md
+@@ -1,6 +1,6 @@
+ # ARO — Implementation Status Ledger
+ 
+-> **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
++> **2026-09-14 FV-1 F7 preflight update:** F1–F6 are accepted; F7's task base is the accepted F6 SHA `79603ae1af60a30f86c105e0f2a4d841043eb727`. The founder approved the narrow CPU 8272CL F7 lab amendment; the documentation-only merge is pending and all other §20 requirements remain intact. The lockfile-managed Chromium 151.0.7922.34 revision 1234 executable remains absent after permitted provisioning attempts, so F7 is **BLOCKED — documentation merge and exact-browser execution gap**. No F7 integrated acceptance, controlled performance, quality-gate, independent-review, human NVDA, founder visual, product merge, deployment, or release result is claimed. Evidence: `artifacts/ARO-FV-1/VERIFICATION.md`.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+diff --git a/ARO_SPEC_INDEX.md b/ARO_SPEC_INDEX.md
+index aef52f3..92f4867 100644
+--- a/ARO_SPEC_INDEX.md
++++ b/ARO_SPEC_INDEX.md
+@@ -1,6 +1,6 @@
+ # ARO — Canonical Spec Index
+ 
+-> **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
++> **2026-09-14 FV-1 F7 preflight update:** [FV-1 v0.2.3](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is founder-approved and pending its documentation-only merge. F1–F6 are accepted through F6 `79603ae1af60a30f86c105e0f2a4d841043eb727`. The amendment permits CPU 8272CL only for F7 measurement and retains every other §20 condition/gate. F7 remains **BLOCKED — exact-browser execution gap** because lockfile-managed Chromium revision 1234 is not launchable while its executable is absent. See `artifacts/ARO-FV-1/VERIFICATION.md`. No release/deployment, independent review, human NVDA test, or founder visual review is claimed. I0/P1 and later gates are unchanged.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+diff --git a/artifacts/ARO-FV-1/VERIFICATION.md b/artifacts/ARO-FV-1/VERIFICATION.md
+new file mode 100644
+index 0000000..d7b3261
+--- /dev/null
++++ b/artifacts/ARO-FV-1/VERIFICATION.md
+@@ -0,0 +1,76 @@
++# FV-1 F7 — bounded lab-profile drift report
++
++**Recorded:** 2026-09-14 UTC
++**Status:** **BLOCKED — approved amendment awaits documentation merge; exact browser execution gap remains**
++**Scope performed:** the mandatory bounded F7 lab preflight only. No production build, preview server, controlled functional/performance measurement, audit rerun, product-file edit, deployment, merge, or release was performed.
++
++## Immutable execution binding
++
++| Field | Value | Result |
++|---|---|---|
++| F7 task base | `79603ae1af60a30f86c105e0f2a4d841043eb727` | PASS |
++| Resumed branch | `codex/fv1-f7-acceptance-evidence` | PASS — exists at `origin` |
++| HEAD before F7 documentation | `79603ae1af60a30f86c105e0f2a4d841043eb727` | PASS — exact base |
++| Working tree before F7 documentation | clean | PASS |
++| Base ancestry | `79603ae…` is an ancestor of HEAD | PASS |
++
++## Frozen-profile comparison
++
++| Required FV-1 §20 value | Observed value | Result |
++|---|---|---|
++| Linux x86_64 | Ubuntu 24.04.3 LTS, x86_64 | PASS |
++| Kernel captured | `6.18.44` | recorded (not a frozen comparison value) |
++| Intel Xeon Platinum 8573C | Intel(R) Xeon(R) Platinum **8272CL** CPU @ 2.60GHz | **MISMATCH** |
++| 8 CPU equivalents | cgroup `cpu.max`: `800000 100000` | PASS |
++| 20 GiB memory | cgroup `memory.max`: `21474836480` bytes | PASS |
++| 9 visible/affinity CPUs | affinity `0-8`; 9 online CPUs | PASS |
++| Node 24.19.0 | `v24.19.0` | PASS |
++| npm 11.9.0 | `11.9.0` | PASS |
++| repository Playwright 1.62.0 | lockfile and installed `playwright` / `playwright-core`: `1.62.0` | PASS |
++| Chromium 151.0.7922.34, revision 1234 | Playwright metadata requests that exact Chromium | metadata PASS; executable unavailable |
++| Chromium executable and SHA-256 | expected path `/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome`; file absent | **FAIL — no SHA-256 possible** |
++| Exact bundled browser launch | not runnable because executable is absent | **FAIL** |
++
++Additional fingerprint: `package-lock.json` SHA-256 is `329028782e209d41d2388193b3540e8a46d5bc90785c871a91d1944197ddb1d1`.
++
++## Browser-provisioning record
++
++`npm ci` completed without changing tracked files and installed the lockfile-pinned Playwright 1.62.0. The only §20-permitted browser-provisioning command was attempted twice, with no successful executable materialized:
++
++```text
++node node_modules/playwright/cli.js install chromium
++```
++
++Both attempts began the required download of Chrome for Testing 151.0.7922.34 / Playwright Chromium revision 1234, but the browser executable remained absent at the required path. The task runner did not yield a usable browser-install exit status before the command ceased producing output. A subsequent existence check confirmed no executable; no arbitrary system-Chrome fallback was used. No further provisioning retries were made.
++
++## Decision
++
++The CPU-model mismatch independently makes this host ineligible for controlled F7 measurements under the approved frozen profile. The unavailable exact bundled browser is a second execution-capability gap. Therefore F7 stopped before writing `e2e/fv1.mjs`, starting a server, running the integrated matrix, controlled performance checks, quality gates, or independent review.
++
++No completed historical audit or synthesis was rerun.
++
++## F7 lab-profile amendment — FOUNDER APPROVED; DOCUMENTATION MERGE PENDING
++
++The founder approved this narrow amendment on 2026-09-14. It changes no implementation or acceptance result. It becomes operative only after the corresponding documentation-only change is merged through normal checks.
++
++1. For F7 measurements only, permit this otherwise matching cloud host with CPU model `Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz` in place of `Intel Xeon Platinum 8573C`.
++2. Keep every other §20 condition unchanged: Ubuntu 24.04.3 LTS/x86_64, 8 CPU-equivalent quota, 20 GiB memory, 9 affinity CPUs, Node 24.19.0, npm 11.9.0, lockfile-pinned Playwright 1.62.0, exact Chromium 151.0.7922.34 revision 1234, DPR/theme/viewport settings, 4x CPU throttle, specified network emulation, three-run method, 10-second observation, all accessibility/image/byte/performance ceilings, review gates, and release WITHHELD.
++3. Before any F7 measurement, the exact lockfile-managed Chromium must be successfully provisioned in the external Playwright cache, its executable SHA-256 recorded, and a headless launch recorded. This proposal does not permit a system-browser substitution.
++4. This proposal does not weaken or waive a functional, performance, image, accessibility, independent-review, NVDA, founder-review, merge, deployment, promotion, or release requirement.
++
++Until the approved amendment is documented and merged, and the exact browser prerequisite passes, all controlled F7 measurements remain prohibited.
++
++## Acceptance state at this stop point
++
++| Row | F7 status | Evidence |
++|---|---|---|
++| FV1-01 | predecessor accepted; not re-executed by F7 | accepted F1 history; no F7 rerun |
++| FV1-02 | predecessor accepted; not re-executed by F7 | accepted F2 history; no F7 rerun |
++| FV1-03 | predecessor accepted; not re-executed by F7 | accepted F3 history; no F7 rerun |
++| FV1-04 | predecessor accepted; not re-executed by F7 | accepted F4 history; no F7 rerun |
++| FV1-05 | predecessor accepted; not re-executed by F7 | accepted F5 history; no F7 rerun |
++| FV1-06 | predecessor accepted at `79603ae1af60a30f86c105e0f2a4d841043eb727`; not re-executed by F7 | F7 immutable base |
++| FV1-07 | **BLOCKED** | approved host amendment awaits documentation merge; exact bundled browser remains absent; no measurement run |
++| FV1-08 | **BLOCKED** | F7 runner/quality-gate/independent-review sequence cannot legitimately start before FV1-07's documentation merge and browser prerequisite |
++
++Human NVDA + Chromium-on-Windows testing and founder visual review remain pending and are not self-certified by this record.
+diff --git a/artifacts/ARO-FV-1/acceptance.json b/artifacts/ARO-FV-1/acceptance.json
+new file mode 100644
+index 0000000..0acb942
+--- /dev/null
++++ b/artifacts/ARO-FV-1/acceptance.json
+@@ -0,0 +1,55 @@
++{
++  "package": "FV-1",
++  "slice": "F7",
++  "recordedAt": "2026-09-14T00:00:00Z",
++  "taskBaseSha": "79603ae1af60a30f86c105e0f2a4d841043eb727",
++  "headBeforeF7Documentation": "79603ae1af60a30f86c105e0f2a4d841043eb727",
++  "branch": "codex/fv1-f7-acceptance-evidence",
++  "status": "BLOCKED_PENDING_DOCUMENTATION_MERGE_AND_BROWSER",
++  "profileAmendmentApproval": "FOUNDER_APPROVED_2026-09-14_DOCUMENTATION_MERGE_PENDING",
++  "profile": {
++    "os": "Ubuntu 24.04.3 LTS x86_64",
++    "kernel": "6.18.44",
++    "cpuModel": "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz",
++    "cpuAffinity": "0-8",
++    "cpuQuota": "800000 100000",
++    "memoryLimitBytes": 21474836480,
++    "node": "v24.19.0",
++    "npm": "11.9.0",
++    "packageLockSha256": "329028782e209d41d2388193b3540e8a46d5bc90785c871a91d1944197ddb1d1",
++    "playwright": "1.62.0",
++    "chromiumRequired": "151.0.7922.34 revision 1234",
++    "chromiumExecutable": "/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
++    "chromiumExecutablePresent": false,
++    "chromiumLaunch": "NOT_RUN_EXECUTABLE_ABSENT"
++  },
++  "mismatches": [
++    {
++      "field": "cpuModel",
++      "required": "Intel Xeon Platinum 8573C",
++      "observed": "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz"
++    },
++    {
++      "field": "chromiumExecutable",
++      "required": "lockfile-managed Chromium 151.0.7922.34 revision 1234 installed and launchable",
++      "observed": "absent after two permitted provisioning attempts"
++    }
++  ],
++  "acceptance": {
++    "FV1-01": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-02": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-03": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-04": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-05": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-06": "PREDECESSOR_ACCEPTED_NOT_RERUN",
++    "FV1-07": "BLOCKED_DOCUMENTATION_MERGE_AND_BROWSER_GAP",
++    "FV1-08": "BLOCKED_PENDING_FV1-07"
++  },
++  "measurementsRun": false,
++  "historicalAuditsRerun": false,
++  "humanGates": {
++    "nvdaChromiumWindows": "PENDING",
++    "founderVisualReview": "PENDING"
++  },
++  "release": "WITHHELD"
++}
+diff --git a/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md b/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
+index 1f1bb58..e38ca73 100644
+--- a/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
++++ b/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
+@@ -2,8 +2,8 @@
+ 
+ ## 0. Metadata and authority
+ 
+-- Status: **SPEC-READY — founder approved F1–F7 implementation and v0.2.1 encoder-profile amendment; release approval WITHHELD**.
+-- Version: **0.2.2**, approved 2026-09-09. User-visible behavior and F1–F7 scope are unchanged from v0.2.1. This narrowly corrects the impossible 400,000-byte ceiling for the required 960px lossless persona derivative. Owner/director: ARO founder/product-design.
++- Status: **SPEC-READY — founder approved F1–F7 implementation, the v0.2.1 encoder-profile amendment, and the F7 8272CL lab-profile amendment; release approval WITHHELD**.
++- Version: **0.2.3**, founder approved 2026-09-14; documentation merge pending. User-visible behavior and F1–F7 scope are unchanged from v0.2.2. This narrowly permits the recorded 8272CL cloud CPU for F7 measurement only, while retaining every other §20 condition and threshold. Owner/director: ARO founder/product-design.
+ - Original approved v0.2.0 candidate: `a576640cc5b9828486d8bdd0f970636b3ff07138`. Documentation PR #40 merged as `606d06bcded8e0afde0f2f4eca35a4986650ce5d`. Encoder amendment PR #42 is the approved v0.2.1 amendment; let **B** be its actual full merge commit on `main`. After PR #42 merges, `APPROVED_SPEC_SHA = F1_TASK_BASE_SHA = B` for the resumed implementation.
+ - Authoritative FV-1 specification: this file. The recovered v0.1.0 proposal and superseded v0.2.0 execution-base wording are historical inputs; this edition supersedes their open choices and encoder-profile execution-base instructions.
+ - Product source baseline: `6495e67798ad14876f6c04815f9f5e13eaf52b83`; historical audit revision: `06730c74b44d1a6ee1da24c4d1d1ed721313df5c`. All five saved audit bundles have already been recovered and validated. Do not rerun them.
+@@ -124,6 +124,7 @@ Gzip measurement: Node zlib.gzipSync with level 9 over built file bytes, each re
+ Freeze this lab profile before implementation measurement:
+ 
+ - Use the inventoried existing cloud environment: Linux x86_64, Ubuntu **24.04.3 LTS**, Intel Xeon Platinum **8573C**, cgroup quota **8 CPU equivalents**, **20 GiB** memory limit (9 visible/affinity CPUs), no concurrent task; Node **24.19.0**, npm **11.9.0**. Repository lockfile unchanged; use its Playwright **1.62.0**, not the runtime's 1.62.1. Bundled Chromium **151.0.7922.34**, revision **1234**, as verified from installed package metadata; no arbitrary system-Chrome fallback. Capture OS/kernel, CPU affinity/quota/model, memory, lockfile hash, browser executable hash and complete versions in evidence. On environment drift, stop for a recorded profile amendment; do not silently compare hosts. No new workflow infrastructure is required.
++- **F7 lab-profile amendment, founder approved 2026-09-14:** for F7 measurement only, Intel Xeon Platinum **8272CL** is permitted in place of the 8573C model above. Every other condition in this section remains unchanged, including the 8-CPU-equivalent quota, 20 GiB memory, 9 affinity CPUs, Node/npm, lockfile-pinned Playwright **1.62.0**, exact Chromium **151.0.7922.34** revision **1234**, browser executable SHA-256 and launch record, DPR/theme/viewport settings, 4× CPU throttle, network emulation, three-run/10-second method, all image/byte/performance/accessibility ceilings, independent review and release WITHHELD. This amendment becomes operative only after its documentation-only merge; it never permits a system-browser substitute.
+ - F1 encoder subprofile: CPython **3.12.13** remains valid with Pillow **12.3.0** and libwebp **1.6.0**. CPython **3.13.5** is also permitted, but only with Pillow **12.3.0** and libwebp **1.6.0**, and only when the exact F1 synthetic preflight is rerun in the implementation environment and recorded as F1 evidence showing **88 bytes**, SHA-256 `a2dd5e25c6a9dd61b8194f496c8b3995a5ba2efc0abc9079ecd2b6cd8ec5450b`, three byte-identical encodes, and exact RGBA decode including alpha preservation. PR #41 reproduced those exact results under CPython 3.13.5. Any version or fingerprint mismatch remains environment/profile drift and is a stop condition. This alternate interpreter allowance does not weaken any image byte budget, real-image crop/alpha check, manifest reproducibility requirement, encoder parameter, or other acceptance/stop condition.
+ - Capability inventory on 2026-09-08 in existing cloud task `6a9fbdd1-0584-83e8-89e5-27bb2d3e32db`, turn `70c70f6d-4305-4154-aaf3-6a8b9989081f`, found repository Playwright installed but its Chromium executable absent. **Browser performance verification is not currently runnable there.** Selected remedy after implementation approval: provision only that existing lockfile-managed Chromium via `node node_modules/playwright/cli.js install chromium` into its external browser cache. This is test-runtime setup, no new package/lockfile dependency or infrastructure. It is included in the proposed implementation scope but has NOT been performed. If download/launch fails, F7 stops; this is an execution capability gap, not a human-only test. F1's in-memory encoder and component unit acceptance do not require that browser.
+ - Build using npm ci then npm run build. Serve the built artifact at http://127.0.0.1:4173 using npm run preview -- --host 127.0.0.1 --port 4173 --strictPort. Never profile the dev server or hosted production.
+@@ -194,6 +195,7 @@ Security/privacy/Trust diff reviewer: the independent reviewer above. Approval/f
+ - Original founder decision: “I approve: 1. Merging PR #40. 2. The proposed FV-1 defaults described in your approval summary. 3. Implementation of F1–F7 sequentially on ONE isolated branch/PR.”
+ - **v0.2.1 amendment approval:** after PR #41 demonstrated that CPython 3.13.5 + Pillow 12.3.0 + libwebp 1.6.0 reproduces the exact required 88-byte fingerprint, SHA-256 `a2dd5e25c6a9dd61b8194f496c8b3995a5ba2efc0abc9079ecd2b6cd8ec5450b`, deterministic three-run encoding and exact RGBA/alpha round-trip, the founder explicitly directed creation/merge of the documentation-only encoder amendment and then instructed: “The encoder-profile amendment is merged. Rebase PR #41 onto its merge commit, re-verify the approved spec, then resume F1 through F7 sequentially under the amended §20 conditions,” followed by explicit authorization to perform the documentation merge when GitHub showed it still open. This approves FV-1 v0.2.1's narrow encoder-profile change and resumption only; it does not change product behavior, F1–F7 scope, budgets, acceptance thresholds, independent/human review gates or release authority.
+ - **v0.2.2 execution amendment approval:** the founder instructed “NOW OPTIMIZE AND COMPLETE IT” on 2026-09-09 after the F1 measured evidence showed the required 960px lossless persona at 629,998 bytes against an impossible 400,000-byte cap. This authorizes only the 640,000-byte exception named in section 20. It preserves lossless alpha, source/derivative geometry, every other budget, F1–F7 scope, review gates and withheld release authority.
++- **v0.2.3 F7 lab-profile amendment approval:** on 2026-09-14, after the mandatory F7 preflight recorded a matching Ubuntu 24.04.3/x86_64, quota, memory, affinity, Node/npm and lockfile profile but CPU model Intel Xeon Platinum 8272CL rather than 8573C, the founder explicitly approved permitting the 8272CL host for **F7 measurement only**. The founder preserved every other §20 condition, all budgets, Playwright 1.62.0 / Chromium revision 1234, 4× CPU throttling, three-run method, accessibility thresholds, independent review and release WITHHELD. The exact bundled Chromium must still install and launch. This amendment requires its normal documentation-only merge before measurement and does not weaken any gate.
+ - Documentation: **PR #42 authorized to merge through normal protected-branch checks**. Its actual merge commit B becomes the amended approved spec/F1 base.
+ - Implementation: **PR #41 remains the ONE authorized implementation PR; F1–F7 remain authorized sequentially after rebasing/rebinding to B**.
+ - Release: **WITHHELD**, including product merge and Preview/Production publication. Independent nonwriting review, human NVDA testing and founder visual review remain required before any full-verification claim.
+@@ -205,4 +207,4 @@ VERIFIED requires approved immutable spec, all eight rows passing, scoped tests/
+ 
+ ## 30. Delivery record
+ 
+-Package FV-1; approved spec **0.2.1 pending PR #42 protected merge**, original documentation merge `606d06bcded8e0afde0f2f4eca35a4986650ce5d`; implementation PR #41 exists with binding/preflight only and no accepted F1 product slice; product acceptance/unit/E2E/a11y/performance/independent review NOT RUN; release environment none; status SPEC-READY, implementation authorized, release WITHHELD. After PR #42 merges, bind its actual full merge commit B as `APPROVED_SPEC_SHA = F1_TASK_BASE_SHA`, rebase/rebind PR #41, then resume F1 serially. Recovery provenance remains in [RECOVERY.md](../docs/fv1-recovery/RECOVERY.md). Encoder preflight evidence and its limits are recorded in [F1](../docs/fv1-recovery/tasks/F1.md).
++Package FV-1; approved spec **0.2.3** is pending its documentation-only merge. F1–F6 were accepted sequentially; F6 is the exact F7 predecessor at `79603ae1af60a30f86c105e0f2a4d841043eb727`. On 2026-09-14, F7 resumed the required remote branch `codex/fv1-f7-acceptance-evidence` at that exact clean SHA and completed only the bounded lab preflight. The observed CPU model was Intel Xeon Platinum 8272CL rather than frozen 8573C, and the exact lockfile-managed Chromium executable was unavailable after the permitted provisioning attempts. The founder approved the narrow 8272CL-only amendment without weakening any other condition; the documentation merge and browser launch remain required before measurement. No F7 functional or controlled performance measurement ran. The factual fingerprint is recorded in `artifacts/ARO-FV-1/VERIFICATION.md` and `artifacts/ARO-FV-1/acceptance.json`. All thresholds, independent review, human NVDA, founder visual review, product merge, deployment, and release remain WITHHELD.

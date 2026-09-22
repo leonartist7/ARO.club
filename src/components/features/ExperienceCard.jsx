@@ -1,5 +1,6 @@
+'use client';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../../lib/navigation';
 import { MapPin, Clock, Users, Star, Eye } from 'lucide-react';
 import { Card } from '../ui/Card';
 import Badge from '../ui/Badge';

@@ -1,5 +1,7 @@
 # ARO — Build Playbook
 
+> **2026-09-21 N1 rollout:** The founder authorized Next.js migration and Vercel integration verification. [N1 rollout v1.1](specs/ARO-N1-VERCEL-ROLLOUT.md) governs reconciliation onto current main and isolated Preview accounts. Newer F1–F6 work is preserved. Production backend/domain selection, hosted email flows and independent security review remain gates. P1–P5, Trust/schema changes and live synthetic features are not unlocked.
+
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`
 > after the isolated migration/Auth/RLS/Storage/recovery/reset and responsive
 > authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
