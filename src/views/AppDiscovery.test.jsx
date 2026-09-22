@@ -206,7 +206,8 @@ describe('FV-1 F4 truthful discovery', () => {
     renderDiscovery('/app/opportunities')
     expect(screen.queryByRole('textbox')).toBeNull()
     expect(screen.queryByRole('tab')).toBeNull()
-    expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' }).length).toBeGreaterThanOrEqual(2)
+    // EF1 replaces the shell's decorative search with a discovery link; the page preview remains non-actionable.
+    expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' })).toHaveLength(1)
     expect(screen.getByRole('img', { name: 'Status filters preview. Not available in this preview.' })).toBeTruthy()
     expect(screen.getAllByText('Not available in this preview.').length).toBeGreaterThanOrEqual(2)
   })

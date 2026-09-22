@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
   Check,
-  ChevronRight,
   CircleDot,
   Compass,
   Flower2,
@@ -25,12 +24,12 @@ import {
   X,
 } from "lucide-react";
 import Button from "../ui/Button";
+import SeasonExplorer from "./SeasonExplorer";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { getCopy } from "../../i18n/personalization/copy";
 import {
   ASSET_ROOT,
-  chapters,
   getItem,
   items,
   placeItem,
@@ -52,12 +51,7 @@ const navIcons = {
   space: House,
   season: Sun,
 };
-const chapterIcons = {
-  compass: Compass,
-  people: Users,
-  heart: Heart,
-  spark: Sparkles,
-};
+
 
 function Art({ name, size = 512, alt = "", className = "", eager = false, c }) {
   const [failed, setFailed] = useState(false);
@@ -789,73 +783,6 @@ function Space({ c, notify }) {
   );
 }
 
-function Season({ c, onChapter, onPlus }) {
-  return (
-    <>
-      <section className="pv-season-hero">
-        <div>
-          <p className="pv-eyebrow">
-            <Sun size={16} aria-hidden="true" />
-            {c("seasonEyebrow")}
-          </p>
-          <h1>{c("seasonTitle")}</h1>
-          <p className="pv-intro">{c("seasonIntro")}</p>
-          <button
-            type="button"
-            className="pv-action"
-            onClick={() => onChapter(chapters[0])}
-          >
-            {c("viewChapter")}
-            <ArrowRight size={18} aria-hidden="true" />
-          </button>
-        </div>
-        <Art name="season" size={960} alt={c("sceneAlt")} c={c} eager />
-      </section>
-      <div className="pv-season-layout">
-        <section>
-          <div className="pv-section-heading">
-            <p className="pv-eyebrow">{c("free")}</p>
-            <h2>{c("seasonPath")}</h2>
-          </div>
-          <ol className="pv-chapters">
-            {chapters.map((chapter) => {
-              const Icon = chapterIcons[chapter.icon];
-              return (
-                <li key={chapter.id}>
-                  <span className="pv-chapter-number">{chapter.number}</span>
-                  <button type="button" onClick={() => onChapter(chapter)}>
-                    <span className="pv-chapter-icon">
-                      <Icon size={22} aria-hidden="true" />
-                    </span>
-                    <span>
-                      <strong>{c(chapter.title)}</strong>
-                      <small>{c(chapter.detail)}</small>
-                    </span>
-                    <ChevronRight size={20} aria-hidden="true" />
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-        </section>
-        <aside className="pv-plus-card">
-          <div className="pv-plus-art">
-            <Art name="hat" size={256} alt="" c={c} />
-            <Art name="lantern" size={256} alt="" c={c} />
-          </div>
-          <span className="pv-pill">{c("seasonPlus")}</span>
-          <h2>{c("plusTitle")}</h2>
-          <p>{c("plusBody")}</p>
-          <button className="pv-action pv-action-secondary" onClick={onPlus}>
-            {c("compare")}
-            <ArrowRight size={18} aria-hidden="true" />
-          </button>
-        </aside>
-      </div>
-    </>
-  );
-}
-
 function PageHeading({ eyebrow, title, intro, icon: Icon }) {
   return (
     <header className="pv-page-heading">
@@ -870,6 +797,7 @@ function PageHeading({ eyebrow, title, intro, icon: Icon }) {
 }
 
 export default function PersonalizationPage({ section }) {
+  const router = useRouter();
   const { language, changeLanguage } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
   const state = usePersonalization();
@@ -927,6 +855,7 @@ export default function PersonalizationPage({ section }) {
           </button>
         </div>
       </div>
+      <label className="pv-mobile-nav"><span className="sr-only">{c("previewNav")}</span><select aria-label={c("previewNav")} value={section} onChange={event => router.push(paths[event.target.value])}>{Object.keys(paths).map(id => <option key={id} value={id}>{c(id)}</option>)}</select></label>
       <nav className="pv-nav" aria-label={c("previewNav")}>
         {Object.entries(paths).map(([id, href]) => {
           const Icon = navIcons[id];
@@ -962,7 +891,9 @@ export default function PersonalizationPage({ section }) {
         )}
         {section === "space" && <Space c={c} notify={setMessage} />}
         {section === "season" && (
-          <Season
+          <SeasonExplorer
+            Art={Art}
+            onItem={(value) => setModal({ type: "item", item: value })}
             c={c}
             onChapter={(value) => setModal({ type: "chapter", chapter: value })}
             onPlus={() => setModal({ type: "plus" })}
