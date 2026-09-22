@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -797,6 +797,7 @@ function PageHeading({ eyebrow, title, intro, icon: Icon }) {
 }
 
 export default function PersonalizationPage({ section }) {
+  const router = useRouter();
   const { language, changeLanguage } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
   const state = usePersonalization();
@@ -854,6 +855,7 @@ export default function PersonalizationPage({ section }) {
           </button>
         </div>
       </div>
+      <label className="pv-mobile-nav"><span className="sr-only">{c("previewNav")}</span><select aria-label={c("previewNav")} value={section} onChange={event => router.push(paths[event.target.value])}>{Object.keys(paths).map(id => <option key={id} value={id}>{c(id)}</option>)}</select></label>
       <nav className="pv-nav" aria-label={c("previewNav")}>
         {Object.entries(paths).map(([id, href]) => {
           const Icon = navIcons[id];

@@ -23,7 +23,7 @@ export default function SeasonExplorer({ c, Art, onChapter, onPlus, onItem }) {
     </div></div>
     <section className="sx-journey" aria-label={t('chapters')}>
       <div className="sx-world-column">
-        {view==='world' && <div className="sx-world"><Art name="season" size={960} alt={c('sceneAlt')} c={c} eager /><div className="sx-world-caption"><span>{t('seasonLabel')}</span><strong>{t('next')}</strong></div>
+        {view==='world' && <div className="sx-world"><Art name="season" size={960} alt={t('seasonArt')} c={c} eager /><div className="sx-world-caption"><span>{t('seasonLabel')}</span><strong>{t('next')}</strong></div>
           <div className="sx-world-points" aria-label={t('choose')}>{chapters.map((entry,i)=><button type="button" key={entry.id} className={`sx-point sx-point-${i}`} aria-label={`${entry.number} · ${c(entry.title)}`} aria-pressed={selected===i} onClick={()=>setSelected(i)}>{entry.number}</button>)}</div>
         </div>}
         <ol className={`sx-chapters ${view==='list'?'sx-list':''}`}>{chapters.map((entry,i)=>{const ChapterIcon=icons[i];return <li key={entry.id}><button type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}><span className="sx-chapter-index">{entry.number}</span><ChapterIcon size={20} aria-hidden="true" /><span><strong>{c(entry.title)}</strong>{view==='list'&&<small>{c(entry.detail)}</small>}</span></button></li>;})}</ol>
