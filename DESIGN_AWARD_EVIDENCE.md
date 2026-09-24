@@ -1,22 +1,16 @@
 # Design award evidence
 
-Updated 2026-09-08. Source inspection and prior evidence only; this pass did not perform a fresh browser/device visual certification.
+September 21. Primary target; submission eligibility and final design acceptance are not satisfied.
 
-## Moments to show
+The design story is a readable transition from private intention → explained proposal → explicit commitment → attributable outcome. Formation, Orbit and Passport must clarify those transitions in the connected release.
 
-| Moment | Why it matters | Existing source | Verification still needed |
-|---|---|---|---|
-| Want + contribution + context form an opportunity | Makes the reason for a suggestion understandable | src/features/opportunity-formation/ | Real connected version; touch, keyboard, reduced motion |
-| Personal Field | Gives a person a visual place in the product | src/pages/AppProfilePage.jsx | Full responsive/light-dark coverage; truthful privacy states |
-| Commitment orbit closes | Shows group progress toward a shared event | src/pages/AppCommitPage.jsx | Currently synthetic; real threshold/concurrency and cancellation states |
-| Passport connects lived outcomes | Gives returning a purpose beyond browsing | src/pages/AppPassportPage.jsx | Real outcome provenance and honest empty state |
+| Proof | Current state | Required capture |
+|---|---|---|
+| F1–F6 visual foundation | Integrated on main 79603ae1af60a30f86c105e0f2a4d841043eb727 | Reuse evidence only where release code/environment match |
+| F7 performance/accessibility | Blocked; existing owner retained | Frozen approved matrix, exact lab, budgets, independent review, human NVDA and visual verdict |
+| N1 journey | Partial; exact CI green | Full changed journey at 360/1440 × light/dark, keyboard upload, recovery/focus/status |
+| FV2/FV3 | Preparation accepted; implementation blocked | Adopt only after F7, pinned base, exclusive ownership |
+| Native craft | No accepted native build | Installed safe-area/keyboard/back/deep-link behavior; larger phone/tablet where relevant |
+| Claims of usability | No verified pilot feedback | Consented observations and actual resulting changes |
 
-Use the existing Field/Orbit/Portal/Path/Constellation language and warm copy. Prioritize one excellent formation interaction over additional animation systems.
-
-## Release audit
-
-Test 360/390/430/768/1440 widths, light/dark, keyboard focus, screen-reader names/status, reduced motion, large text, safe areas and device back navigation. Cover empty, loading, retry, permission denied, offline, success and cancellation. Every control must either work or truthfully explain its state.
-
-Known source issue: AppSettingsPage renders six button rows without actions. Current commitment copy expresses a held place after local state only, although a prototype disclaimer exists. These cannot be presented as working store functionality.
-
-Capture before/after screens, interaction clips, accessibility results and device/frame timings under shipaton/evidence/design/. Existing generated people/scenes are illustrations, not real customers or venue/attendance proof.
+Do not label prototype-only screens as live matching or completed events. No “optimized” claim without measured baseline/budget. [F7/N1 handoffs](shipaton/sprint-20260921/UNBLOCK-PACKETS.md), [category criteria](https://www.shipaton.com/categories/revenuecat-design-award).
