@@ -22,6 +22,7 @@
 - Supabase Staging custom SMTP is enabled and persisted after a page reload: `smtp.resend.com:465`, username `resend`, sender `ARO <notifications@aro-club.app>`, 60-second interval per recipient. Supabase shows an Auth limit of 30 messages per hour.
 - Confirmation and recovery templates now use ARO subjects, the built-in `{{ .ConfirmationURL }}` link, a clear unsolicited-request note, and `support@aro-club.app`. Both saves completed; delivery is not yet verified.
 - The configured staging Site URL returns HTTP 410 because its Vercel deployment was removed under the retention policy. No callback change was made without a live N1 preview.
+- A proposed disposable Auth signup to Resend's test inbox was rejected by automatic approval review because it would send a confirmation token to an external inbox. No request was sent and no test user was created. Use a founder-controlled inbox for Auth token testing.
 
 ## Acceptance status
 
