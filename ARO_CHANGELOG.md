@@ -6,6 +6,11 @@
 
 ---
 
+## 2026-09-25 — ARO domain email setup started
+
+The founder approved a Zoho mailbox for `aro-club.app` and Resend for isolated staging Auth email. Staging now has restricted Resend SMTP and ARO confirmation/recovery templates. The mailbox and DNS await Zoho administrator registration; staging callback delivery is blocked by a removed Vercel preview. The scope and verification state are recorded in `specs/ARO-EMAIL0-DOMAIN-MAIL.md` and `artifacts/ARO-EMAIL0/VERIFICATION.md`.
+
+
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
 
 The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for
