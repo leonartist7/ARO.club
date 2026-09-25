@@ -18,12 +18,12 @@ The new `aro-club.app` domain can send through Resend, but it has no incoming ma
 
 ## 2. Locked scope and decisions
 
-- Use Zoho Mail's free EU plan if available. Create one `hello@aro-club.app` mailbox with `support@` and `notifications@` aliases; enable sending as `support@`. Do not buy a plan without a new price approval.
+- Use Zoho Mail's free plan if available in the administrator account's region. Create one `hello@aro-club.app` mailbox with `support@` and `notifications@` aliases; enable sending as `support@`. Do not buy a plan without a new price approval.
 - Use Zoho for incoming business mail and Resend for Supabase Auth sending. Resend receiving stays disabled. Do not add a public mail API, inbox UI, database schema, or marketing mail.
 - Preserve the existing Resend DKIM and `send` subdomain SPF/MX records. Add Zoho's exact region/account-specific verification, MX, SPF, and DKIM records to Vercel DNS. Use one SPF record per hostname. Start DMARC at `p=none` with an aggregate-report alias, then enforce only after both sending paths pass authentication.
 - Configure only the isolated `mibydnerayobemhnlfyl` staging Supabase project. Use `ARO <notifications@aro-club.app>` with Resend SMTP and a dedicated sending-only key restricted to `aro-club.app`. Keep the secret out of Git, browser bundles, evidence, and chat.
 - Preserve the current exact staging Site URL and two callback allow-list entries unless the deployed N1 preview changes; match redirects to the actual deployed branch before end-to-end tests. Do not touch Tonguee or production Auth.
-- The founder completes Zoho personal registration, password, terms acceptance, recovery setup, and MFA. Agents may finish domain/mail configuration after account access exists.
+- Use the founder's existing Zoho sign-in for setup. The founder supplies any required recovery code and handles security challenges or terms acceptance that cannot be delegated. Complete domain and mailbox configuration after Zoho grants admin access.
 
 ## 3. Interfaces and security
 
