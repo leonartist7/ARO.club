@@ -19,7 +19,7 @@
 
 | Criterion | Status | Evidence / remaining check |
 |---|---|---|
-| Zoho mailbox and aliases | BLOCKED | Founder completing free-plan administrator signup |
+| Zoho mailbox and aliases | BLOCKED | Existing Zoho account reached through Google sign-in; Zoho requires a recovery mobile number and code before mail onboarding can continue. User input is pending. |
 | Zoho DNS and DMARC | BLOCKED | Await Zoho account-specific verification and DKIM records |
 | Staging Resend SMTP | IMPLEMENTED / NOT VERIFIED | Restricted key, saved SMTP settings, and branded templates observed; delivery test remains |
 | Signup and reset end to end | BLOCKED | Current allow-listed N1 preview returns HTTP 410; needs a live deployment and disposable account |
