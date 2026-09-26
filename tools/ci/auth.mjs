@@ -4,6 +4,7 @@ import { API, MAIL, CALLBACK, localFetch, recoveryLink, requireCondition, valida
 
 const resetStages = new Set([
   'RESET_CLI_STARTED', 'RESET_CLI_COMPLETED', 'ZERO_USERS_STARTED', 'ZERO_USERS_COMPLETED',
+  'AUTH_READY_STARTED', 'AUTH_READY_CONFIRMED',
   'RESET_CREDENTIAL_REQUEST_STARTED', 'RESPONSE_RECEIVED', 'EXPECTED_STATUS_ACCEPTED',
   'JSON_PARSE_COMPLETED', 'REMOVED_ACCOUNT_ASSERTION_PASSED',
 ]);
@@ -30,6 +31,33 @@ export function createResetDiagnostic(write = line => process.stdout.write(line)
       write(`RESET_DIAGNOSTIC_FAILURE ${stage} ${category}\n`);
     },
   });
+}
+
+export async function waitForLocalAuthReady(anonKey, diagnostic, fetcher = localFetch, pause = delay) {
+  requireCondition(typeof anonKey === 'string' && anonKey.length > 20, 'MISSING_LOCAL_KEY');
+  diagnostic.mark('AUTH_READY_STARTED');
+  const signal = AbortSignal.timeout(30000);
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    try {
+      const response = await fetcher(`${API}/auth/v1/health`, API, {
+        headers: { apikey: anonKey }, signal,
+      });
+      if (response.status === 200) {
+        diagnostic.mark('AUTH_READY_CONFIRMED');
+        return;
+      }
+      requireCondition([502, 503].includes(response.status), `AUTH_HEALTH_HTTP_${response.status}`);
+    } catch (error) {
+      if (!(error instanceof TypeError || error instanceof DOMException &&
+        ['TimeoutError', 'AbortError'].includes(error.name))) throw error;
+    }
+    if (signal.aborted || attempt === 19) break;
+    try { await pause(500, undefined, { signal }); } catch (error) {
+      if (!signal.aborted) throw error;
+      break;
+    }
+  }
+  throw new Error('AUTH_NOT_READY');
 }
 
 export async function confirmRemovedAccount(request, email, password, diagnostic = createResetDiagnostic()) {

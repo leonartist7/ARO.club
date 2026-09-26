@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { authClient, confirmRemovedAccount, createResetDiagnostic } from './auth.mjs';
+import { authClient, confirmRemovedAccount, createResetDiagnostic, waitForLocalAuthReady } from './auth.mjs';
 import { API } from './boundary.mjs';
 
 const secret = 'synthetic-private-key-body-url-password';
@@ -37,6 +37,51 @@ test('removed account uses exactly one original 400 password request and ordered
   assert.equal(f.calls[0][1].redirect, 'manual');
   assert.ok(f.calls[0][1].signal instanceof AbortSignal);
   assert.deepEqual(JSON.parse(f.calls[0][1].body), { email: `${secret}@example.invalid`, password: secret });
+  safe(f.lines);
+});
+
+test('post-reset health waits for transient transport and 503, then proves removal once', async t => {
+  const calls = [];
+  const lines = [];
+  let healthCalls = 0;
+  t.mock.method(globalThis, 'fetch', async (...args) => {
+    calls.push(args);
+    if (args[0].pathname === '/auth/v1/health') {
+      healthCalls += 1;
+      if (healthCalls === 1) throw new TypeError(secret);
+      return new Response(null, { status: healthCalls === 2 ? 503 : 200 });
+    }
+    return new Response(JSON.stringify({ error: secret }), { status: 400 });
+  });
+  const diagnostic = createResetDiagnostic(line => lines.push(line.trim()));
+  let pauses = 0;
+  await waitForLocalAuthReady(key, diagnostic, undefined, async () => { pauses += 1; });
+  await confirmRemovedAccount(authClient(key), `${secret}@example.invalid`, secret, diagnostic);
+  assert.equal(healthCalls, 3);
+  assert.equal(pauses, 2);
+  assert.equal(calls.filter(([url]) => url.pathname === '/auth/v1/token').length, 1);
+  assert.ok(calls.filter(([url]) => url.pathname === '/auth/v1/health').every(([, options]) =>
+    options.headers.apikey === key && options.redirect === 'manual' && options.signal instanceof AbortSignal));
+  assert.deepEqual(lines.slice(0, 2), ['RESET_DIAGNOSTIC AUTH_READY_STARTED', 'RESET_DIAGNOSTIC AUTH_READY_CONFIRMED']);
+  safe(lines);
+});
+
+test('health probe fails closed on unexpected status without sending credentials', async t => {
+  const f = fixture(t, () => new Response(null, { status: 401 }));
+  await assert.rejects(waitForLocalAuthReady(key, f.diagnostic), { message: 'AUTH_HEALTH_HTTP_401' });
+  assert.equal(f.calls.length, 1);
+  assert.equal(f.calls[0][0].pathname, '/auth/v1/health');
+  assert.deepEqual(f.lines, ['RESET_DIAGNOSTIC AUTH_READY_STARTED']);
+  safe(f.lines);
+});
+
+test('health probe exhausts its bound without sending credentials', async t => {
+  const f = fixture(t, () => { throw new TypeError(secret); });
+  let pauses = 0;
+  await assert.rejects(waitForLocalAuthReady(key, f.diagnostic, undefined, async () => { pauses += 1; }), { message: 'AUTH_NOT_READY' });
+  assert.equal(f.calls.length, 20);
+  assert.equal(pauses, 19);
+  assert.ok(f.calls.every(([url]) => url.pathname === '/auth/v1/health'));
   safe(f.lines);
 });
 
