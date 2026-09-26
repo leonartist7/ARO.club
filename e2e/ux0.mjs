@@ -21,7 +21,7 @@ export default async function ux0() {
   run.heading('deterministic formation');
 
   await run.step('intro is visibly synthetic and exposes all three anchors', async () => {
-    await navigate(page, BASE, { waitUntil: 'domcontentloaded' });
+    await navigate(page, BASE, { waitUntil: 'networkidle' });
     await page.getByTestId('opportunity-formation').waitFor();
     const body = await page.locator('body').innerText();
     assert(/prototype possibility · local only/i.test(body), 'missing local prototype boundary');
@@ -122,7 +122,7 @@ export default async function ux0() {
     assert(!(await page.getByTestId('formed-result').count()), 'stale formed result remained');
     assert(/signals forming/i.test(await page.getByTestId('formation-status').innerText()), 'partial state missing');
     assert(
-      /Choose this anchor again: People · place · time\./i.test(await page.getByRole('alert').innerText()),
+      /Choose this anchor again: People · place · time\./i.test(await page.locator('main').getByRole('alert').innerText()),
       'bounded missing-signal fallback was not explained'
     );
     assert(await page.locator('input[value="conversational-spanish"]').isChecked(), 'want selection was lost');
@@ -150,7 +150,7 @@ export default async function ux0() {
 
     for (const [locale, badge, option] of localeChecks) {
       await page.evaluate((value) => localStorage.setItem('conversa-language', value), locale);
-      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.reload({ waitUntil: 'networkidle' });
       await page.getByText(badge, { exact: true }).waitFor();
       assert(await page.getByText(option, { exact: true }).count(), `missing ${locale} fixture control`);
     }
@@ -158,7 +158,7 @@ export default async function ux0() {
 
   await run.step('keyboard and reduced-motion paths retain the same formed result', async () => {
     await page.evaluate(() => localStorage.setItem('conversa-language', 'en'));
-    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.reload({ waitUntil: 'networkidle' });
     await page.locator('input[value="conversational-spanish"]').focus();
     await page.keyboard.press('Space');
     await page.locator('input[value="cooking-stories"]').focus();
@@ -173,7 +173,7 @@ export default async function ux0() {
       reducedMotion: 'reduce',
     });
     const reducedPage = await reducedContext.newPage();
-    await navigate(reducedPage, BASE, { waitUntil: 'domcontentloaded' });
+    await navigate(reducedPage, BASE, { waitUntil: 'networkidle' });
     await selectEnglishScenario(reducedPage);
     await reducedPage.getByTestId('formed-result').waitFor();
     const duration = await reducedPage.locator('.aro-aperture').evaluate((element) => getComputedStyle(element).transitionDuration);
@@ -195,7 +195,7 @@ export default async function ux0() {
       for (const viewport of viewports) {
         const matrixContext = await browser.newContext({ viewport, colorScheme });
         const matrixPage = await matrixContext.newPage();
-        await navigate(matrixPage, BASE, { waitUntil: 'domcontentloaded' });
+        await navigate(matrixPage, BASE, { waitUntil: 'networkidle' });
         await selectEnglishScenario(matrixPage);
         await matrixPage.getByTestId('formed-result').waitFor();
 
@@ -230,23 +230,23 @@ export default async function ux0() {
 
   await run.step('UX0 and account routes issue zero requests to Supabase domains', async () => {
     for (const route of ['/', '/login', '/signup', '/forgot-password', '/auth/callback']) {
-      await navigate(page, BASE + route, { waitUntil: 'domcontentloaded' });
+      await navigate(page, BASE + route, { waitUntil: 'networkidle' });
       await page.waitForTimeout(300);
     }
     const callbackBoundary = page.getByRole('heading', {
-      name: 'Account callbacks are unavailable in this prototype.',
+      name: 'This sign-in link could not be verified.',
     });
     await callbackBoundary.waitFor();
     assert(await callbackBoundary.count(), 'callback route does not explain the prototype account boundary');
     await page.waitForTimeout(2100);
-    assert(new URL(page.url()).pathname === '/auth/callback', 'prototype callback route simulated a completed sign-in');
-    await navigate(page, BASE + '/choose-role', { waitUntil: 'domcontentloaded' });
+    assert(new URL(page.url()).pathname === '/auth/error', 'unverified callback did not stay in the recoverable error state');
+    await navigate(page, BASE + '/choose-role', { waitUntil: 'networkidle' });
     await page.waitForURL((url) => url.pathname === '/login');
     assert(
       !(await page.evaluate(() => JSON.parse(localStorage.getItem('conversa-player') ?? '{"state":{}}').state?.user)),
       'legacy role route created a local player'
     );
-    await navigate(page, BASE + '/leaderboard', { waitUntil: 'domcontentloaded' });
+    await navigate(page, BASE + '/leaderboard', { waitUntil: 'networkidle' });
     assert(!(await page.getByText('Your Rank', { exact: true }).count()), 'leaderboard rendered a simulated signed-in player');
     assert(supabaseRequests.length === 0, supabaseRequests.join(', '));
   });

@@ -2,17 +2,92 @@ import { randomBytes, randomUUID } from 'node:crypto';
 import { setTimeout as delay } from 'node:timers/promises';
 import { API, MAIL, CALLBACK, localFetch, recoveryLink, requireCondition, validateTarget } from './boundary.mjs';
 
+const resetStages = new Set([
+  'RESET_CLI_STARTED', 'RESET_CLI_COMPLETED', 'ZERO_USERS_STARTED', 'ZERO_USERS_COMPLETED',
+  'AUTH_READY_STARTED', 'AUTH_READY_CONFIRMED',
+  'RESET_CREDENTIAL_REQUEST_STARTED', 'RESPONSE_RECEIVED', 'EXPECTED_STATUS_ACCEPTED',
+  'JSON_PARSE_COMPLETED', 'REMOVED_ACCOUNT_ASSERTION_PASSED',
+]);
+
+export function createResetDiagnostic(write = line => process.stdout.write(line)) {
+  let stage = 'RESET_CLI_STARTED';
+  let reported = false;
+  return Object.freeze({
+    mark(next) {
+      requireCondition(resetStages.has(next), 'RESET_DIAGNOSTIC_STAGE');
+      stage = next;
+      write(`RESET_DIAGNOSTIC ${stage}\n`);
+    },
+    failure(error) {
+      if (reported) return;
+      reported = true;
+      // Never interpolate the exception, message, cause, stack or response.
+      const category = error instanceof DOMException && error.name === 'TimeoutError' ? 'TIMEOUT'
+        : error instanceof DOMException && error.name === 'AbortError' ? 'ABORT'
+          : ['RESPONSE_RECEIVED', 'JSON_PARSE_COMPLETED', 'ZERO_USERS_STARTED'].includes(stage) ? 'ASSERTION'
+            : error instanceof TypeError ? 'TRANSPORT'
+              : stage === 'EXPECTED_STATUS_ACCEPTED' ? 'JSON_PARSE'
+                : 'OTHER';
+      write(`RESET_DIAGNOSTIC_FAILURE ${stage} ${category}\n`);
+    },
+  });
+}
+
+export async function waitForLocalAuthReady(anonKey, diagnostic, fetcher = localFetch, pause = delay, signal = AbortSignal.timeout(30000)) {
+  requireCondition(typeof anonKey === 'string' && anonKey.length > 20, 'MISSING_LOCAL_KEY');
+  diagnostic.mark('AUTH_READY_STARTED');
+  while (!signal.aborted) {
+    try {
+      const response = await fetcher(`${API}/auth/v1/health`, API, {
+        headers: { apikey: anonKey }, signal,
+      });
+      if (response.status === 200) {
+        diagnostic.mark('AUTH_READY_CONFIRMED');
+        return;
+      }
+      requireCondition([502, 503].includes(response.status), `AUTH_HEALTH_HTTP_${response.status}`);
+    } catch (error) {
+      if (!(error instanceof TypeError || error instanceof DOMException &&
+        ['TimeoutError', 'AbortError'].includes(error.name))) throw error;
+    }
+    if (signal.aborted) break;
+    try { await pause(500, undefined, { signal }); } catch (error) {
+      if (!signal.aborted) throw error;
+      break;
+    }
+  }
+  throw new Error('AUTH_NOT_READY');
+}
+
+export async function confirmRemovedAccount(request, email, password, diagnostic = createResetDiagnostic()) {
+  try {
+    const rejected = await request('token?grant_type=password', {
+      method: 'POST', body: { email, password }, statuses: [400], resetDiagnostic: diagnostic,
+    });
+    requireCondition(!rejected.access_token, 'RESET_ACCOUNT_SURVIVED');
+    diagnostic.mark('REMOVED_ACCOUNT_ASSERTION_PASSED');
+  } catch (error) {
+    diagnostic.failure(error);
+    throw error;
+  }
+}
+
 export function authClient(anonKey) {
   requireCondition(typeof anonKey === 'string' && anonKey.length > 20, 'MISSING_LOCAL_KEY');
-  return async function request(path, { method = 'GET', token, body, statuses = [200] } = {}) {
+  return async function request(path, { method = 'GET', token, body, statuses = [200], resetDiagnostic } = {}) {
+    resetDiagnostic?.mark('RESET_CREDENTIAL_REQUEST_STARTED');
     const response = await localFetch(`${API}/auth/v1/${path}`, API, {
       method,
       headers: { apikey: anonKey, 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
       ...(body ? { body: JSON.stringify(body) } : {}),
     });
+    resetDiagnostic?.mark('RESPONSE_RECEIVED');
     requireCondition(statuses.includes(response.status), `AUTH_HTTP_${response.status}`);
+    resetDiagnostic?.mark('EXPECTED_STATUS_ACCEPTED');
     if (response.status === 204) return null;
-    return response.json();
+    const result = await response.json();
+    resetDiagnostic?.mark('JSON_PARSE_COMPLETED');
+    return result;
   };
 }
 
@@ -64,17 +139,24 @@ export async function exerciseAuth(
   const request = authClient(anonKey);
   const email = `i0-${randomUUID()}@example.invalid`;
   const otherEmail = `i0-${randomUUID()}@example.invalid`;
+  const browserEmails = [otherEmail, ...Array.from({ length: 3 }, () => `i0-${randomUUID()}@example.invalid`)];
   const password = `Aa1!${randomBytes(24).toString('hex')}`;
   const newPassword = `Bb2!${randomBytes(24).toString('hex')}`;
   let userId;
   let otherUserId;
   let otherSession;
-  await phase('auth-signup-two-users', async () => {
+  await phase('auth-signup-five-users', async () => {
     const owner = await request('signup', { method: 'POST', body: { email, password } });
     const other = await request('signup', { method: 'POST', body: { email: otherEmail, password } });
     userId = owner.user?.id;
     otherUserId = other.user?.id;
     requireCondition(userId && otherUserId && userId !== otherUserId, 'DISTINCT_USERS_REQUIRED');
+    const identities = new Set([userId, otherUserId]);
+    for (const browserEmail of browserEmails.slice(1)) {
+      const applicant = await request('signup', { method: 'POST', body: { email: browserEmail, password } });
+      requireCondition(applicant.user?.id && !identities.has(applicant.user.id), 'DISTINCT_BROWSER_APPLICANT_REQUIRED');
+      identities.add(applicant.user.id);
+    }
   });
   const signIn = (candidate, statuses = [200], candidateEmail = email) => request('token?grant_type=password', {
     method: 'POST', body: { email: candidateEmail, password: candidate }, statuses,
@@ -141,12 +223,21 @@ export async function exerciseAuth(
     await platform(`rest/v1/teacher_applications?id=eq.${application.id}`, {
       method: 'PATCH', token: ownerToken, body: { status: 'submitted' }, statuses: [204],
     });
+    const [submitted] = await platform(`rest/v1/teacher_applications?id=eq.${application.id}&select=status,submitted_at`, {
+      token: ownerToken,
+    });
+    requireCondition(submitted?.status === 'submitted' && submitted.submitted_at, 'APPLICATION_SUBMISSION_TIMESTAMP_MISSING');
+    await platform(`storage/v1/object/verification-docs/${objectPath}`, {
+      method: 'DELETE', token: ownerToken, statuses: [400, 403, 404],
+    });
     await platform('rest/v1/bookings', {
       method: 'POST', token: ownerToken, body: { student_id: userId, total_minor: 1, currency: 'CAD' },
       statuses: [401, 403],
     });
   });
-  await phase(browserPhase, () => browserCheck({ anonKey, email, password }));
+  // The API owner's application is already submitted. Use the second isolated
+  // account for a fresh browser draft; never weaken submitted-evidence RLS.
+  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password }));
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
     const link = recoveryLink(await recoveryMail(email));
@@ -171,8 +262,5 @@ export async function exerciseAuth(
     requireCondition(!rejected.access_token, 'REVOKED_REFRESH_ACCEPTED');
   });
   // Return only an in-memory check. Credentials are never written to evidence.
-  return async () => {
-    const rejected = await signIn(newPassword, [400]);
-    requireCondition(!rejected.access_token, 'RESET_ACCOUNT_SURVIVED');
-  };
+  return diagnostic => confirmRemovedAccount(request, email, newPassword, diagnostic);
 }

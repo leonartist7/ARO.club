@@ -1,5 +1,10 @@
 # ARO — Infrastructure, Environment, and Operations Registry
 
+> **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
+
+
+> **2026-09-21 N1 rollout:** The founder authorized Next.js migration and Vercel integration verification. [N1 rollout v1.1](specs/ARO-N1-VERCEL-ROLLOUT.md) governs reconciliation onto current main and isolated Preview accounts. Newer F1–F6 work is preserved. Production backend/domain selection, hosted email flows and independent security review remain gates. P1–P5, Trust/schema changes and live synthetic features are not unlocked.
+
 > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
 
 > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.

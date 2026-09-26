@@ -1,0 +1,9 @@
+{
+  "scope": "all .next/static/chunks/*.js",
+  "files": 80,
+  "minifiedBytes": 2407065,
+  "gzipBytes": 738620,
+  "deltaMinifiedBytes": 1336,
+  "deltaGzipBytes": 535,
+  "withinIncrementalBudget": true
+}

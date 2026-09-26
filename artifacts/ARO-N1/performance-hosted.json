@@ -1,0 +1,59 @@
+{
+  "environment": "https://aro-club-g59tj1be1-lionovart.vercel.app, desktop Chromium, no throttling; observational samples, not a release benchmark.",
+  "samples": [
+    {
+      "route": "/",
+      "sample": 0,
+      "ttfbMs": 27.200000047683716,
+      "domContentLoadedMs": 349.9000000357628,
+      "javascriptDecodedBytes": 1176270,
+      "lcp": 908,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "sample": 1,
+      "ttfbMs": 26.19999998807907,
+      "domContentLoadedMs": 299.89999997615814,
+      "javascriptDecodedBytes": 1176270,
+      "lcp": 844,
+      "cls": 0
+    },
+    {
+      "route": "/",
+      "sample": 2,
+      "ttfbMs": 25,
+      "domContentLoadedMs": 336.30000001192093,
+      "javascriptDecodedBytes": 1176270,
+      "lcp": 904,
+      "cls": 0
+    },
+    {
+      "route": "/app",
+      "sample": 0,
+      "ttfbMs": 26.30000001192093,
+      "domContentLoadedMs": 313.5,
+      "javascriptDecodedBytes": 1152581,
+      "lcp": 608,
+      "cls": 0
+    },
+    {
+      "route": "/app",
+      "sample": 1,
+      "ttfbMs": 25.80000001192093,
+      "domContentLoadedMs": 318.30000001192093,
+      "javascriptDecodedBytes": 1152581,
+      "lcp": 424,
+      "cls": 0
+    },
+    {
+      "route": "/app",
+      "sample": 2,
+      "ttfbMs": 38.39999997615814,
+      "domContentLoadedMs": 314.5999999642372,
+      "javascriptDecodedBytes": 1152581,
+      "lcp": 436,
+      "cls": 0
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const FavoritesContext = createContext();
@@ -9,6 +10,7 @@ const STORAGE_KEY = 'conversa-favorites';
  * Persists to localStorage
  */
 export function FavoritesProvider({ children }) {
+  const [storageReady,setStorageReady]=useState(false);
   const [favorites, setFavorites] = useState([]);
 
   // Load favorites from localStorage on mount
@@ -21,16 +23,18 @@ export function FavoritesProvider({ children }) {
     } catch (error) {
       console.error('Failed to load favorites:', error);
     }
+    setStorageReady(true);
   }, []);
 
   // Save to localStorage whenever favorites change
   useEffect(() => {
+    if(!storageReady)return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
     } catch (error) {
       console.error('Failed to save favorites:', error);
     }
-  }, [favorites]);
+  }, [favorites, storageReady]);
 
   const addToFavorites = (experienceId) => {
     setFavorites((prev) => {

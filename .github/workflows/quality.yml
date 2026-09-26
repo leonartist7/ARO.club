@@ -21,6 +21,7 @@ jobs:
       - run: npm ci
       - run: node --test tools/autonomy/core.test.mjs
       - run: npm run lint -- --max-warnings=0
+      - run: npm run type-check
       - run: npm test
       - run: npm run build
 
@@ -35,4 +36,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm test -- src/views/AppDiscovery.test.jsx src/views/AppPersonal.test.jsx src/views/AppReturn.test.jsx
+        env:
+          FV1_BROWSER_EVIDENCE: 'true'
       - run: npm run test:e2e

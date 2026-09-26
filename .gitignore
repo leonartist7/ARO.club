@@ -40,3 +40,8 @@ supabase/.temp/
 supabase/.branches/
 tools/ci/supabase/.temp/
 tools/ci/supabase/.branches/
+
+.next/
+*.tsbuildinfo
+
+.vercel/

@@ -5,7 +5,7 @@ export default defineConfig({
     // jsdom gives the store a real localStorage, which it persists into.
     environment: 'jsdom',
     globals: false,
-    include: ['src/**/*.test.{js,jsx}'],
+    include: ['src/**/*.test.{js,jsx,ts,tsx}'],
     // e2e/ is Playwright and runs under `npm run test:e2e`.
     exclude: ['node_modules', 'dist', 'e2e'],
   },

@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { ArrowRight, Check, Pencil, RotateCcw, Sparkles, X } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -43,14 +44,13 @@ const SEMANTIC_KEYS = [
 ];
 
 function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(
-    () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
-  );
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     if (!media) return undefined;
     const update = () => setReduced(media.matches);
+    update();
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, []);

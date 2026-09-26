@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+'use client';
+import { Link } from '../../lib/navigation';
 import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import AroMark from '../brand/AroMark';

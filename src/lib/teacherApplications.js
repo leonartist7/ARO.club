@@ -1,5 +1,12 @@
 import { supabase } from './supabase';
 
+// Associate only a safe outcome with the original error, including frozen
+// provider errors. Never retain cleanup responses, object paths or credentials.
+const uploadCleanupOutcomes = new WeakMap();
+export function getUploadCleanupOutcome(error) {
+  return error && typeof error === 'object' ? uploadCleanupOutcomes.get(error) : undefined;
+}
+
 /**
  * Teacher Application data layer (applicant side).
  *
@@ -37,7 +44,15 @@ export async function getMyApplication(userId) {
     .limit(1)
     .maybeSingle();
   if (error) throw error;
-  return data;
+  if (!data) return null;
+
+  const { data: decision, error: decisionError } = await supabase
+    .from('teacher_application_decisions')
+    .select('application_id, decision_reason')
+    .eq('application_id', data.id)
+    .maybeSingle();
+  if (decisionError) throw decisionError;
+  return { ...data, decision_reason: decision?.decision_reason ?? null };
 }
 
 /** Get an existing draft/changes_requested application or create a fresh draft. */
@@ -70,7 +85,7 @@ export async function updateApplication(id, updates) {
 export async function submitApplication(id) {
   const { data, error } = await supabase
     .from('teacher_applications')
-    .update({ status: 'submitted', submitted_at: new Date().toISOString() })
+    .update({ status: 'submitted' })
     .eq('id', id)
     .select()
     .single();
@@ -123,7 +138,20 @@ export async function uploadDocument({ userId, applicationId, docType, file, lab
     })
     .select()
     .single();
-  if (error) throw error;
+  if (error) {
+    // The metadata write is authoritative. If it fails after a successful
+    // upload, make one best-effort compensating delete without replacing the
+    // original error with a cleanup error.
+    let outcome = 'failed';
+    try {
+      const result = await supabase.storage.from(bucket).remove([path]);
+      if (!result?.error && result?.data?.some(object => object.name === path)) outcome = 'removed';
+    } catch {
+      // Preserve the metadata failure; cleanup details may contain private data.
+    }
+    if (typeof error === 'object') uploadCleanupOutcomes.set(error, outcome);
+    throw error;
+  }
   const { data: signed, error: signedError } = await supabase.storage
     .from(bucket)
     .createSignedUrl(path, 60 * 10);

@@ -4,7 +4,9 @@ Authority: `specs/ARO-I0.1-EPHEMERAL-SUPABASE-CI.md` v1.0.0.
 
 The `Isolated database / platform` GitHub check runs this workdir on a standard disposable Ubuntu runner. No GitHub secrets or hosted Supabase project are required. The destructive runner refuses local machines and self-hosted CI. Do not remove that guard to reuse it against a personal database.
 
-Safe local verification: `node --test tools/ci/boundary.test.mjs` and `node --check tools/ci/run.mjs`.
+Safe local verification: `node --test tools/ci/boundary.test.mjs tools/ci/reset-diagnostic.test.mjs` and `node --check tools/ci/run.mjs`.
+
+After the second database reset and zero-user assertion, the runner waits up to 30 seconds for the local Auth health endpoint to recover from transient transport errors or 502/503 responses. It then makes exactly one password request to prove the removed account cannot sign in. An unexpected health response or exhausted deadline fails the check; credentials and HTTP bodies are never logged.
 
 CI sequence: pinned CLI → loopback-only Docker network → platform start → application migration reset → transactional platform and application Trust matrices → synthetic Auth/API/Storage lifecycle → browser boundary matrix → local recovery email → reset/account-erasure proof → SQL repeat → project-specific cleanup. While source-controlled UX0 prototype mode is enabled, the browser phase is named `prototype-browser-boundary` and proves disabled account inputs, truthful callback behavior, protected-route rejection, responsive light/dark rendering and zero application requests to the local Supabase API. When prototype mode is separately authorized off, the existing authenticated 360/1440 light/dark browser matrix resumes. Read the named phase output; failures never print CLI credentials or recovery payloads. Fix the failing phase against the spec and rerun the PR workflow. No health-check bypass or blanket retry is allowed.
 

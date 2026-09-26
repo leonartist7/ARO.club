@@ -1,3 +1,4 @@
+'use client';
 import { useToast } from '../../hooks/useToast';
 import Button from '../ui/Button';
 import { Card, CardBody, CardHeader } from '../ui/Card';

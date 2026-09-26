@@ -1,4 +1,6 @@
-# Award audit — September 8, 2026
+# Award audit — September 8, 2026 (historical)
+
+> September 21: use [the current opportunity table](sprint-20260921/CATEGORIES.md). The earlier prize figures and priorities below are retained history, not current selection or eligibility evidence.
 
 ENTER = strategic target, conditional on standard eligibility and actual evidence. MAYBE = revisit after launch gates pass. SKIP = no extra work. Win potential is qualitative product fit, not a forecast. Cash values are first-place USD where verified; never infer a category's prize from a generic headline.
 

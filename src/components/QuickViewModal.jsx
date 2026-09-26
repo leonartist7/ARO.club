@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -5,7 +6,7 @@ import { X, MapPin, Clock, Users, Star, Calendar, Heart } from 'lucide-react';
 import Button from './ui/Button';
 import Badge from './ui/Badge';
 import Avatar from './ui/Avatar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../lib/navigation';
 import { useFavorites } from '../hooks/useFavorites';
 import { useToast } from '../hooks/useToast';
 import { formatPrice, getSpotsLeft, isAlmostFull } from '../utils/helpers';

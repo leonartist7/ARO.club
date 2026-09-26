@@ -1,0 +1,633 @@
+diff --git a/ARO_AUTONOMOUS_WORKBOARD.md b/ARO_AUTONOMOUS_WORKBOARD.md
+index a91b3f0..40480dc 100644
+--- a/ARO_AUTONOMOUS_WORKBOARD.md
++++ b/ARO_AUTONOMOUS_WORKBOARD.md
+@@ -1,5 +1,7 @@
+ # ARO — Autonomous Workboard
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+ **Status:** ACTIVE / COORDINATION MAP
+diff --git a/ARO_BUILD_PLAYBOOK.md b/ARO_BUILD_PLAYBOOK.md
+index a7ea8e6..3eca0ef 100644
+--- a/ARO_BUILD_PLAYBOOK.md
++++ b/ARO_BUILD_PLAYBOOK.md
+@@ -1,5 +1,7 @@
+ # ARO — Build Playbook
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`
+ > after the isolated migration/Auth/RLS/Storage/recovery/reset and responsive
+ > authenticated browser matrix passed. I0.2 and Q0 are **IMPLEMENTED / CI
+diff --git a/ARO_CHANGELOG.md b/ARO_CHANGELOG.md
+index cb3b92f..f54b4f3 100644
+--- a/ARO_CHANGELOG.md
++++ b/ARO_CHANGELOG.md
+@@ -818,3 +818,7 @@ Founder explicitly approved merging PR #40 through normal checks, the proposed d
+ ## 2026-09-09 — FV-1 F1/F2 progress synchronized to main
+ 
+ FV-1 v0.2.2 records the founder-authorized, narrow 640,000-byte limit for the required 960px lossless persona derivative; all other F1 budgets and release gates remain unchanged. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298` after deterministic media checks, local validation and passing PR CI. F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`, adding truthful shell disclosure, non-actionable previews, navigation ownership, recovery and focus support. The founder authorized the current PR #41 progress to merge to GitHub `main` through normal checks. No release/deployment or full FV-1 verification is authorized; F3–F7, independent review, human NVDA testing and founder visual review remain pending.
++
++## 2026-09-15 — FV-1 handoff reconciliation and isolated preparation
++
++Founder requested updated handoffs after F1–F7 work and ready-to-start autonomous chats. F1/F2 integrated through #41, F3–F6 through #43–#46; main is `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 draft #48 and lab-amendment #47 remain open at inspection. Added evidence-linked handoff and source-read-only FV2-PREP, FV3-PREP and I0-REVIEW-PREP packets. Historical recovery recipes are labeled; normalized current documentation manifest is repaired with before/after provenance. No product acceptance or runtime gate upgraded. No schedule, provider, product, merge, deployment or release action. Shared status/changelog integration must be serialized with #47/#48.
+diff --git a/ARO_CLOUD_HANDOFF.md b/ARO_CLOUD_HANDOFF.md
+index d9e3af3..11a7c6d 100644
+--- a/ARO_CLOUD_HANDOFF.md
++++ b/ARO_CLOUD_HANDOFF.md
+@@ -1,5 +1,7 @@
+ # ARO cloud audit handoff
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ Date: 2026-09-08. Package: ARO-H0, snapshot publication and audit dispatch only.
+ 
+ ## Publication authority and limits
+diff --git a/ARO_CURRENT_STATE.md b/ARO_CURRENT_STATE.md
+index 435afef..46f889b 100644
+--- a/ARO_CURRENT_STATE.md
++++ b/ARO_CURRENT_STATE.md
+@@ -1,5 +1,7 @@
+ # ARO — Current State
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+diff --git a/ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md b/ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md
+index 5b21730..9ca8e89 100644
+--- a/ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md
++++ b/ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md
+@@ -1,5 +1,7 @@
+ # ARO — Frontend Visual Continuation Plan
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+ **Status:** ACTIVE / DESIGN-ONLY CONTINUATION MAP
+diff --git a/ARO_IMPLEMENTATION_STATUS.md b/ARO_IMPLEMENTATION_STATUS.md
+index 2c47b50..f9fff76 100644
+--- a/ARO_IMPLEMENTATION_STATUS.md
++++ b/ARO_IMPLEMENTATION_STATUS.md
+@@ -1,5 +1,7 @@
+ # ARO — Implementation Status Ledger
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+diff --git a/ARO_MASTER_DELIVERY_PLAN.md b/ARO_MASTER_DELIVERY_PLAN.md
+index 7333a62..6be038c 100644
+--- a/ARO_MASTER_DELIVERY_PLAN.md
++++ b/ARO_MASTER_DELIVERY_PLAN.md
+@@ -1,5 +1,7 @@
+ # ARO — Master Delivery Plan
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+ 
+ > **2026-09-03 execution handoff:** I0.2 merged through PR #28 at `5976928`.
+diff --git a/ARO_SPEC_INDEX.md b/ARO_SPEC_INDEX.md
+index aef52f3..f22791e 100644
+--- a/ARO_SPEC_INDEX.md
++++ b/ARO_SPEC_INDEX.md
+@@ -1,5 +1,7 @@
+ # ARO — Canonical Spec Index
+ 
++> **Current execution snapshot — 2026-09-15:** F1–F6 are integrated on main at `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 remains IN-PROGRESS / BLOCKED on existing draft PR #48 (`codex/fv1-f7-acceptance-evidence`); profile amendment PR #47 is open. Earlier F1-start / PR #41-only instructions below are historical, not current dispatch instructions. See [current handoff](docs/autonomous-handoff-20260915/README.md) for evidence, ownership and isolated preparation packets. FV-1 final acceptance/release and I0/P1 gates remain open. This snapshot does not certify unseen work or production.
++
+ > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.
+ 
+ > September 8 snapshot publication: see `ARO_CLOUD_HANDOFF.md` for the founder's default-branch publication request, fixed-SHA audit prompts and unresolved evidence gaps. Older release-permission wording is superseded only for this static snapshot. Founder visual certification, I0 gates and all runtime restrictions remain open.
+diff --git a/docs/autonomous-handoff-20260915/FV2-PREP.md b/docs/autonomous-handoff-20260915/FV2-PREP.md
+new file mode 100644
+index 0000000..18e2297
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/FV2-PREP.md
+@@ -0,0 +1,18 @@
++# FV2-PREP
++
++Repository: leonartist7/ARO.club
++SOURCE_SHA: 79603ae1af60a30f86c105e0f2a4d841043eb727
++Handoff branch: docs/aro-autonomous-handoff-20260915
++Execution: existing cloud capacity; preferred Terra/high if selectable; state any actual model-selection limitation.
++
++Read AGENTS.md and its full governing chain, then docs/autonomous-handoff-20260915/README.md from the pinned handoff commit. Pin HANDOFF_SHA after fetching that branch; source analysis uses a separate clean checkout at SOURCE_SHA. Read the active package specs and cited evidence before conclusions. F1–F6 are integrated; F7 remains separately owned. Inspect relevant source only, with exact file references. No repeated whole-repository audit, H0 audits or synthesis.
++
++Authority: source READ-ONLY, one bounded preparation task. Write only to your unique external output directory. No commits, PRs, repository edits, provider calls/configuration, secrets, test accounts, builds, browser measurements, dependencies, paid APIs, schedules, messages or deployment. Do not occupy F7's controlled measurement host concurrently. Do not ask to proceed through routine drafting choices; finish the proposal with explicit unresolved product decisions. Stop only the affected part for missing source/access, incompatible authority, or scope expansion; deliver the rest with precise limitations.
++
++Return source/handoff SHAs, files inspected, evidence versus inference, complete proposal, next approval/dependency gates and a compact receiving-agent prompt. Do not self-approve or claim runtime acceptance. No runtime implementation follows automatically.
++
++Task: FV2-PREP — participant journey specification preparation.
++Output directory: unique external FV2-PREP directory.
++Read ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md, ARO_EXPERIENCE_SYSTEM.md, approved UX0/UX1 and FV-1 specs, existing route/shell/fixture interfaces and participant pages.
++Deliver one proposed package using specs/PACKAGE_TEMPLATE.md: Home → World → detail → /app/opportunities/:id/commit → Circle. Describe exact hierarchy, transition, copy and local-state changes per route, phone/desktop, light/dark, keyboard/reduced motion, invalid/full/reset/direct-entry cases. Preserve truthful fixture counts, frozen interfaces and synthetic-only claims. Reuse existing H0 findings and merged repairs; distinguish remaining cohesion work from defects already repaired.
++Include proposed exclusive implementation filenames, tests/evidence/commands, acceptance criteria, rollback and stop rules. Any shared navigation/fixture change is a proposed separate ownership decision, never an assumed edit. No accounts, persistence, real commitments, AI, payments or location. Keep approval and F7 reconciliation as implementation dependencies. Deliver a coherent proposal now even while F7 is pending.
+diff --git a/docs/autonomous-handoff-20260915/FV3-PREP.md b/docs/autonomous-handoff-20260915/FV3-PREP.md
+new file mode 100644
+index 0000000..8fd27c6
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/FV3-PREP.md
+@@ -0,0 +1,18 @@
++# FV3-PREP
++
++Repository: leonartist7/ARO.club
++SOURCE_SHA: 79603ae1af60a30f86c105e0f2a4d841043eb727
++Handoff branch: docs/aro-autonomous-handoff-20260915
++Execution: existing cloud capacity; preferred Terra/high if selectable; state any actual model-selection limitation.
++
++Read AGENTS.md and its full governing chain, then docs/autonomous-handoff-20260915/README.md from the pinned handoff commit. Pin HANDOFF_SHA after fetching that branch; source analysis uses a separate clean checkout at SOURCE_SHA. Read the active package specs and cited evidence before conclusions. F1–F6 are integrated; F7 remains separately owned. Inspect relevant source only, with exact file references. No repeated whole-repository audit, H0 audits or synthesis.
++
++Authority: source READ-ONLY, one bounded preparation task. Write only to your unique external output directory. No commits, PRs, repository edits, provider calls/configuration, secrets, test accounts, builds, browser measurements, dependencies, paid APIs, schedules, messages or deployment. Do not occupy F7's controlled measurement host concurrently. Do not ask to proceed through routine drafting choices; finish the proposal with explicit unresolved product decisions. Stop only the affected part for missing source/access, incompatible authority, or scope expansion; deliver the rest with precise limitations.
++
++Return source/handoff SHAs, files inspected, evidence versus inference, complete proposal, next approval/dependency gates and a compact receiving-agent prompt. Do not self-approve or claim runtime acceptance. No runtime implementation follows automatically.
++
++Task: FV3-PREP — creator proposal specification preparation.
++Output directory: unique external FV3-PREP directory.
++Read ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md, ARO_EXPERIENCE_SYSTEM.md, approved UX2 and FV-1 specs, AppCreatePage and its local fixtures/translations/tests.
++Deliver one proposed package using specs/PACKAGE_TEMPLATE.md: Learn/Share/Gather seed → legible static proposal → preview/reset/exit. Specify purpose, format, place mood, timing shape and next action without implying real creation, publishing, matching or demand. Preserve World return and local-only behavior.
++Define exact states, copy, mobile/desktop layout, accessibility/motion, proposed exclusive files, acceptance tests/evidence/commands and rollback. Shared shell, routes and fixtures remain read-only; list any required interface change as a decision rather than silently overlapping FV2. Include a participant-preview contract that FV2's owner can review, without assuming that proposal is approved. No AI generation, provider, moderation workflow, stored objects or publishing. Keep proposal PROPOSED pending founder approval and relevant predecessor/F7 reconciliation.
+diff --git a/docs/autonomous-handoff-20260915/I0-REVIEW-PREP.md b/docs/autonomous-handoff-20260915/I0-REVIEW-PREP.md
+new file mode 100644
+index 0000000..5ff46cd
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/I0-REVIEW-PREP.md
+@@ -0,0 +1,18 @@
++# I0-REVIEW-PREP
++
++Repository: leonartist7/ARO.club
++SOURCE_SHA: 79603ae1af60a30f86c105e0f2a4d841043eb727
++Handoff branch: docs/aro-autonomous-handoff-20260915
++Execution: existing cloud capacity; preferred Terra/high if selectable; state any actual model-selection limitation.
++
++Read AGENTS.md and its full governing chain, then docs/autonomous-handoff-20260915/README.md from the pinned handoff commit. Pin HANDOFF_SHA after fetching that branch; source analysis uses a separate clean checkout at SOURCE_SHA. Read the active package specs and cited evidence before conclusions. F1–F6 are integrated; F7 remains separately owned. Inspect relevant source only, with exact file references. No repeated whole-repository audit, H0 audits or synthesis.
++
++Authority: source READ-ONLY, one bounded preparation task. Write only to your unique external output directory. No commits, PRs, repository edits, provider calls/configuration, secrets, test accounts, builds, browser measurements, dependencies, paid APIs, schedules, messages or deployment. Do not occupy F7's controlled measurement host concurrently. Do not ask to proceed through routine drafting choices; finish the proposal with explicit unresolved product decisions. Stop only the affected part for missing source/access, incompatible authority, or scope expansion; deliver the rest with precise limitations.
++
++Return source/handoff SHAs, files inspected, evidence versus inference, complete proposal, next approval/dependency gates and a compact receiving-agent prompt. Do not self-approve or claim runtime acceptance. No runtime implementation follows automatically.
++
++Task: I0-REVIEW-PREP — repository evidence and remaining-gate inventory.
++Output directory: unique external I0-REVIEW-PREP directory.
++Read ARO_INFRASTRUCTURE.md, I0/I0.2/Q0 specs, P1 baseline spec and existing artifacts/ARO-I0, artifacts/ARO-I0.2, artifacts/ARO-Q0 and artifacts/ARO-P1-BASELINE evidence. Preserve the founder's deferred hosted Auth work.
++Deliver a criterion-by-criterion table: satisfied by existing evidence / missing / stale / requires provider access / requires independent specialist. Include source SHA, evidence date/link, exact minimal next action and who can perform it. Separate staging capacity, Preview variable scopes from literal-value matching, callback/recovery posture, domain ownership, I0.2 independent review and P1 baseline. Do not present historical provider facts as current live verification.
++Prepare a bounded future specialist-review prompt against the exact implementation/evidence revision and a short founder checklist. This task is preparation, not the specialist sign-off itself. Do not run Auth flows, query user data, read secrets, mutate providers, create infrastructure or certify I0/P1. Identify which later actions are already authorized versus need a named decision; leave all gates unchanged.
+diff --git a/docs/autonomous-handoff-20260915/README.md b/docs/autonomous-handoff-20260915/README.md
+new file mode 100644
+index 0000000..6538000
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/README.md
+@@ -0,0 +1,57 @@
++# ARO — autonomous chat handoff, 2026-09-15
++
++Status: documentation reconciliation and preparation dispatch only. Founder request: update required handoffs after F1–F7 work and prepare separate autonomous chats. This does not approve another runtime or visual implementation package, merge, deployment, release, provider mutation or scheduling.
++
++## Verified repository snapshot
++
++Source main: `79603ae1af60a30f86c105e0f2a4d841043eb727`. Read-only GitHub PR metadata and fetched first-parent Git history were inspected on 2026-09-15. PR-body test claims are attributed prior evidence, not tests rerun by this handoff.
++
++| Slice | Integration commit | Evidence |
++|---|---|---|
++| F1 + F2 | `7815c976c284ec4ea92cf56d51aed5daf977bbcb` | merged [PR #41](https://github.com/leonartist7/ARO.club/pull/41); accepted F1 `c0813087f9f4f0b6d5b4dc6930030d5942457298`, F2 evidence `d1313f942b93ad50dbb0f244c71157eef03e571b` |
++| F3 | `764d47d650aae71910c9bfffcc0d510227b1ee13` | merged [PR #43](https://github.com/leonartist7/ARO.club/pull/43) |
++| F4 | `b74ea6352264c5e0f1c79c15516866d143941eeb` | merged [PR #44](https://github.com/leonartist7/ARO.club/pull/44) |
++| F5 | `dc8701e17df8297bcf0bb9d85828e83573140343` | merged [PR #45](https://github.com/leonartist7/ARO.club/pull/45) |
++| F6 | `79603ae1af60a30f86c105e0f2a4d841043eb727` | merged [PR #46](https://github.com/leonartist7/ARO.club/pull/46) |
++| F7 | no accepted integration | draft [PR #48](https://github.com/leonartist7/ARO.club/pull/48), head `123a31f25ed5ce5faae7d5484f578622b2f57ca2` |
++
++F1–F6 are IMPLEMENTED / merged with slice CI evidence; this is not integrated FV-1 VERIFIED or SHIPPED. Do not rerun these slices, H0 A1–S1 audits or lead synthesis.
++
++## F7 ownership and remaining gates
++
++- Preserve branch `codex/fv1-f7-acceptance-evidence`, PR #48 and original F7 task base above. Never reset it to this snapshot or dispatch a second F7 writer.
++- [PR #47](https://github.com/leonartist7/ARO.club/pull/47), head `eec03532558e18e3ea0ce600efbda8a584be4880`, records founder approval of Intel Xeon Platinum 8272CL for F7 measurement only. It was OPEN, not merged, at inspection. Recheck actual state before execution; approval is not proof of merge.
++- After amendment integration, the F7 owner must explicitly reconcile its governing spec reference without changing the accepted product base. Exact Playwright 1.62.0 / Chromium 151.0.7922.34 revision 1234 install and launch remain mandatory, together with every other §20 condition, 4× CPU throttling, three-run method, budgets and accessibility thresholds.
++- Integrated acceptance, independent nonwriting review, proficient human NVDA/Chromium on Windows testing and founder visual review remain outstanding. An automated summary is not independent acceptance.
++- §20 requires no concurrent task on the measurement host. Separate chats/worktrees do not prove host isolation. Preparation work may run on other hosts; pause it on the measurement host during controlled F7 measurements.
++- The documentation PR overlaps F7's future status-file ownership and PR #47's changelog. Do not merge it while either owner writes those paths. Reconcile the final documentation diff with their latest heads serially. This task does not merge any PR.
++
++## Start separate chats
++
++Use each packet below in its own existing ChatGPT/Codex cloud task. These are finite tasks, not schedules. Select Terra / high if available; report the actual selection only if exposed. No paid model API fallback. Complete one useful output and stop; no polling/coordinator loops.
++
++| Chat | Packet | Can start before F7? | Deliverable |
++|---|---|---|---|
++| 1 | [FV2-PREP](FV2-PREP.md) | Yes, source read-only | proposed participant journey spec and implementer handoff |
++| 2 | [FV3-PREP](FV3-PREP.md) | Yes, source read-only | proposed creator journey spec and implementer handoff |
++| 3 | [I0-REVIEW-PREP](I0-REVIEW-PREP.md) | Yes, repository evidence only | exact remaining infrastructure/reviewer action matrix |
++
++All three own separate external output directories and no repository files. Their proposals remain PROPOSED, never SPEC-READY by self-approval. Return complete output text plus retrievable files using the task's available persistence. If file delivery fails, include the full packet in the reply and state the limitation. No private attachment URLs in public GitHub.
++
++Before starting, fetch this documentation branch and pin its full commit as HANDOFF_SHA. Check out source at the exact SOURCE_SHA in the packet into a separate clean path. If newer main changes relevant source, report a bounded drift comparison and use the pinned snapshot for the proposal; do not silently rebase the analysis. This handoff works before its documentation PR is merged.
++
++## Whole-plan queue
++
++| Area | Current useful work | Execution boundary |
++|---|---|---|
++| FV-1 F7 | existing owner's acceptance and review work | lab, independent and human gates retained |
++| FV-2 / FV-3 | packets above | no UI writes before approved package/dependencies |
++| FV-4 return / FV-5 system states | later bounded design proposals informed by F7/FV2/FV3 | avoid duplicate planning now |
++| FV-6 walkthrough | later clearly synthetic story/script | no store or launch-readiness claim |
++| I0 / I0.2 | evidence gap preparation | hosted Auth was deferred; no provider actions in this dispatch |
++| P1 | existing SPEC-READY package remains BASELINE BLOCKED | complete I0 and authenticated/RLS gates first |
++| N1 / X1 | later platform decision and experience foundation | P1 then N1 dependencies unchanged; no migration now |
++| P2 → ARO-A1 → P3 → P4 → P5 | later intent, AI foundation, Catalyst, commitment, Proof | package specs and sequential gates required |
++| Seasons / AR / Beacons / money expansion | preserved strategic direction | no implementation dispatch |
++
++C1 remains the existing read-only weekly lane. No schedules were inspected or changed by this task; preserve the existing schedule and checkpoints. Corrected document hashes do not mean C1 has passed or FV-1 acceptance is complete.
+diff --git a/docs/autonomous-handoff-20260915/VERIFICATION.md b/docs/autonomous-handoff-20260915/VERIFICATION.md
+new file mode 100644
+index 0000000..915bf08
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/VERIFICATION.md
+@@ -0,0 +1,16 @@
++# Documentation handoff verification
++
++Date: 2026-09-15. Source main: `79603ae1af60a30f86c105e0f2a4d841043eb727`.
++
++- Fetched origin/main and inspected first-parent merge history; GitHub metadata showed #41/#43/#44/#45/#46 merged, #47 open and #48 draft/open.
++- All 13 normalized UTF-8/LF recovery-manifest hashes and byte lengths match this documentation edition.
++- Relative links in changed/new Markdown resolved; JSON parsed; git diff --check passed.
++- Scope review: Markdown/JSON documentation only; no product, lockfile, dependencies, workflows or acceptance evidence changed.
++- Approved specification from section 0 onward remains byte-for-byte identical to source main; only a factual current-execution pointer was added.
++- npm ci --ignore-scripts --no-audit --no-fund: exit 0; existing lockfile only.
++- npm run lint -- --max-warnings=0: exit 0.
++- npm run build: exit 0, 2631 modules. Existing outdated browser-data and >500 kB chunk warnings remain; no dependency update or performance acceptance claim.
++- No product unit/browser tests, F7 measurements, historical audits or synthesis rerun. No independent or human acceptance claimed.
++- C1 was not rerun and its external checkpoint was not modified. The manifest repair is reviewable documentation evidence, not a C1 PASS.
++
++Before integration, reconcile this documentation branch serially with #47 and #48. Recompute the manifest if either changes its tracked spec/packet inputs. Keep all runtime, human-review and release gates unchanged.
+diff --git a/docs/autonomous-handoff-20260915/manifest-reconciliation.json b/docs/autonomous-handoff-20260915/manifest-reconciliation.json
+new file mode 100644
+index 0000000..10390cb
+--- /dev/null
++++ b/docs/autonomous-handoff-20260915/manifest-reconciliation.json
+@@ -0,0 +1,141 @@
++{
++  "sourceSha": "79603ae1af60a30f86c105e0f2a4d841043eb727",
++  "kind": "current-documentation-edition-repair",
++  "originalAuditBundlesChanged": false,
++  "productAcceptanceClaimed": false,
++  "changes": [
++    {
++      "path": "CLOUD_HANDOFF.md",
++      "previous": {
++        "sha256": "bb55227272d06ff8075c240cfadfb0618d0c442d2f69f164f0b4ea2b572e515c",
++        "bytes": 12108
++      },
++      "current": {
++        "sha256": "7a424dcfd91dc321d7b14488510351412452e74ee84ea7542f733af57ecd15ab",
++        "bytes": 12672
++      }
++    },
++    {
++      "path": "README.md",
++      "previous": {
++        "sha256": "18d50ccab1578e9585445e7f1638b815e4cb50ce464fba07f81846d388af100b",
++        "bytes": 2243
++      },
++      "current": {
++        "sha256": "5d28550cc335dc0450829ae545f8c638707ca0853c04e8e564c6bd89814b767e",
++        "bytes": 2619
++      }
++    },
++    {
++      "path": "RECOVERY.md",
++      "previous": {
++        "sha256": "3e2b332e114a42cd5e427607f510d47e2ae40c1cfb1c88ae0dcf593ff797f82a",
++        "bytes": 6766
++      },
++      "current": {
++        "sha256": "d03ddcccb064798dc4bfeacc7475d6119918195d43d0210edc775b194b9b358a",
++        "bytes": 7142
++      }
++    },
++    {
++      "path": "packets.json",
++      "previous": {
++        "sha256": "ff6028b0d3ea86102f4ac81a5f1c9863081397cc6d36dd34d9dd4ad488f18103",
++        "bytes": 5919
++      },
++      "current": {
++        "sha256": "2af809325672510e38eec9f3ad1bc431b8226f9617d8b1431c3ceb79f98e037b",
++        "bytes": 6030
++      }
++    },
++    {
++      "path": "tasks/F1.md",
++      "previous": {
++        "sha256": "47bbcaecc6f59e222e122306ddd4c4e910ebb45b44710bb931037fa464697ea8",
++        "bytes": 8528
++      },
++      "current": {
++        "sha256": "a7c6a18d0785ab65b56913065bf387451e9e7934ac18579b25eca5d94effb555",
++        "bytes": 9026
++      }
++    },
++    {
++      "path": "tasks/F2.md",
++      "previous": {
++        "sha256": "c5911b7e7e77448f256b86b94098c7cd7ebd3a0a5e9fba8e6284bcef48b5e426",
++        "bytes": 4062
++      },
++      "current": {
++        "sha256": "c8d5a6875ce5205e25a4cb5165fbff466db8b955d6d9963408b2b1ceb34247d4",
++        "bytes": 4291
++      }
++    },
++    {
++      "path": "tasks/F3.md",
++      "previous": {
++        "sha256": "1612bd874712f68e80d0b86c0c493624d5ad91fded4ee25b6bd2802112656857",
++        "bytes": 4376
++      },
++      "current": {
++        "sha256": "f439f9441667aafc4b0a0c1360f6e5b88aecc5a959beb9c2f3cd8ef8755336fc",
++        "bytes": 4755
++      }
++    },
++    {
++      "path": "tasks/F4.md",
++      "previous": {
++        "sha256": "6b8c51bd83b435d95fafd576a2df3b75fa652d61dc636be8a5d9789ff89cbbe2",
++        "bytes": 4026
++      },
++      "current": {
++        "sha256": "a1b84be018d02895a646e00abd468d6ec903170952f5b80e5df9c19744626816",
++        "bytes": 4405
++      }
++    },
++    {
++      "path": "tasks/F5.md",
++      "previous": {
++        "sha256": "95273d1451569860bd3dbbfde83390fabeaf838cea57a56eebb9b5d5802e8cdd",
++        "bytes": 3984
++      },
++      "current": {
++        "sha256": "e8df6fea6f0f4f6119f20342e6009b96c4e686f345d814e0f3b88267d6307543",
++        "bytes": 4363
++      }
++    },
++    {
++      "path": "tasks/F6.md",
++      "previous": {
++        "sha256": "8d47243892bfb6ea489f5175c6f21094468dcb2e0bd997fe72d278154623229d",
++        "bytes": 4201
++      },
++      "current": {
++        "sha256": "f76e63ce0a77d612497b5e191fb974e4e48506793a3e8187eb11585e513e04f9",
++        "bytes": 4580
++      }
++    },
++    {
++      "path": "tasks/F7.md",
++      "previous": {
++        "sha256": "86112a05187d55d1a4f7d4b21620049b1979592a4f7b17967842dfeba3f61238",
++        "bytes": 4522
++      },
++      "current": {
++        "sha256": "00b6abe0392601e8eefce879b04b4eca2805631eda3ee552a6203b2b4feaefb8",
++        "bytes": 4901
++      }
++    },
++    {
++      "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
++      "previous": {
++        "sha256": "8e980fce9e775120d4d44a8d4f09a2c6e7fae7ee4ff95b7615dafbdc3a77f1cd",
++        "bytes": 33540
++      },
++      "current": {
++        "sha256": "5616eff7c8b6d23f7591bba9cf2c84a6c190a3a9be3e9c4ed2444717fe7432b4",
++        "bytes": 35012
++      }
++    }
++  ],
++  "note": "Original manifest available at sourceSha. Updates cover intended documentation changes and pre-existing drift; not audit-bundle provenance repair. Future edits to listed spec/packets require manifest regeneration."
++}
+diff --git a/docs/fv1-recovery/CLOUD_HANDOFF.md b/docs/fv1-recovery/CLOUD_HANDOFF.md
+index a6586c5..addb5ee 100644
+--- a/docs/fv1-recovery/CLOUD_HANDOFF.md
++++ b/docs/fv1-recovery/CLOUD_HANDOFF.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ > Historical recovered synthesis. The [authoritative v0.2.2 specification](../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) supersedes its unresolved choices and proposed execution bases. Current progress is on PR #41: F1 accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. This historical evidence does not authorize further implementation by itself.
+ 
+ # Recovered cloud handoff
+diff --git a/docs/fv1-recovery/README.md b/docs/fv1-recovery/README.md
+index 263f18b..220c320 100644
+--- a/docs/fv1-recovery/README.md
++++ b/docs/fv1-recovery/README.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # FV-1 — final approval package
+ 
+ **SPEC-READY. Founder approved documentation merge and sequential F1–F7 implementation on 2026-09-08. Release approval remains WITHHELD. No product worker has been dispatched.**
+diff --git a/docs/fv1-recovery/RECOVERY.md b/docs/fv1-recovery/RECOVERY.md
+index 3c6248d..b5e2d24 100644
+--- a/docs/fv1-recovery/RECOVERY.md
++++ b/docs/fv1-recovery/RECOVERY.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # Recovery provenance and verification
+ 
+ Date: 2026-09-08. Recovery owner: existing cloud task `Schedule audit tasks`; publication owner: current desktop documentation task.
+diff --git a/docs/fv1-recovery/manifest.json b/docs/fv1-recovery/manifest.json
+index 52dfc4a..6a53d0f 100644
+--- a/docs/fv1-recovery/manifest.json
++++ b/docs/fv1-recovery/manifest.json
+@@ -7,23 +7,23 @@
+   "files": [
+     {
+       "path": "CLOUD_HANDOFF.md",
+-      "sha256": "bb55227272d06ff8075c240cfadfb0618d0c442d2f69f164f0b4ea2b572e515c",
+-      "bytes": 12108
++      "sha256": "7a424dcfd91dc321d7b14488510351412452e74ee84ea7542f733af57ecd15ab",
++      "bytes": 12672
+     },
+     {
+       "path": "README.md",
+-      "sha256": "18d50ccab1578e9585445e7f1638b815e4cb50ce464fba07f81846d388af100b",
+-      "bytes": 2243
++      "sha256": "5d28550cc335dc0450829ae545f8c638707ca0853c04e8e564c6bd89814b767e",
++      "bytes": 2619
+     },
+     {
+       "path": "RECOVERY.md",
+-      "sha256": "3e2b332e114a42cd5e427607f510d47e2ae40c1cfb1c88ae0dcf593ff797f82a",
+-      "bytes": 6766
++      "sha256": "d03ddcccb064798dc4bfeacc7475d6119918195d43d0210edc775b194b9b358a",
++      "bytes": 7142
+     },
+     {
+       "path": "packets.json",
+-      "sha256": "ff6028b0d3ea86102f4ac81a5f1c9863081397cc6d36dd34d9dd4ad488f18103",
+-      "bytes": 5919
++      "sha256": "2af809325672510e38eec9f3ad1bc431b8226f9617d8b1431c3ceb79f98e037b",
++      "bytes": 6030
+     },
+     {
+       "path": "proposed-ARO-FV-1.md",
+@@ -32,43 +32,43 @@
+     },
+     {
+       "path": "tasks/F1.md",
+-      "sha256": "47bbcaecc6f59e222e122306ddd4c4e910ebb45b44710bb931037fa464697ea8",
+-      "bytes": 8528
++      "sha256": "a7c6a18d0785ab65b56913065bf387451e9e7934ac18579b25eca5d94effb555",
++      "bytes": 9026
+     },
+     {
+       "path": "tasks/F2.md",
+-      "sha256": "c5911b7e7e77448f256b86b94098c7cd7ebd3a0a5e9fba8e6284bcef48b5e426",
+-      "bytes": 4062
++      "sha256": "c8d5a6875ce5205e25a4cb5165fbff466db8b955d6d9963408b2b1ceb34247d4",
++      "bytes": 4291
+     },
+     {
+       "path": "tasks/F3.md",
+-      "sha256": "1612bd874712f68e80d0b86c0c493624d5ad91fded4ee25b6bd2802112656857",
+-      "bytes": 4376
++      "sha256": "f439f9441667aafc4b0a0c1360f6e5b88aecc5a959beb9c2f3cd8ef8755336fc",
++      "bytes": 4755
+     },
+     {
+       "path": "tasks/F4.md",
+-      "sha256": "6b8c51bd83b435d95fafd576a2df3b75fa652d61dc636be8a5d9789ff89cbbe2",
+-      "bytes": 4026
++      "sha256": "a1b84be018d02895a646e00abd468d6ec903170952f5b80e5df9c19744626816",
++      "bytes": 4405
+     },
+     {
+       "path": "tasks/F5.md",
+-      "sha256": "95273d1451569860bd3dbbfde83390fabeaf838cea57a56eebb9b5d5802e8cdd",
+-      "bytes": 3984
++      "sha256": "e8df6fea6f0f4f6119f20342e6009b96c4e686f345d814e0f3b88267d6307543",
++      "bytes": 4363
+     },
+     {
+       "path": "tasks/F6.md",
+-      "sha256": "8d47243892bfb6ea489f5175c6f21094468dcb2e0bd997fe72d278154623229d",
+-      "bytes": 4201
++      "sha256": "f76e63ce0a77d612497b5e191fb974e4e48506793a3e8187eb11585e513e04f9",
++      "bytes": 4580
+     },
+     {
+       "path": "tasks/F7.md",
+-      "sha256": "86112a05187d55d1a4f7d4b21620049b1979592a4f7b17967842dfeba3f61238",
+-      "bytes": 4522
++      "sha256": "00b6abe0392601e8eefce879b04b4eca2805631eda3ee552a6203b2b4feaefb8",
++      "bytes": 4901
+     },
+     {
+       "path": "../../specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md",
+-      "sha256": "8e980fce9e775120d4d44a8d4f09a2c6e7fae7ee4ff95b7615dafbdc3a77f1cd",
+-      "bytes": 33540
++      "sha256": "5616eff7c8b6d23f7591bba9cf2c84a6c190a3a9be3e9c4ed2444717fe7432b4",
++      "bytes": 35012
+     }
+   ]
+ }
+diff --git a/docs/fv1-recovery/packets.json b/docs/fv1-recovery/packets.json
+index b9f2b56..96a2093 100644
+--- a/docs/fv1-recovery/packets.json
++++ b/docs/fv1-recovery/packets.json
+@@ -146,5 +146,7 @@
+     "releaseAuthorized": false,
+     "record": "specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md#28-productdesign-approval-record"
+   },
+-  "bindingStatus": "Bind A to the verified actual PR #40 merge commit in the Terra handoff and ONE implementation PR. Null fields avoid a self-referential merge SHA, not an approval request. F2\u2013F7 require accepted predecessor commits."
++  "bindingStatus": "Historical original dispatch metadata; do not dispatch using null bases or closed PR #41. See currentExecutionRecord for merged slices and existing F7 ownership. Implementation eligibility remains false for automatic dispatch.",
++  "historicalSnapshot": true,
++  "currentExecutionRecord": "docs/autonomous-handoff-20260915/README.md"
+ }
+diff --git a/docs/fv1-recovery/tasks/F1.md b/docs/fv1-recovery/tasks/F1.md
+index 3340c99..f3f4873 100644
+--- a/docs/fv1-recovery/tasks/F1.md
++++ b/docs/fv1-recovery/tasks/F1.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F1 — Responsive media foundation
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; implementation PR #41 exists but F1 product writes remain paused pending the approved encoder-profile amendment merge. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F2.md b/docs/fv1-recovery/tasks/F2.md
+index cb02099..434d614 100644
+--- a/docs/fv1-recovery/tasks/F2.md
++++ b/docs/fv1-recovery/tasks/F2.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F2 — Shell, navigation and recovery
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F3.md b/docs/fv1-recovery/tasks/F3.md
+index a533db1..5fbb60f 100644
+--- a/docs/fv1-recovery/tasks/F3.md
++++ b/docs/fv1-recovery/tasks/F3.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F3 — Truthful opportunity/Circle state
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F4.md b/docs/fv1-recovery/tasks/F4.md
+index fd51707..94a8c62 100644
+--- a/docs/fv1-recovery/tasks/F4.md
++++ b/docs/fv1-recovery/tasks/F4.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F4 — Discovery and Create integration
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F5.md b/docs/fv1-recovery/tasks/F5.md
+index 443c962..7eed1d2 100644
+--- a/docs/fv1-recovery/tasks/F5.md
++++ b/docs/fv1-recovery/tasks/F5.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F5 — Profile and Express
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F6.md b/docs/fv1-recovery/tasks/F6.md
+index b7f8c2d..9d9fc72 100644
+--- a/docs/fv1-recovery/tasks/F6.md
++++ b/docs/fv1-recovery/tasks/F6.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F6 — Return, Library and Settings
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/docs/fv1-recovery/tasks/F7.md b/docs/fv1-recovery/tasks/F7.md
+index a7f7078..181e9ba 100644
+--- a/docs/fv1-recovery/tasks/F7.md
++++ b/docs/fv1-recovery/tasks/F7.md
+@@ -1,3 +1,5 @@
++> **2026-09-15 execution pointer:** use [current progress and ownership](../../autonomous-handoff-20260915/README.md) before dispatch. Original base/version/one-PR recipes below are historical; preserve their behavior/allowlists and use the approved v0.2.2 specification plus recorded amendments. F1–F6 are integrated; do not restart them. F7 remains exclusively with PR #48.
++
+ # F7 — Focused acceptance and independent review
+ 
+ Status: SPEC-READY / implementation approved 2026-09-08; not dispatched. Release WITHHELD.
+diff --git a/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md b/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
+index 1f1bb58..fa5c385 100644
+--- a/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
++++ b/specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md
+@@ -1,5 +1,7 @@
+ # FV-1 — Truthful visual prototype and release evidence
+ 
++> **Factual execution update — 2026-09-15 (no acceptance/profile amendment):** F1–F6 are integrated at `79603ae1af60a30f86c105e0f2a4d841043eb727`; the original PR #41/B rebinding and NOT RUN/no-F1 delivery statements below describe the original approval snapshot. Current ownership is draft PR #48, branch `codex/fv1-f7-acceptance-evidence`. Lab amendment PR #47 remains open at inspection. See [current execution record](../docs/autonomous-handoff-20260915/README.md) for actual slice integrations and remaining F7 gates. All normative behavior, allowlists, §20 budgets/profile and §27 independent/human requirements remain unchanged. No acceptance row is upgraded here; no permission to merge, deploy or release is granted.
++
+ ## 0. Metadata and authority
+ 
+ - Status: **SPEC-READY — founder approved F1–F7 implementation and v0.2.1 encoder-profile amendment; release approval WITHHELD**.

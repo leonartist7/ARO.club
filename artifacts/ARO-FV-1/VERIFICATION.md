@@ -1,7 +1,7 @@
 # FV-1 F7 — bounded lab-profile drift report
 
 **Recorded:** 2026-09-14 UTC
-**Status:** **BLOCKED — approved amendment awaits documentation merge; exact browser execution gap remains**
+**Status:** **Historical 2026-09-14 stop — documentation later merged as C; current review/browser gate remains BLOCKED (see post-C update below)**
 **Scope performed:** the mandatory bounded F7 lab preflight only. No production build, preview server, controlled functional/performance measurement, audit rerun, product-file edit, deployment, merge, or release was performed.
 
 ## Immutable execution binding
@@ -74,3 +74,9 @@ Until the approved amendment is documented and merged, and the exact browser pre
 | FV1-08 | **BLOCKED** | F7 runner/quality-gate/independent-review sequence cannot legitimately start before FV1-07's documentation merge and browser prerequisite |
 
 Human NVDA + Chromium-on-Windows testing and founder visual review remain pending and are not self-certified by this record.
+
+## Post-C compatibility update — 2026-09-26
+
+The 2026-09-14 preflight above remains historical evidence; its observations and failed browser-install attempts have not been rerun or rewritten. Documentation-only PR #47 subsequently passed exact-head required CI and independent review, then merged normally as `e1ad70529d292879b5f1f29915df18fbf63f5948` (C). C is `F7_APPROVED_SPEC_SHA` and retains the approved 8272CL-only allowance, exact §20 Next input blobs, Chromium revision 1234 requirement and all budgets and human gates. The F6 task base remains `79603ae1af60a30f86c105e0f2a4d841043eb727`.
+
+The existing PR #48 branch is being reconciled with C. The merge candidate contains C's Next runtime and preserves this preflight record, but it is not yet an exact-head reviewed F7 execution head. The exact lockfile-managed Chromium has not been provisioned and launch-verified for F7, and no F7 measurement, independent final implementation review, human NVDA test, founder visual review, product merge, deployment or release is claimed. FV1-07 and FV1-08 remain BLOCKED.
