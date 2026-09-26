@@ -2,17 +2,65 @@ import { randomBytes, randomUUID } from 'node:crypto';
 import { setTimeout as delay } from 'node:timers/promises';
 import { API, MAIL, CALLBACK, localFetch, recoveryLink, requireCondition, validateTarget } from './boundary.mjs';
 
+const resetStages = new Set([
+  'RESET_CLI_STARTED', 'RESET_CLI_COMPLETED', 'ZERO_USERS_STARTED', 'ZERO_USERS_COMPLETED',
+  'RESET_CREDENTIAL_REQUEST_STARTED', 'RESPONSE_RECEIVED', 'EXPECTED_STATUS_ACCEPTED',
+  'JSON_PARSE_COMPLETED', 'REMOVED_ACCOUNT_ASSERTION_PASSED',
+]);
+
+export function createResetDiagnostic(write = line => process.stdout.write(line)) {
+  let stage = 'RESET_CLI_STARTED';
+  let reported = false;
+  return Object.freeze({
+    mark(next) {
+      requireCondition(resetStages.has(next), 'RESET_DIAGNOSTIC_STAGE');
+      stage = next;
+      write(`RESET_DIAGNOSTIC ${stage}\n`);
+    },
+    failure(error) {
+      if (reported) return;
+      reported = true;
+      // Never interpolate the exception, message, cause, stack or response.
+      const category = error instanceof DOMException && error.name === 'TimeoutError' ? 'TIMEOUT'
+        : error instanceof DOMException && error.name === 'AbortError' ? 'ABORT'
+          : ['RESPONSE_RECEIVED', 'JSON_PARSE_COMPLETED', 'ZERO_USERS_STARTED'].includes(stage) ? 'ASSERTION'
+            : error instanceof TypeError ? 'TRANSPORT'
+              : stage === 'EXPECTED_STATUS_ACCEPTED' ? 'JSON_PARSE'
+                : 'OTHER';
+      write(`RESET_DIAGNOSTIC_FAILURE ${stage} ${category}\n`);
+    },
+  });
+}
+
+export async function confirmRemovedAccount(request, email, password, diagnostic = createResetDiagnostic()) {
+  try {
+    const rejected = await request('token?grant_type=password', {
+      method: 'POST', body: { email, password }, statuses: [400], resetDiagnostic: diagnostic,
+    });
+    requireCondition(!rejected.access_token, 'RESET_ACCOUNT_SURVIVED');
+    diagnostic.mark('REMOVED_ACCOUNT_ASSERTION_PASSED');
+  } catch (error) {
+    diagnostic.failure(error);
+    throw error;
+  }
+}
+
 export function authClient(anonKey) {
   requireCondition(typeof anonKey === 'string' && anonKey.length > 20, 'MISSING_LOCAL_KEY');
-  return async function request(path, { method = 'GET', token, body, statuses = [200] } = {}) {
+  return async function request(path, { method = 'GET', token, body, statuses = [200], resetDiagnostic } = {}) {
+    resetDiagnostic?.mark('RESET_CREDENTIAL_REQUEST_STARTED');
     const response = await localFetch(`${API}/auth/v1/${path}`, API, {
       method,
       headers: { apikey: anonKey, 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
       ...(body ? { body: JSON.stringify(body) } : {}),
     });
+    resetDiagnostic?.mark('RESPONSE_RECEIVED');
     requireCondition(statuses.includes(response.status), `AUTH_HTTP_${response.status}`);
+    resetDiagnostic?.mark('EXPECTED_STATUS_ACCEPTED');
     if (response.status === 204) return null;
-    return response.json();
+    const result = await response.json();
+    resetDiagnostic?.mark('JSON_PARSE_COMPLETED');
+    return result;
   };
 }
 
@@ -187,8 +235,5 @@ export async function exerciseAuth(
     requireCondition(!rejected.access_token, 'REVOKED_REFRESH_ACCEPTED');
   });
   // Return only an in-memory check. Credentials are never written to evidence.
-  return async () => {
-    const rejected = await signIn(newPassword, [400]);
-    requireCondition(!rejected.access_token, 'RESET_ACCOUNT_SURVIVED');
-  };
+  return diagnostic => confirmRemovedAccount(request, email, newPassword, diagnostic);
 }

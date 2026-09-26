@@ -50,28 +50,42 @@ export default function TeacherApplicationStatus() {
   const [application, setApplication] = useState(null);
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
+  const [loadedFor, setLoadedFor] = useState(null);
   const [uploadingType, setUploadingType] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
   const fileInputs = useRef({});
+  const loadVersion = useRef(0);
 
   const load = async () => {
     if (!profile?.id) return;
+    const version = ++loadVersion.current;
     setLoading(true);
+    setLoadError(null);
+    setApplication(null);
+    setDocuments([]);
     try {
       const app = await getMyApplication(profile.id);
+      const docs = app ? await getDocuments(app.id) : [];
+      if (version !== loadVersion.current) return;
       setApplication(app);
-      if (app) setDocuments(await getDocuments(app.id));
-    } catch (e) {
-      setError(e.message);
+      setDocuments(docs);
+    } catch {
+      if (version !== loadVersion.current) return;
+      setLoadError('We could not load your application. Please try again.');
     } finally {
-      setLoading(false);
+      if (version === loadVersion.current) {
+        setLoadedFor(profile.id);
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
     load();
+    return () => { loadVersion.current += 1; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile?.id]);
 
@@ -109,7 +123,16 @@ export default function TeacherApplicationStatus() {
     }
   };
 
-  if (loading) return <div className="p-12 text-center text-gray-400">Loading…</div>;
+  if (loading || loadedFor !== profile?.id) return <div role="status" className="p-12 text-center text-gray-400">Loading…</div>;
+
+  if (loadError) {
+    return (
+      <div className="container mx-auto px-4 py-16 max-w-lg text-center">
+        <p role="alert" className="text-red-700 dark:text-red-300 mb-4">{loadError}</p>
+        <Button onClick={load}>Retry</Button>
+      </div>
+    );
+  }
 
   if (!application) {
     return (
