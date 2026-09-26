@@ -33,11 +33,10 @@ export function createResetDiagnostic(write = line => process.stdout.write(line)
   });
 }
 
-export async function waitForLocalAuthReady(anonKey, diagnostic, fetcher = localFetch, pause = delay) {
+export async function waitForLocalAuthReady(anonKey, diagnostic, fetcher = localFetch, pause = delay, signal = AbortSignal.timeout(30000)) {
   requireCondition(typeof anonKey === 'string' && anonKey.length > 20, 'MISSING_LOCAL_KEY');
   diagnostic.mark('AUTH_READY_STARTED');
-  const signal = AbortSignal.timeout(30000);
-  for (let attempt = 0; attempt < 20; attempt += 1) {
+  while (!signal.aborted) {
     try {
       const response = await fetcher(`${API}/auth/v1/health`, API, {
         headers: { apikey: anonKey }, signal,
@@ -51,7 +50,7 @@ export async function waitForLocalAuthReady(anonKey, diagnostic, fetcher = local
       if (!(error instanceof TypeError || error instanceof DOMException &&
         ['TimeoutError', 'AbortError'].includes(error.name))) throw error;
     }
-    if (signal.aborted || attempt === 19) break;
+    if (signal.aborted) break;
     try { await pause(500, undefined, { signal }); } catch (error) {
       if (!signal.aborted) throw error;
       break;

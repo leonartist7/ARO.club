@@ -76,11 +76,15 @@ test('health probe fails closed on unexpected status without sending credentials
 });
 
 test('health probe exhausts its bound without sending credentials', async t => {
+  const controller = new AbortController();
   const f = fixture(t, () => { throw new TypeError(secret); });
   let pauses = 0;
-  await assert.rejects(waitForLocalAuthReady(key, f.diagnostic, undefined, async () => { pauses += 1; }), { message: 'AUTH_NOT_READY' });
-  assert.equal(f.calls.length, 20);
-  assert.equal(pauses, 19);
+  await assert.rejects(waitForLocalAuthReady(key, f.diagnostic, undefined, async () => {
+    pauses += 1;
+    if (pauses === 3) controller.abort();
+  }, controller.signal), { message: 'AUTH_NOT_READY' });
+  assert.equal(f.calls.length, 3);
+  assert.equal(pauses, 3);
   assert.ok(f.calls.every(([url]) => url.pathname === '/auth/v1/health'));
   safe(f.lines);
 });
