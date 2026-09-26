@@ -2,15 +2,15 @@
 
 ## 0. Metadata
 
-- **Status:** IN-PROGRESS (founder-approved specification; staging SMTP configured, mailbox pending)
-- **Spec version:** 1.0.0
+- **Status:** IN-PROGRESS (mailbox and DNS configured; staging Auth delivery and end-to-end verification pending)
+- **Spec version:** 1.1.0
 - **Owner/director:** Founder; approved implementation request on 2026-09-25
 - **Implementation branch:** `codex/email-setup`
 - **Depends on:** I0 isolated staging; N1 staging email/password flow
 - **Blocks:** Hosted N1 email and recovery verification
 - **Governing docs:** `AGENTS.md`, `ARO_INFRASTRUCTURE.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO-N1-NEXTJS-PLATFORM.md`
 - **Required reviewers:** Founder for provider/account ownership; independent security review before merge
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 
 ## 1. Problem and outcome
 
@@ -18,7 +18,7 @@ The new `aro-club.app` domain can send through Resend, but it has no incoming ma
 
 ## 2. Locked scope and decisions
 
-- Use Zoho Mail's free plan if available in the administrator account's region. Create one `hello@aro-club.app` mailbox with `support@` and `notifications@` aliases; enable sending as `support@`. Do not buy a plan without a new price approval.
+- Use Zoho Mail's free plan if available in the administrator account's region. Create one `hello@aro-club.app` mailbox with `support@` and `notifications@` aliases; enable sending as `support@`. Add `info@` as an alternate public contact address and `dmarc@` for aggregate reports. Do not buy a plan without a new price approval.
 - Use Zoho for incoming business mail and Resend for Supabase Auth sending. Resend receiving stays disabled. Do not add a public mail API, inbox UI, database schema, or marketing mail.
 - Preserve the existing Resend DKIM and `send` subdomain SPF/MX records. Add Zoho's exact region/account-specific verification, MX, SPF, and DKIM records to Vercel DNS. Use one SPF record per hostname. Start DMARC at `p=none` with an aggregate-report alias, then enforce only after both sending paths pass authentication.
 - Configure only the isolated `mibydnerayobemhnlfyl` staging Supabase project. Use `ARO <notifications@aro-club.app>` with Resend SMTP and a dedicated sending-only key restricted to `aro-club.app`. Keep the secret out of Git, browser bundles, evidence, and chat.
@@ -27,7 +27,7 @@ The new `aro-club.app` domain can send through Resend, but it has no incoming ma
 
 ## 3. Interfaces and security
 
-No application API or schema changes. The public email addresses are `hello@aro-club.app`, `support@aro-club.app`, and `notifications@aro-club.app`. Supabase remains the authority for Auth tokens and expiry. Email templates may use Supabase's `{{ .ConfirmationURL }}` link, with ARO branding and support contact, without exposing tokens in logs or evidence. No credentials are stored in the repository.
+No application API or schema changes. The public email addresses are `hello@aro-club.app`, `support@aro-club.app`, `info@aro-club.app`, and `notifications@aro-club.app`; `dmarc@aro-club.app` receives authentication reports. Supabase remains the authority for Auth tokens and expiry. Email templates may use Supabase's `{{ .ConfirmationURL }}` link, with ARO branding and support contact, without exposing tokens in logs or evidence. No credentials are stored in the repository.
 
 ## 4. Verification and rollback
 

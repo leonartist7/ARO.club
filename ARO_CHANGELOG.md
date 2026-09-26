@@ -8,7 +8,7 @@
 
 ## 2026-09-25 — ARO domain email setup started
 
-The founder approved a Zoho mailbox for `aro-club.app` and Resend for isolated staging Auth email. Staging now has restricted Resend SMTP and ARO confirmation/recovery templates. The mailbox and DNS await Zoho administrator registration; staging callback delivery is blocked by a removed Vercel preview. The scope and verification state are recorded in `specs/ARO-EMAIL0-DOMAIN-MAIL.md` and `artifacts/ARO-EMAIL0/VERIFICATION.md`.
+The founder approved a Zoho mailbox for `aro-club.app` and Resend for isolated staging Auth email. Staging now has restricted Resend SMTP and ARO confirmation/recovery templates. On 2026-09-26, Zoho Mail Free gained the `hello@` inbox and four aliases; Vercel DNS gained Zoho MX/SPF/DKIM and monitoring DMARC while preserving Resend records. Zoho verified MX/SPF/DKIM; hello and support passed two-way mail tests, and staging Auth signup and recovery messages reached Zoho through Resend. The staging callback still points to a removed Vercel preview, so token links remain unverified. The scope and verification state are recorded in `specs/ARO-EMAIL0-DOMAIN-MAIL.md` and `artifacts/ARO-EMAIL0/VERIFICATION.md`.
 
 
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
