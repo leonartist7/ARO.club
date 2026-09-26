@@ -830,3 +830,17 @@ Founder authorized production release. Added separate production-project auth ac
 ## 2026-09-21 — MERGE1 latest-work reconciliation
 
 Preserve merged Next.js runtime; integrate controller/Shipaton records and reconcile AUTO0 page/handler capture tooling. All open PRs have immutable inclusion/supersession/preservation dispositions in docs/merge-reconciliation-20260921/README.md. Historical failures and F7/hosted/human gates remain. No product, schema, dependency, workflow or provider changes.
+
+## 2026-09-22 — FV-1 F7 lab-profile amendment reconciliation candidate
+
+Documentation-only PR #47 is reconciled onto MERGE1 current main `f37dc084d7172415f581a41e90d2edd9ba3738b9` without changing product, provider, dependency, budget or release authority. It records FV-1 v0.2.3’s founder-approved narrow 8272CL exception for F7 measurement only, preserves every other §20 requirement, and makes its eventual normal main merge commit the fixed F7 approved-spec binding. F1–F6 remain accepted predecessors; existing PR #48 / `codex/fv1-f7-acceptance-evidence` remains the exclusive F7 lane with immutable F6 base `79603ae1af60a30f86c105e0f2a4d841043eb727`. F7 is still blocked until the documentation merge exists and exact lockfile-managed Chromium 151.0.7922.34 revision 1234 installs and launches headlessly. No measurement, independent review, human NVDA test, founder visual review, product merge, deployment or release is recorded.
+
+## 2026-09-24 — FV-1 F7 Next launch/environment amendment approved candidate
+
+Founder approval persisted at controller commit `c145ebd52395a9e8a0104cdaa5ddd78a4672ff35` authorizes v0.2.4’s documentation-only isolated Next build/runtime contract in PR #47, normal merge after exact-head checks and independent review, then bounded compatibility reconciliation only on existing PR #48. This candidate binds current package/lockfile/config bytes, rejects inherited environment/provider/auth configuration, and corrects the local production base URL to 127.0.0.1:5173. It preserves F6 as historical predecessor, all frozen host/browser/network/budget/privacy/human/release gates, and the exact Chromium prerequisite. No source, dependency, provider, browser, compatibility, measurement, merge, deployment or release work is recorded.
+
+Ownership clearance for the later PR #48 reconciliation is recorded separately by controller commit `7526ead5c289229b836bc5e236c9cd9d8c985c3a` / blob `57253a75a7e0fca59a3d1112a6caf5399f43ed52`: N1 is inactive and its seven partial test paths remain preserved. This does not start reconciliation, browser setup or measurement from this documentation PR.
+
+## 2026-09-26 — FV-1 F7 frozen-input fingerprint correction
+
+While bringing documentation PR #47 up to current main, the three SHA-256 values in §20 were found inconsistent with their already-pinned Git blob IDs and byte lengths. The values now match the exact Git blob bytes; the blobs, source files, acceptance budgets and release gates are unchanged. This correction is subject to exact-head independent review and required CI before the documentation merge.
