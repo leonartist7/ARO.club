@@ -23,7 +23,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - name: Boundary unit tests
-        run: node --test tools/ci/boundary.test.mjs
+        run: node --test tools/ci/boundary.test.mjs tools/ci/reset-diagnostic.test.mjs
       - uses: supabase/setup-cli@3c2f5e2ae34c34e428e8e206e2c4d21fa2d20fbf # v2.1.1
         with:
           version: 2.116.0
