@@ -1,0 +1,57 @@
+{
+  "package": "FV-1",
+  "slice": "F7",
+  "recordedAt": "2026-09-14T00:00:00Z",
+  "taskBaseSha": "79603ae1af60a30f86c105e0f2a4d841043eb727",
+  "headBeforeF7Documentation": "79603ae1af60a30f86c105e0f2a4d841043eb727",
+  "branch": "codex/fv1-f7-acceptance-evidence",
+  "status": "BLOCKED_PENDING_COMPATIBILITY_REVIEW_AND_BROWSER",
+  "profileAmendmentApproval": "FOUNDER_APPROVED_2026-09-14_DOCUMENTATION_MERGED_2026-09-26",
+  "approvedSpecSha": "e1ad70529d292879b5f1f29915df18fbf63f5948",
+  "historicalPreflightStatus": "BLOCKED_PENDING_DOCUMENTATION_MERGE_AND_BROWSER",
+  "profile": {
+    "os": "Ubuntu 24.04.3 LTS x86_64",
+    "kernel": "6.18.44",
+    "cpuModel": "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz",
+    "cpuAffinity": "0-8",
+    "cpuQuota": "800000 100000",
+    "memoryLimitBytes": 21474836480,
+    "node": "v24.19.0",
+    "npm": "11.9.0",
+    "packageLockSha256": "329028782e209d41d2388193b3540e8a46d5bc90785c871a91d1944197ddb1d1",
+    "playwright": "1.62.0",
+    "chromiumRequired": "151.0.7922.34 revision 1234",
+    "chromiumExecutable": "/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
+    "chromiumExecutablePresent": false,
+    "chromiumLaunch": "NOT_RUN_EXECUTABLE_ABSENT"
+  },
+  "mismatches": [
+    {
+      "field": "cpuModel",
+      "required": "Intel Xeon Platinum 8573C",
+      "observed": "Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz"
+    },
+    {
+      "field": "chromiumExecutable",
+      "required": "lockfile-managed Chromium 151.0.7922.34 revision 1234 installed and launchable",
+      "observed": "absent after two permitted provisioning attempts"
+    }
+  ],
+  "acceptance": {
+    "FV1-01": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-02": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-03": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-04": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-05": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-06": "PREDECESSOR_ACCEPTED_NOT_RERUN",
+    "FV1-07": "BLOCKED_COMPATIBILITY_REVIEW_AND_BROWSER_GAP",
+    "FV1-08": "BLOCKED_PENDING_FV1-07"
+  },
+  "measurementsRun": false,
+  "historicalAuditsRerun": false,
+  "humanGates": {
+    "nvdaChromiumWindows": "PENDING",
+    "founderVisualReview": "PENDING"
+  },
+  "release": "WITHHELD"
+}

@@ -844,3 +844,7 @@ Ownership clearance for the later PR #48 reconciliation is recorded separately b
 ## 2026-09-26 — FV-1 F7 frozen-input fingerprint correction
 
 While bringing documentation PR #47 up to current main, the three SHA-256 values in §20 were found inconsistent with their already-pinned Git blob IDs and byte lengths. The values now match the exact Git blob bytes; the blobs, source files, acceptance budgets and release gates are unchanged. This correction is subject to exact-head independent review and required CI before the documentation merge.
+
+## 2026-09-26 — FV-1 F7 post-C compatibility reconciliation
+
+PR #47 passed exact-head static, browser-smoke and platform checks and independent documentation review, then merged normally as `e1ad70529d292879b5f1f29915df18fbf63f5948` (C). Existing PR #48 retains accepted F6 `79603ae1af60a30f86c105e0f2a4d841043eb727` as its historical task base and preserves the recorded 2026-09-14 preflight in `artifacts/ARO-FV-1/`. Its merge with C brings in the reviewed Next.js runtime without changing C's pinned package, lockfile, configuration or UX0 blobs. Compatibility review, exact bundled Chromium launch, F7 measurement, human NVDA test, founder visual review, product merge and release remain pending.
