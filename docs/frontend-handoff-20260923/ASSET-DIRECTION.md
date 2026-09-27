@@ -8,15 +8,15 @@ Use the existing eight subjects first: avatar, hat, bag, lantern, plant, Spark, 
 
 ## Production queue
 
-These are proposed art masters, not assets generated in this handoff. Generate only when the consuming package is eligible and the existing art cannot satisfy the brief. The master blueprint's broader 36-master library remains the later queue.
+These are proposed art masters. The four Season chapter dioramas were subsequently generated as a separate [prepared asset pack](assets/README.md); they remain outside product runtime pending EF-S adoption and art/performance review. Generate other assets only when the consuming package is eligible and existing art cannot satisfy the brief. The master blueprint's broader 36-master library remains the later queue.
 
 | ID | Consuming surface | Brief | Master / delivered shape | Priority |
 |---|---|---|---|---|
 | S01-WORLD | Season flagship | Original walkable neighborhood vignette with four distinct landmark areas | 2048×1536 scene; 4:3 plus intentionally recomposed phone crop | Reuse Season first |
-| S01-OUTSIDE | Chapter 1 | Welcoming doorway, tiny planted threshold, warm lantern | 1024 square, transparent isolated diorama | After EF-S composition |
-| S01-CONNECT | Chapter 2 | Two welcoming chairs and a shared ceramic table | 1024 square, transparent | Same series |
-| S01-CONTRIBUTE | Chapter 3 | Shared garden workbench, plant, simple tools | 1024 square, transparent | Same series |
-| S01-CREATE | Chapter 4 | Open paper portal with a small gathering scene | 1024 square, transparent | Same series |
+| S01-OUTSIDE | Chapter 1 | Welcoming doorway, tiny planted threshold, warm lantern | 1254px RGBA master; 256/512 WebP | Prepared art pack; runtime review pending |
+| S01-CONNECT | Chapter 2 | Two welcoming chairs and a shared ceramic table | 1254px RGBA master; 256/512 WebP | Prepared art pack; runtime review pending |
+| S01-CONTRIBUTE | Chapter 3 | Shared garden workbench, plant, simple tools | 1254px RGBA master; 256/512 WebP | Prepared art pack; runtime review pending |
+| S01-CREATE | Chapter 4 | Circular portal and blank idea cards | 1254px RGBA master; 256/512 WebP | Prepared art pack; runtime review pending |
 | C01-HAT | Character studio | Existing hat at exact avatar camera/anchor | 1024 square RGBA aligned to avatar canvas | Only if current alignment fails |
 | C02-BAG | Character studio | Woven bag with vermilion strap at body-compatible angle | 1024 square RGBA; front/back layers if needed | Later; do not fake current wearable |
 | R01-RUG | Space | Warm woven circular rug, flat floor perspective | 1024 square RGBA | Later catalog extension |

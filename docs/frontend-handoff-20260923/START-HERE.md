@@ -14,7 +14,7 @@ Read in order:
 2. This document and [shared implementation contract](SHARED-CONTRACT.md).
 3. [Execution packages](PACKAGES.md), selecting exactly one eligible package.
 4. [Screen and capability map](SCREEN-MAP.md).
-5. [Asset direction](ASSET-DIRECTION.md) for that package.
+5. [Asset direction](ASSET-DIRECTION.md) for that package; the four Season chapter illustrations are prepared in the [asset pack](assets/README.md).
 6. [Acceptance ledger](ACCEPTANCE.md).
 7. [Receiving-model prompt](GPT6-PROMPT.md).
 
