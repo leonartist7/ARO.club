@@ -1,6 +1,8 @@
 # ARO — Implementation Status Ledger
 
-> **2026-09-28 RB0:** Orange-led direction and route/asset baseline are IMPLEMENTED / PARTIAL VERIFICATION on the RB0 branch. RB1 is SPEC-READY. RB2 preview exists on its separate branch but cannot merge before independent privacy/security review and category-limit correction. Live age/profile/Auth integration remains SPEC-REQUIRED and separately gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.
+> **RB1 branch update:** Shared orange foundation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`; it is not merged, VERIFIED or SHIPPED. Build/lint/unit and sampled browser evidence are in `artifacts/ARO-RB1/VERIFICATION.md`. RB2 preview remains the next vertical slice.
+
+> **2026-09-28 RB0:** Orange-led direction and route/asset baseline are IMPLEMENTED / PARTIAL VERIFICATION on the RB0 branch. RB2 preview exists on its separate branch but cannot merge before independent privacy/security review and category-limit correction. Live age/profile/Auth integration remains SPEC-REQUIRED and separately gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.
 
 > **2026-09-27 R2:** The rebrand is **IMPLEMENTED / MERGED** to GitHub `main` as `dc73daa` via PR #69. Tests, focused browser checks, and the founder-delegated visual review passed. This does not claim production release or full-route accessibility acceptance. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 

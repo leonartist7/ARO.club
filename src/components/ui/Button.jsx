@@ -3,9 +3,9 @@ import { cn } from '../../utils/cn';
 
 const buttonVariants = {
   primary:
-    'bg-primary-500 text-ink font-semibold hover:bg-primary-400 active:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-400 dark:active:bg-primary-300',
+    'bg-action-primary text-white font-semibold hover:bg-primary-600 active:bg-primary-700 dark:bg-action-primary dark:text-white dark:hover:bg-primary-600 dark:active:bg-primary-700',
   secondary:
-    'bg-secondary-500 text-ink font-semibold hover:bg-secondary-400 active:bg-secondary-300 dark:bg-secondary-500 dark:hover:bg-secondary-400 dark:active:bg-secondary-300',
+    'bg-brand-yellow text-ink font-semibold hover:bg-secondary-400 active:bg-secondary-500 dark:bg-brand-yellow dark:text-ink dark:hover:bg-secondary-400 dark:active:bg-secondary-500',
   outline:
     'border-2 border-primary-600 text-primary-700 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-300 dark:hover:bg-primary-900/20 dark:active:bg-primary-900/30',
   ghost:
@@ -40,9 +40,8 @@ export default function Button({
         'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
         fullWidth && 'w-full',
         'transition-all duration-200 ease-in-out',
-        'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-        'dark:focus:ring-primary-400 dark:focus:ring-offset-gray-900',
-        'focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2',
+        'dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark',
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none',
         buttonVariants[variant],
         buttonSizes[size],

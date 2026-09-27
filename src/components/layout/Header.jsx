@@ -23,7 +23,7 @@ import Avatar from '../ui/Avatar';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { cn } from '../../utils/cn';
-import AroMark from '../brand/AroMark';
+import { AroWordmark } from '../brand/AroMark';
 
 /** Public marketing links only — app pages live in the account dropdown */
 const publicNav = [
@@ -89,8 +89,7 @@ export default function Header() {
             className="flex items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             aria-label="ARO home"
           >
-            <AroMark size="sm" label="" />
-            <span className="aro-wordmark text-ink dark:text-bone">ARO</span>
+            <AroWordmark label="" />
           </Link>
 
           {/* Desktop: public links only */}

@@ -2,11 +2,12 @@
 import React from 'react';
 import { Link, useLocation } from '../../lib/navigation';
 import { BarChart3, Bell, BookOpen, Compass, Globe2, Home, Plus, Search } from 'lucide-react';
-import AroMark from '../brand/AroMark';
+import { AroWordmark } from '../brand/AroMark';
 import { AppAvatar } from './AppPrimitives';
 import { appNavItems, aroUser } from '../../data/aroApp';
 import { cn } from '../../utils/cn';
 import { fv1ShellCopy } from '../../i18n/fv1/shell';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const iconMap = { home: Home, world: Globe2, insights: BarChart3, library: BookOpen };
 
@@ -33,7 +34,8 @@ function AppNavItem({ item, selected }) {
 export default function AppShell({ children }) {
   const location = useLocation();
   const isCreate = location.pathname === '/app/create';
-  const copy = fv1ShellCopy.en;
+  const { language } = useLanguage();
+  const copy = fv1ShellCopy[language] ?? fv1ShellCopy.en;
   const selected = (item) => {
     if (item.to === '/app/world') return /^\/app\/(world|opportunities|circles)/.test(location.pathname);
     if (item.to === '/app/insights') return /^\/app\/(insights|passport)/.test(location.pathname);
@@ -45,8 +47,7 @@ export default function AppShell({ children }) {
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-bone/95 backdrop-blur-xl dark:border-bone/10 dark:bg-gray-950/95">
         <div className="mx-auto flex min-h-16 max-w-[1180px] flex-wrap items-center justify-between gap-y-2 px-4 py-2 sm:min-h-20 sm:px-8">
           <Link to="/app" className="flex items-center gap-2.5" aria-label="ARO app home">
-            <AroMark size="sm" />
-            <span className="aro-wordmark">ARO</span>
+            <AroWordmark label="" />
           </Link>
 
           <div className="hidden items-center gap-2 text-xs font-semibold text-ink/50 dark:text-bone/50 md:flex">
@@ -72,9 +73,9 @@ export default function AppShell({ children }) {
         <div className="mx-auto flex h-[76px] max-w-[620px] items-stretch gap-1 sm:h-20">
           <AppNavItem item={appNavItems[0]} selected={selected(appNavItems[0])} />
           <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} />
-          <Link to={isCreate ? '/app/world' : '/app/create'} aria-label={isCreate ? 'Back to World' : 'Create or find an opportunity'} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-[10px] font-bold uppercase tracking-[0.12em] sm:text-[11px]', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/45 dark:text-bone/45')}>
+          <Link to="/app/create" aria-current={isCreate ? 'page' : undefined} aria-label={copy.create} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-xs font-bold sm:text-sm', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/70 dark:text-bone/70')}>
             <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-ink shadow-[0_7px_24px_rgba(244,208,0,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-500 dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
-            <span>{isCreate ? 'World' : 'Create'}</span>
+            <span>{copy.create}</span>
           </Link>
           <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} />
           <AppNavItem item={appNavItems[3]} selected={selected(appNavItems[3])} />

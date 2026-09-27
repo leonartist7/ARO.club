@@ -12,6 +12,7 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     // Save to localStorage whenever language changes
     if(ready)try{localStorage.setItem('conversa-language', language);}catch{ /* Storage may be disabled. */ }
+    if (ready) document.documentElement.lang = language;
   }, [language, ready]);
 
   const t = (key) => {

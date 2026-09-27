@@ -12,8 +12,9 @@ vi.mock('next/navigation', () => ({
 }))
 vi.mock('next/link', () => ({ default: ({ href, children, ...props }) => <a href={href} {...props}>{children}</a> }))
 
-vi.mock('../brand/AroMark', () => ({ default: () => <span>ARO mark</span> }))
+vi.mock('../brand/AroMark', () => ({ AroWordmark: () => <span>ARO mark</span> }))
 vi.mock('./AppPrimitives', () => ({ AppAvatar: () => <span>MN</span> }))
+vi.mock('../../contexts/LanguageContext', () => ({ useLanguage: () => ({ language: 'en' }) }))
 
 function renderApp(path) {
   navigation.pathname = path
@@ -28,9 +29,9 @@ describe('FV-1 app shell', () => {
     expect(screen.getByLabelText(/Notifications preview/).tagName).toBe('SPAN')
   })
 
-  it('sends the Create close control to World', () => {
+  it('keeps the central Create destination stable', () => {
     renderApp('/app/create')
-    expect(screen.getByLabelText('Back to World').getAttribute('href')).toBe('/app/world')
+    expect(screen.getByRole('link', { name: 'Create' }).getAttribute('href')).toBe('/app/create')
   })
 
   it('recovers unknown app routes inside the shell', () => {

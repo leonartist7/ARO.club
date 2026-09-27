@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- Status: SPEC-READY; version 1.0.0; founder-approved creative direction, 2026-09-27.
+- Status: IMPLEMENTED / PARTIAL VERIFICATION on branch; version 1.0.0; founder-approved creative direction, 2026-09-27. See `artifacts/ARO-RB1/VERIFICATION.md`.
 - Depends on RB0 adoption. Branch/PR: a dedicated branch and PR based on the reviewed RB0 head.
 - Governing: `AGENTS.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md`, `specs/ARO-R2-YELLOW-BRAND.md` as historical baseline.
 - Review: founder direction approved; independent review and release remain separate.

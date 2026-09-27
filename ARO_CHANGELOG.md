@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — RB1 brand foundation implementation branch
+
+Implemented approved semantic colors, Manrope heading fallback, controlled open-O SVG assets, shared button and shell updates, browser icon and truthful metadata on a scoped branch. Build/lint/unit and sampled browser evidence pass; font delivery, full-route accessibility, review and production release remain open. See `artifacts/ARO-RB1/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — Orange-led ARO direction adopted for scoped implementation
 
 The founder approved the open-O, single-dot identity, orange-led palette, Manrope/conditional Polymath typography, “Life opens up.” promise and brief onboarding. ADR-031 supersedes R2 presentation direction while retaining R2 historical evidence. RB0 route/asset baseline and RB1/RB2 scoped specifications prepare implementation; no new runtime, age collection, Trust, payment or release status is claimed.

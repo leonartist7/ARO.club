@@ -1,5 +1,6 @@
 export const fv1ShellCopy = {
   en: {
+    create: 'Create',
     notice: 'Fictional preview. No live accounts, reservations or payments.',
     unavailable: 'Not available in this preview.',
     unavailableTitle: 'Example unavailable',
@@ -7,6 +8,7 @@ export const fv1ShellCopy = {
     backToWorld: 'Back to World',
   },
   fr: {
+    create: 'Créer',
     notice: 'Aperçu fictif. Aucun compte, réservation ni paiement réel.',
     unavailable: 'Indisponible dans cet aperçu.',
     unavailableTitle: 'Exemple indisponible',
@@ -14,6 +16,7 @@ export const fv1ShellCopy = {
     backToWorld: 'Retour au Monde',
   },
   es: {
+    create: 'Crear',
     notice: 'Vista previa ficticia. No hay cuentas, reservas ni pagos reales.',
     unavailable: 'No disponible en esta vista previa.',
     unavailableTitle: 'Ejemplo no disponible',

@@ -98,7 +98,7 @@ export default function AdminDashboard() {
             onClick={() => setFilter(s)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               filter === s
-                ? 'bg-secondary-500 text-white'
+                ? 'bg-secondary-500 text-ink'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
             }`}
           >

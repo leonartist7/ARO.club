@@ -2,7 +2,7 @@
 import { Link } from '../../lib/navigation';
 import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import AroMark from '../brand/AroMark';
+import { AroWordmark } from '../brand/AroMark';
 
 const socialLinks = [
   { name: 'Facebook', icon: Facebook, href: '#' },
@@ -64,8 +64,7 @@ export default function Footer() {
               className="flex items-center gap-2.5 mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
               aria-label="ARO home"
             >
-              <AroMark size="sm" label="" />
-              <span className="aro-wordmark text-ink dark:text-bone">ARO</span>
+              <AroWordmark label="" />
             </Link>
             <p className="text-sm mb-6 max-w-xs text-gray-500 dark:text-gray-400">
               {t('footer.description')}
