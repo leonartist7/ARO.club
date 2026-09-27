@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB2 branch update:** The three-scene public onboarding preview is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb2-onboarding-preview-20260927`. It is not merged, live onboarding, VERIFIED or SHIPPED. Browser path screenshots and test evidence are in `artifacts/ARO-RB2/VERIFICATION.md`; privacy/eligibility review still gates live data collection.
+
 > **RB1 branch update:** Shared orange foundation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`; it is not merged, VERIFIED or SHIPPED. Build/lint/unit and sampled browser evidence are in `artifacts/ARO-RB1/VERIFICATION.md`. RB2 preview remains the next vertical slice.
 
 > **2026-09-28 RB0:** Orange-led direction and route/asset baseline are IMPLEMENTED / PARTIAL VERIFICATION on the RB0 branch. RB2 preview exists on its separate branch but cannot merge before independent privacy/security review and category-limit correction. Live age/profile/Auth integration remains SPEC-REQUIRED and separately gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.

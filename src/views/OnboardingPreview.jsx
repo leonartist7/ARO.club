@@ -1,0 +1,160 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, Check, RotateCcw } from 'lucide-react';
+import { Link } from '../lib/navigation';
+import { AroWordmark } from '../components/brand/AroMark';
+import Button from '../components/ui/Button';
+import LanguageToggle from '../components/ui/LanguageToggle';
+import ThemeToggle from '../components/ui/ThemeToggle';
+import { useLanguage } from '../contexts/LanguageContext';
+import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
+
+const ART = ['learn', 'teach', 'connect'];
+const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Cooking', 'Drawing'];
+
+function SceneArt({ scene, compact = false }) {
+  const name = ART[scene];
+  return (
+    <div className={`overflow-hidden rounded-[1.5rem] bg-brand-yellow shadow-[0_18px_55px_rgba(37,36,32,0.11)] lg:rounded-[2rem] ${compact ? 'h-44 sm:h-52 lg:h-64' : ''}`}>
+      <picture className="block h-full">
+        <source srcSet={`/brand/onboarding-${name}-640.webp 640w, /brand/onboarding-${name}-1280.webp 1280w`} sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
+        <img src={`/brand/onboarding-${name}-640.webp`} width="640" height="480" loading="eager" decoding="async" alt="" className={`${compact ? 'h-full' : 'aspect-[4/3] h-full'} w-full object-cover`} />
+      </picture>
+    </div>
+  );
+}
+
+function Choice({ selected, onClick, children, description }) {
+  return (
+    <button type="button" onClick={onClick} aria-pressed={selected}
+      className={`flex min-h-16 w-full items-start gap-3 rounded-2xl border-2 px-4 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark ${selected ? 'border-action-primary bg-primary-50 dark:bg-primary-900/30' : 'border-control-border bg-white hover:border-action-primary dark:border-bone/40 dark:bg-surface-darkCard'}`}>
+      <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 ${selected ? 'border-action-primary bg-action-primary text-white' : 'border-control-border dark:border-bone/60'}`}>{selected && <Check size={15} aria-hidden="true" />}</span>
+      <span><strong className="block text-base text-ink dark:text-bone">{children}</strong>{description && <span className="mt-1 block text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{description}</span>}</span>
+    </button>
+  );
+}
+
+export default function OnboardingPreview() {
+  const { language } = useLanguage();
+  const copy = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;
+  const [stage, setStage] = useState(0);
+  const [intent, setIntent] = useState('learn');
+  const [mode, setMode] = useState('learn');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [city, setCity] = useState('');
+  const [interests, setInterests] = useState([]);
+  const [openIdeas, setOpenIdeas] = useState(false);
+  const [skill, setSkill] = useState('');
+  const [outcome, setOutcome] = useState('');
+  const [errors, setErrors] = useState({});
+  const heading = useRef(null);
+
+  useEffect(() => { heading.current?.focus(); }, [stage, mode]);
+  const go = (next) => { setErrors({}); setStage(next); };
+  const back = () => go(stage === 3 ? 2 : Math.max(0, stage - 1));
+  const chooseIntent = (value) => { setIntent(value); setMode(value === 'host' ? 'host' : 'learn'); go(3); };
+  const toggleInterest = (topic) => {
+    setOpenIdeas(false);
+    setInterests((current) => current.includes(topic) ? current.filter((item) => item !== topic) : [...current, topic]);
+  };
+  const nextFromDetails = () => {
+    const issues = {};
+    if (!name.trim()) issues.name = copy.details.nameError;
+    if (!/^\d+$/.test(age)) issues.age = copy.details.ageError;
+    else if (Number(age) < 1 || Number(age) > 120) issues.age = copy.details.ageRange;
+    setErrors(issues);
+    if (!Object.keys(issues).length) go(4);
+  };
+  const nextFromCity = () => {
+    if (city.trim().length < 2) { setErrors({ city: copy.city.error }); return; }
+    go(5);
+  };
+  const nextFromPreference = () => {
+    if (mode === 'host') {
+      const issues = {};
+      if (!skill.trim()) issues.skill = copy.skill.skillError;
+      if (!outcome.trim()) issues.outcome = copy.skill.outcomeError;
+      setErrors(issues);
+      if (Object.keys(issues).length) return;
+    } else if (!interests.length && !openIdeas) {
+      setErrors({ interests: copy.interests.error });
+      return;
+    }
+    go(6);
+  };
+
+  const scene = stage < 3 ? [copy.learn, copy.teach, copy.choose][stage] : null;
+  const title = scene?.title ?? (stage === 3 ? copy.details.title : stage === 4 ? copy.city.title : stage === 5 ? (mode === 'host' ? copy.skill.title : copy.interests.title) : mode === 'host' ? copy.result.hostTitle : copy.result.learnTitle);
+  const eyebrow = scene?.eyebrow ?? (stage === 3 ? copy.details.eyebrow : stage === 4 ? copy.city.eyebrow : stage === 5 ? (mode === 'host' ? copy.skill.eyebrow : copy.interests.eyebrow) : copy.result.eyebrow);
+  const body = scene?.body ?? (stage === 3 ? copy.details.body : stage === 4 ? copy.city.body : stage === 5 ? (mode === 'host' ? copy.skill.body : copy.interests.body) : '');
+
+  return (
+    <div className="min-h-screen bg-surface-canvas text-content-primary dark:bg-surface-dark dark:text-content-dark">
+      <header className="border-b border-ink/10 bg-surface-canvas/95 px-4 py-3 backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+          <Link to="/" aria-label="ARO home" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><AroWordmark label="" /></Link>
+          <div className="flex items-center gap-2"><LanguageToggle /><ThemeToggle /></div>
+        </div>
+      </header>
+      <main className="mx-auto max-w-6xl px-4 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 sm:px-6 sm:pt-10">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+          <p className="font-semibold text-primary-700 dark:text-primary-300">{copy.preview}</p>
+          {stage < 2 && <button type="button" onClick={() => go(2)} className="min-h-11 rounded-lg px-2 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.skip}</button>}
+        </div>
+        <div className="mb-7 flex items-center gap-2" aria-label={`${Math.min(stage + 1, 7)} / 7`} role="progressbar" aria-valuemin={1} aria-valuemax={7} aria-valuenow={stage + 1}>
+          {Array.from({ length: 7 }, (_, index) => <span key={index} className={`h-1.5 flex-1 rounded-full ${index <= stage ? 'bg-action-primary' : 'bg-ink/15 dark:bg-bone/20'}`} />)}
+        </div>
+
+        <div className={`grid gap-7 ${stage < 3 ? 'lg:grid-cols-[0.95fr_1.05fr] lg:items-center' : 'lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14'}`}>
+          <div className="max-w-xl">
+            <p className="text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-primary-300">{eyebrow}</p>
+            <h1 ref={heading} tabIndex={-1} className="mt-3 text-balance font-display text-3xl leading-[1.12] outline-none sm:text-4xl lg:text-5xl">{title}</h1>
+            {body && <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary sm:text-lg">{body}</p>}
+
+
+            {stage === 3 && <div className="mt-7 space-y-5">
+              <div><label htmlFor="preview-name" className="block text-base font-semibold">{copy.details.name}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.nameHint}</p><input id="preview-name" autoComplete="off" maxLength={80} value={name} onChange={(event) => setName(event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.name && <p id="name-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.name}</p>}</div>
+              <div><label htmlFor="preview-age" className="block text-base font-semibold">{copy.details.age}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.ageHint}</p><input id="preview-age" type="number" inputMode="numeric" min="1" max="120" step="1" value={age} onChange={(event) => setAge(event.target.value)} aria-invalid={Boolean(errors.age)} aria-describedby={errors.age ? 'age-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.age && <p id="age-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.age}</p>}</div>
+            </div>}
+
+            {stage === 4 && <div className="mt-7"><label htmlFor="preview-city" className="mb-2 block text-base font-semibold">{copy.city.label}</label><input id="preview-city" autoComplete="off" maxLength={80} placeholder={copy.city.placeholder} value={city} onChange={(event) => setCity(event.target.value)} aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? 'city-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.city && <p id="city-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.city}</p>}</div>}
+
+            {stage === 5 && mode === 'host' && <div className="mt-7 space-y-5">
+              <div><label htmlFor="preview-skill" className="mb-2 block text-base font-semibold">{copy.skill.label}</label><input id="preview-skill" maxLength={100} value={skill} onChange={(event) => setSkill(event.target.value)} placeholder={copy.skill.placeholder} aria-invalid={Boolean(errors.skill)} aria-describedby={errors.skill ? 'skill-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.skill && <p id="skill-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.skill}</p>}</div>
+              <div><label htmlFor="preview-outcome" className="mb-2 block text-base font-semibold">{copy.skill.outcome}</label><textarea id="preview-outcome" maxLength={240} rows={3} value={outcome} onChange={(event) => setOutcome(event.target.value)} placeholder={copy.skill.outcomePlaceholder} aria-invalid={Boolean(errors.outcome)} aria-describedby={errors.outcome ? 'outcome-error' : undefined} className="w-full rounded-xl border border-control-border bg-white px-4 py-3 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.outcome && <p id="outcome-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.outcome}</p>}</div>
+            </div>}
+
+            {stage === 6 && <div className="mt-7 rounded-2xl border border-primary-200 bg-white p-5 dark:border-primary-700 dark:bg-surface-darkCard">
+              <p className="text-sm font-bold text-primary-700 dark:text-primary-300">{mode === 'host' ? copy.result.draft : copy.result.example}</p>
+              <h2 className="mt-3 font-sans text-2xl font-bold leading-tight">{mode === 'host' ? skill.trim() : copy.ideas[interests[0]] ?? copy.ideas.open}</h2>
+              <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? outcome.trim() : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.indexOf(topic)]).join(', ')}.` : copy.result.openFit}</p>
+              <p className="mt-3 text-sm font-semibold">{copy.result.city}: {city.trim()}</p>
+            </div>}
+
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              {stage > 0 && <button type="button" onClick={back} className="inline-flex min-h-12 items-center gap-2 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><ArrowLeft size={18} aria-hidden="true" />{copy.back}</button>}
+              {stage === 0 && <Button onClick={() => go(1)} className="min-h-12 rounded-xl">{copy.learn.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
+              {stage === 1 && <Button onClick={() => go(2)} className="min-h-12 rounded-xl">{copy.teach.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
+              {stage === 3 && <Button onClick={nextFromDetails} className="min-h-12 rounded-xl">{copy.next}<ArrowRight size={18} aria-hidden="true" /></Button>}
+              {stage === 4 && <Button onClick={nextFromCity} className="min-h-12 rounded-xl">{copy.next}<ArrowRight size={18} aria-hidden="true" /></Button>}
+              {stage === 5 && <Button onClick={nextFromPreference} className="min-h-12 rounded-xl">{mode === 'host' ? copy.skill.action : copy.interests.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
+              {stage === 6 && <button type="button" onClick={() => go(5)} className="min-h-12 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.result.edit}</button>}
+            </div>
+            {stage === 0 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.learn.topics}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => toggleInterest(topic)} aria-pressed={interests.includes(topic)} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${interests.includes(topic) ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
+            {stage === 1 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.teach.examples}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => setSkill(topic)} aria-pressed={skill === topic} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${skill === topic ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
+          </div>
+
+          <div>
+            {stage === 2 && <div className="grid gap-3"><Choice selected={false} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={false} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={false} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
+            {stage < 3 && <div className={stage === 2 ? 'mt-5' : ''}><SceneArt scene={stage} compact={stage === 2} /></div>}
+            {stage === 5 && mode === 'learn' && <div className="grid gap-3 sm:grid-cols-2">{TOPICS.map((topic, index) => <Choice key={topic} selected={interests.includes(topic)} onClick={() => toggleInterest(topic)}>{copy.topics[index]}</Choice>)}<Choice selected={openIdeas} onClick={() => { setInterests([]); setOpenIdeas(true); }}>{copy.interests.open}</Choice></div>}
+            {stage === 5 && errors.interests && <p role="alert" className="mt-3 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.interests}</p>}
+            {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20"><p className="text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{copy.resetNotice}</p><div className="mt-5 flex flex-wrap gap-4"><Link to={mode === 'host' ? '/for-teachers' : '/explore'} className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{mode === 'host' ? copy.result.hostNext : copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
+            {(stage === 3 || stage === 4 || stage === 5) && <p className="mt-6 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

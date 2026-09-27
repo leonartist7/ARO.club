@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **RB2 branch update:** Nonpersistent onboarding preview is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb2-onboarding-preview-20260927`. Three illustrated scenes, all starting intents, in-memory setup, localized validation and honestly labelled result examples are implemented. Live age/profile writes remain SPEC-REQUIRED. See `artifacts/ARO-RB2/VERIFICATION.md`.
+
 > **RB1 branch update:** Orange tokens, controlled SVG mark/wordmark, Manrope fallback and shared-shell adjustments are IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`. Build/lint/unit and sampled browser checks pass; font pinning, full visual/a11y coverage, review and release remain open. See `artifacts/ARO-RB1/VERIFICATION.md`.
 
 > **2026-09-28 RB0:** Founder-approved orange adoption documentation is IMPLEMENTED / PARTIAL VERIFICATION on its branch. RB2 nonpersistent preview is implemented on a later branch but MERGE GATED by independent privacy/security review and category limits. Live age/profile integration remains SPEC-REQUIRED. See `specs/ARO-RB0-REBRAND-ADOPTION.md`, `specs/ARO-RB1-BRAND-FOUNDATION.md`, `specs/ARO-RB2-ONBOARDING-PREVIEW.md` and `docs/rebrand/BASELINE-20260927.md`. R2 history is preserved.

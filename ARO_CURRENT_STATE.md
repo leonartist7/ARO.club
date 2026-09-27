@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **RB2 branch update:** The founder-approved illustrated onboarding preview is implemented on a separate stacked branch with learner, host and both paths. It uses in-memory input and example results only. Local browser path checks and unit regression pass; independent review, live privacy/eligibility spec, font asset rights and release remain open. See `artifacts/ARO-RB2/VERIFICATION.md`.
+
 > **RB1 branch update:** The orange brand foundation is implemented on a separate stacked review branch with sampled local evidence; production and full-route acceptance remain open. RB2 nonpersistent onboarding preview is next. Age/profile runtime integration is still separately gated.
 
 > **2026-09-28 orange rebrand adoption:** The founder approved the orange-led identity and brief onboarding direction, superseding R2 presentation under ADR-031. RB0 documentation and RB1 visual foundation are implemented on scoped branches; RB2 preview is implemented but merge gated by independent privacy/security review and Trust category limits. No RB package is released. Live age collection and mode/permission changes remain separately gated; F7 ownership and its frozen acceptance are unchanged.

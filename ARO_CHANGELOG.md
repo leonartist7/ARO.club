@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — RB2 nonpersistent onboarding preview
+
+Added three brief illustrated scenes, skippable choice, in-memory name/age/city/interests or skill input, and honestly labelled learner idea or editable teaching draft. EN/FR/ES copy, dark mode and responsive scene exports are included. Existing live onboarding, eligibility, Auth, Trust, booking and payment contracts are unchanged. See `artifacts/ARO-RB2/VERIFICATION.md` for bounded browser evidence and remaining review.
+
+---
+
 ## 2026-09-27 — RB1 brand foundation implementation branch
 
 Implemented approved semantic colors, Manrope heading fallback, controlled open-O SVG assets, shared button and shell updates, browser icon and truthful metadata on a scoped branch. Build/lint/unit and sampled browser evidence pass; font delivery, full-route accessibility, review and production release remain open. See `artifacts/ARO-RB1/VERIFICATION.md`.

@@ -3,9 +3,11 @@ import { Link } from '../lib/navigation';
 import { ArrowDownRight, ArrowRight, ShieldCheck } from 'lucide-react';
 import OpportunityFormation from '../features/opportunity-formation/OpportunityFormation';
 import { useLanguage } from '../contexts/LanguageContext';
+import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 
 export default function HomePage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const onboarding = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;
 
   return (
     <div className="min-h-screen overflow-hidden bg-bone text-ink dark:bg-gray-950 dark:text-bone">
@@ -27,9 +29,12 @@ export default function HomePage() {
               <p className="max-w-xl text-lg leading-8 text-ink/70 dark:text-bone/70 md:text-xl">
                 {t('home.formation.hero.subtitle')}
               </p>
+              <Link to="/onboarding/preview" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark">
+                {onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               <a
                 href="#formation"
-                className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-primary-700 underline decoration-primary-300 decoration-2 underline-offset-4 transition-colors hover:text-primary-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:text-primary-300 dark:hover:text-primary-100 dark:focus-visible:ring-offset-gray-950"
+                className="ml-0 mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-primary-700 underline decoration-primary-300 decoration-2 underline-offset-4 transition-colors hover:text-primary-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:text-primary-300 dark:hover:text-primary-100 dark:focus-visible:ring-offset-gray-950 sm:ml-4"
               >
                 {t('home.formation.hero.cta')}
                 <ArrowDownRight className="h-4 w-4" aria-hidden="true" />

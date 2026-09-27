@@ -1,0 +1,116 @@
+[
+  {
+    "slug": "320-light-en-learn",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": null,
+    "result": "ENG\n\nInteractive preview · No account, bookings or payments\n\nYOUR FIRST USEFUL STEP\n\nAn idea to explore\n\nExample only · No live class, host, availability or booking is implied.\n\nTry a beginner photography walk\n\nBased on your interest in Photography.\n\nArea: Calgary\n\nBack\nEdit my choices\n\nThis preview resets when you refresh. Your answers stay in this tab only.\n\nBrowse available experiences\nReplay introduction"
+  },
+  {
+    "slug": "360-light-fr-learn",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": null,
+    "result": "FRA\n\nAperçu interactif · Aucun compte, réservation ni paiement\n\nUNE PREMIÈRE ÉTAPE UTILE\n\nUne idée à explorer\n\nExemple seulement · Aucun cours, hôte, horaire ou réservation réel.\n\nEssayez une balade photo débutant\n\nInspiré par votre intérêt pour Photographie.\n\nRégion: Calgary\n\nRetour\nModifier mes choix\n\nCet aperçu se réinitialise si vous actualisez la page. Vos réponses restent dans cet onglet.\n\nParcourir les expériences disponibles\nRevoir l’introduction"
+  },
+  {
+    "slug": "390-dark-es-host",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": null,
+    "result": "SPA\n\nVista interactiva · Sin cuenta, reservas ni pagos\n\nUN PRIMER PASO ÚTIL\n\nTu borrador de clase\n\nBorrador editable · Nada se ha guardado ni enviado a revisión.\n\nGuitar\n\nPlay a simple song\n\nZona: Calgary\n\nVolver\nEditar mis opciones\n\nEsta vista se reinicia al actualizar. Tus respuestas permanecen solo en esta pestaña.\n\nConocer los requisitos para enseñar\nRepetir la introducción"
+  },
+  {
+    "slug": "430-light-en-both",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": true,
+    "result": "ENG\n\nInteractive preview · No account, bookings or payments\n\nYOUR FIRST USEFUL STEP\n\nAn idea to explore\n\nExample only · No live class, host, availability or booking is implied.\n\nTry a beginner photography walk\n\nBased on your interest in Photography.\n\nArea: Calgary\n\nBack\nEdit my choices\n\nThis preview resets when you refresh. Your answers stay in this tab only.\n\nBrowse available experiences\nSketch a class draft\nReplay introduction"
+  },
+  {
+    "slug": "768-dark-fr-learn",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": null,
+    "result": "FRA\n\nAperçu interactif · Aucun compte, réservation ni paiement\n\nUNE PREMIÈRE ÉTAPE UTILE\n\nUne idée à explorer\n\nExemple seulement · Aucun cours, hôte, horaire ou réservation réel.\n\nEssayez une balade photo débutant\n\nInspiré par votre intérêt pour Photographie.\n\nRégion: Calgary\n\nRetour\nModifier mes choix\n\nCet aperçu se réinitialise si vous actualisez la page. Vos réponses restent dans cet onglet.\n\nParcourir les expériences disponibles\nRevoir l’introduction"
+  },
+  {
+    "slug": "1440-light-en-host",
+    "status": 200,
+    "validation": 2,
+    "horizontalOverflow": false,
+    "pageErrors": [],
+    "requests": [],
+    "storageKeys": [
+      "theme",
+      "conversa-recently-viewed",
+      "conversa-saved-searches",
+      "conversa-favorites",
+      "conversa-language"
+    ],
+    "inputLeakedToStorage": false,
+    "resetOnRefresh": true,
+    "bothCanSwitchToHost": null,
+    "result": "ENG\n\nInteractive preview · No account, bookings or payments\n\nYOUR FIRST USEFUL STEP\n\nYour class draft\n\nEditable preview draft · Nothing has been saved or submitted for review.\n\nGuitar\n\nPlay a simple song\n\nArea: Calgary\n\nBack\nEdit my choices\n\nThis preview resets when you refresh. Your answers stay in this tab only.\n\nExplore host requirements\nReplay introduction"
+  }
+]
