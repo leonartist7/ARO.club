@@ -44,14 +44,58 @@ The MVP baseline remains:
 
 “Escrow” is not marketing language unless the legal/provider structure actually qualifies. Prefer “held until completion” in product copy after legal review.
 
+## Strategic economic layers
+
+ARO deliberately separates three concepts:
+
+1. **Money** — legitimate real-currency payment and provider earnings for approved economic activity.
+2. **Community Credits** — a future access, reward, promotion or subsidy mechanism.
+3. **Reputation / Trust** — earned evidence that cannot be bought with either money or Credits.
+
+The strategic preference is to preserve the possibility for people to **earn real money** through useful ARO-enabled opportunities while using Community Credits to widen access, sponsor participation or reward approved community contribution.
+
+Reputation, verification, qualification, reliability and safety status are never purchasable.
+
 ## Credits
 
-ARO Credits are a future internal reward, promotion, or subsidy mechanism. Unless a later approved design states otherwise, they:
+ARO Credits are a future internal reward, promotion, access or subsidy mechanism. Unless a later approved design states otherwise, they:
 
 - are not cryptocurrency or an investment;
-- have no guaranteed cash equivalence, transferability, redemption, or yield;
-- cannot obscure real currency price, fees, expiry, or refund treatment;
-- require ledger, abuse, expiry, tax/accounting, and consumer-protection rules before launch.
+- have no guaranteed cash equivalence, transferability, redemption or yield;
+- cannot obscure the real-currency price, fees, expiry or refund treatment of a paid service;
+- cannot be described as a way to avoid taxes, worker rules, payment regulation or reporting obligations;
+- require ledger, abuse, expiry, tax/accounting, consumer-protection and jurisdiction review before launch.
+
+Preferred strategic use:
+
+- a city, school, employer, foundation, tourism body, partner or ARO funds Credits;
+- an eligible participant spends Credits on an approved experience or opportunity;
+- the provider may receive an approved real-money settlement under the marketplace payment system;
+- the subsidy and provider payout remain auditable and separate.
+
+If Credits can be **purchased for money, transferred between users, redeemed, converted, refunded, cashed out, or broadly accepted**, a package must explicitly review voucher, stored-value/e-money, payment-services, tax, accounting, AML/fraud, consumer-protection and store-policy implications for every launch jurisdiction.
+
+A user-purchased credit wallet is therefore not the default shortcut for international compliance.
+
+## Strategic revenue portfolio
+
+The broader monetization portfolio is preserved in `ARO_SEASONS_AR.md` and may include, after package approval:
+
+- marketplace transaction/service fees;
+- Host Pro;
+- ARO Season+;
+- customization and cosmetic digital goods;
+- premium Expeditions/Trails and creator Seasons;
+- Sponsored Quests and sponsored Community Credits;
+- Business Beacons;
+- city/tourism, university and employer programs;
+- event/Opportunity orchestration;
+- disclosed partner/affiliate revenue;
+- optional physical keepsakes;
+- privacy-preserving aggregate partner intelligence;
+- later platform/API services.
+
+No item in this portfolio authorizes a price, take rate, wallet, payout, entitlement, purchase flow or financial provider by itself.
 
 ## Refunds, disputes, and cancellations
 

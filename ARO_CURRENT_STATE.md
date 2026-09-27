@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-22 monetization strategy extension:** The founder approved documenting a hybrid economic model that keeps **real-money earning**, **Community Credits**, and **Reputation/Trust** as separate layers. `ARO_SEASONS_AR.md` now preserves the expanded revenue portfolio (Season+, marketplace fees, customization/store, sponsored Credits/Quests, institutional programs, Beacons, creator/city products and later network services); `ARO_MONEY.md` records the compliance boundary that Credits are not a tax/payment-regulation shortcut. This is **strategic documentation only**: no price, take rate, credit conversion, wallet, payout, tax behavior or purchase flow is authorized.
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 

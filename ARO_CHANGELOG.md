@@ -6,6 +6,33 @@
 
 ---
 
+## 2026-09-22 — Hybrid economy and diversified monetization strategy
+
+The founder approved a strategic documentation extension for ARO's long-term
+economic model. `ARO_SEASONS_AR.md` now separates **real-money provider
+earnings**, **Community Credits** and **Reputation/Trust** instead of treating a
+single points currency as all three.
+
+The preferred Community Credit model is institution/sponsor-funded access that
+can still settle an eligible host/provider in real money under a future approved
+marketplace package. Credits are explicitly not a tax, worker-classification,
+payments, voucher or reporting loophole. User-purchased, transferable,
+redeemable or cash-out Credits require dedicated jurisdictional review before
+implementation.
+
+The strategic monetization portfolio now preserves marketplace/service fees,
+Host Pro, ARO Season+, customization/store cosmetics, premium
+Expeditions/Trails, Creator Seasons, Sponsored Quests, sponsored Community
+Credits, Business Beacons, city/tourism/university/employer programs,
+event/Opportunity orchestration, partner revenue, physical keepsakes,
+privacy-preserving partner intelligence and later platform/API services.
+
+This change is **documentation/strategy only**. It authorizes no runtime,
+schema, wallet, price, take rate, conversion ratio, payout, tax treatment,
+purchase flow, sponsorship activation or financial provider.
+
+---
+
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
 
 The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for

@@ -547,6 +547,171 @@ Every revenue model requires validation. Money-related product claims remain sub
 
 ---
 
+
+## 17A. Hybrid economy — money, community credits and reputation
+
+ARO should not collapse economic value, community participation and Trust into one artificial currency.
+
+The strategic model is:
+
+> **Money rewards economic value. Community Credits expand access and reward useful participation. Reputation reflects earned Trust.**
+
+These are separate systems with separate authority.
+
+### 17A.1 Real-money earning remains a core outcome
+
+ARO's long-term economic promise is not merely that members can trade favors. The network should be able to help people earn legitimate real income from useful real-world opportunities.
+
+Examples include:
+
+- teaching a language, craft or professional skill;
+- hosting a workshop or cultural experience;
+- repairing, designing, creating or producing something;
+- mentoring or consulting;
+- contributing a missing capability to an Opportunity or Circle;
+- co-producing an event;
+- providing an approved local service;
+- fulfilling demand from businesses, institutions, visitors or other communities.
+
+Providers may eventually set or accept a real-currency price under an approved marketplace package. ARO may charge a disclosed service/transaction fee or other approved commercial fee. Payouts, invoicing, tax treatment, employment/contractor classification, identity requirements, refunds and reporting remain governed by `ARO_MONEY.md` and jurisdiction-specific specifications.
+
+ARO must never promise guaranteed income.
+
+### 17A.2 Community Credits are an access and participation layer
+
+Community Credits can make useful experiences accessible without pretending that economic value disappeared.
+
+Potential sources of Credits:
+
+- city or regional skills programs;
+- universities and schools;
+- employers;
+- tourism bodies;
+- foundations and associations;
+- partner businesses;
+- ARO promotional budgets;
+- verified community contribution programs.
+
+Example:
+
+```text
+Sponsor / city funds a learning pool
+              ↓
+Member receives 3 Community Credits
+              ↓
+Member books an eligible photography class
+              ↓
+Credits cover all or part of access
+              ↓
+Host/provider receives approved real-money settlement
+```
+
+The strategic preference is therefore **sponsor-funded access with real provider compensation**, not a closed barter system that prevents people from building income.
+
+Credits are not a mechanism to avoid tax, worker-classification, payment, voucher, consumer-protection or financial regulation. If Credits can be bought for money, transferred, redeemed, converted, refunded, cashed out or accepted broadly, the design requires a dedicated legal/payments review before implementation.
+
+Default strategic posture until a later approved spec:
+
+- no cryptocurrency;
+- no speculative value;
+- no yield;
+- no peer-to-peer cash-out;
+- no claim that Credits are tax-free;
+- no hidden exchange rate;
+- no obscuring the real-currency price of a paid service;
+- clear expiry, refund and eligibility rules if Credits are introduced;
+- separate accounting ledger and anti-abuse controls.
+
+### 17A.3 Reputation and Trust are never currency
+
+Reputation, verification, qualification, reliability and safety status cannot be purchased with money or Credits.
+
+Season progression, cosmetics and participation milestones may celebrate activity, but they must not imply professional qualification or safety status.
+
+### 17A.4 Example class model
+
+A future class or experience could show:
+
+| Surface | Example |
+|---|---|
+| Provider price | €45 |
+| Community access price | 3 Credits |
+| Mixed option | 2 Credits + €15, if an approved pricing spec permits |
+| Provider settlement | approved real-money payout less disclosed applicable fees |
+| Reputation | separate earned Trust/review layer |
+| Season progression | separate real-life progression / Passport proof |
+
+The exact values above are illustrative only. No pricing, conversion ratio, settlement rule or mixed-payment behavior is authorized by this strategy document.
+
+### 17A.5 Monetization portfolio
+
+ARO should develop a diversified revenue portfolio rather than depend on advertising or one subscription.
+
+| Revenue layer | Strategic model | Value created |
+|---|---|---|
+| **Marketplace opportunities** | disclosed transaction/service fee | ARO helps real demand become real paid activity |
+| **Host Pro** | recurring subscription | advanced host tools, analytics, workflow and demand intelligence |
+| **ARO Season+** | recurring or periodic paid pass | richer Season value without buying Trust or superiority |
+| **Customization Store** | direct purchase / entitlement | avatar, Personal World, home/room décor, visual themes, collectible cosmetics |
+| **Season cosmetics** | direct purchase or included Season+ entitlement | expressive seasonal personalization; never paid random loot |
+| **Premium Expeditions / Trails** | paid experience pack or inclusion in Season+ | curated city, creator and travel experiences |
+| **Creator Seasons** | revenue share | creators curate useful real-world paths and share economics |
+| **Sponsored Quests** | disclosed brand/institution contract | sponsors fund useful action rather than attention |
+| **Sponsored Community Credits** | B2B/B2G/institutional funding | institutions subsidize learning, culture, wellbeing or participation while hosts can still earn money |
+| **Business Beacons** | B2B subscription / participation package | venues convert unused capacity into relevant community activity |
+| **City / tourism programs** | institutional contract | destinations fund cultural discovery, local activity and measurable participation |
+| **Employer programs** | B2B contract | learning, community, onboarding, wellbeing or local engagement |
+| **Event / Opportunity orchestration** | coordination or production fee | ARO helps compose people, skills, venue and demand into a real event |
+| **Partner commerce** | disclosed affiliate / revenue share | members discover relevant local services or benefits |
+| **Physical keepsakes / merchandise** | margin on optional physical goods | meaningful memories linked to real milestones |
+| **Aggregate partner intelligence** | privacy-preserving B2B insights, only if approved | partners understand demand/participation without exposing individual private behavior |
+| **Future platform/API services** | enterprise/platform fee after network maturity | external systems access approved ARO opportunity infrastructure |
+
+No row is automatically approved for launch. Each one needs unit economics, user-value validation and the relevant money, tax, privacy, Trust, legal and store-policy review.
+
+### 17A.6 Profitability design principles
+
+1. **Create value before charging.** Fees should correspond to a useful transaction, tool, access layer, program or outcome.
+2. **Prefer multiple complementary revenue streams.** Recurring, transactional and institutional revenue can reduce dependence on any one payer.
+3. **Do not monetize Trust.** Verification, safety and reputation are never pay-to-win.
+4. **Do not monetize compulsion.** No paid randomness, punitive streaks, fake urgency or manipulative scarcity.
+5. **Keep provider economics healthy.** ARO only works if useful hosts/providers can rationally participate.
+6. **Make institutional funding additive.** Sponsored Credits should increase access and provider demand, not replace legitimate provider compensation.
+7. **Treat subsidies as contracts, not magic money.** City, employer, university and sponsor programs require measurable objectives and transparent funding.
+8. **Measure contribution margin by revenue layer.** Marketplace, subscriptions, sponsored programs, digital goods and events should each prove their own economics.
+9. **Keep currency concepts simple.** Money, Credits, progression and Trust should remain understandable and visibly distinct.
+10. **Design for jurisdictional compliance.** International scale should use country-aware payment/tax/provider workflows rather than pretending one global points system removes local rules.
+
+### 17A.7 Strategic sequencing
+
+A sensible commercial sequence is:
+
+**Stage 1 — prove useful real-world activity**
+- free core opportunity loop;
+- legitimate paid experiences only after the marketplace money package is approved;
+- validate host/provider demand and completion quality.
+
+**Stage 2 — recurring consumer and creator value**
+- Host Pro;
+- ARO Season+;
+- customization/store layers;
+- premium creator/city paths.
+
+**Stage 3 — institution-funded access**
+- sponsored Community Credits;
+- city/university/employer programs;
+- Sponsored Quests;
+- tourism and Beacon partnerships.
+
+**Stage 4 — network-scale products**
+- event/opportunity orchestration;
+- privacy-preserving partner intelligence;
+- carefully governed platform/API services.
+
+The goal is a business where profitability grows when **more useful real-life opportunity happens**, not when people spend more time staring at ARO.
+
+---
+
 ## 18. The Orbit progression language
 
 The O/Orbit visual system from `ARO_EXPERIENCE_SYSTEM.md` should unify progression.
