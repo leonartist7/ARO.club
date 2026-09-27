@@ -7,8 +7,8 @@ import { AppImage } from '../components/app/AppImage';
 import { getFv1PersonalCopy } from '../i18n/fv1/personal';
 
 const nodeConfig = {
-  wants: { icon: HeartHandshake, accent: 'border-primary-700 bg-primary-600 text-white shadow-[0_14px_30px_rgba(190,50,25,0.25)]' },
-  brings: { icon: Sparkles, accent: 'border-secondary-500 bg-secondary-300 text-ink shadow-[0_14px_30px_rgba(239,193,75,0.24)]' },
+  wants: { icon: HeartHandshake, accent: 'border-primary-700 bg-primary-600 text-white shadow-[0_14px_30px_rgba(244,208,0,0.25)]' },
+  brings: { icon: Sparkles, accent: 'border-secondary-500 bg-secondary-300 text-ink shadow-[0_14px_30px_rgba(245,130,32,0.24)]' },
   context: { icon: Compass, accent: 'border-sky bg-sky text-ink shadow-[0_14px_30px_rgba(118,153,168,0.24)]' },
   boundaries: { icon: ShieldCheck, accent: 'border-moss bg-moss text-white shadow-[0_14px_30px_rgba(104,115,90,0.25)]' },
 };
@@ -35,7 +35,7 @@ function FieldNode({ id, node, isActive, onSelect }) {
 
 function Portrait({ copy }) {
   return (
-    <div data-fv1-profile-portrait className="relative mx-auto aspect-square w-full max-w-40 overflow-hidden rounded-full border-[8px] border-primary-600 bg-bone text-ink shadow-[0_0_0_8px_rgba(239,193,75,0.14),0_24px_50px_rgba(0,0,0,0.28)] sm:max-w-48">
+    <div data-fv1-profile-portrait className="relative mx-auto aspect-square w-full max-w-40 overflow-hidden rounded-full border-[8px] border-primary-600 bg-bone text-ink shadow-[0_0_0_8px_rgba(245,130,32,0.14),0_24px_50px_rgba(0,0,0,0.28)] sm:max-w-48">
       <AppImage
         src="/aro-maya-profile-portrait-v1.png"
         alt={copy.profile.portraitAlt}
@@ -61,7 +61,7 @@ function PersonalField({ copy, activeNodeId, onSelect }) {
         <svg viewBox="0 0 1000 650" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
           <path d="M92 150 C260 98 352 202 498 320 C636 430 720 176 906 132" fill="none" stroke="rgba(246,240,230,0.18)" strokeDasharray="4 12" strokeWidth="2" />
           <path d="M120 524 C286 458 386 474 498 320 C640 146 780 474 906 514" fill="none" stroke="rgba(246,240,230,0.15)" strokeDasharray="4 12" strokeWidth="2" />
-          <circle cx="500" cy="320" r="155" fill="none" stroke="rgba(239,193,75,0.22)" strokeWidth="1" />
+          <circle cx="500" cy="320" r="155" fill="none" stroke="rgba(245,130,32,0.22)" strokeWidth="1" />
           <circle cx="500" cy="320" r="217" fill="none" stroke="rgba(246,240,230,0.1)" strokeWidth="1" />
         </svg>
       </div>

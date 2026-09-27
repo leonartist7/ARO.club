@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     images: ["https://aro.club/twitter-image.jpg"],
   },
 };
-export const viewport: Viewport = { themeColor: "#DE4325" };
+export const viewport: Viewport = { themeColor: "#F4D000" };
 export default function RootLayout({
   children,
 }: {

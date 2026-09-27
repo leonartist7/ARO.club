@@ -61,7 +61,7 @@ function ExpressionOption({ config, option, isSelected, onSelect }) {
       data-fv1-express-option={config.id}
       aria-pressed={isSelected}
       onClick={() => onSelect(config.id)}
-      className={`group relative min-h-[132px] overflow-hidden border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isSelected ? 'border-primary-600 bg-primary-50 shadow-[0_14px_28px_rgba(190,50,25,0.12)] dark:bg-primary-900/20' : 'border-ink/10 bg-white/65 hover:border-ink/25 hover:bg-white dark:border-bone/10 dark:bg-gray-900/65 dark:hover:border-bone/25 dark:hover:bg-gray-900'}`}
+      className={`group relative min-h-[132px] overflow-hidden border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isSelected ? 'border-primary-600 bg-primary-50 shadow-[0_14px_28px_rgba(244,208,0,0.12)] dark:bg-primary-900/20' : 'border-ink/10 bg-white/65 hover:border-ink/25 hover:bg-white dark:border-bone/10 dark:bg-gray-900/65 dark:hover:border-bone/25 dark:hover:bg-gray-900'}`}
     >
       <div className={`absolute -right-4 -top-5 h-20 w-20 rounded-full bg-gradient-to-br ${config.aura} opacity-80`} aria-hidden="true" />
       <div className="relative flex items-start justify-between gap-3">

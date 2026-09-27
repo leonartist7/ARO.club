@@ -90,7 +90,7 @@ export default function Header() {
             aria-label="ARO home"
           >
             <AroMark size="sm" label="" />
-            <span className="text-xl font-bold tracking-[0.18em] text-ink dark:text-bone">ARO</span>
+            <span className="aro-wordmark text-ink dark:text-bone">ARO</span>
           </Link>
 
           {/* Desktop: public links only */}

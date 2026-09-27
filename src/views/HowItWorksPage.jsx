@@ -91,7 +91,7 @@ export default function HowItWorksPage() {
       className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -123,7 +123,7 @@ export default function HowItWorksPage() {
                 <CardBody className="p-0">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
                     {/* Number Section */}
-                    <div className="bg-gradient-to-br from-primary-500 to-secondary-500 p-8 flex flex-col items-center justify-center text-white">
+                    <div className="bg-gradient-to-br from-primary-700 to-secondary-700 p-8 flex flex-col items-center justify-center text-white">
                       <span className="text-6xl font-bold opacity-50 mb-4">{step.number}</span>
                       <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
                         {step.icon}
@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                 transition={{ delay: 0.1 * index, type: 'spring' }}
                 className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 dark:bg-gray-800"
               >
-                <div className="w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-8 h-8 bg-primary-500 text-ink rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   {benefit.icon}
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{benefit.text}</p>

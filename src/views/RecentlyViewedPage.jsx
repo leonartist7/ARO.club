@@ -90,7 +90,7 @@ export default function RecentlyViewedPage() {
               >
                 <div className="relative">
                   {/* Timestamp Badge */}
-                  <div className="absolute -top-2 -right-2 z-10 bg-primary-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow-lg">
+                  <div className="absolute -top-2 -right-2 z-10 bg-primary-500 text-ink text-xs font-medium px-3 py-1 rounded-full shadow-lg">
                     Viewed{' '}
                     {formatDistanceToNow(new Date(experience.viewedAt), {
                       addSuffix: true,

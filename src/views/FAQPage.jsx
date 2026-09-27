@@ -120,7 +120,7 @@ export default function FAQPage() {
       className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -163,7 +163,7 @@ export default function FAQPage() {
               onClick={() => setActiveCategory(category.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                 activeCategory === category.id
-                  ? 'bg-primary-500 text-white shadow-sm'
+                  ? 'bg-primary-500 text-ink shadow-sm'
                   : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
               }`}
             >

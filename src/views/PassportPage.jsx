@@ -54,7 +54,7 @@ export default function PassportPage() {
       className="min-h-screen bg-gradient-to-b from-primary-50/40 to-white dark:from-gray-900 dark:to-gray-950"
     >
       {/* Cover */}
-      <div className="bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-500 text-white">
+      <div className="bg-gradient-to-br from-primary-700 via-primary-700 to-secondary-700 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-5xl">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>

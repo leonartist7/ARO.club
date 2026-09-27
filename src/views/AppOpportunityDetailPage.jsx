@@ -28,8 +28,8 @@ function FormationOrbit({ count, capacity, status, copy }) {
   const progress = Math.min((count / capacity) * 360, 360);
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[310px] rounded-full p-4" style={{ background: `conic-gradient(#efc14b 0deg ${progress}deg, rgba(246,240,230,0.12) ${progress}deg 360deg)` }}>
-      <div className="relative flex h-full w-full items-center justify-center rounded-full border border-bone/15 bg-ink/95 text-center shadow-[inset_0_0_50px_rgba(239,193,75,0.1)]">
+    <div className="relative mx-auto aspect-square w-full max-w-[310px] rounded-full p-4" style={{ background: `conic-gradient(#f58220 0deg ${progress}deg, rgba(246,240,230,0.12) ${progress}deg 360deg)` }}>
+      <div className="relative flex h-full w-full items-center justify-center rounded-full border border-bone/15 bg-ink/95 text-center shadow-[inset_0_0_50px_rgba(245,130,32,0.1)]">
         {orbitMembers.map((member) => <span key={member.initials} className={`absolute flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink text-[10px] font-bold text-white ${member.color}`} style={{ left: member.x, top: member.y }} aria-hidden="true">{member.initials}</span>)}
         <div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.exampleCountLabel}</p><p className="mt-1 font-display text-5xl leading-none">{count}/{capacity}</p><p className="mx-auto mt-2 max-w-[150px] text-xs leading-5 text-bone/55">{status}</p></div>
       </div>
@@ -85,7 +85,7 @@ export default function AppOpportunityDetailPage() {
           <AppPanel dark className="overflow-hidden rounded-[1.75rem] border-bone/10 p-5 shadow-[0_18px_40px_rgba(40,36,32,0.18)]">
             <div className="flex items-start justify-between gap-3"><div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.localCircle}</p><p className="mt-2 font-display text-3xl leading-none">{copy.exampleParticipants(count)}</p></div><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-secondary-300/35 text-secondary-200"><UsersRound className="h-4 w-4" aria-hidden="true" /></span></div>
             <div className="mt-6"><FormationOrbit count={count} capacity={opportunity.capacity} status={status} copy={copy} /><div className="mb-2 mt-5 flex justify-between text-xs font-bold text-bone/70"><span>{copy.minimumProgress}</span><span>{Math.min(count, opportunity.minimum)}/{opportunity.minimum}</span></div><SignalBar value={minimumProgress} tone="secondary" /><p className="mt-3 text-xs leading-5 text-bone/55">{copy.localOnly}</p></div>
-            <Link to={`/app/opportunities/${opportunity.id}/commit`} className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 text-sm font-bold text-white transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300">{copy.openJoinPreview} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link to={`/app/opportunities/${opportunity.id}/commit`} className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 text-sm font-bold text-ink transition hover:bg-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300">{copy.openJoinPreview} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             <p className="mt-3 text-center text-[11px] text-bone/45">{copy.examplePrice(opportunity.price)} · {copy.nothingBooked}</p>
           </AppPanel>
         </aside>

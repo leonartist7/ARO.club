@@ -48,7 +48,7 @@ export function AppAvatar({ initials, size = 'md' }) {
   const sizes = { sm: 'h-8 w-8 text-[10px]', md: 'h-10 w-10 text-xs', lg: 'h-14 w-14 text-sm' };
 
   return (
-    <span className={cn('inline-flex shrink-0 items-center justify-center rounded-full bg-primary-500 font-bold tracking-wide text-white', sizes[size] ?? sizes.md)} aria-hidden="true">
+    <span className={cn('inline-flex shrink-0 items-center justify-center rounded-full bg-primary-500 font-bold tracking-wide text-ink', sizes[size] ?? sizes.md)} aria-hidden="true">
       {initials}
     </span>
   );

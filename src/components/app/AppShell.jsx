@@ -46,7 +46,7 @@ export default function AppShell({ children }) {
         <div className="mx-auto flex min-h-16 max-w-[1180px] flex-wrap items-center justify-between gap-y-2 px-4 py-2 sm:min-h-20 sm:px-8">
           <Link to="/app" className="flex items-center gap-2.5" aria-label="ARO app home">
             <AroMark size="sm" />
-            <span className="text-lg font-bold tracking-[0.22em]">ARO</span>
+            <span className="aro-wordmark">ARO</span>
           </Link>
 
           <div className="hidden items-center gap-2 text-xs font-semibold text-ink/50 dark:text-bone/50 md:flex">
@@ -73,7 +73,7 @@ export default function AppShell({ children }) {
           <AppNavItem item={appNavItems[0]} selected={selected(appNavItems[0])} />
           <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} />
           <Link to={isCreate ? '/app/world' : '/app/create'} aria-label={isCreate ? 'Back to World' : 'Create or find an opportunity'} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-[10px] font-bold uppercase tracking-[0.12em] sm:text-[11px]', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/45 dark:text-bone/45')}>
-            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-white shadow-[0_7px_24px_rgba(222,67,37,0.28)] dark:border-gray-950', isCreate && 'bg-ink dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
+            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-ink shadow-[0_7px_24px_rgba(244,208,0,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-500 dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
             <span>{isCreate ? 'World' : 'Create'}</span>
           </Link>
           <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} />
