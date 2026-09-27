@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB4 branch update:** Legacy public fixture recovery is IMPLEMENTED / PARTIAL VERIFICATION on a separate stacked branch. Direct fixture URLs remain navigable but no longer render old invented host/review/booking claims. This does not certify authenticated legacy or live supply routes. See `artifacts/ARO-RB4/VERIFICATION.md`.
+
 > **RB3 branch update:** Public promise/task paths, truthful Explore empty state, app first action and removal of fictional progress are IMPLEMENTED / PARTIAL VERIFICATION. The branch is unmerged and not released; legacy fixture deep links, remaining surfaces and full accessibility/release review are open. See `artifacts/ARO-RB3/VERIFICATION.md`.
 
 > **RB2 branch update:** The three-scene public onboarding preview is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb2-onboarding-preview-20260927`. It is not merged, live onboarding, VERIFIED or SHIPPED. Browser path screenshots and test evidence are in `artifacts/ARO-RB2/VERIFICATION.md`; privacy/eligibility review still gates live data collection.

@@ -40,7 +40,7 @@
       "original": "artifacts/ARO-RB2/originals/connect.png",
       "generationReference": "exec-8930b8fb-2654-427d-9cfc-9abe20cdb8fc.png",
       "promptSummary": "Continue the same visual world with several diverse adults meeting around a believable creative activity, warm light and yellow open portal; no UI text or fabricated class listing.",
-      "placement": "/onboarding/preview scene 3; public Home hero",
+      "placement": "/onboarding/preview scene 3; public Home hero; RB4 legacy deep-link recovery",
       "exports": ["/brand/onboarding-connect-640.webp", "/brand/onboarding-connect-1280.webp"],
       "dimensions": ["640x480", "1280x960"],
       "bytes": [65630, 163214],

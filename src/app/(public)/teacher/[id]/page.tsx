@@ -1,4 +1,4 @@
-import Page from "../../../../views/TeacherProfilePage";
+import LegacyFixtureState from "../../../../components/features/LegacyFixtureState";
 export default function RoutePage() {
-  return <Page />;
+  return <LegacyFixtureState kind="teacher" />;
 }
