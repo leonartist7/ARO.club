@@ -16,14 +16,25 @@ export async function GET(request: NextRequest) {
         : tokenHash && (type === "email" || type === "recovery")
           ? await client.auth.verifyOtp({ token_hash: tokenHash, type })
           : null;
+      if (result?.error) {
+        console.error("Auth callback verification failed", {
+          code: result.error.code,
+          status: result.error.status,
+          name: result.error.name,
+        });
+      }
       if (result && !result.error)
         destination =
           type === "recovery"
             ? "/auth/reset-password"
             : safeReturnPath(params.get("next"));
-    } catch {
-      /* Invalid or unavailable provider: show a recoverable error. */
+    } catch (error) {
+      console.error("Auth callback unavailable", {
+        name: error instanceof Error ? error.name : "unknown",
+      });
     }
+  } else {
+    console.error("Auth callback unavailable: staging account client disabled");
   }
   const response = NextResponse.redirect(new URL(destination, request.url));
   response.headers.set("Cache-Control", "private, no-store");

@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **N1 staging Auth callback — IMPLEMENTED / PARTIALLY VERIFIED:** Recovery redirect and token-hash diagnostics are reconciled on a current-`main` review branch under [N1](specs/ARO-N1-NEXTJS-PLATFORM.md). Hosted and security gates remain open; see [evidence](artifacts/ARO-N1/AUTH-CALLBACK-RECONCILIATION-20260927.md).
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 
