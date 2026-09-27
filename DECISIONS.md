@@ -1,5 +1,7 @@
 # ARO — Architecture and Product Decision Record
 
+> **2026-09-26 founder brand request:** Yellow primary, orange secondary, and the supplied Noise Order font for main titles and ARO branding supersede the former palette and heading face within R2 scope. The current-main implementation candidate remains under visual review; see `specs/ARO-R2-YELLOW-BRAND.md`.
+
 This file records durable choices. Package-specific implementation details belong in their specifications.
 
 ## ADR-001 — ARO is the master platform

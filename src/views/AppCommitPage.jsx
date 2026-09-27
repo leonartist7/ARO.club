@@ -29,7 +29,7 @@ function CommitmentOrbit({ count, capacity, status, copy }) {
 
   return (
     <div className="relative mx-auto h-[290px] w-[290px] sm:h-[340px] sm:w-[340px]">
-      <div className="absolute inset-0 rounded-full p-[11px] shadow-[0_0_0_20px_rgba(239,193,75,0.06),0_30px_80px_rgba(0,0,0,0.32)]" style={{ background: `conic-gradient(#efc14b 0deg ${degrees}deg, rgba(246,240,230,0.12) ${degrees}deg 360deg)` }}>
+      <div className="absolute inset-0 rounded-full p-[11px] shadow-[0_0_0_20px_rgba(245,130,32,0.06),0_30px_80px_rgba(0,0,0,0.32)]" style={{ background: `conic-gradient(#f58220 0deg ${degrees}deg, rgba(246,240,230,0.12) ${degrees}deg 360deg)` }}>
         <div className="flex h-full w-full flex-col items-center justify-center rounded-full border border-bone/10 bg-ink text-center"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.exampleCountLabel}</p><p className="mt-2 font-display text-6xl leading-none text-bone">{count}/{capacity}</p><p className="mt-2 max-w-[170px] text-xs leading-5 text-bone/55">{status}</p></div>
       </div>
       {orbitPeople.map((person, index) => {
@@ -84,7 +84,7 @@ export default function AppCommitPage() {
               <div className="flex items-center gap-2 text-xs leading-5 text-bone/60"><MapPin className="h-4 w-4 shrink-0 text-secondary-200" aria-hidden="true" />{opportunity.place} · {copy.examplePlaceOnly}</div>
             </div>
 
-            <button type="button" onClick={tryJoin} disabled={isFull || hasJoinedExample} className="relative mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 text-sm font-bold text-white transition hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 disabled:cursor-not-allowed disabled:bg-bone/15 disabled:text-bone/50">{copy.tryJoin} <ArrowRight className="h-4 w-4" aria-hidden="true" /></button>
+            <button type="button" onClick={tryJoin} disabled={isFull || hasJoinedExample} className="relative mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 text-sm font-bold text-ink transition hover:bg-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 disabled:cursor-not-allowed disabled:bg-bone/15 disabled:text-bone/50">{copy.tryJoin} <ArrowRight className="h-4 w-4" aria-hidden="true" /></button>
 
             {isFull && <p className="relative mt-3 text-center text-sm font-bold text-secondary-200" role="status">{copy.full}</p>}
 

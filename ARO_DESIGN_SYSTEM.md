@@ -1,5 +1,7 @@
 # ARO — Design and Experience Direction
 
+> **2026-09-27 R2 candidate:** Founder-authorized yellow/orange and Noise Order identity is implemented on the R2 review branch. See `specs/ARO-R2-YELLOW-BRAND.md`; final visual approval remains open.
+
 ## Authority and scope
 
 This document governs ARO’s product feeling, interaction principles, brand architecture, and cross-platform experience direction. It does not authorize a pixel-by-pixel redesign. `DESIGN_SYSTEM.md` and `DESIGN_EXECUTION_PLAN.md` remain implementation references for existing Tonguee surfaces where they do not conflict with this document or an approved ARO package.

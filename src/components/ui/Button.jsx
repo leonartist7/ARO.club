@@ -3,9 +3,9 @@ import { cn } from '../../utils/cn';
 
 const buttonVariants = {
   primary:
-    'bg-primary-600 text-white font-semibold hover:bg-primary-700 active:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 dark:active:bg-primary-800',
+    'bg-primary-500 text-ink font-semibold hover:bg-primary-400 active:bg-primary-300 dark:bg-primary-500 dark:hover:bg-primary-400 dark:active:bg-primary-300',
   secondary:
-    'bg-secondary-600 text-white font-semibold hover:bg-secondary-700 active:bg-secondary-800 dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:active:bg-secondary-800',
+    'bg-secondary-500 text-ink font-semibold hover:bg-secondary-400 active:bg-secondary-300 dark:bg-secondary-500 dark:hover:bg-secondary-400 dark:active:bg-secondary-300',
   outline:
     'border-2 border-primary-600 text-primary-700 hover:bg-primary-50 active:bg-primary-100 dark:border-primary-400 dark:text-primary-300 dark:hover:bg-primary-900/20 dark:active:bg-primary-900/30',
   ghost:

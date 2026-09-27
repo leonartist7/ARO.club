@@ -68,7 +68,7 @@ function CompositionField({ config, mode, copy }) {
         <svg viewBox="0 0 1000 620" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
           <path d="M120 135 C330 136 340 280 500 312 C664 343 668 142 880 124" fill="none" stroke="rgba(246,240,230,0.18)" strokeDasharray="4 12" strokeWidth="2" />
           <path d="M126 489 C308 460 369 381 500 312 C639 240 737 464 884 482" fill="none" stroke="rgba(246,240,230,0.16)" strokeDasharray="4 12" strokeWidth="2" />
-          <circle cx="500" cy="312" r="130" fill="none" stroke="rgba(239,193,75,0.3)" strokeWidth="1" />
+          <circle cx="500" cy="312" r="130" fill="none" stroke="rgba(245,130,32,0.3)" strokeWidth="1" />
           <circle cx="500" cy="312" r="190" fill="none" stroke="rgba(246,240,230,0.12)" strokeWidth="1" />
         </svg>
       </div>
@@ -77,7 +77,7 @@ function CompositionField({ config, mode, copy }) {
 
       {mode.ingredients.map((ingredient, index) => <Ingredient key={ingredient.label} ingredient={ingredient} position={config.positions[index]} />)}
 
-      <div className="absolute left-1/2 top-1/2 z-10 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-[10px] border-secondary-300 bg-bone px-4 text-center text-ink shadow-[0_0_0_8px_rgba(222,67,37,0.14),0_24px_55px_rgba(0,0,0,0.32)] sm:h-48 sm:w-48">
+      <div className="absolute left-1/2 top-1/2 z-10 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-[10px] border-secondary-300 bg-bone px-4 text-center text-ink shadow-[0_0_0_8px_rgba(244,208,0,0.14),0_24px_55px_rgba(0,0,0,0.32)] sm:h-48 sm:w-48">
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary-700">{copy.create.mightBecome}</p>
         <p className="mt-2 font-display text-xl leading-[0.95] sm:text-2xl">{mode.outcome}</p>
       </div>

@@ -74,7 +74,7 @@ export default function AboutPage() {
       className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -208,7 +208,7 @@ export default function AboutPage() {
       </div>
 
       {/* Achievements */}
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-16">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-6">
