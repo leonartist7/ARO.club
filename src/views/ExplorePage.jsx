@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { Link } from '../lib/navigation';
-import { Search, Filter, SlidersHorizontal, Map, X } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Map, X, ArrowRight } from 'lucide-react';
 import ExperienceCard from '../components/features/ExperienceCard';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
@@ -16,9 +16,11 @@ import { usePlayerStore } from '../store/usePlayerStore';
 import { LANGUAGES, CITIES, SKILL_LEVELS } from '../data/constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { cn } from '../utils/cn';
+import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 
 export default function ExplorePage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -49,6 +51,7 @@ export default function ExplorePage() {
     () => createdExperiences.filter((experience) => experience.status !== 'draft'),
     [createdExperiences]
   );
+  const hasVerifiedSupply = [...experiencesData, ...publishedByPlayer].some((experience) => experience.source === 'verified-live');
 
   const filteredExperiences = useMemo(() => {
     // Experiences the signed-in teacher published show up alongside the seed
@@ -56,7 +59,7 @@ export default function ExplorePage() {
     let results = [
       ...experiencesData,
       ...publishedByPlayer,
-    ];
+    ].filter((experience) => experience.source === 'verified-live');
 
     // Search filter
     if (searchQuery) {
@@ -178,6 +181,20 @@ export default function ExplorePage() {
     { key: 'buddy', label: t('explore.chips.buddy') },
     { key: 'brave', label: t('explore.chips.brave') },
   ];
+
+  if (!hasVerifiedSupply) {
+    return <main className="min-h-screen bg-surface-canvas px-4 py-10 text-ink dark:bg-surface-dark dark:text-bone sm:px-6 sm:py-16">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
+          <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">{journey.find}</h1>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-content-secondary dark:text-content-darkSecondary">{journey.exploreNote}</p>
+          <div className="mt-7 flex flex-wrap gap-3"><Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{journey.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/for-teachers" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-primary-600 px-5 font-bold text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+        </div>
+        <picture className="block overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)]"><source srcSet="/brand/onboarding-learn-640.webp 640w, /brand/onboarding-learn-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" /><img src="/brand/onboarding-learn-640.webp" alt="" width="640" height="480" className="aspect-[4/3] w-full object-cover" /></picture>
+      </div>
+    </main>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">

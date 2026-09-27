@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB3 branch update:** Public promise/task paths, truthful Explore empty state, app first action and removal of fictional progress are IMPLEMENTED / PARTIAL VERIFICATION. The branch is unmerged and not released; legacy fixture deep links, remaining surfaces and full accessibility/release review are open. See `artifacts/ARO-RB3/VERIFICATION.md`.
+
 > **RB2 branch update:** The three-scene public onboarding preview is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb2-onboarding-preview-20260927`. It is not merged, live onboarding, VERIFIED or SHIPPED. Browser path screenshots and test evidence are in `artifacts/ARO-RB2/VERIFICATION.md`; privacy/eligibility review still gates live data collection.
 
 > **RB1 branch update:** Shared orange foundation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`; it is not merged, VERIFIED or SHIPPED. Build/lint/unit and sampled browser evidence are in `artifacts/ARO-RB1/VERIFICATION.md`. RB2 preview remains the next vertical slice.

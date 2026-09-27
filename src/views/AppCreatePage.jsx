@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Compass, HeartHandshake, Sparkles, UsersRound } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
+import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 
 const seedModeLayout = [
   {
@@ -90,6 +91,7 @@ function CompositionField({ config, mode, copy }) {
 export default function AppCreatePage() {
   const language = useLanguage().language;
   const copy = getFv1DiscoveryCopy(language);
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
   const [activeModeId, setActiveModeId] = useState('learn');
   const activeConfig = seedModeLayout.find((mode) => mode.id === activeModeId) ?? seedModeLayout[0];
   const activeMode = copy.create.modes[activeConfig.id];
@@ -98,6 +100,12 @@ export default function AppCreatePage() {
     <div lang={language} className="min-h-[calc(100vh-5rem)] bg-ink px-4 py-7 text-bone dark:bg-plum sm:px-8 sm:py-10">
       <div className="mx-auto max-w-[1180px]">
         <Link to="/app/world" aria-label={copy.create.closeToWorld} className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-bold text-bone transition hover:text-secondary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.create.backToWorld}</Link>
+
+        <nav className="mt-5 grid gap-3 sm:grid-cols-3" aria-label={journey.appTitle}>
+          <Link to="/app/opportunities" className="flex min-h-16 items-center justify-between gap-2 rounded-2xl border border-bone/20 bg-bone/10 p-4 font-bold text-bone focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300">{journey.find}<ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" /></Link>
+          <button type="button" onClick={() => setActiveModeId('share')} className="flex min-h-16 items-center justify-between gap-2 rounded-2xl border border-bone/20 bg-bone/10 p-4 text-left font-bold text-bone focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300">{journey.teach}<ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" /></button>
+          <button type="button" onClick={() => setActiveModeId('gather')} className="flex min-h-16 items-center justify-between gap-2 rounded-2xl border border-bone/20 bg-bone/10 p-4 text-left font-bold text-bone focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300">{journey.gather}<ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" /></button>
+        </nav>
 
         <header className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-end"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary-100">{copy.create.eyebrow}</p><h1 className="mt-4 max-w-2xl font-display text-5xl leading-[0.9] tracking-[-0.04em] sm:text-7xl">{copy.create.title}</h1></div><p className="max-w-xl text-base leading-7 text-bone">{copy.create.intro}</p></header>
 

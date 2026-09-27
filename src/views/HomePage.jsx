@@ -4,42 +4,36 @@ import { ArrowDownRight, ArrowRight, ShieldCheck } from 'lucide-react';
 import OpportunityFormation from '../features/opportunity-formation/OpportunityFormation';
 import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
+import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
   const onboarding = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
 
   return (
     <div className="min-h-screen overflow-hidden bg-bone text-ink dark:bg-gray-950 dark:text-bone">
       <section className="relative border-b border-ink/10 pb-14 pt-12 dark:border-bone/10 sm:pt-16 md:pb-20 lg:pt-20">
         <div className="aro-ambient-field absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div className="max-w-5xl">
-              <p className="inline-flex min-h-11 items-center gap-2 rounded-full border border-primary-600/25 bg-primary-50/80 px-4 text-xs font-bold uppercase tracking-[0.16em] text-primary-800 dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-primary-200">
-                <span className="h-2 w-2 rounded-full bg-primary-500" aria-hidden="true" />
-                {t('home.formation.prototypeBadge')}
-              </p>
-              <h1 className="mt-7 max-w-5xl text-balance font-display text-[2.65rem] leading-[1.08] tracking-[-0.025em] text-ink dark:text-bone sm:text-6xl md:text-7xl lg:text-[5rem]">
-                {t('home.formation.hero.title')}{' '}
-                <span className="bg-primary-500 px-1 text-ink dark:bg-primary-500 dark:text-ink">{t('home.formation.hero.highlight')}</span>
-              </h1>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
+            <div className="max-w-2xl">
+              <p className="text-sm font-extrabold uppercase tracking-[0.13em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
+              <h1 className="mt-5 text-balance font-display text-[3.15rem] leading-[0.98] tracking-[-0.035em] text-ink dark:text-bone sm:text-7xl lg:text-[5.5rem]">{journey.promise}</h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-content-secondary dark:text-content-darkSecondary">{journey.intro}</p>
+              <div className="mt-7 flex flex-wrap items-center gap-4">
+                <Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark">{onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+                <a href="#formation" className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{t('home.formation.hero.cta')}<ArrowDownRight className="h-4 w-4" aria-hidden="true" /></a>
+              </div>
+              <p className="mt-4 text-sm text-content-secondary dark:text-content-darkSecondary">{journey.preview}</p>
             </div>
-            <div className="border-l-2 border-secondary-400 pl-5 lg:mb-2 lg:pl-7">
-              <p className="max-w-xl text-lg leading-8 text-ink/70 dark:text-bone/70 md:text-xl">
-                {t('home.formation.hero.subtitle')}
-              </p>
-              <Link to="/onboarding/preview" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark">
-                {onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="#formation"
-                className="ml-0 mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-primary-700 underline decoration-primary-300 decoration-2 underline-offset-4 transition-colors hover:text-primary-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:text-primary-300 dark:hover:text-primary-100 dark:focus-visible:ring-offset-gray-950 sm:ml-4"
-              >
-                {t('home.formation.hero.cta')}
-                <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
+            <picture className="block overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)]">
+              <source srcSet="/brand/onboarding-connect-640.webp 640w, /brand/onboarding-connect-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
+              <img src="/brand/onboarding-connect-640.webp" alt="" width="640" height="480" decoding="async" className="aspect-[4/3] w-full object-cover" />
+            </picture>
+          </div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/onboarding/preview' }].map((task) => <Link key={task.title} to={task.href} className="group flex min-h-32 flex-col justify-between rounded-2xl border border-ink/10 bg-white/75 p-5 transition-colors hover:border-action-primary dark:border-bone/15 dark:bg-surface-darkCard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"><span className="flex items-center justify-between gap-2 text-lg font-bold">{task.title}<ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></span><span className="mt-3 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></Link>)}
           </div>
 
           <div id="formation" className="scroll-mt-24">

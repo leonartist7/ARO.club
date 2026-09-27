@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **RB3 branch update:** Home and discovery/Create first steps have an orange-led presentation on a separate stacked branch. Public Explore hides dated unverified fixtures and offers a useful preview path. Existing deep links need a separate fixture audit; live onboarding and release remain gated.
+
 > **RB2 branch update:** The founder-approved illustrated onboarding preview is implemented on a separate stacked branch with learner, host and both paths. It uses in-memory input and example results only. Local browser path checks and unit regression pass; independent review, live privacy/eligibility spec, font asset rights and release remain open. See `artifacts/ARO-RB2/VERIFICATION.md`.
 
 > **RB1 branch update:** The orange brand foundation is implemented on a separate stacked review branch with sampled local evidence; production and full-route acceptance remain open. RB2 nonpersistent onboarding preview is next. Age/profile runtime integration is still separately gated.

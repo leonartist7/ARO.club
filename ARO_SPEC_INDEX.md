@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **RB3 branch update:** Public Home/Explore and app Home/Create presentation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb3-public-discovery-20260927`, under `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md`. The public Explore route now shows an honest no-verified-supply state while legacy fixture data lacks provenance. See `artifacts/ARO-RB3/VERIFICATION.md`.
+
 > **RB2 branch update:** Nonpersistent onboarding preview is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb2-onboarding-preview-20260927`. Three illustrated scenes, all starting intents, in-memory setup, localized validation and honestly labelled result examples are implemented. Live age/profile writes remain SPEC-REQUIRED. See `artifacts/ARO-RB2/VERIFICATION.md`.
 
 > **RB1 branch update:** Orange tokens, controlled SVG mark/wordmark, Manrope fallback and shared-shell adjustments are IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`. Build/lint/unit and sampled browser checks pass; font pinning, full visual/a11y coverage, review and release remain open. See `artifacts/ARO-RB1/VERIFICATION.md`.

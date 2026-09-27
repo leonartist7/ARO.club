@@ -1,12 +1,13 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useState } from 'react';
-import { ArrowRight, Bell, ChevronRight, Compass, MapPin, Plus, Sparkles } from 'lucide-react';
+import { ArrowRight, Bell, Compass, MapPin, Plus, Sparkles } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { aroUser, opportunities } from '../data/aroApp';
 import { AppAvatar } from '../components/app/AppPrimitives';
 import { AppImage } from '../components/app/AppImage';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
+import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 
 const homeOpportunityIds = ['river-photo-walk', 'shared-stories', 'repair-table'];
 const homeOpportunities = homeOpportunityIds.map((id) => opportunities.find((opportunity) => opportunity.id === id)).filter(Boolean);
@@ -50,21 +51,13 @@ function OpeningCard({ opportunity, copy }) {
   );
 }
 
-function SeasonThread({ copy }) {
+function ExplorePath({ copy, journey }) {
   return (
-    <Link to="/app/insights" className="group block rounded-[1.75rem] border border-ink/10 bg-white/70 p-5 transition hover:border-primary-500/40 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-bone/10 dark:bg-gray-900/65 dark:hover:bg-gray-900 sm:p-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">{copy.home.journeyEyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl leading-none">{copy.home.journeyTitle}</h2>
-        </div>
-        <span className="text-sm font-bold text-ink/65 dark:text-bone/70">{copy.home.journeyProgress}</span>
-      </div>
-      <div className="mt-6 flex items-center gap-4">
-        <div className="h-2 flex-1 overflow-hidden rounded-full bg-ink/10 dark:bg-bone/10"><div className="h-full w-[62%] rounded-full bg-gradient-to-r from-primary-500 to-secondary-400" /></div>
-        <span className="text-sm font-bold">62%</span>
-      </div>
-      <span className="mt-5 inline-flex min-h-11 items-center gap-1 text-sm font-bold text-primary-700 dark:text-primary-300">{copy.home.journeyLink} <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span>
+    <Link to="/app/opportunities" className="group block rounded-[1.75rem] border border-ink/10 bg-white/70 p-5 transition hover:border-primary-500/40 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-bone/10 dark:bg-gray-900/65 dark:hover:bg-gray-900 sm:p-6">
+      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">{copy.home.worldEyebrow}</p>
+      <h2 className="mt-3 font-display text-3xl leading-tight">{journey.examples}</h2>
+      <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{journey.noProgress}</p>
+      <span className="mt-4 inline-flex min-h-11 items-center gap-1 text-sm font-bold text-primary-700 dark:text-primary-300">{journey.examples}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span>
     </Link>
   );
 }
@@ -119,6 +112,7 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
 export default function AppHomePage() {
   const language = useLanguage().language;
   const copy = getFv1DiscoveryCopy(language);
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
   const [activeOpportunityId, setActiveOpportunityId] = useState('river-photo-walk');
   const activeOpportunity = homeOpportunities.find((opportunity) => opportunity.id === activeOpportunityId) ?? homeOpportunities[0];
 
@@ -132,10 +126,17 @@ export default function AppHomePage() {
         </div>
       </div>
 
+      <section className="mb-5 rounded-[1.5rem] border border-primary-200 bg-primary-50/75 p-5 dark:border-primary-800 dark:bg-primary-900/15 sm:p-7" aria-labelledby="app-first-step-title">
+        <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
+        <h1 id="app-first-step-title" className="mt-2 font-display text-3xl leading-tight sm:text-4xl">{journey.appTitle}</h1>
+        <p className="mt-2 max-w-2xl text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{journey.appBody}</p>
+        <div className="mt-5 flex flex-wrap gap-3"><Link to="/app/opportunities" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-action-primary px-4 py-2 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{journey.find}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/app/create" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-600 px-4 py-2 font-bold text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+      </section>
+
       <LivingWorldStage activeOpportunity={activeOpportunity} onSelect={setActiveOpportunityId} copy={copy} />
 
       <div className="mt-4 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-        <SeasonThread copy={copy} />
+        <ExplorePath copy={copy} journey={journey} />
         <Link to="/app/world" className="group rounded-[1.75rem] bg-ink p-5 text-bone transition hover:bg-plum focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 sm:p-6">
           <div className="flex items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.home.worldEyebrow}</p><h2 className="mt-3 font-display text-3xl leading-none">{copy.home.worldTitle}</h2></div><Compass className="h-5 w-5 text-secondary-200" aria-hidden="true" /></div>
           <div className="mt-6 flex items-center justify-between gap-4"><div className="flex -space-x-2" aria-hidden="true"><AppAvatar initials="JB" size="sm" /><AppAvatar initials="EM" size="sm" /><AppAvatar initials="KL" size="sm" /></div><span className="inline-flex min-h-11 items-center gap-1 text-sm font-bold text-secondary-200">{copy.home.openWorld} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span></div>
