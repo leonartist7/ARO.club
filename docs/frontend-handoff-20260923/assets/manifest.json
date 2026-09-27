@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "date": "2026-09-27",
+  "sourceReferences": [
+    "public/personalization/season-960.webp",
+    "public/personalization/courtyard-960.webp"
+  ],
+  "status": "prepared_art_not_runtime_approved",
+  "generation": "OpenAI built-in image generation; one subject per image; transparent background",
+  "entries": [
+    {
+      "id": "s01-outside",
+      "role": "master",
+      "path": "masters/s01-outside.png",
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1519220,
+      "sha256": "84fc94296523a33b0a86d9301cb136121916258c89a7a24173fafd63514b0b1e",
+      "alpha": true
+    },
+    {
+      "id": "s01-outside",
+      "role": "export",
+      "path": "exports/s01-outside-256.webp",
+      "format": "WEBP",
+      "width": 256,
+      "height": 256,
+      "bytes": 12002,
+      "sha256": "8d182177f31f601545a7571ec7f78872a71910316367a2f33986f634f2dd128b",
+      "alpha": true
+    },
+    {
+      "id": "s01-outside",
+      "role": "export",
+      "path": "exports/s01-outside-512.webp",
+      "format": "WEBP",
+      "width": 512,
+      "height": 512,
+      "bytes": 32762,
+      "sha256": "7b5032e1cdfdeee782aeb8d18d9b2cd87d6c92d3cab23d198defd8c033e99f27",
+      "alpha": true
+    },
+    {
+      "id": "s01-connect",
+      "role": "master",
+      "path": "masters/s01-connect.png",
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1624553,
+      "sha256": "e8f9727d4ab4681952fa966e94ddbe7f053d8da7c017e2fa0d9fcccc49f5cf15",
+      "alpha": true
+    },
+    {
+      "id": "s01-connect",
+      "role": "export",
+      "path": "exports/s01-connect-256.webp",
+      "format": "WEBP",
+      "width": 256,
+      "height": 256,
+      "bytes": 11818,
+      "sha256": "a1b8c262efc6afff17545c8bd427b9a742bc938cdf895c61f0c7a1ad8ba38752",
+      "alpha": true
+    },
+    {
+      "id": "s01-connect",
+      "role": "export",
+      "path": "exports/s01-connect-512.webp",
+      "format": "WEBP",
+      "width": 512,
+      "height": 512,
+      "bytes": 32180,
+      "sha256": "546704ee18d4779347ab8362adca5af53e9d82971ffb33008e838893088b4860",
+      "alpha": true
+    },
+    {
+      "id": "s01-contribute",
+      "role": "master",
+      "path": "masters/s01-contribute.png",
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1794283,
+      "sha256": "3561bdfb36d653aa6c13872fa74e39a0a9a0db6f67b113e354ed1b92b3174fc9",
+      "alpha": true
+    },
+    {
+      "id": "s01-contribute",
+      "role": "export",
+      "path": "exports/s01-contribute-256.webp",
+      "format": "WEBP",
+      "width": 256,
+      "height": 256,
+      "bytes": 16176,
+      "sha256": "7853ac5e80958a3dba4feba723df286eec4bc8431581ff7c69b833491e725a57",
+      "alpha": true
+    },
+    {
+      "id": "s01-contribute",
+      "role": "export",
+      "path": "exports/s01-contribute-512.webp",
+      "format": "WEBP",
+      "width": 512,
+      "height": 512,
+      "bytes": 47938,
+      "sha256": "e0a72c13c6ec1c12a85eec67c0e703a0ddec931fe0e3419dd733be01bff6f78d",
+      "alpha": true
+    },
+    {
+      "id": "s01-create",
+      "role": "master",
+      "path": "masters/s01-create.png",
+      "format": "PNG",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1695977,
+      "sha256": "98577d9e23bfe48de43d7194d668be6fcb0891f97439f84aec043601eb9c2886",
+      "alpha": true
+    },
+    {
+      "id": "s01-create",
+      "role": "export",
+      "path": "exports/s01-create-256.webp",
+      "format": "WEBP",
+      "width": 256,
+      "height": 256,
+      "bytes": 13394,
+      "sha256": "cba64bf87fa3455df30206e5d7854f5854efe43e0545b2a061ffbaa12099e249",
+      "alpha": true
+    },
+    {
+      "id": "s01-create",
+      "role": "export",
+      "path": "exports/s01-create-512.webp",
+      "format": "WEBP",
+      "width": 512,
+      "height": 512,
+      "bytes": 35260,
+      "sha256": "311ce97d8e403252032a9ce139511e53e6da69f6e5c8afb469d11c4dded13338",
+      "alpha": true
+    }
+  ]
+}
