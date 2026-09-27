@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **2026-09-27 RB0:** Orange-led brand/onboarding direction is founder-approved and adoption documentation is in progress. RB1/RB2 are SPEC-READY for separate PRs; no RB runtime, verification or release is claimed. Live age/profile/Auth integration is SPEC-REQUIRED and privacy/eligibility gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.
+
 > **2026-09-27 R2:** The rebrand is **IMPLEMENTED / MERGED** to GitHub `main` as `dc73daa` via PR #69. Tests, focused browser checks, and the founder-delegated visual review passed. This does not claim production release or full-route accessibility acceptance. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.

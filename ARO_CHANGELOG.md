@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — Orange-led ARO direction adopted for scoped implementation
+
+The founder approved the open-O, single-dot identity, orange-led palette, Manrope/conditional Polymath typography, “Life opens up.” promise and brief onboarding. ADR-031 supersedes R2 presentation direction while retaining R2 historical evidence. RB0 route/asset baseline and RB1/RB2 scoped specifications prepare implementation; no new runtime, age collection, Trust, payment or release status is claimed.
+
+---
+
 ## 2026-09-27 — R2 yellow and orange brand candidate
 
 The founder-requested yellow primary, orange secondary, and supplied Noise Order title font were reconciled without reversing FV1 runtime/content fixes, then merged to GitHub `main` via PR #69 at `dc73daa`. Build, lint, tests, focused browser evidence, and the founder-delegated visual check passed. Full-route accessibility and production release are not claimed. See `specs/ARO-R2-YELLOW-BRAND.md` and `artifacts/ARO-R2/VERIFICATION.md`.

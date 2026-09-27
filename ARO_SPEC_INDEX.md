@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-27 RB0:** Founder-approved orange rebrand adoption is SPEC-READY on `codex/rb0-rebrand-adoption-20260927`; RB1 presentation foundation and RB2 nonpersistent onboarding preview specifications are SPEC-READY, pending separate implementation branches and evidence. Live age/profile integration remains SPEC-REQUIRED. See `specs/ARO-RB0-REBRAND-ADOPTION.md`, `specs/ARO-RB1-BRAND-FOUNDATION.md`, `specs/ARO-RB2-ONBOARDING-PREVIEW.md` and `docs/rebrand/BASELINE-20260927.md`. R2 history is preserved.
+
 > **ARO-R2 v1.0.0 — IMPLEMENTED / MERGED:** Yellow/orange identity and Noise Order title/wordmark reached GitHub `main` as `dc73daa` through PR #69. Build, lint, unit, focused browser and delegated visual checks passed. This is not a production release or full-route accessibility certification. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.

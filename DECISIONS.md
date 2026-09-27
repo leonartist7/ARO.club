@@ -1,8 +1,18 @@
 # ARO — Architecture and Product Decision Record
 
+> **2026-09-27 founder rebrand approval:** ADR-031 supersedes R2's yellow-primary/Noise Order presentation direction within ARO platform scope. Historical R2 evidence remains intact; independent review and release gates remain separate.
+
 > **2026-09-26 founder brand request:** Yellow primary, orange secondary, and the supplied Noise Order font for main titles and ARO branding supersede the former palette and heading face within R2 scope. The current-main implementation candidate remains under visual review; see `specs/ARO-R2-YELLOW-BRAND.md`.
 
 This file records durable choices. Package-specific implementation details belong in their specifications.
+
+## ADR-031 — Orange-led ARO identity and brief onboarding
+
+**Status:** Accepted by founder, 2026-09-27, for scoped implementation; independent reviews and release gates remain open.
+
+**Decision:** ARO uses brand orange `#F05A28`, accessible primary-action orange `#C94320` with white text, yellow `#FFD447`, ivory `#FFF8EE`, charcoal `#252420`, leaf green `#27834A` and darker green text as needed. The identity uses a circular open O with one detached upper-right dot. Manrope serves interface text; Polymath Display serves expressive headings only when licensed assets are verified, with Manrope 700 as the interim heading fallback. The public promise is “Life opens up.”, benefits are “Learn · Earn · Connect”, and controls use concrete tasks. Onboarding begins with three brief skippable scenes, minimal setup, then a useful result. One account may Explore and Host; starting intent is not authorization.
+
+**Consequences:** This supersedes R2's yellow-primary and Noise Order direction for ARO platform surfaces, without rewriting R2's historical approval or evidence. Tonguee/Coco retain their vertical identity. Runtime age collection, profile/schema/Auth changes, host eligibility, Trust, payments and production release require their narrower specifications and reviews. The founder's creative approval need not be requested again for routine design choices within this scope. See `specs/ARO-RB0-REBRAND-ADOPTION.md` and the attached 27 September implementation plan.
 
 ## ADR-001 — ARO is the master platform
 
