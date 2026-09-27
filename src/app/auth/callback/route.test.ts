@@ -78,4 +78,20 @@ describe("authentication callback", () => {
       "https://preview.example/auth/reset-password",
     );
   });
+  it("verifies email-confirmation hashes before continuing", async () => {
+    const verifyOtp = vi.fn().mockResolvedValue({ error: null });
+    state.client = { auth: { verifyOtp } };
+    const response = await GET(
+      new NextRequest(
+        "https://preview.example/auth/callback?token_hash=single-use&type=email",
+      ),
+    );
+    expect(verifyOtp).toHaveBeenCalledWith({
+      token_hash: "single-use",
+      type: "email",
+    });
+    expect(response.headers.get("location")).toBe(
+      "https://preview.example/explore",
+    );
+  });
 });

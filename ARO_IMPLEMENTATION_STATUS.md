@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **2026-09-27 N1 Auth callback:** Staging recovery redirect and token-hash callback diagnostics are **IMPLEMENTED / PARTIALLY VERIFIED** on current `main`. Focused local tests, lint and build passed; hosted signup/reset, role lookup and independent security review remain open. See [evidence](artifacts/ARO-N1/AUTH-CALLBACK-RECONCILIATION-20260927.md).
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 

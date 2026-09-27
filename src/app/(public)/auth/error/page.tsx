@@ -4,8 +4,9 @@ export default function AuthError() {
     <section className="mx-auto max-w-lg p-8">
       <h1 className="text-3xl">This sign-in link could not be verified.</h1>
       <p className="my-4" role="alert">
-        It may have expired, already been used, or account access may be
-        unavailable. Request a new link and try again.
+        The link may have expired or already been used. If this was an email
+        confirmation, try signing in—your address may already be confirmed. For
+        a password reset, request a new link.
       </p>
       <Link href="/forgot-password" className="underline">
         Request a recovery link

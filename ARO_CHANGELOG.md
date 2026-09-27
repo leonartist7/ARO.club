@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — N1 staging Auth callback reconciliation
+
+The isolated staging recovery request now targets a clean `/auth/callback` URL for the configured token-hash email template. The callback records redacted error metadata and covers email-confirmation hashes in a focused test. Current production account guards remain intact. Hosted Auth, role lookup and independent security review remain open; see `artifacts/ARO-N1/AUTH-CALLBACK-RECONCILIATION-20260927.md`.
+
+---
+
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
 
 The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for

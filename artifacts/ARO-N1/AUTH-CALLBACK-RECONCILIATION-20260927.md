@@ -1,0 +1,9 @@
+# N1 staging Auth callback reconciliation — 2026-09-27
+
+Status: IMPLEMENTED / PARTIALLY VERIFIED. This branch starts from current `main` at `e1ad705` and carries only the staging recovery redirect, token-hash callback diagnostics, email-confirmation test, and actionable error copy from the older local migration checkout. It preserves the production account restrictions and authoritative role checks already on `main`.
+
+The founder-controlled local staging test in the older checkout delivered a recovery email through Resend and opened the reset-password form on first use of its token-hash link; reuse led to `/auth/error`. No password was changed in that test. Its initial callback failure was caused by the local shell's outbound network restriction, then the same flow worked with a network-enabled staging server. The detailed source checkpoint remains in the preserved migration checkout and recovery snapshot.
+
+On this reconciled branch, `npm test -- --configLoader runner --pool=threads --maxWorkers=1 src/app/auth/callback/route.test.ts src/lib/auth/config.test.ts` passed all 9 tests. `npm run lint` passed. `npm run build` exited successfully and generated routes, though Turbopack could not persist part of its cache because the local disk was full; generated build caches were removed afterward. The first Vitest attempt using default fork workers timed out before running tests, so the one-worker thread run is the valid result.
+
+Open gates: fresh signup confirmation, actual password-change/login cycle, stable hosted staging URL and callback allow-list, full role-aware app behavior, and independent security/privacy review. Staging role lookup still reports `PGRST106` because the `api` schema is not exposed; this branch does not change Data API exposure, schema, RLS, provider settings, or production Auth. Do not treat the local result as hosted acceptance.
