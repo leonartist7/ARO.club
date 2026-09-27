@@ -8,7 +8,7 @@
 
 ## 2026-09-27 — R2 yellow and orange brand candidate
 
-The founder-requested yellow primary, orange secondary, and supplied Noise Order title font are reconciled with current `main`. The branch preserves FV1 runtime/content fixes and carries focused browser evidence. Founder visual review and PR gates remain open; no production release is claimed. See `specs/ARO-R2-YELLOW-BRAND.md` and `artifacts/ARO-R2/VERIFICATION.md`.
+The founder-requested yellow primary, orange secondary, and supplied Noise Order title font were reconciled without reversing FV1 runtime/content fixes, then merged to GitHub `main` via PR #69 at `dc73daa`. Build, lint, tests, focused browser evidence, and the founder-delegated visual check passed. Full-route accessibility and production release are not claimed. See `specs/ARO-R2-YELLOW-BRAND.md` and `artifacts/ARO-R2/VERIFICATION.md`.
 
 ---
 

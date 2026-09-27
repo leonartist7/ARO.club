@@ -1,6 +1,6 @@
 # ARO — Current State
 
-> **2026-09-27 R2 candidate:** The founder-requested yellow/orange and Noise Order rebrand is implemented on a current-`main` review branch. Build, lint, unit tests, and focused phone/desktop browser checks pass. Founder visual review and PR gates remain open; no production release is claimed. See [R2 spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
+> **2026-09-27 R2:** The founder-requested yellow/orange and Noise Order rebrand is merged to GitHub `main` as `dc73daa` via PR #69. Build, lint, unit tests, focused phone/desktop browser checks, and the founder-delegated visual check passed. Full-route accessibility and production release are not claimed. See [R2 spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
