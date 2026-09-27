@@ -1,6 +1,6 @@
 # ARO — Canonical Spec Index
 
-> **ARO-R2 v1.0.0 — IMPLEMENTED / REVIEW PENDING:** Yellow/orange identity and Noise Order title/wordmark are reconciled with current `main`. Build, lint, unit and focused browser checks pass; founder visual review and PR gates remain. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
+> **ARO-R2 v1.0.0 — IMPLEMENTED / MERGED:** Yellow/orange identity and Noise Order title/wordmark reached GitHub `main` as `dc73daa` through PR #69. Build, lint, unit, focused browser and delegated visual checks passed. This is not a production release or full-route accessibility certification. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 

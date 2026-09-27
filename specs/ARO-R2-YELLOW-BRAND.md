@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 - Spec version: 1.0.0
-- Status: IMPLEMENTED / REVIEW PENDING (reconciled candidate on current `main`; founder visual review and PR gates pending)
+- Status: IMPLEMENTED / MERGED to GitHub `main` as `dc73daa` via PR #69. Focused visual review was delegated by the founder and performed against the saved 360px/1440px light/dark captures. This does not certify full-route accessibility or production release.
 - Authorization: founder request, 2026-09-26, yellow primary, orange secondary, attached Noise Order for main titles and branding.
 - Governing documents: AGENTS.md, ARO_DESIGN_SYSTEM.md, ARO_EXPERIENCE_SYSTEM.md. This explicit brand request supersedes their prior palette/heading font only.
 - Depends on: existing R1 / UX0 / N1 local application. No downstream gates change.
