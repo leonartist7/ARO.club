@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — EMAIL0 domain mail and staging Auth delivery
+
+The founder-controlled `aro-club.app` Zoho mailbox and aliases now receive business mail, and Resend delivers isolated staging signup and recovery emails. The package remains partially verified: hosted callbacks, the password-change cycle, complete sender authentication checks, and independent security review are still open. See `specs/ARO-EMAIL0-DOMAIN-MAIL.md` and `artifacts/ARO-EMAIL0/VERIFICATION.md`. Production Auth remains disabled.
+
+---
+
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
 
 The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for

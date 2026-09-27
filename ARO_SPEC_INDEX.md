@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **ARO-EMAIL0 v1.1.0 — IMPLEMENTED / PARTIALLY VERIFIED:** Zoho business mail and isolated staging Resend Auth delivery have evidence. Hosted callback/password cycle, authentication alignment, and independent security review remain open. See [package spec](specs/ARO-EMAIL0-DOMAIN-MAIL.md) and [verification](artifacts/ARO-EMAIL0/VERIFICATION.md).
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 

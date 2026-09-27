@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **2026-09-27 EMAIL0:** Domain mailbox and staging Auth delivery are **IMPLEMENTED / PARTIALLY VERIFIED**. Business mail, public DNS, and both staging Auth templates have delivery evidence; hosted callback/password cycle, complete SPF/DKIM/DMARC checks, and independent security review are open. See [spec](specs/ARO-EMAIL0-DOMAIN-MAIL.md) and [evidence](artifacts/ARO-EMAIL0/VERIFICATION.md).
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 
