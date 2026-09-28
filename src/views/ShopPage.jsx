@@ -117,7 +117,7 @@ export default function ShopPage() {
               onClick={() => setSelectedCategory(category.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                 selectedCategory === category.id
-                  ? 'bg-primary-500 text-ink shadow-lg scale-105'
+                  ? 'bg-brand-orange text-ink shadow-lg scale-105'
                   : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'
               }`}
             >
