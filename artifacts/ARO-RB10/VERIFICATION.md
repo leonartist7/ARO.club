@@ -36,3 +36,10 @@ Additional RB7 hosted result: 32 browser component checks and Preferences matrix
 
 
 Corrected handoff: propagated RB9 b66368a, incorporating founder-specified RB6 95ec421 and upstream navigation tests exactly. Runtime is unchanged from reconciliation source 7f9eb6e; targeted tests pass (15 passed, 1 existing browser-gated skip). Prior test counts include the equivalent cloud assertion split into two tests; upstream combines them into one. Reserved-route/provenance failures and independent gates remain; new hosted checks are required.
+
+
+### Latest RB6 5e22dcc handoff
+
+Inherited RB9 3c991c7 with exact founder-specified RB6 5e22dcc. The RB3 distinct formation-preview copy and refreshed evidence are incorporated without conflicts. Account-entry source, cloud preference/layout repairs and retained evidence remain preserved. Hosted confirmation is pending; the teacher-route collision is unchanged. RB5 remains SPEC-REQUIRED pending independent retention/deletion privacy review, with RB2 independent review also open. No main merge or release.
+
+Local verification of the integrated source: production build, lint with zero warnings, type check and 184 unit tests pass (3 existing browser-gated skips). Cloud Preferences, legacy onboarding height repair, diagnostics and committed cloud screenshots have no diff from prior RB10 6239274. Hosted new-head checks remain required.

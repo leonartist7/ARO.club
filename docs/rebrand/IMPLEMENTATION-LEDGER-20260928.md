@@ -1,6 +1,6 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest reconciliation:** RB6 95ec421 supersedes 8799e78. RB7–RB10 incorporate the upstream navigation-test repair. Hosted reserved teacher-route collision and duplicate French provenance locator remain blockers; independent RB2/RB5 reviews remain open. Historical green runs below do not certify the latest stack.
+> **Latest reconciliation:** exact RB6 5e22dcc supersedes 95ec421. RB7–RB10 incorporate the RB3 distinct formation-preview copy fix and refreshed owner evidence. Hosted confirmation of the strict-text repair is pending; the reserved teacher-route collision is unchanged. RB5 remains SPEC-REQUIRED pending independent contact-draft retention/deletion privacy review, and RB2 independent review remains open. Historical green runs below do not certify the latest stack.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -79,3 +79,12 @@ Remote heads confirmed: RB1 `00aeb90df313693e8a7b8ed34b0bcbd16693a5a9`, RB2 `42a
 Only the two test files changed between RB6 8799e78 and 95ec421. Adopted the upstream versions exactly when resolving their overlap with the equivalent cloud test fix. Targeted verification: 15 tests pass, 1 existing browser-gated skip. Both Create entry and the intentional World exit remain asserted. No runtime code or cloud screenshot/evidence hashes changed in this correction.
 
 Normal merge propagation: RB6 95ec421 → RB7 f7b88e5 → RB8 7b6f5db → RB9 b66368a → this RB10 merge. Prior cloud and reconciliation history remain ancestors. Incoming RB6 Quality 36437639390 and platform 36437639397 were running when checked; new descendant checks are separate and must not be inferred green. The reserved teacher-route collision and French provenance locator failures described above are unaffected by a test-only correction. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-retention/deletion review remain blocking. PR #84 remains unchanged and owner-controlled.
+
+
+### RB6 5e22dcc review-copy reconciliation — 2026-09-28
+
+Confirmed incoming RB6 `5e22dccb0fd268a9212e874a11e27d321efad493` and existing cloud heads before editing. The incoming diff from 95ec421 changes only RB3 formation-preview copy in EN/FR/ES, the capture assertion and refreshed RB3 evidence. It supplies distinct copy for the prior French strict-text ambiguity; this is an implemented candidate repair, with new-head hosted confirmation still required. The reserved teacher-route proxy collision is not modified by this diff.
+
+Conflict-free normal merge chain: RB6 5e22dcc → RB7 1c9731c → RB8 e20be91 → RB9 3c991c7 → this RB10 merge. Original cloud commits, Preferences behavior, legacy-card height repair, diagnostics, screenshot hashes and prior handoff history remain preserved. No force-push, main merge, review-thread resolution or release. Lower-stack CI remains with its owner; incoming RB6 Quality 36439588629 and platform 36439588600 were in progress at intake.
+
+RB7 local unit tests: 180 pass, 3 existing browser-gated skips. New-head hosted checks run separately. RB5 remains **SPEC-REQUIRED** pending independent privacy review of browser-local contact draft retention/deletion; it is not approved and no merge may cross that gate. RB2 independent privacy/security review and remaining review conversations stay open. PR #84 remains owner-controlled and untouched.
