@@ -20,3 +20,13 @@ Localize the shared app shell labels and semantic names when the language change
 - Preferences open/close with pointer and keyboard; Escape closes and returns focus; labels, focus rings and selected states are semantic. At 320px with a short viewport, the menu scrolls and the next action remains reachable. Reduced motion is respected.
 - Check representative public, onboarding and app-settings screens at phone and desktop widths in both themes and all supported languages. Confirm public footer/header navigation and deep links, no horizontal overflow or page errors.
 - Run build, lint, type checks and focused interaction tests. Do not claim full-route accessibility or release acceptance from this package.
+
+### Regression repair clarification — 2026-09-28
+
+Removing the duplicate public bottom bar also removed layout padding that masked
+fixed-height card overflow on the existing student/teacher onboarding pages.
+RB7's layout compatibility repair may replace those two card wrappers per page
+with minimum heights so content remains in flow above the footer. Field values,
+selection logic, validation, Auth, persistence, categories, submission and Trust
+semantics are unchanged. The existing hosted authenticated journey remains the
+acceptance gate; no forced clicks, timeouts, assertions or policy rules are waived.

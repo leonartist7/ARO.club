@@ -237,7 +237,7 @@ export default function StudentOnboarding() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="h-[600px]"
+                className="min-h-[600px]"
               >
                 <div className="text-center mb-6">
                   <h2 className="text-3xl font-bold text-gray-800 mb-2 dark:text-gray-100">
@@ -302,7 +302,7 @@ export default function StudentOnboarding() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="h-[600px]"
+                className="min-h-[600px]"
               >
                 <div className="text-center mb-6">
                   <h2 className="text-3xl font-bold text-gray-800 mb-2 dark:text-gray-100">
