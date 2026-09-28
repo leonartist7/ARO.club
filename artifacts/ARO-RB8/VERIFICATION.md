@@ -39,3 +39,7 @@ Merged updated RB7 `2e3b03894cd15f586c33d172e396e9958af84a97` into prior RB8 `29
 ### Final RB6 8a8e5e2 reconciliation — 2026-09-28
 
 Merged RB7 `0016b1f649435a46a4919ef1f3ed6c93c482ef58` without conflict, incorporating exact RB6 `8a8e5e2a9dbc325675f91f2466545f9955df4c2e`. Incoming differences from 2ea1fed are confined to two RB6 verifier waits and owner evidence/screenshots. Runtime and cloud work are unchanged; previous combined-source local tests remain applicable, while new-head hosted checks and all privacy/Trust/independent-review/release gates remain open. No F7 evidence changes.
+
+### RB6 ff1c7b6 reconciliation — 2026-09-28
+
+Merged RB7 `b4d8d9e01cbc96eba0c3ad510738c143022f4ab2` without conflict, preserving RB8 presentation and cloud evidence. Exact lower base is `ff1c7b65cc23958b66754f0d75faffae736a7e7d`; incoming runtime scope is the RB3 composition focus ring, with its capture assertions and RB1/RB2/RB6 contract repairs. Prior RB8 0494289 passed Quality 36451818787 and isolated 36451819101; this merge requires fresh hosted checks. Final local checks are recorded in the RB10 ledger. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED draft retention/deletion privacy, independent review and release gates remain open. No protected merge, F7 change or self-approval.
