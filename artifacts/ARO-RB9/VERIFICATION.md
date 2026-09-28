@@ -40,3 +40,7 @@ Merged RB8 `04942890087be787a357327e66565502e645070c` without conflict, incorpor
 ### RB6 ff1c7b6 reconciliation — 2026-09-28
 
 Merged RB8 `860c33a5fc4831a284d85dd3c1ed20317dfd181e` without conflict, preserving metadata and cloud work. Exact lower base is `ff1c7b65cc23958b66754f0d75faffae736a7e7d`. RB3 focus-ring/capture repairs and updated presentation contracts are inherited unchanged. Prior RB9 ee89026 passed Quality 36451869687 and isolated 36451869528; new-head hosted checks remain required. Final local checks are recorded in the RB10 ledger. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED contact-draft retention/privacy, independent review and release gates remain open. No protected merge, F7 change or self-approval.
+
+### RB6 13e2571 reconciliation — 2026-09-28
+
+Merged RB8 `042b5934bdedd56ea9ab2ccc8524da7b332a8617` without conflict, preserving RB9 metadata and cloud work on exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`. Prior RB9 04664c2 passed Quality 36454799395 but isolated 36454799423 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_LIGHT` (job 109038281956); cleanup passed. Do not infer that failure is fixed by this unrelated localization/onboarding repair. New-head hosted checks and final integrated local verification remain separate; see RB10 ledger. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED draft privacy, independent review and release gates remain open. No F7 change or protected merge.
