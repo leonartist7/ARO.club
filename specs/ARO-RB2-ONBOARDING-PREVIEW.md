@@ -2,8 +2,9 @@
 
 ## 0. Metadata
 
-- Status: IMPLEMENTED ON BRANCH / MERGE GATED for **nonpersistent preview only**; version 1.1.0; founder-approved rebranding request, 2026-09-27. Independent privacy/security review has not been recorded.
-- Depends on RB1. Dedicated branch/PR, based on reviewed RB1 head.
+- Status: IMPLEMENTED ON BRANCH / MERGE GATED for **nonpersistent preview only**; version 1.2.0; founder-approved rebranding request, 2026-09-27. Independent privacy/security review has not been recorded.
+- Owner/director: ARO founder. Implementation: `codex/rb2-onboarding-preview-20260927`, PR #74, head `42ae32d`. Depends on RB1 PR #73; blocks the RB3 public entry and any live onboarding migration.
+- Required reviewers: independent privacy/security for name, age, city, consent and minor/vulnerable-user treatment; Trust for the teaching-category boundary; design/accessibility for release acceptance. No reviewer sign-off is recorded.
 - Governing: `AGENTS.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md`, `ARO_TRUST_SAFETY.md`, existing Auth/onboarding contracts.
 - Live age/profile persistence, role migration, analytics and host publication require a separate specialist-reviewed runtime spec.
 
@@ -32,3 +33,17 @@ Exercise all three branches, skip/back/edit, invalid name/age, city entry, no-su
 | RB2-5 | Existing live Auth/Trust/onboarding routes stay intact | route regression checks |
 
 Do not mark live onboarding implemented from this prototype. Independent privacy/security review is required before RB2 merge and again for any later persistent runtime package.
+
+## 5. Goals, non-goals and permissions
+
+The goal is a skippable visual introduction and a useful **local example** for each starting intent. This public route has no account requirement and creates no real profile, listing, application, booking or permission. It does not grant Host mode or publishing authority. Any visitor may advance, go back, edit or reset their own in-memory example; there is no server-side create/update/delete operation and no other-user data to read. Live eligibility, identity proofing, account migration, analytics, payment, publication and category expansion are explicit non-goals. The existing verified-teacher trigger and RLS remain the only publishing authority.
+
+## 6. State, data and authorization contract
+
+The legal UI progression is `opening scene → task choice → setup → example result`, with skip entering task choice, back/edit returning to earlier local steps, and refresh/leave resetting the preview. Validation keeps the visitor on setup with field-level guidance; an empty supply state offers an honest next action. No server state transition, audit event, retryable external write or idempotency key applies. Name, age, coarse city and interest/skill exist only in page memory during this visit, are never placed in a URL, storage, analytics or request, and disappear on refresh or leave. No migration, API endpoint, database entity or RLS policy is created or modified. Existing Auth and teacher application routes remain separate and protected by their current server and database controls.
+
+## 7. Privacy, Trust, failure and review cases
+
+The screen discloses the nonpersistent example before requesting values. City is manually chosen at coarse granularity; precise location is never requested. The visitor can stop, go back or reload to discard values. The preview does not decide legal eligibility from age; a specialist must approve the consent and minor/vulnerable-user treatment before merge. Teaching output uses only adult public-place language/community example fixtures. Free-form skills are not promoted into eligible listings, and closed or moderate-risk categories never become apparently authorized classes. A rejected or unclear input returns neutral guidance rather than a verified, paid or published claim. Network/storage leakage, misleading demand/earnings, stale preview after refresh, broken skip/back navigation and existing Auth/Trust regression are stop conditions.
+
+Money and AI are N/A for runtime behavior: scene two describes a possible paid class without a price, earnings estimate, checkout, entitlement or AI decision. Illustrations are examples, never evidence of a real host or class. Rollback is a presentation-route revert; there is no data rollback. PR #74 needs the acceptance evidence above, independent privacy/security and Trust decisions linked in the PR, a current design/accessibility review and successful required CI before it may move from IMPLEMENTED to VERIFIED or merge. Release approval is separate.
