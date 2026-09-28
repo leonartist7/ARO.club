@@ -4,9 +4,9 @@ Status: PLAN ONLY. This cloud task does not modify PR #84 or resolve its review 
 
 ## Verified inputs
 
-- Lower-stack source: RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`.
+- Lower-stack source: RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`.
 - Existing source-plan PR #84: `codex/rebrand-source-plan-20260928`, head `7e3f9568202b37b7aeb420f9b642efb80121b1a2`, open and unmergeable at inspection.
-- Target: the new RB10 commit containing this plan on `codex/rb10-account-entry-presentation-20260928`, descended from RB9 `fc4b08ed9eaff233b2001dc2590f11a8e51d7ebb`. Fetch and pin its exact remote SHA before execution; never substitute main.
+- Target: the new RB10 commit containing this plan on `codex/rb10-account-entry-presentation-20260928`, descended from RB9 `23ca471f84acee099d094794ff3eb643a112177b`. Fetch and pin its exact remote SHA before execution; never substitute main.
 - A read-only `git merge-tree --write-tree --name-only` preview of preceding RB10 `b28fc9f` with #84 reports one content conflict: `docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md`. Current-state and changelog merge automatically at that checkpoint. Recheck against the latest RB10 before applying; this is not an integration approval.
 
 ## Owner execution

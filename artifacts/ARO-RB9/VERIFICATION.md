@@ -44,3 +44,7 @@ Merged RB8 `860c33a5fc4831a284d85dd3c1ed20317dfd181e` without conflict, preservi
 ### RB6 13e2571 reconciliation — 2026-09-28
 
 Merged RB8 `042b5934bdedd56ea9ab2ccc8524da7b332a8617` without conflict, preserving RB9 metadata and cloud work on exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`. Prior RB9 04664c2 passed Quality 36454799395 but isolated 36454799423 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_LIGHT` (job 109038281956); cleanup passed. Do not infer that failure is fixed by this unrelated localization/onboarding repair. New-head hosted checks and final integrated local verification remain separate; see RB10 ledger. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED draft privacy, independent review and release gates remain open. No F7 change or protected merge.
+
+### Superseding RB6 327c681 selector repair — 2026-09-28
+
+Verified exact remote RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`. Its only diff from 13e2571 is the AppReturn heading selector and final newline, already present in cloud. Merged updated parent `70dff315efa510aee184b43dad865c414db2c5a1` without conflict; no additional runtime or test behavior change. Prior combined-source 187-test/build/lint/type evidence remains applicable; fresh hosted checks on this new ancestry remain required. Existing cloud work, PR ownership and all RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent-review and release gates are preserved. The separate platform chooser failure is not declared fixed.
