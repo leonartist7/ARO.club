@@ -35,10 +35,12 @@ try {
     const snapshot = { slug, status: response?.status(), heading: await page.locator('h1').first().innerText(), mainLandmarks: await page.getByRole('main').count(), horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), hasFakeRank: /Compete with learners worldwide|All-time standings|Climb the ranks/.test(body), hasCheckoutPromise: /wiring secure checkout next|passport is waiting for its first stamp/i.test(body), errors, writes };
     await page.locator('main a[href="/explore"]').click();
     await page.waitForURL(`${BASE}/explore`);
+    await page.locator('h1').first().waitFor();
     snapshot.exploreNavigation = (await page.request.get(page.url())).status() === 200 && await page.locator('h1').count() > 0;
     await navigate(page, `${BASE}${route}`, { waitUntil: 'domcontentloaded' });
     await page.locator('main a[href="/onboarding/preview"]').click();
     await page.waitForURL(`${BASE}/onboarding/preview`);
+    await page.locator('h1').first().waitFor();
     snapshot.previewNavigation = (await page.request.get(page.url())).status() === 200 && await page.locator('h1').count() > 0;
     results.push(snapshot);
     await context.close();
