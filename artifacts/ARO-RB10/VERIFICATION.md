@@ -55,3 +55,10 @@ Local integrated verification: build, lint with zero warnings, type check and 18
 ### Hosted source checkpoint — 2026-09-28
 
 RB10 source `7b458017457d28b9019153dbd972f7d7756c15e1` passes Quality run 36441081849 and Isolated database run 36441081371. This confirms the combined source in hosted checks; it does not close RB7/RB9 intermediate failures, independent reviews or RB2/RB5 specialist gates. The ledger records the full current matrix and founder-reported fresh re-review requests. This follow-up changes documentation only; new-head CI is separate.
+
+
+### 2026-09-28 — RB6 2ea1fed and local Manrope propagated
+
+RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main 721b2b7 / PR #83 local Manrope. Normal merge ancestry preserves cloud work and F7 evidence. The Header resolution retains compact real account destinations and RB7's future-only link omissions. Final local build/lint/types pass; 185 tests pass with 3 existing skips. Production font HTTP/hash checks pass; fresh visual recheck is blocked by invalid Chromium downloads and remains pending with new-head hosted CI. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED draft-retention/privacy, independent review and release gates remain open. PR #84 stays with its owner and needs reconciliation onto the latest RB10; its earlier green checks are not integration approval. Exact sources, checks and limits: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+This merge preserves prior RB10 `601545c10a6aed2e938e0defe94d9aee5e8eb628` and incoming RB9 `af6796b3326f95892d2b32165cb1e17b528dffb3`. Font HTTP evidence: [reconciliation-2ea1fed/font-http.json](reconciliation-2ea1fed/font-http.json). No prior screenshots were regenerated or overwritten.

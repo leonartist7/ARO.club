@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { launch, BASE, authenticatePreview, requireAppOrigin } from "./harness.mjs";
+import { legacyFixtureCopy } from "../src/i18n/legacyFixture.js";
 const inventory = JSON.parse(
   await readFile(
     new URL("../artifacts/ARO-N1/route-inventory.json", import.meta.url),
@@ -52,9 +53,9 @@ try {
     });
   }
   await page.goto(BASE + "/experience/exp1", { waitUntil: "networkidle" });
-  results.push({ scenario: "real experience parameter", passed: await page.getByRole("heading", { name: "Montmartre Café Conversation", exact: true }).count() === 1 });
+  results.push({ scenario: "retired experience parameter", passed: await page.getByRole("heading", { name: legacyFixtureCopy.en.titles.experience, exact: true }).count() === 1 });
   await page.goto(BASE + "/teacher/t1", { waitUntil: "networkidle" });
-  results.push({ scenario: "real teacher parameter", passed: await page.getByRole("heading", { name: "Sophie Dubois", exact: true }).count() === 1 });
+  results.push({ scenario: "retired teacher parameter", passed: await page.getByRole("heading", { name: legacyFixtureCopy.en.titles.teacher, exact: true }).count() === 1 });
   await page.goto(BASE + "/profile?tab=saved", { waitUntil: "networkidle" });
   results.push({
     scenario: "protected query preserved",
@@ -69,10 +70,10 @@ try {
     scenario: "invalid callback stays local",
     passed: new URL(page.url()).pathname === "/auth/error",
   });
-  await page.goto(BASE + "/unknown-next-route", { waitUntil: "networkidle" });
+  const missingResponse = await page.goto(BASE + "/unknown-next-route", { waitUntil: "networkidle" });
   results.push({
     scenario: "unknown route",
-    passed: (await page.locator("body").innerText()).includes("404"),
+    passed: missingResponse.status() === 404 && await page.getByRole("heading", { name: legacyFixtureCopy.en.titles.missing, exact: true }).count() === 1,
   });
   await page.goto(BASE + "/app/unknown-example", { waitUntil: "networkidle" });
   results.push({ scenario: "FV1 shell fallback preserved", passed: await page.getByRole("heading", { name: "Example unavailable", exact: true }).count() === 1 && await page.getByRole("link", { name: "Back to World", exact: true }).count() === 1 });

@@ -10,6 +10,8 @@ The public experience, teacher, map, favorites, recently viewed, compare and glo
 
 Hosted CI exposed an additional route collision: the unknown teacher-ID rewrite caught the protected `/teacher/dashboard` and `/teacher/application` paths. The proxy now excludes those actual account routes from the legacy-ID fallback so their existing authentication guard can run. The hosted signed-out route sweep is the regression check; its result is pending on this repair.
 
+Follow-up review repair: the signed-out and hostile-local-storage sweep now includes both protected teacher account paths. The retained Next route-parity check asserts the truthful recovery headings and a real 404 response instead of old fixture names. Dark recovery links use a visible ivory focus ring with offset. On this head, local lint, type-check, production webpack build, 71 Next route-parity checks, and the nine-route Chrome matrix pass. The matrix includes dark focus rings, real 200/404 responses, overflow and request checks. The broader local E2E run timed out entering the public sweep while another development server was active; hosted Quality and isolated database checks must run on the pushed head.
+
 Representative captures: [RB3 honest Explore](../ARO-RB3/explore-360-light-en.png), [RB4 old experience URL at 320px](experience-exp1-320-light-en.png), [old teacher URL at 390px FR dark](teacher-t1-390-dark-fr.png), [map at desktop ES](map-1440-light-es.png), [saved-item route at 360px](favorites-360-light-en.png). The older catalogue did not have a captured detail-page baseline; `ExperienceDetailPage.jsx` is the source of its former booking/review presentation.
 
 ## Remaining and boundaries

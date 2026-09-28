@@ -47,6 +47,11 @@ try {
       checks.gatherLanding = await page.getByRole('button', { name: rebrandJourneyCopy[language].gather }).getAttribute('aria-pressed') === 'true';
     }
     if (route === '/explore') checks.oneMainLandmark = await page.getByRole('main').count() === 1;
+    if (route === '/app') {
+      checks.teachDestination = await page.locator('a[href="/app/create?mode=share"]').count() === 1;
+      await page.locator('a[href="/app/create?mode=share"]').click();
+      checks.teachLanding = await page.getByRole('button', { name: rebrandJourneyCopy[language].teach }).getAttribute('aria-pressed') === 'true';
+    }
     if (route === '/app/create') {
       const journey = rebrandJourneyCopy[language];
       await page.getByRole('button', { name: journey.teach }).click();

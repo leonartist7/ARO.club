@@ -1,13 +1,13 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest hosted checkpoint (2026-09-28):** RB3–RB6, RB8 and RB10 source heads pass Quality and Isolated database. RB7 Quality and RB9 platform still have separate failed checks (details below). Fresh independent re-reviews are founder-reported as requested, not approved. RB2 specialist privacy/security and RB5 SPEC-REQUIRED contact-retention/deletion privacy gates remain open.
+> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main `721b2b7` / PR #83 local Manrope. Final local build/lint/types and 185 tests pass (3 existing skips). Fresh hosted checks remain required; prior-head results below are historical. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent review and release gates remain open.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
 | Package | Scope and evidence | Status / PR |
 | --- | --- | --- |
 | RB0 | Founder-approved palette, open-O/dot identity, route/asset baseline, ADR-031 | IMPLEMENTED / PARTIAL VERIFICATION [#72](https://github.com/leonartist7/ARO.club/pull/72); review threads open |
-| RB1 | Shared tokens, controlled SVG mark, Manrope fallback, shared primitives | IMPLEMENTED / PARTIAL VERIFICATION [#73](https://github.com/leonartist7/ARO.club/pull/73) |
+| RB1 | Shared tokens, controlled SVG mark, locally served Manrope fallback, shared primitives | IMPLEMENTED / PARTIAL VERIFICATION [#73](https://github.com/leonartist7/ARO.club/pull/73) |
 | RB2 | Three illustrated, skippable scenes and in-memory learner/host/both result preview; [art manifest](../../public/brand/onboarding-manifest.json) | IMPLEMENTED / PARTIAL VERIFICATION [#74](https://github.com/leonartist7/ARO.club/pull/74); independent privacy/security review open |
 | RB3 | Home/Explore/Create first actions and truthful no-verified-supply state | IMPLEMENTED / PARTIAL VERIFICATION [#75](https://github.com/leonartist7/ARO.club/pull/75) |
 | RB4 | Legacy fixture deep links recover without invented hosts, reviews or bookings | IMPLEMENTED / PARTIAL VERIFICATION [#76](https://github.com/leonartist7/ARO.club/pull/76) |
@@ -16,7 +16,7 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 | RB7 | Quiet Preferences, Light/Dark/System, EN/FR/ES app shell, mobile navigation | IMPLEMENTED / PARTIAL VERIFICATION [#79](https://github.com/leonartist7/ARO.club/pull/79); inherited hosted failure repaired; see cloud evidence below |
 | RB8 | Branded localized loading/error states, retry/Home, redirect-safe route sweep | IMPLEMENTED / PARTIAL VERIFICATION [#80](https://github.com/leonartist7/ARO.club/pull/80); inherited hosted failure repaired; see cloud evidence below |
 | RB9 | Controlled 1200×630 OpenGraph/Twitter image and metadata | IMPLEMENTED / PARTIAL VERIFICATION [#81](https://github.com/leonartist7/ARO.club/pull/81); inherited hosted failure repaired; see cloud evidence below |
-| RB10 | Login/Signup/Forgot Password localized presentation and truthful disabled preview | IMPLEMENTED / PARTIAL VERIFICATION [#82](https://github.com/leonartist7/ARO.club/pull/82); tested continuation source passes static/browser-smoke/platform; see below |
+| RB10 | Login/Signup/Forgot Password localized presentation and truthful disabled preview | IMPLEMENTED / PARTIAL VERIFICATION [#82](https://github.com/leonartist7/ARO.club/pull/82); fresh reconciled-head hosted checks required; prior results below |
 
 ## Coverage and remaining work
 
@@ -29,7 +29,7 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 ## Active gates and next actions
 
 1. A reviewer resolves RB0's open conversations after inspecting the addressed changes; do not self-resolve or bypass branch protection.
-2. An independent privacy/security reviewer assesses RB2 before merge and before any live age/profile implementation. RB5 is also SPEC-REQUIRED pending independent privacy review of browser-local contact draft retention/deletion; do not merge past either gate. Prepare the live eligibility specification with that review.
+2. RB4 Trust review remains open. An independent privacy/security reviewer assesses RB2 before merge and before any live age/profile implementation. RB5 is also SPEC-REQUIRED pending independent privacy review of browser-local contact draft retention/deletion; do not merge past either gate. Prepare the live eligibility specification with that review.
 3. The hosted language-skip failure is diagnosed and repaired in RB7: fixed-height selection cards let the footer intercept the button after bottom-tab padding was removed. Minimum-height wrappers retain content in normal flow. RB7 and propagated RB10 source checks pass; require all checks on the final evidence/merge HEADs before protected merge. No assertion or security boundary was waived.
 4. Obtain valid licensed Polymath web files if the founder wants the display face; continue using Manrope 700 meanwhile.
 5. After dependent PRs pass all required checks and independent reviews, merge in stack order through protected GitHub `main`, then perform the full route/theme/language accessibility, hosted Auth and release checks. Do not label any branch VERIFIED or SHIPPED before those gates pass.
@@ -121,3 +121,26 @@ RB7 browser-smoke job 108990266606 fails the public-route content check for `/ch
 Founder reports all six lower-stack local worktrees clean and pushed, RB4 green after one isolated-browser retry, and fresh independent Codex re-reviews requested for #72–#78/#84. Cloud independently confirms remote heads/results above; it does not claim access to the local worktrees or completion/approval of those reviews. Existing conversations remain for independent recheck.
 
 RB2 specialist privacy/security review remains open. RB5 stays **SPEC-REQUIRED**, pending independent privacy acceptance of browser-local contact draft retention/deletion. No main merge, release, review-thread resolution or VERIFIED/SHIPPED promotion. This status-only commit changes no runtime; its fresh CI is separate from the tested source heads above.
+
+
+## Latest local Manrope reconciliation — 2026-09-28
+
+The 52295e9 handoff was incorporated in RB7 `16120355bbb83bb1903138f33d8e5411708cb94e`, then superseded by exact remote RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`. Verified main `721b2b7fdd3dda0072d189e43d717ef00c7723b2` is its ancestor. Normal two-parent merges preserve all cloud commits, the original 3111826 baseline, package ownership and lower-stack fixes; no force-push or main update. PR #83's local Manrope fonts/license and RB0/RB1 baseline updates propagate unchanged. No F7 evidence was overwritten.
+
+The single Header conflict was resolved in RB7: compact Favorites/Passport and role-gated Admin remain, while future-only Games/Leaderboard stay omitted as required by RB7. A new regression test covers compact real destinations and omission of future-only links. Other package merges were conflict-free. Prior minimum-height onboarding repair, quiet accessible preferences, metadata, supporting states and account-entry presentation remain intact.
+
+| PR | Reconciled source / provenance | Latest hosted checkpoint |
+|---|---|---|
+| #78 | `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd` | Quality 36450742796 in progress; Isolated database 36450743091 success |
+| #79 | `2e3b03894cd15f586c33d172e396e9958af84a97` | Quality 36450917791 / Isolated 36450917657 in progress |
+| #80 | `27ac05ecf1c0d36a8c1c54c6fc877fb82a28462c` | Quality 36450984408 / Isolated 36450984422 in progress |
+| #81 | `af6796b3326f95892d2b32165cb1e17b528dffb3` | Quality 36451048492 / Isolated 36451048543 in progress |
+| #82 | This merge of prior `601545c10a6aed2e938e0defe94d9aee5e8eb628` and RB9 above | Fresh hosted runs required after publication |
+
+Verification of the combined RB10 source: production build, lint, type-check and unit suite pass (21 files, 185 passed, 3 existing browser-gated skips). [Production HTTP font evidence](../../artifacts/ARO-RB10/reconciliation-2ea1fed/font-http.json) confirms all six WOFF2 files return HTTP 200 with source-identical hashes, all six faces are referenced by built CSS, and the sampled Home HTML/CSS has no Google Fonts reference. This does not claim browser network or typography acceptance. Local browser/visual recheck is blocked: bundled Chromium is absent and `npx playwright install chromium` repeatedly returned an invalid/truncated archive (central-directory signature missing). Prior images remain historical and were not overwritten. Fresh hosted browser preferences/platform checks and representative local-font screenshots remain required. No new performance claim or relaxation of existing budgets/assertions.
+
+Historical intermediate checkpoint, before 2ea1fed: RB5 ad4a6d1 and RB6 52295e9 passed both workflows. RB4 238cbbe passed Quality 36449928091 but isolated 36449927999 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_360_DARK` (cleanup passed). Older RB7 `/choose-role` and RB9 document-chooser failures above are retained; new-head results must establish their current status, not inferred descendant success.
+
+PR #84 remains at `7e3f9568202b37b7aeb420f9b642efb80121b1a2`, with mergeability false when checked. Its source-plan file, historical banner, English/light priority and RB0 source link are now on GitHub; earlier unavailable-private-attachment statements describe the original task, not current availability. The source-plan branch stays with its owner and must be reconciled on the latest RB10; old green checks do not prove that integration. English/light priority does not waive working dark/FR/ES behavior or any specialist boundary. Its automated review conversations remain unresolved.
+
+RB2 privacy/eligibility, RB4 Trust, RB5 **SPEC-REQUIRED** contact-draft retention/deletion privacy, independent reviews and release gates are all OPEN. RB2 remains a nonpersistent preview; Auth/teacher verification/payment/Trust/F7 boundaries remain. No self-resolved conversations, protected merge, release or VERIFIED/SHIPPED promotion. Next owner action: reconcile PR #84 with the published RB10 head and obtain the outstanding independent reviews; hosted checks must finish on every final merge head.

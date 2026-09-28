@@ -311,12 +311,23 @@ export default function Header() {
                 <Link to="/bookings" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.bookings')}
                 </Link>
+                <Link to="/favorites" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                  {t('nav.favorites')}
+                </Link>
                 <Link to="/profile" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.myProfile')}
+                </Link>
+                <Link to="/passport" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                  {t('nav.passport')}
                 </Link>
                 {isTeacher && (
                   <Link to="/dashboard" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                     {t('nav.teacherDashboard')}
+                  </Link>
+                )}
+                {isAdmin && (
+                  <Link to="/admin" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                    {t('nav.adminConsole')}
                   </Link>
                 )}
                 <button

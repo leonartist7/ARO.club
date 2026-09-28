@@ -31,3 +31,7 @@ Corrected handoff: inherited RB7 f7b88e5 with founder-specified RB6 95ec421 and 
 Latest review-copy handoff: inherited RB7 1c9731c on exact RB6 5e22dcc. The incoming distinct formation-preview copy and refreshed RB3 evidence are preserved alongside RB8/cloud work. New-head checks remain required; RB5 stays SPEC-REQUIRED pending independent retention/deletion privacy review, and RB2's independent gate stays open.
 
 Protected-route repair handoff: inherited RB7 573afa4 on exact RB6 1c4c2a1. Incoming reserved teacher-route exemptions preserve existing Auth guards; RB8/cloud work remains intact. New-head hosted checks and independent RB2/RB5 review gates remain required. No approval or release.
+
+### RB6 2ea1fed / local Manrope stack reconciliation — 2026-09-28
+
+Merged updated RB7 `2e3b03894cd15f586c33d172e396e9958af84a97` into prior RB8 `29e162df0c76f793f53faae6558e139bf1351b15` without conflicts, retaining RB8 state presentation and prior cloud fixes/evidence. Exact RB6 base is `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main 721b2b7 / PR #83 local Manrope and lower-stack review repairs. No F7 evidence changed. Hosted checks on this new head are required; preceding green runs and screenshots are historical. Final integrated verification is recorded in the RB10 implementation ledger. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED draft retention/privacy, independent review and release gates remain open. No protected merge or release claim.
