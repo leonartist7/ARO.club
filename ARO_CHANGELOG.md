@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB9 share image and metadata
+
+Added a controlled open-O/dot share graphic and OpenGraph/Twitter large-card metadata for the approved “Life opens up.” identity. It uses no host imagery or invented supply claims. See `specs/ARO-RB9-SHARE-METADATA.md` and `artifacts/ARO-RB9/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB8 shared supporting states
 
 Replaced plain English route-loading and page-error screens with localized branded states, a boundary retry action, public Home recovery and reduced-motion status presentation. See `specs/ARO-RB8-SUPPORTING-STATES.md` and `artifacts/ARO-RB8/VERIFICATION.md`.

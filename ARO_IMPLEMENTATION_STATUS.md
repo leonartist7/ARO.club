@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB9 branch update (2026-09-28):** A controlled orange-led share image now renders at `/opengraph-image`, and OpenGraph/Twitter tags advertise its 1200×630 PNG. Local production response and visual evidence pass. RB9 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB9/VERIFICATION.md`.
+
 > **RB8 branch update (2026-09-28):** Global route loading and page error states now use the approved brand and EN/FR/ES copy, with accessible status/retry/Home paths. Scoped visual fixtures show 320–1440px light/dark compositions and were removed before final build. RB8 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB8/VERIFICATION.md`.
 
 > **RB7 branch update (2026-09-28):** Public/onboarding theme and language controls now live in a compact Preferences entry; mobile public navigation has one scrollable menu without the duplicate bottom bar. App Settings has working local language and Light/Dark/System controls, and shared app chrome translates with them. Build, lint, type-check, focused tests and four production-browser scenarios pass. RB7 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB7/VERIFICATION.md`.

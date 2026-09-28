@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-28 RB9:** Public sharing now has a controlled orange ARO image and OpenGraph/Twitter image tags on a stacked branch. Its local PNG response and visual crop are checked; social crawler acceptance, merge and release remain open.
+
 > **2026-09-28 RB8:** Branded localized loading/error states are implemented on a stacked branch. These states have bounded visual and component evidence; live failure/retry conditions, full-route accessibility, independent reviews, merge and release remain open.
 
 > **2026-09-28 RB7:** The theme/language UI cleanup is implemented on a stacked branch: a single Preferences entry on desktop and onboarding, controls in the mobile menu and app Settings, and localized app shell labels. The public duplicate bottom bar is removed. All RB0–RB7 work remains unmerged and unreleased; RB0 review threads and RB2 privacy/security review still gate the stack.

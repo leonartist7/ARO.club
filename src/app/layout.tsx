@@ -10,11 +10,12 @@ export const metadata: Metadata = {
     "Discover opportunities. Share your skills. Meet your people.",
   openGraph: {
     type: "website",
+    siteName: "ARO",
     title: "ARO — Life opens up",
     description: "Discover opportunities. Share your skills. Meet your people.",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
   },
 };
 export const viewport: Viewport = { themeColor: "#F05A28" };

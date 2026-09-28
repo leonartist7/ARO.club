@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-28 RB9:** `specs/ARO-RB9-SHARE-METADATA.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It adds a controlled share image and metadata only, with no change to live product claims or release.
+
 > **2026-09-28 RB8:** `specs/ARO-RB8-SUPPORTING-STATES.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. Global loading and error boundaries gain localized branded presentation and retry navigation without changing Auth or persistence.
 
 > **2026-09-28 RB7:** `specs/ARO-RB7-PREFERENCES-NAVIGATION.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It quiets shared navigation, makes local language and appearance choices usable in app Settings, and translates app shell labels. Independent review, merge and release remain open.
