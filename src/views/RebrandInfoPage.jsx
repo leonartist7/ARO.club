@@ -4,7 +4,7 @@ import { Link } from '../lib/navigation';
 import { useLanguage } from '../contexts/LanguageContext';
 import { publicStoryCopy } from '../i18n/publicStory';
 
-const artFor = { about: 'connect', how: 'learn', host: 'teach', faq: 'connect' };
+const artFor = { about: 'connect', how: 'learn', host: 'teach-language-v2', faq: 'connect' };
 
 export default function RebrandInfoPage({ kind }) {
   const { language } = useLanguage();

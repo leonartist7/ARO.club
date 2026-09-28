@@ -8,7 +8,7 @@ import PreferencesPopover from '../components/ui/Preferences';
 import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 
-const ART = ['learn', 'teach', 'connect'];
+const ART = ['learn', 'teach-language-v2', 'connect'];
 const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Drawing'];
 const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
 
@@ -112,6 +112,7 @@ export default function OnboardingPreview() {
             <p className="text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-primary-300">{eyebrow}</p>
             <h1 ref={heading} tabIndex={-1} className="mt-3 text-balance font-display text-3xl leading-[1.12] outline-none sm:text-4xl lg:text-5xl">{title}</h1>
             {body && <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary sm:text-lg">{body}</p>}
+            {stage < 2 && <p className="mt-4 rounded-xl border border-primary-200 bg-primary-50 p-3 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
 
 
             {stage === 3 && <div className="mt-7 space-y-5">
@@ -136,7 +137,7 @@ export default function OnboardingPreview() {
               <p className="mt-3 break-words text-sm font-semibold [overflow-wrap:anywhere]">{copy.result.city}: {city.trim()}</p>
             </div>}
 
-            <div className={`mt-7 flex flex-wrap items-center gap-3 ${stage >= 3 && stage <= 5 ? 'sticky bottom-0 z-20 -mx-4 border-t border-ink/10 bg-surface-canvas/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95' : ''}`}>
+            <div className={`flex flex-wrap items-center gap-3 ${stage >= 3 && stage <= 4 ? 'sticky bottom-0 z-20 -mx-4 mt-28 border-t border-ink/10 bg-surface-canvas/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95' : 'mt-7'}`}>
               {stage > 0 && <button type="button" onClick={back} className="inline-flex min-h-12 items-center gap-2 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><ArrowLeft size={18} aria-hidden="true" />{copy.back}</button>}
               {stage === 0 && <Button onClick={() => go(1)} className="min-h-12 rounded-xl">{copy.learn.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
               {stage === 1 && <Button onClick={() => go(2)} className="min-h-12 rounded-xl">{copy.teach.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
