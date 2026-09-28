@@ -1,13 +1,15 @@
 'use client';
 import { useState } from 'react';
 import { Link, useLocation } from '../lib/navigation';
-import { motion } from 'framer-motion';
-import { LogIn, Mail, Lock, AlertCircle, Chrome } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Mail, Lock, AlertCircle, Chrome } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
 import {safeReturnPath} from '../lib/auth/config';
+import { useLanguage } from '../contexts/LanguageContext';
+import { accountEntryCopy } from '../i18n/accountEntry';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -15,6 +17,9 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signIn, signInWithGoogle, isBackendConfigured } = useAuth();
+  const { language } = useLanguage();
+  const { common, login: copy } = accountEntryCopy[language] ?? accountEntryCopy.en;
+  const reduceMotion = useReducedMotion();
   const location = useLocation();
 
   const from = safeReturnPath(new URLSearchParams(location.search).get('next'));
@@ -33,7 +38,7 @@ export default function LoginPage() {
         window.location.replace(from);
       }
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError(common.unexpected);
     } finally {
       setLoading(false);
     }
@@ -52,34 +57,33 @@ export default function LoginPage() {
       }
       // Note: Google sign-in will redirect, so we don't set loading to false here
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError(common.unexpected);
       setLoading(false);
     }
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      lang={language}
+      initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      transition={{ duration: 0.25 }}
+      className="min-h-screen bg-bone dark:bg-gray-950 flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8 motion-reduce:transition-none"
     >
       <div className="max-w-md w-full">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={reduceMotion ? false : { y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1, duration: 0.25 }}
         >
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <LogIn className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
-              Welcome Back!
+            <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300">{common.promise}</p>
+            <h1 className="text-3xl font-display font-bold text-ink mb-2 dark:text-bone">
+              {copy.title}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Sign in to continue your language learning journey
+            <p className="text-content-secondary dark:text-content-darkSecondary">
+              {copy.subtitle}
             </p>
           </div>
 
@@ -88,19 +92,19 @@ export default function LoginPage() {
             <CardBody>
               {!isBackendConfigured && (
                 <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink dark:border-secondary-700 dark:bg-secondary-900/20 dark:text-bone">
-                  Account access is not active in this preview yet. You can still explore the public ARO experience.
+                  {copy.unavailable}
                 </div>
               )}
 
               {/* Error Message */}
               {error && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2 dark:bg-red-900/30"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-700">{error}</p>
+                  <p className="text-sm text-red-700 dark:text-red-200" role="alert">{error}</p>
                 </motion.div>
               )}
 
@@ -114,7 +118,7 @@ export default function LoginPage() {
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >
-                Continue with Google
+                {common.google}
               </Button>
 
               {/* Divider */}
@@ -123,7 +127,7 @@ export default function LoginPage() {
                   <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500 dark:bg-gray-800 dark:text-gray-400">Or continue with email</span>
+                  <span className="px-2 bg-white text-gray-500 dark:bg-gray-900 dark:text-gray-300">{copy.emailDivider}</span>
                 </div>
               </div>
 
@@ -133,8 +137,8 @@ export default function LoginPage() {
                   id="login-email"
                   name="email"
                   type="email"
-                  label="Email Address"
-                  placeholder="you@example.com"
+                  label={common.email}
+                  placeholder={common.emailPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -146,8 +150,8 @@ export default function LoginPage() {
                   id="login-password"
                   name="password"
                   type="password"
-                  label="Password"
-                  placeholder="Enter your password"
+                  label={common.password}
+                  placeholder={copy.passwordPlaceholder}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -155,19 +159,12 @@ export default function LoginPage() {
                   icon={<Lock className="w-5 h-5" />}
                 />
 
-                <div className="flex items-center justify-between text-sm">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      className="rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:border-gray-600"
-                    />
-                    <span className="text-gray-600 dark:text-gray-400">Remember me</span>
-                  </label>
+                <div className="flex items-center justify-end text-sm">
                   <Link
                     to="/forgot-password"
-                    className="text-primary-600 hover:text-primary-700 font-medium"
+                    className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
                   >
-                    Forgot password?
+                    {copy.forgot}
                   </Link>
                 </div>
 
@@ -178,32 +175,32 @@ export default function LoginPage() {
                   disabled={loading || !isBackendConfigured}
                   loading={loading}
                 >
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? copy.pending : copy.submit}
                 </Button>
               </form>
 
               {/* Sign Up Link */}
               <div className="mt-6 text-center text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Don't have an account? </span>
+                <span className="text-gray-600 dark:text-gray-300">{copy.noAccount}{' '}</span>
                 <Link
                   to="/signup"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
+                  className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
                 >
-                  Sign up for free
+                  {copy.signup}
                 </Link>
               </div>
             </CardBody>
           </Card>
 
           {/* Footer */}
-          <div className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
-            By signing in, you agree to our{' '}
-            <Link to="/terms" className="text-primary-600 hover:text-primary-700">
-              Terms of Service
+          <div className="mt-6 text-center text-xs text-gray-600 dark:text-gray-300">
+            {copy.legalPrefix}{' '}
+            <Link to="/terms" className="text-primary-700 hover:text-primary-500 dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">
+              {common.terms}
             </Link>{' '}
-            and{' '}
-            <Link to="/privacy" className="text-primary-600 hover:text-primary-700">
-              Privacy Policy
+            {common.and}{' '}
+            <Link to="/privacy" className="text-primary-700 hover:text-primary-500 dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">
+              {common.privacy}
             </Link>
           </div>
         </motion.div>

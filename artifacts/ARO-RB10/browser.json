@@ -1,0 +1,258 @@
+[
+  {
+    "route": "/login",
+    "width": 320,
+    "height": 620,
+    "language": "fr",
+    "theme": "dark",
+    "heading": "Bon retour",
+    "status": 200,
+    "renderedHeading": "Bon retour",
+    "inputs": [
+      {
+        "type": "email",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/forgot-password",
+      "/terms",
+      "/privacy",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/cookies"
+    ],
+    "resolvedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/signup",
+    "width": 390,
+    "height": 844,
+    "language": "es",
+    "theme": "light",
+    "heading": "Únete a ARO",
+    "status": 200,
+    "renderedHeading": "Únete a ARO",
+    "inputs": [
+      {
+        "type": "text",
+        "disabled": true
+      },
+      {
+        "type": "email",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/terms",
+      "/privacy",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/cookies"
+    ],
+    "resolvedTheme": "light",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/forgot-password",
+    "width": 768,
+    "height": 900,
+    "language": "en",
+    "theme": "dark",
+    "heading": "Forgot Password?",
+    "status": 200,
+    "renderedHeading": "Forgot Password?",
+    "inputs": [
+      {
+        "type": "email",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/privacy",
+      "/terms",
+      "/cookies"
+    ],
+    "resolvedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/login",
+    "width": 1440,
+    "height": 900,
+    "language": "es",
+    "theme": "light",
+    "heading": "Te damos la bienvenida",
+    "status": 200,
+    "renderedHeading": "Te damos la bienvenida",
+    "inputs": [
+      {
+        "type": "email",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/forgot-password",
+      "/terms",
+      "/privacy",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/cookies"
+    ],
+    "resolvedTheme": "light",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/signup",
+    "width": 320,
+    "height": 620,
+    "language": "fr",
+    "theme": "dark",
+    "heading": "Rejoignez ARO",
+    "status": 200,
+    "renderedHeading": "Rejoignez ARO",
+    "inputs": [
+      {
+        "type": "text",
+        "disabled": true
+      },
+      {
+        "type": "email",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      },
+      {
+        "type": "password",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/terms",
+      "/privacy",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/cookies"
+    ],
+    "resolvedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/forgot-password",
+    "width": 390,
+    "height": 844,
+    "language": "es",
+    "theme": "light",
+    "heading": "¿Olvidaste tu contraseña?",
+    "status": 200,
+    "renderedHeading": "¿Olvidaste tu contraseña?",
+    "inputs": [
+      {
+        "type": "email",
+        "disabled": true
+      }
+    ],
+    "enabledSubmit": 0,
+    "links": [
+      "/",
+      "/how-it-works",
+      "/for-teachers",
+      "/explore",
+      "/login",
+      "/signup",
+      "/onboarding/preview",
+      "/about",
+      "/faq",
+      "/map",
+      "/contact",
+      "/privacy",
+      "/terms",
+      "/cookies"
+    ],
+    "resolvedTheme": "light",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  }
+]

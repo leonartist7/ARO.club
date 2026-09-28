@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-28 RB10:** Login, Signup and Forgot Password have orange-led ARO presentation and EN/FR/ES text on a stacked branch. Preview account controls remain disabled. Live Auth and hosted recovery/signup remain unverified, and all rebrand packages remain unmerged and unreleased.
+
 > **2026-09-28 RB9:** Public sharing now has a controlled orange ARO image and OpenGraph/Twitter image tags on a stacked branch. Its local PNG response and visual crop are checked; social crawler acceptance, merge and release remain open.
 
 > **2026-09-28 RB8:** Branded localized loading/error states are implemented on a stacked branch. These states have bounded visual and component evidence; live failure/retry conditions, full-route accessibility, independent reviews, merge and release remain open.

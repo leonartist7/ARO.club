@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB10 branch update (2026-09-28):** Signed-out Login, Signup and Forgot Password now use the ARO promise and EN/FR/ES copy, with readable dark mode and truthful disabled preview forms. Six production-browser scenarios pass; live Auth remains under its separate gates. RB10 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB10/VERIFICATION.md`.
+
 > **RB9 branch update (2026-09-28):** A controlled orange-led share image now renders at `/opengraph-image`, and OpenGraph/Twitter tags advertise its 1200×630 PNG. Local production response and visual evidence pass. RB9 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB9/VERIFICATION.md`.
 
 > **RB8 branch update (2026-09-28):** Global route loading and page error states now use the approved brand and EN/FR/ES copy, with accessible status/retry/Home paths. Scoped visual fixtures show 320–1440px light/dark compositions and were removed before final build. RB8 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB8/VERIFICATION.md`.

@@ -1,12 +1,14 @@
 'use client';
 import { useState } from 'react';
 import { Link } from '../lib/navigation';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import { accountEntryCopy } from '../i18n/accountEntry';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -14,6 +16,9 @@ export default function ForgotPasswordPage() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const { resetPassword, isBackendConfigured } = useAuth();
+  const { language } = useLanguage();
+  const { common, recovery: copy } = accountEntryCopy[language] ?? accountEntryCopy.en;
+  const reduceMotion = useReducedMotion();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +26,7 @@ export default function ForgotPasswordPage() {
     setSuccess(false);
 
     if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      setError('Please enter a valid email address');
+      setError(common.invalidEmail);
       return;
     }
 
@@ -36,7 +41,7 @@ export default function ForgotPasswordPage() {
         setSuccess(true);
       }
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError(common.unexpected);
     } finally {
       setLoading(false);
     }
@@ -44,36 +49,35 @@ export default function ForgotPasswordPage() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      lang={language}
+      initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/30 dark:to-secondary-900/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      transition={{ duration: 0.25 }}
+      className="min-h-[calc(100dvh-4rem)] bg-bone dark:bg-gray-950 flex items-start justify-center py-8 px-4 sm:items-center sm:px-6 lg:px-8"
     >
       <div className="max-w-md w-full">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={reduceMotion ? false : { y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1, duration: 0.25 }}
         >
           {/* Back Button */}
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 dark:text-gray-400"
+            className="inline-flex min-h-11 items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 dark:text-gray-300 dark:hover:text-bone focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to login</span>
+            <span className="text-sm font-medium">{copy.back}</span>
           </Link>
 
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2 dark:text-white">
-              Forgot Password?
+            <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300">{common.promise}</p>
+            <h1 className="text-3xl font-display font-bold text-ink mb-2 dark:text-bone">
+              {copy.title}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              No worries! Enter your email and we'll send you reset instructions.
+            <p className="text-content-secondary dark:text-content-darkSecondary">
+              {copy.subtitle}
             </p>
           </div>
 
@@ -82,24 +86,23 @@ export default function ForgotPasswordPage() {
             <CardBody>
               {!isBackendConfigured && (
                 <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink dark:border-secondary-700 dark:bg-secondary-900/20 dark:text-bone">
-                  Password recovery is not active in this preview yet. Account access will return when the secure ARO backend is connected.
+                  {copy.unavailable}
                 </div>
               )}
 
               {/* Success Message */}
               {success && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg dark:bg-green-900/30"
                 >
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-green-800">Check your email!</p>
-                      <p className="text-xs text-green-600 mt-1">
-                        We've sent password reset instructions to <strong>{email}</strong>.
-                        Please check your inbox and spam folder.
+                      <p className="text-sm font-medium text-green-800 dark:text-green-200">{copy.successTitle}</p>
+                      <p className="text-xs text-green-700 mt-1 dark:text-green-200">
+                        {copy.successIntro} <strong>{email}</strong>. {copy.successOutro}
                       </p>
                     </div>
                   </div>
@@ -109,12 +112,12 @@ export default function ForgotPasswordPage() {
               {/* Error Message */}
               {error && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2 dark:bg-red-900/30"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-700">{error}</p>
+                  <p className="text-sm text-red-700 dark:text-red-200" role="alert">{error}</p>
                 </motion.div>
               )}
 
@@ -123,8 +126,8 @@ export default function ForgotPasswordPage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <Input
                     type="email"
-                    label="Email Address"
-                    placeholder="you@example.com"
+                    label={common.email}
+                    placeholder={common.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -139,7 +142,7 @@ export default function ForgotPasswordPage() {
                     disabled={loading || !isBackendConfigured}
                     loading={loading}
                   >
-                    {loading ? 'Sending...' : 'Send Reset Instructions'}
+                    {loading ? copy.pending : copy.submit}
                   </Button>
                 </form>
               ) : (
@@ -152,11 +155,11 @@ export default function ForgotPasswordPage() {
                       setEmail('');
                     }}
                   >
-                    Try another email
+                    {copy.another}
                   </Button>
                   <Link to="/login">
                     <Button variant="primary" fullWidth>
-                      Return to Login
+                      {copy.return}
                     </Button>
                   </Link>
                 </div>
@@ -165,10 +168,10 @@ export default function ForgotPasswordPage() {
               {/* Help Text */}
               {!success && (
                 <div className="mt-6 text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Remember your password?{' '}
-                    <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
-                      Sign in
+                  <p className="text-xs text-gray-600 dark:text-gray-300">
+                    {copy.remember}{' '}
+                    <Link to="/login" className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">
+                      {copy.signin}
                     </Link>
                   </p>
                 </div>
