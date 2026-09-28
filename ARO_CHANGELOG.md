@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB4 review repair
+
+Suppressed persisted legacy fixtures in the global compare bar, kept recovery screens to one main landmark, returned generic 404 screens for unknown legacy IDs, and directed host interest to the local Create preview. Refreshed the route matrix with exact status and persisted-state assertions. See `artifacts/ARO-RB4/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB4 legacy fixture deep-link recovery
 
 Old public experience, teacher, map, saved/recent, comparison and missing-page routes now resolve to a shared localized recovery view. It preserves URLs and stored identifiers while withholding fictional ratings, bookings, host verification and supply claims. No Auth, booking, payment, review or schema logic changed. See `specs/ARO-RB4-LEGACY-FIXTURE-TRUTH.md` and `artifacts/ARO-RB4/VERIFICATION.md`.
