@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB6 review repair
+
+Removed duplicate main landmarks from future-state pages, made dark keyboard focus visible, and refreshed browser evidence with actual Explore/onboarding CTA navigation and response checks. See `artifacts/ARO-RB6/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB6 public future route truth
 
 Replaced the public seed leaderboard and unsupported bookings/checkout promise with localized preview states at their existing URLs. Preserved protected game, shop and character routes and all Auth, booking, reward and payment behavior. See `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` and `artifacts/ARO-RB6/VERIFICATION.md`.
