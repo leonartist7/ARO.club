@@ -18,10 +18,7 @@ try {
     const slug = `${route === '/' ? 'home' : 'app'}-${width}-${theme}-${language}`;
     if (process.argv[2] && process.argv[2] !== slug) continue;
     const context = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' });
-    await context.addInitScript(({ theme, language }) => {
-      localStorage.setItem('theme', theme);
-      localStorage.setItem('conversa-language', language);
-    }, { theme, language });
+    await context.addInitScript({ content: `localStorage.setItem('theme', ${JSON.stringify(theme)}); localStorage.setItem('conversa-language', ${JSON.stringify(language)});` });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
