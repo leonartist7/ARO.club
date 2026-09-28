@@ -1,6 +1,6 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest reconciliation:** exact RB6 5e22dcc supersedes 95ec421. RB7–RB10 incorporate the RB3 distinct formation-preview copy fix and refreshed owner evidence. Hosted confirmation of the strict-text repair is pending; the reserved teacher-route collision is unchanged. RB5 remains SPEC-REQUIRED pending independent contact-draft retention/deletion privacy review, and RB2 independent review remains open. Historical green runs below do not certify the latest stack.
+> **Latest reconciliation:** exact RB6 1c4c2a1 supersedes 5e22dcc and includes the RB4 reserved teacher-route repair. Both previously reported integration defects now have incoming source fixes; new-head hosted confirmation remains pending. RB5 remains SPEC-REQUIRED pending independent contact-draft retention/deletion privacy review, and RB2 independent review remains open. Historical green runs below do not certify the latest stack.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -88,3 +88,14 @@ Confirmed incoming RB6 `5e22dccb0fd268a9212e874a11e27d321efad493` and existing c
 Conflict-free normal merge chain: RB6 5e22dcc → RB7 1c9731c → RB8 e20be91 → RB9 3c991c7 → this RB10 merge. Original cloud commits, Preferences behavior, legacy-card height repair, diagnostics, screenshot hashes and prior handoff history remain preserved. No force-push, main merge, review-thread resolution or release. Lower-stack CI remains with its owner; incoming RB6 Quality 36439588629 and platform 36439588600 were in progress at intake.
 
 RB7 local unit tests: 180 pass, 3 existing browser-gated skips. New-head hosted checks run separately. RB5 remains **SPEC-REQUIRED** pending independent privacy review of browser-local contact draft retention/deletion; it is not approved and no merge may cross that gate. RB2 independent privacy/security review and remaining review conversations stay open. PR #84 remains owner-controlled and untouched.
+
+
+### RB6 1c4c2a1 protected-route repair — 2026-09-28
+
+Verified current remote RB7–RB10 heads and exact incoming RB6 `1c4c2a192710a5be6d99d82caeb9873b232f7b3b` before editing. The incoming diff from 5e22dcc changes only `src/proxy.ts` and RB4 evidence: `application` and `dashboard` are reserved teacher-account route names and no longer trigger the unknown legacy fixture rewrite. Existing Auth-refresh logic and route-level requireUser guards are unchanged. This supersedes the prior statement that the collision has no source fix; hosted acceptance remains pending.
+
+Conflict-free normal merge chain: RB6 1c4c2a1 → RB7 573afa4 → RB8 29e162d → RB9 a6ba481 → this RB10 merge. Cloud work, original ancestry, layout/preferences repairs, diagnostics, visual evidence and all prior handoff history remain preserved. Incoming RB6 Quality 36440596588 and platform 36440596255 were running at intake. New descendant checks must independently pass; no prior run is relabelled.
+
+RB5 remains **SPEC-REQUIRED** pending independent privacy review of browser-local contact draft retention/deletion. RB2 independent privacy/security review and review conversations remain open. No force push, protected-branch merge, release or VERIFIED/SHIPPED promotion. PR #84 remains owner-controlled and untouched.
+
+Local integrated build/lint/type and 184 unit tests pass (3 existing browser-gated skips). Production response inspection shows Login meta redirects for both reserved teacher routes, 404 for an unknown teacher ID and 200 for known fixture t1. Next streams the protected-route redirect with initial HTTP 200, so a status-only 3xx check is insufficient; the route-level redirect markup was inspected. This is bounded response evidence, not hosted authenticated-browser acceptance.

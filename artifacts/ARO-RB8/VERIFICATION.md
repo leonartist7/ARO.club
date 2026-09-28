@@ -29,3 +29,5 @@ Merged RB7 c7dfd8f (reviewed RB6 8799e78 plus preserved cloud preferences/layout
 Corrected handoff: inherited RB7 f7b88e5 with founder-specified RB6 95ec421 and the upstream navigation tests. Runtime unchanged by this correction; hosted rechecks and all previously recorded gates/blockers remain required.
 
 Latest review-copy handoff: inherited RB7 1c9731c on exact RB6 5e22dcc. The incoming distinct formation-preview copy and refreshed RB3 evidence are preserved alongside RB8/cloud work. New-head checks remain required; RB5 stays SPEC-REQUIRED pending independent retention/deletion privacy review, and RB2's independent gate stays open.
+
+Protected-route repair handoff: inherited RB7 573afa4 on exact RB6 1c4c2a1. Incoming reserved teacher-route exemptions preserve existing Auth guards; RB8/cloud work remains intact. New-head hosted checks and independent RB2/RB5 review gates remain required. No approval or release.

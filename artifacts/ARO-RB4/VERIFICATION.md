@@ -8,6 +8,8 @@ The public experience, teacher, map, favorites, recently viewed, compare and glo
 
 2026-09-28 review repair: `npm run lint` and `npm run type-check` pass. `node scripts/verify-rb4.mjs`: nine direct route checks pass at 320–1440px in light/dark and EN/FR/ES, with persisted `conversa-compare` IDs seeded on every case. Known fixture URLs return 200; unknown experience/teacher IDs and the unknown page return 404. Each has one main landmark, a preview link, no fixture comparison bar, no horizontal overflow, page errors or non-GET requests (`browser.json`). Refreshed Next webpack dev/Chrome screenshots were captured after fonts and art decoded with reduced motion. The earlier production build result applies to the pre-repair commit; hosted CI must confirm the repair because local Turbopack rejects the cross-worktree dependency junction required by disk limits.
 
+Hosted CI exposed an additional route collision: the unknown teacher-ID rewrite caught the protected `/teacher/dashboard` and `/teacher/application` paths. The proxy now excludes those actual account routes from the legacy-ID fallback so their existing authentication guard can run. The hosted signed-out route sweep is the regression check; its result is pending on this repair.
+
 Representative captures: [RB3 honest Explore](../ARO-RB3/explore-360-light-en.png), [RB4 old experience URL at 320px](experience-exp1-320-light-en.png), [old teacher URL at 390px FR dark](teacher-t1-390-dark-fr.png), [map at desktop ES](map-1440-light-es.png), [saved-item route at 360px](favorites-360-light-en.png). The older catalogue did not have a captured detail-page baseline; `ExperienceDetailPage.jsx` is the source of its former booking/review presentation.
 
 ## Remaining and boundaries
