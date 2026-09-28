@@ -105,7 +105,25 @@ try {
     await page.locator('#preview-city').fill(width === 320 ? 'C'.repeat(80) : 'RB2AuditCity');
     overflow.city = await hasOverflow(page);
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
+    const preferenceViewport = width < 640 ? await page.evaluate(() => {
+      const choices = document.querySelector('[data-preview-choices]');
+      const action = document.querySelector('button[data-preview-submit]');
+      const choicesRect = choices?.getBoundingClientRect();
+      const actionRect = action?.getBoundingClientRect();
+      return {
+        actionVisible: Boolean(actionRect && actionRect.top >= 0 && actionRect.bottom <= innerHeight),
+        choicesUncovered: Boolean(choicesRect && actionRect && choicesRect.bottom <= actionRect.top + 1),
+      };
+    }) : null;
     await screenshot(page, `${slug}-preference.png`);
+    const lastChoice = page.getByRole('button', { name: path === 'host' ? copy.skill.options[2].title : copy.interests.open }).last();
+    await lastChoice.focus();
+    const preferenceLastChoiceReachable = await lastChoice.evaluate((choice) => {
+      const region = choice.closest('[data-preview-choices]');
+      const choiceRect = choice.getBoundingClientRect();
+      const regionRect = region?.getBoundingClientRect();
+      return Boolean(regionRect && choiceRect.top >= regionRect.top - 1 && choiceRect.bottom <= regionRect.bottom + 1);
+    });
     await page.getByRole('button', { name: path === 'host' ? copy.skill.action : copy.interests.action }).click();
     const preferenceAlertCount = await page.getByRole('alert').count();
     const learnerChoiceBeforeAction = path === 'host' || await page.getByRole('button', { name: copy.topics[0] }).last().evaluate((choice) => Boolean(choice.compareDocumentPosition(document.querySelector('button[data-preview-submit]')) & Node.DOCUMENT_POSITION_FOLLOWING));
@@ -167,7 +185,7 @@ try {
       await page.waitForURL((url) => url.pathname === '/explore');
       navigationWorks = new URL(page.url()).pathname === '/explore';
     }
-    results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
+    results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, preferenceViewport, preferenceLastChoiceReachable, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
 } finally {
@@ -176,4 +194,4 @@ try {
 if (results.length === 0) throw new Error('No RB2 verification case matched the requested slug');
 if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
 else console.log(JSON.stringify(results[0], null, 2));
-if (results.some(result => result.status !== 200 || !result.introDisclosureVisible || !result.teachDisclosureVisible || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
+if (results.some(result => result.status !== 200 || !result.introDisclosureVisible || !result.teachDisclosureVisible || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || (result.preferenceViewport && (!result.preferenceViewport.actionVisible || !result.preferenceViewport.choicesUncovered)) || !result.preferenceLastChoiceReachable || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
