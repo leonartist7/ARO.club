@@ -1,6 +1,6 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `ff1c7b65cc23958b66754f0d75faffae736a7e7d`, preserving cloud work and ownership. Incoming repairs complete presentation contracts and give Create composition visible programmatic focus. Prior RB7–RB10 heads passed both hosted workflows; new-head checks remain required. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent review and release gates remain OPEN.
+> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`, retaining cloud behavior, package ownership and evidence. Final combined production webpack build/lint/types and 187 tests pass (3 existing skips). Incoming RB6 hosted Quality/platform failed; new cloud-head checks remain pending. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED draft privacy, independent review and release gates stay OPEN.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -178,3 +178,27 @@ RB5 remains intentionally unmerged and **SPEC-REQUIRED** pending independent app
 
 
 Cloud combined-source verification for the ff1c7b6 reconciliation: production webpack build, lint, type-check and 185 unit tests pass (21 files; 3 existing browser-gated skips). The first build stopped on stale `.next` output with ENOTEMPTY; moving generated output aside allowed a clean successful build, without dependency/config changes. The incoming capture script passes syntax validation; no cloud browser run is claimed. New RB7 Quality 36454702561 / isolated 36454702546, RB8 36454753803 / 36454753636, RB9 36454799395 / 36454799423 are in progress; fresh RB10 runs are required after publishing this merge.
+
+
+## RB6 13e2571 localization and short-screen reconciliation
+
+Verified remote RB6 `13e257107b5726e911210a1eb8048ce3d42143ac` plus matching clean cloud heads before editing. Operating/governing documents are unchanged; RB2's spec adds the sticky safe-area action and removes the legacy host-marketing destination from the allowed preview journey. Incoming changes include localized shell labels/status/accessibility names, 44px linked wordmarks, Manrope v20/OFL provenance, dark-safe foregrounds, sticky setup actions, host publishing-boundary copy and refreshed owner evidence. No F7 evidence was changed.
+
+RB7's sole conflict was overlapping AppShell localization. Adopted upstream AppShell and shell dictionary together to retain equivalent EN/FR/ES wording, avoid duplicate keys/punctuation, preserve Create→World navigation and gain the wordmark target. Added two French/Spanish semantic navigation/status/skip-link tests; all six AppShell tests pass. Cloud quiet Preferences, onboarding minimum-height repair and compact account links remain intact. RB8/RB9/RB10 merge without conflicts.
+
+| Package | Reconciled source |
+|---|---|
+| RB7 | `7c82ccf27e3836cead0c44f6f7c9367b59ef0551` |
+| RB8 | `042b5934bdedd56ea9ab2ccc8524da7b332a8617` |
+| RB9 | `fc4b08ed9eaff233b2001dc2590f11a8e51d7ebb` |
+| RB10 | This merge, parents b28fc9f / fc4b08e |
+
+Combined local production webpack build, lint, type-check and unit suite pass: 21 files, 187 passed, 3 existing browser-gated skips. Inspected incoming owner screenshots `320-light-en-learn-preference.png` and `390-dark-es-host-result.png`: visible sticky action/copy and explicit nonpersistent publishing boundary. These are lower-stack captures with its older header, not a new cloud preferences or keyboard interaction run. Owner reports six production-browser paths; fresh cloud browser acceptance remains pending because the previously recorded Chromium download blocker remains. No new performance claim.
+
+Incoming RB6 hosted Quality 36457826579 fails both static and browser-smoke at the broad `getByText('Aperçus')` assertion in `src/views/AppReturn.test.jsx`: the newly localized navigation also contains that text. Existing cloud RB7 already uses `getByRole('heading', { name: 'Aperçus' })`, retained here and passing locally. Lower-stack owner should apply that semantic selector in its owned branch; no lower branch was edited by this cloud task. RB6 isolated 36457827149 separately fails `BROWSER_DOCUMENT_RETRY_CHOOSER_1440_LIGHT` (job 109048577110); cleanup passes. Do not attribute that to the text assertion or claim it fixed.
+
+Prior cloud RB7 b4d8d9e (Quality 36454702561 / isolated 36454702546), RB8 860c33a (36454753803 / 36454753636), and RB10 b28fc9f (36455029442 / 36455029746) passed both workflows. Prior RB9 04664c2 passed Quality 36454799395 but isolated 36454799423 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_LIGHT`, cleanup passed. Fresh RB7 36458167610 / 36458167611, RB8 36458218375 / 36458218656, and RB9 36458271224 / 36458270960 were running at the checkpoint. RB10 needs fresh checks after this publication. These exact-source records do not waive failed intermediate checks.
+
+PR #84 remains unchanged at 7e3f956 and unmergeable. [Owner reconciliation plan](PR84-RECONCILIATION-PLAN-20260928.md) records the read-only ledger-conflict preview, preservation of its original plan/hash/banner and English/light priority, exact conflict-resolution policy, documentation-only audit, and independent re-review/check requirements. Execute it against the latest published RB10; do not substitute an old ledger or main.
+
+RB2 independent privacy/eligibility and Trust, RB4 Trust, RB5 **SPEC-REQUIRED** on-device Contact draft retention/deletion privacy, independent review and release gates remain OPEN. No self-approval, resolved review conversations, protected merge or release. Smallest next owner actions: repair the lower-stack heading selector, investigate the independent chooser failure, then reconcile #84 on the new RB10 and obtain required specialist approvals.
