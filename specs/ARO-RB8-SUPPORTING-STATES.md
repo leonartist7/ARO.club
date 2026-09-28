@@ -3,7 +3,7 @@
 ## Authority and scope
 
 - Status: **SPEC-READY**, version 1.0.0, 2026-09-28. Founder-approved orange rebrand and request to continue eligible UI/UX cleanup.
-- Stacked on RB7. Presentation-only scope: global Next loading and page error boundaries, their English/French/Spanish copy, retry action and related evidence. No Auth, schema, Trust, payment, eligibility, release or F7 behavior change.
+- Stacked on RB7. Presentation-only runtime scope: global Next loading and page error boundaries, their English/French/Spanish copy, retry action and related evidence. A test-harness adjustment may accept a browser navigation abort only after the expected route loads, or after a governed account-entry redirect reaches Login; every protected route must still prove the Login destination. No Auth, schema, Trust, payment, eligibility, release or F7 behavior change.
 
 ## Experience contract
 
