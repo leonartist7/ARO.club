@@ -41,7 +41,7 @@ try {
     const checks = {};
     if (route === '/') {
       checks.teacherTrustFooter = (await page.locator('footer').innerText()).includes(translations[language].footer.trustVerified);
-      checks.formationBoundary = (await page.locator('#formation').innerText()).includes(rebrandJourneyCopy[language].preview);
+      checks.formationBoundary = (await page.locator('#formation').innerText()).includes(rebrandJourneyCopy[language].formationPreview);
       checks.gatherDestination = await page.locator('a[href="/app/create?mode=gather"]').count() === 1;
       await page.locator('a[href="/app/create?mode=gather"]').click();
       checks.gatherLanding = await page.getByRole('button', { name: rebrandJourneyCopy[language].gather }).getAttribute('aria-pressed') === 'true';
