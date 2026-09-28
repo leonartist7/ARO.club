@@ -17,6 +17,8 @@ Review repair on 2026-09-28: `npm run lint` and `npm run type-check` pass. Brows
 
 Follow-up repair on 2026-09-28: the formation preview boundary now has its own localized sentence, so the existing exact-text onboarding/browser assertion finds the hero preview statement only once. The refreshed ten-route `browser.json` passed with zero page errors or horizontal overflow, including formation-boundary assertions; the 1440px French Home capture was inspected after this change. Hosted CI remains the authority for production build and isolated database checks.
 
+Latest review repair: App Home's “Teach a skill” action opens `/app/create?mode=share`, matching its promised task. The refreshed ten-route browser matrix clicks this action at 360px EN and 1440px ES, confirms Share is selected on arrival, and passes with no page errors or overflow. Local lint and type checks pass; hosted checks will be re-run on the new head.
+
 Representative comparison: [prior public Home at 390px](../ARO-RB1/home-390-light-fr.png), [RB3 Home at 1440px FR](home-1440-light-fr.png), [RB3 Home at 390px ES dark](home-390-dark-es.png), [prior app Home at 360px](../ARO-RB1/app-360-light-en.png), [RB3 app Home at 360px](app-360-light-en.png), [RB3 Explore empty state](explore-360-light-en.png), [RB3 Create at 320px](app-create-320-dark-en.png).
 
 ## Material limits and next work

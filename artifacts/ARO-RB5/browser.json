@@ -10,6 +10,8 @@
     "hasPreviewLink": true,
     "faqDestinations": null,
     "contactSaved": null,
+    "contactCorruptHandled": null,
+    "contactLongSubjectVisible": null,
     "errors": [],
     "writes": []
   },
@@ -24,6 +26,8 @@
     "hasPreviewLink": true,
     "faqDestinations": null,
     "contactSaved": null,
+    "contactCorruptHandled": null,
+    "contactLongSubjectVisible": null,
     "errors": [],
     "writes": []
   },
@@ -38,6 +42,8 @@
     "hasPreviewLink": true,
     "faqDestinations": null,
     "contactSaved": null,
+    "contactCorruptHandled": null,
+    "contactLongSubjectVisible": null,
     "errors": [],
     "writes": []
   },
@@ -52,6 +58,8 @@
     "hasPreviewLink": true,
     "faqDestinations": null,
     "contactSaved": null,
+    "contactCorruptHandled": null,
+    "contactLongSubjectVisible": null,
     "errors": [],
     "writes": []
   },
@@ -66,6 +74,8 @@
     "hasPreviewLink": true,
     "faqDestinations": true,
     "contactSaved": null,
+    "contactCorruptHandled": null,
+    "contactLongSubjectVisible": null,
     "errors": [],
     "writes": []
   },
@@ -80,6 +90,8 @@
     "hasPreviewLink": true,
     "faqDestinations": null,
     "contactSaved": true,
+    "contactCorruptHandled": true,
+    "contactLongSubjectVisible": true,
     "errors": [],
     "writes": []
   }
