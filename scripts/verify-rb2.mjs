@@ -87,6 +87,16 @@ try {
     const correctedAgeInvalid = await page.locator('#preview-age').getAttribute('aria-invalid');
     const correctedDetailsClear = correctedAlertTexts.every((value) => !value.trim()) && correctedAgeInvalid !== 'true';
     overflow.details = await hasOverflow(page);
+    let shortHeightCtaVisible = null;
+    if (width === 320) {
+      const action = page.getByRole('button', { name: copy.next });
+      const visible = () => action.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.top >= 0 && rect.bottom <= innerHeight; });
+      shortHeightCtaVisible = await visible();
+      await page.setViewportSize({ width, height: 380 });
+      await page.locator('#preview-age').focus();
+      shortHeightCtaVisible = shortHeightCtaVisible && await visible();
+      await page.setViewportSize({ width, height });
+    }
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
     const cityAlertCount = await page.getByRole('alert').count();
@@ -146,11 +156,16 @@ try {
       await page.getByRole('button', { name: copy.skill.options[0].title }).last().click();
       await page.getByRole('button', { name: copy.skill.action }).click();
     }
-    const destination = path === 'host' || path === 'both' ? '/for-teachers' : '/explore';
-    await page.getByRole('link', { name: path === 'host' || path === 'both' ? copy.result.hostNext : copy.result.explore }).click();
-    await page.waitForURL((url) => url.pathname === destination);
-    const navigationWorks = new URL(page.url()).pathname === destination;
-    results.push({ slug, status: response?.status(), validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
+    let navigationWorks = null;
+    let hostBoundarySafe = null;
+    if (path === 'host' || path === 'both') {
+      hostBoundarySafe = await page.getByText(copy.result.hostBoundary).count() === 1 && await page.locator('a[href="/for-teachers"]').count() === 0;
+    } else {
+      await page.getByRole('link', { name: copy.result.explore }).click();
+      await page.waitForURL((url) => url.pathname === '/explore');
+      navigationWorks = new URL(page.url()).pathname === '/explore';
+    }
+    results.push({ slug, status: response?.status(), validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
 } finally {
@@ -159,4 +174,4 @@ try {
 if (results.length === 0) throw new Error('No RB2 verification case matched the requested slug');
 if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
 else console.log(JSON.stringify(results[0], null, 2));
-if (results.some(result => result.status !== 200 || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || !result.navigationWorks || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
+if (results.some(result => result.status !== 200 || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
