@@ -3,7 +3,7 @@
 ## 0. Metadata
 
 - Status: IMPLEMENTED / PARTIAL VERIFICATION for documentation and inventory on `codex/rb0-rebrand-adoption-20260927`; review and merge remain open.
-- Version: 1.0.0; founder authorization: 2026-09-27 rebranding request and attached *ARO Rebranding Implementation Plan*.
+- Version: 1.0.0; founder authorization: 2026-09-27 rebranding request and the preserved [ARO Rebranding Implementation Plan](../docs/rebrand/reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md).
 - Base: `fdda8106fc2c0df472f4349728da000ea5af65fe` (`origin/main`, fetched 2026-09-27).
 - Governing: `AGENTS.md`, master delivery plan, build playbook, design and experience systems, Trust and privacy boundaries.
 - Review: founder creative direction is approved; branch protection, independent specialist review and release gates remain separate.
