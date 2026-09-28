@@ -568,3 +568,8 @@ RB7's fixed-height onboarding cards were overlapped by the public footer. The bo
 Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preserving both review fixes and cloud evidence. Local navigation assertions now match the incoming reviewed World exit. New-head hosted checks remain required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft retention/deletion review are blocking; existing conversations stay open. No main merge or release. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
 
 > **Reconciliation hosted blocker:** RB7 platform 36436884165 fails at the draft-to-application transition. Incoming RB4's legacy /teacher/:id proxy guard also intercepts the reserved /teacher/application route before its existing Auth path. RB4/Auth owner repair and new checks are required; conflict-free PRs are not merge approval. RB2 and RB5 independent privacy gates remain open. See the rebrand implementation ledger.
+
+
+### 2026-09-28 — Corrected RB6 handoff incorporated
+
+RB6 95ec421 supersedes 8799e78 and includes the upstream navigation-test repair. Its exact test versions are propagated through RB7–RB10 with cloud runtime/evidence preserved. The previously requested upstream assertion repair is satisfied; hosted reserved teacher-route/provenance failures and independent RB2/RB5 review gates remain. See the rebrand implementation ledger for exact heads and check provenance.

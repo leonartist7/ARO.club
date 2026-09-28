@@ -1,5 +1,7 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
+> **Latest reconciliation:** RB6 95ec421 supersedes 8799e78. RB7–RB10 incorporate the upstream navigation-test repair. Hosted reserved teacher-route collision and duplicate French provenance locator remain blockers; independent RB2/RB5 reviews remain open. Historical green runs below do not certify the latest stack.
+
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
 | Package | Scope and evidence | Status / PR |
@@ -68,3 +70,12 @@ Source inspection establishes a routing collision introduced by the incoming RB4
 Required next owner action: RB4/Auth owners should narrowly exclude reserved static teacher routes from fixture-ID recovery, preserve the existing requireUser/Auth behavior, and test the known/unknown fixture routes plus authenticated application transition. This reconciliation does not alter Auth routing or waive assertions to hide the defect. RB1–RB6 owners also need the navigation assertion alignment recorded in RB7 before their checks can pass. RB2 and RB5 independent review gates remain blocking. No protected merge or release is authorized by conflict-free status.
 
 RB7 browser-smoke run 36436884161 completed: all 32 browser component checks and the 16-scenario Preferences step passed; E2E finished 22 passed / 3 failed. Two failures concern /teacher/dashboard not redirecting to Login, consistent with the same reserved-static-route collision (a 404 is not evidence of authenticated data exposure). The third is a strict-mode duplicate-text match for French UX0 provenance, `Une introduction illustrée. Aucune réservation ni paiement ici.`; its scoped copy/selector resolution belongs with the incoming public-copy review. Preserve provenance visibility and the assertion rather than disabling it. RB8/RB9 platform checks also report failure; RB10 checks were still running at this checkpoint. Hosted static checks passed on all four reconciliation source heads. Latest RB10 documentation commits do not change runtime; their new checks remain required.
+
+
+### Corrected handoff — RB6 95ec421
+
+Remote heads confirmed: RB1 `00aeb90df313693e8a7b8ed34b0bcbd16693a5a9`, RB2 `42ae32d0178ac8327b24865775643ed84df7c42b`, RB3 `0fbb1541f9ffc58ec5eadab11db38bbc7d7863bb`, RB4 `b21a53bc2b9f596fbcfdf48fc422ef6a10f2d934`, RB5 `2a1711fe143290403826dc8aef53be10b17d0e4c`, RB6 `95ec42139f83ac171bc5362527ce21ebec652426`. This correction supersedes the earlier request for upstream navigation-test repair: that repair is now present.
+
+Only the two test files changed between RB6 8799e78 and 95ec421. Adopted the upstream versions exactly when resolving their overlap with the equivalent cloud test fix. Targeted verification: 15 tests pass, 1 existing browser-gated skip. Both Create entry and the intentional World exit remain asserted. No runtime code or cloud screenshot/evidence hashes changed in this correction.
+
+Normal merge propagation: RB6 95ec421 → RB7 f7b88e5 → RB8 7b6f5db → RB9 b66368a → this RB10 merge. Prior cloud and reconciliation history remain ancestors. Incoming RB6 Quality 36437639390 and platform 36437639397 were running when checked; new descendant checks are separate and must not be inferred green. The reserved teacher-route collision and French provenance locator failures described above are unaffected by a test-only correction. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-retention/deletion review remain blocking. PR #84 remains unchanged and owner-controlled.

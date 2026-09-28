@@ -974,3 +974,8 @@ Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preser
 ### 2026-09-28 — Reconciliation exposes reserved-route collision
 
 Recorded new hosted platform failure and the incoming RB4 proxy collision with /teacher/application. Preserved all assertions and Auth code; handed the narrow routing repair to RB4/Auth ownership. No release or review-gate promotion.
+
+
+### 2026-09-28 — Corrected RB6 handoff incorporated
+
+RB6 95ec421 supersedes 8799e78 and includes the upstream navigation-test repair. Its exact test versions are propagated through RB7–RB10 with cloud runtime/evidence preserved. The previously requested upstream assertion repair is satisfied; hosted reserved teacher-route/provenance failures and independent RB2/RB5 review gates remain. See the rebrand implementation ledger for exact heads and check provenance.
