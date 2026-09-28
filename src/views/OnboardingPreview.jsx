@@ -10,7 +10,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 
 const ART = ['learn', 'teach', 'connect'];
-const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Cooking', 'Drawing'];
+const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Drawing'];
 const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
 
 function SceneArt({ scene, compact = false }) {
@@ -39,7 +39,7 @@ export default function OnboardingPreview() {
   const { language } = useLanguage();
   const copy = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;
   const [stage, setStage] = useState(0);
-  const [intent, setIntent] = useState('learn');
+  const [intent, setIntent] = useState(null);
   const [mode, setMode] = useState('learn');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -60,24 +60,24 @@ export default function OnboardingPreview() {
   };
   const nextFromDetails = () => {
     const issues = {};
-    if (!name.trim()) issues.name = copy.details.nameError;
-    if (!/^\d+$/.test(age)) issues.age = copy.details.ageError;
-    else if (Number(age) < 1 || Number(age) > 120) issues.age = copy.details.ageRange;
+    if (!name.trim()) issues.name = 'nameError';
+    if (!/^\d+$/.test(age)) issues.age = 'ageError';
+    else if (Number(age) < 1 || Number(age) > 120) issues.age = 'ageRange';
     setErrors(issues);
     if (!Object.keys(issues).length) go(4);
   };
   const nextFromCity = () => {
-    if (city.trim().length < 2) { setErrors({ city: copy.city.error }); return; }
+    if (city.trim().length < 2) { setErrors({ city: 'error' }); return; }
     go(5);
   };
   const nextFromPreference = () => {
     if (mode === 'host') {
       const issues = {};
-      if (!HOST_OPTIONS.includes(skill)) issues.skill = copy.skill.skillError;
+      if (!HOST_OPTIONS.includes(skill)) issues.skill = 'skillError';
       setErrors(issues);
       if (Object.keys(issues).length) return;
     } else if (!interests.length && !openIdeas) {
-      setErrors({ interests: copy.interests.error });
+      setErrors({ interests: 'error' });
       return;
     }
     go(6);
@@ -113,23 +113,23 @@ export default function OnboardingPreview() {
 
 
             {stage === 3 && <div className="mt-7 space-y-5">
-              <div><label htmlFor="preview-name" className="block text-base font-semibold">{copy.details.name}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.nameHint}</p><input id="preview-name" autoComplete="off" maxLength={80} value={name} onChange={(event) => setName(event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.name && <p id="name-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.name}</p>}</div>
-              <div><label htmlFor="preview-age" className="block text-base font-semibold">{copy.details.age}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.ageHint}</p><input id="preview-age" type="number" inputMode="numeric" min="1" max="120" step="1" value={age} onChange={(event) => setAge(event.target.value)} aria-invalid={Boolean(errors.age)} aria-describedby={errors.age ? 'age-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.age && <p id="age-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.age}</p>}</div>
+              <div><label htmlFor="preview-name" className="block text-base font-semibold">{copy.details.name}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.nameHint}</p><input id="preview-name" autoComplete="off" maxLength={80} value={name} onChange={(event) => setName(event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.name && <p id="name-error" role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.details[errors.name]}</p>}</div>
+              <div><label htmlFor="preview-age" className="block text-base font-semibold">{copy.details.age}</label><p className="mb-2 text-sm text-content-secondary dark:text-content-darkSecondary">{copy.details.ageHint}</p><input id="preview-age" type="number" inputMode="numeric" min="1" max="120" step="1" value={age} onChange={(event) => setAge(event.target.value)} aria-invalid={Boolean(errors.age)} aria-describedby={errors.age ? 'age-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.age && <p id="age-error" role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.details[errors.age]}</p>}</div>
             </div>}
 
-            {stage === 4 && <div className="mt-7"><label htmlFor="preview-city" className="mb-2 block text-base font-semibold">{copy.city.label}</label><input id="preview-city" autoComplete="off" maxLength={80} placeholder={copy.city.placeholder} value={city} onChange={(event) => setCity(event.target.value)} aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? 'city-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.city && <p id="city-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.city}</p>}</div>}
+            {stage === 4 && <div className="mt-7"><label htmlFor="preview-city" className="mb-2 block text-base font-semibold">{copy.city.label}</label><input id="preview-city" autoComplete="off" maxLength={80} placeholder={copy.city.placeholder} value={city} onChange={(event) => setCity(event.target.value)} aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? 'city-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.city && <p id="city-error" role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.city[errors.city]}</p>}</div>}
 
             {stage === 5 && mode === 'host' && <div className="mt-7 space-y-5">
               <p className="text-base font-semibold">{copy.skill.label}</p>
               <div className="grid gap-3">{HOST_OPTIONS.map((option, index) => <Choice key={option} selected={skill === option} onClick={() => setSkill(option)} description={copy.skill.options[index].outcome}>{copy.skill.options[index].title}</Choice>)}</div>
-              {errors.skill && <p role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.skill}</p>}
+              {errors.skill && <p role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.skill[errors.skill]}</p>}
             </div>}
 
             {stage === 6 && <div className="mt-7 rounded-2xl border border-primary-200 bg-white p-5 dark:border-primary-700 dark:bg-surface-darkCard">
               <p className="text-sm font-bold text-primary-700 dark:text-primary-300">{mode === 'host' ? copy.result.draft : copy.result.example}</p>
               <h2 className="mt-3 font-sans text-2xl font-bold leading-tight">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.title : copy.ideas[interests[0]] ?? copy.ideas.open}</h2>
               <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.outcome : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.indexOf(topic)]).join(', ')}.` : copy.result.openFit}</p>
-              <p className="mt-3 text-sm font-semibold">{copy.result.city}: {city.trim()}</p>
+              <p className="mt-3 break-words text-sm font-semibold [overflow-wrap:anywhere]">{copy.result.city}: {city.trim()}</p>
             </div>}
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -146,10 +146,10 @@ export default function OnboardingPreview() {
           </div>
 
           <div>
-            {stage === 2 && <div className="grid gap-3"><Choice selected={false} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={false} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={false} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
+            {stage === 2 && <div className="grid gap-3"><Choice selected={intent === 'learn'} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={intent === 'host'} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={intent === 'both'} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
             {stage < 3 && <div className={stage === 2 ? 'mt-5' : ''}><SceneArt scene={stage} compact={stage === 2} /></div>}
             {stage === 5 && mode === 'learn' && <div className="grid gap-3 sm:grid-cols-2">{TOPICS.map((topic, index) => <Choice key={topic} selected={interests.includes(topic)} onClick={() => toggleInterest(topic)}>{copy.topics[index]}</Choice>)}<Choice selected={openIdeas} onClick={() => { setInterests([]); setOpenIdeas(true); }}>{copy.interests.open}</Choice></div>}
-            {stage === 5 && errors.interests && <p role="alert" className="mt-3 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.interests}</p>}
+            {stage === 5 && errors.interests && <p role="alert" className="mt-3 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.interests[errors.interests]}</p>}
             {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20"><p className="text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{copy.resetNotice}</p><div className="mt-5 flex flex-wrap gap-4"><Link to={mode === 'host' ? '/for-teachers' : '/explore'} className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{mode === 'host' ? copy.result.hostNext : copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
             {(stage === 3 || stage === 4 || stage === 5) && <p className="mt-6 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
           </div>

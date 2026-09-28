@@ -18,6 +18,12 @@ Moved the approved public promise, benefits and task entrances into Home; added 
 
 ---
 
+## 2026-09-28 — RB2 onboarding review repair
+
+Removed the closed food-preparation preview topic and the outdoor photography-walk example, changed the teaching headline to conditional language, repaired localized validation/announcements and saved-choice feedback, and expanded browser/privacy evidence. The source art exporter now verifies a pinned runtime against committed WebP bytes. RB2 remains IMPLEMENTED / PARTIAL VERIFICATION and merge-gated by independent privacy/security review. See `artifacts/ARO-RB2/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB2 nonpersistent onboarding preview
 
 Added three brief illustrated scenes, skippable choice, in-memory name/age/city/interests or skill input, and honestly labelled learner idea or editable teaching draft. EN/FR/ES copy, dark mode and responsive scene exports are included. Existing live onboarding, eligibility, Auth, Trust, booking and payment contracts are unchanged. See `artifacts/ARO-RB2/VERIFICATION.md` for bounded browser evidence and remaining review.
