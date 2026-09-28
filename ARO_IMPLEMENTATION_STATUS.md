@@ -371,3 +371,8 @@ RB7–RB10 incorporate exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`. She
 ### 2026-09-28 — RB6 327c681 selector correction incorporated
 
 RB7–RB10 now include exact RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`. The test-only selector repair matches the already-preserved cloud assertion; no runtime/test behavior change. Previous local 187-test/build/lint/type evidence remains applicable, while exact-head hosted checks remain pending. PR #84 owner plan is updated to this base; its branch remains untouched. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates stay OPEN. See the rebrand implementation ledger for exact heads and historical failures.
+
+
+### 2026-09-28 — RB6 9eb4e15 preview repairs propagated
+
+RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with conflict-free normal ancestry. Adult language-practice art, early nonpersistence disclosure, preference CTA flow and the required-CI six-path RB2 verifier propagate without losing cloud work. Pinned WebP reproduction passes. Owner's Windows full E2E OOM is recorded as a failed run; cloud fresh browser acceptance remains unavailable. Prior RB10 platform rerun remained red at the document retry chooser. PR #84 is now 91a3ceb on old RB10 and stays with its owner for another reconciliation. All privacy/Trust/contact-retention, independent-review and release gates remain OPEN. Exact checks and sources: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
