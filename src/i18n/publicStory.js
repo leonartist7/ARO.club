@@ -1,6 +1,6 @@
 export const publicStoryCopy = {
   en: {
-    shared: { benefits: 'Learn · Earn · Connect', start: 'Explore the introduction', discover: 'Find a class', host: 'Teach a skill', contact: 'Contact ARO', preview: 'ARO is in preview. The illustrated examples are not live classes, bookings or earnings.' },
+    shared: { benefits: 'Learn · Earn · Connect', start: 'Explore the introduction', discover: 'Find a class', host: 'Teach a skill', hostGuidance: 'Host review and publishing', privacy: 'Read the privacy policy', contact: 'Contact ARO', preview: 'ARO is in preview. The illustrated examples are not live classes, bookings or earnings.' },
     about: {
       eyebrow: 'About ARO', title: 'Life opens up when people make room for each other.',
       body: 'ARO is being shaped around a simple idea: useful opportunities start with people, skills and places. Learn something, share what you know, or bring others together around an activity.',
@@ -47,7 +47,7 @@ export const publicStoryCopy = {
     contact: { eyebrow: 'Contact', title: 'Keep a note for ARO.', body: 'A support inbox is not connected in this preview. You can keep a draft on this device; it is not sent to ARO.', subject: 'Subject', message: 'Your note', save: 'Save on this device', saved: 'Draft saved on this device. No message was sent.', required: 'Add a subject and note before saving.', storageError: 'This browser could not save the draft. Copy your note before leaving.', privacy: 'Please avoid sensitive information. Local drafts stay in this browser until you clear its storage.', oldDrafts: 'Stored drafts on this device', help: 'Read common questions' },
   },
   fr: {
-    shared: { benefits: 'Apprendre · Gagner · Rencontrer', start: 'Découvrir l’introduction', discover: 'Trouver un cours', host: 'Enseigner une compétence', contact: 'Contacter ARO', preview: 'ARO est en aperçu. Les exemples illustrés ne sont pas des cours, réservations ou revenus réels.' },
+    shared: { benefits: 'Apprendre · Gagner · Rencontrer', start: 'Découvrir l’introduction', discover: 'Trouver un cours', host: 'Enseigner une compétence', hostGuidance: 'Vérification et publication des hôtes', privacy: 'Lire la politique de confidentialité', contact: 'Contacter ARO', preview: 'ARO est en aperçu. Les exemples illustrés ne sont pas des cours, réservations ou revenus réels.' },
     about: {
       eyebrow: 'À propos d’ARO', title: 'La vie s’ouvre quand on fait de la place aux autres.',
       body: 'ARO prend forme autour d’une idée simple : les opportunités utiles commencent avec des personnes, des compétences et des lieux. Apprenez, partagez ce que vous savez ou réunissez des personnes autour d’une activité.',
@@ -94,7 +94,7 @@ export const publicStoryCopy = {
     contact: { eyebrow: 'Contact', title: 'Gardez une note pour ARO.', body: 'Aucune boîte de réception n’est connectée dans cet aperçu. Vous pouvez garder un brouillon sur cet appareil ; il n’est pas envoyé à ARO.', subject: 'Objet', message: 'Votre note', save: 'Enregistrer sur cet appareil', saved: 'Brouillon enregistré ici. Aucun message n’a été envoyé.', required: 'Ajoutez un objet et une note.', storageError: 'Ce navigateur n’a pas pu enregistrer le brouillon. Copiez votre note avant de partir.', privacy: 'Évitez les informations sensibles. Les brouillons restent dans ce navigateur jusqu’à la suppression de ses données.', oldDrafts: 'Brouillons conservés sur cet appareil', help: 'Lire les questions fréquentes' },
   },
   es: {
-    shared: { benefits: 'Aprender · Ganar · Conectar', start: 'Explorar la introducción', discover: 'Encontrar una clase', host: 'Enseñar una habilidad', contact: 'Contactar con ARO', preview: 'ARO está en vista previa. Los ejemplos ilustrados no son clases, reservas ni ingresos reales.' },
+    shared: { benefits: 'Aprender · Ganar · Conectar', start: 'Explorar la introducción', discover: 'Encontrar una clase', host: 'Enseñar una habilidad', hostGuidance: 'Revisión y publicación de anfitriones', privacy: 'Leer la política de privacidad', contact: 'Contactar con ARO', preview: 'ARO está en vista previa. Los ejemplos ilustrados no son clases, reservas ni ingresos reales.' },
     about: {
       eyebrow: 'Sobre ARO', title: 'La vida se abre cuando hacemos sitio a los demás.',
       body: 'ARO se construye alrededor de una idea sencilla: las oportunidades útiles empiezan con personas, habilidades y lugares. Aprende, comparte lo que sabes o reúne a otros alrededor de una actividad.',
