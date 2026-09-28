@@ -1,6 +1,6 @@
 # ARO-RB11 — English/light release-scope presentation
 
-**Status:** SPEC-READY · version 1.0.0 · 2026-09-28. Founder direction: English and light mode first, with existing theme/localization architecture retained and unfinished choices absent from the release UI. Branch stacked on RB10 at `e272fccc2da80330d98485fe963558286446ca1a`.
+**Status:** IMPLEMENTED / PARTIAL VERIFICATION on branch · version 1.0.0 · 2026-09-28. Founder direction: English and light mode first, with existing theme/localization architecture retained and unfinished choices absent from the release UI. Branch stacked on RB10 at `e272fccc2da80330d98485fe963558286446ca1a`. See `artifacts/ARO-RB11/VERIFICATION.md`.
 
 ## Scope
 

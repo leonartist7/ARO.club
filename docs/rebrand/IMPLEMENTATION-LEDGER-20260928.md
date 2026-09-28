@@ -17,6 +17,7 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 | RB8 | Branded localized loading/error states, retry/Home, redirect-safe route sweep | IMPLEMENTED / PARTIAL VERIFICATION [#80](https://github.com/leonartist7/ARO.club/pull/80); inherited hosted failure repaired; see cloud evidence below |
 | RB9 | Controlled 1200×630 OpenGraph/Twitter image and metadata | IMPLEMENTED / PARTIAL VERIFICATION [#81](https://github.com/leonartist7/ARO.club/pull/81); inherited hosted failure repaired; see cloud evidence below |
 | RB10 | Login/Signup/Forgot Password localized presentation and truthful disabled preview | IMPLEMENTED / PARTIAL VERIFICATION [#82](https://github.com/leonartist7/ARO.club/pull/82); tested continuation source passes static/browser-smoke/platform; see below |
+| RB11 | Opt-in English/light presentation, preserved stored preferences, mobile Home crop and native/store inventory | IMPLEMENTED / PARTIAL VERIFICATION [#85](https://github.com/leonartist7/ARO.club/pull/85), stacked on RB10; [hosted screenshots/results](../../artifacts/ARO-RB11/VERIFICATION.md), final-head checks/reviews open |
 
 ## Coverage and remaining work
 

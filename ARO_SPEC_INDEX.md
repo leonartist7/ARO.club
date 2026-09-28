@@ -1,6 +1,6 @@
 # ARO — Canonical Spec Index
 
-> **2026-09-28 RB11:** `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` is SPEC-READY on a branch stacked on RB10. It bounds opt-in release presentation; store packaging and live eligibility remain separate gates.
+> **2026-09-28 RB11:** `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` is IMPLEMENTED / PARTIAL VERIFICATION on a branch stacked on RB10. It bounds opt-in release presentation; store packaging and live eligibility remain separate gates. See `artifacts/ARO-RB11/VERIFICATION.md`.
 
 > **2026-09-28 RB10:** `specs/ARO-RB10-ACCOUNT-ENTRY-PRESENTATION.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It localizes and styles signed-out account entry without changing Auth, callback, recovery or live backend authority.
 

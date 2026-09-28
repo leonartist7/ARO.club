@@ -1,0 +1,83 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "height": 620,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "preferenceControls": 0,
+    "startAction": 2,
+    "heroImage": {
+      "loaded": true,
+      "top": 543.78125
+    },
+    "errors": [],
+    "writes": [],
+    "menuPreferences": 0
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "preferenceControls": 0,
+    "startAction": 2,
+    "heroImage": {
+      "loaded": true,
+      "top": 145
+    },
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/onboarding/preview",
+    "width": 360,
+    "height": 640,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "preferenceControls": 0,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/settings",
+    "width": 320,
+    "height": 620,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "preferenceControls": 0,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/settings",
+    "width": 1440,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "preferenceControls": 0,
+    "errors": [],
+    "writes": []
+  }
+]
