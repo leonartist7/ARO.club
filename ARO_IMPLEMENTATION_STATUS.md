@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB8 branch update (2026-09-28):** Global route loading and page error states now use the approved brand and EN/FR/ES copy, with accessible status/retry/Home paths. Scoped visual fixtures show 320–1440px light/dark compositions and were removed before final build. RB8 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB8/VERIFICATION.md`.
+
 > **RB7 branch update (2026-09-28):** Public/onboarding theme and language controls now live in a compact Preferences entry; mobile public navigation has one scrollable menu without the duplicate bottom bar. App Settings has working local language and Light/Dark/System controls, and shared app chrome translates with them. Build, lint, type-check, focused tests and four production-browser scenarios pass. RB7 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB7/VERIFICATION.md`.
 
 > **RB6 branch update (2026-09-28):** Public `/leaderboard` and `/bookings` now have localized, truthful preview states in a scoped branch. Seed rankings and an unsupported checkout promise no longer render on those routes. Build/lint/type and six production-browser checks pass; protected future routes, independent review, merge and release remain open. See `artifacts/ARO-RB6/VERIFICATION.md`.

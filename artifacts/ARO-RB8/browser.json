@@ -1,0 +1,39 @@
+[
+  {
+    "path": "loading-state",
+    "width": 320,
+    "height": 620,
+    "lang": "fr",
+    "theme": "dark",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "heading": []
+  },
+  {
+    "path": "error-state",
+    "width": 390,
+    "height": 844,
+    "lang": "es",
+    "theme": "light",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "heading": [
+      "No pudimos abrir esta página."
+    ]
+  },
+  {
+    "path": "error-state",
+    "width": 1440,
+    "height": 900,
+    "lang": "en",
+    "theme": "dark",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "heading": [
+      "We couldn’t open this page."
+    ]
+  }
+]

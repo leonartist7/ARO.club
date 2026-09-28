@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB8 shared supporting states
+
+Replaced plain English route-loading and page-error screens with localized branded states, a boundary retry action, public Home recovery and reduced-motion status presentation. See `specs/ARO-RB8-SUPPORTING-STATES.md` and `artifacts/ARO-RB8/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB7 quiet navigation and preferences
 
 Moved theme and language choices into a compact Preferences control and app Settings, added explicit system theme behavior and localized app shell labels, and removed the duplicate public bottom tab bar and future-only account links. See `specs/ARO-RB7-PREFERENCES-NAVIGATION.md` and `artifacts/ARO-RB7/VERIFICATION.md`.

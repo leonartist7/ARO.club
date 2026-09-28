@@ -50,3 +50,5 @@ export const useLanguage = () => {
   }
   return context;
 };
+
+export const useOptionalLanguage = () => useContext(LanguageContext);

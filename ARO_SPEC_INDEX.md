@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-28 RB8:** `specs/ARO-RB8-SUPPORTING-STATES.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. Global loading and error boundaries gain localized branded presentation and retry navigation without changing Auth or persistence.
+
 > **2026-09-28 RB7:** `specs/ARO-RB7-PREFERENCES-NAVIGATION.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It quiets shared navigation, makes local language and appearance choices usable in app Settings, and translates app shell labels. Independent review, merge and release remain open.
 
 > **2026-09-28 RB6:** `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped branch. It corrects public `/leaderboard` and `/bookings` presentation only; Auth, reward, booking, payment and release gates remain unchanged.

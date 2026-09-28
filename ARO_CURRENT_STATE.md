@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-28 RB8:** Branded localized loading/error states are implemented on a stacked branch. These states have bounded visual and component evidence; live failure/retry conditions, full-route accessibility, independent reviews, merge and release remain open.
+
 > **2026-09-28 RB7:** The theme/language UI cleanup is implemented on a stacked branch: a single Preferences entry on desktop and onboarding, controls in the mobile menu and app Settings, and localized app shell labels. The public duplicate bottom bar is removed. All RB0–RB7 work remains unmerged and unreleased; RB0 review threads and RB2 privacy/security review still gate the stack.
 
 > **2026-09-28 RB6:** The public leaderboard and bookings routes now show honest preview states on a stacked branch. The rebrand stack remains unmerged while RB0 review threads and RB2 independent privacy/security review are open; no live booking or ranking capability is claimed.
