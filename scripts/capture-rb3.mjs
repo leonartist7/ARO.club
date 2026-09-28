@@ -57,9 +57,11 @@ try {
       await page.getByRole('button', { name: journey.teach }).click();
       await page.waitForTimeout(100);
       checks.teachResponds = await page.getByRole('button', { name: journey.teach }).getAttribute('aria-pressed') === 'true' && await page.evaluate(() => document.activeElement?.id === 'seed-studio-composition' && scrollY > 0);
+      checks.teachFocusVisible = await page.locator('#seed-studio-composition').evaluate(element => getComputedStyle(element).boxShadow !== 'none');
       await page.getByRole('button', { name: journey.gather }).click();
       await page.waitForTimeout(100);
       checks.gatherResponds = await page.getByRole('button', { name: journey.gather }).getAttribute('aria-pressed') === 'true' && await page.evaluate(() => document.activeElement?.id === 'seed-studio-composition');
+      checks.gatherFocusVisible = await page.locator('#seed-studio-composition').evaluate(element => getComputedStyle(element).boxShadow !== 'none');
     }
     results.push({ slug, status: response?.status(), title: await page.title(), horizontalOverflow, errors, checks, visibleText });
     await context.close();

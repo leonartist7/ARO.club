@@ -3,7 +3,7 @@
 ## 0. Metadata
 
 - Status: IMPLEMENTED ON BRANCH / MERGE GATED for **nonpersistent preview only**; version 1.2.1; founder-approved rebranding request, 2026-09-27, updated 2026-09-28. Independent privacy/security review has not been recorded.
-- Owner/director: ARO founder. Implementation: `codex/rb2-onboarding-preview-20260927`, PR #74, head `42ae32d`. Depends on RB1 PR #73; blocks the RB3 public entry and any live onboarding migration.
+- Owner/director: ARO founder. Implementation: `codex/rb2-onboarding-preview-20260927`, PR #74. Depends on RB1 PR #73; blocks any live onboarding migration. Public-entry follow-ups require their own package specifications and review gates.
 - Required reviewers: independent privacy/security for name, age, city, consent and minor/vulnerable-user treatment; Trust for the teaching-category boundary; design/accessibility for release acceptance. No reviewer sign-off is recorded.
 - Governing: `AGENTS.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md`, `ARO_TRUST_SAFETY.md`, existing Auth/onboarding contracts.
 - Live age/profile persistence, role migration, analytics and host publication require a separate specialist-reviewed runtime spec.
