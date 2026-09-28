@@ -4,10 +4,10 @@ Status: PLAN ONLY. This cloud task does not modify PR #84 or resolve its review 
 
 ## Verified inputs
 
-- Lower-stack source: RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053`.
-- Existing source-plan PR #84: `codex/rebrand-source-plan-20260928`, head `91a3ceb51a1c50ef37372588f7abb3fe6b72f0e2`, open and mergeable against prior RB10 8ee50c4 at inspection; fresh integration and checks are required for the new RB10.
-- Target: the new RB10 commit containing this plan on `codex/rb10-account-entry-presentation-20260928`, descended from RB9 `fdda59ebd2a1adb7d27101caca34ec14cfbc464b`. Fetch and pin its exact remote SHA before execution; never substitute main.
-- The owner completed the previous reconciliation: #84 now includes exact RB10 `8ee50c409b45e130ebc428ce90ce1723031240fc` and retains both English/light priority and cloud ledger history. Repeat the merge preview against the new published RB10 before resolving anything; prior conflict predictions and old green checks are historical.
+- Lower-stack source: RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144`.
+- Existing source-plan PR #84: `codex/rebrand-source-plan-20260928`, head `d0a954874e04ae7675c7c5347f882553e1392e16`, open and mergeable against prior RB10 2a6fafd at inspection; fresh integration and checks are required for the new RB10.
+- Target: the new RB10 commit containing this plan on `codex/rb10-account-entry-presentation-20260928`, descended from RB9 `d02c72e1c7b5343ddda9c205d810bfd136be54c7`. Fetch and pin its exact remote SHA before execution; never substitute main.
+- The owner completed the previous reconciliation: #84 now includes exact RB10 `2a6fafdb031dfd4e359312c87f265e97b20712b0` and retains both English/light priority and cloud ledger history. Repeat the merge preview against the new published RB10 before resolving anything; prior conflict predictions and old green checks are historical.
 
 ## Owner execution
 

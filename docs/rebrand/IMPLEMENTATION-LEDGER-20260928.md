@@ -2,7 +2,7 @@
 
 **Current founder priority:** Prepare an English, light-mode initial release first; schedule dark-mode and French/Spanish polish after that scope. Preserve existing theme/localization behavior and all review, privacy, Trust, security, payment and store gates. The [original planning document](reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md) is historical source context, not a claim of release readiness.
 
-> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053`: adult language-practice art, earlier nonpersistence disclosure, nonoverlapping preference CTA and required-CI RB2 verifier. Cloud work and ownership are preserved. New-head hosted checks remain required; earlier platform chooser failures remain open. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates stay OPEN.
+> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144`, with bounded mobile preference choices above the sticky action row and stronger browser assertions. Cloud work/ownership are preserved; new-head hosted checks remain required. Old pottery WebP derivatives remain public but unused. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates remain OPEN.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -236,3 +236,28 @@ RB2 independent privacy/eligibility and Trust, RB4 Trust, RB5 SPEC-REQUIRED on-d
 
 
 Final combined cloud verification for 9eb4e15: production webpack build, lint, type-check and 187 unit tests pass (21 files; 3 existing browser-gated skips). Pinned WebP reproduction and changed-script syntax checks pass. Latest incoming RB6 Quality 36462888502 and isolated 36462888187 both pass. New cloud RB7 Quality 36463151418 / isolated 36463151430, RB8 36463191470 / 36463191557, and RB9 36463219500 / 36463219308 remain in progress at this checkpoint; new RB10 checks are required after publication. No new visual/browser acceptance or gate closure is implied.
+
+
+## RB6 1184639 bounded mobile preference reconciliation
+
+Verified exact remote RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` and clean matching cloud heads before editing. Incoming eleven-file diff contains OnboardingPreview layout, verifier assertions, refreshed owner screenshots/results and evidence correction; AGENTS and governing specs/docs are unchanged. The four normal merges are conflict-free and preserve cloud quiet preferences, navigation, translated shell, supporting states, metadata, account entry and historical evidence. No F7 changes or protected merge.
+
+| Package | New source |
+|---|---|
+| RB7 | `b4e25c89a8a521dec6a83d31f0df81cd70794b4a` |
+| RB8 | `13aa84cac1d901be3faee12aa1a387e5262ed1c2` |
+| RB9 | `d02c72e1c7b5343ddda9c205d810bfd136be54c7` |
+| RB10 | This merge; parents 2a6fafd / d02c72e |
+
+The preference stage now bounds learner/host choice regions with mobile overflow scrolling and restores the safe-area sticky action; desktop retains normal layout. The required-CI six-case RB2 verifier asserts the action lies in the viewport, the region does not intersect it at mobile widths, and the last choice scrolls into the region when programmatically focused. That last assertion is not a claim that a full keyboard-Tab or assistive-technology audit was performed. Inspected incoming 320px light learner and 390px dark Spanish host captures: bounded choice regions and separated visible CTA are shown. They are owner captures, not fresh cloud browser screenshots; final cloud-header integration needs hosted/browser acceptance. Existing local browser-executable/download limitation remains, and the historical Windows full-E2E OOM remains NOT a passing run.
+
+Asset evidence correction supersedes earlier shorthand: the old pottery PNG and WebP derivatives remain committed, and the WebP files remain deployable under public/brand even though current UI consumers do not use them. Nothing in this task deletes or removes those public files; cleanup requires separate authorization.
+
+Previous-head hosted checkpoint: RB7 362787a passed Quality 36463151418 and isolated 36463151430; RB9 fdda59e passed 36463219500 / 36463219308; RB10 2a6fafd passed 36463557460 / 36463557603; PR #84 d0a9548 passed 36464043462 / 36464043461. RB8 965bedc passed Quality 36463191470 but isolated 36463191557 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_360_DARK` (job 109070291268), cleanup passed. Later green runs do not establish a root-cause repair for intermittent chooser failures or waive intermediate checks. Incoming RB6 1184639 Quality 36465732673 / isolated 36465732630 were running at the initial checkpoint; new cloud merge heads require fresh results.
+
+PR #84 remains owner-controlled at `d0a954874e04ae7675c7c5347f882553e1392e16`, based on previous RB10 2a6fafd. Its original plan/banner/hash, English/light priority and cloud history remain preserved there. Owner will reconcile it again on the new RB10; [the plan](PR84-RECONCILIATION-PLAN-20260928.md) now identifies this base. No #84 branch write or review resolution by this task.
+
+RB2 independent privacy/eligibility and Trust, RB4 Trust, RB5 SPEC-REQUIRED contact-draft retention/deletion privacy, independent review and release gates remain OPEN. No self-approval, protected merge or VERIFIED/SHIPPED promotion.
+
+
+Final combined local checks for the 1184639 reconciliation: production webpack build, lint, type-check, 187 unit tests (21 files; 3 existing browser-gated skips), verifier syntax and diff checks pass. No local browser run is claimed. New RB7 Quality 36466008821 / isolated 36466008811, RB8 36466045257 / 36466045212 and RB9 36466071928 / 36466071454 are in progress; fresh RB10 checks are required after publication.
