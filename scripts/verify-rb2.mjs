@@ -52,6 +52,7 @@ try {
     // The Next development indicator is not part of the application surface.
     await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
     const storageBefore = await storage(page);
+    const introDisclosureVisible = await page.getByText(copy.resetNotice).isVisible();
     overflow.intro = await hasOverflow(page);
     await screenshot(page, `${slug}-intro.png`);
     const buttons = page.locator('button');
@@ -62,6 +63,7 @@ try {
     await page.getByRole('button', { name: copy.back }).click();
     await page.getByRole('heading', { name: copy.learn.title }).waitFor();
     await buttons.filter({ hasText: /more|plus|más/i }).first().click();
+    const teachDisclosureVisible = await page.getByText(copy.resetNotice).isVisible();
     await page.locator('main img').first().evaluate(image => image.decode());
     overflow.teach = await hasOverflow(page);
     await screenshot(page, `${slug}-teach.png`);
@@ -165,7 +167,7 @@ try {
       await page.waitForURL((url) => url.pathname === '/explore');
       navigationWorks = new URL(page.url()).pathname === '/explore';
     }
-    results.push({ slug, status: response?.status(), validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
+    results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
 } finally {
@@ -174,4 +176,4 @@ try {
 if (results.length === 0) throw new Error('No RB2 verification case matched the requested slug');
 if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
 else console.log(JSON.stringify(results[0], null, 2));
-if (results.some(result => result.status !== 200 || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
+if (results.some(result => result.status !== 200 || !result.introDisclosureVisible || !result.teachDisclosureVisible || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;

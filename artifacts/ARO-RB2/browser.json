@@ -2,6 +2,8 @@
   {
     "slug": "320-light-en-learn",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
@@ -47,6 +49,8 @@
   {
     "slug": "360-light-fr-learn",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
@@ -92,6 +96,8 @@
   {
     "slug": "390-dark-es-host",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
@@ -137,6 +143,8 @@
   {
     "slug": "430-light-en-both",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
@@ -182,6 +190,8 @@
   {
     "slug": "768-dark-fr-learn",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
@@ -227,6 +237,8 @@
   {
     "slug": "1440-light-en-host",
     "status": 200,
+    "introDisclosureVisible": true,
+    "teachDisclosureVisible": true,
     "validation": 2,
     "detailsAlertCount": 3,
     "minorBlocked": true,
