@@ -970,3 +970,7 @@ Normal merge of RB6 8799e78 preserves upstream review repairs and cloud RB7 layo
 ### 2026-09-28 — Reviewed RB6 propagated through RB7–RB10
 
 Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preserving both review fixes and cloud evidence. Local navigation assertions now match the incoming reviewed World exit. New-head hosted checks remain required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft retention/deletion review are blocking; existing conversations stay open. No main merge or release. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+### 2026-09-28 — Reconciliation exposes reserved-route collision
+
+Recorded new hosted platform failure and the incoming RB4 proxy collision with /teacher/application. Preserved all assertions and Auth code; handed the narrow routing repair to RB4/Auth ownership. No release or review-gate promotion.
