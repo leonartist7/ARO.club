@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Keep legacy primary text readable in dark UI while action backgrounds retain primary-500. */
+  .dark :where(.text-primary-500),
+  .dark :where(.hover\:text-primary-500:hover) {
+    @apply text-primary-300;
+  }
+}
+
 :root {
   --aro-orange-rgb: 240 90 40;
   --aro-yellow-rgb: 255 212 71;

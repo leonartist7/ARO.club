@@ -34,10 +34,17 @@ try {
     await page.waitForTimeout(650);
     if (await page.locator('main img').count()) await page.locator('main img').first().evaluate(image => image.decode().catch(() => {}));
     await page.screenshot({ path: join(output, `${slug}.png`) });
+    let darkFocusRing = null;
+    if (theme === 'dark') {
+      await page.keyboard.press('Tab');
+      const action = page.locator('main a[href="/onboarding/preview"]');
+      await action.focus();
+      darkFocusRing = await action.evaluate(element => getComputedStyle(element).boxShadow.includes('255, 248, 238'));
+    }
     const main = await page.locator('main').first().innerText();
-    results.push({ slug, status: response?.status(), expectedStatus, heading: await page.locator('h1').first().innerText(), main: main.slice(0, 500), mainLandmarks: await page.getByRole('main').count(), hasPreviewLink: await page.locator('main a[href="/onboarding/preview"]').count() > 0, hidesPersistedFixtures: await page.getByText('Compare Now').count() === 0, horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), errors, writes });
+    results.push({ slug, status: response?.status(), expectedStatus, heading: await page.locator('h1').first().innerText(), main: main.slice(0, 500), mainLandmarks: await page.getByRole('main').count(), hasPreviewLink: await page.locator('main a[href="/onboarding/preview"]').count() > 0, hidesPersistedFixtures: await page.getByText('Compare Now').count() === 0, darkFocusRing, horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), errors, writes });
     await context.close();
   }
 } finally { await browser.close(); }
 await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
-if (results.some(result => result.status !== result.expectedStatus || result.mainLandmarks !== 1 || !result.hasPreviewLink || !result.hidesPersistedFixtures || result.horizontalOverflow || result.errors.length || result.writes.length)) process.exitCode = 1;
+if (results.some(result => result.status !== result.expectedStatus || result.mainLandmarks !== 1 || !result.hasPreviewLink || !result.hidesPersistedFixtures || result.darkFocusRing === false || result.horizontalOverflow || result.errors.length || result.writes.length)) process.exitCode = 1;
