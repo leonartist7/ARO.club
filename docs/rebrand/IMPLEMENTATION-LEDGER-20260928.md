@@ -1,5 +1,7 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
+**Current founder priority:** Prepare an English, light-mode initial release first; schedule dark-mode and French/Spanish polish after that scope. Preserve existing theme/localization behavior and all review, privacy, Trust, security, payment and store gates. The [original planning document](reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md) is historical source context, not a claim of release readiness.
+
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
 | Package | Scope and evidence | Status / PR |
