@@ -157,7 +157,7 @@ export default function AdvancedFiltersPanel({
                       onClick={() => onFilterChange('indoorOutdoor', type)}
                       className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                         advancedFilters.indoorOutdoor === type
-                          ? 'bg-primary-500 text-ink'
+                          ? 'bg-brand-orange text-ink'
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >
@@ -197,7 +197,7 @@ export default function AdvancedFiltersPanel({
                       onClick={() => handleTimeOfDayChange(time)}
                       className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                         (advancedFilters.timeOfDay || []).includes(time)
-                          ? 'bg-primary-500 text-ink'
+                          ? 'bg-brand-orange text-ink'
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >
@@ -219,7 +219,7 @@ export default function AdvancedFiltersPanel({
                       onClick={() => handleExperienceTypeChange(type.value)}
                       className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                         (advancedFilters.experienceTypes || []).includes(type.value)
-                          ? 'bg-primary-500 text-ink'
+                          ? 'bg-brand-orange text-ink'
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                     >

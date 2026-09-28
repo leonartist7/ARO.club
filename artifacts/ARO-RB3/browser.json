@@ -5,7 +5,13 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Skip to main content\nENG\n\nLEARN · EARN · CONNECT\n\nLife opens up.\n\nDiscover something worth learning, share what you know, and meet people through real activities.\n\nGet started\nShape a possibility\n\nAn illustrated introduction. No booking or payment is made here.\n\nFind a class\nExplore classes and activities.\nTeach a skill\nSee how a skill could become a class.\nOrganize a gathering\nBring people together around an activity.\nForm an opportunity\n\nChoose"
+    "checks": {
+      "teacherTrustFooter": true,
+      "formationBoundary": true,
+      "gatherDestination": true,
+      "gatherLanding": true
+    },
+    "visibleText": "Skip to main content\nENG\n\nLEARN · EARN · CONNECT\n\nLife opens up.\n\nDiscover something worth learning, share what you know, and meet people through real activities.\n\nGet started\nShape a possibility\n\nAn illustrated introduction. No booking or payment is made here.\n\nFind a class\nExplore classes and activities.\nTeach a skill\nSee how a skill could become a class.\nOrganize a gathering\nBring people together around an activity.\n\nAn illustrated introduction. No booking or payment is made here.\n\nForm an opportunity\n\nChoose one from each anchor. The field responds as you move.\n\nFIELD OPEN\n\nWhat you want\n0"
   },
   {
     "slug": "home-390-dark-es",
@@ -13,7 +19,13 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Skip to main content\nSPA\n\nAPRENDER · GANAR · CONECTAR\n\nLa vida se abre.\n\nDescubre algo que merezca la pena aprender, comparte lo que sabes y conoce gente a través de actividades reales.\n\nEmpezar\nDar forma a una posibilidad\n\nUna introducción ilustrada. Aquí no se reserva ni se paga.\n\nEncontrar una clase\nExplora clases y actividades.\nEnseñar una habilidad\nMira cómo una habilidad podría convertirse en una clase.\nOrganizar un encuentro\nReúne a person"
+    "checks": {
+      "teacherTrustFooter": true,
+      "formationBoundary": true,
+      "gatherDestination": true,
+      "gatherLanding": true
+    },
+    "visibleText": "Skip to main content\nSPA\n\nAPRENDER · GANAR · CONECTAR\n\nLa vida se abre.\n\nDescubre algo que merezca la pena aprender, comparte lo que sabes y conoce gente a través de actividades reales.\n\nEmpezar\nDar forma a una posibilidad\n\nUna introducción ilustrada. Aquí no se reserva ni se paga.\n\nEncontrar una clase\nExplora clases y actividades.\nEnseñar una habilidad\nMira cómo una habilidad podría convertirse en una clase.\nOrganizar un encuentro\nReúne a personas alrededor de una actividad.\n\nUna introducción ilustrada. Aquí no se reserva ni se paga.\n\nFormar una oportunidad\n\nElige una opción de cada ancla. El"
   },
   {
     "slug": "home-1440-light-fr",
@@ -21,7 +33,13 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Skip to main content\nExplorer\nComment Ça Marche\nPour Enseignants\nFRA\nTrouver une expérience\nSe connecter\nS'inscrire\n\nAPPRENDRE · GAGNER · RENCONTRER\n\nLa vie s’ouvre.\n\nDécouvrez une activité à apprendre, partagez vos compétences et rencontrez des personnes autour d’expériences concrètes.\n\nCommencer\nFaçonner une possibilité\n\nUne introduction illustrée. Aucune réservation ni paiement ici.\n\nTrouver un cours\nExplorer les cours et les activités.\nEnseig"
+    "checks": {
+      "teacherTrustFooter": true,
+      "formationBoundary": true,
+      "gatherDestination": true,
+      "gatherLanding": true
+    },
+    "visibleText": "Skip to main content\nExplorer\nComment Ça Marche\nPour Enseignants\nFRA\nTrouver une expérience\nSe connecter\nS'inscrire\n\nAPPRENDRE · GAGNER · RENCONTRER\n\nLa vie s’ouvre.\n\nDécouvrez une activité à apprendre, partagez vos compétences et rencontrez des personnes autour d’expériences concrètes.\n\nCommencer\nFaçonner une possibilité\n\nUne introduction illustrée. Aucune réservation ni paiement ici.\n\nTrouver un cours\nExplorer les cours et les activités.\nEnseigner une compétence\nVoir comment une compétence pourrait devenir un cours.\nOrganiser une rencontre\nRéunir des personnes autour d’une activité.\n\nUne int"
   },
   {
     "slug": "explore-360-light-en",
@@ -29,7 +47,10 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Skip to main content\nENG\n\nLEARN · EARN · CONNECT\n\nFind a class\n\nNo verified live classes are available in this preview yet. You can still explore an idea or sketch a class.\n\nGet started\nTeach a skill\n\nHand-verified teachers\nAnti-shame guarantee\n\nAI for a more human world. ARO helps meaningful opportunity form around real people and real life.\n\nCompany\nAbout Us\nHow It Works\nFor Teachers\nFAQ\nExplore\nBrowse Experiences\nMap View\nLeaderboard\nSupport\nC"
+    "checks": {
+      "oneMainLandmark": true
+    },
+    "visibleText": "Skip to main content\nENG\n\nLEARN · EARN · CONNECT\n\nFind a class\n\nNo verified live classes are available in this preview yet. You can still explore an idea or sketch a class.\n\nGet started\nTeach a skill\n\nTeacher verification before publishing\nAnti-shame guarantee\n\nAI for a more human world. ARO helps meaningful opportunity form around real people and real life.\n\nCompany\nAbout Us\nHow It Works\nFor Teachers\nFAQ\nExplore\nBrowse Experiences\nMap View\nLeaderboard\nSupport\nContact Us\nHelp Center\n\n© 2026 ARO. All rights reserved.\n\nPrivacy Policy\nTerms of Service\nCookie Policy\nHome\nExplore\nPlay\nBookings\nProf"
   },
   {
     "slug": "explore-1440-dark-fr",
@@ -37,7 +58,10 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Skip to main content\nExplorer\nComment Ça Marche\nPour Enseignants\nFRA\nTrouver une expérience\nSe connecter\nS'inscrire\n\nAPPRENDRE · GAGNER · RENCONTRER\n\nTrouver un cours\n\nAucun cours confirmé en direct n’est encore disponible dans cet aperçu. Explorez une idée ou esquissez un cours.\n\nCommencer\nEnseigner une compétence\n\nEnseignants vérifiés à la main\n•\nGarantie anti-honte\n\nL’IA pour un monde plus humain. ARO aide de vraies opportunités à se former da"
+    "checks": {
+      "oneMainLandmark": true
+    },
+    "visibleText": "Skip to main content\nExplorer\nComment Ça Marche\nPour Enseignants\nFRA\nTrouver une expérience\nSe connecter\nS'inscrire\n\nAPPRENDRE · GAGNER · RENCONTRER\n\nTrouver un cours\n\nAucun cours confirmé en direct n’est encore disponible dans cet aperçu. Explorez une idée ou esquissez un cours.\n\nCommencer\nEnseigner une compétence\n\nVérification des enseignants avant publication\n•\nGarantie anti-honte\n\nL’IA pour un monde plus humain. ARO aide de vraies opportunités à se former dans la vie réelle.\n\nEntreprise\nÀ Propos\nComment Ça Marche\nPour Enseignants\nFAQ\nExplorer\nParcourir les Expériences\nVue Carte\nClassement\n"
   },
   {
     "slug": "app-360-light-en",
@@ -45,7 +69,8 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "MN\nSkip to main content\n\nFictional preview. No live accounts, reservations or payments.\n\nFictional preview\nNot available in this preview.\n\nLEARN · EARN · CONNECT\n\nWhere will you begin?\n\nExplore a clearly marked example, or choose a practical next step.\n\nFind a class\nTeach a skill\n\nGOOD MORNING, MAYA.\n\nWhat could make today meaningful?\n\nCALGARY · FICTIONAL EXAMPLE\n\nEXAMPLE OPPORTUNITY\n\nRiver light photo walk\n\nAn early evening walk for people who w"
+    "checks": {},
+    "visibleText": "MN\nSkip to main content\n\nFictional preview. No live accounts, reservations or payments.\n\nFictional preview\nNot available in this preview.\n\nLEARN · EARN · CONNECT\n\nWhere will you begin?\n\nExplore a clearly marked example, or choose a practical next step.\n\nFind a class\nTeach a skill\n\nGOOD MORNING, MAYA.\n\nWhat could make today meaningful?\n\nCALGARY · FICTIONAL EXAMPLE\n\nEXAMPLE OPPORTUNITY\n\nRiver light photo walk\n\nAn early evening walk for people who want to notice the city differently.\n\nSunday · 6:30 PM\n4.1 km away\nMA\nTR\nJL\n\n3 of 10 example places\n\nExample minimum: 6\n\n3 more example participants to"
   },
   {
     "slug": "app-1440-dark-es",
@@ -53,7 +78,8 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Calgary · Your world\nMN\nSkip to main content\n\nVista previa ficticia. No hay cuentas, reservas ni pagos reales.\n\nVista previa ficticia\nNo disponible en esta vista previa.\n\nAPRENDER · GANAR · CONECTAR\n\n¿Por dónde quieres empezar?\n\nExplora un ejemplo claramente indicado o elige un siguiente paso concreto.\n\nEncontrar una clase\nEnseñar una habilidad\n\nBUENOS DÍAS, MAYA.\n\n¿Qué podría hacer que hoy tenga sentido?\n\nCALGARY · EJEMPLO FICTICIO\n\nOPORTUNIDAD "
+    "checks": {},
+    "visibleText": "Calgary · Your world\nMN\nSkip to main content\n\nVista previa ficticia. No hay cuentas, reservas ni pagos reales.\n\nVista previa ficticia\nNo disponible en esta vista previa.\n\nAPRENDER · GANAR · CONECTAR\n\n¿Por dónde quieres empezar?\n\nExplora un ejemplo claramente indicado o elige un siguiente paso concreto.\n\nEncontrar una clase\nEnseñar una habilidad\n\nBUENOS DÍAS, MAYA.\n\n¿Qué podría hacer que hoy tenga sentido?\n\nCALGARY · EJEMPLO FICTICIO\n\nOPORTUNIDAD DE EJEMPLO\n\nRiver light photo walk\n\nAn early evening walk for people who want to notice the city differently.\n\nSunday · 6:30 PM\n4.1 km away\nMA\nTR\nJL\n\n"
   },
   {
     "slug": "app-world-390-light-fr",
@@ -61,7 +87,8 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "MN\nSkip to main content\n\nAperçu fictif. Aucun compte, réservation ni paiement réel.\n\nVOTRE MONDE · APERÇU FICTIF\n\nUn petit monde qui pulse.\n\nChoisissez un exemple pour voir son état de formation fictif.\n\nAPERÇU FICTIF DE LA VILLE\n\nChamp de Calgary · 3 exemples\n\n6\nLa grande table\n3\nLumière de rivière\n8\nLe coin utile\nEXEMPLE LOCAL FICTIF\nSUNNYSIDE\nRiver light photo walk\n\n3 participants fictifs de plus pour atteindre le minimum.\n\n3/10\n\nMINIMUM DE L’"
+    "checks": {},
+    "visibleText": "MN\nSkip to main content\n\nAperçu fictif. Aucun compte, réservation ni paiement réel.\n\nVOTRE MONDE · APERÇU FICTIF\n\nUn petit monde qui pulse.\n\nChoisissez un exemple pour voir son état de formation fictif.\n\nAPERÇU FICTIF DE LA VILLE\n\nChamp de Calgary · 3 exemples\n\n6\nLa grande table\n3\nLumière de rivière\n8\nLe coin utile\nEXEMPLE LOCAL FICTIF\nSUNNYSIDE\nRiver light photo walk\n\n3 participants fictifs de plus pour atteindre le minimum.\n\n3/10\n\nMINIMUM DE L’EXEMPLE : 6\n\nBow River Pathway\nVoir l’exemple\n\nCHAMP D’EXEMPLE\n\nTrois invitations fictives, une ville.\nTous les exemples\n6\nLa grande table\n6 sur 8 pla"
   },
   {
     "slug": "app-create-320-dark-en",
@@ -69,7 +96,11 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "MN\nSkip to main content\n\nFictional preview. No live accounts, reservations or payments.\n\nBack to World\n\nSEED STUDIO · LOCAL PREVIEW\n\nWhat wants a little more room in the world?\n\nA good opportunity does not begin as a listing. It begins as something honest: a curiosity, a contribution, or a reason to gather.\n\nFind a class\nTeach a skill\nOrganize a gathering\n\nA CURIOSITY\n\nLearn\n\nA CONTRIBUTION\n\nShare\n\nA REASON TO MEET\n\nGather\n\nA POSSIBLE SHAPE\n\nA lo"
+    "checks": {
+      "teachResponds": true,
+      "gatherResponds": true
+    },
+    "visibleText": "MN\nSkip to main content\n\nFictional preview. No live accounts, reservations or payments.\n\nBack to World\nFind a class\nTeach a skill\nOrganize a gathering\n\nSEED STUDIO · LOCAL PREVIEW\n\nWhat wants a little more room in the world?\n\nA good opportunity does not begin as a listing. It begins as something honest: a curiosity, a contribution, or a reason to gather.\n\nA CURIOSITY\n\nLearn\n\nA CONTRIBUTION\n\nShare\n\nA REASON TO MEET\n\nGather\n\nA POSSIBLE SHAPE\n\nA local design preview of relationships that could matter—not a live signal.\n\nYOU\n\ncurious · low pressure\n\nPEOPLE\n\na few patient voices\n\nPLACE\n\na warm tabl"
   },
   {
     "slug": "app-create-1440-light-es",
@@ -77,6 +108,10 @@
     "title": "ARO — Life opens up",
     "horizontalOverflow": false,
     "errors": [],
-    "visibleText": "Calgary · Your world\nMN\nSkip to main content\n\nVista previa ficticia. No hay cuentas, reservas ni pagos reales.\n\nVolver al Mundo\n\nSEED STUDIO · VISTA PREVIA LOCAL\n\n¿Qué quiere un poco más de espacio en el mundo?\n\nUna buena oportunidad no empieza como un anuncio. Empieza con algo sincero: una curiosidad, una contribución o una razón para reunirse.\n\nEncontrar una clase\nEnseñar una habilidad\nOrganizar un encuentro\n\nUNA CURIOSIDAD\n\nAprender\n\nUNA CONTR"
+    "checks": {
+      "teachResponds": true,
+      "gatherResponds": true
+    },
+    "visibleText": "Calgary · Your world\nMN\nSkip to main content\n\nVista previa ficticia. No hay cuentas, reservas ni pagos reales.\n\nVolver al Mundo\nEncontrar una clase\nEnseñar una habilidad\nOrganizar un encuentro\n\nSEED STUDIO · VISTA PREVIA LOCAL\n\n¿Qué quiere un poco más de espacio en el mundo?\n\nUna buena oportunidad no empieza como un anuncio. Empieza con algo sincero: una curiosidad, una contribución o una razón para reunirse.\n\nUNA CURIOSIDAD\n\nAprender\n\nUNA CONTRIBUCIÓN\n\nCompartir\n\nUNA RAZÓN PARA ENCONTRARSE\n\nReunir\n\nUNA FORMA POSIBLE\n\nUna vista previa visual local de las relaciones que podrían importar; no es "
   }
 ]

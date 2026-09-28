@@ -3,6 +3,8 @@
   "created": "2026-09-27",
   "tool": "OpenAI image_gen imagegen",
   "mode": "generated from approved reference and previous accepted scene references",
+  "exportScript": "scripts/export-onboarding-art.py --check",
+  "exportProfile": {"python": "3.12.14", "pillow": "12.3.0", "libwebp": "1.6.0", "resize": "LANCZOS", "webpQuality": 84, "webpMethod": 6},
   "reference": "ARO.club/public/brand/ARO.png (art direction only)",
   "rights": "Generated for the founder-approved ARO rebrand; retain provenance and review commercial usage with the project's asset policy before release.",
   "direction": "Warm optimistic adult activity scenes, natural golden light, tactile wood, fabric and ceramics, yellow open circular portal with one detached dot, diverse believable people, consistent rust sweater and green knit cap across related scenes. No text, buttons, prices or inventory claims in artwork.",

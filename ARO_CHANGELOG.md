@@ -18,9 +18,21 @@ Old public experience, teacher, map, saved/recent, comparison and missing-page r
 
 ---
 
+## 2026-09-28 — RB3 review repair
+
+Narrowed the shared Trust claim to teacher verification, fixed the empty Explore landmark, made Create task selections visible and keyboard focusable, routed gathering to its local preview mode, and placed a preview boundary at the formation anchor. Regenerated the RB3 browser matrix from the repaired tree with direct behavior assertions. See `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB3 public discovery and Create presentation
 
 Moved the approved public promise, benefits and task entrances into Home; added an honest no-verified-supply Explore state because the legacy catalogue has dated synthetic booking and review fixtures. App Home presents the next action first and no longer shows example personal progress. Create exposes direct task entrances while retaining the accepted local Seed Studio controls. Host-verification footer copy now describes the publish gate rather than claiming existing verified teachers. See `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md` and `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
+## 2026-09-28 — RB2 onboarding review repair
+
+Removed the closed food-preparation preview topic and the outdoor photography-walk example, changed the teaching headline to conditional language, repaired localized validation/announcements and saved-choice feedback, and expanded browser/privacy evidence. The source art exporter now verifies a pinned runtime against committed WebP bytes. RB2 remains IMPLEMENTED / PARTIAL VERIFICATION and merge-gated by independent privacy/security review. See `artifacts/ARO-RB2/VERIFICATION.md`.
 
 ---
 
