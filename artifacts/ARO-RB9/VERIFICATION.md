@@ -22,3 +22,5 @@ Inherited RB7's layout/preference repair and retained evidence through normal RB
 ## Reviewed upstream reconciliation — 2026-09-28
 
 Merged RB8 1ea6280 in stack order, preserving cloud share metadata/art and incorporating reviewed RB6 8799e78 through RB7 c7dfd8f. No RB9 media was regenerated. New-head hosted checks are required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft privacy review remain blocking; conversations remain open. No main merge or release.
+
+Corrected handoff: inherited RB8 7b6f5db with founder-specified RB6 95ec421 and the upstream navigation tests. Runtime/share media unchanged by this correction; hosted rechecks and all previously recorded gates/blockers remain required.
