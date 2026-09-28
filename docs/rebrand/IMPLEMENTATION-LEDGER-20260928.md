@@ -1,6 +1,6 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest reconciliation:** exact RB6 1c4c2a1 supersedes 5e22dcc and includes the RB4 reserved teacher-route repair. Both previously reported integration defects now have incoming source fixes; new-head hosted confirmation remains pending. RB5 remains SPEC-REQUIRED pending independent contact-draft retention/deletion privacy review, and RB2 independent review remains open. Historical green runs below do not certify the latest stack.
+> **Latest hosted checkpoint (2026-09-28):** RB3–RB6, RB8 and RB10 source heads pass Quality and Isolated database. RB7 Quality and RB9 platform still have separate failed checks (details below). Fresh independent re-reviews are founder-reported as requested, not approved. RB2 specialist privacy/security and RB5 SPEC-REQUIRED contact-retention/deletion privacy gates remain open.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -99,3 +99,25 @@ Conflict-free normal merge chain: RB6 1c4c2a1 → RB7 573afa4 → RB8 29e162d �
 RB5 remains **SPEC-REQUIRED** pending independent privacy review of browser-local contact draft retention/deletion. RB2 independent privacy/security review and review conversations remain open. No force push, protected-branch merge, release or VERIFIED/SHIPPED promotion. PR #84 remains owner-controlled and untouched.
 
 Local integrated build/lint/type and 184 unit tests pass (3 existing browser-gated skips). Production response inspection shows Login meta redirects for both reserved teacher routes, 404 for an unknown teacher ID and 200 for known fixture t1. Next streams the protected-route redirect with initial HTTP 200, so a status-only 3xx check is insufficient; the route-level redirect markup was inspected. This is bounded response evidence, not hosted authenticated-browser acceptance.
+
+
+### Verified CI / independent re-review checkpoint — 2026-09-28
+
+GitHub remote heads and workflow results were read directly before recording this checkpoint.
+
+| PR | Tested source | Quality | Isolated database |
+|---|---|---|---|
+| #75 | `1e334dc2fcf625965aaee1eac9b463a4a9570bf0` | [success: 36439322061](https://github.com/leonartist7/ARO.club/actions/runs/36439322061) | [success: 36439321994](https://github.com/leonartist7/ARO.club/actions/runs/36439321994) |
+| #76 | `bedf27e32744dd96d76c7b7c67d6366df6e333c7` | [success: 36440370173](https://github.com/leonartist7/ARO.club/actions/runs/36440370173) | [success: 36440369730](https://github.com/leonartist7/ARO.club/actions/runs/36440369730) |
+| #77 | `ca828a48e2e3f8b6402984540943c486a5995868` | [success: 36440544853](https://github.com/leonartist7/ARO.club/actions/runs/36440544853) | [success: 36440544718](https://github.com/leonartist7/ARO.club/actions/runs/36440544718) |
+| #78 | `1c4c2a192710a5be6d99d82caeb9873b232f7b3b` | [success: 36440596588](https://github.com/leonartist7/ARO.club/actions/runs/36440596588) | [success: 36440596255](https://github.com/leonartist7/ARO.club/actions/runs/36440596255) |
+| #79 | `573afa4881634fec31cb9c37dfcaffc61ba6ea8c` | [failure: 36440747183](https://github.com/leonartist7/ARO.club/actions/runs/36440747183) | [success: 36440747181](https://github.com/leonartist7/ARO.club/actions/runs/36440747181) |
+| #80 | `29e162df0c76f793f53faae6558e139bf1351b15` | [success: 36440795276](https://github.com/leonartist7/ARO.club/actions/runs/36440795276) | [success: 36440795465](https://github.com/leonartist7/ARO.club/actions/runs/36440795465) |
+| #81 | `a6ba481e851b752abf13fc4ea7d27f1e4e010c8e` | [success: 36440837284](https://github.com/leonartist7/ARO.club/actions/runs/36440837284) | [failure: 36440837374](https://github.com/leonartist7/ARO.club/actions/runs/36440837374) |
+| #82 | `7b458017457d28b9019153dbd972f7d7756c15e1` | [success: 36441081849](https://github.com/leonartist7/ARO.club/actions/runs/36441081849) | [success: 36441081371](https://github.com/leonartist7/ARO.club/actions/runs/36441081371) |
+
+RB7 browser-smoke job 108990266606 fails the public-route content check for `/choose-role` (12 characters); its protected-route rejection checks pass. RB9 platform job 108990577680 fails `BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_DARK`; cleanup passes. These distinct failures are not attributed to the repaired legacy-route collision without evidence, and no retry or assertion change was performed in this status-only update. Green descendant runs do not waive failed intermediate-head checks.
+
+Founder reports all six lower-stack local worktrees clean and pushed, RB4 green after one isolated-browser retry, and fresh independent Codex re-reviews requested for #72–#78/#84. Cloud independently confirms remote heads/results above; it does not claim access to the local worktrees or completion/approval of those reviews. Existing conversations remain for independent recheck.
+
+RB2 specialist privacy/security review remains open. RB5 stays **SPEC-REQUIRED**, pending independent privacy acceptance of browser-local contact draft retention/deletion. No main merge, release, review-thread resolution or VERIFIED/SHIPPED promotion. This status-only commit changes no runtime; its fresh CI is separate from the tested source heads above.
