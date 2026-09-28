@@ -159,9 +159,9 @@ afterEach(() => {
 })
 
 describe('FV-1 F4 Create exits and local Seed Studio', () => {
-  it('keeps Create stable while its explicit World exits remain available', () => {
+  it('keeps all reviewed World exits available from Create', () => {
     renderDiscovery('/app/create')
-    expect(screen.getByRole('link', { name: 'Create' }).getAttribute('href')).toBe('/app/create')
+    expect(screen.getByRole('link', { name: 'Back to World', exact: true }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Close Seed Studio and return to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Return to World' }).getAttribute('href')).toBe('/app/world')
   })

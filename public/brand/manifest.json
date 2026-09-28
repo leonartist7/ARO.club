@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "source": "Founder-approved ARO reference at ARO.club/public/brand/ARO.png; independently constructed SVG geometry, 2026-09-27",
+  "source": "Founder-approved ARO reference at docs/rebrand/reference/ARO-approved.png; independently constructed SVG geometry, 2026-09-27",
   "rights": "ARO-directed original vector geometry; similarity and trademark review remain open",
   "assets": [
     { "path": "/brand/aro-symbol.svg", "role": "monochrome symbol", "viewBox": "0 0 72 72", "use": "small-size brand mark", "alt": "decorative when adjacent to ARO name" },

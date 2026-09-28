@@ -18,9 +18,21 @@ Moved theme and language choices into a compact Preferences control and app Sett
 
 ---
 
+## 2026-09-28 — RB6 review repair
+
+Removed duplicate main landmarks from future-state pages, made dark keyboard focus visible, and refreshed browser evidence with actual Explore/onboarding CTA navigation and response checks. See `artifacts/ARO-RB6/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB6 public future route truth
 
 Replaced the public seed leaderboard and unsupported bookings/checkout promise with localized preview states at their existing URLs. Preserved protected game, shop and character routes and all Auth, booking, reward and payment behavior. See `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` and `artifacts/ARO-RB6/VERIFICATION.md`.
+
+---
+
+## 2026-09-28 — RB5 review repair and privacy gate
+
+Added contextual host Trust guidance and privacy links to FAQ, expanded the public-story/contact specification with local-draft data, retention, failure and acceptance contracts, and synchronized its provisional state in the canonical registries. RB5 is SPEC-REQUIRED pending independent privacy review of on-device contact text; the implementation remains unmerged. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
 
 ---
 
@@ -30,15 +42,33 @@ Replaced legacy About, How it Works, For Teachers, FAQ and Contact entry pages w
 
 ---
 
+## 2026-09-28 — RB4 review repair
+
+Suppressed persisted legacy fixtures in the global compare bar, kept recovery screens to one main landmark, returned generic 404 screens for unknown legacy IDs, and directed host interest to the local Create preview. Refreshed the route matrix with exact status and persisted-state assertions. See `artifacts/ARO-RB4/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB4 legacy fixture deep-link recovery
 
 Old public experience, teacher, map, saved/recent, comparison and missing-page routes now resolve to a shared localized recovery view. It preserves URLs and stored identifiers while withholding fictional ratings, bookings, host verification and supply claims. No Auth, booking, payment, review or schema logic changed. See `specs/ARO-RB4-LEGACY-FIXTURE-TRUTH.md` and `artifacts/ARO-RB4/VERIFICATION.md`.
 
 ---
 
+## 2026-09-28 — RB3 review repair
+
+Narrowed the shared Trust claim to teacher verification, fixed the empty Explore landmark, made Create task selections visible and keyboard focusable, routed gathering to its local preview mode, and placed a preview boundary at the formation anchor. Regenerated the RB3 browser matrix from the repaired tree with direct behavior assertions. See `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB3 public discovery and Create presentation
 
 Moved the approved public promise, benefits and task entrances into Home; added an honest no-verified-supply Explore state because the legacy catalogue has dated synthetic booking and review fixtures. App Home presents the next action first and no longer shows example personal progress. Create exposes direct task entrances while retaining the accepted local Seed Studio controls. Host-verification footer copy now describes the publish gate rather than claiming existing verified teachers. See `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md` and `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
+## 2026-09-28 — RB2 onboarding review repair
+
+Removed the closed food-preparation preview topic and the outdoor photography-walk example, changed the teaching headline to conditional language, repaired localized validation/announcements and saved-choice feedback, and expanded browser/privacy evidence. The source art exporter now verifies a pinned runtime against committed WebP bytes. RB2 remains IMPLEMENTED / PARTIAL VERIFICATION and merge-gated by independent privacy/security review. See `artifacts/ARO-RB2/VERIFICATION.md`.
 
 ---
 
@@ -914,3 +944,7 @@ Preferences improvements are prepared with local build/lint/type and 180 unit
 tests passing (3 existing skips). Hosted browser/visual verification is pending.
 See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
 RB2 independent-review, F7 or release gate changed.
+
+## 2026-09-28 — RB7 reconciles reviewed RB6
+
+Normal merge of RB6 8799e78 preserves upstream review repairs and cloud RB7 layout/preferences work. Conflicts combine responsive header behavior, translated navigation and the reviewed World exit; stale navigation tests are aligned without skipping coverage. RB2 independent review and RB5 SPEC-REQUIRED privacy review remain blocking. See artifacts/ARO-RB7/VERIFICATION.md.

@@ -183,7 +183,7 @@ export default function ExplorePage() {
   ];
 
   if (!hasVerifiedSupply) {
-    return <main className="min-h-screen bg-surface-canvas px-4 py-10 text-ink dark:bg-surface-dark dark:text-bone sm:px-6 sm:py-16">
+    return <div className="min-h-screen bg-surface-canvas px-4 py-10 text-ink dark:bg-surface-dark dark:text-bone sm:px-6 sm:py-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
@@ -193,7 +193,7 @@ export default function ExplorePage() {
         </div>
         <picture className="block overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)]"><source srcSet="/brand/onboarding-learn-640.webp 640w, /brand/onboarding-learn-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" /><img src="/brand/onboarding-learn-640.webp" alt="" width="640" height="480" className="aspect-[4/3] w-full object-cover" /></picture>
       </div>
-    </main>;
+    </div>;
   }
 
   return (

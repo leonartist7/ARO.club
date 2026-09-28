@@ -90,3 +90,11 @@ Tested source `bbd1b2b1ec458690bddc03fcb9786badeb25bdb0`:
 - Export provenance: preferences artifact 10962574585, SHA-256 `85ad56a898dc01d6e8de6474cf02e342f7355070aa7ee4f695ce2fdc5bbb481b`; platform artifact 10963080391; diagnostic artifact 10961693842. Selected originals and machine results are committed with [file hashes](cloud-continuation/SHA256.json). Hosted ZIPs expire 2026-10-05.
 
 Self-review: only layout sizing, preference accessibility, bounded diagnostics, portable regression execution and evidence changed. No dependency, Auth handler, schema, RLS, privacy/eligibility flow, Trust, payment or F7 evidence changed. Manrope and approved brand direction remain. Performance budgets and original assertions were not relaxed; no new performance improvement claim is made. Full-route accessibility/localization and independent review/release gates remain open.
+
+## Local review-fix stack reconciliation — 2026-09-28
+
+Merged reviewed RB6 `8799e785b523c178eee7c1596bf9be0d3fe568a2` into cloud RB7 `1960c797b67bc78a5ee9e2ffb612a4d5800832c4` using normal two-parent ancestry. Header conflicts retain the incoming xl breakpoint together with quiet Preferences and the scrollable menu. AppShell keeps localized labels and the incoming orange central action / Back to World exit. Changelog entries from both parents are preserved. Existing onboarding minimum-height repair, preference accessibility, diagnostics and retained cloud evidence remain intact.
+
+Incoming RB6 Quality run 36436067479 failed two stale Create-destination assertions. Reconciled tests now assert the reviewed World exit inside Create and retain an explicit Create entry check outside it; no test was skipped or disabled. Local build, lint, type checks and 181 unit tests pass (3 existing browser-gated skips). Hosted checks on this new merge commit are pending; previous screenshots remain historical evidence, not new visual acceptance.
+
+RB2 independent privacy/security review remains required. RB5 is SPEC-REQUIRED pending independent privacy review of browser-local contact-draft retention/deletion. Existing review conversations remain open. No main merge, release, gate closure, Auth/Trust/payment/F7 change or VERIFIED/SHIPPED claim. PR #84 source-plan head was confirmed at 7e3f9568202b37b7aeb420f9b642efb80121b1a2 and left with its owner.
