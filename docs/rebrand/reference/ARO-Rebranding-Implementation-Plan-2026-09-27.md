@@ -1,5 +1,7 @@
 # ARO — Complete Rebranding & Onboarding Implementation Plan
 
+> **Historical source, 27 September 2026.** This preserves the founder-supplied planning document; it is not the current release checklist. The founder later prioritized an **English and light-mode first release**, with dark-mode and French/Spanish refinement scheduled after that initial scope. Preserve existing functionality and all privacy, Trust, security, payment and store gates. Read the [current state](../../../ARO_CURRENT_STATE.md) and [rebrand implementation ledger](../IMPLEMENTATION-LEDGER-20260928.md) before acting on this plan. The original attachment SHA-256 is `9E56B7AE7534C74E3C7993955E92658A2D4C4279AC974C3A8ABA320A213BC264`; the body below is retained as supplied.
+
 **Version 1.0 · 27 September 2026 · Implementation planning document**
 
 **Direction:** Orange-led, optimistic and human. Expressive modern typography. An open O with one person-shaped dot. A clear invitation to **Learn · Earn · Connect**.
