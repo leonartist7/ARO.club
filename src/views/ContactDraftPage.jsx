@@ -12,6 +12,11 @@ function readDrafts() {
   if (!value) return [];
   const parsed = JSON.parse(value);
   if (!Array.isArray(parsed)) throw new Error('Contact drafts are not an array');
+  if (!parsed.every((draft) => draft && !Array.isArray(draft) && typeof draft === 'object'
+    && typeof draft.subject === 'string' && typeof draft.message === 'string'
+    && (draft.savedAt === undefined || typeof draft.savedAt === 'string'))) {
+    throw new Error('Contact draft entry is invalid');
+  }
   return parsed;
 }
 
@@ -61,7 +66,7 @@ export default function ContactDraftPage() {
           <button type="submit" disabled={!storageAvailable} className="mt-5 inline-flex min-h-12 items-center rounded-xl bg-action-primary px-5 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus disabled:opacity-50">{copy.save}</button>
           <p role="status" aria-live="polite" className="mt-3 min-h-6 text-sm font-semibold text-primary-700 dark:text-primary-300">{status || (!storageAvailable ? copy.storageError : '')}</p>
         </form>
-        {drafts.length > 0 && <section className="mt-6 rounded-2xl border border-ink/10 p-5 dark:border-bone/15"><h2 className="font-display text-xl">{copy.oldDrafts} ({drafts.length})</h2><div className="mt-4 space-y-3">{drafts.map((draft, index) => <details key={`${draft.savedAt ?? 'draft'}-${index}`} className="rounded-xl border border-ink/10 p-3 dark:border-bone/15"><summary className="min-h-11 cursor-pointer font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{draft.subject || copy.subject}</summary><p className="mt-2 whitespace-pre-wrap break-words text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{draft.message}</p></details>)}</div></section>}
+        {drafts.length > 0 && <section className="mt-6 min-w-0 rounded-2xl border border-ink/10 p-5 dark:border-bone/15"><h2 className="font-display text-xl">{copy.oldDrafts} ({drafts.length})</h2><div className="mt-4 space-y-3">{drafts.map((draft, index) => <details key={`${draft.savedAt ?? 'draft'}-${index}`} className="min-w-0 rounded-xl border border-ink/10 p-3 dark:border-bone/15"><summary className="min-h-11 min-w-0 cursor-pointer font-semibold [overflow-wrap:anywhere] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{draft.subject || copy.subject}</summary><p className="mt-2 whitespace-pre-wrap break-words text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{draft.message}</p></details>)}</div></section>}
       </div>
     </div>
   </div>;

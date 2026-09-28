@@ -36,5 +36,6 @@ try {
 } finally {
   await browser.close();
 }
-await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
+if (results.length === 0) throw new Error('No RB1 capture matched the requested slug');
+if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
 if (results.some(result => result.status !== 200 || result.bodyLength < 50 || result.errors.length)) process.exitCode = 1;
