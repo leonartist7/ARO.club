@@ -7,6 +7,7 @@ import Button from '../components/ui/Button';
 import PreferencesPopover from '../components/ui/Preferences';
 import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
+import { englishLightRelease } from '../lib/releaseScope';
 
 const ART = ['learn', 'teach', 'connect'];
 const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Cooking', 'Drawing'];
@@ -92,7 +93,7 @@ export default function OnboardingPreview() {
       <header className="border-b border-ink/10 bg-surface-canvas/95 px-4 py-3 backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
           <Link to="/" aria-label="ARO home" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><AroWordmark label="" /></Link>
-          <PreferencesPopover />
+          {!englishLightRelease && <PreferencesPopover />}
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-4 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 sm:px-6 sm:pt-10">

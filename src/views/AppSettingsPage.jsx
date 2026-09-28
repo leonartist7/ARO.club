@@ -6,6 +6,7 @@ import { AppPanel, AppSectionHeading } from '../components/app/AppPrimitives';
 import { getFv1ReturnCopy } from '../i18n/fv1/return';
 import { PreferencesControls } from '../components/ui/Preferences';
 import { preferencesCopy } from '../i18n/preferences';
+import { englishLightRelease } from '../lib/releaseScope';
 
 const icons = {
   account: UserRound,
@@ -26,10 +27,10 @@ export default function AppSettingsPage() {
 
       <aside data-fv1-direct-entry="settings" className="mt-6 border border-secondary-500/35 bg-secondary-50 p-4 dark:bg-secondary-900/15">
         <p className="text-base font-bold">{copy.settings.noticeTitle}</p>
-        <p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.settings.notice}</p>
+        <p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{englishLightRelease ? 'Account, privacy and notification controls shown below are examples in this preview. No account data is changed here.' : copy.settings.notice}</p>
       </aside>
 
-      <AppPanel className="mt-7 p-5 sm:p-6"><h2 className="mb-5 font-display text-xl">{preferences.title}</h2><PreferencesControls /></AppPanel>
+      <AppPanel className="mt-7 p-5 sm:p-6"><h2 className="mb-3 font-display text-xl">{preferences.title}</h2>{englishLightRelease ? <p className="text-base leading-7 text-ink/70 dark:text-bone/75">This preview is available in English with a light appearance. Language and appearance controls are unavailable in this release.</p> : <PreferencesControls />}</AppPanel>
 
       <AppPanel className="mt-6 divide-y divide-ink/10 dark:divide-bone/10">
         {copy.settings.rows.map((row) => {

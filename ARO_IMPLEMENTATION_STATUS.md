@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB11 branch (2026-09-28):** English/light release-scope presentation is being implemented on a separate stacked branch. No merge, native binary or store submission is claimed; see `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` and `docs/rebrand/STORE-READINESS-20260928.md`.
+
 > **RB10 branch update (2026-09-28):** Signed-out Login, Signup and Forgot Password now use the ARO promise and EN/FR/ES copy, with readable dark mode and truthful disabled preview forms. Six production-browser scenarios pass; live Auth remains under its separate gates. RB10 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB10/VERIFICATION.md` and the [current rebrand ledger](docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md).
 
 > **RB9 branch update (2026-09-28):** A controlled orange-led share image now renders at `/opengraph-image`, and OpenGraph/Twitter tags advertise its 1200×630 PNG. Local production response and visual evidence pass. RB9 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB9/VERIFICATION.md`.

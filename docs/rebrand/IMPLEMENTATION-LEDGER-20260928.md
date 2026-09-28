@@ -1,5 +1,7 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
+> **RB11 continuation (2026-09-28):** Latest pushed RB10 base `e272fccc` descends from requested `3111826`; PR #82 is open/draft. Final-head Quality `36408269889` (`static`, `browser-smoke`) and isolated database `36408269813` (`platform`) pass, including the formerly failing 360px language-skip step. RB0 review threads and independent RB2 review remain open. RB11 is a separate stacked English/light presentation branch; see its [spec](../../specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md) and [store inventory](STORE-READINESS-20260928.md). No native or store release exists.
+
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
 | Package | Scope and evidence | Status / PR |

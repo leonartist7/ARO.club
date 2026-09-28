@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { englishLightRelease } from '../lib/releaseScope';
 
 const ThemeContext = createContext(undefined);
 const preferences = new Set(['light', 'dark', 'system']);
@@ -9,14 +10,16 @@ function deviceTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [themePreference, setPreference] = useState('system');
+  const [themePreference, setPreference] = useState(englishLightRelease ? 'light' : 'system');
   const [theme, setTheme] = useState('light');
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     let stored;
-    try { stored = localStorage.getItem('theme'); } catch { /* Storage can be disabled. */ }
-    setPreference(preferences.has(stored) ? stored : 'system');
+    if (!englishLightRelease) {
+      try { stored = localStorage.getItem('theme'); } catch { /* Storage can be disabled. */ }
+      setPreference(preferences.has(stored) ? stored : 'system');
+    }
     setReady(true);
   }, []);
 
@@ -32,14 +35,14 @@ export function ThemeProvider({ children }) {
     };
     apply();
     if (themePreference === 'system') media?.addEventListener?.('change', apply);
-    try { localStorage.setItem('theme', themePreference); } catch { /* Storage can be disabled. */ }
+    if (!englishLightRelease) try { localStorage.setItem('theme', themePreference); } catch { /* Storage can be disabled. */ }
     return () => { if (themePreference === 'system') media?.removeEventListener?.('change', apply); };
   }, [themePreference, ready]);
 
   const setThemePreference = (next) => {
-    if (preferences.has(next)) setPreference(next);
+    if (!englishLightRelease && preferences.has(next)) setPreference(next);
   };
-  const toggleTheme = () => setPreference(theme === 'dark' ? 'light' : 'dark');
+  const toggleTheme = () => { if (!englishLightRelease) setPreference(theme === 'dark' ? 'light' : 'dark'); };
 
   return <ThemeContext.Provider value={{ theme, isDark: theme === 'dark', themePreference, setThemePreference, toggleTheme }}>
     {children}
