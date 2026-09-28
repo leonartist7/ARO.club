@@ -102,3 +102,7 @@ RB2 independent privacy/security review remains required. RB5 is SPEC-REQUIRED p
 ### Corrected local handoff incorporated
 
 The founder superseded RB6 8799e78 with `95ec42139f83ac171bc5362527ce21ebec652426`. The only incoming changes are the two navigation test files. Adopted the upstream owner's versions exactly: both Create entry and World exit remain asserted. This replaces the equivalent temporary cloud assertion repair; runtime and cloud evidence are unchanged. Targeted shell/discovery tests pass (15 passed, 1 existing browser-gated skip). New-head hosted checks are required. The reserved teacher-route proxy collision and French provenance E2E ambiguity recorded in the descendant ledger remain unresolved, as do RB2/RB5 independent gates.
+
+### RB6 5e22dcc review-copy handoff — 2026-09-28
+
+Confirmed and merged exact RB6 `5e22dccb0fd268a9212e874a11e27d321efad493` into RB7 f7b88e5 without conflicts. Incoming RB3 changes give the formation section a distinct truthful preview disclosure in EN/FR/ES, adjust its capture assertion and refresh owner evidence. Cloud preferences, layout repair, diagnostics and historical evidence are preserved. Local unit suite: 180 pass, 3 existing browser-gated skips. Hosted checks on this new source are required before calling the former strict-text failure resolved in integration. The reserved teacher-route collision is not changed by this incoming diff. RB2 independent privacy/security review and RB5 SPEC-REQUIRED retention/deletion privacy review remain blocking; no release or protected merge.
