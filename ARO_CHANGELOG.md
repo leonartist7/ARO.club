@@ -30,6 +30,12 @@ Moved the approved public promise, benefits and task entrances into Home; added 
 
 ---
 
+## 2026-09-28 — RB2 teaching scene and verification repair
+
+The onboarding teaching illustration now shows adult conversational language practice in a public room, replacing the out-of-bound pottery scene while preserving its original for provenance. The preview discloses nonpersistence before teaser choices, keeps the preference action from covering choices, and runs its browser matrix in required CI. This is an implementation repair within the RB2 preview specification; independent privacy/security/Trust and release gates remain open. See `artifacts/ARO-RB2/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB2 onboarding review repair
 
 Removed the closed food-preparation preview topic and the outdoor photography-walk example, changed the teaching headline to conditional language, repaired localized validation/announcements and saved-choice feedback, and expanded browser/privacy evidence. The source art exporter now verifies a pinned runtime against committed WebP bytes. RB2 remains IMPLEMENTED / PARTIAL VERIFICATION and merge-gated by independent privacy/security review. See `artifacts/ARO-RB2/VERIFICATION.md`.
