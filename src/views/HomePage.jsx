@@ -25,13 +25,12 @@ export default function HomePage() {
                 <Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark">{onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
                 <a href="#formation" className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{t('home.formation.hero.cta')}<ArrowDownRight className="h-4 w-4" aria-hidden="true" /></a>
               </div>
-              <p className="mt-4 hidden text-sm text-content-secondary dark:text-content-darkSecondary lg:block">{journey.preview}</p>
             </div>
             <picture className="block h-44 overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)] sm:h-auto">
               <source srcSet="/brand/onboarding-connect-640.webp 640w, /brand/onboarding-connect-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
               <img src="/brand/onboarding-connect-640.webp" alt="" width="640" height="480" decoding="async" className="h-full w-full object-cover object-[center_43%] sm:aspect-[4/3]" />
             </picture>
-            <p className="text-sm text-content-secondary dark:text-content-darkSecondary lg:hidden">{journey.preview}</p>
+            <p className="text-sm text-content-secondary dark:text-content-darkSecondary lg:col-start-1 lg:-mt-8">{journey.preview}</p>
           </div>
           <div className="mt-10 grid gap-3 sm:grid-cols-3">
             {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/onboarding/preview' }].map((task) => <Link key={task.title} to={task.href} className="group flex min-h-32 flex-col justify-between rounded-2xl border border-ink/10 bg-white/75 p-5 transition-colors hover:border-action-primary dark:border-bone/15 dark:bg-surface-darkCard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"><span className="flex items-center justify-between gap-2 text-lg font-bold">{task.title}<ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></span><span className="mt-3 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></Link>)}
