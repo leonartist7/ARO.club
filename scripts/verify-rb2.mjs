@@ -51,8 +51,7 @@ try {
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
     await page.screenshot({ path: join(output, `${slug}-preference.png`) });
     if (path === 'host') {
-      await page.locator('#preview-skill').fill('Guitar');
-      await page.locator('#preview-outcome').fill('Play a simple song');
+      await page.getByRole('button', { name: /Conversation practice|Pratique de conversation|Práctica de conversación/ }).last().click();
     } else {
       await buttons.filter({ hasText: /Photography|Photographie|Fotografía/ }).last().click();
     }
@@ -62,7 +61,7 @@ try {
     const storageKeys = await page.evaluate(() => Object.keys(localStorage));
     const inputLeakedToStorage = await page.evaluate(() => JSON.stringify(localStorage).includes('Alex') || JSON.stringify(localStorage).includes('Calgary'));
     if (path === 'both') await buttons.filter({ hasText: /Sketch a class draft/ }).first().click();
-    const bothCanSwitchToHost = path === 'both' ? await page.locator('#preview-skill').count() === 1 : null;
+    const bothCanSwitchToHost = path === 'both' ? await page.getByRole('button', { name: /Conversation practice|Pratique de conversation|Práctica de conversación/ }).count() > 0 : null;
     await page.reload();
     const resetOnRefresh = await page.getByRole('heading', { name: /Your next|Votre prochain|Tu próximo/ }).count() === 1;
     results.push({ slug, status: response?.status(), validation, horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), pageErrors, requests, storageKeys, inputLeakedToStorage, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });

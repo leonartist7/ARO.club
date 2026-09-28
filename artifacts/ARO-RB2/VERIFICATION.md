@@ -7,7 +7,7 @@ Status: **IMPLEMENTED / PARTIAL VERIFICATION** on `codex/rb2-onboarding-preview-
 | Criterion | Evidence |
 |---|---|
 | Three brief scenes, skip, choice of Find / Teach / Both | `src/views/OnboardingPreview.jsx`; six browser path runs in `browser.json`; intro/teach/choice captures below |
-| Name, age, coarse manual city, interests or skill/outcome | Field validation and learner/host result captures; browser run confirms two required invalid fields before continuing |
+| Name, age, coarse manual city, interests or language activity | Field validation and learner/host result captures; the follow-up limits host drafts to three fixed language/community fixtures. Re-run screenshots after this change before accepting visual evidence. |
 | Useful, honest result | Learner idea and editable host draft shown as examples, no inventory/earning/booking/verification claim; result captures |
 | One account, changeable starting intent | “Both” starts in discovery and switches to a class draft in the browser run; no role or publish permission is written |
 | Localization, themes, widths | Browser matrix: 320×620 EN light; 360×700 FR light; 390×844 ES dark; 430×740 EN light; 768×900 FR dark; 1440×900 EN light. Zero horizontal overflow or page errors |
@@ -20,6 +20,6 @@ Representative before/after: [previous Home at 360px](../ARO-R2/home-360-light.p
 
 ## Remaining and blockers
 
-- Live persistence and age/eligibility handling require a separate reviewed privacy/Trust/Auth spec. Existing student/teacher routes retain their contracts.
+- Independent privacy/security review of the preview's name/age, consent and minor handling is required before RB2 merge. Live persistence and eligibility also require a separate reviewed privacy/Trust/Auth spec. Existing student/teacher routes retain their contracts.
 - RB3 onward must recompose Home, Explore/World/Create/opportunity and remaining actual routes, then run full accessibility/localization/performance regression. RB2 samples do not certify the whole product.
 - Polymath and locally pinned Manrope need valid licensed assets before final typography acceptance. Independent design/accessibility review, asset rights review and production release gates remain open.

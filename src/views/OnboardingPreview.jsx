@@ -11,6 +11,7 @@ import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 
 const ART = ['learn', 'teach', 'connect'];
 const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Cooking', 'Drawing'];
+const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
 
 function SceneArt({ scene, compact = false }) {
   const name = ART[scene];
@@ -46,7 +47,6 @@ export default function OnboardingPreview() {
   const [interests, setInterests] = useState([]);
   const [openIdeas, setOpenIdeas] = useState(false);
   const [skill, setSkill] = useState('');
-  const [outcome, setOutcome] = useState('');
   const [errors, setErrors] = useState({});
   const heading = useRef(null);
 
@@ -73,8 +73,7 @@ export default function OnboardingPreview() {
   const nextFromPreference = () => {
     if (mode === 'host') {
       const issues = {};
-      if (!skill.trim()) issues.skill = copy.skill.skillError;
-      if (!outcome.trim()) issues.outcome = copy.skill.outcomeError;
+      if (!HOST_OPTIONS.includes(skill)) issues.skill = copy.skill.skillError;
       setErrors(issues);
       if (Object.keys(issues).length) return;
     } else if (!interests.length && !openIdeas) {
@@ -121,14 +120,15 @@ export default function OnboardingPreview() {
             {stage === 4 && <div className="mt-7"><label htmlFor="preview-city" className="mb-2 block text-base font-semibold">{copy.city.label}</label><input id="preview-city" autoComplete="off" maxLength={80} placeholder={copy.city.placeholder} value={city} onChange={(event) => setCity(event.target.value)} aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? 'city-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.city && <p id="city-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.city}</p>}</div>}
 
             {stage === 5 && mode === 'host' && <div className="mt-7 space-y-5">
-              <div><label htmlFor="preview-skill" className="mb-2 block text-base font-semibold">{copy.skill.label}</label><input id="preview-skill" maxLength={100} value={skill} onChange={(event) => setSkill(event.target.value)} placeholder={copy.skill.placeholder} aria-invalid={Boolean(errors.skill)} aria-describedby={errors.skill ? 'skill-error' : undefined} className="min-h-12 w-full rounded-xl border border-control-border bg-white px-4 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.skill && <p id="skill-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.skill}</p>}</div>
-              <div><label htmlFor="preview-outcome" className="mb-2 block text-base font-semibold">{copy.skill.outcome}</label><textarea id="preview-outcome" maxLength={240} rows={3} value={outcome} onChange={(event) => setOutcome(event.target.value)} placeholder={copy.skill.outcomePlaceholder} aria-invalid={Boolean(errors.outcome)} aria-describedby={errors.outcome ? 'outcome-error' : undefined} className="w-full rounded-xl border border-control-border bg-white px-4 py-3 text-base text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:bg-surface-darkCard dark:text-bone dark:focus-visible:ring-bone" />{errors.outcome && <p id="outcome-error" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.outcome}</p>}</div>
+              <p className="text-base font-semibold">{copy.skill.label}</p>
+              <div className="grid gap-3">{HOST_OPTIONS.map((option, index) => <Choice key={option} selected={skill === option} onClick={() => setSkill(option)} description={copy.skill.options[index].outcome}>{copy.skill.options[index].title}</Choice>)}</div>
+              {errors.skill && <p role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{errors.skill}</p>}
             </div>}
 
             {stage === 6 && <div className="mt-7 rounded-2xl border border-primary-200 bg-white p-5 dark:border-primary-700 dark:bg-surface-darkCard">
               <p className="text-sm font-bold text-primary-700 dark:text-primary-300">{mode === 'host' ? copy.result.draft : copy.result.example}</p>
-              <h2 className="mt-3 font-sans text-2xl font-bold leading-tight">{mode === 'host' ? skill.trim() : copy.ideas[interests[0]] ?? copy.ideas.open}</h2>
-              <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? outcome.trim() : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.indexOf(topic)]).join(', ')}.` : copy.result.openFit}</p>
+              <h2 className="mt-3 font-sans text-2xl font-bold leading-tight">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.title : copy.ideas[interests[0]] ?? copy.ideas.open}</h2>
+              <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.outcome : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.indexOf(topic)]).join(', ')}.` : copy.result.openFit}</p>
               <p className="mt-3 text-sm font-semibold">{copy.result.city}: {city.trim()}</p>
             </div>}
 
@@ -142,7 +142,7 @@ export default function OnboardingPreview() {
               {stage === 6 && <button type="button" onClick={() => go(5)} className="min-h-12 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.result.edit}</button>}
             </div>
             {stage === 0 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.learn.topics}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => toggleInterest(topic)} aria-pressed={interests.includes(topic)} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${interests.includes(topic) ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
-            {stage === 1 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.teach.examples}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => setSkill(topic)} aria-pressed={skill === topic} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${skill === topic ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
+            {stage === 1 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.teach.examples}</p><div className="flex flex-wrap gap-2">{HOST_OPTIONS.map((option, index) => <button key={option} type="button" onClick={() => setSkill(option)} aria-pressed={skill === option} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${skill === option ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.skill.options[index].title}</button>)}</div></div>}
           </div>
 
           <div>
