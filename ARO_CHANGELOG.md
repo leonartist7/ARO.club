@@ -898,3 +898,13 @@ Ownership clearance for the later PR #48 reconciliation is recorded separately b
 ## 2026-09-26 — FV-1 F7 frozen-input fingerprint correction
 
 While bringing documentation PR #47 up to current main, the three SHA-256 values in §20 were found inconsistent with their already-pinned Git blob IDs and byte lengths. The values now match the exact Git blob bytes; the blobs, source files, acceptance budgets and release gates are unchanged. This correction is subject to exact-head independent review and required CI before the documentation merge.
+
+## 2026-09-28 — RB7 cloud continuation
+
+RB7 remains IMPLEMENTED / PARTIAL VERIFICATION on PR #79. Hosted diagnostic
+`c39d0f7` confirmed footer interception of the legacy onboarding Skip action.
+A presentation-only intrinsic-height repair and short-viewport/keyboard
+Preferences improvements are prepared with local build/lint/type and 180 unit
+tests passing (3 existing skips). Hosted browser/visual verification is pending.
+See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
+RB2 independent-review, F7 or release gate changed.
