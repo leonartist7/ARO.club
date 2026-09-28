@@ -24,7 +24,7 @@ export default async function ux0() {
     await navigate(page, BASE, { waitUntil: 'networkidle' });
     await page.getByTestId('opportunity-formation').waitFor();
     const body = await page.locator('body').innerText();
-    assert(/prototype possibility · local only/i.test(body), 'missing local prototype boundary');
+    assert(/an illustrated introduction\. No booking or payment is made here\./i.test(body), 'missing preview boundary');
     assert(/what you want/i.test(body), 'missing want anchor');
     assert(/what you can bring/i.test(body), 'missing bring anchor');
     assert(/people · place · time/i.test(body), 'missing context anchor');
@@ -144,8 +144,8 @@ export default async function ux0() {
 
   await run.step('French and Spanish render translated controls and provenance', async () => {
     const localeChecks = [
-      ['fr', 'Possibilité prototype · Locale uniquement', 'Pratiquer l’espagnol à l’oral'],
-      ['es', 'Posibilidad prototipo · Solo local', 'Practicar español conversacional'],
+      ['fr', 'Une introduction illustrée. Aucune réservation ni paiement ici.', 'Pratiquer l’espagnol à l’oral'],
+      ['es', 'Una introducción ilustrada. Aquí no se reserva ni se paga.', 'Practicar español conversacional'],
     ];
 
     for (const [locale, badge, option] of localeChecks) {
