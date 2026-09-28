@@ -13,6 +13,7 @@ import AppInsightsPage from './AppInsightsPage'
 import AppLibraryPage from './AppLibraryPage'
 import AppPassportPage from './AppPassportPage'
 import AppSettingsPage from './AppSettingsPage'
+import { ThemeProvider } from '../contexts/ThemeContext'
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
 function renderReturn(route, language = 'en') {
   localStorage.setItem('conversa-language', language)
   const router = createMemoryRouter(routes, { initialEntries: [route] })
-  const view = render(<RouterProvider router={router} />)
+  const view = render(<ThemeProvider><RouterProvider router={router} /></ThemeProvider>)
   return { router, ...view }
 }
 
@@ -216,17 +217,19 @@ describe('FV-1 F6 return truthfulness', () => {
     }
   })
 
-  it('makes every Settings row visibly unavailable and non-actionable', () => {
+  it('keeps future Settings rows non-actionable while offering real device preferences', () => {
     const view = renderReturn('/app/settings')
     expect(view.container.querySelector('[data-fv1-direct-entry="settings"]')).toBeTruthy()
     const rows = [...view.container.querySelectorAll('[data-fv1-setting-row]')]
-    expect(rows).toHaveLength(6)
+    expect(rows).toHaveLength(4)
     for (const row of rows) {
       expect(row.querySelector('button')).toBeNull()
       expect(row.querySelector('a')).toBeNull()
       expect(row.textContent).toContain('Not available in this preview.')
     }
-    expect(screen.getByText(/does not create accounts, stored preferences or editable privacy controls/)).toBeTruthy()
+    expect(screen.getByRole('group', { name: 'Language' })).toBeTruthy()
+    expect(screen.getByRole('group', { name: 'Appearance' })).toBeTruthy()
+    expect(screen.getByText(/Language and appearance work on this device/)).toBeTruthy()
   })
 })
 
@@ -237,7 +240,7 @@ describe('FV-1 F6 localization and media evidence', () => {
 
     const french = renderReturn('/app/insights', 'fr')
     expect(french.container.querySelector('[lang="fr"]')).toBeTruthy()
-    expect(screen.getByText('Aperçus')).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'Aperçus' })).toBeTruthy()
     expect(screen.getByAltText(fv1ReturnCopy.fr.insights.heroAlt)).toBeTruthy()
     french.unmount()
 

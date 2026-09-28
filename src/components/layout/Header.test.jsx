@@ -8,8 +8,7 @@ vi.mock('../../lib/navigation', () => ({
   Link: ({to, children, ...props}) => <a href={to} {...props}>{children}</a>,
   useLocation: () => ({pathname: '/profile'}), useNavigate: () => state.navigate,
 }));
-vi.mock('../ui/ThemeToggle', () => ({ default: () => null }));
-vi.mock('../ui/LanguageToggle', () => ({ default: () => null }));
+vi.mock('../ui/Preferences', () => ({ default: () => null, PreferencesControls: () => null }));
 import Header from './Header';
 beforeEach(() => { globalThis.React = React; state.signOut.mockReset(); state.navigate.mockReset(); });
 afterEach(cleanup);

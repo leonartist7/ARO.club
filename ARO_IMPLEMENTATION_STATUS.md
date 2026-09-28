@@ -1,5 +1,7 @@
 # ARO — Implementation Status Ledger
 
+> **RB7 branch update (2026-09-28):** Public/onboarding theme and language controls now live in a compact Preferences entry; mobile public navigation has one scrollable menu without the duplicate bottom bar. App Settings has working local language and Light/Dark/System controls, and shared app chrome translates with them. Build, lint, type-check, focused tests and four production-browser scenarios pass. RB7 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB7/VERIFICATION.md`.
+
 > **RB6 branch update (2026-09-28):** Public `/leaderboard` and `/bookings` now have localized, truthful preview states in a scoped branch. Seed rankings and an unsupported checkout promise no longer render on those routes. Build/lint/type and six production-browser checks pass; protected future routes, independent review, merge and release remain open. See `artifacts/ARO-RB6/VERIFICATION.md`.
 
 > **RB5 branch update (2026-09-28):** Public About, How it Works, For Teachers, FAQ and Contact now use the approved story and honest preview boundaries. The footer has working destinations and no placeholder social links. Contact saves an on-device draft without sending it. Build/lint/type, focused tests and six production-browser route checks pass; independent review, merge and release remain open. See `artifacts/ARO-RB5/VERIFICATION.md`.

@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import PageTransition from './PageTransition';
 import SkipToContent from '../ui/SkipToContent';
-import BottomNav from '../ui/BottomNav';
 import CompareBar from '../CompareBar';
 import { ToastProvider } from '../../contexts/ToastContext';
 import { CompareProvider } from '../../contexts/CompareContext';
@@ -23,11 +22,10 @@ export default function Layout({ children }) {
                   they never turn into a horizontal page scroll on mobile. */}
               <div className="min-h-screen flex flex-col overflow-x-hidden bg-white dark:bg-gray-950 transition-colors">
                 <Header />
-                <main id="main-content" className="flex-1 pb-20 md:pb-0">
+                <main id="main-content" className="flex-1">
                   <PageTransition>{children}</PageTransition>
                 </main>
                 <Footer />
-                <BottomNav />
                 <CompareBar />
               </div>
             </ErrorBoundary>

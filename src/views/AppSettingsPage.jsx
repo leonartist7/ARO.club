@@ -1,22 +1,23 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
-import { ArrowLeft, Bell, CircleHelp, Globe2, LockKeyhole, Moon, ShieldCheck, UserRound } from 'lucide-react';
+import { ArrowLeft, Bell, CircleHelp, LockKeyhole, ShieldCheck, UserRound } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { AppPanel, AppSectionHeading } from '../components/app/AppPrimitives';
 import { getFv1ReturnCopy } from '../i18n/fv1/return';
+import { PreferencesControls } from '../components/ui/Preferences';
+import { preferencesCopy } from '../i18n/preferences';
 
 const icons = {
   account: UserRound,
   privacy: LockKeyhole,
   notifications: Bell,
-  language: Globe2,
-  appearance: Moon,
   support: CircleHelp,
 };
 
 export default function AppSettingsPage() {
   const language = useLanguage().language;
   const copy = getFv1ReturnCopy(language);
+  const preferences = preferencesCopy[language] ?? preferencesCopy.en;
 
   return (
     <div lang={language} className="px-4 py-6 sm:px-8 sm:py-10">
@@ -28,7 +29,9 @@ export default function AppSettingsPage() {
         <p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.settings.notice}</p>
       </aside>
 
-      <AppPanel className="mt-7 divide-y divide-ink/10 dark:divide-bone/10">
+      <AppPanel className="mt-7 p-5 sm:p-6"><h2 className="mb-5 font-display text-xl">{preferences.title}</h2><PreferencesControls /></AppPanel>
+
+      <AppPanel className="mt-6 divide-y divide-ink/10 dark:divide-bone/10">
         {copy.settings.rows.map((row) => {
           const Icon = icons[row.id];
           return (

@@ -1,5 +1,7 @@
 export const fv1ShellCopy = {
   en: {
+    home: 'Home', world: 'World', insights: 'Insights', library: 'Library',
+    worldLocation: 'Calgary · Your world', appHome: 'ARO app home', searchPreview: 'Search preview', notificationsPreview: 'Notifications preview', profile: 'profile', skip: 'Skip to main content', navigation: 'Primary app navigation',
     create: 'Create',
     notice: 'Fictional preview. No live accounts, reservations or payments.',
     unavailable: 'Not available in this preview.',
@@ -8,6 +10,8 @@ export const fv1ShellCopy = {
     backToWorld: 'Back to World',
   },
   fr: {
+    home: 'Accueil', world: 'Monde', insights: 'Aperçus', library: 'Bibliothèque',
+    worldLocation: 'Calgary · Votre monde', appHome: 'Accueil de l’application ARO', searchPreview: 'Aperçu de la recherche', notificationsPreview: 'Aperçu des notifications', profile: 'profil', skip: 'Aller au contenu principal', navigation: 'Navigation principale de l’application',
     create: 'Créer',
     notice: 'Aperçu fictif. Aucun compte, réservation ni paiement réel.',
     unavailable: 'Indisponible dans cet aperçu.',
@@ -16,6 +20,8 @@ export const fv1ShellCopy = {
     backToWorld: 'Retour au Monde',
   },
   es: {
+    home: 'Inicio', world: 'Mundo', insights: 'Ideas', library: 'Biblioteca',
+    worldLocation: 'Calgary · Tu mundo', appHome: 'Inicio de la aplicación ARO', searchPreview: 'Vista previa de búsqueda', notificationsPreview: 'Vista previa de notificaciones', profile: 'perfil', skip: 'Saltar al contenido principal', navigation: 'Navegación principal de la aplicación',
     create: 'Crear',
     notice: 'Vista previa ficticia. No hay cuentas, reservas ni pagos reales.',
     unavailable: 'No disponible en esta vista previa.',

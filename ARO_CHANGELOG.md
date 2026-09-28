@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB7 quiet navigation and preferences
+
+Moved theme and language choices into a compact Preferences control and app Settings, added explicit system theme behavior and localized app shell labels, and removed the duplicate public bottom tab bar and future-only account links. See `specs/ARO-RB7-PREFERENCES-NAVIGATION.md` and `artifacts/ARO-RB7/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB6 public future route truth
 
 Replaced the public seed leaderboard and unsupported bookings/checkout promise with localized preview states at their existing URLs. Preserved protected game, shop and character routes and all Auth, booking, reward and payment behavior. See `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` and `artifacts/ARO-RB6/VERIFICATION.md`.

@@ -1,33 +1,30 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from '../../lib/navigation';
 import {
   Menu,
   X,
   User,
-  Trophy,
   LogOut,
   Settings,
   LayoutDashboard,
   Shield,
-  Gamepad2,
   Heart,
   Ticket,
   ChevronDown,
   BookMarked,
 } from 'lucide-react';
 import Button from '../ui/Button';
-import ThemeToggle from '../ui/ThemeToggle';
-import LanguageToggle from '../ui/LanguageToggle';
+import PreferencesPopover, { PreferencesControls } from '../ui/Preferences';
 import Avatar from '../ui/Avatar';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { cn } from '../../utils/cn';
 import { AroWordmark } from '../brand/AroMark';
+import { preferencesCopy } from '../../i18n/preferences';
 
 /** Public marketing links only — app pages live in the account dropdown */
 const publicNav = [
-  { name: 'nav.explore', href: '/explore' },
   { name: 'nav.howItWorks', href: '/how-it-works' },
   { name: 'nav.forTeachers', href: '/for-teachers' },
 ];
@@ -38,10 +35,12 @@ const publicNav = [
  */
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileTriggerRef = useRef(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const preferenceLabels = preferencesCopy[language] ?? preferencesCopy.en;
   const { user, profile, signOut } = useAuth();
   const [signOutError, setSignOutError] = useState('');
 
@@ -79,9 +78,18 @@ export default function Header() {
 
   const closeMobile = () => setMobileMenuOpen(false);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') { setMobileMenuOpen(false); mobileTriggerRef.current?.focus(); }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileMenuOpen]);
+
   return (
     <header className="sticky top-0 z-50 bg-bone/95 dark:bg-gray-950/95 backdrop-blur-xl border-b border-ink/10 dark:border-bone/10">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label={preferenceLabels.mainNavigation}>
         <div className="flex items-center justify-between h-16 gap-3">
           {/* Brand */}
           <Link
@@ -113,14 +121,13 @@ export default function Header() {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-2 shrink-0">
-            <LanguageToggle />
-            <ThemeToggle />
-
             <Link to="/explore">
               <Button variant="primary" size="sm">
                 {t('nav.findExperience')}
               </Button>
             </Link>
+
+            <PreferencesPopover />
 
             {isSignedIn ? (
               <div className="relative">
@@ -177,15 +184,6 @@ export default function Header() {
                         {t('nav.bookings')}
                       </Link>
                       <Link
-                        to="/games"
-                        role="menuitem"
-                        className={menuItem(isActive('/games'))}
-                        onClick={() => setUserMenuOpen(false)}
-                      >
-                        <Gamepad2 className="w-4 h-4" aria-hidden="true" />
-                        {t('nav.play')}
-                      </Link>
-                      <Link
                         to="/favorites"
                         role="menuitem"
                         className={menuItem(isActive('/favorites'))}
@@ -211,15 +209,6 @@ export default function Header() {
                       >
                         <BookMarked className="w-4 h-4" aria-hidden="true" />
                         {t('nav.passport')}
-                      </Link>
-                      <Link
-                        to="/leaderboard"
-                        role="menuitem"
-                        className={menuItem(isActive('/leaderboard'))}
-                        onClick={() => setUserMenuOpen(false)}
-                      >
-                        <Trophy className="w-4 h-4" aria-hidden="true" />
-                        {t('nav.leaderboard')}
                       </Link>
 
                       {isTeacher && (
@@ -278,14 +267,13 @@ export default function Header() {
 
           {/* Mobile */}
           <div className="md:hidden flex items-center gap-1">
-            <LanguageToggle />
-            <ThemeToggle />
             <button
+              ref={mobileTriggerRef}
               type="button"
-              className="p-2 min-h-11 min-w-11 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900"
+              className="p-2 min-h-11 min-w-11 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileMenuOpen ? preferenceLabels.closeMenu : preferenceLabels.openMenu}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -293,7 +281,8 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800 space-y-1">
+          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-gray-200 py-4 pb-[env(safe-area-inset-bottom)] dark:border-gray-800 md:hidden">
+            <div className="space-y-1">
             {publicNav.map((item) => (
               <Link
                 key={item.name}
@@ -321,9 +310,6 @@ export default function Header() {
                 </Link>
                 <Link to="/bookings" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.bookings')}
-                </Link>
-                <Link to="/games" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
-                  {t('nav.play')}
                 </Link>
                 <Link to="/profile" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.myProfile')}
@@ -358,6 +344,11 @@ export default function Header() {
                 </Link>
               </div>
             )}
+            </div>
+            <section className="mt-5 border-t border-ink/10 px-3 pt-5 dark:border-bone/15" aria-label={preferenceLabels.title}>
+              <h2 className="mb-4 font-display text-lg">{preferenceLabels.title}</h2>
+              <PreferencesControls />
+            </section>
           </div>
         )}
       </nav>
