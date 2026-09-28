@@ -67,10 +67,10 @@ The visual package reuses existing component dependencies and responsive WebP ar
 | ID | Requirement | Evidence | Current result |
 |---|---|---|---|
 | RB5-1 | About/How/Host/FAQ present approved promise and truthful preview limits | `artifacts/ARO-RB5/browser.json`, responsive screenshots; copy inspection | Implemented, partial verification |
-| RB5-2 | FAQ links to actual host Trust guidance, privacy and contact destinations | `/faq` browser link assertions | Pending refreshed evidence |
+| RB5-2 | FAQ links to actual host Trust guidance, privacy and contact destinations | `/faq` browser link assertions | Local browser pass; hosted review pending |
 | RB5-3 | Contact validates, saves only on device, reloads draft, and never claims sent | Contact browser save/reload and non-GET audit | Implemented, partial verification |
-| RB5-4 | Storage failure preserves input and discloses failure; historical drafts are not silently deleted | Source review and focused failure test | Source behavior present; test pending |
-| RB5-5 | EN/FR/ES, light/dark, keyboard and responsive layouts | Six-route browser matrix plus focused accessibility review | Partial; full screen-reader review open |
+| RB5-4 | Storage failure preserves input and discloses failure; historical drafts are not silently deleted | Source review and malformed-draft browser check | Local browser pass; independent privacy review pending |
+| RB5-5 | EN/FR/ES, light/dark, keyboard and responsive layouts | Six-route browser matrix plus focused accessibility review | Local browser pass; full screen-reader review open |
 | RB5-6 | Build/lint/type/regression and performance budget | Hosted Quality, local checks and production metrics | New-head hosted checks pending; numeric baseline open |
 | RB5-7 | Independent privacy review accepts local retention/deletion behavior | Reviewer decision linked in PR #77 | **Blocking** |
 

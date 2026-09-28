@@ -30,6 +30,7 @@ try {
     [1440, 900, 'light', 'en', 'host'],
   ]) {
     const slug = `${width}-${theme}-${language}-${path}`;
+    if (process.argv[2] && process.argv[2] !== slug) continue;
     const copy = onboardingPreviewCopy[language];
     const overflow = {};
     const context = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' });
@@ -77,7 +78,14 @@ try {
     const validation = await page.locator('[aria-invalid="true"]').count();
     const detailsAlertCount = await page.getByRole('alert').count();
     await page.locator('#preview-name').fill('RB2AuditName');
-    await page.locator('#preview-age').fill('117');
+    await page.locator('#preview-age').fill('12');
+    await page.getByRole('button', { name: copy.next }).click();
+    const minorBlocked = await page.getByText(copy.details.adultOnly).count() === 1 && await page.locator('#preview-age').getAttribute('aria-invalid') === 'true';
+    await page.locator('#preview-age').fill('34');
+    await page.getByText(copy.details.adultOnly).waitFor({ state: 'hidden' });
+    const correctedAlertTexts = await page.getByRole('alert').allInnerTexts();
+    const correctedAgeInvalid = await page.locator('#preview-age').getAttribute('aria-invalid');
+    const correctedDetailsClear = correctedAlertTexts.every((value) => !value.trim()) && correctedAgeInvalid !== 'true';
     overflow.details = await hasOverflow(page);
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
     await buttons.filter({ hasText: /Continue|Continuer|Continuar/ }).first().click();
@@ -88,6 +96,7 @@ try {
     await screenshot(page, `${slug}-preference.png`);
     await page.getByRole('button', { name: path === 'host' ? copy.skill.action : copy.interests.action }).click();
     const preferenceAlertCount = await page.getByRole('alert').count();
+    const learnerChoiceBeforeAction = path === 'host' || await page.getByRole('button', { name: copy.topics[0] }).last().evaluate((choice) => Boolean(choice.compareDocumentPosition(document.querySelector('button[data-preview-submit]')) & Node.DOCUMENT_POSITION_FOLLOWING));
     if (path === 'host') {
       await page.getByRole('button', { name: /Conversation practice|Pratique de conversation|Práctica de conversación/ }).last().click();
     } else {
@@ -141,11 +150,13 @@ try {
     await page.getByRole('link', { name: path === 'host' || path === 'both' ? copy.result.hostNext : copy.result.explore }).click();
     await page.waitForURL((url) => url.pathname === destination);
     const navigationWorks = new URL(page.url()).pathname === destination;
-    results.push({ slug, status: response?.status(), validation, detailsAlertCount, cityAlertCount, preferenceAlertCount, overflow, pageErrors, requests, storageBefore, storageAfter, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
+    results.push({ slug, status: response?.status(), validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, learnerChoiceBeforeAction, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
 } finally {
   await browser.close();
 }
-await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
-if (results.some(result => result.status !== 200 || result.validation < 2 || result.detailsAlertCount < 2 || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || !result.navigationWorks || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
+if (results.length === 0) throw new Error('No RB2 verification case matched the requested slug');
+if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
+else console.log(JSON.stringify(results[0], null, 2));
+if (results.some(result => result.status !== 200 || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || !result.learnerChoiceBeforeAction || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || !result.navigationWorks || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
