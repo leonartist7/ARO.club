@@ -54,7 +54,7 @@
     "inputLeakedToStorage": false,
     "resetOnRefresh": true,
     "bothCanSwitchToHost": null,
-    "result": "SPA\n\nVista interactiva · Sin cuenta, reservas ni pagos\n\nUN PRIMER PASO ÚTIL\n\nTu borrador de clase\n\nBorrador editable · Nada se ha guardado ni enviado a revisión.\n\nGuitar\n\nPlay a simple song\n\nZona: Calgary\n\nVolver\nEditar mis opciones\n\nEsta vista se reinicia al actualizar. Tus respuestas permanecen solo en esta pestaña.\n\nConocer los requisitos para enseñar\nRepetir la introducción"
+    "result": "SPA\n\nVista interactiva · Sin cuenta, reservas ni pagos\n\nUN PRIMER PASO ÚTIL\n\nTu borrador de clase\n\nBorrador editable · Nada se ha guardado ni enviado a revisión.\n\nPráctica de conversación\n\nAyudar a principiantes a practicar una conversación breve en un lugar público.\n\nZona: Calgary\n\nVolver\nEditar mis opciones\n\nEsta vista se reinicia al actualizar. Tus respuestas permanecen solo en esta pestaña.\n\nConocer los requisitos para enseñar\nRepetir la introducción"
   },
   {
     "slug": "430-light-en-both",
@@ -111,6 +111,6 @@
     "inputLeakedToStorage": false,
     "resetOnRefresh": true,
     "bothCanSwitchToHost": null,
-    "result": "ENG\n\nInteractive preview · No account, bookings or payments\n\nYOUR FIRST USEFUL STEP\n\nYour class draft\n\nEditable preview draft · Nothing has been saved or submitted for review.\n\nGuitar\n\nPlay a simple song\n\nArea: Calgary\n\nBack\nEdit my choices\n\nThis preview resets when you refresh. Your answers stay in this tab only.\n\nExplore host requirements\nReplay introduction"
+    "result": "ENG\n\nInteractive preview · No account, bookings or payments\n\nYOUR FIRST USEFUL STEP\n\nYour class draft\n\nEditable preview draft · Nothing has been saved or submitted for review.\n\nConversation practice\n\nHelp beginners practise a short conversation in a public place.\n\nArea: Calgary\n\nBack\nEdit my choices\n\nThis preview resets when you refresh. Your answers stay in this tab only.\n\nExplore host requirements\nReplay introduction"
   }
 ]
