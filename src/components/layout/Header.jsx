@@ -101,7 +101,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop: public links only */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          <div className="hidden xl:flex items-center gap-1 flex-1 justify-center">
             {publicNav.map((item) => (
               <Link
                 key={item.name}
@@ -120,7 +120,7 @@ export default function Header() {
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-2 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 shrink-0">
             <Link to="/explore">
               <Button variant="primary" size="sm">
                 {t('nav.findExperience')}
@@ -266,7 +266,7 @@ export default function Header() {
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-1">
+          <div className="xl:hidden flex items-center gap-1">
             <button
               ref={mobileTriggerRef}
               type="button"
@@ -281,7 +281,7 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-gray-200 py-4 pb-[env(safe-area-inset-bottom)] dark:border-gray-800 md:hidden">
+          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-gray-200 py-4 pb-[env(safe-area-inset-bottom)] dark:border-gray-800 xl:hidden">
             <div className="space-y-1">
             {publicNav.map((item) => (
               <Link

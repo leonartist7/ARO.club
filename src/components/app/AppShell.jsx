@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Link, useLocation } from '../../lib/navigation';
-import { BarChart3, Bell, BookOpen, Compass, Globe2, Home, Plus, Search } from 'lucide-react';
+import { ArrowLeft, BarChart3, Bell, BookOpen, Compass, Globe2, Home, Plus, Search } from 'lucide-react';
 import { AroWordmark } from '../brand/AroMark';
 import { AppAvatar } from './AppPrimitives';
 import { appNavItems, aroUser } from '../../data/aroApp';
@@ -73,9 +73,9 @@ export default function AppShell({ children }) {
         <div className="mx-auto flex h-[76px] max-w-[620px] items-stretch gap-1 sm:h-20">
           <AppNavItem item={appNavItems[0]} selected={selected(appNavItems[0])} label={copy.home} />
           <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} label={copy.world} />
-          <Link to="/app/create" aria-current={isCreate ? 'page' : undefined} aria-label={copy.create} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-xs font-bold sm:text-sm', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/70 dark:text-bone/70')}>
-            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-ink shadow-[0_7px_24px_rgba(244,208,0,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-500 dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
-            <span>{copy.create}</span>
+          <Link to={isCreate ? '/app/world' : '/app/create'} aria-label={isCreate ? copy.backToWorld : copy.create} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-xs font-bold sm:text-sm', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/70 dark:text-bone/70')}>
+            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-brand-orange text-ink shadow-[0_7px_24px_rgba(240,90,40,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-300 dark:bg-bone dark:text-ink')}>{isCreate ? <ArrowLeft className="h-6 w-6" aria-hidden="true" /> : <Plus className="h-6 w-6" aria-hidden="true" />}</span>
+            <span>{isCreate ? copy.backToWorld : copy.create}</span>
           </Link>
           <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} label={copy.insights} />
           <AppNavItem item={appNavItems[3]} selected={selected(appNavItems[3])} label={copy.library} />

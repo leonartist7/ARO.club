@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                 transition={{ delay: 0.1 * index, type: 'spring' }}
                 className="flex items-center gap-3 bg-gray-50 rounded-lg p-4 dark:bg-gray-800"
               >
-                <div className="w-8 h-8 bg-primary-500 text-ink rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-8 h-8 bg-brand-orange text-ink rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   {benefit.icon}
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{benefit.text}</p>
