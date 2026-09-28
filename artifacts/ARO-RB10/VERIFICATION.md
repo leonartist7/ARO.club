@@ -89,3 +89,11 @@ RB7–RB10 incorporate exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`. She
 RB7–RB10 now include exact RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`. The test-only selector repair matches the already-preserved cloud assertion; no runtime/test behavior change. Previous local 187-test/build/lint/type evidence remains applicable, while exact-head hosted checks remain pending. PR #84 owner plan is updated to this base; its branch remains untouched. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates stay OPEN. See the rebrand implementation ledger for exact heads and historical failures.
 
 Focused recheck on the final 327c681 reconciliation: `npx vitest run src/views/AppReturn.test.jsx -t 'keeps EN, FR and ES return-copy'` passes the selected localization case; other cases were intentionally not selected. Full-suite evidence remains 187 passed / 3 existing browser-gated skips from the source-identical runtime above.
+
+
+### 2026-09-28 — RB6 9eb4e15 preview repairs propagated
+
+RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with conflict-free normal ancestry. Adult language-practice art, early nonpersistence disclosure, preference CTA flow and the required-CI six-path RB2 verifier propagate without losing cloud work. Pinned WebP reproduction passes. Owner's Windows full E2E OOM is recorded as a failed run; cloud fresh browser acceptance remains unavailable. Prior RB10 platform rerun remained red at the document retry chooser. PR #84 is now 91a3ceb on old RB10 and stays with its owner for another reconciliation. All privacy/Trust/contact-retention, independent-review and release gates remain OPEN. Exact checks and sources: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+
+Final combined cloud verification for 9eb4e15: production webpack build, lint, type-check and 187 unit tests pass (21 files; 3 existing browser-gated skips). Pinned WebP reproduction and changed-script syntax checks pass. Latest incoming RB6 Quality 36462888502 and isolated 36462888187 both pass. New cloud RB7 Quality 36463151418 / isolated 36463151430, RB8 36463191470 / 36463191557, and RB9 36463219500 / 36463219308 remain in progress at this checkpoint; new RB10 checks are required after publication. No new visual/browser acceptance or gate closure is implied.
