@@ -20,4 +20,6 @@ Second review repair on 2026-09-28: legacy `text-primary-500` foregrounds receiv
 
 PR #83 reconciliation: the local Manrope files and `@font-face` declarations were merged from current main without a source conflict. Existing screenshots precede this merge; hosted checks and a focused font/network visual recheck are required for the resulting head.
 
+Third review repair: the brand manifest now records Manrope v20's six local WOFF2 subsets, source hashes and included OFL. The dark compatibility layer also lifts `dark:text-primary-400` and group-hover primary foregrounds to the readable primary-300 shade. Linked wordmarks in the public header/footer and app shell now have 44px hit areas. The app shell translates its four navigation labels, status, search/notification descriptions, skip link and accessible navigation name through the existing EN/FR/ES shell copy. On the combined RB6 production tree, lint and webpack build pass; the 1440px French dark app shell was visually inspected with the local font and translated bottom navigation. Fresh hosted checks and full-route assistive-technology review remain separate.
+
 Current package state: **IMPLEMENTED / PARTIAL VERIFICATION**, not VERIFIED or SHIPPED. Review/merge and production release remain separate. RB2 may build a stacked preview from this source without claiming this package's release gate passed.
