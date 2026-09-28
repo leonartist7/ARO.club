@@ -14,3 +14,7 @@ Status: **IMPLEMENTED / PARTIAL VERIFICATION** on `codex/rb9-share-metadata-2026
 ## Limits
 
 The local production build and metadata response are verified. Social network scraper cache behavior, independent brand/legal review, merge and release remain open. This graphic is not a photograph or proof of actual opportunity inventory.
+
+## 2026-09-28 cloud continuation
+
+Inherited RB7's layout/preference repair and retained evidence through normal RB8 merge ancestry. No RB9 share image, geometry, metadata or crawler behavior changed. The original hosted onboarding failure is now diagnosed and repaired; RB7 source bbd1b2b passes Quality run 36407355886 (static, 32 browser component checks, 16 preferences scenarios and 25 E2E checks) and platform run 36407355888. See [RB7 evidence](../ARO-RB7/VERIFICATION.md#retained-hosted-evidence-cloud-continuation). Descendant HEAD checks and social crawler acceptance remain required; independent review and release gates are unchanged.

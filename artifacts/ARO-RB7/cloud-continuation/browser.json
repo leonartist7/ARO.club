@@ -1,0 +1,160 @@
+[
+  {
+    "scenario": "mobile public",
+    "status": 200,
+    "headerHasAlwaysVisibleToggles": false,
+    "escapeRestoredFocus": true,
+    "storedTheme": "dark",
+    "storedLanguage": "fr",
+    "hasBottomTabBar": false,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "desktop system preference",
+    "status": 200,
+    "opensAtChoice": true,
+    "escapeRestoredFocus": true,
+    "storedTheme": "system",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "onboarding",
+    "status": 200,
+    "storedLanguage": "es",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "app settings",
+    "status": 200,
+    "storedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 320/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 320/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 360/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 360/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 390/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 390/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 430/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 430/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 768/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 768/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 1440/1",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 1440/2",
+    "status": 200,
+    "panelFits": true,
+    "systemKeyboardReachable": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  }
+]
