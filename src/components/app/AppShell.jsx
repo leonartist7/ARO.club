@@ -11,7 +11,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 
 const iconMap = { home: Home, world: Globe2, insights: BarChart3, library: BookOpen };
 
-function AppNavItem({ item, selected }) {
+function AppNavItem({ item, selected, label }) {
   const Icon = iconMap[item.icon] ?? Compass;
 
   return (
@@ -26,7 +26,7 @@ function AppNavItem({ item, selected }) {
       <span className={cn('flex h-8 w-12 max-w-full items-center justify-center rounded-full transition-colors', selected && 'bg-primary-50 dark:bg-primary-900/25')}>
         <Icon className={cn('h-5 w-5', selected && 'stroke-[2.5]')} aria-hidden="true" />
       </span>
-      <span>{item.shortLabel}</span>
+      <span>{label}</span>
     </Link>
   );
 }
@@ -46,39 +46,39 @@ export default function AppShell({ children }) {
     <div className="min-h-screen bg-bone text-ink dark:bg-gray-950 dark:text-bone">
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-bone/95 backdrop-blur-xl dark:border-bone/10 dark:bg-gray-950/95">
         <div className="mx-auto flex min-h-16 max-w-[1180px] flex-wrap items-center justify-between gap-y-2 px-4 py-2 sm:min-h-20 sm:px-8">
-          <Link to="/app" className="flex items-center gap-2.5" aria-label="ARO app home">
+          <Link to="/app" className="flex min-h-11 items-center gap-2.5" aria-label={copy.appHome}>
             <AroWordmark label="" />
           </Link>
 
           <div className="hidden items-center gap-2 text-xs font-semibold text-ink/50 dark:text-bone/50 md:flex">
             <span className="h-2 w-2 rounded-full bg-moss" aria-hidden="true" />
-            Calgary · Your world
+            Calgary · {copy.yourWorld}
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
-            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`Search preview. ${copy.unavailable}`}><Search className="h-5 w-5" aria-hidden="true" /></span>
-            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`Notifications preview. ${copy.unavailable}`}><Bell className="h-5 w-5" aria-hidden="true" /></span>
-            <Link to="/app/profile" aria-label={`${aroUser.name} profile`} className="ml-1"><AppAvatar initials={aroUser.initials} size="sm" /></Link>
+            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`${copy.searchPreview} ${copy.unavailable}`}><Search className="h-5 w-5" aria-hidden="true" /></span>
+            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`${copy.notificationsPreview} ${copy.unavailable}`}><Bell className="h-5 w-5" aria-hidden="true" /></span>
+            <Link to="/app/profile" aria-label={`${aroUser.name} ${copy.profile}`} className="ml-1"><AppAvatar initials={aroUser.initials} size="sm" /></Link>
           </div>
         </div>
       </header>
 
-      <a href="#app-main" className="sr-only z-[60] rounded bg-bone px-4 py-3 font-bold text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 dark:bg-gray-900 dark:text-bone">Skip to main content</a>
+      <a href="#app-main" className="sr-only z-[60] rounded bg-bone px-4 py-3 font-bold text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 dark:bg-gray-900 dark:text-bone">{copy.skipMain}</a>
       <p className="border-b border-ink/10 bg-secondary-50 px-4 py-2 text-center text-xs font-semibold text-ink/70 dark:border-bone/10 dark:bg-secondary-900/15 dark:text-bone/75">{copy.notice}</p>
       <main id="app-main" tabIndex="-1" className="mx-auto min-h-[calc(100vh-5rem)] max-w-[1180px] pb-28 [overflow-wrap:anywhere]">
         {children}
       </main>
 
-      <nav aria-label="Primary app navigation" className="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-bone/95 px-3 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl dark:border-bone/10 dark:bg-gray-950/95">
+      <nav aria-label={copy.primaryNavigation} className="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-bone/95 px-3 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl dark:border-bone/10 dark:bg-gray-950/95">
         <div className="mx-auto flex h-[76px] max-w-[620px] items-stretch gap-1 sm:h-20">
-          <AppNavItem item={appNavItems[0]} selected={selected(appNavItems[0])} />
-          <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} />
+          <AppNavItem item={appNavItems[0]} selected={selected(appNavItems[0])} label={copy.nav.home} />
+          <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} label={copy.nav.world} />
           <Link to={isCreate ? '/app/world' : '/app/create'} aria-label={isCreate ? copy.backToWorld : copy.create} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-xs font-bold sm:text-sm', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/70 dark:text-bone/70')}>
             <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-brand-orange text-ink shadow-[0_7px_24px_rgba(240,90,40,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-300 dark:bg-bone dark:text-ink')}>{isCreate ? <ArrowLeft className="h-6 w-6" aria-hidden="true" /> : <Plus className="h-6 w-6" aria-hidden="true" />}</span>
             <span>{isCreate ? copy.backToWorld : copy.create}</span>
           </Link>
-          <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} />
-          <AppNavItem item={appNavItems[3]} selected={selected(appNavItems[3])} />
+          <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} label={copy.nav.insights} />
+          <AppNavItem item={appNavItems[3]} selected={selected(appNavItems[3])} label={copy.nav.library} />
         </div>
       </nav>
     </div>
