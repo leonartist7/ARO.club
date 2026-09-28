@@ -47,3 +47,7 @@ Merged RB7 `b4d8d9e01cbc96eba0c3ad510738c143022f4ab2` without conflict, preservi
 ### RB6 13e2571 reconciliation — 2026-09-28
 
 Merged RB7 `7c82ccf27e3836cead0c44f6f7c9367b59ef0551` without conflict, preserving RB8 supporting states and cloud work. Exact lower base is `13e257107b5726e911210a1eb8048ce3d42143ac`; localized shell/44px targets, dark-safe text, local font provenance and RB2 short-screen/host-boundary repairs are inherited. New-head checks remain required; prior source 860c33a passed Quality 36454753803 and isolated 36454753636. Final local verification is recorded in the RB10 ledger. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED draft-retention/privacy, independent review and release gates stay open. No protected merge or F7 evidence change.
+
+### Superseding RB6 327c681 selector repair — 2026-09-28
+
+Verified exact remote RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`. Its only diff from 13e2571 is the AppReturn heading selector and final newline, already present in cloud. Merged updated parent `cc0a5ebda2657cc7ddbee28e031ddd8d3da0e4a6` without conflict; no additional runtime or test behavior change. Prior combined-source 187-test/build/lint/type evidence remains applicable; fresh hosted checks on this new ancestry remain required. Existing cloud work, PR ownership and all RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent-review and release gates are preserved. The separate platform chooser failure is not declared fixed.
