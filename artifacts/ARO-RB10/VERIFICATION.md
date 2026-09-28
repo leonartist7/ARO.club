@@ -16,4 +16,4 @@ The [production-browser matrix](browser.json) covers six 320–1440px cases acro
 
 ## Limits
 
-No backend account creation, sign-in or password email was exercised by this visual package. Live Auth, hosted signup/recovery, callback review, privacy/security review and release remain governed separately. The inherited hosted platform lane continues to fail at the teacher-onboarding language-skip step and is not waived by this package.
+No backend account creation, sign-in or password email was exercised by this visual package. Live Auth, hosted signup/recovery, callback review, privacy/security review and release remain governed separately. GitHub static, browser-smoke and Vercel preview checks pass for PR #82; the hosted platform lane fails at the inherited `BROWSER_ONBOARDING_LANGUAGE_SKIP_360_LIGHT` step and is not waived by this package.
