@@ -73,3 +73,26 @@ jobs:
           name: rb11-english-light
           path: artifacts/ARO-RB11/hosted
           retention-days: 7
+
+  public-website-redesign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_ARO_RELEASE_SCOPE: english-light
+      - run: node scripts/verify-rb12.mjs
+      - name: Retain public website screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb12-public-website
+          path: artifacts/ARO-RB12/hosted
+          retention-days: 7
