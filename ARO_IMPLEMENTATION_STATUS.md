@@ -1,6 +1,6 @@
 # ARO — Implementation Status Ledger
 
-> **2026-09-27 RB0:** Orange-led brand/onboarding direction is founder-approved and adoption documentation is in progress. RB1/RB2 are SPEC-READY for separate PRs; no RB runtime, verification or release is claimed. Live age/profile/Auth integration is SPEC-REQUIRED and privacy/eligibility gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.
+> **2026-09-28 RB0:** Orange-led direction and route/asset baseline are IMPLEMENTED / PARTIAL VERIFICATION on the RB0 branch. RB1 is SPEC-READY. RB2 preview exists on its separate branch but cannot merge before independent privacy/security review and category-limit correction. Live age/profile/Auth integration remains SPEC-REQUIRED and separately gated. See ADR-031 and `docs/rebrand/BASELINE-20260927.md`.
 
 > **2026-09-27 R2:** The rebrand is **IMPLEMENTED / MERGED** to GitHub `main` as `dc73daa` via PR #69. Tests, focused browser checks, and the founder-delegated visual review passed. This does not claim production release or full-route accessibility acceptance. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 

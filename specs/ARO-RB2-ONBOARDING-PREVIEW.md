@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- Status: SPEC-READY for **nonpersistent preview only**; version 1.0.0; founder-approved rebranding request, 2026-09-27.
+- Status: IMPLEMENTED ON BRANCH / MERGE GATED for **nonpersistent preview only**; version 1.1.0; founder-approved rebranding request, 2026-09-27. Independent privacy/security review has not been recorded.
 - Depends on RB1. Dedicated branch/PR, based on reviewed RB1 head.
 - Governing: `AGENTS.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md`, `ARO_TRUST_SAFETY.md`, existing Auth/onboarding contracts.
 - Live age/profile persistence, role migration, analytics and host publication require a separate specialist-reviewed runtime spec.
@@ -13,7 +13,7 @@ Three brief, replayable and skippable scenes show learning, possible paid teachi
 
 ## 2. Privacy, Trust and behavior boundary
 
-The preview uses in-memory React state only. No name, age, city, interest or skill is sent to Supabase, analytics, localStorage or URL. Age is required to complete the sample flow but does not assert eligibility, verification or a legal threshold. It explains that live eligibility rules are pending a separate specification. No income, demand, review, booking, progress or verified status is fabricated. Existing authenticated student/teacher onboarding behavior is retained until the live migration spec is approved; preview has its own route and clear entry from the public experience. Existing deep links are not redirected into a new unapproved identity write.
+The preview uses in-memory React state only. No name, age, city, interest or skill is sent to Supabase, analytics, localStorage or URL. Age is required to complete the sample flow but does not assert eligibility, verification or a legal threshold. It explains that live eligibility rules are pending a separate specification. **Do not merge RB2 until independent privacy/security review approves name/age collection, consent notice, minor/vulnerable-user handling and the nonpersistence evidence.** The teaching preview is limited to adult public-place language/community fixtures; a free-form skill must not be echoed as an apparently eligible class draft. Closed and moderate-risk categories in `ARO_TRUST_SAFETY.md` remain unavailable, including childcare, fitness and food preparation. No income, demand, review, booking, progress or verified status is fabricated. Existing authenticated student/teacher onboarding behavior is retained until the live migration spec is approved; preview has its own route and clear entry from the public experience. Existing deep links are not redirected into a new unapproved identity write.
 
 ## 3. UI contract
 
@@ -31,4 +31,4 @@ Exercise all three branches, skip/back/edit, invalid name/age, city entry, no-su
 | RB2-4 | Responsive, themed and localized results are usable | screenshot/semantic matrix |
 | RB2-5 | Existing live Auth/Trust/onboarding routes stay intact | route regression checks |
 
-Do not mark live onboarding implemented from this prototype. Independent privacy/security review is required for the later runtime package.
+Do not mark live onboarding implemented from this prototype. Independent privacy/security review is required before RB2 merge and again for any later persistent runtime package.

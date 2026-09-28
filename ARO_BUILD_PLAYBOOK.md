@@ -30,6 +30,11 @@ Terminology is locked by `DECISIONS.md`: **Opportunity** is the universal arrang
 3. R1 — repository/provider separation and platform identity.
 4. M0 → I0 → Q0 — master delivery governance, isolated infrastructure and deterministic reliability foundation.
 5. UX0 — synthetic Opportunity Formation frontend prototype; does not unlock P1.
+5a. RB0 → RB1 → RB2 — founder-approved rebrand documentation, shared visual
+foundation, then nonpersistent onboarding preview. RB2 merge requires
+independent privacy/security review of age/minor handling and Trust category
+limits. All three require scoped PRs and protected CI; no step opens live
+identity writes, P1, payments, host publishing or production release.
 6. P1 — Capability + Goal Foundation.
 7. N1 → X1 — governed platform/Next.js decision and ARO experience foundation.
 8. P2 — Explicit Intent + Demand Signals.

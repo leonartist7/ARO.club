@@ -135,6 +135,15 @@ VERIFICATION** in the current working program and are governed by their
 respective `specs/ARO-UX*.md` files plus
 `ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md`. They may improve visual evidence
 but never unlock P1, alter the P1 → P5 graph, or claim runtime behavior.
+RB0 → RB1 → RB2 is a separate founder-approved rebrand presentation path
+(`specs/ARO-RB0-REBRAND-ADOPTION.md`). RB0 records direction and inventory;
+RB1 applies shared visual tokens/assets without account, schema or Trust
+changes. RB2 is a nonpersistent public onboarding preview and cannot merge
+until independent privacy/security review accepts name/age and minor-safety
+handling and Trust category limits. Each package uses a scoped PR and the
+required `static`, `browser-smoke` and `platform` checks. This path does not
+unlock live onboarding, P1, payments, host publishing or release.
+
 `ARO_AUTONOMOUS_WORKBOARD.md` is the dispatch map for safely reviewing and
 continuing this work across separate tasks.
 

@@ -1,6 +1,6 @@
 # ARO — Current State
 
-> **2026-09-27 orange rebrand adoption:** The founder approved the orange-led identity and brief onboarding direction, superseding R2 presentation under ADR-031. RB0 documentation is in progress; RB1/RB2 specs are ready for scoped branches. No RB runtime or release is yet verified. Live age collection and mode/permission changes remain separately gated; F7 ownership and its frozen acceptance are unchanged.
+> **2026-09-28 orange rebrand adoption:** The founder approved the orange-led identity and brief onboarding direction, superseding R2 presentation under ADR-031. RB0 documentation and RB1 visual foundation are implemented on scoped branches; RB2 preview is implemented but merge gated by independent privacy/security review and Trust category limits. No RB package is released. Live age collection and mode/permission changes remain separately gated; F7 ownership and its frozen acceptance are unchanged.
 
 > **2026-09-27 R2:** The founder-requested yellow/orange and Noise Order rebrand is merged to GitHub `main` as `dc73daa` via PR #69. Build, lint, unit tests, focused phone/desktop browser checks, and the founder-delegated visual check passed. Full-route accessibility and production release are not claimed. See [R2 spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
