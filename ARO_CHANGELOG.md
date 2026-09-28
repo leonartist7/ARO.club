@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — English/light initial release priority
+
+The founder set English and light mode as the immediate polish and release scope, with dark mode and French/Spanish completeness following in later packages. Existing localization/theme infrastructure stays intact. This does not change Auth, privacy, Trust, payment, independent-review, platform or store gates. The original rebranding plan is preserved as a historical source at `docs/rebrand/reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md`.
+
+---
+
 ## 2026-09-28 — RB10 signed-out account entry presentation
 
 Localized and restyled Login, Signup and Forgot Password for the approved ARO identity while preserving disabled preview controls, Auth calls, return paths and legal links. See `specs/ARO-RB10-ACCOUNT-ENTRY-PRESENTATION.md` and `artifacts/ARO-RB10/VERIFICATION.md`.
