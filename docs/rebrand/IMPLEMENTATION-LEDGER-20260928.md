@@ -1,6 +1,6 @@
 # Orange rebrand implementation ledger — 28 September 2026
 
-> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main `721b2b7` / PR #83 local Manrope. Final local build/lint/types and 185 tests pass (3 existing skips). Fresh hosted checks remain required; prior-head results below are historical. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent review and release gates remain open.
+> **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main `721b2b7` / PR #83 local Manrope. Final local build/lint/types and 185 tests pass (3 existing skips). Fresh hosted checks remain required; current RB7 platform fails the teacher-document retry chooser (details below). Prior-head results are historical. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent review and release gates remain open.
 
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
@@ -144,3 +144,12 @@ Historical intermediate checkpoint, before 2ea1fed: RB5 ad4a6d1 and RB6 52295e9 
 PR #84 remains at `7e3f9568202b37b7aeb420f9b642efb80121b1a2`, with mergeability false when checked. Its source-plan file, historical banner, English/light priority and RB0 source link are now on GitHub; earlier unavailable-private-attachment statements describe the original task, not current availability. The source-plan branch stays with its owner and must be reconciled on the latest RB10; old green checks do not prove that integration. English/light priority does not waive working dark/FR/ES behavior or any specialist boundary. Its automated review conversations remain unresolved.
 
 RB2 privacy/eligibility, RB4 Trust, RB5 **SPEC-REQUIRED** contact-draft retention/deletion privacy, independent reviews and release gates are all OPEN. RB2 remains a nonpersistent preview; Auth/teacher verification/payment/Trust/F7 boundaries remain. No self-resolved conversations, protected merge, release or VERIFIED/SHIPPED promotion. Next owner action: reconcile PR #84 with the published RB10 head and obtain the outstanding independent reviews; hosted checks must finish on every final merge head.
+
+
+### Post-publication hosted checkpoint
+
+Published RB10 integration source is `2a50454a70480142fff90eab13ab7e00b84fe5f5`; its parents are 601545c and af6796b. Remote RB7–RB10 heads match the published stack and GitHub reports conflict-free mergeability, which is not review/check approval. Local working tree was clean and ancestry checks confirm both RB6 2ea1fed and the original 3111826 baseline.
+
+RB6 2ea1fed now passes both Quality 36450742796 and Isolated database 36450743091. RB7 2e3b038 passes Quality 36450917791 but fails isolated 36450917657, job 109025144664, at `BROWSER_DOCUMENT_RETRY_CHOOSER_360_DARK`; cleanup passed. The stage follows keyboard focus/style checks and the initial upload-error flow; the log does not establish the filechooser failure's root cause. No upload/teacher/Trust behavior or assertions were changed, and no retry was used to relabel it. The previously observed `/choose-role` Quality failure did not recur on this RB7 run. RB8 27ac05e isolated 36450984422 passes with Quality still running. RB9 af6796b and RB10 2a50454 workflows remain in progress. This documentation checkpoint requires its own new-head checks after publication.
+
+PR #84 remains unmergeable at 7e3f956 and unchanged. Independent privacy/eligibility, Trust, draft-retention/privacy, review and release gates remain OPEN. Fresh visual verification remains blocked by the Chromium download error described above.
