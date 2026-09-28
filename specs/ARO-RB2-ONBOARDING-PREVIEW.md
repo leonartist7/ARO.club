@@ -20,6 +20,8 @@ The preview uses in-memory React state only. No name, age, city, interest or ski
 
 Use localized EN/FR/ES copy through the existing language context, ThemeContext and shared primitives. The introduction never auto-advances or requires swipe; art carries no UI text. Scene choice, skip, back, validation, manual city entry, empty result, edit draft, completion and retry have meaningful text and keyboard actions. Use an explicit example disclosure throughout. Keep the main CTA visible on short phones without obscuring fields when the software keyboard opens; respect reduced motion and safe areas.
 
+The setup action remains reachable in a safe-area-aware sticky row on short screens; focused form controls must remain scrollable above it. The host draft ends with a local publishing-boundary explanation and Edit/Replay actions. It must not link to a legacy host-marketing page until that destination no longer shows unsupported earnings or closed-category examples.
+
 ## 4. Verification and recovery
 
 Exercise all three branches, skip/back/edit, invalid name/age, city entry, no-supply example, refresh reset and navigation. Assert zero persistence/network writes for preview input. Check 320/360/390/430/768/1440 widths, short height, themes, locales, keyboard, semantics and 200% text. Run build/lint/type checks and relevant tests; compare screenshot and asset transfer against baseline. Revert only RB2 preview code/assets if needed; no data rollback exists.

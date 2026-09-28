@@ -59,8 +59,10 @@
 @layer utilities {
   /* Keep legacy primary text readable in dark UI while action backgrounds retain primary-500. */
   .dark :where(.text-primary-500),
-  .dark :where(.hover\:text-primary-500:hover) {
-    @apply text-primary-300;
+  .dark :where(.hover\:text-primary-500:hover),
+  .dark .dark\:text-primary-400,
+  .dark .group:hover .group-hover\:text-primary-500 {
+    color: #FA9471 !important;
   }
 }
 
