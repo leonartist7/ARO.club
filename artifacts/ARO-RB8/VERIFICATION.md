@@ -35,3 +35,7 @@ Protected-route repair handoff: inherited RB7 573afa4 on exact RB6 1c4c2a1. Inco
 ### RB6 2ea1fed / local Manrope stack reconciliation — 2026-09-28
 
 Merged updated RB7 `2e3b03894cd15f586c33d172e396e9958af84a97` into prior RB8 `29e162df0c76f793f53faae6558e139bf1351b15` without conflicts, retaining RB8 state presentation and prior cloud fixes/evidence. Exact RB6 base is `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main 721b2b7 / PR #83 local Manrope and lower-stack review repairs. No F7 evidence changed. Hosted checks on this new head are required; preceding green runs and screenshots are historical. Final integrated verification is recorded in the RB10 implementation ledger. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED draft retention/privacy, independent review and release gates remain open. No protected merge or release claim.
+
+### Final RB6 8a8e5e2 reconciliation — 2026-09-28
+
+Merged RB7 `0016b1f649435a46a4919ef1f3ed6c93c482ef58` without conflict, incorporating exact RB6 `8a8e5e2a9dbc325675f91f2466545f9955df4c2e`. Incoming differences from 2ea1fed are confined to two RB6 verifier waits and owner evidence/screenshots. Runtime and cloud work are unchanged; previous combined-source local tests remain applicable, while new-head hosted checks and all privacy/Trust/independent-review/release gates remain open. No F7 evidence changes.

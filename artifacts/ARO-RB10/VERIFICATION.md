@@ -64,3 +64,8 @@ RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, inc
 This merge preserves prior RB10 `601545c10a6aed2e938e0defe94d9aee5e8eb628` and incoming RB9 `af6796b3326f95892d2b32165cb1e17b528dffb3`. Font HTTP evidence: [reconciliation-2ea1fed/font-http.json](reconciliation-2ea1fed/font-http.json). No prior screenshots were regenerated or overwritten.
 
 Post-publication source `2a50454a70480142fff90eab13ab7e00b84fe5f5` is remotely confirmed. Current RB7 Quality passes but isolated run 36450917657 fails `BROWSER_DOCUMENT_RETRY_CHOOSER_360_DARK`; cleanup passes. RB6 both workflows and RB8 isolated pass; remaining hosted checks are pending. See the implementation ledger checkpoint for exact sources and limitations. This is not release approval.
+
+
+### 2026-09-28 — Final RB6 8a8e5e2 handoff
+
+RB7–RB10 now incorporate exact RB6 `8a8e5e2a9dbc325675f91f2466545f9955df4c2e`, superseding 2ea1fed. Only RB6 verifier waits and owner screenshots/evidence changed; tested runtime, local Manrope and cloud work are preserved. Fresh hosted checks are running, not accepted. Prior teacher-document chooser failures are not declared fixed. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent-review and release gates remain open; PR #84 needs owner reconciliation on latest RB10. Details and exact source/check provenance: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
