@@ -20,7 +20,7 @@ async function visit(path, width, height, initial = {}) {
   page.on('pageerror', error => errors.push(error.message));
   page.on('request', request => { if (!['GET', 'HEAD'].includes(request.method())) writes.push(`${request.method()} ${request.url()}`); });
   const response = await page.goto(`${base}${path}`, { waitUntil: 'domcontentloaded' });
-  await page.locator('h1').first().waitFor({ state: 'visible' });
+  await page.getByRole('heading').first().waitFor({ state: 'visible' });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(650);
   return { context, page, errors, writes, status: response?.status() };
@@ -107,8 +107,8 @@ try {
     }
   }
 } finally {
+  await writeFile(join(out, 'browser.json'), JSON.stringify(results, null, 2));
   await browser?.close();
   if (server.exitCode === null) server.kill('SIGTERM');
 }
-await writeFile(join(out, 'browser.json'), JSON.stringify(results, null, 2));
 if (results.some(result => result.status !== 200 || result.overflow || result.errors.length || result.writes.length || result.headerHasAlwaysVisibleToggles || result.hasBottomTabBar || result.escapeRestoredFocus === false || result.opensAtChoice === false || result.panelFits === false || result.systemKeyboardReachable === false || (result.scenario === 'mobile public' && (result.storedTheme !== 'dark' || result.storedLanguage !== 'fr')) || (result.scenario === 'desktop system preference' && result.storedTheme !== 'system') || (result.scenario === 'onboarding' && result.storedLanguage !== 'es') || (result.scenario === 'app settings' && result.storedTheme !== 'dark'))) process.exitCode = 1;
