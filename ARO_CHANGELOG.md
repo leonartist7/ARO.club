@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB5 review repair and privacy gate
+
+Added contextual host Trust guidance and privacy links to FAQ, expanded the public-story/contact specification with local-draft data, retention, failure and acceptance contracts, and synchronized its provisional state in the canonical registries. RB5 is SPEC-REQUIRED pending independent privacy review of on-device contact text; the implementation remains unmerged. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB5 public story and help
 
 Replaced legacy About, How it Works, For Teachers, FAQ and Contact entry pages with the approved orange-led story and honest preview guidance. Removed invented team, reach, income, policy, support and social claims. Contact retains on-device drafts and states that no support inbox is connected. Footer links now have real destinations. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.

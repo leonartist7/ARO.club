@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **RB5 branch update (2026-09-28):** About, How it Works, For Teachers, FAQ and Contact have provisional orange-led implementations on PR #77. Contact drafts stay in browser storage and are not sent. The package specification is **SPEC-REQUIRED** pending independent privacy acceptance of retention/deletion behavior; implementation has partial evidence and cannot merge or release yet. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
+
 > **RB4 branch update:** Public fixture deep links now resolve to a localized honest recovery state; saved identifiers are not deleted. The package is unmerged and partial. Authenticated legacy fixture consumers, independent review and release remain open.
 
 > **RB3 branch update:** Home and discovery/Create first steps have an orange-led presentation on a separate stacked branch. Public Explore hides dated unverified fixtures and offers a useful preview path. Existing deep links need a separate fixture audit; live onboarding and release remain gated.
