@@ -22,3 +22,10 @@ No backend account creation, sign-in or password email was exercised by this vis
 ## 2026-09-28 cloud continuation
 
 The original platform limitation above is superseded by the confirmed RB7 layout repair, inherited through RB8/RB9 without changes to RB10 Auth presentation or backend boundaries. Tested source `add2a418617e435d5a0a1a58085aa53940c1ce96` passes [Quality 36407547820](https://github.com/leonartist7/ARO.club/actions/runs/36407547820) and [platform 36407547856](https://github.com/leonartist7/ARO.club/actions/runs/36407547856). Local build/lint/type checks and 184 unit tests pass (3 existing browser-gated skips). Hosted browsers provide the visual/interaction evidence because this container cannot start Chromium. See [RB7 retained screenshots/results](../ARO-RB7/VERIFICATION.md#retained-hosted-evidence-cloud-continuation) and [updated ledger](../../docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md). The final evidence-only merge must still pass its own required checks; independent reviews, live eligibility specification and release remain open. No VERIFIED/SHIPPED claim.
+
+
+## Reviewed upstream reconciliation — 2026-09-28
+
+Merged reconciled RB9 f95ed1b in order, retaining original cloud RB10 e272fcc and reviewed RB6 8799e78 ancestry. Account-entry source and cloud evidence remain preserved. Updated ledger records conflict decisions, exact incoming heads, stale upstream test diagnosis, PR #84 ownership and both independent-review gates. New-head hosted checks are pending, and historical green runs must not be represented as current acceptance. No main merge, release or VERIFIED/SHIPPED claim.
+
+Local reconciliation checks: production build, lint with zero warnings, type check and 185 unit tests pass (3 existing browser-gated skips). `git diff --check` passes. RB10's additional changelog conflict was resolved by retaining both cloud and reconciliation entries. No new visual acceptance is claimed from this integration-only task.

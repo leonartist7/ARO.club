@@ -29,8 +29,13 @@ describe('FV-1 app shell', () => {
     expect(screen.getByLabelText(/Notifications preview/).tagName).toBe('SPAN')
   })
 
-  it('keeps the central Create destination stable', () => {
+  it('offers a World exit from Create', () => {
     renderApp('/app/create')
+    expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
+  })
+
+  it('opens Create from outside the studio', () => {
+    renderApp('/app')
     expect(screen.getByRole('link', { name: 'Create' }).getAttribute('href')).toBe('/app/create')
   })
 

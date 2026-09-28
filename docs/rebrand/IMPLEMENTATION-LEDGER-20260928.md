@@ -9,7 +9,7 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 | RB2 | Three illustrated, skippable scenes and in-memory learner/host/both result preview; [art manifest](../../public/brand/onboarding-manifest.json) | IMPLEMENTED / PARTIAL VERIFICATION [#74](https://github.com/leonartist7/ARO.club/pull/74); independent privacy/security review open |
 | RB3 | Home/Explore/Create first actions and truthful no-verified-supply state | IMPLEMENTED / PARTIAL VERIFICATION [#75](https://github.com/leonartist7/ARO.club/pull/75) |
 | RB4 | Legacy fixture deep links recover without invented hosts, reviews or bookings | IMPLEMENTED / PARTIAL VERIFICATION [#76](https://github.com/leonartist7/ARO.club/pull/76) |
-| RB5 | About, How, For Teachers, FAQ, Contact draft and public footer | IMPLEMENTED / PARTIAL VERIFICATION [#77](https://github.com/leonartist7/ARO.club/pull/77) |
+| RB5 | About, How, For Teachers, FAQ, Contact draft and public footer | SPEC-REQUIRED / independent contact-draft privacy review pending; provisional implementation [#77](https://github.com/leonartist7/ARO.club/pull/77) |
 | RB6 | Public leaderboard/bookings become truthful preview states | IMPLEMENTED / PARTIAL VERIFICATION [#78](https://github.com/leonartist7/ARO.club/pull/78) |
 | RB7 | Quiet Preferences, Light/Dark/System, EN/FR/ES app shell, mobile navigation | IMPLEMENTED / PARTIAL VERIFICATION [#79](https://github.com/leonartist7/ARO.club/pull/79); inherited hosted failure repaired; see cloud evidence below |
 | RB8 | Branded localized loading/error states, retry/Home, redirect-safe route sweep | IMPLEMENTED / PARTIAL VERIFICATION [#80](https://github.com/leonartist7/ARO.club/pull/80); inherited hosted failure repaired; see cloud evidence below |
@@ -27,7 +27,7 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 ## Active gates and next actions
 
 1. A reviewer resolves RB0's open conversations after inspecting the addressed changes; do not self-resolve or bypass branch protection.
-2. An independent privacy/security reviewer assesses RB2 before merge and before any live age/profile implementation. Prepare the live eligibility specification with that review.
+2. An independent privacy/security reviewer assesses RB2 before merge and before any live age/profile implementation. RB5 is also SPEC-REQUIRED pending independent privacy review of browser-local contact draft retention/deletion; do not merge past either gate. Prepare the live eligibility specification with that review.
 3. The hosted language-skip failure is diagnosed and repaired in RB7: fixed-height selection cards let the footer intercept the button after bottom-tab padding was removed. Minimum-height wrappers retain content in normal flow. RB7 and propagated RB10 source checks pass; require all checks on the final evidence/merge HEADs before protected merge. No assertion or security boundary was waived.
 4. Obtain valid licensed Polymath web files if the founder wants the display face; continue using Manrope 700 meanwhile.
 5. After dependent PRs pass all required checks and independent reviews, merge in stack order through protected GitHub `main`, then perform the full route/theme/language accessibility, hosted Auth and release checks. Do not label any branch VERIFIED or SHIPPED before those gates pass.
@@ -45,3 +45,14 @@ Started from the requested remote branch at exact `31118262783728db55a21c9e13853
 - Evidence propagation uses normal merge commits: RB8 `2c4a292`, RB9 `37fbd34`, and this RB10 ledger/evidence merge. Original commits and PR bases remain in the stack; no force-push or main merge. Final documentation/evidence HEAD checks run separately and remain required; the green runs above identify the precise tested source.
 
 Smallest founder action: arrange an independent reviewer for RB0's open conversations and RB2 privacy/security review. No fresh direction approval or private original plan is needed for this work. Live profile/age onboarding stays blocked. Full app localization/accessibility, broader authenticated visual acceptance, asset/crawler acceptance and protected release checks remain open. No package is promoted to VERIFIED/SHIPPED.
+
+
+## Local review-fix handoff reconciliation — 2026-09-28
+
+Remote handoff heads were confirmed before editing: RB1 #73 `4c5f91d`, RB2 #74 `a7d1745`, RB3 #75 `a3f7d41`, RB4 #76 `d66f85e`, RB5 #77 `406cba0`, RB6 #78 `8799e78`; RB0 #72 `8c33cf7`. PR #84 remains owner-controlled at `7e3f9568202b37b7aeb420f9b642efb80121b1a2`; its existing Quality 36425029309 and platform 36425029413 passed. This task did not merge #84 or alter its source-plan documents.
+
+Incoming RB6 Quality 36436067479 failed two stale tests expecting a Create self-link instead of the reviewed World exit. The reconciliation keeps the incoming behavior and checks both the World exit inside Create and Create entry outside it. RB7 conflicts were limited to Header, AppShell and the append-only changelog: preserve the xl breakpoint with quiet Preferences/scrolling menu; preserve localized labels with the incoming central action; preserve both changelog histories. Existing cloud card-height repair, preference accessibility, diagnostics, screenshots and their hashes remain intact.
+
+Normal merge chain: RB6 `8799e78` → RB7 `c7dfd8f` → RB8 `1ea6280` → RB9 `f95ed1b` → this RB10 reconciliation commit. Each original cloud branch head remains an ancestor. No force-push, main merge, independent-review closure or release occurred. RB7 local build/lint/type checks and 181 unit tests pass (3 existing browser-gated skips). New-head hosted checks run separately; earlier green runs and screenshots above are historical, not certification of this reconciliation. Upstream RB1–RB6 test fixes are left to their owner; the compatible navigation assertions reside in RB7.
+
+Release gates remain: open review conversations for independent recheck, RB2 independent privacy/security review, RB5 SPEC-REQUIRED contact-draft retention/deletion review, and protected-branch checks. No VERIFIED/SHIPPED promotion. The next source-plan owner should reconcile #84 with the new RB10 head before proceeding.

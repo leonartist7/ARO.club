@@ -10,6 +10,8 @@
 
 > **2026-09-28 RB6:** The public leaderboard and bookings routes now show honest preview states on a stacked branch. The rebrand stack remains unmerged while RB0 review threads and RB2 independent privacy/security review are open; no live booking or ranking capability is claimed.
 
+> **RB5 branch update (2026-09-28):** About, How it Works, For Teachers, FAQ and Contact have provisional orange-led implementations on PR #77. Contact drafts stay in browser storage and are not sent. The package specification is **SPEC-REQUIRED** pending independent privacy acceptance of retention/deletion behavior; implementation has partial evidence and cannot merge or release yet. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
+
 > **RB4 branch update:** Public fixture deep links now resolve to a localized honest recovery state; saved identifiers are not deleted. The package is unmerged and partial. Authenticated legacy fixture consumers, independent review and release remain open.
 
 > **RB3 branch update:** Home and discovery/Create first steps have an orange-led presentation on a separate stacked branch. Public Explore hides dated unverified fixtures and offers a useful preview path. Existing deep links need a separate fixture audit; live onboarding and release remain gated.
@@ -559,3 +561,8 @@ RB2 independent-review, F7 or release gate changed.
 ### 2026-09-28 — Hosted rebrand regression repaired
 
 RB7's fixed-height onboarding cards were overlapped by the public footer. The bounded minimum-height repair and quiet-preferences accessibility polish are propagated through the existing RB7–RB10 stack. RB7 source bbd1b2b passes Quality 36407355886 and platform 36407355888; RB10 source add2a41 passes Quality 36407547820 and platform 36407547856. Original assertions, Auth/Trust/RLS, privacy/eligibility, payment and F7 boundaries remain intact. Retained screenshots and machine results are in artifacts/ARO-RB7/cloud-continuation. The implementation ledger records exact source/evidence provenance and final-HEAD check requirements. Status remains IMPLEMENTED / PARTIAL VERIFICATION, unmerged; RB0 conversations and independent RB2 review remain gates.
+
+
+### 2026-09-28 — Reviewed RB6 propagated through RB7–RB10
+
+Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preserving both review fixes and cloud evidence. Local navigation assertions now match the incoming reviewed World exit. New-head hosted checks remain required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft retention/deletion review are blocking; existing conversations stay open. No main merge or release. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.

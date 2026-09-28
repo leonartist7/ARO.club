@@ -21,3 +21,7 @@ The screenshots verify rendering of the actual state components inside the app s
 ## 2026-09-28 cloud continuation
 
 Inherited RB7's bounded layout/preference repair through normal merge ancestry; no RB8 loading/error behavior changed. The earlier Limits paragraph describes the original baseline: the hosted root cause is now established as fixed-height onboarding card overflow intercepted by the footer. RB7 platform runs 36406677640 and 36407355888 passed after the minimum-height repair. See [retained diagnosis and visual evidence](../ARO-RB7/VERIFICATION.md#retained-hosted-evidence-cloud-continuation). Exact descendant HEAD checks remain required before merge; this does not promote RB8 to VERIFIED/SHIPPED or close independent gates.
+
+## Reviewed upstream reconciliation — 2026-09-28
+
+Merged RB7 c7dfd8f (reviewed RB6 8799e78 plus preserved cloud preferences/layout work) without conflicts. RB8 supporting-state changes and historical evidence remain intact. New-head hosted checks are required; previous green runs do not certify this merge. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft privacy review remain blocking; conversations are left open. No main merge or release.

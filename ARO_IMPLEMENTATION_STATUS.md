@@ -10,7 +10,7 @@
 
 > **RB6 branch update (2026-09-28):** Public `/leaderboard` and `/bookings` now have localized, truthful preview states in a scoped branch. Seed rankings and an unsupported checkout promise no longer render on those routes. Build/lint/type and six production-browser checks pass; protected future routes, independent review, merge and release remain open. See `artifacts/ARO-RB6/VERIFICATION.md`.
 
-> **RB5 branch update (2026-09-28):** Public About, How it Works, For Teachers, FAQ and Contact now use the approved story and honest preview boundaries. The footer has working destinations and no placeholder social links. Contact saves an on-device draft without sending it. Build/lint/type, focused tests and six production-browser route checks pass; independent review, merge and release remain open. See `artifacts/ARO-RB5/VERIFICATION.md`.
+> **RB5 branch update (2026-09-28):** Public About, How it Works, For Teachers, FAQ and Contact have provisional approved-story implementations. The footer has working destinations and no placeholder social links. Contact saves an on-device draft without sending it. The package is **SPEC-REQUIRED / independent privacy review pending** because local draft retention and deletion need acceptance; it cannot merge or release yet. Earlier build/lint/type, focused tests and six production-browser route checks passed for the pre-review commit; refreshed new-head evidence is pending. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
 
 > **RB4 branch update:** Legacy public fixture recovery is IMPLEMENTED / PARTIAL VERIFICATION on a separate stacked branch. Direct fixture URLs remain navigable but no longer render old invented host/review/booking claims. This does not certify authenticated legacy or live supply routes. See `artifacts/ARO-RB4/VERIFICATION.md`.
 
@@ -321,3 +321,8 @@ RB2 independent-review, F7 or release gate changed.
 ### 2026-09-28 — Hosted rebrand regression repaired
 
 RB7's fixed-height onboarding cards were overlapped by the public footer. The bounded minimum-height repair and quiet-preferences accessibility polish are propagated through the existing RB7–RB10 stack. RB7 source bbd1b2b passes Quality 36407355886 and platform 36407355888; RB10 source add2a41 passes Quality 36407547820 and platform 36407547856. Original assertions, Auth/Trust/RLS, privacy/eligibility, payment and F7 boundaries remain intact. Retained screenshots and machine results are in artifacts/ARO-RB7/cloud-continuation. The implementation ledger records exact source/evidence provenance and final-HEAD check requirements. Status remains IMPLEMENTED / PARTIAL VERIFICATION, unmerged; RB0 conversations and independent RB2 review remain gates.
+
+
+### 2026-09-28 — Reviewed RB6 propagated through RB7–RB10
+
+Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preserving both review fixes and cloud evidence. Local navigation assertions now match the incoming reviewed World exit. New-head hosted checks remain required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft retention/deletion review are blocking; existing conversations stay open. No main merge or release. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
