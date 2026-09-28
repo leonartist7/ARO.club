@@ -4,11 +4,11 @@
 
 - Status: **SPEC-READY**, version 1.0.0, founder-approved rebrand and truthful-claims direction, 2026-09-27.
 - Separate branch/PR stacked on RB4. Governing: `AGENTS.md`, `ARO_TRUST_SAFETY.md`, privacy/eligibility and payment/release boundaries, RB0–RB4.
-- Scope: public About, How it Works, For Teachers and FAQ presentation/copy, plus global public header/footer links. Contact form and existing Auth/application/legal contracts stay in place.
+- Scope: public About, How it Works, For Teachers, FAQ and Contact presentation/copy, plus global public header/footer links. Existing Auth/application/legal contracts stay in place. The old Contact page includes unverified email addresses, phone, office address and response claim; replace its public entry with a truthful on-device draft state without deleting any stored draft.
 
 ## Outcome
 
-Replace legacy language-only story, fictional team/city/teacher/customer statistics, fabricated income/platform-fee/cancellation claims, and live-booking instructions with the approved orange-led ARO promise and honest Learn/Earn/Connect explanation. Host guidance must distinguish self-declared skill, verification and publishing authorization, with no income guarantee or review-time claim. FAQ must reflect current preview status and point to the actual Trust, privacy and contact routes. The public footer must have only working destinations; absent verified social URLs are omitted, not guessed. Do not remove Tonguee or Coco vertical identity or rewrite their governed contracts.
+Replace legacy language-only story, fictional team/city/teacher/customer statistics, fabricated income/platform-fee/cancellation claims, and live-booking instructions with the approved orange-led ARO promise and honest Learn/Earn/Connect explanation. Host guidance must distinguish self-declared skill, verification and publishing authorization, with no income guarantee or review-time claim. FAQ must reflect current preview status and point to the actual Trust, privacy and contact routes. Contact must clearly state that no support mail backend is connected, offer an on-device draft, and retain existing local drafts without submitting private text. The public footer must have only working destinations; absent verified social URLs are omitted, not guessed. Do not remove Tonguee or Coco vertical identity or rewrite their governed contracts.
 
 ## UI and verification
 

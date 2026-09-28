@@ -10,7 +10,7 @@ export const translations = {
       getStarted: 'Get Started',
       signIn: 'Sign in',
       signUp: 'Sign up',
-      findExperience: 'Find an experience',
+      findExperience: 'Find a class',
       startTeaching: 'Start teaching',
       adminConsole: 'Admin console',
       home: 'Home',
@@ -370,7 +370,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'AI for a more human world. ARO helps meaningful opportunity form around real people and real life.',
+      description: 'Life opens up. Explore what you could learn, share and make together.',
       company: {
         title: 'Company',
         aboutUs: 'About Us',
@@ -380,7 +380,7 @@ export const translations = {
       },
       explore: {
         title: 'Explore',
-        browseExperiences: 'Browse Experiences',
+        browseExperiences: 'Find a class',
         mapView: 'Map View',
         leaderboard: 'Leaderboard',
       },
@@ -554,7 +554,7 @@ export const translations = {
       getStarted: 'Commencer',
       signIn: 'Se connecter',
       signUp: "S'inscrire",
-      findExperience: 'Trouver une expérience',
+      findExperience: 'Trouver un cours',
       startTeaching: 'Commencer à enseigner',
       adminConsole: 'Console admin',
       home: 'Accueil',
@@ -905,7 +905,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'L’IA pour un monde plus humain. ARO aide de vraies opportunités à se former dans la vie réelle.',
+      description: 'La vie s’ouvre. Découvrez ce que vous pourriez apprendre, partager et créer ensemble.',
       company: {
         title: 'Entreprise',
         aboutUs: 'À Propos',
@@ -915,7 +915,7 @@ export const translations = {
       },
       explore: {
         title: 'Explorer',
-        browseExperiences: 'Parcourir les Expériences',
+        browseExperiences: 'Trouver un cours',
         mapView: 'Vue Carte',
         leaderboard: 'Classement',
       },
@@ -1089,7 +1089,7 @@ export const translations = {
       getStarted: 'Comenzar',
       signIn: 'Iniciar sesión',
       signUp: 'Registrarse',
-      findExperience: 'Encontrar una experiencia',
+      findExperience: 'Encontrar una clase',
       startTeaching: 'Empezar a enseñar',
       adminConsole: 'Consola de administración',
       play: 'Jugar',
@@ -1440,7 +1440,7 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'IA para un mundo más humano. ARO ayuda a que oportunidades reales se formen en la vida real.',
+      description: 'La vida se abre. Explora lo que podrías aprender, compartir y crear con otras personas.',
       company: {
         title: 'Empresa',
         aboutUs: 'Sobre Nosotros',
@@ -1450,7 +1450,7 @@ export const translations = {
       },
       explore: {
         title: 'Explorar',
-        browseExperiences: 'Explorar Experiencias',
+        browseExperiences: 'Encontrar una clase',
         mapView: 'Vista de Mapa',
         leaderboard: 'Clasificación',
       },

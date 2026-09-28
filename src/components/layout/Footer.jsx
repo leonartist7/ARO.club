@@ -1,21 +1,16 @@
 'use client';
 import { Link } from '../../lib/navigation';
-import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { AroWordmark } from '../brand/AroMark';
-
-const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
-];
+import { rebrandJourneyCopy } from '../../i18n/rebrandJourney';
 
 /**
  * Footer with a warm two-tone surface, trust strip, link columns, social, legal.
  */
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
 
   const footerLinks = {
     company: [
@@ -27,7 +22,6 @@ export default function Footer() {
     explore: [
       { name: t('footer.explore.browseExperiences'), href: '/explore' },
       { name: t('footer.explore.mapView'), href: '/map' },
-      { name: t('footer.explore.leaderboard'), href: '/leaderboard' },
     ],
     support: [
       { name: t('footer.support.contactUs'), href: '/contact' },
@@ -69,18 +63,7 @@ export default function Footer() {
             <p className="text-sm mb-6 max-w-xs text-gray-500 dark:text-gray-400">
               {t('footer.description')}
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-11 h-11 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-600 dark:hover:bg-primary-600 dark:hover:border-primary-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                  aria-label={social.name}
-                >
-                  <social.icon className="w-5 h-5" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <Link to="/onboarding/preview" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
 
           <div>

@@ -1,4 +1,4 @@
-import Page from "../../../views/HowItWorksPage";
+import RebrandInfoPage from "../../../views/RebrandInfoPage";
 export default function RoutePage() {
-  return <Page />;
+  return <RebrandInfoPage kind="how" />;
 }
