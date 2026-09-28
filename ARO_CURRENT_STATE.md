@@ -540,3 +540,13 @@ The founder requested a competition-focused launch/evidence program. `SHIPATON_M
 ## 2026-09-08 — AUTO0 execution foundation
 
 The founder authorized a spec-driven cloud orchestration/memory system using existing ChatGPT cloud tasks only, with no new API billing. `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` governs repository-only bootstrap, worker packets, report validation, a GitHub-hosted browser evidence adapter and Obsidian-compatible memory. See `ARO_AUTONOMY.md` for exact capability and reported schedule state. Audit execution is separate from product implementation; I0/P1/FV-1 gates remain open. Tooling delivery does not establish that every cloud schedule is enabled.
+
+## 2026-09-28 — RB7 cloud continuation
+
+RB7 remains IMPLEMENTED / PARTIAL VERIFICATION on PR #79. Hosted diagnostic
+`c39d0f7` confirmed footer interception of the legacy onboarding Skip action.
+A presentation-only intrinsic-height repair and short-viewport/keyboard
+Preferences improvements are prepared with local build/lint/type and 180 unit
+tests passing (3 existing skips). Hosted browser/visual verification is pending.
+See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
+RB2 independent-review, F7 or release gate changed.

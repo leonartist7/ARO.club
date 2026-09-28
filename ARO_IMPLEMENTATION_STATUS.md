@@ -302,3 +302,13 @@ The existing local prototype and supporting plans are packaged under `specs/ARO-
 ## AUTO0 — autonomous execution foundation
 
 IMPLEMENTED / VERIFICATION IN PROGRESS. Repository tooling only; no product runtime, schema, dependency or paid model API changes. Specification: `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md`; execution map: `ARO_AUTONOMY.md`; evidence: `artifacts/ARO-AUTO0/VERIFICATION.md`. Cloud schedules are independently verified through the cloud coordinator.
+
+## 2026-09-28 — RB7 cloud continuation
+
+RB7 remains IMPLEMENTED / PARTIAL VERIFICATION on PR #79. Hosted diagnostic
+`c39d0f7` confirmed footer interception of the legacy onboarding Skip action.
+A presentation-only intrinsic-height repair and short-viewport/keyboard
+Preferences improvements are prepared with local build/lint/type and 180 unit
+tests passing (3 existing skips). Hosted browser/visual verification is pending.
+See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
+RB2 independent-review, F7 or release gate changed.

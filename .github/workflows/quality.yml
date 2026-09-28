@@ -40,4 +40,13 @@ jobs:
       - run: npm test -- src/views/AppDiscovery.test.jsx src/views/AppPersonal.test.jsx src/views/AppReturn.test.jsx
         env:
           FV1_BROWSER_EVIDENCE: 'true'
+      - name: RB7 preferences browser regression
+        run: node scripts/verify-rb7.mjs
+      - name: Retain RB7 synthetic preferences evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb7-preferences
+          path: artifacts/ARO-RB7/cloud-continuation
+          retention-days: 7
       - run: npm run test:e2e
