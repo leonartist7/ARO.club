@@ -31,6 +31,7 @@ try {
     const response = await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded' });
     await page.getByRole('heading').first().waitFor({ state: 'visible' });
     await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(1200);
     const state = await page.evaluate(() => ({
       language: document.documentElement.lang,
       theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
@@ -40,8 +41,9 @@ try {
     }));
     const preferenceControls = await page.getByRole('group', { name: /language|appearance/i }).count();
     const startAction = route === '/' ? await page.getByRole('link', { name: /get started/i }).count() : undefined;
+    const heroImage = route === '/' ? await page.locator('img[src="/brand/onboarding-connect-640.webp"]').first().evaluate(element => ({ loaded: element.naturalWidth > 0, top: element.getBoundingClientRect().top })) : undefined;
     await page.screenshot({ path: join(out, `${name}.png`), fullPage: false });
-    results.push({ route, width, height, status: response?.status(), ...state, preferenceControls, startAction, errors, writes });
+    results.push({ route, width, height, status: response?.status(), ...state, preferenceControls, startAction, heroImage, errors, writes });
     if (route === '/' && width === 320) {
       await page.getByRole('button', { name: 'Open menu' }).click();
       const menuPreferences = await page.getByRole('group', { name: /language|appearance/i }).count();
@@ -56,4 +58,4 @@ try {
   if (server.exitCode === null) server.kill('SIGTERM');
 }
 
-if (results.length !== 5 || results.some(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || item.preferenceControls || item.menuPreferences || item.errors.length || item.writes.length || (item.startAction !== undefined && !item.startAction))) process.exitCode = 1;
+if (results.length !== 5 || results.some(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || item.preferenceControls || item.menuPreferences || item.errors.length || item.writes.length || (item.startAction !== undefined && !item.startAction) || (item.heroImage && (!item.heroImage.loaded || (item.width === 320 && item.heroImage.top >= item.height))))) process.exitCode = 1;
