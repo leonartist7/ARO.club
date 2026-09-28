@@ -16,4 +16,6 @@ Base `5497d1a` (RB0 documentation, stacked on main `fdda810`). This branch chang
 
 The first browser capture ran during the existing 500 ms route fade and produced pale/incomplete frames; the capture script now waits for hydration, theme and fade completion. Superseded frames were replaced. Visual review also found missing Spanish header navigation strings, now added. Hosted CI must confirm the production build of the review repair before upgrading package status.
 
+Second review repair on 2026-09-28: legacy `text-primary-500` foregrounds receive the lighter primary-300 shade in dark mode while `bg-primary-500` keeps the accessible action orange. The generated Tailwind CSS was inspected and contains this specific dark foreground rule. Three brand-orange actions now hover to a visibly lighter orange. Focused screenshot capture no longer overwrites the six-case `browser.json`, and a mistyped slug fails. Local lint/type and Tailwind compilation pass; hosted CI and full dark-text sampling remain pending on this head.
+
 Current package state: **IMPLEMENTED / PARTIAL VERIFICATION**, not VERIFIED or SHIPPED. Review/merge and production release remain separate. RB2 may build a stacked preview from this source without claiming this package's release gate passed.
