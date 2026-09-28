@@ -97,3 +97,11 @@ RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with
 
 
 Final combined cloud verification for 9eb4e15: production webpack build, lint, type-check and 187 unit tests pass (21 files; 3 existing browser-gated skips). Pinned WebP reproduction and changed-script syntax checks pass. Latest incoming RB6 Quality 36462888502 and isolated 36462888187 both pass. New cloud RB7 Quality 36463151418 / isolated 36463151430, RB8 36463191470 / 36463191557, and RB9 36463219500 / 36463219308 remain in progress at this checkpoint; new RB10 checks are required after publication. No new visual/browser acceptance or gate closure is implied.
+
+
+### 2026-09-28 — RB6 1184639 mobile preference repair propagated
+
+RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with conflict-free ancestry. Bounded scrollable mobile choices, sticky CTA and stronger viewport/separation/focus assertions propagate without losing cloud work. Corrected provenance: old pottery WebPs remain public but unused, not removed. Prior RB7/RB9/RB10/#84 heads pass both hosted workflows; RB8's document-chooser failure stays recorded. Fresh merge-head checks and independent privacy/Trust/contact-retention/review/release gates remain required. PR #84 stays with its owner for the next reconciliation. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, results and limits.
+
+
+Final combined local checks for the 1184639 reconciliation: production webpack build, lint, type-check, 187 unit tests (21 files; 3 existing browser-gated skips), verifier syntax and diff checks pass. No local browser run is claimed. New RB7 Quality 36466008821 / isolated 36466008811, RB8 36466045257 / 36466045212 and RB9 36466071928 / 36466071454 are in progress; fresh RB10 checks are required after publication.
