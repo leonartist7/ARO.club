@@ -26,3 +26,5 @@ Merged RB8 1ea6280 in stack order, preserving cloud share metadata/art and incor
 Corrected handoff: inherited RB8 7b6f5db with founder-specified RB6 95ec421 and the upstream navigation tests. Runtime/share media unchanged by this correction; hosted rechecks and all previously recorded gates/blockers remain required.
 
 Latest review-copy handoff: inherited RB8 e20be91 on exact RB6 5e22dcc. RB9 metadata/art and cloud work are preserved; the incoming RB3 distinct formation-preview copy and owner evidence are incorporated. New-head checks remain required; RB5 stays SPEC-REQUIRED pending independent retention/deletion privacy review, and RB2's independent gate stays open.
+
+Protected-route repair handoff: inherited RB8 29e162d on exact RB6 1c4c2a1. Incoming reserved teacher-route exemptions preserve existing Auth guards; RB9 metadata/art and cloud work remain intact. New-head hosted checks and independent RB2/RB5 review gates remain required. No approval or release.
