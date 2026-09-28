@@ -348,7 +348,7 @@ export default function CharacterBuilder() {
                       onClick={() => setSelectedCategory(category.id)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                         selectedCategory === category.id
-                          ? 'bg-primary-500 text-ink shadow-lg scale-105'
+                          ? 'bg-brand-orange text-ink shadow-lg scale-105'
                           : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                       }`}
                     >

@@ -1,13 +1,10 @@
-import { chromium } from 'playwright';
+import { BASE, launch, navigate, requireAppOrigin } from '../e2e/harness.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const output = join(process.cwd(), 'artifacts', 'ARO-RB1');
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({
-  executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-  headless: true,
-});
+const browser = await launch();
 const results = [];
 try {
   for (const [route, width, height, theme, language] of [
@@ -28,7 +25,8 @@ try {
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    const response = await page.goto(`http://127.0.0.1:3101${route}`, { waitUntil: 'domcontentloaded' });
+    const response = await navigate(page, `${BASE}${route}`, { waitUntil: 'domcontentloaded' });
+    requireAppOrigin(page, BASE);
     await page.locator('main:visible').first().waitFor({ state: 'visible' });
     await page.getByText('Loading ARO…').first().waitFor({ state: 'hidden' });
     await page.waitForFunction(expected => document.documentElement.classList.contains(expected), theme);
