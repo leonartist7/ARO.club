@@ -33,10 +33,11 @@ export default function HomePage() {
             </picture>
           </div>
           <div className="mt-10 grid gap-3 sm:grid-cols-3">
-            {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/onboarding/preview' }].map((task) => <Link key={task.title} to={task.href} className="group flex min-h-32 flex-col justify-between rounded-2xl border border-ink/10 bg-white/75 p-5 transition-colors hover:border-action-primary dark:border-bone/15 dark:bg-surface-darkCard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"><span className="flex items-center justify-between gap-2 text-lg font-bold">{task.title}<ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></span><span className="mt-3 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></Link>)}
+            {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/app/create?mode=gather' }].map((task) => <Link key={task.title} to={task.href} className="group flex min-h-32 flex-col justify-between rounded-2xl border border-ink/10 bg-white/75 p-5 transition-colors hover:border-action-primary dark:border-bone/15 dark:bg-surface-darkCard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"><span className="flex items-center justify-between gap-2 text-lg font-bold">{task.title}<ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></span><span className="mt-3 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></Link>)}
           </div>
 
           <div id="formation" className="scroll-mt-24">
+            <p className="mb-4 rounded-xl border border-primary-600/25 bg-primary-50 px-4 py-3 text-sm font-semibold text-ink dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-bone">{journey.formationPreview}</p>
             <OpportunityFormation />
           </div>
         </div>
@@ -128,7 +129,7 @@ export default function HomePage() {
           </div>
           <Link
             to="/explore"
-            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-500 px-6 text-sm font-bold text-ink transition-colors hover:bg-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-brand-orange px-6 text-sm font-bold text-ink transition-colors hover:bg-primary-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
           >
             {t('home.formation.tonguee.cta')}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

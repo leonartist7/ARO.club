@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "source": "Founder-approved ARO reference at ARO.club/public/brand/ARO.png; independently constructed SVG geometry, 2026-09-27",
+  "source": "Founder-approved ARO reference at docs/rebrand/reference/ARO-approved.png; independently constructed SVG geometry, 2026-09-27",
   "rights": "ARO-directed original vector geometry; similarity and trademark review remain open",
   "assets": [
     { "path": "/brand/aro-symbol.svg", "role": "monochrome symbol", "viewBox": "0 0 72 72", "use": "small-size brand mark", "alt": "decorative when adjacent to ARO name" },
@@ -9,7 +9,7 @@
     { "path": "/icon.svg", "role": "browser/app icon", "viewBox": "0 0 100 100", "use": "platform safe area", "alt": "browser icon" }
   ],
   "type": {
-    "ui": "Manrope 400/500/600/700 via existing Google Fonts CSS import",
+    "ui": "Manrope v20 400/500/600/700 via six local /fonts/manrope/*.woff2 subsets and src/index.css @font-face; source and SHA-256 in public/fonts/manrope/README.md; license in public/fonts/manrope/OFL.txt",
     "expressiveFallback": "Manrope 700",
     "polymath": "not shipped; licensed web assets not present",
     "noiseOrder": "historical R2 asset retained but not referenced by RB1 CSS"

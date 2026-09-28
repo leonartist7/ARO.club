@@ -10,6 +10,8 @@
 
 > **2026-09-28 RB6:** `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped branch. It corrects public `/leaderboard` and `/bookings` presentation only; Auth, reward, booking, payment and release gates remain unchanged.
 
+> **RB5 branch update (2026-09-28):** Public story/help implementation exists on `codex/rb5-public-support-20260927`, PR #77, with partial browser evidence. `specs/ARO-RB5-PUBLIC-STORY-HELP.md` is **SPEC-REQUIRED / independent privacy review pending** for browser-local contact-text retention and deletion. The branch is not merge-approved, VERIFIED or SHIPPED. See `artifacts/ARO-RB5/VERIFICATION.md`.
+
 > **RB4 branch update:** Public legacy fixture route recovery is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb4-fixture-truth-20260927`. Old sample experience/host/map/saved/compare/404 destinations now show localized truthful recovery instead of fictional ratings, bookings and verified status. See `specs/ARO-RB4-LEGACY-FIXTURE-TRUTH.md` and `artifacts/ARO-RB4/VERIFICATION.md`.
 
 > **RB3 branch update:** Public Home/Explore and app Home/Create presentation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb3-public-discovery-20260927`, under `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md`. The public Explore route now shows an honest no-verified-supply state while legacy fixture data lacks provenance. See `artifacts/ARO-RB3/VERIFICATION.md`.
@@ -18,7 +20,7 @@
 
 > **RB1 branch update:** Orange tokens, controlled SVG mark/wordmark, Manrope fallback and shared-shell adjustments are IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb1-orange-foundation-20260927`. Build/lint/unit and sampled browser checks pass; font pinning, full visual/a11y coverage, review and release remain open. See `artifacts/ARO-RB1/VERIFICATION.md`.
 
-> **2026-09-28 RB0:** Founder-approved orange adoption documentation is IMPLEMENTED / PARTIAL VERIFICATION on its branch. RB2 nonpersistent preview is implemented on a later branch but MERGE GATED by independent privacy/security review and category limits. Live age/profile integration remains SPEC-REQUIRED. See `specs/ARO-RB0-REBRAND-ADOPTION.md`, `specs/ARO-RB1-BRAND-FOUNDATION.md`, `specs/ARO-RB2-ONBOARDING-PREVIEW.md` and `docs/rebrand/BASELINE-20260927.md`. R2 history is preserved.
+> **2026-09-28 RB0:** Founder-approved orange adoption documentation is IMPLEMENTED / PARTIAL VERIFICATION on PR #72 (`8c33cf7`, record repair `a3e738b`). RB1 visual foundation is IMPLEMENTED / PARTIAL VERIFICATION on PR #73 (`00aeb90`; `artifacts/ARO-RB1/VERIFICATION.md`). RB2 nonpersistent preview is IMPLEMENTED / PARTIAL VERIFICATION on PR #74 (`42ae32d`; `artifacts/ARO-RB2/VERIFICATION.md`) but MERGE GATED by independent privacy/security review of collection, consent and minors. Live age/profile integration remains SPEC-REQUIRED. See `specs/ARO-RB0-REBRAND-ADOPTION.md`, `specs/ARO-RB1-BRAND-FOUNDATION.md`, `specs/ARO-RB2-ONBOARDING-PREVIEW.md` and `docs/rebrand/BASELINE-20260927.md`. R2 history is preserved.
 
 > **ARO-R2 v1.0.0 — IMPLEMENTED / MERGED:** Yellow/orange identity and Noise Order title/wordmark reached GitHub `main` as `dc73daa` through PR #69. Build, lint, unit, focused browser and delegated visual checks passed. This is not a production release or full-route accessibility certification. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
@@ -356,3 +358,53 @@ RB2 independent-review, F7 or release gate changed.
 ### 2026-09-28 — Hosted rebrand regression repaired
 
 RB7's fixed-height onboarding cards were overlapped by the public footer. The bounded minimum-height repair and quiet-preferences accessibility polish are propagated through the existing RB7–RB10 stack. RB7 source bbd1b2b passes Quality 36407355886 and platform 36407355888; RB10 source add2a41 passes Quality 36407547820 and platform 36407547856. Original assertions, Auth/Trust/RLS, privacy/eligibility, payment and F7 boundaries remain intact. Retained screenshots and machine results are in artifacts/ARO-RB7/cloud-continuation. The implementation ledger records exact source/evidence provenance and final-HEAD check requirements. Status remains IMPLEMENTED / PARTIAL VERIFICATION, unmerged; RB0 conversations and independent RB2 review remain gates.
+
+
+### 2026-09-28 — Reviewed RB6 propagated through RB7–RB10
+
+Reconciled RB6 8799e78 with cloud RB7–RB10 using normal merge ancestry, preserving both review fixes and cloud evidence. Local navigation assertions now match the incoming reviewed World exit. New-head hosted checks remain required. RB2 independent privacy/security review and RB5 SPEC-REQUIRED contact-draft retention/deletion review are blocking; existing conversations stay open. No main merge or release. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+
+### 2026-09-28 — Corrected RB6 handoff incorporated
+
+RB6 95ec421 supersedes 8799e78 and includes the upstream navigation-test repair. Its exact test versions are propagated through RB7–RB10 with cloud runtime/evidence preserved. The previously requested upstream assertion repair is satisfied; hosted reserved teacher-route/provenance failures and independent RB2/RB5 review gates remain. See the rebrand implementation ledger for exact heads and check provenance.
+
+
+### 2026-09-28 — RB6 5e22dcc review-copy update propagated
+
+RB7–RB10 now incorporate exact RB6 5e22dcc, including distinct RB3 formation-preview copy and refreshed owner evidence. Cloud work and normal ancestry are preserved; new-head hosted checks must confirm the strict-text repair. The teacher-route collision is unchanged. RB5 remains SPEC-REQUIRED pending independent retention/deletion privacy review; RB2 independent review and conversations remain open. No approval, protected merge or release. See the rebrand implementation ledger.
+
+
+### 2026-09-28 — RB6 1c4c2a1 protected-route fix propagated
+
+RB7–RB10 incorporate exact RB6 1c4c2a1. Incoming RB4 exemptions preserve the existing Auth path for /teacher/dashboard and /teacher/application; the earlier collision now has a source repair, pending new-head hosted confirmation. Cloud work and evidence are preserved. RB5 remains SPEC-REQUIRED pending independent contact-draft retention/deletion privacy review; RB2 and review conversations remain open. No merge approval or release. See the rebrand implementation ledger.
+
+
+### 2026-09-28 — Hosted CI and fresh independent review checkpoint
+
+Confirmed RB3–RB6, RB8 and RB10 source heads pass hosted Quality and Isolated database. RB7 Quality (/choose-role content check) and RB9 platform (1440px dark document chooser) remain red; exact heads/runs are in docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md. Founder reports clean/pushed lower worktrees and fresh independent Codex re-reviews requested for #72–#78/#84. Requests are not approvals: RB2 specialist privacy/security and RB5 SPEC-REQUIRED retention/deletion privacy gates remain open. No protected merge or release.
+
+
+### 2026-09-28 — RB6 2ea1fed and local Manrope propagated
+
+RB7–RB10 incorporate exact RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`, including main 721b2b7 / PR #83 local Manrope. Normal merge ancestry preserves cloud work and F7 evidence. The Header resolution retains compact real account destinations and RB7's future-only link omissions. Final local build/lint/types pass; 185 tests pass with 3 existing skips. Production font HTTP/hash checks pass; fresh visual recheck is blocked by invalid Chromium downloads and remains pending with new-head hosted CI. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED draft-retention/privacy, independent review and release gates remain open. PR #84 stays with its owner and needs reconciliation onto the latest RB10; its earlier green checks are not integration approval. Exact sources, checks and limits: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+
+### 2026-09-28 — Final RB6 8a8e5e2 handoff
+
+RB7–RB10 now incorporate exact RB6 `8a8e5e2a9dbc325675f91f2466545f9955df4c2e`, superseding 2ea1fed. Only RB6 verifier waits and owner screenshots/evidence changed; tested runtime, local Manrope and cloud work are preserved. Fresh hosted checks are running, not accepted. Prior teacher-document chooser failures are not declared fixed. RB2 privacy/eligibility, RB4 Trust, RB5 SPEC-REQUIRED retention/privacy, independent-review and release gates remain open; PR #84 needs owner reconciliation on latest RB10. Details and exact source/check provenance: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+
+### 2026-09-28 — RB6 ff1c7b6 review repairs propagated
+
+RB7–RB10 incorporate exact RB6 `ff1c7b65cc23958b66754f0d75faffae736a7e7d` with normal conflict-free ancestry. RB1/RB6 presentation contracts, corrected RB2 dependency wording and RB3 composition focus-ring/capture repairs are preserved; cloud work and branch ownership remain intact. All four previous cloud heads passed both hosted workflows; fresh merge-head CI remains required. RB5 stays SPEC-REQUIRED and unmerged pending independent on-device Contact draft retention/deletion privacy approval. RB2 privacy/eligibility, RB4 Trust, independent review and release gates remain open. No F7 evidence change or self-approval. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, test evidence and limitations.
+
+
+### 2026-09-28 — RB6 13e2571 reconciled; PR84 owner plan
+
+RB7–RB10 incorporate exact RB6 `13e257107b5726e911210a1eb8048ce3d42143ac`. Shell localization conflict is reconciled using the incoming dictionary/44px target with cloud navigation behavior preserved; onboarding short-screen and host-boundary repairs propagate intact. Local webpack build/lint/types and 187 tests pass (3 existing skips). RB6 hosted Quality fails an ambiguous Aperçus selector already scoped to a heading in cloud; its separate platform chooser failure remains open. Fresh cloud-head CI is pending. PR #84 remains untouched; docs/rebrand/PR84-RECONCILIATION-PLAN-20260928.md gives its owner the ledger-conflict and source-preservation plan. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED draft privacy, independent review and release gates remain OPEN. Exact sources and limits: docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md.
+
+
+### 2026-09-28 — RB6 327c681 selector correction incorporated
+
+RB7–RB10 now include exact RB6 `327c6812f390a726b885dfda06fc9524d66a6cb2`. The test-only selector repair matches the already-preserved cloud assertion; no runtime/test behavior change. Previous local 187-test/build/lint/type evidence remains applicable, while exact-head hosted checks remain pending. PR #84 owner plan is updated to this base; its branch remains untouched. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates stay OPEN. See the rebrand implementation ledger for exact heads and historical failures.

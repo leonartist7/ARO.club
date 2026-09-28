@@ -31,3 +31,12 @@ it('keeps the account visible and offers retry when logout fails', async () => {
   expect((await screen.findByRole('alert')).textContent).toContain('Please try again');
   expect(state.navigate).not.toHaveBeenCalled();
 });
+it('keeps real account destinations in the compact menu without future-only links', () => {
+  render(<Header />);
+  fireEvent.click(screen.getByRole('button', { name: 'Open menu' }));
+  for (const destination of ['favorites', 'passport', 'bookings']) {
+    expect(screen.getByRole('link', { name: `nav.${destination}` }).getAttribute('href')).toBe(`/${destination}`);
+  }
+  expect(screen.queryByRole('link', { name: 'nav.play' })).toBeNull();
+  expect(screen.queryByRole('link', { name: 'nav.leaderboard' })).toBeNull();
+});

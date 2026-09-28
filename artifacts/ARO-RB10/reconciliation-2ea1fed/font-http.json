@@ -1,0 +1,52 @@
+{
+  "baseCommit": "601545c10a6aed2e938e0defe94d9aee5e8eb628",
+  "mergedParent": "af6796b3326f95892d2b32165cb1e17b528dffb3",
+  "rb6": "2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd",
+  "method": "Production HTTP and CSS inspection; not browser network or visual acceptance",
+  "remoteGoogleFontReference": false,
+  "allLocalFacesInBuiltCss": true,
+  "fonts": [
+    {
+      "path": "/fonts/manrope/Manrope-cyrillic-ext.woff2",
+      "status": 200,
+      "bytes": 2552,
+      "sha256": "de37de877dc17e4577341fa68bb5cb526b53d54cb29721e674208546a3c7849d",
+      "matchesSource": true
+    },
+    {
+      "path": "/fonts/manrope/Manrope-cyrillic.woff2",
+      "status": 200,
+      "bytes": 14500,
+      "sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914",
+      "matchesSource": true
+    },
+    {
+      "path": "/fonts/manrope/Manrope-greek.woff2",
+      "status": 200,
+      "bytes": 9444,
+      "sha256": "2fb2e8cbfd52ae46179a8b6024eb162f1f9c6de3d22d6e3a30d8f395de7220be",
+      "matchesSource": true
+    },
+    {
+      "path": "/fonts/manrope/Manrope-vietnamese.woff2",
+      "status": 200,
+      "bytes": 8520,
+      "sha256": "6bbb044ab420e07edb0a3042d2eb314b85e83a0182e945a15ab3b9092668dfd5",
+      "matchesSource": true
+    },
+    {
+      "path": "/fonts/manrope/Manrope-latin-ext.woff2",
+      "status": 200,
+      "bytes": 15120,
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "matchesSource": true
+    },
+    {
+      "path": "/fonts/manrope/Manrope-latin.woff2",
+      "status": 200,
+      "bytes": 24836,
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "matchesSource": true
+    }
+  ]
+}

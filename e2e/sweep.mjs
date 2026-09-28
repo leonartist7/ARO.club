@@ -11,7 +11,7 @@ const PUBLIC_ROUTES = [
 
 const PROTECTED_ROUTES = [
   '/student-dashboard', '/profile', '/games', '/shop', '/chat',
-  '/character-builder', '/teacher/dashboard', '/dashboard', '/passport',
+  '/character-builder', '/teacher/dashboard', '/teacher/application', '/dashboard', '/passport',
   '/onboarding/student', '/onboarding/teacher',
 ];
 

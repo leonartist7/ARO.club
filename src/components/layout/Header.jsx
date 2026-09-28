@@ -94,14 +94,14 @@ export default function Header() {
           {/* Brand */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            className="flex min-h-11 items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             aria-label="ARO home"
           >
             <AroWordmark label="" />
           </Link>
 
           {/* Desktop: public links only */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          <div className="hidden xl:flex items-center gap-1 flex-1 justify-center">
             {publicNav.map((item) => (
               <Link
                 key={item.name}
@@ -120,7 +120,7 @@ export default function Header() {
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-2 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 shrink-0">
             <Link to="/explore">
               <Button variant="primary" size="sm">
                 {t('nav.findExperience')}
@@ -266,7 +266,7 @@ export default function Header() {
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-1">
+          <div className="xl:hidden flex items-center gap-1">
             <button
               ref={mobileTriggerRef}
               type="button"
@@ -281,7 +281,7 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-gray-200 py-4 pb-[env(safe-area-inset-bottom)] dark:border-gray-800 md:hidden">
+          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-gray-200 py-4 pb-[env(safe-area-inset-bottom)] dark:border-gray-800 xl:hidden">
             <div className="space-y-1">
             {publicNav.map((item) => (
               <Link
@@ -311,12 +311,23 @@ export default function Header() {
                 <Link to="/bookings" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.bookings')}
                 </Link>
+                <Link to="/favorites" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                  {t('nav.favorites')}
+                </Link>
                 <Link to="/profile" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                   {t('nav.myProfile')}
+                </Link>
+                <Link to="/passport" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                  {t('nav.passport')}
                 </Link>
                 {isTeacher && (
                   <Link to="/dashboard" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
                     {t('nav.teacherDashboard')}
+                  </Link>
+                )}
+                {isAdmin && (
+                  <Link to="/admin" className="block px-3 py-3 text-sm text-gray-800 dark:text-gray-100" onClick={closeMobile}>
+                    {t('nav.adminConsole')}
                   </Link>
                 )}
                 <button
