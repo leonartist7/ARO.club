@@ -73,3 +73,8 @@ Candidate local verification: build, lint, type check and 180 unit tests PASS
 (3 existing browser-gated tests skipped). Hosted visual and authenticated
 acceptance remains pending on the repair commit; local browser startup remains
 blocked by the container. The temporary local presentation fixture was removed.
+
+### Hosted continuation result and test readiness correction
+
+- Candidate `a7334b1`: platform run [36406677640](https://github.com/leonartist7/ARO.club/actions/runs/36406677640), job 108876975355 **passed**. The full authenticated browser matrix, Auth/Trust boundaries, 91/91 pgTAP twice, recovery/logout, reset and cleanup all passed. The original language-skip failure is repaired without weakening its assertion.
+- Quality run 36406677636: static passed; the added preferences matrix stopped at Settings because its readiness selector incorrectly required an h1. Settings uses the existing AppSectionHeading h2. Corrected readiness to the first accessible heading, retaining every scenario/assertion, and write partial results in finally for diagnostics. Re-run pending; this is not a VERIFIED/SHIPPED claim.
