@@ -27,7 +27,7 @@ OUTPUT = ROOT / "public" / "brand"
 if not CHECK:
     OUTPUT.mkdir(parents=True, exist_ok=True)
 
-for name in ("learn", "teach", "connect"):
+for name in ("learn", "teach", "teach-language-v2", "connect"):
     with Image.open(SOURCE / f"{name}.png") as original:
         image = original.convert("RGB")
         for width in (640, 1280):
