@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-28 release sequencing:** The founder prioritized the fastest responsible initial release in English and light mode. Dark-mode polish and French/Spanish completeness follow in later scoped packages; existing theme/localization infrastructure and working behavior must be preserved. This sequencing does not waive Auth, privacy/eligibility, Trust, payment, platform CI, independent review or Apple/Google store requirements. Native store readiness remains unverified. See the [preserved source plan](docs/rebrand/reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md) and [rebrand ledger](docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md).
+
 > **2026-09-28 RB10:** Login, Signup and Forgot Password have orange-led ARO presentation and EN/FR/ES text on a stacked branch. Preview account controls remain disabled. Live Auth and hosted recovery/signup remain unverified, and all rebrand packages remain unmerged and unreleased.
 
 > **2026-09-28 RB9:** Public sharing now has a controlled orange ARO image and OpenGraph/Twitter image tags on a stacked branch. Its local PNG response and visual crop are checked; social crawler acceptance, merge and release remain open.
