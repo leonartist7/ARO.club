@@ -94,7 +94,7 @@ export default function Header() {
           {/* Brand */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            className="flex min-h-11 items-center gap-2.5 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             aria-label="ARO home"
           >
             <AroWordmark label="" />
