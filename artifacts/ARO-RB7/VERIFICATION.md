@@ -21,3 +21,25 @@ Build, ESLint and `npm run type-check` passed. The full Vitest suite passed: 19 
 
 - Independent RB0 review threads and RB2 privacy/security review gate the stacked rebrand merge. Live onboarding data/eligibility integration and the wider rebrand route matrix remain separate work.
 - Full-route localization and accessibility acceptance, responsive polish beyond these sampled screens, production release and Vercel confirmation remain open.
+
+## Cloud continuation — hosted failure diagnosis (2026-09-28)
+
+The continuation first verified RB10 remote HEAD and clean checkout at
+`31118262783728db55a21c9e138537b52f7aebf1`, then isolated RB7's owning branch at
+`eb2d51bae1cf6d20164ed18bd9109bb1df168ed8`. PR #82 platform run
+[36404033802](https://github.com/leonartist7/ARO.club/actions/runs/36404033802)
+passes 91 SQL assertions and initial Auth/Trust checks before failing at
+`BROWSER_ONBOARDING_LANGUAGE_SKIP_360_LIGHT`. This is legacy teacher onboarding,
+not RB2 preview or the preference language selector.
+
+A bounded failure diagnostic records only button/main/footer geometry and
+pointer interception, plus a synthetic screenshot after credential-input
+absence is asserted. Original click, failure propagation, Auth, SQL, cleanup,
+journey and performance assertions are unchanged. Suspected cause is footer
+interception after removal of public bottom-tab padding; not yet established.
+
+Baseline RB10 build/lint and 179 unit tests passed (3 skipped). Local browser
+verification is blocked: Playwright CDN returned an invalid archive; the official
+Chrome for Testing 151.0.7922.34 download succeeded, but startup failed with
+`socket() failed: Operation not permitted`. No browser flag, security gate or F7
+lab requirement was changed. Hosted evidence is required before claiming a fix.
