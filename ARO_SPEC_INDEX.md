@@ -2,6 +2,8 @@
 
 > **ARO-R2 v1.0.0 — IMPLEMENTED / MERGED:** Yellow/orange identity and Noise Order title/wordmark reached GitHub `main` as `dc73daa` through PR #69. Build, lint, unit, focused browser and delegated visual checks passed. This is not a production release or full-route accessibility certification. See [spec](specs/ARO-R2-YELLOW-BRAND.md) and [evidence](artifacts/ARO-R2/VERIFICATION.md).
 
+> **2026-09-28 FV-1 F7 post-C update:** Documentation PR #47 merged as C `e1ad70529d292879b5f1f29915df18fbf63f5948`; this is `F7_APPROVED_SPEC_SHA`. Existing PR #48 alone owns F7 and retains F6 `79603ae1af60a30f86c105e0f2a4d841043eb727` as historical task base. Its pre-R2 compatibility head was independently reviewed, but the R2 integration requires a new exact-head review. Lockfile-managed Chromium revision 1234 installation and headless launch remain required before F7 measurement. Human and release gates remain WITHHELD. The dated 2026-09-24 candidate note below predates C.
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 
