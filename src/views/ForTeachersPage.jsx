@@ -101,7 +101,7 @@ export default function ForTeachersPage() {
       className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-20">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -173,7 +173,7 @@ export default function ForTeachersPage() {
                 transition={{ delay: 0.2 * index, type: 'spring' }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-700 to-secondary-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                   {step.number}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">{step.title}</h3>

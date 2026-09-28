@@ -1,0 +1,55 @@
+[
+  {
+    "width": 360,
+    "theme": "light",
+    "status": 200,
+    "hasContent": true,
+    "fontLoaded": true,
+    "headingFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "wordmarkFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "overflow": false,
+    "errorOverlay": false,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "theme": "dark",
+    "status": 200,
+    "hasContent": true,
+    "fontLoaded": true,
+    "headingFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "wordmarkFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "overflow": false,
+    "errorOverlay": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "status": 200,
+    "hasContent": true,
+    "fontLoaded": true,
+    "headingFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "wordmarkFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "overflow": false,
+    "errorOverlay": false,
+    "errors": []
+  },
+  {
+    "route": "/app",
+    "status": 200,
+    "hasContent": true
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "status": 200,
+    "hasContent": true,
+    "fontLoaded": true,
+    "headingFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "wordmarkFont": "\"Noise Order\", Manrope, Arial, sans-serif",
+    "overflow": false,
+    "errorOverlay": false,
+    "errors": []
+  }
+]

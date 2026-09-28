@@ -21,8 +21,8 @@ const miniatureSignals = signalLayout.map((layout) => ({
 
 function SignalMarker({ signal, active, onSelect, copy }) {
   const toneClasses = {
-    clay: 'bg-primary-600 text-white shadow-[0_0_0_8px_rgba(190,50,25,0.16),0_10px_22px_rgba(78,24,12,0.35)]',
-    saffron: 'bg-secondary-300 text-ink shadow-[0_0_0_8px_rgba(239,193,75,0.17),0_10px_22px_rgba(78,58,12,0.28)]',
+    clay: 'bg-primary-600 text-white shadow-[0_0_0_8px_rgba(244,208,0,0.16),0_10px_22px_rgba(78,24,12,0.35)]',
+    saffron: 'bg-secondary-300 text-ink shadow-[0_0_0_8px_rgba(245,130,32,0.17),0_10px_22px_rgba(78,58,12,0.28)]',
     moss: 'bg-moss text-white shadow-[0_0_0_8px_rgba(104,115,90,0.17),0_10px_22px_rgba(31,43,28,0.32)]',
   };
 

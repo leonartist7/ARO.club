@@ -18,9 +18,9 @@ export default function HomePage() {
                 <span className="h-2 w-2 rounded-full bg-primary-500" aria-hidden="true" />
                 {t('home.formation.prototypeBadge')}
               </p>
-              <h1 className="mt-7 max-w-5xl text-balance font-display text-5xl leading-[0.93] tracking-[-0.025em] text-ink dark:text-bone sm:text-6xl md:text-7xl lg:text-[5.75rem]">
+              <h1 className="mt-7 max-w-5xl text-balance font-display text-[2.65rem] leading-[1.08] tracking-[-0.025em] text-ink dark:text-bone sm:text-6xl md:text-7xl lg:text-[5rem]">
                 {t('home.formation.hero.title')}{' '}
-                <span className="text-primary-600 dark:text-primary-400">{t('home.formation.hero.highlight')}</span>
+                <span className="bg-primary-500 px-1 text-ink dark:bg-primary-500 dark:text-ink">{t('home.formation.hero.highlight')}</span>
               </h1>
             </div>
             <div className="border-l-2 border-secondary-400 pl-5 lg:mb-2 lg:pl-7">
@@ -129,7 +129,7 @@ export default function HomePage() {
           </div>
           <Link
             to="/explore"
-            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-600 px-6 text-sm font-bold text-white transition-colors hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-500 px-6 text-sm font-bold text-ink transition-colors hover:bg-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
           >
             {t('home.formation.tonguee.cta')}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

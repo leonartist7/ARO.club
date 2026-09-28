@@ -116,7 +116,7 @@ export default function LegalPage({ document: documentKey }) {
     <div
       className="min-h-screen bg-gray-50 dark:bg-gray-900"
     >
-      <div className="bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-14">
+      <div className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-14">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <Icon className="w-12 h-12 mb-4" />
           <h1 className="text-3xl md:text-4xl font-display font-bold mb-3">{doc.title}</h1>

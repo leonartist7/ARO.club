@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-27 — R2 yellow and orange brand candidate
+
+The founder-requested yellow primary, orange secondary, and supplied Noise Order title font were reconciled without reversing FV1 runtime/content fixes, then merged to GitHub `main` via PR #69 at `dc73daa`. Build, lint, tests, focused browser evidence, and the founder-delegated visual check passed. Full-route accessibility and production release are not claimed. See `specs/ARO-R2-YELLOW-BRAND.md` and `artifacts/ARO-R2/VERIFICATION.md`.
+
+---
+
 ## 2026-09-08 — Autonomous workboard and visual-track master sync
 
 The project now has `ARO_AUTONOMOUS_WORKBOARD.md`, a coordination layer for
