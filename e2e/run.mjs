@@ -92,6 +92,15 @@ try {
       failed += run.pageErrors.length;
     }
   }
+  const rb2 = await new Promise((resolve) => {
+    const child = spawn(process.execPath, [fileURLToPath(new URL('../scripts/verify-rb2.mjs', import.meta.url))], {
+      stdio: 'inherit',
+      env: { ...process.env, RB2_BASE: BASE },
+    });
+    child.on('error', (error) => { console.error('RB2 verifier could not start:', error); resolve(1); });
+    child.on('exit', (code) => resolve(code ?? 1));
+  });
+  if (rb2 !== 0) failed += 1;
 } finally {
   stopServer();
 }

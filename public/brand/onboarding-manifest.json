@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "created": "2026-09-27",
   "tool": "OpenAI image_gen imagegen",
   "mode": "generated from approved reference and previous accepted scene references",
@@ -7,7 +7,7 @@
   "exportProfile": {"python": "3.12.14", "pillow": "12.3.0", "libwebp": "1.6.0", "resize": "LANCZOS", "webpQuality": 84, "webpMethod": 6},
   "reference": "ARO.club/public/brand/ARO.png (art direction only)",
   "rights": "Generated for the founder-approved ARO rebrand; retain provenance and review commercial usage with the project's asset policy before release.",
-  "direction": "Warm optimistic adult activity scenes, natural golden light, tactile wood, fabric and ceramics, yellow open circular portal with one detached dot, diverse believable people, consistent rust sweater and green knit cap across related scenes. No text, buttons, prices or inventory claims in artwork.",
+  "direction": "Warm optimistic adult activity scenes, natural golden light, tactile wood and fabric, yellow open circular portal with one detached dot, diverse believable people, consistent rust sweater and green knit cap across related scenes. No text, buttons, prices or inventory claims in artwork. The active teaching scene is adult language/community practice in a public room.",
   "assets": [
     {
       "id": "learn",
@@ -28,12 +28,26 @@
       "original": "artifacts/ARO-RB2/originals/teach.png",
       "generationReference": "exec-9c8622a8-1a9b-4b25-a6eb-91c2db258ffa.png",
       "promptSummary": "Continue the same adult characters, clothing, materials and light in a beginner skill teaching moment; believable hands and tools; yellow portal; no UI text or earnings claim.",
-      "placement": "/onboarding/preview scene 2",
+      "placement": "Superseded scene-2 original, retained for provenance; not used in the interface because pottery is outside the approved teaching preview category",
       "exports": ["/brand/onboarding-teach-640.webp", "/brand/onboarding-teach-1280.webp"],
       "dimensions": ["640x480", "1280x960"],
       "bytes": [52242, 126268],
       "focalPoint": "adult teacher and learner activity at center",
       "crop": "4:3 with central subject safe at mobile width",
+      "theme": "same warm illustration in light and dark UI",
+      "accessibility": "decorative; adjacent live text communicates the scene"
+    },
+    {
+      "id": "teach-language-v2",
+      "original": "artifacts/ARO-RB2/originals/teach-language-v2.png",
+      "generationReference": "exec-8ac1effd-9fa0-4218-831a-24a29ce1bfdf.png",
+      "promptSummary": "Same adult characters and warm portal art direction in a public-room conversational language practice with blank cards; no text, prices, pottery, food, childcare or verified-class claim.",
+      "placement": "/onboarding/preview scene 2",
+      "exports": ["/brand/onboarding-teach-language-v2-640.webp", "/brand/onboarding-teach-language-v2-1280.webp"],
+      "dimensions": ["640x480", "1280x960"],
+      "bytes": [54702, 123024],
+      "focalPoint": "adult teacher and learners' faces and blank conversation cards at center",
+      "crop": "4:3 with central faces safe at mobile width",
       "theme": "same warm illustration in light and dark UI",
       "accessibility": "decorative; adjacent live text communicates the scene"
     },
