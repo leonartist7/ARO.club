@@ -37,7 +37,7 @@ export default function HomePage() {
           </div>
 
           <div id="formation" className="scroll-mt-24">
-            <p className="mb-4 rounded-xl border border-primary-600/25 bg-primary-50 px-4 py-3 text-sm font-semibold text-ink dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-bone">{journey.preview}</p>
+            <p className="mb-4 rounded-xl border border-primary-600/25 bg-primary-50 px-4 py-3 text-sm font-semibold text-ink dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-bone">{journey.formationPreview}</p>
             <OpportunityFormation />
           </div>
         </div>
