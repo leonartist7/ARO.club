@@ -341,3 +341,13 @@ ARO-H0: snapshot publication and audit dispatch only. Specification: `specs/ARO-
 ## AUTO0 — repository autonomy enabling package
 
 `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` v1.0.0: SPEC-READY for repository orchestration and memory under the September 8 founder request; implementation/evidence tracked in `ARO_IMPLEMENTATION_STATUS.md`. Does not authorize ARO-A1 AI runtime, FV-1 product writing or bypass I0/P1. `ARO_AUTONOMY.md` and `memory/HOME.md` are navigation/evidence, not higher authority.
+
+## 2026-09-28 — RB7 cloud continuation
+
+RB7 remains IMPLEMENTED / PARTIAL VERIFICATION on PR #79. Hosted diagnostic
+`c39d0f7` confirmed footer interception of the legacy onboarding Skip action.
+A presentation-only intrinsic-height repair and short-viewport/keyboard
+Preferences improvements are prepared with local build/lint/type and 180 unit
+tests passing (3 existing skips). Hosted browser/visual verification is pending.
+See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
+RB2 independent-review, F7 or release gate changed.
