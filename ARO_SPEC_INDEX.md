@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-28 RB6:** `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped branch. It corrects public `/leaderboard` and `/bookings` presentation only; Auth, reward, booking, payment and release gates remain unchanged.
+
 > **RB4 branch update:** Public legacy fixture route recovery is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb4-fixture-truth-20260927`. Old sample experience/host/map/saved/compare/404 destinations now show localized truthful recovery instead of fictional ratings, bookings and verified status. See `specs/ARO-RB4-LEGACY-FIXTURE-TRUTH.md` and `artifacts/ARO-RB4/VERIFICATION.md`.
 
 > **RB3 branch update:** Public Home/Explore and app Home/Create presentation is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb3-public-discovery-20260927`, under `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md`. The public Explore route now shows an honest no-verified-supply state while legacy fixture data lacks provenance. See `artifacts/ARO-RB3/VERIFICATION.md`.

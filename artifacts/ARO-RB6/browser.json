@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "leaderboard-320-light-en",
+    "status": 200,
+    "heading": "Every path is personal.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "leaderboard-1440-dark-fr",
+    "status": 200,
+    "heading": "Chaque parcours est personnel.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "leaderboard-390-light-es",
+    "status": 200,
+    "heading": "Cada camino es personal.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "bookings-360-dark-en",
+    "status": 200,
+    "heading": "Your next table starts with a real opportunity.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "bookings-768-light-fr",
+    "status": 200,
+    "heading": "Votre prochaine rencontre commence par une vraie occasion.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "bookings-1440-dark-es",
+    "status": 200,
+    "heading": "Tu próxima mesa empieza con una oportunidad real.",
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "hasExplore": true,
+    "hasPreview": true,
+    "errors": [],
+    "writes": []
+  }
+]

@@ -1,4 +1,4 @@
-import Page from "../../../views/MyBookingsPage";
+import Page from "../../../views/PublicUtilityState";
 export default function RoutePage() {
-  return <Page />;
+  return <Page kind="bookings" />;
 }

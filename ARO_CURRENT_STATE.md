@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-28 RB6:** The public leaderboard and bookings routes now show honest preview states on a stacked branch. The rebrand stack remains unmerged while RB0 review threads and RB2 independent privacy/security review are open; no live booking or ranking capability is claimed.
+
 > **RB4 branch update:** Public fixture deep links now resolve to a localized honest recovery state; saved identifiers are not deleted. The package is unmerged and partial. Authenticated legacy fixture consumers, independent review and release remain open.
 
 > **RB3 branch update:** Home and discovery/Create first steps have an orange-led presentation on a separate stacked branch. Public Explore hides dated unverified fixtures and offers a useful preview path. Existing deep links need a separate fixture audit; live onboarding and release remain gated.

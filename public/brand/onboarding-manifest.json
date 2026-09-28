@@ -3,7 +3,7 @@
   "created": "2026-09-27",
   "tool": "OpenAI image_gen imagegen",
   "mode": "generated from approved reference and previous accepted scene references",
-  "reference": "ARO.club/public/brand/ARO.png (art direction only)",
+  "reference": "docs/rebrand/reference/ARO-approved.png (art direction only; SHA-256 5F49515ECBC942C22C1375AA8A8858809D2E8A04177115B58D188E33EE5475E1)",
   "rights": "Generated for the founder-approved ARO rebrand; retain provenance and review commercial usage with the project's asset policy before release.",
   "direction": "Warm optimistic adult activity scenes, natural golden light, tactile wood, fabric and ceramics, yellow open circular portal with one detached dot, diverse believable people, consistent rust sweater and green knit cap across related scenes. No text, buttons, prices or inventory claims in artwork.",
   "assets": [
@@ -40,7 +40,7 @@
       "original": "artifacts/ARO-RB2/originals/connect.png",
       "generationReference": "exec-8930b8fb-2654-427d-9cfc-9abe20cdb8fc.png",
       "promptSummary": "Continue the same visual world with several diverse adults meeting around a believable creative activity, warm light and yellow open portal; no UI text or fabricated class listing.",
-      "placement": "/onboarding/preview scene 3; public Home hero; RB4 legacy deep-link recovery; About, FAQ and Contact",
+      "placement": "/onboarding/preview scene 3; public Home hero; RB4 legacy deep-link recovery; About, FAQ, Contact; RB6 public bookings and leaderboard future states",
       "exports": ["/brand/onboarding-connect-640.webp", "/brand/onboarding-connect-1280.webp"],
       "dimensions": ["640x480", "1280x960"],
       "bytes": [65630, 163214],

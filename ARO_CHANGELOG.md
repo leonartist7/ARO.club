@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-28 — RB6 public future route truth
+
+Replaced the public seed leaderboard and unsupported bookings/checkout promise with localized preview states at their existing URLs. Preserved protected game, shop and character routes and all Auth, booking, reward and payment behavior. See `specs/ARO-RB6-PUBLIC-FUTURE-STATES.md` and `artifacts/ARO-RB6/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB5 public story and help
 
 Replaced legacy About, How it Works, For Teachers, FAQ and Contact entry pages with the approved orange-led story and honest preview guidance. Removed invented team, reach, income, policy, support and social claims. Contact retains on-device drafts and states that no support inbox is connected. Footer links now have real destinations. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
