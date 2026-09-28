@@ -16,9 +16,9 @@ export default function CompareBar() {
   // Get experience details
   const experiences = compareList
     .map((id) => experiencesData.find((exp) => exp.id === id))
-    .filter(Boolean);
+    .filter((experience) => experience?.source === 'verified-live');
 
-  if (compareList.length === 0) return null;
+  if (experiences.length === 0) return null;
 
   return (
     <AnimatePresence>
@@ -34,7 +34,7 @@ export default function CompareBar() {
             <div className="flex items-center gap-4 flex-1 overflow-x-auto">
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-gray-900 dark:text-white whitespace-nowrap">
-                  Compare ({compareList.length}/{maxCompare})
+                  Compare ({experiences.length}/{maxCompare})
                 </h3>
               </div>
 
@@ -83,7 +83,7 @@ export default function CompareBar() {
                   variant="primary"
                   size="md"
                   icon={<ArrowRight className="w-4 h-4" />}
-                  disabled={compareList.length < 2}
+                  disabled={experiences.length < 2}
                 >
                   Compare Now
                 </Button>

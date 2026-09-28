@@ -2,9 +2,25 @@
   {
     "slug": "experience-exp1-320-light-en",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "This class is not available to book.",
     "main": "ARO PREVIEW\n\nThis class is not available to book.\n\nThe earlier concept catalogue used illustrative records. They do not establish real hosts, availability, reviews, bookings or verified status. Your saved identifiers have not been deleted.\n\nExplore the introduction\nFind a class\nTeach a skill",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
+    "horizontalOverflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "experience-not-an-experience-320-light-en",
+    "status": 404,
+    "expectedStatus": 404,
+    "heading": "We could not find this page.",
+    "main": "ARO PREVIEW\n\nWe could not find this page.\n\nThe destination may have moved. Start with the current ARO introduction or return home.\n\nExplore the introduction\nARO home",
+    "mainLandmarks": 1,
+    "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -12,9 +28,25 @@
   {
     "slug": "teacher-t1-390-dark-fr",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "Ce profil d’hôte n’est pas en ligne.",
     "main": "APERÇU ARO\n\nCe profil d’hôte n’est pas en ligne.\n\nL’ancien catalogue de concept utilisait des données illustratives. Elles ne prouvent pas l’existence d’hôtes, de disponibilités, d’avis, de réservations ou d’un statut vérifié. Vos identifiants enregistrés n’ont pas été supprimés.\n\nDécouvrir l’introduction\nTrouver un cours\nEnseigner une compétence",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
+    "horizontalOverflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "slug": "teacher-not-a-teacher-390-dark-fr",
+    "status": 404,
+    "expectedStatus": 404,
+    "heading": "Cette page est introuvable.",
+    "main": "APERÇU ARO\n\nCette page est introuvable.\n\nLa destination a peut-être changé. Découvrez l’introduction actuelle d’ARO ou revenez à l’accueil.\n\nDécouvrir l’introduction\nAccueil ARO",
+    "mainLandmarks": 1,
+    "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -22,9 +54,12 @@
   {
     "slug": "map-1440-light-es",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "El mapa en directo aún no está disponible.",
     "main": "VISTA PREVIA DE ARO\n\nEl mapa en directo aún no está disponible.\n\nLos lugares y las clases aparecerán aquí solo cuando se verifiquen sus fuentes. Mientras tanto, puedes explorar la introducción ilustrada.\n\nExplorar la introducción\nEncontrar una clase\nEnseñar una habilidad",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -32,9 +67,12 @@
   {
     "slug": "favorites-360-light-en",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "Saved examples are unavailable.",
     "main": "ARO PREVIEW\n\nSaved examples are unavailable.\n\nThe earlier concept catalogue used illustrative records. They do not establish real hosts, availability, reviews, bookings or verified status. Your saved identifiers have not been deleted.\n\nExplore the introduction\nFind a class\nTeach a skill",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -42,9 +80,12 @@
   {
     "slug": "recently-viewed-390-dark-es",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "Los ejemplos anteriores no están disponibles.",
     "main": "VISTA PREVIA DE ARO\n\nLos ejemplos anteriores no están disponibles.\n\nEl antiguo catálogo de concepto usaba datos ilustrativos. No acreditan anfitriones, disponibilidad, reseñas, reservas ni estados verificados reales. No hemos borrado tus identificadores guardados.\n\nExplorar la introducción\nEncontrar una clase\nEnseñar una habilidad",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -52,9 +93,12 @@
   {
     "slug": "compare-768-light-fr",
     "status": 200,
+    "expectedStatus": 200,
     "heading": "Il n’y a pas de cours en direct à comparer.",
     "main": "APERÇU ARO\n\nIl n’y a pas de cours en direct à comparer.\n\nL’ancien catalogue de concept utilisait des données illustratives. Elles ne prouvent pas l’existence d’hôtes, de disponibilités, d’avis, de réservations ou d’un statut vérifié. Vos identifiants enregistrés n’ont pas été supprimés.\n\nDécouvrir l’introduction\nTrouver un cours\nEnseigner une compétence",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []
@@ -62,9 +106,12 @@
   {
     "slug": "this-route-does-not-exist-1440-dark-en",
     "status": 404,
+    "expectedStatus": 404,
     "heading": "We could not find this page.",
     "main": "ARO PREVIEW\n\nWe could not find this page.\n\nThe destination may have moved. Start with the current ARO introduction or return home.\n\nExplore the introduction\nARO home",
+    "mainLandmarks": 1,
     "hasPreviewLink": true,
+    "hidesPersistedFixtures": true,
     "horizontalOverflow": false,
     "errors": [],
     "writes": []

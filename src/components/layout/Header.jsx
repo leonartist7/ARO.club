@@ -93,7 +93,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop: public links only */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          <div className="hidden xl:flex items-center gap-1 flex-1 justify-center">
             {publicNav.map((item) => (
               <Link
                 key={item.name}
@@ -112,7 +112,7 @@ export default function Header() {
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-2 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 shrink-0">
             <LanguageToggle />
             <ThemeToggle />
 
@@ -277,7 +277,7 @@ export default function Header() {
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-1">
+          <div className="xl:hidden flex items-center gap-1">
             <LanguageToggle />
             <ThemeToggle />
             <button
@@ -293,7 +293,7 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800 space-y-1">
+          <div className="xl:hidden py-4 border-t border-gray-200 dark:border-gray-800 space-y-1">
             {publicNav.map((item) => (
               <Link
                 key={item.name}

@@ -18,9 +18,21 @@ Replaced the public seed leaderboard and unsupported bookings/checkout promise w
 
 ---
 
+## 2026-09-28 — RB5 review repair and privacy gate
+
+Added contextual host Trust guidance and privacy links to FAQ, expanded the public-story/contact specification with local-draft data, retention, failure and acceptance contracts, and synchronized its provisional state in the canonical registries. RB5 is SPEC-REQUIRED pending independent privacy review of on-device contact text; the implementation remains unmerged. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
+
+---
+
 ## 2026-09-28 — RB5 public story and help
 
 Replaced legacy About, How it Works, For Teachers, FAQ and Contact entry pages with the approved orange-led story and honest preview guidance. Removed invented team, reach, income, policy, support and social claims. Contact retains on-device drafts and states that no support inbox is connected. Footer links now have real destinations. See `specs/ARO-RB5-PUBLIC-STORY-HELP.md` and `artifacts/ARO-RB5/VERIFICATION.md`.
+
+---
+
+## 2026-09-28 — RB4 review repair
+
+Suppressed persisted legacy fixtures in the global compare bar, kept recovery screens to one main landmark, returned generic 404 screens for unknown legacy IDs, and directed host interest to the local Create preview. Refreshed the route matrix with exact status and persisted-state assertions. See `artifacts/ARO-RB4/VERIFICATION.md`.
 
 ---
 
@@ -30,9 +42,21 @@ Old public experience, teacher, map, saved/recent, comparison and missing-page r
 
 ---
 
+## 2026-09-28 — RB3 review repair
+
+Narrowed the shared Trust claim to teacher verification, fixed the empty Explore landmark, made Create task selections visible and keyboard focusable, routed gathering to its local preview mode, and placed a preview boundary at the formation anchor. Regenerated the RB3 browser matrix from the repaired tree with direct behavior assertions. See `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
 ## 2026-09-27 — RB3 public discovery and Create presentation
 
 Moved the approved public promise, benefits and task entrances into Home; added an honest no-verified-supply Explore state because the legacy catalogue has dated synthetic booking and review fixtures. App Home presents the next action first and no longer shows example personal progress. Create exposes direct task entrances while retaining the accepted local Seed Studio controls. Host-verification footer copy now describes the publish gate rather than claiming existing verified teachers. See `specs/ARO-RB3-DISCOVERY-CREATE-PRESENTATION.md` and `artifacts/ARO-RB3/VERIFICATION.md`.
+
+---
+
+## 2026-09-28 — RB2 onboarding review repair
+
+Removed the closed food-preparation preview topic and the outdoor photography-walk example, changed the teaching headline to conditional language, repaired localized validation/announcements and saved-choice feedback, and expanded browser/privacy evidence. The source art exporter now verifies a pinned runtime against committed WebP bytes. RB2 remains IMPLEMENTED / PARTIAL VERIFICATION and merge-gated by independent privacy/security review. See `artifacts/ARO-RB2/VERIFICATION.md`.
 
 ---
 
