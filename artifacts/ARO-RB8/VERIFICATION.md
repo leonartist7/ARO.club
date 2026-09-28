@@ -17,3 +17,7 @@ The component interaction test covers EN/FR/ES, retry callback, Home destination
 ## Limits
 
 The screenshots verify rendering of the actual state components inside the app shell and providers. They do not demonstrate a real production exception, network outage or successful retry. Root HTML Suspense fallback remains an English boot message before stored language is available; live route loading uses the localized state. The inherited hosted platform check still fails at the teacher-onboarding language skip step; a local 360px reproduction of that choice/skip interaction passed, but no hosted root cause is established. Auth, privacy, payment, F7 and release boundaries are unchanged.
+
+## 2026-09-28 cloud continuation
+
+Inherited RB7's bounded layout/preference repair through normal merge ancestry; no RB8 loading/error behavior changed. The earlier Limits paragraph describes the original baseline: the hosted root cause is now established as fixed-height onboarding card overflow intercepted by the footer. RB7 platform runs 36406677640 and 36407355888 passed after the minimum-height repair. See [retained diagnosis and visual evidence](../ARO-RB7/VERIFICATION.md#retained-hosted-evidence-cloud-continuation). Exact descendant HEAD checks remain required before merge; this does not promote RB8 to VERIFIED/SHIPPED or close independent gates.

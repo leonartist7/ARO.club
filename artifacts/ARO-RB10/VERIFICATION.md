@@ -17,3 +17,8 @@ The [production-browser matrix](browser.json) covers six 320–1440px cases acro
 ## Limits
 
 No backend account creation, sign-in or password email was exercised by this visual package. Live Auth, hosted signup/recovery, callback review, privacy/security review and release remain governed separately. GitHub static, browser-smoke and Vercel preview checks pass for PR #82; the hosted platform lane fails at the inherited `BROWSER_ONBOARDING_LANGUAGE_SKIP_360_LIGHT` step and is not waived by this package.
+
+
+## 2026-09-28 cloud continuation
+
+The original platform limitation above is superseded by the confirmed RB7 layout repair, inherited through RB8/RB9 without changes to RB10 Auth presentation or backend boundaries. Tested source `add2a418617e435d5a0a1a58085aa53940c1ce96` passes [Quality 36407547820](https://github.com/leonartist7/ARO.club/actions/runs/36407547820) and [platform 36407547856](https://github.com/leonartist7/ARO.club/actions/runs/36407547856). Local build/lint/type checks and 184 unit tests pass (3 existing browser-gated skips). Hosted browsers provide the visual/interaction evidence because this container cannot start Chromium. See [RB7 retained screenshots/results](../ARO-RB7/VERIFICATION.md#retained-hosted-evidence-cloud-continuation) and [updated ledger](../../docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md). The final evidence-only merge must still pass its own required checks; independent reviews, live eligibility specification and release remain open. No VERIFIED/SHIPPED claim.

@@ -926,3 +926,8 @@ Preferences improvements are prepared with local build/lint/type and 180 unit
 tests passing (3 existing skips). Hosted browser/visual verification is pending.
 See `artifacts/ARO-RB7/VERIFICATION.md`. No Auth, persistence, Trust, payment,
 RB2 independent-review, F7 or release gate changed.
+
+
+### 2026-09-28 — Hosted rebrand regression repaired
+
+RB7's fixed-height onboarding cards were overlapped by the public footer. The bounded minimum-height repair and quiet-preferences accessibility polish are propagated through the existing RB7–RB10 stack. RB7 source bbd1b2b passes Quality 36407355886 and platform 36407355888; RB10 source add2a41 passes Quality 36407547820 and platform 36407547856. Original assertions, Auth/Trust/RLS, privacy/eligibility, payment and F7 boundaries remain intact. Retained screenshots and machine results are in artifacts/ARO-RB7/cloud-continuation. The implementation ledger records exact source/evidence provenance and final-HEAD check requirements. Status remains IMPLEMENTED / PARTIAL VERIFICATION, unmerged; RB0 conversations and independent RB2 review remain gates.
