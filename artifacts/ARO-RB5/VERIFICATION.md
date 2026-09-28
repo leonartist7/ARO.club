@@ -12,4 +12,4 @@ Visual captures: [About at 320px](about-320-light-en.png), [About desktop dark F
 
 ## Remaining
 
-This is presentation and local draft behavior, not live support, onboarding or hosted authentication. Existing stored drafts remain on-device. Authenticated legacy surfaces, live supply, full accessibility and localization review, independent PR review and release gates remain open. The stacked RB3/RB4 CI browser suite currently has two stale Home-copy assertions from the previous hero; they need adjustment to check the retained local prototype boundary in its new location before merge.
+This is presentation and local draft behavior, not live support, onboarding or hosted authentication. Existing stored drafts remain on-device. Authenticated legacy surfaces, live supply, full accessibility and localization review, independent PR review and release gates remain open. The stacked RB3 browser assertions were updated to check the retained local prototype boundary in its new location. RB0 has unresolved review threads and RB2 still requires independent privacy/security review before the stack can merge to protected `main`.
