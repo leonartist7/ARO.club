@@ -61,7 +61,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-2.5 mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              className="flex min-h-11 items-center gap-2.5 mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
               aria-label="ARO home"
             >
               <AroWordmark label="" />
