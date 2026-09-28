@@ -237,7 +237,7 @@ describe('FV-1 F6 localization and media evidence', () => {
 
     const french = renderReturn('/app/insights', 'fr')
     expect(french.container.querySelector('[lang="fr"]')).toBeTruthy()
-    expect(screen.getByText('Aperçus')).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'Aperçus' })).toBeTruthy()
     expect(screen.getByAltText(fv1ReturnCopy.fr.insights.heroAlt)).toBeTruthy()
     french.unmount()
 
