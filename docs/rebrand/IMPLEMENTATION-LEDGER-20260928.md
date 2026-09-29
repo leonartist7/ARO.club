@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 12563)
-Total output lines: 283
-
 # Orange rebrand implementation ledger — 28 September 2026
 
 **Current founder priority:** Prepare an English, light-mode initial release first; schedule dark-mode and French/Spanish polish after that scope. Preserve existing theme/localization behavior and all review, privacy, Trust, security, payment and store gates. The [original planning document](reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md) is historical source context, not a claim of release readiness.
@@ -135,7 +132,21 @@ RB2 specialist privacy/security review remains open. RB5 stays **SPEC-REQUIRED**
 
 ## Latest local Manrope reconciliation — 2026-09-28
 
-The 52295e9 handoff was incorporated in RB7 `16120355bbb83bb1903138f33d8e5411708cb94e`, then superseded by exact remote RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`. Verified main `721b2b7fdd3dda0072d189e43d717ef00c7723b2` is its ancestor. Normal two-parent merges preserve all cloud commits, the original 3111826 baseline, package ownership and lower-stac…563 tokens truncated…d: RB5 ad4a6d1 and RB6 52295e9 passed both workflows. RB4 238cbbe passed Quality 36449928091 but isolated 36449927999 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_360_DARK` (cleanup passed). Older RB7 `/choose-role` and RB9 document-chooser failures above are retained; new-head results must establish their current status, not inferred descendant success.
+The 52295e9 handoff was incorporated in RB7 `16120355bbb83bb1903138f33d8e5411708cb94e`, then superseded by exact remote RB6 `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd`. Verified main `721b2b7fdd3dda0072d189e43d717ef00c7723b2` is its ancestor. Normal two-parent merges preserve all cloud commits, the original 3111826 baseline, package ownership and lower-stack fixes; no force-push or main update. PR #83's local Manrope fonts/license and RB0/RB1 baseline updates propagate unchanged. No F7 evidence was overwritten.
+
+The single Header conflict was resolved in RB7: compact Favorites/Passport and role-gated Admin remain, while future-only Games/Leaderboard stay omitted as required by RB7. A new regression test covers compact real destinations and omission of future-only links. Other package merges were conflict-free. Prior minimum-height onboarding repair, quiet accessible preferences, metadata, supporting states and account-entry presentation remain intact.
+
+| PR | Reconciled source / provenance | Latest hosted checkpoint |
+|---|---|---|
+| #78 | `2ea1fede95d9bf83a7ef14bca3a8f9bfc6a48bcd` | Quality 36450742796 in progress; Isolated database 36450743091 success |
+| #79 | `2e3b03894cd15f586c33d172e396e9958af84a97` | Quality 36450917791 / Isolated 36450917657 in progress |
+| #80 | `27ac05ecf1c0d36a8c1c54c6fc877fb82a28462c` | Quality 36450984408 / Isolated 36450984422 in progress |
+| #81 | `af6796b3326f95892d2b32165cb1e17b528dffb3` | Quality 36451048492 / Isolated 36451048543 in progress |
+| #82 | This merge of prior `601545c10a6aed2e938e0defe94d9aee5e8eb628` and RB9 above | Fresh hosted runs required after publication |
+
+Verification of the combined RB10 source: production build, lint, type-check and unit suite pass (21 files, 185 passed, 3 existing browser-gated skips). [Production HTTP font evidence](../../artifacts/ARO-RB10/reconciliation-2ea1fed/font-http.json) confirms all six WOFF2 files return HTTP 200 with source-identical hashes, all six faces are referenced by built CSS, and the sampled Home HTML/CSS has no Google Fonts reference. This does not claim browser network or typography acceptance. Local browser/visual recheck is blocked: bundled Chromium is absent and `npx playwright install chromium` repeatedly returned an invalid/truncated archive (central-directory signature missing). Prior images remain historical and were not overwritten. Fresh hosted browser preferences/platform checks and representative local-font screenshots remain required. No new performance claim or relaxation of existing budgets/assertions.
+
+Historical intermediate checkpoint, before 2ea1fed: RB5 ad4a6d1 and RB6 52295e9 passed both workflows. RB4 238cbbe passed Quality 36449928091 but isolated 36449927999 failed `BROWSER_DOCUMENT_INITIAL_CHOOSER_360_DARK` (cleanup passed). Older RB7 `/choose-role` and RB9 document-chooser failures above are retained; new-head results must establish their current status, not inferred descendant success.
 
 PR #84 remains at `7e3f9568202b37b7aeb420f9b642efb80121b1a2`, with mergeability false when checked. Its source-plan file, historical banner, English/light priority and RB0 source link are now on GitHub; earlier unavailable-private-attachment statements describe the original task, not current availability. The source-plan branch stays with its owner and must be reconciled on the latest RB10; old green checks do not prove that integration. English/light priority does not waive working dark/FR/ES behavior or any specialist boundary. Its automated review conversations remain unresolved.
 
