@@ -13,13 +13,13 @@ const ART = ['learn', 'teach-language-v2', 'connect'];
 const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Drawing'];
 const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
 
-function SceneArt({ scene, compact = false }) {
+function SceneArt({ scene }) {
   const name = ART[scene];
   return (
-    <div className={`overflow-hidden rounded-[1.5rem] bg-brand-yellow shadow-[0_18px_55px_rgba(37,36,32,0.11)] lg:rounded-[2rem] ${compact ? 'h-32 sm:h-52 lg:h-64' : ''}`}>
+    <div data-onboarding-scene-art className="aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-brand-yellow shadow-[0_18px_55px_rgba(37,36,32,0.11)] lg:rounded-[2rem]">
       <picture className="block h-full">
         <source srcSet={`/brand/onboarding-${name}-640.webp 640w, /brand/onboarding-${name}-1280.webp 1280w`} sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
-        <img src={`/brand/onboarding-${name}-640.webp`} width="640" height="480" loading="eager" decoding="async" alt="" className={`${compact ? 'h-full' : 'aspect-[4/3] h-full'} w-full object-cover object-[center_43%]`} />
+        <img src={`/brand/onboarding-${name}-640.webp`} width="640" height="480" loading="eager" decoding="async" alt="" className="h-full w-full object-contain" />
       </picture>
     </div>
   );
@@ -113,7 +113,7 @@ export default function OnboardingPreview() {
             <p className="text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-primary-300">{eyebrow}</p>
             <h1 ref={heading} tabIndex={-1} className="mt-3 text-balance font-display text-3xl leading-[1.12] outline-none sm:text-4xl lg:text-5xl">{title}</h1>
             {body && <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary sm:text-lg">{body}</p>}
-            {stage < 2 && <div className="mt-5 lg:hidden"><SceneArt scene={stage} compact /></div>}
+            {stage < 2 && <div className="mt-5 lg:hidden"><SceneArt scene={stage} /></div>}
 
 
             {stage === 3 && <div className="mt-7 space-y-5">
@@ -154,7 +154,7 @@ export default function OnboardingPreview() {
 
           <div>
             {stage === 2 && <div className="grid gap-3"><Choice selected={intent === 'learn'} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={intent === 'host'} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={intent === 'both'} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
-            {stage < 3 && <div className={stage === 2 ? 'mt-5' : 'hidden lg:block'}><SceneArt scene={stage} compact={stage === 2} /></div>}
+            {stage < 3 && <div className={stage === 2 ? 'mt-5' : 'hidden lg:block'}><SceneArt scene={stage} /></div>}
             {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20"><p className="text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{copy.resetNotice}</p>{mode === 'host' && <p className="mt-4 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{copy.result.hostBoundary}</p>}<div className="mt-5 flex flex-wrap gap-4">{mode !== 'host' && <Link to="/explore" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>}{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
             {(stage === 3 || stage === 4 || stage === 5) && <p className="mt-6 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
           </div>

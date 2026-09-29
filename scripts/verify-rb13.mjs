@@ -58,8 +58,16 @@ try {
     let art;
     if (item.art) {
       art = await page.locator(`img[src*="${item.art}-640.webp"]`).first().evaluate(element => {
-        const { top } = element.getBoundingClientRect();
-        return { loaded: element.naturalWidth > 0, top: Math.round(top), naturalWidth: element.naturalWidth };
+        const image = element.getBoundingClientRect();
+        const frame = element.closest('[data-onboarding-scene-art]')?.getBoundingClientRect();
+        return {
+          loaded: element.naturalWidth > 0,
+          top: Math.round(image.top),
+          naturalWidth: element.naturalWidth,
+          objectFit: getComputedStyle(element).objectFit,
+          frameRatio: frame ? Number((frame.width / frame.height).toFixed(3)) : null,
+          imageRatio: Number((image.width / image.height).toFixed(3)),
+        };
       });
     }
     const truthful = item.route === '/explore' ? await page.getByText(/no verified live classes/i).count() > 0 : item.route === '/app' ? await page.getByText(/fictional preview/i).count() > 0 : true;
@@ -102,7 +110,7 @@ try {
 
 const artBytes = Object.fromEntries(await Promise.all(['onboarding-connect-640.webp', 'onboarding-learn-640.webp', 'onboarding-teach-language-v2-640.webp'].map(async name => [name, (await stat(join(process.cwd(), 'public', 'brand', name))).size])));
 await writeFile(join(output, 'asset-bytes.json'), JSON.stringify(artBytes, null, 2));
-const failures = results.filter(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || !item.truthful || item.errors.length || item.writes.length || (item.action && (item.action.top < 0 || item.action.bottom > item.height)) || (item.art && (!item.art.loaded || item.art.top >= item.height)) || item.faqOpened === false);
+const failures = results.filter(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || !item.truthful || item.errors.length || item.writes.length || (item.action && (item.action.top < 0 || item.action.bottom > item.height)) || (item.art && (!item.art.loaded || item.art.top >= item.height)) || (item.route === '/onboarding/preview' && item.art && (item.art.objectFit !== 'contain' || Math.abs(item.art.frameRatio - 4 / 3) > 0.02 || Math.abs(item.art.imageRatio - 4 / 3) > 0.02)) || item.faqOpened === false);
 const routeFailures = routeResults.filter(item => !item.status || item.status >= 500 || item.overflow || item.errors.length || item.writes.length);
 if (results.length !== cases.length || failures.length || routeResults.length !== 40 || routeFailures.length) {
   console.error(JSON.stringify({ failures, routeFailures, checked: results.length, routes: routeResults.length }, null, 2));
