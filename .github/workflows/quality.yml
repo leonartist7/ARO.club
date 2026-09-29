@@ -50,6 +50,15 @@ jobs:
           path: artifacts/ARO-RB7/cloud-continuation
           retention-days: 7
       - run: npm run test:e2e
+      - name: RB13 compact footer browser check
+        run: node scripts/verify-rb13-footer.mjs
+      - name: Retain RB13 footer screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb13-footer
+          path: artifacts/ARO-RB13/footer
+          retention-days: 7
 
   english-light-release:
     runs-on: ubuntu-latest

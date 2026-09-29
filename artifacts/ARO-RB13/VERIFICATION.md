@@ -29,6 +29,12 @@ The orange field, open-O geometry, Manrope hierarchy, first action and adult act
 
 The direct `npm test` invocation on this Windows sandbox could not bundle `vitest.config.js` because esbuild was denied access while traversing `C:/`. Vitest's supported `--configLoader runner` completed the same 21 test files. Local Edge headless launch closed immediately; installed Chrome produced the saved browser results. The first hosted browser run exposed a stale test expectation after the opportunity-copy change; the test now asserts the visible new intro and the accessible, inactive search/filter previews. Hosted CI on the corrected branch remains required.
 
+## Compact shared footer follow-up — 2026-09-29
+
+The shared footer previously repeated a full-width trust banner and stacked its brand, three navigation groups and legal links on narrow screens. It now uses a compact brand/action row, removes that repeated trust banner from the universal platform shell, keeps the original destinations, and places the three navigation groups inside one keyboard-operable native disclosure below 768px. Desktop keeps those groups visible in a reduced three-column grid. Privacy, terms and cookie links remain visible. New disclosure/landmark names are localized in English, French and Spanish; navigation and legal targets remain at least 44px.
+
+Local verification after this follow-up: focused footer tests pass (2); full Vitest passes (189 passed, 3 existing skips); lint, type-check, ordinary production build and English/light production build pass. `git diff --check` passes. This environment could not install Playwright Chromium revision 1234: the CDN returned an invalid zero-byte archive, so no local rendered screenshot is claimed. A required `browser-smoke` CI step now checks the footer at 320, 390, 768 and 1440px across light/dark, tests keyboard disclosure and preserved links/touch targets, and uploads footer screenshots to the `rb13-footer` artifact. Exact-head visual acceptance remains pending until that CI run passes.
+
 Mobile reused art is 65,630 bytes (connect), 62,540 bytes (learn) and 54,702 bytes (language-teaching) from [measured files](release-candidate/asset-bytes.json), each below the existing 250 KB first-illustration budget. The approved reference is evidence only and is not used as a raster logo. Orange/charcoal contrast is 4.58:1, orange/ivory large-heading contrast 3.21:1, and action-orange/white contrast 4.88:1. This is a color-pair calculation, not full-route accessibility certification.
 
 ## Open gates
