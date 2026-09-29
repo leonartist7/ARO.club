@@ -82,7 +82,8 @@ export function LanguageMenu({ className = '' }) {
       setMenuStyle({
         top: Math.round(Math.max(edge, top)),
         left: Math.round(left),
-        maxHeight: Math.round(Math.max(96, maxHeight)),
+        maxHeight: Math.round(Math.max(0, maxHeight)),
+        maxWidth: Math.round(Math.max(0, viewportWidth - edge * 2)),
       });
     };
 
