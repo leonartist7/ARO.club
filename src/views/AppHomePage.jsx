@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ArrowRight, Compass, MapPin, Plus, Sparkles } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { opportunities } from '../data/aroApp';
-import { AppAvatar } from '../components/app/AppPrimitives';
 import { AppImage } from '../components/app/AppImage';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
@@ -35,12 +34,7 @@ function OpeningCard({ opportunity, copy }) {
         <span className="inline-flex items-center gap-1.5"><Compass className="h-4 w-4 text-primary-500" aria-hidden="true" /> {opportunity.time}</span>
         <span className="inline-flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary-500" aria-hidden="true" /> {opportunity.distance}</span>
       </div>
-      <div className="mt-3 flex items-start gap-3">
-        <div className="flex -space-x-2 pt-0.5" aria-hidden="true">
-          <AppAvatar initials="MA" size="sm" />
-          <AppAvatar initials="TR" size="sm" />
-          <AppAvatar initials="JL" size="sm" />
-        </div>
+      <div className="mt-3 border-t border-ink/10 pt-3">
         <div className="min-w-0 text-base leading-6 text-ink/70">
           <p className="font-bold text-ink">{copy.examplePlaces(opportunity.exampleCount, opportunity.capacity)}</p>
           <p>{copy.exampleMinimum(opportunity.minimum)}</p>
@@ -48,17 +42,6 @@ function OpeningCard({ opportunity, copy }) {
         </div>
       </div>
     </article>
-  );
-}
-
-function ExplorePath({ copy, journey }) {
-  return (
-    <Link to="/app/opportunities" className="group block rounded-[1.75rem] border border-ink/10 bg-white/70 p-5 transition hover:border-primary-500/40 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-bone/10 dark:bg-gray-900/65 dark:hover:bg-gray-900 sm:p-6">
-      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">{copy.home.worldEyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl leading-tight">{journey.examples}</h2>
-      <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{journey.noProgress}</p>
-      <span className="mt-4 inline-flex min-h-11 items-center gap-1 text-sm font-bold text-primary-700 dark:text-primary-300">{journey.examples}<ArrowRight className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1" aria-hidden="true" /></span>
-    </Link>
   );
 }
 
@@ -114,22 +97,16 @@ export default function AppHomePage() {
 
   return (
     <div lang={language} className="px-4 py-4 sm:px-8 sm:py-6">
-      <section className="mb-5 rounded-[1.5rem] bg-brand-orange p-5 text-ink dark:bg-primary-800 dark:text-bone sm:p-7" aria-labelledby="app-first-step-title">
-        <p className="text-sm font-extrabold uppercase tracking-[0.12em]">{journey.benefits}</p>
-        <h1 id="app-first-step-title" className="mt-2 font-display text-3xl font-extrabold leading-tight text-bone sm:text-4xl">{journey.appTitle}</h1>
-        <p className="mt-2 max-w-2xl text-base font-semibold leading-7">{journey.appBody}</p>
-        <div className="mt-5 flex flex-wrap gap-3"><Link to="/app/opportunities" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-bone px-5 py-2 font-extrabold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-brand-orange">{journey.find}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/app/create?mode=share" className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-ink px-4 py-2 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:border-bone dark:text-bone">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+      <section className="mb-6 border-b border-ink/10 pb-7 pt-3 text-ink dark:border-bone/15 dark:text-bone sm:pb-9" aria-labelledby="app-first-step-title">
+        <p className="text-sm font-bold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{copy.home.previewState}</p>
+        <h1 id="app-first-step-title" className="mt-3 max-w-[18ch] text-balance font-display text-4xl leading-[1.04] tracking-[-0.035em] sm:text-6xl">{journey.appTitle}</h1>
+        <p className="mt-3 max-w-2xl text-base leading-7 text-ink/75 dark:text-bone/75 sm:text-lg">{journey.appBody}</p>
+        <div className="mt-6 flex flex-wrap items-center gap-3"><Link to="/app/opportunities" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-action-primary px-6 py-2 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-offset-plum">{journey.find}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/app/create?mode=share" className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 py-2 font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
       </section>
 
       <LivingWorldStage activeOpportunity={activeOpportunity} onSelect={setActiveOpportunityId} copy={copy} />
 
-      <div className="mt-4 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-        <ExplorePath copy={copy} journey={journey} />
-        <Link to="/app/world" className="group rounded-[1.75rem] bg-ink p-5 text-bone transition hover:bg-plum focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 sm:p-6">
-          <div className="flex items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.home.worldEyebrow}</p><h2 className="mt-3 font-display text-3xl leading-none">{copy.home.worldTitle}</h2></div><Compass className="h-5 w-5 text-secondary-200" aria-hidden="true" /></div>
-          <div className="mt-6 flex items-center justify-between gap-4"><div className="flex -space-x-2" aria-hidden="true"><AppAvatar initials="JB" size="sm" /><AppAvatar initials="EM" size="sm" /><AppAvatar initials="KL" size="sm" /></div><span className="inline-flex min-h-11 items-center gap-1 text-sm font-bold text-secondary-200">{copy.home.openWorld} <ArrowRight className="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1" aria-hidden="true" /></span></div>
-        </Link>
-      </div>
+      <Link to="/app/world" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-base font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:text-primary-300">{copy.home.openWorld}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] border border-primary-500/15 bg-primary-50/70 px-5 py-4 dark:bg-primary-900/15 sm:px-6">
         <div className="flex items-start gap-3"><Sparkles className="mt-1 h-5 w-5 shrink-0 text-primary-500" aria-hidden="true" /><p className="text-base leading-6 text-ink/70 dark:text-bone/75">{copy.home.seedPrompt}</p></div>

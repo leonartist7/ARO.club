@@ -1071,3 +1071,7 @@ RB15 exact-head hosted Quality `36593625126` and isolated-database `36593625117`
 **2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
 
 Inherited PR #90 CodeRabbit findings were checked and corrected here: historical evidence-status drift, reduced-motion controls and language-menu keyboard navigation. Original package history, cloud controls, full-image onboarding and F7 evidence remain preserved. This does not resolve privacy/Trust/design/accessibility or release gates.
+
+## 2026-09-29 — RB17 reference-led first journey
+
+The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.
