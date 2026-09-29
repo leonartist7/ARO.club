@@ -25,7 +25,7 @@ export function StatusPill({ children, tone = 'neutral' }) {
   };
 
   return (
-    <span className={cn('inline-flex items-center gap-1.5 border px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em]', tones[tone] ?? tones.neutral)}>
+    <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-bold', tones[tone] ?? tones.neutral)}>
       <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
       {children}
     </span>
@@ -37,8 +37,8 @@ export function AppSectionHeading({ eyebrow, title, children, className, level =
   return (
     <div className={cn('flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between', className)}>
       <div>
-        {eyebrow && <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">{eyebrow}</p>}
-        <Heading className="font-display text-3xl leading-none tracking-[-0.025em] text-ink dark:text-bone">{title}</Heading>
+        {eyebrow && <p className="mb-2 text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-primary-300">{eyebrow}</p>}
+        <Heading className="font-display text-3xl font-extrabold leading-[1.1] tracking-[-0.025em] text-ink dark:text-bone sm:text-4xl">{title}</Heading>
       </div>
       {children}
     </div>

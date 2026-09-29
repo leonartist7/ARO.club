@@ -24,6 +24,8 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 | RB11 | English/light release presentation with existing preferences preserved | IMPLEMENTED / PARTIAL VERIFICATION [#85](https://github.com/leonartist7/ARO.club/pull/85); original-head [hosted evidence](../../artifacts/ARO-RB11/VERIFICATION.md) |
 | RB12 | Orange-led public Home and story redesign | IMPLEMENTED / PARTIAL VERIFICATION on its source branch; [integrated visual evidence](../../artifacts/ARO-RB13/VERIFICATION.md) |
 | RB13 | Latest source plus RB11/RB12 integration and English/light visual convergence | IMPLEMENTED / PARTIAL VERIFICATION on isolated branch; independent review and release gates open |
+| RB14–RB15 | Direct theme/language controls, compact footer and integrated visual source | IMPLEMENTED / PARTIAL VERIFICATION on [#90](https://github.com/leonartist7/ARO.club/pull/90); review/release gates open |
+| RB16 | English/light Create and discovery coherence, fictional detail truth, bounded comparison | IMPLEMENTED / PARTIAL VERIFICATION on RB15 descendant; [evidence](../../artifacts/ARO-RB16/VERIFICATION.md); independent review/release gates open |
 
 ## Coverage and remaining work
 

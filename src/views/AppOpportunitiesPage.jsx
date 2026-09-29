@@ -14,11 +14,11 @@ function OpportunityCard({ opportunity, copy }) {
     <Link
       to={`/app/opportunities/${opportunity.id}`}
       aria-label={copy.opportunities.openExample(opportunity.title)}
-      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+      className="group block rounded-[1.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2"
     >
-      <AppPanel className="overflow-hidden transition-colors hover:border-primary-500/50">
+      <AppPanel className="overflow-hidden rounded-[1.5rem] border-ink/10 bg-white transition-colors hover:border-action-primary/50 dark:bg-surface-darkCard">
         <div className="flex flex-col sm:flex-row">
-          <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-ink/10 sm:w-64">
+          <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-primary-50 sm:w-64 dark:bg-ink/10">
             <AppImage
               src={opportunity.image}
               alt={opportunity.imageAlt}
@@ -29,14 +29,14 @@ function OpportunityCard({ opportunity, copy }) {
           <div className="min-w-0 flex-1 p-5 sm:p-7">
             <div className="flex items-start gap-4">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-ink/65 dark:text-bone/70">{opportunity.area} · {opportunity.distance}</p>
+                <p className="text-sm font-semibold text-content-secondary dark:text-bone/70">{opportunity.area} · {opportunity.distance}</p>
                 <div className="mt-2"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill></div>
-                <h2 className="mt-3 font-display text-3xl leading-none transition-colors group-hover:text-primary-700 dark:group-hover:text-primary-300">{opportunity.title}</h2>
+                <h2 className="mt-3 font-display text-2xl font-extrabold leading-[1.12] transition-colors group-hover:text-primary-700 dark:group-hover:text-primary-300 sm:text-3xl">{opportunity.title}</h2>
                 <p className="mt-3 max-w-2xl text-base leading-6 text-ink/70 dark:text-bone/75">{opportunity.summary}</p>
               </div>
               <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-ink/45 transition-transform group-hover:translate-x-1 group-hover:text-primary-500 dark:text-bone/50" aria-hidden="true" />
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">{opportunity.tags.map((tag) => <span key={tag} className="border border-ink/10 px-2.5 py-1 text-sm font-semibold text-ink/65 dark:border-bone/10 dark:text-bone/70">{tag}</span>)}</div>
+            <div className="mt-5 flex flex-wrap gap-2">{opportunity.tags.map((tag) => <span key={tag} className="rounded-full border border-ink/15 bg-surface-canvas px-3 py-1 text-sm font-semibold text-content-secondary dark:border-bone/20 dark:bg-surface-dark dark:text-bone/70">{tag}</span>)}</div>
             <div className="mt-6 grid gap-4 border-t border-ink/10 pt-4 text-base text-ink/70 dark:border-bone/10 dark:text-bone/75 sm:grid-cols-3">
               <span className="flex items-start gap-2"><MapPin className="mt-1 h-4 w-4 shrink-0 text-primary-500" aria-hidden="true" /><span>{opportunity.place}</span></span>
               <span className="flex items-start gap-2"><Clock3 className="mt-1 h-4 w-4 shrink-0 text-secondary-600 dark:text-secondary-300" aria-hidden="true" /><span>{opportunity.time}</span></span>
@@ -56,7 +56,7 @@ export default function AppOpportunitiesPage() {
   return (
     <div lang={language} className="mx-auto max-w-[1260px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
       <AppSectionHeading level={1} eyebrow={copy.opportunities.eyebrow} title={copy.opportunities.title} />
-      <p className="mt-3 max-w-2xl text-base leading-6 text-ink/70 dark:text-bone/75">{copy.opportunities.intro}</p>
+      <p className="mt-3 max-w-2xl text-base leading-7 text-content-secondary dark:text-bone/75">{copy.opportunities.intro}</p>
 
       <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_270px]">
         <div className="space-y-4">{opportunities.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} copy={copy} />)}</div>
