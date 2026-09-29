@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { Check, ChevronDown, Moon, Sun } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useOptionalTheme } from '../../contexts/ThemeContext';
@@ -33,10 +33,67 @@ export function LanguageMenu({ className = '' }) {
   const copy = preferencesCopy[language] ?? preferencesCopy.en;
   const current = languageChoices.find((choice) => choice.code === language) ?? languageChoices[0];
   const [open, setOpen] = useState(false);
+  const [menuStyle, setMenuStyle] = useState(null);
   const menuId = useId();
   const rootRef = useRef(null);
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    const positionMenu = () => {
+      const trigger = triggerRef.current;
+      const menu = menuRef.current;
+      if (!trigger || !menu) return;
+
+      const edge = 16;
+      const gap = 8;
+      const triggerRect = trigger.getBoundingClientRect();
+      const menuRect = menu.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const availableBelow = Math.max(0, viewportHeight - triggerRect.bottom - gap - edge);
+      const availableAbove = Math.max(0, triggerRect.top - gap - edge);
+
+      let maxHeight = Math.max(96, viewportHeight - edge * 2);
+      let top;
+
+      if (menuRect.height <= availableBelow) {
+        maxHeight = availableBelow;
+        top = triggerRect.bottom + gap;
+      } else if (menuRect.height <= availableAbove) {
+        maxHeight = availableAbove;
+        top = triggerRect.top - gap - menuRect.height;
+      } else if (availableBelow >= availableAbove) {
+        maxHeight = availableBelow;
+        top = triggerRect.bottom + gap;
+      } else {
+        maxHeight = availableAbove;
+        top = edge;
+      }
+
+      const width = Math.min(menuRect.width, Math.max(0, viewportWidth - edge * 2));
+      const left = Math.min(
+        Math.max(edge, triggerRect.right - width),
+        Math.max(edge, viewportWidth - edge - width),
+      );
+
+      setMenuStyle({
+        top: Math.round(Math.max(edge, top)),
+        left: Math.round(left),
+        maxHeight: Math.round(Math.max(96, maxHeight)),
+      });
+    };
+
+    positionMenu();
+    window.addEventListener('resize', positionMenu);
+    window.addEventListener('scroll', positionMenu, true);
+    return () => {
+      window.removeEventListener('resize', positionMenu);
+      window.removeEventListener('scroll', positionMenu, true);
+    };
+  }, [open, language]);
 
   useEffect(() => {
     if (!open) return;
@@ -81,7 +138,10 @@ export function LanguageMenu({ className = '' }) {
         aria-expanded={open}
         aria-controls={menuId}
         aria-label={`${copy.language}: ${current.label}`}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          if (!open) setMenuStyle(null);
+          setOpen((value) => !value);
+        }}
         className="inline-flex h-[44px] min-w-[64px] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-[12px] text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
       >
         <span aria-hidden="true">{current.code}</span>
@@ -94,7 +154,8 @@ export function LanguageMenu({ className = '' }) {
           ref={menuRef}
           role="menu"
           aria-label={copy.chooseLanguage}
-          className="absolute right-0 z-[80] mt-2 w-[min(13rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-ink/10 bg-surface-canvas p-1.5 shadow-[0_20px_55px_rgba(37,36,32,0.18)] dark:border-bone/15 dark:bg-surface-darkCard"
+          style={menuStyle ?? { visibility: 'hidden' }}
+          className="fixed z-[80] w-[min(13rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-2xl border border-ink/10 bg-surface-canvas p-1.5 shadow-[0_20px_55px_rgba(37,36,32,0.18)] dark:border-bone/15 dark:bg-surface-darkCard"
         >
           {languageChoices.map((choice) => {
             const selected = choice.code === language;
