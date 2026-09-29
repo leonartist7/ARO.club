@@ -160,6 +160,28 @@ try {
     await context.close();
   }
 
+  {
+    const { context, page, errors, writes, status } = await visit('/app', 320, 740, {
+      theme: 'light',
+      language: 'en',
+    });
+    const appShellControlsVisible = (
+      await page.getByRole('button', { name: 'Language: English', exact: true }).isVisible()
+      && await page.getByRole('button', { name: 'Switch to dark mode', exact: true }).isVisible()
+    );
+    await page.screenshot({ path: join(out, 'app-home-320-light-en.png') });
+
+    results.push({
+      scenario: 'app shell mobile',
+      status,
+      appShellControlsVisible,
+      overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+      errors,
+      writes,
+    });
+    await context.close();
+  }
+
   for (const [index, width] of [320, 360, 390, 430, 768, 1440].entries()) {
     for (const scale of [1, 2]) {
       const language = ['en', 'fr', 'es'][index % 3];
@@ -217,6 +239,7 @@ if (results.some(result => (
   || result.errors.length
   || result.writes.length
   || result.compactControlsVisible === false
+  || result.appShellControlsVisible === false
   || result.hasBottomTabBar
   || result.escapeRestoredFocus === false
   || result.menuFits === false
