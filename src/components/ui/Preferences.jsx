@@ -19,7 +19,7 @@ export function ThemeToggle({ className = '' }) {
       onClick={toggleTheme}
       aria-label={label}
       title={label}
-      className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/72 text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10 ${className}`}
+      className={`inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/72 text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10 ${className}`}
     >
       <Icon className="h-[1.15rem] w-[1.15rem]" aria-hidden="true" />
     </button>
@@ -80,7 +80,7 @@ export function LanguageMenu({ className = '' }) {
         aria-controls={menuId}
         aria-label={`${copy.language}: ${current.label}`}
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-3 text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
+        className="inline-flex h-[44px] min-w-[64px] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-[12px] text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
       >
         <span aria-hidden="true">{current.code}</span>
         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
