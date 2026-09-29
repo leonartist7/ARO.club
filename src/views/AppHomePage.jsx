@@ -1,7 +1,7 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useState } from 'react';
-import { ArrowRight, Bell, Compass, MapPin, Plus, Sparkles } from 'lucide-react';
+import { ArrowRight, Compass, MapPin, Plus, Sparkles } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { aroUser, opportunities } from '../data/aroApp';
 import { AppAvatar } from '../components/app/AppPrimitives';
@@ -117,20 +117,12 @@ export default function AppHomePage() {
   const activeOpportunity = homeOpportunities.find((opportunity) => opportunity.id === activeOpportunityId) ?? homeOpportunities[0];
 
   return (
-    <div lang={language} className="px-4 py-5 sm:px-8 sm:py-8">
-      <div className="mb-5 flex items-start justify-between gap-3 sm:mb-6 sm:items-center">
-        <div className="flex items-center gap-2 text-base font-semibold text-ink/70 dark:text-bone/75"><span className="h-2 w-2 rounded-full bg-moss" aria-hidden="true" /> {copy.home.previewState}</div>
-        <div className="flex max-w-[190px] items-center justify-end gap-2 sm:max-w-none">
-          <span className="text-right text-base leading-5 text-ink/65 dark:text-bone/70">{copy.unavailable}</span>
-          <span role="img" aria-label={`${copy.home.notificationsPreview}. ${copy.unavailable}`} className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/55 text-ink/70 dark:border-bone/10 dark:bg-gray-900/55 dark:text-bone/70"><Bell className="h-5 w-5" aria-hidden="true" /></span>
-        </div>
-      </div>
-
-      <section className="mb-5 rounded-[1.5rem] border border-primary-200 bg-primary-50/75 p-5 dark:border-primary-800 dark:bg-primary-900/15 sm:p-7" aria-labelledby="app-first-step-title">
-        <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
-        <h1 id="app-first-step-title" className="mt-2 font-display text-3xl leading-tight sm:text-4xl">{journey.appTitle}</h1>
-        <p className="mt-2 max-w-2xl text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{journey.appBody}</p>
-        <div className="mt-5 flex flex-wrap gap-3"><Link to="/app/opportunities" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-action-primary px-4 py-2 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{journey.find}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/app/create?mode=share" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary-600 px-4 py-2 font-bold text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+    <div lang={language} className="px-4 py-4 sm:px-8 sm:py-6">
+      <section className="mb-5 rounded-[1.5rem] bg-brand-orange p-5 text-ink dark:bg-primary-800 dark:text-bone sm:p-7" aria-labelledby="app-first-step-title">
+        <p className="text-sm font-extrabold uppercase tracking-[0.12em]">{journey.benefits}</p>
+        <h1 id="app-first-step-title" className="mt-2 font-display text-3xl font-extrabold leading-tight text-bone sm:text-4xl">{journey.appTitle}</h1>
+        <p className="mt-2 max-w-2xl text-base font-semibold leading-7">{journey.appBody}</p>
+        <div className="mt-5 flex flex-wrap gap-3"><Link to="/app/opportunities" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-bone px-5 py-2 font-extrabold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-brand-orange">{journey.find}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/app/create?mode=share" className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-ink px-4 py-2 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:border-bone dark:text-bone">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
       </section>
 
       <LivingWorldStage activeOpportunity={activeOpportunity} onSelect={setActiveOpportunityId} copy={copy} />

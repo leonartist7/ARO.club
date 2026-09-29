@@ -32,12 +32,13 @@ export function StatusPill({ children, tone = 'neutral' }) {
   );
 }
 
-export function AppSectionHeading({ eyebrow, title, children, className }) {
+export function AppSectionHeading({ eyebrow, title, children, className, level = 2 }) {
+  const Heading = level === 1 ? 'h1' : 'h2';
   return (
     <div className={cn('flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between', className)}>
       <div>
         {eyebrow && <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">{eyebrow}</p>}
-        <h2 className="font-display text-3xl leading-none tracking-[-0.025em] text-ink dark:text-bone">{title}</h2>
+        <Heading className="font-display text-3xl leading-none tracking-[-0.025em] text-ink dark:text-bone">{title}</Heading>
       </div>
       {children}
     </div>

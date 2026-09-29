@@ -21,7 +21,7 @@ export default function AppLibraryPage() {
 
   return (
     <div lang={language} className="px-4 py-6 sm:px-8 sm:py-10">
-      <AppSectionHeading eyebrow={copy.library.eyebrow} title={copy.library.title} />
+      <AppSectionHeading level={1} eyebrow={copy.library.eyebrow} title={copy.library.title} />
 
       <aside data-fv1-direct-entry="library" className="mt-6 border border-secondary-500/35 bg-secondary-50 p-4 dark:bg-secondary-900/15">
         <p className="text-base font-bold">{copy.library.noticeTitle}</p>

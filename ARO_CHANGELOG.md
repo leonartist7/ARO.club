@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-09-29 — RB13 integrated visual candidate
+
+Reconciled RB11 English/light release presentation and RB12 public redesign with the latest PR #84 source while preserving branch ancestry and later mobile onboarding corrections. Refined onboarding, public Explore/story, app Home and opportunity entry compositions around the approved orange/ivory identity and existing human art. Kept preview/Trust/Auth boundaries intact. `artifacts/ARO-RB13/VERIFICATION.md` records visual and route evidence and remaining review/release gates. This is not a `main` merge or store release.
+
+---
+
 ## 2026-09-28 — English/light initial release priority
 
 The founder set English and light mode as the immediate polish and release scope, with dark mode and French/Spanish completeness following in later packages. Existing localization/theme infrastructure stays intact. This does not change Auth, privacy, Trust, payment, independent-review, platform or store gates. The original rebranding plan is preserved as a historical source at `docs/rebrand/reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md`.

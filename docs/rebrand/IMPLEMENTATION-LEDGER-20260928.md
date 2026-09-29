@@ -4,6 +4,8 @@
 
 > **Latest reconciliation (2026-09-28):** RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144`, with bounded mobile preference choices above the sticky action row and stronger browser assertions. Cloud work/ownership are preserved; new-head hosted checks remain required. Old pottery WebP derivatives remain public but unused. RB2 privacy/Trust, RB4 Trust, RB5 SPEC-REQUIRED contact privacy, independent review and release gates remain OPEN.
 
+> **Integrated visual candidate (2026-09-29):** RB11 English/light presentation and RB12 orange-led public redesign are being reconciled on the latest PR #84 source in a separate branch. Their earlier hosted screenshots and checks apply to their original heads only. The integrated branch requires fresh visual, build, browser and review evidence before merge.
+
 At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c7723b2` (advanced externally during this task; this task did not update `main`). RB0–RB10 are stacked, unmerged review branches. No package is SHIPPED. This ledger supplements the [actual route classification](BASELINE-20260927.md), package specifications and per-package browser evidence; it does not override release or specialist gates.
 
 | Package | Scope and evidence | Status / PR |
@@ -19,6 +21,9 @@ At the final cloud read, GitHub `main` is `721b2b7fdd3dda0072d189e43d717ef00c772
 | RB8 | Branded localized loading/error states, retry/Home, redirect-safe route sweep | IMPLEMENTED / PARTIAL VERIFICATION [#80](https://github.com/leonartist7/ARO.club/pull/80); inherited hosted failure repaired; see cloud evidence below |
 | RB9 | Controlled 1200×630 OpenGraph/Twitter image and metadata | IMPLEMENTED / PARTIAL VERIFICATION [#81](https://github.com/leonartist7/ARO.club/pull/81); inherited hosted failure repaired; see cloud evidence below |
 | RB10 | Login/Signup/Forgot Password localized presentation and truthful disabled preview | IMPLEMENTED / PARTIAL VERIFICATION [#82](https://github.com/leonartist7/ARO.club/pull/82); fresh reconciled-head hosted checks required; prior results below |
+| RB11 | English/light release presentation with existing preferences preserved | IMPLEMENTED / PARTIAL VERIFICATION [#85](https://github.com/leonartist7/ARO.club/pull/85); original-head [hosted evidence](../../artifacts/ARO-RB11/VERIFICATION.md) |
+| RB12 | Orange-led public Home and story redesign | IMPLEMENTED / PARTIAL VERIFICATION on its source branch; [integrated visual evidence](../../artifacts/ARO-RB13/VERIFICATION.md) |
+| RB13 | Latest source plus RB11/RB12 integration and English/light visual convergence | IMPLEMENTED / PARTIAL VERIFICATION on isolated branch; independent review and release gates open |
 
 ## Coverage and remaining work
 
@@ -261,3 +266,11 @@ RB2 independent privacy/eligibility and Trust, RB4 Trust, RB5 SPEC-REQUIRED cont
 
 
 Final combined local checks for the 1184639 reconciliation: production webpack build, lint, type-check, 187 unit tests (21 files; 3 existing browser-gated skips), verifier syntax and diff checks pass. No local browser run is claimed. New RB7 Quality 36466008821 / isolated 36466008811, RB8 36466045257 / 36466045212 and RB9 36466071928 / 36466071454 are in progress; fresh RB10 checks are required after publication.
+
+## 2026-09-29 — RB13 integrated English/light visual candidate
+
+The separate `codex/rb13-integrated-visual-release-20260929` branch starts at PR #84 `2b809927` and normally merges RB11/RB12 source `670954f`. This preserves the latest RB6 mobile preference repair, PR #84 source-plan evidence, RB11 opt-in English/light presentation and RB12 public redesign without changing their owner branches or F7. Three merge conflicts were resolved in Home, public story and this ledger. Home keeps the latest gathering destination and preview disclosure; public story keeps the accepted language-teaching scene and FAQ guidance/privacy links.
+
+RB13 then corrects the integrated first view of onboarding, Explore, story pages, app Home and opportunity examples, and adds missing page-level headings on app supporting views. [Verification](../../artifacts/ARO-RB13/VERIFICATION.md) has before/after links, 16 production-build screenshots, a 40-route browser sweep, ordinary Spanish/dark and French/light regression, build/lint/type and unit results, and mobile asset weights. No new raster image, dependency, backend, account, Trust or payment behavior was added.
+
+The branch is **IMPLEMENTED / PARTIAL VERIFICATION**, not merge-approved or shipped. RB0 review conversations, RB2 independent privacy/eligibility/security and Trust review, RB4 Trust review, RB5 SPEC-REQUIRED Contact draft retention/deletion privacy review, final-head hosted CI, independent design/accessibility review, live Auth/onboarding and native store packaging remain open. Merge approved packages through protected `main` in dependency order; the integrated branch is the single visual review candidate, not a shortcut around those gates.

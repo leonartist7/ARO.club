@@ -13,7 +13,7 @@ export default function AppPassportPage() {
 
   return (
     <div lang={language} className="mx-auto max-w-[1200px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
-      <AppSectionHeading eyebrow={copy.passport.eyebrow} title={copy.passport.title}>
+      <AppSectionHeading level={1} eyebrow={copy.passport.eyebrow} title={copy.passport.title}>
         <Link to="/app/opportunities" className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-primary-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-primary-500 dark:text-primary-300">{copy.passport.nextLink} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </AppSectionHeading>
 

@@ -1,5 +1,9 @@
 # ARO — Implementation Status Ledger
 
+> **2026-09-29 RB13 integrated visual candidate:** Latest PR #84 onboarding fixes and preserved source plan are combined with RB11 English/light presentation and RB12 public redesign by normal ancestry. Home, onboarding, Explore, app Home and opportunity previews received focused visual corrections. Production-build evidence covers 16 screenshots, a 40-route browser sweep, ordinary Spanish/dark and French/light regression, build/lint/type and unit tests. Status is **IMPLEMENTED / PARTIAL VERIFICATION** on a review branch; no `main` merge or release is claimed. See `specs/ARO-RB13-INTEGRATED-VISUAL-CANDIDATE.md` and `artifacts/ARO-RB13/VERIFICATION.md`.
+
+> **RB11 branch (2026-09-28):** English/light release-scope presentation is IMPLEMENTED / PARTIAL VERIFICATION on a separate stacked branch. Hosted mobile/desktop screenshots and machine results are retained at `artifacts/ARO-RB11/`; final-head checks and reviews remain gates. No merge, native binary or store submission is claimed; see `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` and `docs/rebrand/STORE-READINESS-20260928.md`.
+
 > **RB10 branch update (2026-09-28):** Signed-out Login, Signup and Forgot Password now use the ARO promise and EN/FR/ES copy, with readable dark mode and truthful disabled preview forms. Six production-browser scenarios pass; live Auth remains under its separate gates. RB10 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB10/VERIFICATION.md` and the [current rebrand ledger](docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md).
 
 > **RB9 branch update (2026-09-28):** A controlled orange-led share image now renders at `/opengraph-image`, and OpenGraph/Twitter tags advertise its 1200×630 PNG. Local production response and visual evidence pass. RB9 is IMPLEMENTED / PARTIAL VERIFICATION on a stacked branch, not merged or released. See `artifacts/ARO-RB9/VERIFICATION.md`.

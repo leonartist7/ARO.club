@@ -1,0 +1,35 @@
+[
+  {
+    "route": "/",
+    "language": "es",
+    "theme": "dark",
+    "width": 390,
+    "name": "home-es-dark",
+    "status": 200,
+    "overflow": false,
+    "heading": "La vida se abre.",
+    "errors": []
+  },
+  {
+    "route": "/app/settings",
+    "language": "es",
+    "theme": "dark",
+    "width": 390,
+    "name": "settings-es-dark",
+    "status": 200,
+    "overflow": false,
+    "heading": "Ajustes",
+    "errors": []
+  },
+  {
+    "route": "/onboarding/preview",
+    "language": "fr",
+    "theme": "light",
+    "width": 390,
+    "name": "onboarding-fr-light",
+    "status": 200,
+    "overflow": false,
+    "heading": "Votre prochain « je l’ai fait » commence ici.",
+    "errors": []
+  }
+]

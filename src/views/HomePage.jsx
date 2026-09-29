@@ -5,6 +5,7 @@ import OpportunityFormation from '../features/opportunity-formation/OpportunityF
 import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
+import { AroWordmark } from '../components/brand/AroMark';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
@@ -13,34 +14,33 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-bone text-ink dark:bg-gray-950 dark:text-bone">
-      <section className="relative border-b border-ink/10 pb-14 pt-12 dark:border-bone/10 sm:pt-16 md:pb-20 lg:pt-20">
-        <div className="aro-ambient-field absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
-            <div className="max-w-2xl">
-              <p className="text-sm font-extrabold uppercase tracking-[0.13em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
-              <h1 className="mt-5 text-balance font-display text-[3.15rem] leading-[0.98] tracking-[-0.035em] text-ink dark:text-bone sm:text-7xl lg:text-[5.5rem]">{journey.promise}</h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-content-secondary dark:text-content-darkSecondary">{journey.intro}</p>
-              <div className="mt-7 flex flex-wrap items-center gap-4">
-                <Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white transition-colors hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark">{onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-                <a href="#formation" className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{t('home.formation.hero.cta')}<ArrowDownRight className="h-4 w-4" aria-hidden="true" /></a>
-              </div>
-              <p className="mt-4 text-sm text-content-secondary dark:text-content-darkSecondary">{journey.preview}</p>
+      <section className="bg-brand-orange text-ink dark:bg-primary-800 dark:text-bone" aria-labelledby="aro-home-title">
+        <div className="mx-auto grid max-w-[90rem] lg:min-h-[42rem] lg:grid-cols-[48%_52%]">
+          <div className="flex flex-col justify-center px-4 pb-0 pt-7 sm:px-8 sm:pt-12 lg:px-12 lg:py-16 xl:px-16">
+            <AroWordmark label="" className="mb-10 hidden h-auto w-64 text-bone lg:block xl:w-72" />
+            <h1 id="aro-home-title" className="max-w-[11ch] font-display text-[3.05rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-bone sm:text-7xl lg:text-[clamp(4rem,5.8vw,6.3rem)]">{journey.promise}</h1>
+            <p className="mt-4 max-w-[28rem] text-base font-semibold leading-7 sm:mt-7 sm:text-xl sm:leading-8">{journey.intro}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 sm:mt-8">
+              <Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-bone px-6 font-extrabold text-ink transition-colors hover:bg-brand-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-brand-orange">{onboarding.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <a href="#formation" className="inline-flex min-h-11 items-center gap-2 rounded-lg px-1 text-sm font-bold text-ink underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:text-bone">{t('home.formation.hero.cta')}<ArrowDownRight className="h-4 w-4" aria-hidden="true" /></a>
             </div>
-            <picture className="block overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)]">
-              <source srcSet="/brand/onboarding-connect-640.webp 640w, /brand/onboarding-connect-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
-              <img src="/brand/onboarding-connect-640.webp" alt="" width="640" height="480" decoding="async" className="aspect-[4/3] w-full object-cover" />
-            </picture>
+            <p className="mt-3 max-w-[28rem] text-xs font-semibold leading-5 sm:mt-6 sm:text-sm">{journey.preview}</p>
           </div>
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
-            {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/app/create?mode=gather' }].map((task) => <Link key={task.title} to={task.href} className="group flex min-h-32 flex-col justify-between rounded-2xl border border-ink/10 bg-white/75 p-5 transition-colors hover:border-action-primary dark:border-bone/15 dark:bg-surface-darkCard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"><span className="flex items-center justify-between gap-2 text-lg font-bold">{task.title}<ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></span><span className="mt-3 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></Link>)}
-          </div>
-
-          <div id="formation" className="scroll-mt-24">
-            <p className="mb-4 rounded-xl border border-primary-600/25 bg-primary-50 px-4 py-3 text-sm font-semibold text-ink dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-bone">{journey.formationPreview}</p>
-            <OpportunityFormation />
-          </div>
+          <picture className="mt-5 block h-52 overflow-hidden bg-brand-yellow sm:mt-8 sm:h-96 lg:mt-0 lg:h-full">
+            <source srcSet="/brand/onboarding-connect-640.webp 640w, /brand/onboarding-connect-1280.webp 1280w" sizes="(min-width: 1024px) 52vw, 100vw" type="image/webp" />
+            <img src="/brand/onboarding-connect-640.webp" alt="" width="640" height="480" decoding="async" fetchPriority="high" className="h-full w-full object-cover object-[center_43%] lg:object-center" />
+          </picture>
         </div>
+      </section>
+
+      <section className="border-b border-ink/10 bg-bone dark:border-bone/10 dark:bg-surface-dark" aria-label={journey.benefits}>
+        <div className="mx-auto grid max-w-[90rem] sm:grid-cols-3">
+          {[{ title: journey.find, body: journey.findHint, href: '/explore' }, { title: journey.teach, body: journey.teachHint, href: '/for-teachers' }, { title: journey.gather, body: journey.gatherHint, href: '/app/create?mode=gather' }].map((task, index) => <Link key={task.title} to={task.href} className="group flex min-h-28 items-center justify-between gap-4 border-b border-ink/10 px-4 py-5 transition-colors hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-control-focus dark:border-bone/10 dark:hover:bg-primary-900/20 sm:border-b-0 sm:border-r sm:px-7 lg:px-12"><span className="flex items-start gap-4"><span className="mt-1 text-sm font-extrabold text-primary-700 dark:text-primary-300">0{index + 1}</span><span><strong className="block text-lg font-extrabold">{task.title}</strong><span className="mt-1 block text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{task.body}</span></span></span><ArrowRight className="h-5 w-5 shrink-0 text-primary-700 transition-transform group-hover:translate-x-1 dark:text-primary-300" aria-hidden="true" /></Link>)}
+        </div>
+      </section>
+
+      <section id="formation" className="scroll-mt-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[90rem]"><p className="mb-4 rounded-xl border border-primary-600/25 bg-primary-50 px-4 py-3 text-sm font-semibold text-ink dark:border-primary-300/25 dark:bg-primary-900/20 dark:text-bone">{journey.formationPreview}</p><OpportunityFormation /></div>
       </section>
 
       <section className="bg-ink text-bone dark:bg-plum" aria-labelledby="formation-human-title">

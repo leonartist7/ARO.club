@@ -183,16 +183,18 @@ export default function ExplorePage() {
   ];
 
   if (!hasVerifiedSupply) {
-    return <div className="min-h-screen bg-surface-canvas px-4 py-10 text-ink dark:bg-surface-dark dark:text-bone sm:px-6 sm:py-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
-        <div>
-          <p className="text-sm font-bold uppercase tracking-[0.12em] text-primary-700 dark:text-primary-300">{journey.benefits}</p>
-          <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">{journey.find}</h1>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-content-secondary dark:text-content-darkSecondary">{journey.exploreNote}</p>
-          <div className="mt-7 flex flex-wrap gap-3"><Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-action-primary px-5 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">{journey.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/for-teachers" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-primary-600 px-5 font-bold text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-primary-300">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+    return <div className="min-h-screen bg-bone text-ink dark:bg-surface-dark dark:text-bone">
+      <section className="bg-brand-orange text-ink dark:bg-primary-800 dark:text-bone" aria-labelledby="explore-preview-title">
+        <div className="mx-auto grid max-w-[90rem] lg:min-h-[35rem] lg:grid-cols-[52%_48%]">
+          <div className="flex flex-col justify-center px-4 pb-0 pt-9 sm:px-8 sm:pt-14 lg:px-12 lg:py-16 xl:px-16">
+            <p className="text-sm font-extrabold uppercase tracking-[0.1em]">{journey.benefits}</p>
+            <h1 id="explore-preview-title" className="mt-5 max-w-[12ch] font-display text-[2.65rem] font-extrabold leading-[1.03] tracking-[-0.035em] text-bone sm:text-6xl">{journey.find}</h1>
+            <p className="mt-5 max-w-xl text-base font-semibold leading-7 sm:text-lg sm:leading-8">{journey.exploreNote}</p>
+            <div className="mt-6 flex flex-wrap gap-3"><Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-bone px-6 font-extrabold text-ink transition-colors hover:bg-brand-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-brand-orange">{journey.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/for-teachers" className="inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-ink px-5 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:border-bone dark:text-bone">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+          </div>
+          <picture className="mt-7 block h-60 overflow-hidden bg-brand-yellow sm:mt-10 sm:h-96 lg:mt-0 lg:h-full"><source srcSet="/brand/onboarding-learn-640.webp 640w, /brand/onboarding-learn-1280.webp 1280w" sizes="(min-width: 1024px) 48vw, 100vw" type="image/webp" /><img src="/brand/onboarding-learn-640.webp" alt="" width="640" height="480" decoding="async" className="h-full w-full object-cover object-[center_43%]" /></picture>
         </div>
-        <picture className="block overflow-hidden rounded-[1.75rem] bg-brand-yellow shadow-[0_24px_70px_rgba(37,36,32,0.15)]"><source srcSet="/brand/onboarding-learn-640.webp 640w, /brand/onboarding-learn-1280.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" /><img src="/brand/onboarding-learn-640.webp" alt="" width="640" height="480" className="aspect-[4/3] w-full object-cover" /></picture>
-      </div>
+      </section>
     </div>;
   }
 

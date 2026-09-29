@@ -1,0 +1,348 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "height": 620,
+    "name": "home-320",
+    "action": {
+      "top": 313,
+      "bottom": 361
+    },
+    "art": {
+      "loaded": true,
+      "top": 485,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Life opens up.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "height": 900,
+    "name": "home-1440",
+    "action": {
+      "top": 544,
+      "bottom": 592
+    },
+    "art": {
+      "loaded": true,
+      "top": 65,
+      "naturalWidth": 748
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Life opens up.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/onboarding/preview",
+    "width": 320,
+    "height": 620,
+    "name": "onboarding-320",
+    "action": {
+      "top": 562,
+      "bottom": 610
+    },
+    "art": {
+      "loaded": true,
+      "top": 414,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Your next “I did that” starts here.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/onboarding/preview",
+    "width": 768,
+    "height": 900,
+    "name": "onboarding-768",
+    "action": {
+      "top": 551,
+      "bottom": 599
+    },
+    "art": {
+      "loaded": true,
+      "top": 323,
+      "naturalWidth": 768
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Your next “I did that” starts here.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/explore",
+    "width": 320,
+    "height": 620,
+    "name": "explore-320",
+    "action": {
+      "top": 313,
+      "bottom": 361
+    },
+    "art": {
+      "loaded": true,
+      "top": 449,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Find a class",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/about",
+    "width": 320,
+    "height": 620,
+    "name": "about-320",
+    "action": {
+      "top": 364,
+      "bottom": 412
+    },
+    "art": {
+      "loaded": true,
+      "top": 440,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Life opens up when people make room for each other.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/for-teachers",
+    "width": 320,
+    "height": 620,
+    "name": "teachers-320",
+    "action": {
+      "top": 364,
+      "bottom": 412
+    },
+    "art": {
+      "loaded": true,
+      "top": 440,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "What you know could open a door for someone.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/how-it-works",
+    "width": 390,
+    "height": 740,
+    "name": "how-390",
+    "action": {
+      "top": 256,
+      "bottom": 304
+    },
+    "art": {
+      "loaded": true,
+      "top": 332,
+      "naturalWidth": 390
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Choose a first step that fits your life.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/faq",
+    "width": 320,
+    "height": 620,
+    "name": "faq-320",
+    "action": {
+      "top": 344,
+      "bottom": 392
+    },
+    "art": {
+      "loaded": true,
+      "top": 420,
+      "naturalWidth": 320
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Questions worth answering clearly.",
+    "truthful": true,
+    "faqOpened": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/login",
+    "width": 320,
+    "height": 620,
+    "name": "login-320",
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Welcome back",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app",
+    "width": 320,
+    "height": 620,
+    "name": "app-home-320",
+    "action": {
+      "top": 365,
+      "bottom": 409
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Where will you begin?",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/world",
+    "width": 320,
+    "height": 620,
+    "name": "world-320",
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "A small world with a pulse.",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/opportunities",
+    "width": 320,
+    "height": 620,
+    "name": "opportunities-320",
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "What could take shape?",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/create?mode=gather",
+    "width": 320,
+    "height": 620,
+    "name": "create-320",
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "What wants a little more room in the world?",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app/settings",
+    "width": 320,
+    "height": 620,
+    "name": "settings-320",
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Settings",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/app",
+    "width": 1440,
+    "height": 900,
+    "name": "app-home-1440",
+    "action": {
+      "top": 290,
+      "bottom": 334
+    },
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "overflow": false,
+    "heading": "Where will you begin?",
+    "truthful": true,
+    "errors": [],
+    "writes": []
+  }
+]

@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-29 integrated visual candidate:** An isolated RB13 branch combines latest PR #84 with RB11/RB12 and focuses the approved orange/ivory, Manrope and human-scene identity across the English/light entry journey. Saved screenshots and a 40-route sweep are at `artifacts/ARO-RB13/`. It is IMPLEMENTED / PARTIAL VERIFICATION, unmerged and unreleased. RB2 privacy/eligibility/Trust, RB4 Trust, RB5 Contact draft privacy, independent reviews, production Auth and native store packaging remain open; no live user account or bookable supply is implied.
+
 > **2026-09-28 release sequencing:** The founder prioritized the fastest responsible initial release in English and light mode. Dark-mode polish and French/Spanish completeness follow in later scoped packages; existing theme/localization infrastructure and working behavior must be preserved. This sequencing does not waive Auth, privacy/eligibility, Trust, payment, platform CI, independent review or Apple/Google store requirements. Native store readiness remains unverified. See the [preserved source plan](docs/rebrand/reference/ARO-Rebranding-Implementation-Plan-2026-09-27.md) and [rebrand ledger](docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md).
 
 > **2026-09-28 RB10:** Login, Signup and Forgot Password have orange-led ARO presentation and EN/FR/ES text on a stacked branch. Preview account controls remain disabled. Live Auth and hosted recovery/signup remain unverified, and all rebrand packages remain unmerged and unreleased.

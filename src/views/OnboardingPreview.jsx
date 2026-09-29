@@ -7,6 +7,7 @@ import Button from '../components/ui/Button';
 import PreferencesPopover from '../components/ui/Preferences';
 import { useLanguage } from '../contexts/LanguageContext';
 import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
+import { englishLightRelease } from '../lib/releaseScope';
 
 const ART = ['learn', 'teach-language-v2', 'connect'];
 const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Drawing'];
@@ -15,10 +16,10 @@ const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
 function SceneArt({ scene, compact = false }) {
   const name = ART[scene];
   return (
-    <div className={`overflow-hidden rounded-[1.5rem] bg-brand-yellow shadow-[0_18px_55px_rgba(37,36,32,0.11)] lg:rounded-[2rem] ${compact ? 'h-44 sm:h-52 lg:h-64' : ''}`}>
+    <div className={`overflow-hidden rounded-[1.5rem] bg-brand-yellow shadow-[0_18px_55px_rgba(37,36,32,0.11)] lg:rounded-[2rem] ${compact ? 'h-32 sm:h-52 lg:h-64' : ''}`}>
       <picture className="block h-full">
         <source srcSet={`/brand/onboarding-${name}-640.webp 640w, /brand/onboarding-${name}-1280.webp 1280w`} sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
-        <img src={`/brand/onboarding-${name}-640.webp`} width="640" height="480" loading="eager" decoding="async" alt="" className={`${compact ? 'h-full' : 'aspect-[4/3] h-full'} w-full object-cover`} />
+        <img src={`/brand/onboarding-${name}-640.webp`} width="640" height="480" loading="eager" decoding="async" alt="" className={`${compact ? 'h-full' : 'aspect-[4/3] h-full'} w-full object-cover object-[center_43%]`} />
       </picture>
     </div>
   );
@@ -95,15 +96,15 @@ export default function OnboardingPreview() {
       <header className="border-b border-ink/10 bg-surface-canvas/95 px-4 py-3 backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
           <Link to="/" aria-label="ARO home" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><AroWordmark label="" /></Link>
-          <PreferencesPopover />
+          {!englishLightRelease && <PreferencesPopover />}
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-4 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-6 sm:px-6 sm:pt-10">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-sm">
           <p className="font-semibold text-primary-700 dark:text-primary-300">{copy.preview}</p>
           {stage < 2 && <button type="button" onClick={() => go(2)} className="min-h-11 rounded-lg px-2 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.skip}</button>}
         </div>
-        <div className="mb-7 flex items-center gap-2" aria-label={`${Math.min(stage + 1, 7)} / 7`} role="progressbar" aria-valuemin={1} aria-valuemax={7} aria-valuenow={stage + 1}>
+        <div className="mb-5 flex items-center gap-2" aria-label={`${Math.min(stage + 1, 7)} / 7`} role="progressbar" aria-valuemin={1} aria-valuemax={7} aria-valuenow={stage + 1}>
           {Array.from({ length: 7 }, (_, index) => <span key={index} className={`h-1.5 flex-1 rounded-full ${index <= stage ? 'bg-action-primary' : 'bg-ink/15 dark:bg-bone/20'}`} />)}
         </div>
 
@@ -112,7 +113,7 @@ export default function OnboardingPreview() {
             <p className="text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-primary-300">{eyebrow}</p>
             <h1 ref={heading} tabIndex={-1} className="mt-3 text-balance font-display text-3xl leading-[1.12] outline-none sm:text-4xl lg:text-5xl">{title}</h1>
             {body && <p className="mt-4 text-base leading-7 text-content-secondary dark:text-content-darkSecondary sm:text-lg">{body}</p>}
-            {stage < 2 && <p className="mt-4 rounded-xl border border-primary-200 bg-primary-50 p-3 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
+            {stage < 2 && <div className="mt-5 lg:hidden"><SceneArt scene={stage} compact /></div>}
 
 
             {stage === 3 && <div className="mt-7 space-y-5">
@@ -137,7 +138,7 @@ export default function OnboardingPreview() {
               <p className="mt-3 break-words text-sm font-semibold [overflow-wrap:anywhere]">{copy.result.city}: {city.trim()}</p>
             </div>}
 
-            <div className={`flex flex-wrap items-center gap-3 ${stage >= 3 && stage <= 5 ? `sticky bottom-0 z-20 -mx-4 ${stage === 5 ? 'mt-7' : 'mt-28'} border-t border-ink/10 bg-surface-canvas/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95` : 'mt-7'} ${stage === 5 ? 'sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:pb-0' : ''}`}>
+            <div className={`flex flex-wrap items-center gap-3 ${stage >= 3 && stage <= 5 ? `sticky bottom-0 z-20 -mx-4 ${stage === 5 ? 'mt-7' : 'mt-28'} border-t border-ink/10 bg-surface-canvas/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur dark:border-bone/15 dark:bg-surface-dark/95` : stage < 2 ? 'mt-5' : 'mt-7'} ${stage === 5 ? 'sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:pb-0' : ''}`}>
               {stage > 0 && <button type="button" onClick={back} className="inline-flex min-h-12 items-center gap-2 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone"><ArrowLeft size={18} aria-hidden="true" />{copy.back}</button>}
               {stage === 0 && <Button onClick={() => go(1)} className="min-h-12 rounded-xl">{copy.learn.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
               {stage === 1 && <Button onClick={() => go(2)} className="min-h-12 rounded-xl">{copy.teach.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
@@ -146,13 +147,14 @@ export default function OnboardingPreview() {
               {stage === 5 && <Button data-preview-submit onClick={nextFromPreference} className="min-h-12 rounded-xl">{mode === 'host' ? copy.skill.action : copy.interests.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
               {stage === 6 && <button type="button" onClick={() => go(5)} className="min-h-12 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.result.edit}</button>}
             </div>
+            {stage < 2 && <p className="mt-4 rounded-xl border border-primary-200 bg-primary-50 p-3 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
             {stage === 0 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.learn.topics}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => toggleInterest(topic)} aria-pressed={interests.includes(topic)} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${interests.includes(topic) ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
             {stage === 1 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.teach.examples}</p><div className="flex flex-wrap gap-2">{HOST_OPTIONS.map((option, index) => <button key={option} type="button" onClick={() => setSkill(option)} aria-pressed={skill === option} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${skill === option ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.skill.options[index].title}</button>)}</div></div>}
           </div>
 
           <div>
             {stage === 2 && <div className="grid gap-3"><Choice selected={intent === 'learn'} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={intent === 'host'} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={intent === 'both'} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
-            {stage < 3 && <div className={stage === 2 ? 'mt-5' : ''}><SceneArt scene={stage} compact={stage === 2} /></div>}
+            {stage < 3 && <div className={stage === 2 ? 'mt-5' : 'hidden lg:block'}><SceneArt scene={stage} compact={stage === 2} /></div>}
             {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20"><p className="text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{copy.resetNotice}</p>{mode === 'host' && <p className="mt-4 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{copy.result.hostBoundary}</p>}<div className="mt-5 flex flex-wrap gap-4">{mode !== 'host' && <Link to="/explore" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>}{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
             {(stage === 3 || stage === 4 || stage === 5) && <p className="mt-6 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
           </div>

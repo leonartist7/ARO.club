@@ -208,7 +208,7 @@ describe('FV-1 F4 truthful discovery', () => {
     expect(screen.queryByRole('tab')).toBeNull()
     expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' }).length).toBeGreaterThanOrEqual(2)
     expect(screen.getByRole('img', { name: 'Status filters preview. Not available in this preview.' })).toBeTruthy()
-    expect(screen.getAllByText('Not available in this preview.').length).toBeGreaterThanOrEqual(2)
+    expect(screen.getByText('Explore three fictional examples. Search and filters are not active.')).toBeTruthy()
   })
 
   it('keeps discovery links pointed at existing intended routes', () => {

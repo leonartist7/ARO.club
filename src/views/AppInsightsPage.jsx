@@ -14,7 +14,7 @@ export default function AppInsightsPage() {
 
   return (
     <div lang={language} className="px-4 py-6 sm:px-8 sm:py-10">
-      <AppSectionHeading eyebrow={copy.insights.eyebrow} title={copy.insights.title}>
+      <AppSectionHeading level={1} eyebrow={copy.insights.eyebrow} title={copy.insights.title}>
         <Link to="/app/passport" className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-primary-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-primary-500 dark:text-primary-300">
           {copy.insights.passportLink} <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>

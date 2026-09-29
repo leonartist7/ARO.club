@@ -52,6 +52,7 @@ export const fv1DiscoveryCopy = {
     opportunities: {
       eyebrow: 'Fictional opportunity field',
       title: 'What could take shape?',
+      intro: 'Explore three fictional examples. Search and filters are not active.',
       searchPreview: 'Search preview',
       filterPreview: 'Status filters preview',
       filterLabels: ['All', 'Forming', 'Open', 'Confirmed'],
@@ -180,6 +181,7 @@ export const fv1DiscoveryCopy = {
     opportunities: {
       eyebrow: 'Champ d’opportunités fictives',
       title: 'Qu’est-ce qui pourrait prendre forme ?',
+      intro: 'Explorez trois exemples fictifs. La recherche et les filtres ne sont pas actifs.',
       searchPreview: 'Aperçu de recherche',
       filterPreview: 'Aperçu des filtres de statut',
       filterLabels: ['Tout', 'En formation', 'Ouvert', 'Confirmé'],
@@ -308,6 +310,7 @@ export const fv1DiscoveryCopy = {
     opportunities: {
       eyebrow: 'Campo de oportunidades ficticias',
       title: '¿Qué podría tomar forma?',
+      intro: 'Explora tres ejemplos ficticios. La búsqueda y los filtros no están activos.',
       searchPreview: 'Vista previa de búsqueda',
       filterPreview: 'Vista previa de filtros de estado',
       filterLabels: ['Todo', 'Formándose', 'Abierto', 'Confirmado'],

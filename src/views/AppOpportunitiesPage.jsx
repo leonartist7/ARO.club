@@ -57,26 +57,16 @@ export default function AppOpportunitiesPage() {
 
   return (
     <div lang={language} className="mx-auto max-w-[1260px] px-4 py-8 sm:px-8 sm:py-10 lg:px-12">
-      <AppSectionHeading eyebrow={copy.opportunities.eyebrow} title={copy.opportunities.title}>
-        <div className="w-full sm:w-72">
-          <div role="img" aria-label={`${copy.opportunities.searchPreview}. ${copy.unavailable}`} className="flex min-h-11 items-center gap-3 border border-ink/15 bg-white/50 px-3 text-base text-ink/65 dark:border-bone/15 dark:bg-gray-900/50 dark:text-bone/70">
-            <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>{copy.opportunities.searchPreview}</span>
-          </div>
-          <p className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.unavailable}</p>
-        </div>
-      </AppSectionHeading>
+      <AppSectionHeading level={1} eyebrow={copy.opportunities.eyebrow} title={copy.opportunities.title} />
+      <p className="mt-3 max-w-2xl text-base leading-6 text-ink/70 dark:text-bone/75">{copy.opportunities.intro}</p>
 
-      <div className="mt-8 border-b border-ink/10 pb-4 dark:border-bone/10">
-        <div role="img" aria-label={`${copy.opportunities.filterPreview}. ${copy.unavailable}`} className="flex flex-wrap gap-2">
-          {copy.opportunities.filterLabels.map((item, index) => <span key={item} className={`inline-flex min-h-11 items-center px-4 text-sm font-bold ${index === 0 ? 'bg-ink text-bone dark:bg-bone dark:text-ink' : 'border border-ink/10 text-ink/65 dark:border-bone/10 dark:text-bone/70'}`}>{item}</span>)}
-        </div>
-        <p className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.unavailable}</p>
-      </div>
-
-      <div className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_270px]">
+      <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_270px]">
         <div className="space-y-4">{opportunities.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} copy={copy} />)}</div>
         <aside className="space-y-4">
+          <AppPanel className="p-5">
+            <div role="img" aria-label={`${copy.opportunities.searchPreview}. ${copy.unavailable}`} className="flex min-h-11 items-center gap-3 border border-ink/15 bg-white/50 px-3 text-base text-ink/65 dark:border-bone/15 dark:bg-gray-900/50 dark:text-bone/70"><Search className="h-4 w-4 shrink-0" aria-hidden="true" /><span>{copy.opportunities.searchPreview}</span></div>
+            <div role="img" aria-label={`${copy.opportunities.filterPreview}. ${copy.unavailable}`} className="mt-4 flex flex-wrap gap-2">{copy.opportunities.filterLabels.map((item, index) => <span key={item} className={`inline-flex min-h-11 items-center px-3 text-sm font-bold ${index === 0 ? 'bg-ink text-bone dark:bg-bone dark:text-ink' : 'border border-ink/10 text-ink/65 dark:border-bone/10 dark:text-bone/70'}`}>{item}</span>)}</div>
+          </AppPanel>
           <AppPanel className="p-6">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-secondary-700 dark:text-secondary-300">{copy.opportunities.howEyebrow}</p>
             <ol className="mt-5 space-y-5">{copy.opportunities.howSteps.map((step, index) => <li key={step} className="flex gap-3 text-base leading-6 text-ink/70 dark:text-bone/75"><span className="font-bold text-primary-700 dark:text-primary-300">0{index + 1}</span><span>{step}</span></li>)}</ol>

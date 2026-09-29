@@ -1,5 +1,9 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-29 RB13:** `specs/ARO-RB13-INTEGRATED-VISUAL-CANDIDATE.md` is IMPLEMENTED / PARTIAL VERIFICATION on an isolated branch that normally merges the latest PR #84 source with RB11/RB12. `artifacts/ARO-RB13/VERIFICATION.md` retains English/light visual, route and ordinary preference evidence. This does not clear upstream privacy/Trust/Contact, independent review, production Auth or store gates. RB12's public redesign is implemented in that candidate; its source branch remains separately owned.
+
+> **2026-09-28 RB11:** `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` is IMPLEMENTED / PARTIAL VERIFICATION on a branch stacked on RB10. It bounds opt-in release presentation; store packaging and live eligibility remain separate gates. See `artifacts/ARO-RB11/VERIFICATION.md`.
+
 > **2026-09-28 RB10:** `specs/ARO-RB10-ACCOUNT-ENTRY-PRESENTATION.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It localizes and styles signed-out account entry without changing Auth, callback, recovery or live backend authority.
 
 > **2026-09-28 RB9:** `specs/ARO-RB9-SHARE-METADATA.md` is IMPLEMENTED / PARTIAL VERIFICATION on its scoped stacked branch. It adds a controlled share image and metadata only, with no change to live product claims or release.
