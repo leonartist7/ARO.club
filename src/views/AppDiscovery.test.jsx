@@ -280,7 +280,7 @@ describe('FV-1 F4 browser acceptance evidence', () => {
     const routeCases = [
       { route: '/app', essential: fv1DiscoveryCopy.en.home.seedPrompt, image: 'home' },
       { route: '/app/world', essential: fv1DiscoveryCopy.en.world.instruction, image: 'world' },
-      { route: '/app/opportunities', essential: fv1DiscoveryCopy.en.unavailable, image: 'opportunities' },
+      { route: '/app/opportunities', essential: fv1DiscoveryCopy.en.opportunities.intro, image: 'opportunities' },
       { route: '/app/create', essential: fv1DiscoveryCopy.en.create.intro, image: null },
     ]
     const evidence = {
@@ -387,7 +387,8 @@ describe('FV-1 F4 browser acceptance evidence', () => {
             if (routeCase.route === '/app/opportunities') {
               expect(await page.locator('main#app-main').getByRole('textbox').count()).toBe(0)
               expect(await page.locator('main#app-main').getByRole('tab').count()).toBe(0)
-              expect(await page.locator('main#app-main').getByText(fv1DiscoveryCopy.en.unavailable, { exact: true }).count()).toBeGreaterThanOrEqual(2)
+              expect(await page.locator('main#app-main').getByRole('img', { name: `${fv1DiscoveryCopy.en.opportunities.searchPreview}. ${fv1DiscoveryCopy.en.unavailable}` }).count()).toBe(1)
+              expect(await page.locator('main#app-main').getByRole('img', { name: `${fv1DiscoveryCopy.en.opportunities.filterPreview}. ${fv1DiscoveryCopy.en.unavailable}` }).count()).toBe(1)
             }
 
             expect(pageErrors, `${routeCase.route} page errors at ${width}px/${theme}: ${pageErrors.join(' | ')}`).toEqual([])
