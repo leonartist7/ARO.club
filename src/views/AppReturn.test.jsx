@@ -72,9 +72,9 @@ async function resolveBrowserExecutable() {
 
 async function startF6BrowserServer() { return startProductionServer(4182) }
 
-// The accepted FV-1 shell has no working theme preference UI; F6 explicitly keeps
-// Appearance informational. This helper renders both existing token states for visual
-// acceptance only and does not claim a user-facing theme control exists.
+// F6 visual evidence still renders both token states directly so its frozen visual
+// matrix stays deterministic. RB14 adds a real local theme control separately; this
+// helper is evidence setup rather than a claim that the control is absent.
 async function applyVisualThemeForEvidence(page, theme) {
   await page.evaluate((selectedTheme) => document.documentElement.classList.toggle('dark', selectedTheme === 'dark'), theme)
   expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(theme === 'dark')
@@ -227,8 +227,8 @@ describe('FV-1 F6 return truthfulness', () => {
       expect(row.querySelector('a')).toBeNull()
       expect(row.textContent).toContain('Not available in this preview.')
     }
-    expect(screen.getByRole('group', { name: 'Language' })).toBeTruthy()
-    expect(screen.getByRole('group', { name: 'Appearance' })).toBeTruthy()
+    expect(screen.getAllByRole('button', { name: 'Language: English', exact: true }).length).toBeGreaterThanOrEqual(1)
+    expect(screen.getAllByRole('button', { name: 'Switch to dark mode', exact: true }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getByText(/Language and appearance work on this device/)).toBeTruthy()
   })
 })
@@ -288,7 +288,7 @@ describe('FV-1 F6 browser acceptance evidence', () => {
       browser: executablePath,
       widths,
       themes,
-      themeEvidence: 'FV-1 has no implemented Appearance preference; light/dark token states rendered directly for visual acceptance',
+      themeEvidence: 'RB14 provides a local sun/moon theme toggle; F6 still renders light/dark token states directly for deterministic visual acceptance',
       observations: 0,
       zoomObservations: 0,
       minTargetWidth: Number.POSITIVE_INFINITY,
