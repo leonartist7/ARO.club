@@ -1,6 +1,6 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Compass, HeartHandshake, Sparkles, UsersRound } from 'lucide-react';
 import { Link, useLocation } from '../lib/navigation';
 import { getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
@@ -91,6 +91,11 @@ export default function AppCreatePage() {
     const requestedMode = new URLSearchParams(location.search).get('mode');
     return seedModeLayout.some((mode) => mode.id === requestedMode) ? requestedMode : 'learn';
   });
+  const compositionRef = useRef(null);
+  const selectMode = (id) => {
+    setActiveModeId(id);
+    requestAnimationFrame(() => compositionRef.current?.focus());
+  };
   const activeConfig = seedModeLayout.find((mode) => mode.id === activeModeId) ?? seedModeLayout[0];
   const activeMode = copy.create.modes[activeConfig.id];
 
@@ -103,9 +108,9 @@ export default function AppCreatePage() {
 
         <Link to="/app/opportunities" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-base font-bold text-primary-700 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:text-secondary-100 dark:focus-visible:ring-secondary-300">{journey.find}<ArrowRight className="h-5 w-5" aria-hidden="true" /></Link>
 
-        <section className="mt-7 grid grid-cols-1 gap-2 min-[390px]:grid-cols-3 sm:gap-3" aria-label={copy.create.eyebrow}>{seedModeLayout.map((config) => <SeedChoice key={config.id} config={config} mode={copy.create.modes[config.id]} isActive={config.id === activeModeId} onSelect={setActiveModeId} />)}</section>
+        <section className="mt-7 grid grid-cols-1 gap-2 min-[390px]:grid-cols-3 sm:gap-3" aria-label={copy.create.eyebrow}>{seedModeLayout.map((config) => <SeedChoice key={config.id} config={config} mode={copy.create.modes[config.id]} isActive={config.id === activeModeId} onSelect={selectMode} />)}</section>
 
-        <section id="seed-studio-composition" className="mt-7 grid gap-5 rounded-2xl lg:grid-cols-[minmax(0,1.1fr)_360px] lg:items-center" aria-label={`${copy.create.possibleShape}: ${activeMode.label}`}><CompositionField config={activeConfig} mode={activeMode} copy={copy} /><aside className="rounded-[2rem] border border-ink/10 bg-white p-6 dark:border-bone/10 dark:bg-bone/[0.05] sm:p-7"><p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-secondary-100">{copy.create.seedEyebrow}</p><p className="mt-4 font-display text-3xl leading-tight">“{activeMode.seed}”</p><p className="mt-5 text-base leading-7 text-ink dark:text-bone">{activeMode.copy}</p><div className="mt-8 border-t border-ink/10 dark:border-bone/10 pt-5"><p className="flex items-start gap-3 text-base leading-6 text-ink dark:text-bone"><HeartHandshake className="mt-1 h-4 w-4 shrink-0 text-primary-700 dark:text-secondary-100" aria-hidden="true" /> {copy.create.futureRole}</p></div></aside></section>
+        <section id="seed-studio-composition" ref={compositionRef} tabIndex={-1} className="mt-7 grid scroll-mt-32 gap-5 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:focus-visible:ring-secondary-300 lg:grid-cols-[minmax(0,1.1fr)_360px] lg:items-center" aria-label={`${copy.create.possibleShape}: ${activeMode.label}`}><CompositionField config={activeConfig} mode={activeMode} copy={copy} /><aside className="rounded-[2rem] border border-ink/10 bg-white p-6 dark:border-bone/10 dark:bg-bone/[0.05] sm:p-7"><p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-secondary-100">{copy.create.seedEyebrow}</p><p className="mt-4 font-display text-3xl leading-tight">“{activeMode.seed}”</p><p className="mt-5 text-base leading-7 text-ink dark:text-bone">{activeMode.copy}</p><div className="mt-8 border-t border-ink/10 dark:border-bone/10 pt-5"><p className="flex items-start gap-3 text-base leading-6 text-ink dark:text-bone"><HeartHandshake className="mt-1 h-4 w-4 shrink-0 text-primary-700 dark:text-secondary-100" aria-hidden="true" /> {copy.create.futureRole}</p></div></aside></section>
 
         <section className="mt-10 flex flex-col gap-5 border-t border-ink/10 dark:border-bone/10 py-7 sm:flex-row sm:items-center sm:justify-between"><p className="max-w-xl text-base leading-6 text-ink dark:text-bone">{copy.create.boundary}</p><Link to="/app/world" className="inline-flex min-h-11 items-center gap-2 self-start px-1 font-bold text-primary-700 dark:text-secondary-100 transition hover:text-primary-800 dark:hover:text-secondary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:focus-visible:ring-secondary-300">{copy.create.returnWorld} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></section>
       </div>

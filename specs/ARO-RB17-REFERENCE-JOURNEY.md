@@ -2,6 +2,8 @@
 
 **Status:** IMPLEMENTED / PARTIAL VERIFICATION · version 1.0.0 · 2026-09-29. Founder authorization: six supplied visual references and request to execute. Branch `codex/rb17-reference-journey-20260929` starts at merged RB15 `28f0170` (PR #92). Target RB15; no `main` merge.
 
+**Approval record:** The founder explicitly approved this visual direction by supplying six references and saying “execute.” I wrote this bounded presentation spec as **SPEC-READY v1.0.0 in the working tree before the first JSX edit**. The same branch commit records the later IMPLEMENTED / PARTIAL VERIFICATION state, so the intermediate working-tree state is not a separate Git commit. This approval covers visual hierarchy and existing local preview paths only; it is not privacy, Trust, Auth, money or release approval.
+
 ## Outcome and authority
 
 The English/light public Home, app Home, Explore and Create first steps should read as one warm, human journey. The website must move from its hero to a human outcome and concise steps, with the detailed opportunity prototype lower on the page. App previews should put the next action and image-led class context before diagrams or fictional metrics. Existing onboarding and detail routes remain connected and clearly labelled. The supplied images are visual direction, not proof of actual inventory, cities, hosts, conversations or payments.
