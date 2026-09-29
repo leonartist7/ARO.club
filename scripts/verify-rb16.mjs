@@ -91,16 +91,17 @@ try {
     await page.getByRole('button', { name: 'Switch to dark mode' }).click();
     assert.equal(await page.evaluate(() => document.documentElement.classList.contains('dark')), true);
     await page.screenshot({ path: join(output, 'create-dark-390.png'), fullPage: true });
-    await page.getByRole('button', { name: 'Switch to light mode' }).click();
-    await page.setViewportSize({ width: 320, height: 620 });
-    for (const [code, index] of [['fr', 1], ['es', 2]]) {
-      await menuTrigger.click();
-      await page.getByRole('menuitemradio').nth(index).click();
+    for (const code of ['fr', 'es']) {
+      const localizedContext = await browser.newContext({ viewport: { width: 320, height: 620 }, reducedMotion: 'reduce', colorScheme: 'light' });
+      await localizedContext.addInitScript(language => { localStorage.setItem('theme', 'light'); localStorage.setItem('conversa-language', language); }, code);
+      const localizedPage = await localizedContext.newPage();
       for (const [name, route] of [['create', '/app/create?mode=gather'], ['detail', '/app/opportunities/river-photo-walk']]) {
-        await page.goto(base + route, { waitUntil: 'networkidle' });
-        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-        await page.screenshot({ path: join(output, `${name}-320-${code}.png`), fullPage: true });
+        await localizedPage.goto(base + route, { waitUntil: 'networkidle' });
+        assert.equal(await localizedPage.evaluate(() => document.documentElement.lang), code);
+        assert.equal(await localizedPage.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+        await localizedPage.screenshot({ path: join(output, `${name}-320-${code}.png`), fullPage: true });
       }
+      await localizedContext.close();
     }
   }
   await context.close();
