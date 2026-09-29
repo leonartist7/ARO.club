@@ -39,6 +39,8 @@ The first hosted RB12 browser check counted the new footer disclosure along with
 
 The footer matrix now runs immediately after the ordinary production build and uploads its own screenshots before the existing FV1 browser gate. On the previous head that later gate stopped first at two separate image-fit regressions: 12px essential copy on the Circle room at 360px, and a `contain` image where the FV1 return check still expects `cover`. These belong to the upstream image-fit follow-up and remain open; they are not waived by moving the independent footer check earlier.
 
+The first hosted footer run found that Next's route transition tree contains a hidden duplicate footer element. The verifier now scopes to the visible footer instance before measuring or capturing it.
+
 Mobile reused art is 65,630 bytes (connect), 62,540 bytes (learn) and 54,702 bytes (language-teaching) from [measured files](release-candidate/asset-bytes.json), each below the existing 250 KB first-illustration budget. The approved reference is evidence only and is not used as a raster logo. Orange/charcoal contrast is 4.58:1, orange/ivory large-heading contrast 3.21:1, and action-orange/white contrast 4.88:1. This is a color-pair calculation, not full-route accessibility certification.
 
 ## Open gates

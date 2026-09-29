@@ -38,7 +38,7 @@ try {
     });
 
     const response = await page.goto(`${base}/`, { waitUntil: 'domcontentloaded' });
-    const footer = page.locator('footer');
+    const footer = page.locator('footer:visible');
     await footer.waitFor({ state: 'visible' });
     await page.waitForFunction((theme) => document.documentElement.classList.contains('dark') === (theme === 'dark'), item.theme);
     await page.evaluate(() => document.fonts.ready);
