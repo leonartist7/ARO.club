@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-29 RB14:** `specs/ARO-RB14-THEME-LANGUAGE-CONTROLS.md` is IMPLEMENTED / PARTIAL VERIFICATION on a branch stacked on exact RB13. It replaces the combined gear/preferences presentation with a sun/moon theme toggle and responsive EN/FR/ES dropdown across public, onboarding, app Settings and app shell surfaces while preserving existing contexts/storage and RB11 release-scope behavior. Final-head CI and visual/accessibility review remain open.
+
 > **2026-09-29 RB13:** `specs/ARO-RB13-INTEGRATED-VISUAL-CANDIDATE.md` is IMPLEMENTED / PARTIAL VERIFICATION on an isolated branch that normally merges the latest PR #84 source with RB11/RB12. `artifacts/ARO-RB13/VERIFICATION.md` retains English/light visual, route and ordinary preference evidence. This does not clear upstream privacy/Trust/Contact, independent review, production Auth or store gates. RB12's public redesign is implemented in that candidate; its source branch remains separately owned.
 
 > **2026-09-28 RB11:** `specs/ARO-RB11-ENGLISH-LIGHT-RELEASE-SCOPE.md` is IMPLEMENTED / PARTIAL VERIFICATION on a branch stacked on RB10. It bounds opt-in release presentation; store packaging and live eligibility remain separate gates. See `artifacts/ARO-RB11/VERIFICATION.md`.
