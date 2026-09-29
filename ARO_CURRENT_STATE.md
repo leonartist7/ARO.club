@@ -1,5 +1,7 @@
 # ARO — Current State
 
+> **2026-09-29 AUTH1:** The founder directed production account entry on the existing ARO Supabase project. The project is healthy with Google/email providers enabled. AUTH1 code is locally verified on the current RB15 branch, but `main` still serves the older build and production account configuration/hosted journeys are unverified. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md` and `artifacts/ARO-AUTH1/VERIFICATION.md`.
+
 > **2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
 
 > **RB15 hosted reconciliation — 2026-09-29:** RB15 exact-head hosted Quality `36593625126` and isolated-database `36593625117` succeeded on `a0cef112380f34f9c47c2a7e160fbbe4561fcf2e`. The platform passed after one failed-job rerun; the intermittent document chooser root cause remains unresolved. Independent privacy/Trust/design/accessibility, protected merge and release gates remain open.

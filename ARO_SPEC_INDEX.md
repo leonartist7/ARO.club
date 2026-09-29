@@ -1,5 +1,7 @@
 # ARO — Canonical Spec Index
 
+> **2026-09-29 AUTH1:** Founder authorized email and Google account entry using the existing ARO Supabase project. `specs/ARO-AUTH1-ACCOUNT-ENTRY.md` is IN-PROGRESS on `codex/aro-auth-production-20260929`. Local and provider-start evidence is in `artifacts/ARO-AUTH1/VERIFICATION.md`; hosted email/Google completion, production Vercel configuration and independent security review remain BLOCKED/PENDING. No production account release is verified.
+
 > **2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
 
 > **RB15 hosted reconciliation — 2026-09-29:** RB15 exact-head hosted Quality `36593625126` and isolated-database `36593625117` succeeded on `a0cef112380f34f9c47c2a7e160fbbe4561fcf2e`. The platform passed after one failed-job rerun; the intermittent document chooser root cause remains unresolved. Independent privacy/Trust/design/accessibility, protected merge and release gates remain open.

@@ -167,7 +167,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signInWithGoogle = async () => ({data:null,error:new Error('Google sign-in is not enabled. Please use email and password.')});
+  const signInWithGoogle = async () => {
+    if (!isSupabaseConfigured) {
+      return { data: null, error: supabaseConfigError };
+    }
+
+    try {
+      return await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
+      });
+    } catch (error) {
+      return { data: null, error };
+    }
+  };
 
   const signOut = async () => {
     if (!isSupabaseConfigured) {

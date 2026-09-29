@@ -1,5 +1,7 @@
 # ARO — Product & Architecture Changelog
 
+> **2026-09-29 AUTH1 decision:** The founder requested Google and email login for `aro-club.app` using the already configured ARO Supabase project and authorized production work. AUTH1 provides a separately switched production promotion path for that existing project, preserving exact URL/ref matching and denying quarantined projects. This intentionally supersedes N1's earlier exclusion of Google OAuth for this narrowly scoped package. Hosted authentication, provider delivery and independent security review remain release gates. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`.
+
 > **Purpose:** append-only record of meaningful ARO evolution. This is not implementation authority by itself; it records when the current direction changed and points to the documents that now define it.
 >
 > Do not rewrite history to make the project look cleaner. Add a new dated entry when a strategic, architectural, implementation-status, design, Trust, privacy, money or sequencing decision materially changes.

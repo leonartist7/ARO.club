@@ -182,7 +182,7 @@ export default function SignupPage() {
                 variant="outline"
                 fullWidth
                 onClick={handleGoogleSignIn}
-                disabled
+                disabled={loading || !isBackendConfigured}
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >
