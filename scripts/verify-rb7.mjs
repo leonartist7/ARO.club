@@ -145,7 +145,8 @@ try {
       theme: 'light',
       language: 'fr',
     });
-    await page.getByRole('button', { name: 'Passer en mode sombre', exact: true }).click();
+    const settingsMain = page.locator('main#app-main');
+    await settingsMain.getByRole('button', { name: 'Passer en mode sombre', exact: true }).click();
     await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
     await page.screenshot({ path: join(out, 'app-settings-768-dark-fr.png') });
 
