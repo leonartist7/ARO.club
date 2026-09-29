@@ -16,9 +16,9 @@ function OpportunityCard({ opportunity, copy }) {
       aria-label={copy.opportunities.openExample(opportunity.title)}
       className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
     >
-      <AppPanel className="overflow-hidden transition-colors hover:border-primary-500/50">
+      <AppPanel className="overflow-hidden rounded-[1.75rem] transition-colors hover:border-primary-500/50">
         <div className="flex flex-col sm:flex-row">
-          <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-ink/10 sm:w-64">
+          <div className="relative aspect-[3/2] w-full shrink-0 self-start overflow-hidden bg-bone dark:bg-ink sm:w-64">
             <AppImage
               src={opportunity.image}
               alt={opportunity.imageAlt}
@@ -36,7 +36,7 @@ function OpportunityCard({ opportunity, copy }) {
               </div>
               <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-ink/45 transition-transform group-hover:translate-x-1 group-hover:text-primary-500 dark:text-bone/50" aria-hidden="true" />
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">{opportunity.tags.map((tag) => <span key={tag} className="border border-ink/10 px-2.5 py-1 text-sm font-semibold text-ink/65 dark:border-bone/10 dark:text-bone/70">{tag}</span>)}</div>
+            <div className="mt-5 flex flex-wrap gap-2">{opportunity.tags.map((tag) => <span key={tag} className="rounded-full border border-ink/10 px-2.5 py-1 text-sm font-semibold text-ink/65 dark:border-bone/10 dark:text-bone/70">{tag}</span>)}</div>
             <div className="mt-6 grid gap-4 border-t border-ink/10 pt-4 text-base text-ink/70 dark:border-bone/10 dark:text-bone/75 sm:grid-cols-3">
               <span className="flex items-start gap-2"><MapPin className="mt-1 h-4 w-4 shrink-0 text-primary-500" aria-hidden="true" /><span>{opportunity.place}</span></span>
               <span className="flex items-start gap-2"><Clock3 className="mt-1 h-4 w-4 shrink-0 text-secondary-600 dark:text-secondary-300" aria-hidden="true" /><span>{opportunity.time}</span></span>
@@ -67,7 +67,7 @@ export default function AppOpportunitiesPage() {
           </AppPanel>
           <AppPanel className="p-6">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-secondary-700 dark:text-secondary-300">{copy.opportunities.howEyebrow}</p>
-            <ol className="mt-5 space-y-5">{copy.opportunities.howSteps.map((step, index) => <li key={step} className="flex gap-3 text-base leading-6 text-ink/70 dark:text-bone/75"><span className="font-bold text-primary-700 dark:text-primary-300">0{index + 1}</span><span>{step}</span></li>)}</ol>
+            <ol className="mt-5 space-y-5">{copy.opportunities.howSteps.map((step, index) => <li key={step} className="flex gap-3 text-base leading-6 text-ink/70 dark:text-bone/75"><span className="min-w-6 shrink-0 font-bold text-primary-700 dark:text-primary-300">0{index + 1}</span><span>{step}</span></li>)}</ol>
           </AppPanel>
           <AppPanel className="p-6" dark>
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-secondary-200">{copy.opportunities.fieldEyebrow}</p>

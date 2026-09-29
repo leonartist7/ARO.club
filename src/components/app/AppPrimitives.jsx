@@ -38,7 +38,7 @@ export function AppSectionHeading({ eyebrow, title, children, className, level =
     <div className={cn('flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between', className)}>
       <div>
         {eyebrow && <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">{eyebrow}</p>}
-        <Heading className="font-display text-3xl leading-none tracking-[-0.025em] text-ink dark:text-bone">{title}</Heading>
+        <Heading className={cn('text-balance font-display leading-tight tracking-[-0.025em] text-ink dark:text-bone', level === 1 ? 'text-4xl sm:text-5xl' : 'text-3xl')}>{title}</Heading>
       </div>
       {children}
     </div>

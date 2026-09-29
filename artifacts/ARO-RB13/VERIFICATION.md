@@ -44,7 +44,7 @@ Local verification after this follow-up: focused footer tests pass (2); full Vit
 
 The first hosted RB12 browser check counted the new footer disclosure along with the five FAQ disclosures. The verifier now scopes those existing FAQ-count/open assertions to `main`, preserving their five-row acceptance while excluding footer navigation; the exact-head RB12 check now passes. The first hosted footer run found that Next's route transition tree contains a hidden duplicate footer element; the verifier now scopes to the visible footer instance before measuring or capturing it.
 
-The first hosted RB12 browser check counted the new footer disclosure along with the five FAQ disclosures. The verifier now scopes those existing FAQ-count/open assertions to `main`, preserving their five-row acceptance while excluding footer navigation. The exact-head retry will confirm the complete screenshot and footer matrix.
+The exact-head RB12 check and footer matrix passed in Quality run `36577584615` on `b067c3f`, as recorded above; this is historical source evidence, not RB16 acceptance.
 
 The footer matrix runs immediately after the ordinary production build and uploads its own screenshots before the existing FV1 browser gate. That separate gate still stops at two upstream image-fit failures: 12px essential copy on the Circle room at 360px and `contain` where the FV1 return check expects `cover`. They remain open and are not waived by the passing footer matrix.
 

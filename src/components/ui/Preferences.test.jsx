@@ -25,6 +25,23 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); localStorage.clear(); });
 
 describe('compact preferences', () => {
+  it('supports wrapped arrow navigation and Home/End without changing selection', () => {
+    preferences();
+    fireEvent.click(screen.getByRole('button', { name: 'Language: English' }));
+    const items = screen.getAllByRole('menuitemradio');
+    fireEvent.keyDown(items[0], { key: 'ArrowUp' });
+    expect(document.activeElement).toBe(items[2]);
+    fireEvent.keyDown(items[2], { key: 'ArrowDown' });
+    expect(document.activeElement).toBe(items[0]);
+    fireEvent.keyDown(items[0], { key: 'End' });
+    expect(document.activeElement).toBe(items[2]);
+    fireEvent.keyDown(items[2], { key: 'Home' });
+    expect(document.activeElement).toBe(items[0]);
+    expect(items[0].getAttribute('aria-checked')).toBe('true');
+    expect(localStorage.getItem('conversa-language')).not.toBe('es');
+    fireEvent.blur(items[0], { relatedTarget: document.body });
+    expect(screen.queryByRole('menu')).toBeNull();
+  });
   it('restores language, opens the dropdown on the selected option and returns focus with Escape', async () => {
     localStorage.setItem('conversa-language', 'es');
     localStorage.setItem('theme', 'dark');

@@ -46,6 +46,15 @@ jobs:
           name: rb13-footer
           path: artifacts/ARO-RB13/footer
           retention-days: 7
+      - name: RB16 visual coherence browser check
+        run: node scripts/verify-rb16.mjs
+      - name: Retain RB16 visual coherence screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb16-visual-coherence
+          path: artifacts/ARO-RB16/after
+          retention-days: 7
       - run: npm test -- src/views/AppDiscovery.test.jsx src/views/AppPersonal.test.jsx src/views/AppReturn.test.jsx
         env:
           FV1_BROWSER_EVIDENCE: 'true'
