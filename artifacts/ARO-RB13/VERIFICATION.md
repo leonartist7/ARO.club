@@ -35,6 +35,8 @@ The shared footer previously repeated a full-width trust banner and stacked its 
 
 Local verification after this follow-up: focused footer tests pass (2); full Vitest passes (189 passed, 3 existing skips); lint, type-check, ordinary production build and English/light production build pass. `git diff --check` passes. This environment could not install Playwright Chromium revision 1234: the CDN returned an invalid zero-byte archive, so no local rendered screenshot is claimed. A required `browser-smoke` CI step now checks the footer at 320, 390, 768 and 1440px across light/dark, tests keyboard disclosure and preserved links/touch targets, and uploads footer screenshots to the `rb13-footer` artifact. Exact-head visual acceptance remains pending until that CI run passes.
 
+The first hosted RB12 browser check counted the new footer disclosure along with the five FAQ disclosures. The verifier now scopes those existing FAQ-count/open assertions to `main`, preserving their five-row acceptance while excluding footer navigation. The exact-head retry will confirm the complete screenshot and footer matrix.
+
 Mobile reused art is 65,630 bytes (connect), 62,540 bytes (learn) and 54,702 bytes (language-teaching) from [measured files](release-candidate/asset-bytes.json), each below the existing 250 KB first-illustration budget. The approved reference is evidence only and is not used as a raster logo. Orange/charcoal contrast is 4.58:1, orange/ivory large-heading contrast 3.21:1, and action-orange/white contrast 4.88:1. This is a color-pair calculation, not full-route accessibility certification.
 
 ## Open gates
