@@ -1,6 +1,7 @@
 export const fv1JourneyCopy = {
   en: {
     fictionalLabel: 'Fictional local example',
+    whyItFits: 'Why this example fits',
     missingTitle: 'Example unavailable',
     missingBody: 'This fictional example is not available in this local preview.',
     backToWorld: 'Back to World',
@@ -56,6 +57,7 @@ export const fv1JourneyCopy = {
   },
   fr: {
     fictionalLabel: 'Exemple local fictif',
+    whyItFits: 'Pourquoi cet exemple convient',
     missingTitle: 'Exemple indisponible',
     missingBody: 'Cet exemple fictif n’est pas disponible dans cet aperçu local.',
     backToWorld: 'Retour au Monde',
@@ -111,6 +113,7 @@ export const fv1JourneyCopy = {
   },
   es: {
     fictionalLabel: 'Ejemplo local ficticio',
+    whyItFits: 'Por qué encaja este ejemplo',
     missingTitle: 'Ejemplo no disponible',
     missingBody: 'Este ejemplo ficticio no está disponible en esta vista previa local.',
     backToWorld: 'Volver al Mundo',

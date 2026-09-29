@@ -1,0 +1,259 @@
+[
+  {
+    "width": 390,
+    "route": "/",
+    "status": 200,
+    "heading": "Life opens up.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/about",
+    "status": 200,
+    "heading": "Life opens up when people make room for each other.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/how-it-works",
+    "status": 200,
+    "heading": "Choose a first step that fits your life.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/faq",
+    "status": 200,
+    "heading": "Questions worth answering clearly.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/for-teachers",
+    "status": 200,
+    "heading": "What you know could open a door for someone.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/contact",
+    "status": 200,
+    "heading": "Keep a note for ARO.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/login",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/signup",
+    "status": 200,
+    "heading": "Join ARO",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/forgot-password",
+    "status": 200,
+    "heading": "Forgot Password?",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/onboarding/preview",
+    "status": 200,
+    "heading": "Your next “I did that” starts here.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app",
+    "status": 200,
+    "heading": "Where will you begin?",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app/opportunities",
+    "status": 200,
+    "heading": "What could take shape?",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app/create",
+    "status": 200,
+    "heading": "What would you like to make happen?",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app/opportunities/river-photo-walk",
+    "status": 200,
+    "heading": "River light photo walk",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app/profile",
+    "status": 200,
+    "heading": "The parts of you that make a next thing possible.",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/app/settings",
+    "status": 200,
+    "heading": "Settings",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/teacher/application",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "route": "/teacher/dashboard",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "status": 200,
+    "heading": "Life opens up.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/about",
+    "status": 200,
+    "heading": "Life opens up when people make room for each other.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/how-it-works",
+    "status": 200,
+    "heading": "Choose a first step that fits your life.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/faq",
+    "status": 200,
+    "heading": "Questions worth answering clearly.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/for-teachers",
+    "status": 200,
+    "heading": "What you know could open a door for someone.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/contact",
+    "status": 200,
+    "heading": "Keep a note for ARO.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/login",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/signup",
+    "status": 200,
+    "heading": "Join ARO",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/forgot-password",
+    "status": 200,
+    "heading": "Forgot Password?",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/onboarding/preview",
+    "status": 200,
+    "heading": "Your next “I did that” starts here.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app",
+    "status": 200,
+    "heading": "Where will you begin?",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app/opportunities",
+    "status": 200,
+    "heading": "What could take shape?",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app/create",
+    "status": 200,
+    "heading": "What would you like to make happen?",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app/opportunities/river-photo-walk",
+    "status": 200,
+    "heading": "River light photo walk",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app/profile",
+    "status": 200,
+    "heading": "The parts of you that make a next thing possible.",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/app/settings",
+    "status": 200,
+    "heading": "Settings",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/teacher/application",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "route": "/teacher/dashboard",
+    "status": 200,
+    "heading": "Welcome back",
+    "overflow": false
+  },
+  {
+    "preference": "FR dark",
+    "heading": "La vie s’ouvre.",
+    "dark": true
+  }
+]

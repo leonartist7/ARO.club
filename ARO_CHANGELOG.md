@@ -1059,3 +1059,7 @@ RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with
 ### 2026-09-28 — RB6 1184639 mobile preference repair propagated
 
 RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with conflict-free ancestry. Bounded scrollable mobile choices, sticky CTA and stronger viewport/separation/focus assertions propagate without losing cloud work. Corrected provenance: old pottery WebPs remain public but unused, not removed. Prior RB7/RB9/RB10/#84 heads pass both hosted workflows; RB8's document-chooser failure stays recorded. Fresh merge-head checks and independent privacy/Trust/contact-retention/review/release gates remain required. PR #84 stays with its owner for the next reconciliation. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, results and limits.
+
+### 2026-09-29 — RB16 English/light visual coherence
+
+A scoped RB15 descendant aligns Create's light task canvas and app discovery cards with the orange/ivory system, makes the first Create question concrete, and removes an unsupported verification cue from fictional opportunity hosts. Shared app headings and pills are more legible. Onboarding, Home and public/account routes are compared in representative mobile/desktop screenshots. The work changes presentation and fixture labels only; Auth, persistence, Trust enforcement, payments and F7 are unchanged. Local verification is in `artifacts/ARO-RB16/VERIFICATION.md`; independent review, hosted checks and release gates remain open.

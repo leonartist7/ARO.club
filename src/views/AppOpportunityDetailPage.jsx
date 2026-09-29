@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { ArrowLeft, ArrowRight, Camera, Clock3, MapPin, ShieldCheck, Sparkles, UsersRound } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Camera, Clock3, MapPin, Sparkles, UsersRound } from 'lucide-react';
 import { Link, useParams } from '../lib/navigation';
 import { findOpportunity } from '../data/aroApp';
 import { AppAvatar, AppPanel, SignalBar, StatusPill } from '../components/app/AppPrimitives';
@@ -77,8 +77,8 @@ export default function AppOpportunityDetailPage() {
           </section>
 
           <section className="grid gap-6 sm:grid-cols-[0.85fr_1.15fr]">
-            <div className="bg-ink p-6 text-bone dark:bg-plum"><p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-secondary-200"><Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Why it fits</p><p className="mt-4 font-display text-3xl leading-[0.98]">{opportunity.fitTitle}</p></div>
-            <div className="px-1 py-2 sm:p-5"><p className="text-base leading-7 text-ink/70 dark:text-bone/70">{opportunity.signal}</p><p className="mt-5 text-sm leading-6 text-ink/55 dark:text-bone/55">{opportunity.fitBody}</p><div className="mt-6 flex items-center gap-3"><AppAvatar initials={opportunity.host.split(' ').map((part) => part[0]).join('')} /><div><p className="text-sm font-bold">{opportunity.host}</p><p className="text-xs text-ink/55 dark:text-bone/55">{opportunity.hostRole}</p></div><ShieldCheck className="ml-auto h-5 w-5 text-moss" aria-label="Verified host" /></div></div>
+            <div className="rounded-2xl bg-primary-50 p-6 text-ink dark:bg-plum dark:text-bone"><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-primary-700 dark:text-secondary-200"><Sparkles className="h-4 w-4" aria-hidden="true" /> {copy.whyItFits}</p><p className="mt-4 font-display text-3xl leading-[1.1]">{opportunity.fitTitle}</p></div>
+            <div className="px-1 py-2 sm:p-5"><p className="text-base leading-7 text-ink/70 dark:text-bone/70">{opportunity.signal}</p><p className="mt-5 text-sm leading-6 text-ink/65 dark:text-bone/70">{opportunity.fitBody}</p><div className="mt-6 flex items-center gap-3 rounded-2xl border border-ink/10 bg-white p-3 dark:border-bone/10 dark:bg-surface-darkCard"><AppAvatar initials={opportunity.host.split(' ').map((part) => part[0]).join('')} /><div><p className="text-sm font-bold">{opportunity.host}</p><p className="text-sm text-ink/65 dark:text-bone/70">{opportunity.hostRole}</p></div></div></div>
           </section>
         </div>
 
