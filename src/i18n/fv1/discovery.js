@@ -72,7 +72,7 @@ export const fv1DiscoveryCopy = {
       closeToWorld: 'Close Seed Studio and return to World',
       backToWorld: 'Back to World',
       eyebrow: 'Seed Studio · local preview',
-      title: 'What wants a little more room in the world?',
+      title: 'What could you bring to life?',
       intro: 'A good opportunity does not begin as a listing. It begins as something honest: a curiosity, a contribution, or a reason to gather.',
       possibleShape: 'A possible shape',
       possibleShapeBody: 'A local design preview of relationships that could matter—not a live signal.',
@@ -80,7 +80,7 @@ export const fv1DiscoveryCopy = {
       localOnly: 'Static preview only · no intent is saved · no demand is counted · no opportunity is created',
       seedEyebrow: 'Your seed',
       futureRole: 'ARO’s future job is to make this more possible—not to take it over from you.',
-      boundary: 'Later, approved P2 and P3 systems can turn a real, private signal into an explainable opportunity path. This screen only previews the visual language for that future moment.',
+      boundary: 'In future, ARO could help turn a private idea into a shared opportunity. For now, this is a local preview.',
       returnWorld: 'Return to World',
       modes: {
         learn: {

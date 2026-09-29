@@ -78,7 +78,7 @@ export default function AppShell({ children }) {
           <AppNavItem item={appNavItems[1]} selected={selected(appNavItems[1])} label={copy.nav.world} />
           <Link to={isCreate ? '/app/world' : '/app/create'} aria-label={isCreate ? copy.backToWorld : copy.create} className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-xs font-bold sm:text-sm', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/70 dark:text-bone/70')}>
             <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-brand-orange text-ink shadow-[0_7px_24px_rgba(240,90,40,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-300 dark:bg-bone dark:text-ink')}>{isCreate ? <ArrowLeft className="h-6 w-6" aria-hidden="true" /> : <Plus className="h-6 w-6" aria-hidden="true" />}</span>
-            <span>{isCreate ? copy.backToWorld : copy.create}</span>
+            <span className="max-w-full text-center text-[10px] leading-3 sm:text-xs">{isCreate ? copy.backToWorld : copy.create}</span>
           </Link>
           <AppNavItem item={appNavItems[2]} selected={selected(appNavItems[2])} label={copy.nav.insights} />
           <AppNavItem item={appNavItems[3]} selected={selected(appNavItems[3])} label={copy.nav.library} />

@@ -21,7 +21,7 @@ export function ThemeToggle({ className = '' }) {
       onClick={toggleTheme}
       aria-label={label}
       title={label}
-      className={`inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/72 text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10 ${className}`}
+      className={`inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border border-ink/10 bg-white/72 text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-colors motion-safe:transition-[background-color,border-color,color,transform] motion-safe:hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10 ${className}`}
     >
       <Icon className="h-[1.15rem] w-[1.15rem]" aria-hidden="true" />
     </button>
@@ -33,6 +33,7 @@ export function LanguageMenu({ className = '' }) {
   const copy = preferencesCopy[language] ?? preferencesCopy.en;
   const current = languageChoices.find((choice) => choice.code === language) ?? languageChoices[0];
   const [open, setOpen] = useState(false);
+  const [focusedCode, setFocusedCode] = useState(language);
   const [menuStyle, setMenuStyle] = useState(null);
   const menuId = useId();
   const rootRef = useRef(null);
@@ -151,13 +152,16 @@ export function LanguageMenu({ className = '' }) {
         aria-controls={menuId}
         aria-label={`${copy.language}: ${current.label}`}
         onClick={() => {
-          if (!open) setMenuStyle(null);
+          if (!open) {
+            setMenuStyle(null);
+            setFocusedCode(language);
+          }
           setOpen((value) => !value);
         }}
-        className="inline-flex h-[44px] min-w-[64px] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-[12px] text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-[background-color,border-color,transform] hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
+        className="inline-flex h-[44px] min-w-[64px] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-[12px] text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-colors motion-safe:transition-[background-color,border-color,transform] motion-safe:hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
       >
         <span aria-hidden="true">{current.code}</span>
-        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+        <ChevronDown className={`h-3.5 w-3.5 motion-safe:transition-transform ${open ? 'motion-safe:rotate-180' : ''}`} aria-hidden="true" />
       </button>
 
       {open && (
@@ -165,6 +169,23 @@ export function LanguageMenu({ className = '' }) {
           id={menuId}
           ref={menuRef}
           role="menu"
+          onKeyDown={(event) => {
+            if (event.key === 'Tab') {
+              requestAnimationFrame(() => setOpen(false));
+              return;
+            }
+            const items = Array.from(menuRef.current?.querySelectorAll('[role="menuitemradio"]') ?? []);
+            const index = items.indexOf(document.activeElement);
+            let next;
+            if (event.key === 'ArrowDown') next = (index + 1) % items.length;
+            else if (event.key === 'ArrowUp') next = (index - 1 + items.length) % items.length;
+            else if (event.key === 'Home') next = 0;
+            else if (event.key === 'End') next = items.length - 1;
+            if (next !== undefined && items.length) {
+              event.preventDefault();
+              items[next]?.focus();
+            }
+          }}
           aria-label={copy.chooseLanguage}
           style={menuStyle ?? { visibility: 'hidden' }}
           className="fixed z-[80] w-[min(13rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-2xl border border-ink/10 bg-surface-canvas p-1.5 shadow-[0_20px_55px_rgba(37,36,32,0.18)] dark:border-bone/15 dark:bg-surface-darkCard"
@@ -177,6 +198,8 @@ export function LanguageMenu({ className = '' }) {
                 type="button"
                 role="menuitemradio"
                 aria-checked={selected}
+                tabIndex={choice.code === focusedCode ? 0 : -1}
+                onFocus={() => setFocusedCode(choice.code)}
                 onClick={() => choose(choice.code)}
                 className="flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold text-ink transition-colors hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-bone dark:hover:bg-bone/10"
               >

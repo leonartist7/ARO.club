@@ -30,6 +30,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Clear checked-in RB16 output before verification
+        run: |
+          node -e "require('node:fs').rmSync('artifacts/ARO-RB16/after', { recursive: true, force: true })"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -45,6 +48,16 @@ jobs:
         with:
           name: rb13-footer
           path: artifacts/ARO-RB13/footer
+          retention-days: 7
+      - name: RB16 visual coherence browser check
+        run: node scripts/verify-rb16.mjs
+      - name: Retain RB16 visual coherence screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb16-visual-coherence
+          path: artifacts/ARO-RB16/after
+          if-no-files-found: error
           retention-days: 7
       - run: npm test -- src/views/AppDiscovery.test.jsx src/views/AppPersonal.test.jsx src/views/AppReturn.test.jsx
         env:

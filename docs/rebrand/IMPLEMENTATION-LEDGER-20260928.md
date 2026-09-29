@@ -291,3 +291,10 @@ Local lockfile installation, lint, type-check, 189 unit tests (3 existing skips)
 First PR #90 hosted Quality run 36591290083 passed static, English/light and public website jobs but browser-smoke exposed two further issues: a 20px Return to World target and the obsolete F6 crop-position check. Both are repaired on the follow-up source. Local F4 and F6 production-browser matrices pass with a temporary Chromium 153 executable; this is not the hosted pinned Chromium 151 check. A new exact-head hosted run and independent review remain required.
 
 Second PR #90 Quality run 36592645997 passed static, English/light, public redesign and F4/F6 browser acceptance but failed the integrated RB7 menu focus check. The selected item was still hidden when the original layout effect called focus. RB15 now focuses after menu positioning; the local 17-path RB14 browser matrix passes including 200% text scaling. Its JSON is retained at `artifacts/ARO-RB15/rb14-browser.json`. New exact-head hosted checks remain required.
+
+
+## 2026-09-29 — RB16 visual coherence
+
+**2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
+
+Inherited PR #90 CodeRabbit findings were checked and corrected here: historical evidence-status drift, reduced-motion controls and language-menu keyboard navigation. Original package history, cloud controls, full-image onboarding and F7 evidence remain preserved. This does not resolve privacy/Trust/design/accessibility or release gates.

@@ -29,3 +29,8 @@ The previous RB13 head's Quality run [36585629021](https://github.com/leonartist
 ## Open gates
 
 RB0 review conversations; RB2 independent privacy/eligibility/security and Trust; RB4 Trust and persisted fixture comparison review; RB5 Contact draft retention/deletion privacy specification; independent design/accessibility review; final-head protected checks; production Auth and native packaging. The founder's instruction to publish the latest website does not turn these missing specialist decisions into verification evidence. The branch remains draft and unmerged until the gates are resolved.
+
+
+## RB15 exact-head hosted reconciliation — 2026-09-29
+
+RB15 exact-head hosted Quality `36593625126` and isolated-database `36593625117` succeeded on `a0cef112380f34f9c47c2a7e160fbbe4561fcf2e`. The platform passed after one failed-job rerun; the intermittent document chooser root cause remains unresolved. Independent privacy/Trust/design/accessibility, protected merge and release gates remain open.
