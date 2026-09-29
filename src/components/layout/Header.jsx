@@ -15,7 +15,7 @@ import {
   BookMarked,
 } from 'lucide-react';
 import Button from '../ui/Button';
-import PreferencesPopover, { PreferencesControls } from '../ui/Preferences';
+import { PreferencesControls } from '../ui/Preferences';
 import { englishLightRelease } from '../../lib/releaseScope';
 import Avatar from '../ui/Avatar';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -128,7 +128,7 @@ export default function Header() {
               </Button>
             </Link>
 
-            {!englishLightRelease && <PreferencesPopover />}
+            {!englishLightRelease && <PreferencesControls />}
 
             {isSignedIn ? (
               <div className="relative">
@@ -268,6 +268,7 @@ export default function Header() {
 
           {/* Mobile */}
           <div className="xl:hidden flex items-center gap-1">
+            {!englishLightRelease && <PreferencesControls />}
             <button
               ref={mobileTriggerRef}
               type="button"
@@ -357,10 +358,6 @@ export default function Header() {
               </div>
             )}
             </div>
-            {!englishLightRelease && <section className="mt-5 border-t border-ink/10 px-3 pt-5 dark:border-bone/15" aria-label={preferenceLabels.title}>
-              <h2 className="mb-4 font-display text-lg">{preferenceLabels.title}</h2>
-              <PreferencesControls />
-            </section>}
           </div>
         )}
       </nav>
