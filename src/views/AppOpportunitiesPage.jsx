@@ -7,6 +7,9 @@ import { AppPanel, AppSectionHeading, StatusPill } from '../components/app/AppPr
 import { AppImage } from '../components/app/AppImage';
 import { getDiscoveryFormationStatus, getFv1DiscoveryCopy } from '../i18n/fv1/discovery';
 
+/**
+ * Link to a fictional opportunity's detail preview while displaying its image, logistics, and formation status.
+ */
 function OpportunityCard({ opportunity, copy }) {
   const formationStatus = getDiscoveryFormationStatus(copy, opportunity);
 
@@ -49,6 +52,9 @@ function OpportunityCard({ opportunity, copy }) {
   );
 }
 
+/**
+ * Render localized opportunity fixtures with explanatory panels and unavailable search/filter previews.
+ */
 export default function AppOpportunitiesPage() {
   const language = useLanguage().language;
   const copy = getFv1DiscoveryCopy(language);

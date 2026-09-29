@@ -33,6 +33,9 @@ function AppNavItem({ item, selected, label }) {
   );
 }
 
+/**
+ * Wrap app content with localized preview notices, preferences, and navigation for the current route.
+ */
 export default function AppShell({ children }) {
   const location = useLocation();
   const isCreate = location.pathname === '/app/create';

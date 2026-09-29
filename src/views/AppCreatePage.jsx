@@ -27,6 +27,9 @@ const seedModeLayout = [
   },
 ];
 
+/**
+ * Render a creation-mode choice that passes its configured ID to onSelect when activated.
+ */
 function SeedChoice({ config, mode, isActive, onSelect }) {
   const Icon = config.icon;
 
@@ -47,6 +50,9 @@ function SeedChoice({ config, mode, isActive, onSelect }) {
   );
 }
 
+/**
+ * Display one example composition ingredient's label and value.
+ */
 function Ingredient({ ingredient }) {
   return (
     <div className="relative z-10 min-w-0 rounded-2xl border border-ink/10 bg-bone p-4 dark:border-bone/20 dark:bg-ink/90">
@@ -56,6 +62,9 @@ function Ingredient({ ingredient }) {
   );
 }
 
+/**
+ * Illustrate the selected creation mode's ingredients and possible outcome using localized preview copy.
+ */
 function CompositionField({ config, mode, copy }) {
   const Icon = config.icon;
 
@@ -87,6 +96,9 @@ function CompositionField({ config, mode, copy }) {
   );
 }
 
+/**
+ * Render the local creation preview, initializing its mode from the query string and defaulting to learn.
+ */
 export default function AppCreatePage() {
   const language = useLanguage().language;
   const location = useLocation();

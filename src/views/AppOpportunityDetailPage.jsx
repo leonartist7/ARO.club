@@ -25,6 +25,9 @@ function MissingExample({ copy }) {
   );
 }
 
+/**
+ * Visualize the example count against capacity with a capped progress ring and the supplied status text.
+ */
 function FormationOrbit({ count, capacity, status, copy }) {
   const progress = Math.min((count / capacity) * 360, 360);
 
@@ -41,6 +44,9 @@ function FormationOrbit({ count, capacity, status, copy }) {
   );
 }
 
+/**
+ * Render the route's fictional opportunity and join-preview link, or a missing-example state for unknown IDs.
+ */
 export default function AppOpportunityDetailPage() {
   const { id } = useParams();
   const { language } = useLanguage();

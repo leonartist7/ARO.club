@@ -32,6 +32,9 @@ export function StatusPill({ children, tone = 'neutral' }) {
   );
 }
 
+/**
+ * Render a section title with an optional eyebrow and trailing content, using h1 only when level is 1.
+ */
 export function AppSectionHeading({ eyebrow, title, children, className, level = 2 }) {
   const Heading = level === 1 ? 'h1' : 'h2';
   return (

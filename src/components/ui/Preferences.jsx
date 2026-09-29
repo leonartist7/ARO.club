@@ -5,6 +5,9 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useOptionalTheme } from '../../contexts/ThemeContext';
 import { languageChoices, preferencesCopy } from '../../i18n/preferences';
 
+/**
+ * Render a localized light/dark toggle, or nothing when no theme provider is available.
+ */
 export function ThemeToggle({ className = '' }) {
   const { language } = useLanguage();
   const themeState = useOptionalTheme();
@@ -28,6 +31,9 @@ export function ThemeToggle({ className = '' }) {
   );
 }
 
+/**
+ * Render a viewport-positioned language menu with keyboard navigation and focus restoration on selection or Escape.
+ */
 export function LanguageMenu({ className = '' }) {
   const { language, changeLanguage } = useLanguage();
   const copy = preferencesCopy[language] ?? preferencesCopy.en;

@@ -12,6 +12,9 @@ import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 const homeOpportunityIds = ['river-photo-walk', 'shared-stories', 'repair-table'];
 const homeOpportunities = homeOpportunityIds.map((id) => opportunities.find((opportunity) => opportunity.id === id)).filter(Boolean);
 
+/**
+ * Summarize a fictional opportunity's logistics and formation status with a link to its detail preview.
+ */
 function OpeningCard({ opportunity, copy }) {
   const formationStatus = getDiscoveryFormationStatus(copy, opportunity);
 
@@ -51,6 +54,9 @@ function OpeningCard({ opportunity, copy }) {
   );
 }
 
+/**
+ * Render a localized invitation to browse the example opportunity list.
+ */
 function ExplorePath({ copy, journey }) {
   return (
     <Link to="/app/opportunities" className="group block rounded-[1.75rem] border border-ink/10 bg-white/70 p-5 transition hover:border-primary-500/40 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-bone/10 dark:bg-gray-900/65 dark:hover:bg-gray-900 sm:p-6">
@@ -62,6 +68,9 @@ function ExplorePath({ copy, journey }) {
   );
 }
 
+/**
+ * Present the home illustration and active example, passing selected opportunity IDs to onSelect.
+ */
 function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
   return (
     <section className="overflow-hidden rounded-[2rem] border border-ink/10 bg-white dark:border-bone/10 dark:bg-ink sm:rounded-[2.5rem]">
@@ -105,6 +114,9 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
   );
 }
 
+/**
+ * Render the localized app home with a locally selected example and links into discovery and creation.
+ */
 export default function AppHomePage() {
   const language = useLanguage().language;
   const copy = getFv1DiscoveryCopy(language);
