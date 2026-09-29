@@ -279,8 +279,8 @@ describe('FV-1 F6 browser acceptance evidence', () => {
     const widths = [360, 390, 430, 768, 1440]
     const themes = ['light', 'dark']
     const routeCases = [
-      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights.heroAlt, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '62%' },
-      { route: '/app/passport', directEntry: 'passport', heroAlt: fv1ReturnCopy.en.passport.heroAlt, mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '69%' },
+      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights.heroAlt, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '50%' },
+      { route: '/app/passport', directEntry: 'passport', heroAlt: fv1ReturnCopy.en.passport.heroAlt, mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '50%' },
       { route: '/app/library', directEntry: 'library' },
       { route: '/app/settings', directEntry: 'settings' },
     ]

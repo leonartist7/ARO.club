@@ -81,7 +81,7 @@ export default function AppCircleRoomPage() {
         </aside>
       </div>
 
-      <section className="mt-8 flex flex-col gap-4 border-t border-ink/10 py-6 text-sm dark:border-bone/10 sm:flex-row sm:items-center sm:justify-between"><p className="flex items-center gap-2 text-ink/60 dark:text-bone/60"><CheckCircle2 className="h-4 w-4 text-moss" aria-hidden="true" /> {copy.noMembership}</p><Link to="/app/world" className="inline-flex items-center gap-2 font-bold text-primary-700 hover:text-primary-500 dark:text-primary-300">{copy.returnWorld} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></section>
+      <section className="mt-8 flex flex-col gap-4 border-t border-ink/10 py-6 text-sm dark:border-bone/10 sm:flex-row sm:items-center sm:justify-between"><p className="flex items-center gap-2 text-ink/60 dark:text-bone/60"><CheckCircle2 className="h-4 w-4 text-moss" aria-hidden="true" /> {copy.noMembership}</p><Link to="/app/world" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 hover:text-primary-500 dark:text-primary-300">{copy.returnWorld} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></section>
     </div>
   );
 }

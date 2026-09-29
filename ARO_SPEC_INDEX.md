@@ -1,6 +1,6 @@
 # ARO — Canonical Spec Index
 
-> **2026-09-29 RB15:** `specs/ARO-RB15-WEBSITE-INTEGRATION.md` is SPEC-READY / IMPLEMENTED / PARTIAL VERIFICATION on a new integration branch. It includes RB13, RB14 and the compact footer by normal ancestry and repairs two inherited browser-acceptance failures. Final-head CI and all independent specialist/review gates remain open; it is not on `main`.
+> **2026-09-29 RB15:** `specs/ARO-RB15-WEBSITE-INTEGRATION.md` is SPEC-READY / IMPLEMENTED / PARTIAL VERIFICATION on a new integration branch. It includes RB13, RB14 and the compact footer by normal ancestry and repairs inherited browser-acceptance failures. Final-head CI and all independent specialist/review gates remain open; it is not on `main`.
 
 > **2026-09-29 RB14:** `specs/ARO-RB14-THEME-LANGUAGE-CONTROLS.md` is IMPLEMENTED / PARTIAL VERIFICATION on a branch stacked on exact RB13. It replaces the combined gear/preferences presentation with a sun/moon theme toggle and responsive EN/FR/ES dropdown across public, onboarding, app Settings and app shell surfaces while preserving existing contexts/storage and RB11 release-scope behavior. Final-head CI and visual/accessibility review remain open.
 
