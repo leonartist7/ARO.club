@@ -88,6 +88,7 @@ export function LanguageMenu({ className = '' }) {
     };
 
     positionMenu();
+    menuRef.current?.querySelector('[role="menuitemradio"][aria-checked="true"]')?.focus();
     window.addEventListener('resize', positionMenu);
     window.addEventListener('scroll', positionMenu, true);
     return () => {
@@ -98,7 +99,6 @@ export function LanguageMenu({ className = '' }) {
 
   useEffect(() => {
     if (!open) return;
-    menuRef.current?.querySelector('[role="menuitemradio"][aria-checked="true"]')?.focus();
 
     const onPointerDown = (event) => {
       if (!rootRef.current?.contains(event.target)) setOpen(false);
