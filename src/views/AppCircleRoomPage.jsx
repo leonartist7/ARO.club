@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link, useParams } from '../lib/navigation';
 import { findOpportunity } from '../data/aroApp';
 import { AppAvatar, StatusPill } from '../components/app/AppPrimitives';
+import { AppImage } from '../components/app/AppImage';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getFv1FormationStatus, getFv1JourneyCopy } from '../i18n/fv1/journey';
 
@@ -58,9 +59,10 @@ export default function AppCircleRoomPage() {
       <Link to={`/app/opportunities/${opportunity.id}/commit`} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink/55 transition hover:text-ink dark:text-bone/55 dark:hover:text-bone"><ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.backToCommitment}</Link>
 
       <section className="mt-4 overflow-hidden rounded-[2rem] bg-ink text-bone shadow-[0_22px_60px_rgba(40,36,32,0.22)]">
-        <div className="relative min-h-[350px] sm:min-h-[420px]"><img src={opportunity.image} alt={opportunity.imageAlt} className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,13,0.18)_0%,rgba(12,15,13,0.18)_30%,rgba(12,15,13,0.9)_100%)]" />
-          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-5 sm:p-7"><div className="rounded-full border border-white/20 bg-ink/45 px-3 py-2 backdrop-blur-xl"><p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-secondary-100"><span className="h-1.5 w-1.5 rounded-full bg-secondary-300" /> {copy.directCircle}</p></div><span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-ink/40 text-secondary-100 backdrop-blur-xl"><Camera className="h-5 w-5" aria-hidden="true" /></span></div>
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8"><div className="max-w-2xl"><p className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.roomEyebrow}</p><h1 className="mt-3 font-display text-4xl leading-[0.9] tracking-[-0.035em] sm:text-6xl">{opportunity.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-bone/70">{copy.roomBody}</p></div></div>
+        <div data-fv1-circle-scene className="relative aspect-video overflow-hidden bg-[#293735]"><AppImage src={opportunity.image} alt={opportunity.imageAlt} variant="hero" className="absolute inset-0 h-full w-full object-contain" /><div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,13,0.34)_0%,transparent_35%,transparent_78%,rgba(12,15,13,0.2)_100%)]" aria-hidden="true" />
+          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 sm:p-6"><div className="rounded-full border border-white/20 bg-ink/45 px-3 py-2 backdrop-blur-xl"><p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-secondary-100"><span className="h-1.5 w-1.5 rounded-full bg-secondary-300" /> {copy.directCircle}</p></div><span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-ink/40 text-secondary-100 backdrop-blur-xl"><Camera className="h-5 w-5" aria-hidden="true" /></span></div>
+        </div>
+        <div className="p-5 sm:p-8"><div className="max-w-2xl"><p className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary-200">{copy.roomEyebrow}</p><h1 className="mt-3 font-display text-4xl leading-[0.9] tracking-[-0.035em] sm:text-6xl">{opportunity.title}</h1><p className="mt-4 max-w-xl text-sm leading-6 text-bone/70">{copy.roomBody}</p></div>
         </div>
       </section>
 

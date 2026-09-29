@@ -18,21 +18,19 @@ function OpportunityCard({ opportunity, copy }) {
     >
       <AppPanel className="overflow-hidden transition-colors hover:border-primary-500/50">
         <div className="flex flex-col sm:flex-row">
-          <div className="relative h-52 shrink-0 overflow-hidden sm:h-auto sm:w-52">
+          <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-ink/10 sm:w-64">
             <AppImage
               src={opportunity.image}
               alt={opportunity.imageAlt}
               variant="card"
-              cropClass="object-center"
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-105 motion-reduce:transition-none"
+              className="h-full w-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent sm:bg-gradient-to-r" />
-            <div className="absolute bottom-3 left-3"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill></div>
           </div>
           <div className="min-w-0 flex-1 p-5 sm:p-7">
             <div className="flex items-start gap-4">
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-ink/65 dark:text-bone/70">{opportunity.area} · {opportunity.distance}</p>
+                <div className="mt-2"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill></div>
                 <h2 className="mt-3 font-display text-3xl leading-none transition-colors group-hover:text-primary-700 dark:group-hover:text-primary-300">{opportunity.title}</h2>
                 <p className="mt-3 max-w-2xl text-base leading-6 text-ink/70 dark:text-bone/75">{opportunity.summary}</p>
               </div>

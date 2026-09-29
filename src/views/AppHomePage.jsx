@@ -64,31 +64,30 @@ function ExplorePath({ copy, journey }) {
 
 function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
   return (
-    <section className="relative isolate overflow-hidden rounded-[2rem] bg-[#d8b58b] shadow-[0_24px_70px_rgba(83,55,29,0.18)] sm:rounded-[2.5rem]">
-      <AppImage
-        src="/aro-portal-home-v1.png"
-        alt="A person standing beside an illuminated portal overlooking a river at sunset"
-        variant="hero"
-        priority
-        cropClass="object-[53%_center]"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(32,21,12,0.52),rgba(32,21,12,0.05)_58%,rgba(32,21,12,0.08)),linear-gradient(0deg,rgba(28,18,10,0.52),transparent_43%)]" />
-      <div className="absolute inset-x-0 top-0 h-[36%] bg-gradient-to-b from-[#342116]/30 to-transparent" />
-
-      <div className="relative flex min-h-[650px] flex-col p-5 sm:min-h-[720px] sm:p-8 lg:min-h-[740px]">
-        <div className="flex items-start justify-between gap-4">
-          <div className="max-w-[260px] rounded-2xl bg-bone/85 p-3 text-ink shadow-sm backdrop-blur-sm sm:max-w-[330px]">
+    <section className="overflow-hidden rounded-[2rem] bg-ink shadow-[0_24px_70px_rgba(83,55,29,0.18)] sm:rounded-[2.5rem]">
+      <div data-fv1-home-scene className="relative aspect-video overflow-hidden bg-[#d8b58b]">
+        <AppImage
+          src="/aro-portal-home-v1.png"
+          alt="A person standing beside an illuminated portal overlooking a river at sunset"
+          variant="hero"
+          priority
+          className="absolute inset-0 h-full w-full object-contain"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(32,21,12,0.44),transparent_32%,transparent_70%,rgba(28,18,10,0.3))]" aria-hidden="true" />
+        <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3 sm:p-5">
+          <div className="max-w-[260px] rounded-2xl bg-bone/90 p-3 text-ink shadow-sm backdrop-blur-sm sm:max-w-[330px]">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-700">{copy.home.greeting(aroUser.name.split(' ')[0])}</p>
-            <p className="mt-2 font-display text-xl leading-[0.98] tracking-[-0.025em] sm:text-2xl">{copy.home.question}</p>
+            <p className="mt-2 font-display text-lg leading-[0.98] tracking-[-0.025em] sm:text-2xl">{copy.home.question}</p>
           </div>
-          <div className="rounded-full border border-ink/10 bg-bone/85 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-ink shadow-sm backdrop-blur-sm">{copy.home.place}</div>
+          <div className="rounded-full border border-ink/10 bg-bone/90 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.12em] text-ink shadow-sm backdrop-blur-sm sm:text-xs">{copy.home.place}</div>
         </div>
+      </div>
 
-        <div className="mt-auto flex flex-col items-start gap-4 pt-44 sm:pt-52">
-          <OpeningCard opportunity={activeOpportunity} copy={copy} />
-          <div className="flex items-center gap-2 rounded-full border border-white/25 bg-ink/70 p-1.5 shadow-[0_10px_28px_rgba(34,16,3,0.16)] backdrop-blur-md">
-            <span className="pl-2 text-sm font-bold text-white">{copy.home.moreExamples}</span>
+      <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <OpeningCard opportunity={activeOpportunity} copy={copy} />
+        <div className="flex flex-wrap items-center gap-3 border-t border-bone/15 pt-4 lg:max-w-[230px] lg:flex-col lg:items-start lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
+          <span className="text-sm font-bold text-bone/85">{copy.home.moreExamples}</span>
+          <div className="flex items-center gap-2" role="group" aria-label={copy.home.moreExamples}>
             {homeOpportunities.map((opportunity) => (
               <button
                 key={opportunity.id}

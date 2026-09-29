@@ -192,7 +192,8 @@ describe('FV-1 F6 return truthfulness', () => {
     const hero = screen.getByAltText(fv1ReturnCopy.en.insights.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-season-discovery-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-season-discovery-v1-640.webp 640w')
-    expect(hero.className).toContain('object-[62%_center]')
+    expect(hero.className).toContain('object-contain')
+    expect(view.container.querySelector('[data-fv1-insights-scene]')?.className).toContain('aspect-video')
   })
 
   it('qualifies Passport as fictional and uses F1 responsive hero and thumbnail derivatives', () => {
@@ -205,7 +206,8 @@ describe('FV-1 F6 return truthfulness', () => {
     const hero = screen.getByAltText(fv1ReturnCopy.en.passport.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-passport-life-map-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-passport-life-map-v1-640.webp 640w')
-    expect(hero.className).toContain('object-[69%_center]')
+    expect(hero.className).toContain('object-contain')
+    expect(view.container.querySelector('[data-fv1-passport-scene]')?.className).toContain('aspect-video')
 
     const entries = [...view.container.querySelectorAll('[data-fv1-passport-entry]')]
     expect(entries).toHaveLength(3)

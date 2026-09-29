@@ -50,20 +50,17 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
   const formationStatus = getDiscoveryFormationStatus(copy, activeSignal);
 
   return (
-    <div className="relative isolate overflow-hidden bg-[#293735]" style={{ minHeight: 'clamp(720px, 58vw, 760px)' }}>
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="relative isolate overflow-hidden bg-[#293735]">
+      <div className="relative isolate aspect-[3/2] overflow-hidden bg-[#293735]">
         <AppImage
           src="/aro-living-miniature-calgary-v1.png"
           alt=""
           variant="hero"
           priority
-          cropClass="scale-[1.06]"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none"
+          className="absolute inset-0 h-full w-full object-contain"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,28,25,0.58)_0%,rgba(24,28,25,0.08)_34%,rgba(24,28,25,0.28)_68%,rgba(24,28,25,0.88)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_30%,rgba(13,19,18,0.42)_100%)]" />
-      </div>
-
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,28,25,0.38)_0%,transparent_28%,transparent_70%,rgba(13,19,18,0.3)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_45%,rgba(13,19,18,0.24)_100%)]" />
       <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         {miniatureSignals.map((signal) => (
           <path
@@ -90,8 +87,10 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
 
       {miniatureSignals.map((signal) => <SignalMarker key={signal.id} signal={signal} active={activeSignal.id === signal.id} onSelect={onSelect} copy={copy} />)}
 
-      <div className="absolute inset-x-0 bottom-0 z-20 p-3 sm:p-5">
-        <div data-fv1-world-card className="relative mx-auto overflow-hidden rounded-2xl border border-white p-4 text-ink shadow-[0_18px_48px_rgba(11,19,17,0.38)] sm:p-5" style={{ maxWidth: '31rem', backgroundColor: '#F6F0E6' }}>
+      </div>
+
+      <div className="px-3 py-3 sm:px-5 sm:py-4">
+        <div data-fv1-world-card className="relative mx-auto overflow-hidden rounded-2xl border border-white p-4 text-ink shadow-[0_18px_48px_rgba(11,19,17,0.38)] sm:p-5" style={{ maxWidth: '42rem', backgroundColor: '#F6F0E6' }}>
           <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2"><StatusPill tone="neutral">{copy.fictionalLabel}</StatusPill><span className="text-xs font-bold uppercase tracking-[0.14em] text-ink/70">{activeSignal.area}</span></div>
@@ -105,7 +104,7 @@ function LivingMiniature({ activeSignal, onSelect, onCenter, copy }) {
             <Link data-fv1-world-card-cta to={`/app/opportunities/${activeSignal.id}`} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-primary-600 px-4 py-2 text-sm font-bold text-white shadow-[0_7px_16px_rgba(153,39,22,0.24)] transition hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-800 focus-visible:ring-offset-2">{copy.world.openExample} <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </div>
-      </div>
+    </div>
     </div>
   );
 }
