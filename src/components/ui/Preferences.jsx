@@ -2,13 +2,15 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Check, ChevronDown, Moon, Sun } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useOptionalTheme } from '../../contexts/ThemeContext';
 import { languageChoices, preferencesCopy } from '../../i18n/preferences';
 
 export function ThemeToggle({ className = '' }) {
   const { language } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
+  const themeState = useOptionalTheme();
   const copy = preferencesCopy[language] ?? preferencesCopy.en;
+  if (!themeState) return null;
+  const { theme, toggleTheme } = themeState;
   const isDark = theme === 'dark';
   const label = isDark ? copy.switchToLight : copy.switchToDark;
   const Icon = isDark ? Sun : Moon;
