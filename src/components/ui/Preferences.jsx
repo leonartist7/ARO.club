@@ -33,6 +33,7 @@ export function LanguageMenu({ className = '' }) {
   const copy = preferencesCopy[language] ?? preferencesCopy.en;
   const current = languageChoices.find((choice) => choice.code === language) ?? languageChoices[0];
   const [open, setOpen] = useState(false);
+  const [focusedCode, setFocusedCode] = useState(language);
   const [menuStyle, setMenuStyle] = useState(null);
   const menuId = useId();
   const rootRef = useRef(null);
@@ -151,7 +152,10 @@ export function LanguageMenu({ className = '' }) {
         aria-controls={menuId}
         aria-label={`${copy.language}: ${current.label}`}
         onClick={() => {
-          if (!open) setMenuStyle(null);
+          if (!open) {
+            setMenuStyle(null);
+            setFocusedCode(language);
+          }
           setOpen((value) => !value);
         }}
         className="inline-flex h-[44px] min-w-[64px] items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-white/72 px-[12px] text-xs font-extrabold uppercase tracking-[0.08em] text-ink shadow-[0_8px_24px_rgba(37,36,32,0.06)] transition-colors motion-safe:transition-[background-color,border-color,transform] motion-safe:hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:border-bone/15 dark:bg-bone/5 dark:text-bone dark:hover:border-bone/30 dark:hover:bg-bone/10"
@@ -166,6 +170,10 @@ export function LanguageMenu({ className = '' }) {
           ref={menuRef}
           role="menu"
           onKeyDown={(event) => {
+            if (event.key === 'Tab') {
+              requestAnimationFrame(() => setOpen(false));
+              return;
+            }
             const items = Array.from(menuRef.current?.querySelectorAll('[role="menuitemradio"]') ?? []);
             const index = items.indexOf(document.activeElement);
             let next;
@@ -190,7 +198,8 @@ export function LanguageMenu({ className = '' }) {
                 type="button"
                 role="menuitemradio"
                 aria-checked={selected}
-                tabIndex={selected ? 0 : -1}
+                tabIndex={choice.code === focusedCode ? 0 : -1}
+                onFocus={() => setFocusedCode(choice.code)}
                 onClick={() => choose(choice.code)}
                 className="flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold text-ink transition-colors hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:text-bone dark:hover:bg-bone/10"
               >

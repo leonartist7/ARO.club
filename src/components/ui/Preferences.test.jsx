@@ -31,12 +31,16 @@ describe('compact preferences', () => {
     const items = screen.getAllByRole('menuitemradio');
     fireEvent.keyDown(items[0], { key: 'ArrowUp' });
     expect(document.activeElement).toBe(items[2]);
+    expect(items[2].tabIndex).toBe(0);
+    expect(items[0].tabIndex).toBe(-1);
     fireEvent.keyDown(items[2], { key: 'ArrowDown' });
     expect(document.activeElement).toBe(items[0]);
     fireEvent.keyDown(items[0], { key: 'End' });
     expect(document.activeElement).toBe(items[2]);
     fireEvent.keyDown(items[2], { key: 'Home' });
     expect(document.activeElement).toBe(items[0]);
+    expect(items[0].tabIndex).toBe(0);
+    expect(items[2].tabIndex).toBe(-1);
     expect(items[0].getAttribute('aria-checked')).toBe('true');
     expect(localStorage.getItem('conversa-language')).not.toBe('es');
     fireEvent.blur(items[0], { relatedTarget: document.body });

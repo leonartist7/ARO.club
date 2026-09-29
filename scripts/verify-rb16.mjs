@@ -71,9 +71,37 @@ try {
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Tab');
     assert.equal(await page.getByRole('menu').count(), 0);
+    // Tab must leave every focused option, including one preceding the selection.
+    const menuTrigger = page.locator('button[aria-haspopup="menu"]');
+    for (const selected of [0, 1, 2]) {
+      await menuTrigger.click();
+      await page.getByRole('menuitemradio').nth(selected).click();
+      for (const focusKey of ['Home', 'End', 'ArrowDown']) {
+        for (const exitKey of ['Tab', 'Shift+Tab']) {
+          await menuTrigger.click();
+          await page.keyboard.press(focusKey);
+          await page.keyboard.press(exitKey);
+          await page.getByRole('menu').waitFor({ state: 'hidden' });
+          assert.equal(await page.evaluate(() => document.activeElement !== document.body && !document.activeElement.closest('[role="menu"]')), true);
+        }
+      }
+    }
+    await menuTrigger.click();
+    await page.getByRole('menuitemradio').nth(0).click();
     await page.getByRole('button', { name: 'Switch to dark mode' }).click();
     assert.equal(await page.evaluate(() => document.documentElement.classList.contains('dark')), true);
     await page.screenshot({ path: join(output, 'create-dark-390.png'), fullPage: true });
+    await page.getByRole('button', { name: 'Switch to light mode' }).click();
+    await page.setViewportSize({ width: 320, height: 620 });
+    for (const [code, index] of [['fr', 1], ['es', 2]]) {
+      await menuTrigger.click();
+      await page.getByRole('menuitemradio').nth(index).click();
+      for (const [name, route] of [['create', '/app/create?mode=gather'], ['detail', '/app/opportunities/river-photo-walk']]) {
+        await page.goto(base + route, { waitUntil: 'networkidle' });
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+        await page.screenshot({ path: join(output, `${name}-320-${code}.png`), fullPage: true });
+      }
+    }
   }
   await context.close();
 } finally {
@@ -83,5 +111,10 @@ try {
 }
 assert.equal(results.length, 64);
 assert.deepEqual(results.filter(item => item.name && (item.status !== 200 || item.language !== 'en' || item.dark || !item.heading)), []);
-assert.deepEqual(results.filter(item => item.status >= 500 || item.overflow || item.errors.length || item.writes.length || item.images?.some(img => !img.loaded)), []);
+assert.deepEqual(results.filter(item => item.status !== 200 || item.overflow || item.errors.length || item.writes.length || item.images?.some(img => !img.loaded)), []);
+const protectedRoutes = new Set(['/teacher/application', '/teacher/dashboard', '/student-dashboard', '/admin', '/chat']);
+for (const item of results.filter(item => !item.name)) {
+  const expected = item.route === '/choose-role' ? '/login' : protectedRoutes.has(item.route) ? `/login?next=${encodeURIComponent(item.route)}` : item.route;
+  assert.equal(item.finalRoute, expected, `Unexpected destination for ${item.route}`);
+}
 console.log(`RB16 ${phase}: 28 screenshots and 36 supporting routes passed`);

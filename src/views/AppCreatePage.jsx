@@ -35,11 +35,13 @@ function SeedChoice({ config, mode, isActive, onSelect }) {
       type="button"
       onClick={() => onSelect(config.id)}
       aria-pressed={isActive}
-      className={`group relative min-h-[132px] min-w-0 overflow-hidden rounded-2xl border p-2 text-left transition duration-300 motion-reduce:transition-none sm:p-6 ${isActive ? 'border-primary-700 bg-primary-50 dark:border-bone/40 dark:bg-bone/15' : 'border-ink/15 bg-white hover:border-primary-700 dark:border-bone/10 dark:bg-bone/[0.035] dark:hover:border-bone/25 dark:hover:bg-bone/[0.07]'} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:focus-visible:ring-secondary-300`}
+      className={`group relative min-h-[132px] min-w-0 overflow-hidden rounded-2xl border p-2 text-left transition duration-300 motion-reduce:transition-none max-[389px]:flex max-[389px]:min-h-24 max-[389px]:items-center max-[389px]:gap-4 max-[389px]:p-4 sm:p-6 ${isActive ? 'border-primary-700 bg-primary-50 dark:border-bone/40 dark:bg-bone/15' : 'border-ink/15 bg-white hover:border-primary-700 dark:border-bone/10 dark:bg-bone/[0.035] dark:hover:border-bone/25 dark:hover:bg-bone/[0.07]'} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:focus-visible:ring-secondary-300`}
     >
-      <span className={`flex h-11 w-11 items-center justify-center rounded-full border ${config.tone}`}><Icon className="h-4 w-4" aria-hidden="true" /></span>
-      <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.08em] sm:text-xs text-ink/70 dark:text-bone/70">{mode.eyebrow}</p>
+      <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border ${config.tone}`}><Icon className="h-4 w-4" aria-hidden="true" /></span>
+      <div>
+      <p className="mt-4 text-[11px] font-bold leading-4 tracking-normal max-[389px]:mt-0 sm:text-xs sm:uppercase sm:tracking-[0.08em] text-ink/70 dark:text-bone/70">{mode.eyebrow}</p>
       <p className="mt-2 font-display text-base leading-tight sm:text-3xl">{mode.label}</p>
+      </div>
       {isActive && <span className="absolute bottom-0 left-0 h-1 w-full bg-secondary-300" aria-hidden="true" />}
     </button>
   );
@@ -118,7 +120,7 @@ export default function AppCreatePage() {
           <button type="button" onClick={() => selectMode('gather')} aria-pressed={activeModeId === 'gather'} aria-controls="seed-studio-composition" className={`flex min-h-11 items-center justify-between gap-2 rounded-2xl border p-4 text-left font-bold text-ink dark:text-bone focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 dark:focus-visible:ring-secondary-300 ${activeModeId === 'gather' ? 'border-primary-700 bg-primary-50 dark:border-secondary-300 dark:bg-bone/20' : 'border-ink/15 bg-white dark:border-bone/20 dark:bg-bone/10'}`}>{journey.gather}<ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" /></button>
         </nav>
 
-        <section className="mt-7 grid grid-cols-3 gap-2 sm:gap-3" aria-label={copy.create.eyebrow}>{seedModeLayout.map((config) => <SeedChoice key={config.id} config={config} mode={copy.create.modes[config.id]} isActive={config.id === activeModeId} onSelect={setActiveModeId} />)}</section>
+        <section className="mt-7 grid grid-cols-1 gap-2 min-[390px]:grid-cols-3 sm:gap-3" aria-label={copy.create.eyebrow}>{seedModeLayout.map((config) => <SeedChoice key={config.id} config={config} mode={copy.create.modes[config.id]} isActive={config.id === activeModeId} onSelect={setActiveModeId} />)}</section>
 
         <section id="seed-studio-composition" ref={compositionRef} tabIndex={-1} className="mt-7 grid scroll-mt-32 gap-5 rounded-2xl outline-none focus:ring-2 focus:ring-primary-700 dark:focus:ring-secondary-300 focus:ring-offset-4 focus:ring-offset-bone dark:focus:ring-offset-ink lg:grid-cols-[minmax(0,1.1fr)_360px] lg:items-center" aria-label={`${copy.create.possibleShape}: ${activeMode.label}`}><CompositionField config={activeConfig} mode={activeMode} copy={copy} /><aside className="rounded-[2rem] border border-ink/10 bg-white p-6 dark:border-bone/10 dark:bg-bone/[0.05] sm:p-7"><p className="text-xs font-bold uppercase tracking-[0.16em] text-primary-700 dark:text-secondary-100">{copy.create.seedEyebrow}</p><p className="mt-4 font-display text-3xl leading-tight">“{activeMode.seed}”</p><p className="mt-5 text-base leading-7 text-ink dark:text-bone">{activeMode.copy}</p><div className="mt-8 border-t border-ink/10 dark:border-bone/10 pt-5"><p className="flex items-start gap-3 text-base leading-6 text-ink dark:text-bone"><HeartHandshake className="mt-1 h-4 w-4 shrink-0 text-primary-700 dark:text-secondary-100" aria-hidden="true" /> {copy.create.futureRole}</p></div></aside></section>
 

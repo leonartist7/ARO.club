@@ -29,12 +29,15 @@ function FormationOrbit({ count, capacity, status, copy }) {
   const progress = Math.min((count / capacity) * 360, 360);
 
   return (
+    <>
     <div className="relative mx-auto aspect-square w-full max-w-[310px] rounded-full p-4" style={{ background: `conic-gradient(#f58220 0deg ${progress}deg, rgba(246,240,230,0.12) ${progress}deg 360deg)` }}>
       <div className="relative flex h-full w-full items-center justify-center rounded-full border border-bone/15 bg-ink/95 text-center shadow-[inset_0_0_50px_rgba(245,130,32,0.1)]">
         {orbitMembers.map((member) => <span key={member.initials} className={`absolute flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink text-[10px] font-bold text-white ${member.color}`} style={{ left: member.x, top: member.y }} aria-hidden="true">{member.initials}</span>)}
-        <div><p className="text-xs font-bold uppercase tracking-[0.12em] text-secondary-200">{copy.exampleCountLabel}</p><p className="mt-1 font-display text-5xl leading-none">{count}/{capacity}</p><p className="mx-auto mt-2 max-w-[150px] text-base leading-6 text-bone/80">{status}</p></div>
+        <div><p className="text-xs font-bold uppercase tracking-[0.12em] text-secondary-200">{copy.exampleCountLabel}</p><p className="mt-1 font-display text-5xl leading-none">{count}/{capacity}</p></div>
       </div>
     </div>
+    <p className="mx-auto mt-3 max-w-[310px] text-center text-base leading-6 text-bone/80">{status}</p>
+    </>
   );
 }
 

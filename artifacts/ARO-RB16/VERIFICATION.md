@@ -61,7 +61,7 @@ These fixes are scoped here; PR #90 conversations were not self-resolved. RB16 C
 ## Remaining issues and release decisions
 
 1. Independent design/accessibility approval of this combined result is still required, including screen-reader, native mobile browser zoom and full-route contrast/focus review. Small nonessential eyebrow/status text remains in supporting fixtures.
-2. Authenticated host/admin/application content cannot be visually certified from a signed-out preview; current checks verify protected redirects only. A separately authorized isolated Auth lane must supply those renders.
+2. The signed-out sweep verifies protected redirects. The existing isolated CI lane supplied synthetic host-application mobile/desktop renders on the first RB16 head, inspected below; it does not cover the complete authenticated host/admin UI. Full coverage and independent acceptance remain open. The inherited submitted-application copy promises review in under 48 hours; Trust must approve or replace that promise before release.
 3. App fixture content still contains English-only descriptions and legacy synthetic qualification/price/demand wording. It remains explicitly fictional; broader Trust/content acceptance and complete FR/ES/dark polish are open.
 4. Polymath licensed web assets are absent; approved Manrope fallback remains. Existing artwork differs from the reference's exact four-person composition; no raster reference logo or fabricated human evidence was introduced.
 5. RB0 open conversations, RB2 independent privacy/eligibility/security/Trust, RB4 Trust/persisted-fixture review, RB5 Contact draft retention/deletion specification and review remain blocking release-stack decisions.
@@ -73,3 +73,19 @@ CodeRabbit is defect review, not any of the independent decisions above. This PR
 ### Local English/light build
 
 `NEXT_PUBLIC_ARO_RELEASE_SCOPE=english-light npm run build` passed with the existing Browserslist notice. The ordinary build and 17-path preference matrix passed separately.
+
+### Final local refinement
+
+The final 320px render exposed a mid-word mode eyebrow break. Mobile mode eyebrows now use sentence case and normal tracking; desktop treatment is retained. English Create boundary copy uses plain preview language rather than internal P2/P3 package names. The RB16 verifier now requires 200 responses on every route and checks exact signed-out destinations for protected entries. Refreshed 28 renders / 36 supporting routes pass, with ordinary build, zero-warning lint and 11 relevant unit tests (1 existing browser-gated skip). The English/light RB11 verifier and all 24 autonomy core tests also passed locally. Hosted results and actual CodeRabbit dispositions will be attached to PR #92 after review completes; pending or skipped reviews are not accepted as passes.
+
+### Actual review and first-head hosted evidence
+
+CodeRabbit reviewed `dcf1bf89610570d30fa470c4d401d6459c9f1f29` on ready PR #92 at 20:58 UTC: two actionable findings, both valid. Checked-in output is now cleared immediately after browser-job checkout, with upload still always collecting partial diagnostics and missing output treated as an error. Supporting routes now require 200 and their exact intended destination, including `/admin` login redirection.
+
+The repository's Codex review added three valid findings. Menu tab stops now follow focus and both Tab directions close the menu; the browser matrix exercises 3 selected languages x 3 focused positions x 2 exit directions. Formation status is moved outside the absolute orbit avatars. Seed choices stack below 390px; compact sentence-case eyebrows remain readable, including French/Spanish captures. No business state changes.
+
+First-head Quality run [36629385051](https://github.com/leonartist7/ARO.club/actions/runs/36629385051) and isolated run [36629385322](https://github.com/leonartist7/ARO.club/actions/runs/36629385322) both passed without a rerun. This is historical first-head evidence, not acceptance of the corrective commit. Existing chooser intermittency is not declared fixed.
+
+The isolated run's `i0-2-authenticated-baseline` artifact (ID 11061587410; SHA-256 9e7c8cf221b0fce68938d492550ee55f5dc587d61959fc82e8f35cd969e170c4) supplied synthetic application captures inspected at [360px draft](authenticated-first-head/host-application-360-light.png) and [1440px submitted](authenticated-first-head/host-submitted-1440-light.png). Header/footer use the same ARO mark and ivory/action-orange hierarchy; the inherited application body remains white and uses compact system cards. Complete host/admin coverage and the unsupported under-48-hours review promise remain open. These samples were generated only by the disposable CI lane; no live accounts were enabled.
+
+All five review findings receive fixes in the corrective commit. Final-head CI and CodeRabbit disposition will be posted to PR #92 after they finish; no skipped review or earlier-head pass will be substituted.
