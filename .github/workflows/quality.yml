@@ -31,7 +31,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Clear checked-in RB16 output before verification
-        run: node -e "require('node:fs').rmSync('artifacts/ARO-RB16/after', { recursive: true, force: true })"
+        run: |
+          node -e "require('node:fs').rmSync('artifacts/ARO-RB16/after', { recursive: true, force: true })"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
