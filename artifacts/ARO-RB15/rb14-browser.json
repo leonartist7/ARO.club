@@ -1,0 +1,180 @@
+[
+  {
+    "scenario": "mobile public",
+    "status": 200,
+    "compactControlsVisible": true,
+    "escapeRestoredFocus": true,
+    "storedTheme": "dark",
+    "storedLanguage": "fr",
+    "hasBottomTabBar": false,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "desktop compact preferences",
+    "status": 200,
+    "menuFits": true,
+    "escapeRestoredFocus": true,
+    "storedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "onboarding",
+    "status": 200,
+    "storedLanguage": "es",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "app settings",
+    "status": 200,
+    "storedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "app shell mobile",
+    "status": 200,
+    "appShellControlsVisible": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 320/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 320/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 360/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 360/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 390/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 390/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 430/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 430/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 768/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 768/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 1440/1",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "short phone and text scaling 1440/2",
+    "status": 200,
+    "menuFits": true,
+    "controlsFit": true,
+    "selectedFocused": true,
+    "escapeRestoredFocus": true,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  }
+]

@@ -38,6 +38,7 @@ export function LanguageMenu({ className = '' }) {
   const rootRef = useRef(null);
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
+  const focusedOpenRef = useRef(false);
 
   useLayoutEffect(() => {
     if (!open) return;
@@ -88,7 +89,6 @@ export function LanguageMenu({ className = '' }) {
     };
 
     positionMenu();
-    menuRef.current?.querySelector('[role="menuitemradio"][aria-checked="true"]')?.focus();
     window.addEventListener('resize', positionMenu);
     window.addEventListener('scroll', positionMenu, true);
     return () => {
@@ -96,6 +96,17 @@ export function LanguageMenu({ className = '' }) {
       window.removeEventListener('scroll', positionMenu, true);
     };
   }, [open, language]);
+
+  useLayoutEffect(() => {
+    if (!open) {
+      focusedOpenRef.current = false;
+      return;
+    }
+    if (!menuStyle || focusedOpenRef.current) return;
+    const selected = menuRef.current?.querySelector('[role="menuitemradio"][aria-checked="true"]');
+    selected?.focus();
+    focusedOpenRef.current = document.activeElement === selected;
+  }, [open, menuStyle]);
 
   useEffect(() => {
     if (!open) return;

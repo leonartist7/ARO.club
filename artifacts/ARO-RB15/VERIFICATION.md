@@ -10,6 +10,7 @@
 - Normal merge ancestry on `codex/rb15-main-integration-20260929`; no owner branch was rewritten.
 - Raised the Circle's unsent-preview disclosure from 12px to 16px; aligned F6 image-fit browser acceptance to `contain`, matching its current full-image presentation and existing component assertions. No image source or F7 measurement rule was changed.
 - The first hosted Quality attempt on PR #90 (run 36591290083) then exposed the Circle's 20px-high Return to World link and the stale F6 crop-position expectation. The link now has a 44px minimum height and F6 asserts the centered position of the full-size image.
+- The second hosted Quality attempt (run 36592645997) passed static, English/light and public redesign; its F4/F6 tests reached the RB7 preference check, which found the selected language item never received focus when the initially hidden menu opened. The menu now focuses the selected item after its positioned render, once per opening; Escape continues to return focus to the trigger.
 
 ## Verification
 
@@ -20,7 +21,8 @@
 - `npm run build`: pass (Next.js 16.3.5).
 - `NEXT_PUBLIC_ARO_RELEASE_SCOPE=english-light npm run build`: pass.
 - Local production-browser F4 matrix: pass, 80 observations at 360/390/430/768/1440px in light/dark, 44px minimum targets, 16px minimum essential text, zero overflow and zero Create network writes. Local F6 matrix: pass, 40 responsive/theme and 8 zoom observations, centered `contain` imagery, minimum targets 44px and zero overflow. These runs used temporary Chromium 153 from `@sparticuz/chromium` outside the repository because the lockfile-managed Chromium 151 (Playwright revision 1234) download returned an invalid empty archive. Hosted pinned-browser verification remains authoritative.
-- Hosted final-head Quality and isolated database: pending publication of the repair head. The first PR #90 Quality run failed on the two additional issues above; its static, English/light and public-design jobs passed. The isolated database run on that first head was still in progress at this checkpoint.
+- Local RB14 theme/language browser verifier: 17/17 paths passed at 320–1440px including 200% text scaling, selected-item focus, Escape, zero overflow/errors/writes. Its JSON is retained in `artifacts/ARO-RB15/rb14-browser.json`; its historical RB7 screenshots/results were restored after the run. Chromium 153 limits this local evidence as above.
+- Hosted final-head Quality and isolated database: pending publication of the preference repair. The first PR #90 platform run 36591290046 passed; the second platform run was still running at this checkpoint. Neither result substitutes for final-head checks.
 
 The previous RB13 head's Quality run [36585629021](https://github.com/leonartist7/ARO.club/actions/runs/36585629021) failed on the two addressed browser checks: 12px essential Circle copy at 360px and an F6 expectation of `cover` after the full-image `contain` change. Its static, public redesign and English/light jobs passed; isolated database run 36585628969 passed. These earlier runs do not certify this new combination.
 
