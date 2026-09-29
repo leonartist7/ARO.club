@@ -8,6 +8,8 @@ import { appNavItems, aroUser } from '../../data/aroApp';
 import { cn } from '../../utils/cn';
 import { fv1ShellCopy } from '../../i18n/fv1/shell';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { PreferencesControls } from '../ui/Preferences';
+import { englishLightRelease } from '../../lib/releaseScope';
 
 const iconMap = { home: Home, world: Globe2, insights: BarChart3, library: BookOpen };
 
@@ -56,8 +58,9 @@ export default function AppShell({ children }) {
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
-            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`${copy.searchPreview} ${copy.unavailable}`}><Search className="h-5 w-5" aria-hidden="true" /></span>
-            <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55" role="img" aria-label={`${copy.notificationsPreview} ${copy.unavailable}`}><Bell className="h-5 w-5" aria-hidden="true" /></span>
+            {!englishLightRelease && <PreferencesControls />}
+            <span className="relative hidden h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55 sm:inline-flex" role="img" aria-label={`${copy.searchPreview} ${copy.unavailable}`}><Search className="h-5 w-5" aria-hidden="true" /></span>
+            <span className="relative hidden h-11 w-11 items-center justify-center rounded-full text-ink/55 dark:text-bone/55 sm:inline-flex" role="img" aria-label={`${copy.notificationsPreview} ${copy.unavailable}`}><Bell className="h-5 w-5" aria-hidden="true" /></span>
             <Link to="/app/profile" aria-label={`${aroUser.name} ${copy.profile}`} className="ml-1"><AppAvatar initials={aroUser.initials} size="sm" /></Link>
           </div>
         </div>

@@ -371,6 +371,8 @@ export const translations = {
     // Footer
     footer: {
       description: 'Life opens up. Explore what you could learn, share and make together.',
+      links: { title: 'Explore ARO' },
+      legal: { title: 'Legal' },
       company: {
         title: 'Company',
         aboutUs: 'About Us',
@@ -906,6 +908,8 @@ export const translations = {
     // Footer
     footer: {
       description: 'La vie s’ouvre. Découvrez ce que vous pourriez apprendre, partager et créer ensemble.',
+      links: { title: 'Découvrir ARO' },
+      legal: { title: 'Informations légales' },
       company: {
         title: 'Entreprise',
         aboutUs: 'À Propos',
@@ -1441,6 +1445,8 @@ export const translations = {
     // Footer
     footer: {
       description: 'La vida se abre. Explora lo que podrías aprender, compartir y crear con otras personas.',
+      links: { title: 'Explorar ARO' },
+      legal: { title: 'Información legal' },
       company: {
         title: 'Empresa',
         aboutUs: 'Sobre Nosotros',

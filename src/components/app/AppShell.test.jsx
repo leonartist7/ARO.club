@@ -14,6 +14,7 @@ vi.mock('next/link', () => ({ default: ({ href, children, ...props }) => <a href
 
 vi.mock('../brand/AroMark', () => ({ AroWordmark: () => <span>ARO mark</span> }))
 vi.mock('./AppPrimitives', () => ({ AppAvatar: () => <span>MN</span> }))
+vi.mock('../ui/Preferences', () => ({ PreferencesControls: () => <span data-testid="preference-controls" /> }))
 vi.mock('../../contexts/LanguageContext', () => ({ useLanguage: () => ({ language: navigation.language }) }))
 
 function renderApp(path) {

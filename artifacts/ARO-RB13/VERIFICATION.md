@@ -29,6 +29,27 @@ The orange field, open-O geometry, Manrope hierarchy, first action and adult act
 
 The direct `npm test` invocation on this Windows sandbox could not bundle `vitest.config.js` because esbuild was denied access while traversing `C:/`. Vitest's supported `--configLoader runner` completed the same 21 test files. Local Edge headless launch closed immediately; installed Chrome produced the saved browser results. The first hosted browser run exposed a stale test expectation after the opportunity-copy change; the test now asserts the visible new intro and the accessible, inactive search/filter previews. Hosted CI on the corrected branch remains required.
 
+## Compact shared footer follow-up — 2026-09-29
+
+The shared footer previously repeated a full-width trust banner and stacked its brand, three navigation groups and legal links on narrow screens. It now uses a compact brand/action row, removes that repeated trust banner from the universal platform shell, keeps the original destinations, and places the three navigation groups inside one keyboard-operable native disclosure below 768px. Desktop keeps those groups visible in a reduced three-column grid. Privacy, terms and cookie links remain visible. New disclosure/landmark names are localized in English, French and Spanish; navigation and legal targets remain at least 44px.
+
+Local verification after this follow-up: focused footer tests pass (2); full Vitest passes (189 passed, 3 existing skips); lint, type-check, ordinary production build and English/light production build pass. `git diff --check` passes. This environment could not install Playwright Chromium revision 1234: the CDN returned an invalid zero-byte archive, so rendered screenshots come from hosted CI. The exact-head footer matrix passes in GitHub Quality run `36577584615` on commit `b067c3f`; retained screenshots and `browser.json` are in the [rb13-footer artifact](https://github.com/leonartist7/ARO.club/actions/runs/36577584615/artifacts/11038068375).
+
+| Viewport | Theme | Footer height | Disclosure/columns | Checks |
+| --- | --- | ---: | --- | --- |
+| 320×620 | Light | 299px | Collapsed by default; keyboard open passes | Links, legal destinations, 44px targets, no overflow/errors/writes |
+| 390×844 | Dark | 299px | Collapsed by default; keyboard open passes | Links, legal destinations, 44px targets, no overflow/errors/writes |
+| 768×900 | Light | 329px | Desktop columns visible | Links, legal destinations, 44px targets, no overflow/errors/writes |
+| 1440×900 | Dark | 329px | Desktop columns visible | Links, legal destinations, 44px targets, no overflow/errors/writes |
+
+The first hosted RB12 browser check counted the new footer disclosure along with the five FAQ disclosures. The verifier now scopes those existing FAQ-count/open assertions to `main`, preserving their five-row acceptance while excluding footer navigation; the exact-head RB12 check now passes. The first hosted footer run found that Next's route transition tree contains a hidden duplicate footer element; the verifier now scopes to the visible footer instance before measuring or capturing it.
+
+The first hosted RB12 browser check counted the new footer disclosure along with the five FAQ disclosures. The verifier now scopes those existing FAQ-count/open assertions to `main`, preserving their five-row acceptance while excluding footer navigation. The exact-head retry will confirm the complete screenshot and footer matrix.
+
+The footer matrix runs immediately after the ordinary production build and uploads its own screenshots before the existing FV1 browser gate. That separate gate still stops at two upstream image-fit failures: 12px essential copy on the Circle room at 360px and `contain` where the FV1 return check expects `cover`. They remain open and are not waived by the passing footer matrix.
+
+The first hosted footer run found that Next's route transition tree contains a hidden duplicate footer element. The verifier now scopes to the visible footer instance before measuring or capturing it.
+
 Mobile reused art is 65,630 bytes (connect), 62,540 bytes (learn) and 54,702 bytes (language-teaching) from [measured files](release-candidate/asset-bytes.json), each below the existing 250 KB first-illustration budget. The approved reference is evidence only and is not used as a raster logo. Orange/charcoal contrast is 4.58:1, orange/ivory large-heading contrast 3.21:1, and action-orange/white contrast 4.88:1. This is a color-pair calculation, not full-route accessibility certification.
 
 ## Open gates

@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-09-29 — RB15 website integration candidate
+
+Combined the latest RB13 visual source with RB14 direct preference controls and the compact footer on an isolated branch, preserving owner ancestry. Repaired the Circle's small preview notice and the browser assertion that conflicted with the founder's full-image direction. Local static and unit checks pass; hosted and independent review gates remain open. See `specs/ARO-RB15-WEBSITE-INTEGRATION.md` and `artifacts/ARO-RB15/VERIFICATION.md`. This does not change production `main`.
+
+---
+
+## 2026-09-29 — RB14 direct theme and language controls
+
+Replaced the combined gear/preferences treatment with two direct, reusable controls: an icon-only sun/moon theme toggle and a compact EN/FR/ES dropdown with full-language choices. Applied the same interaction to public desktop/mobile navigation, onboarding, app Settings and the app shell while retaining the existing ThemeContext/LanguageContext storage contract and RB11 English/light opt-in behavior. Narrow app headers prioritize these real controls over non-actionable search/notification previews. See `specs/ARO-RB14-THEME-LANGUAGE-CONTROLS.md` and `artifacts/ARO-RB14/VERIFICATION.md`.
+
+---
+
 ## 2026-09-29 — RB13 integrated visual candidate
 
 Reconciled RB11 English/light release presentation and RB12 public redesign with the latest PR #84 source while preserving branch ancestry and later mobile onboarding corrections. Refined onboarding, public Explore/story, app Home and opportunity entry compositions around the approved orange/ivory identity and existing human art. Kept preview/Trust/Auth boundaries intact. `artifacts/ARO-RB13/VERIFICATION.md` records visual and route evidence and remaining review/release gates. This is not a `main` merge or store release.

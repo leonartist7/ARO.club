@@ -54,3 +54,7 @@ export function useTheme() {
   if (context === undefined) throw new Error('useTheme must be used within a ThemeProvider');
   return context;
 }
+
+export function useOptionalTheme() {
+  return useContext(ThemeContext);
+}

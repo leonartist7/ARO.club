@@ -45,9 +45,9 @@ try {
     const explore = await page.locator('a[href="/explore"]').count();
     const host = route === '/' ? await page.locator('a[href="/for-teachers"]').count() : undefined;
     const formation = route === '/' ? await page.locator('a[href="#formation"]').count() : undefined;
-    const faq = route === '/faq' ? await page.locator('details').count() : undefined;
-    if (route === '/faq') await page.locator('details summary').first().click();
-    const faqExpanded = route === '/faq' ? await page.locator('details').first().evaluate(element => element.open) : undefined;
+    const faq = route === '/faq' ? await page.locator('main details').count() : undefined;
+    if (route === '/faq') await page.locator('main details summary').first().click();
+    const faqExpanded = route === '/faq' ? await page.locator('main details').first().evaluate(element => element.open) : undefined;
     await page.screenshot({ path: join(out, `${name}.png`), fullPage: false });
     results.push({ route, width, height, status: response?.status(), ...state, image, preview, primary, explore, host, formation, faq, faqExpanded, errors, writes });
     await context.close();
