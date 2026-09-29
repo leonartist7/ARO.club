@@ -34,3 +34,9 @@ Mobile reused art is 65,630 bytes (connect), 62,540 bytes (learn) and 54,702 byt
 ## Open gates
 
 RB0 review conversations, RB2 independent privacy/eligibility/security and Trust review, RB4 Trust review, RB5 SPEC-REQUIRED Contact draft retention/deletion privacy review, final-head protected CI and independent design/accessibility review remain open. Live profile/age onboarding, production Auth/SMTP/backend review, authenticated host/admin visual acceptance and native iOS/Android packaging are separate approved-package work. The current preview must not be described as real inventory, bookings, earnings or a submitted app. The 40-route sweep checks route response and basic browser health; it does not certify every protected journey or screen-reader path.
+
+## Responsive image-fit follow-up — 2026-09-29
+
+The app imagery correction is a follow-up to integrated candidate source `5ef96e52abeb333d5eec52c06a1296136bfab008`. App Home, World, opportunity list/detail, Circle room, Insights and Passport now pair artwork with its source aspect ratio and use `object-contain`; text that previously covered the scene now sits beside or below it. Profile portraits and small history thumbnails keep their intentional circular/square crops. No new image asset or dependency was added.
+
+Checks against the image-fit source: production build, lint, type-check and all 21 unit-test files passed (187 passed, 3 existing skips). The browser matrix is pending. Playwright Chromium revision 1234 repeatedly downloaded as a truncated archive (missing ZIP central directory), so this environment could not render screenshots or run the expanded 80-case browser matrix. The browser screenshots and 40 observations above remain evidence for the earlier integrated candidate and do not verify this image-fit follow-up. Keep RB13 at IMPLEMENTED / PARTIAL VERIFICATION until browser checks and independent design/accessibility review run on the updated source.
