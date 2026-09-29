@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 const state = vi.hoisted(() => ({ signOut: vi.fn(), navigate: vi.fn() }));
 vi.mock('../../contexts/AuthContext', () => ({ useAuth: () => ({ user: { email: 'synthetic@example.invalid' }, profile: null, signOut: state.signOut }) }));
-vi.mock('../../contexts/LanguageContext', () => ({ useLanguage: () => ({ t: (key) => key }) }));
+vi.mock('../../contexts/LanguageContext', () => ({ useLanguage: () => ({ t: (key) => key, language: 'en' }) }));
 vi.mock('../../lib/navigation', () => ({
   Link: ({to, children, ...props}) => <a href={to} {...props}>{children}</a>,
   useLocation: () => ({pathname: '/profile'}), useNavigate: () => state.navigate,
