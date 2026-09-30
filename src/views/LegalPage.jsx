@@ -60,7 +60,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'Getting your data removed',
-        body: 'Signing out ends the browser session but does not delete your account. To request account deletion, contact ARO through the contact page.',
+        body: 'Signing out ends the browser session but does not delete your account. Account deletion requests are not yet available through this site. ARO must publish a working request channel before opening public account creation.',
       },
     ],
   },
