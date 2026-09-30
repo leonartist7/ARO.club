@@ -52,7 +52,7 @@ try {
     // The Next development indicator is not part of the application surface.
     await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
     const storageBefore = await storage(page);
-    const introDisclosureVisible = await page.getByText(copy.resetNotice).isVisible();
+    const introDisclosureVisible = await page.getByText(copy.preview).isVisible();
     overflow.intro = await hasOverflow(page);
     await screenshot(page, `${slug}-intro.png`);
     const buttons = page.locator('button');
@@ -63,7 +63,7 @@ try {
     await page.getByRole('button', { name: copy.back }).click();
     await page.getByRole('heading', { name: copy.learn.title }).waitFor();
     await buttons.filter({ hasText: /more|plus|más/i }).first().click();
-    const teachDisclosureVisible = await page.getByText(copy.resetNotice).isVisible();
+    const teachDisclosureVisible = await page.getByText(copy.preview).isVisible();
     await page.locator('main img').first().evaluate(image => image.decode());
     overflow.teach = await hasOverflow(page);
     await screenshot(page, `${slug}-teach.png`);
@@ -73,6 +73,7 @@ try {
     await screenshot(page, `${slug}-choice.png`);
     const choice = path === 'host' ? /Teach a skill|Enseigner une compétence|Enseñar una habilidad/ : path === 'both' ? /Explore both|Explorer les deux|Explorar ambos/ : /Find a class|Trouver un cours|Encontrar una clase/;
     await buttons.filter({ hasText: choice }).first().click();
+    const detailsDisclosureVisible = await page.getByText(copy.details.body).isVisible();
     await page.getByRole('button', { name: copy.back }).click();
     const selectedIntentRestored = await page.getByRole('button', { name: copy.choose[path === 'host' ? 'host' : path === 'both' ? 'both' : 'learn'] }).getAttribute('aria-pressed') === 'true';
     await buttons.filter({ hasText: choice }).first().click();
@@ -116,7 +117,7 @@ try {
       };
     }) : null;
     await screenshot(page, `${slug}-preference.png`);
-    const lastChoice = page.getByRole('button', { name: path === 'host' ? copy.skill.options[2].title : copy.interests.open }).last();
+    const lastChoice = page.getByRole('button', { name: path === 'host' ? copy.skill.options.at(-1).title : copy.interests.open }).last();
     await lastChoice.focus();
     const preferenceLastChoiceReachable = await lastChoice.evaluate((choice) => {
       const region = choice.closest('[data-preview-choices]');
@@ -185,7 +186,7 @@ try {
       await page.waitForURL((url) => url.pathname === '/explore');
       navigationWorks = new URL(page.url()).pathname === '/explore';
     }
-    results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, preferenceViewport, preferenceLastChoiceReachable, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
+    results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, detailsDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, preferenceViewport, preferenceLastChoiceReachable, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
 } finally {
@@ -194,4 +195,4 @@ try {
 if (results.length === 0) throw new Error('No RB2 verification case matched the requested slug');
 if (!process.argv[2]) await writeFile(join(output, 'browser.json'), JSON.stringify(results, null, 2));
 else console.log(JSON.stringify(results[0], null, 2));
-if (results.some(result => result.status !== 200 || !result.introDisclosureVisible || !result.teachDisclosureVisible || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || (result.preferenceViewport && (!result.preferenceViewport.actionVisible || !result.preferenceViewport.choicesUncovered)) || !result.preferenceLastChoiceReachable || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;
+if (results.some(result => result.status !== 200 || !result.introDisclosureVisible || !result.teachDisclosureVisible || !result.detailsDisclosureVisible || result.validation < 2 || result.detailsAlertCount < 2 || !result.minorBlocked || !result.correctedDetailsClear || result.cityAlertCount < 1 || result.preferenceAlertCount < 1 || (result.preferenceViewport && (!result.preferenceViewport.actionVisible || !result.preferenceViewport.choicesUncovered)) || !result.preferenceLastChoiceReachable || !result.learnerChoiceBeforeAction || result.shortHeightCtaVisible === false || Object.values(result.overflow).some(Boolean) || result.pageErrors.length || result.requests.length || !result.storageUnchanged || !result.selectedIntentRestored || !result.editRetained || result.navigationWorks === false || result.hostBoundarySafe === false || !result.resetOnRefresh || result.bothCanSwitchToHost === false)) process.exitCode = 1;

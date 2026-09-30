@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Camera, Check, Clapperboard, Flower2, Guitar, Languages, Music2, Pencil, RotateCcw, Shapes } from 'lucide-react';
 import { Link } from '../lib/navigation';
 import { AroWordmark } from '../components/brand/AroMark';
 import Button from '../components/ui/Button';
@@ -10,8 +10,14 @@ import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 import { englishLightRelease } from '../lib/releaseScope';
 
 const ART = ['learn', 'teach-language-v2', 'connect'];
-const TOPICS = ['Photography', 'Guitar', 'Ceramics', 'Languages', 'Drawing'];
-const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary'];
+const TOPICS = [
+  { key: 'Photography', icon: Camera }, { key: 'Guitar', icon: Guitar },
+  { key: 'Ceramics', icon: Shapes }, { key: 'Languages', icon: Languages },
+  { key: 'Drawing', icon: Pencil }, { key: 'Dance', icon: Music2 },
+  { key: 'Gardening', icon: Flower2 }, { key: 'Writing', icon: BookOpen },
+  { key: 'Film', icon: Clapperboard },
+];
+const HOST_OPTIONS = ['conversation', 'stories', 'vocabulary', 'pronunciation', 'reading', 'phrases'];
 
 function SceneArt({ scene }) {
   const name = ART[scene];
@@ -25,12 +31,12 @@ function SceneArt({ scene }) {
   );
 }
 
-function Choice({ selected, onClick, children, description }) {
+function Choice({ selected, onClick, children, description, icon: Icon }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={selected}
       className={`flex min-h-16 w-full items-start gap-3 rounded-2xl border-2 px-4 py-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus focus-visible:ring-offset-2 dark:focus-visible:ring-bone dark:focus-visible:ring-offset-surface-dark ${selected ? 'border-action-primary bg-primary-50 dark:bg-primary-900/30' : 'border-control-border bg-white hover:border-action-primary dark:border-bone/40 dark:bg-surface-darkCard'}`}>
       <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 ${selected ? 'border-action-primary bg-action-primary text-white' : 'border-control-border dark:border-bone/60'}`}>{selected && <Check size={15} aria-hidden="true" />}</span>
-      <span><strong className="block text-base text-ink dark:text-bone">{children}</strong>{description && <span className="mt-1 block text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{description}</span>}</span>
+      <span><strong className="flex items-center gap-2 text-base text-ink dark:text-bone">{Icon && <Icon size={19} aria-hidden="true" />}{children}</strong>{description && <span className="mt-1 block text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{description}</span>}</span>
     </button>
   );
 }
@@ -129,12 +135,12 @@ export default function OnboardingPreview() {
               {errors.skill && <p role="alert" className="mt-2 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.skill[errors.skill]}</p>}
             </div>}
 
-            {stage === 5 && mode === 'learn' && <div data-preview-choices className="mt-7 max-h-[clamp(8rem,calc(100dvh-33rem),28rem)] overflow-y-auto overscroll-contain pr-2 scroll-pb-3 sm:max-h-none sm:overflow-visible sm:pr-0"><div className="grid gap-3 sm:grid-cols-2">{TOPICS.map((topic, index) => <Choice key={topic} selected={interests.includes(topic)} onClick={() => toggleInterest(topic)}>{copy.topics[index]}</Choice>)}<Choice selected={openIdeas} onClick={() => { setInterests([]); setOpenIdeas(true); clearError('interests'); }}>{copy.interests.open}</Choice></div>{errors.interests && <p role="alert" className="mt-3 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.interests[errors.interests]}</p>}</div>}
+            {stage === 5 && mode === 'learn' && <div data-preview-choices className="mt-7 max-h-[clamp(8rem,calc(100dvh-33rem),28rem)] overflow-y-auto overscroll-contain pr-2 scroll-pb-3 sm:max-h-none sm:overflow-visible sm:pr-0"><div className="grid gap-3 sm:grid-cols-2">{TOPICS.map((topic, index) => <Choice key={topic.key} icon={topic.icon} selected={interests.includes(topic.key)} onClick={() => toggleInterest(topic.key)}>{copy.topics[index]}</Choice>)}<Choice selected={openIdeas} onClick={() => { setInterests([]); setOpenIdeas(true); clearError('interests'); }}>{copy.interests.open}</Choice></div>{errors.interests && <p role="alert" className="mt-3 text-sm font-semibold text-danger-700 dark:text-red-300">{copy.interests[errors.interests]}</p>}</div>}
 
             {stage === 6 && <div className="mt-7 rounded-2xl border border-primary-200 bg-white p-5 dark:border-primary-700 dark:bg-surface-darkCard">
               <p className="text-sm font-bold text-primary-700 dark:text-primary-300">{mode === 'host' ? copy.result.draft : copy.result.example}</p>
               <h2 className="mt-3 font-sans text-2xl font-bold leading-tight">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.title : copy.ideas[interests[0]] ?? copy.ideas.open}</h2>
-              <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.outcome : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.indexOf(topic)]).join(', ')}.` : copy.result.openFit}</p>
+              <p className="mt-3 text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{mode === 'host' ? copy.skill.options[HOST_OPTIONS.indexOf(skill)]?.outcome : interests.length ? `${copy.result.fit} ${interests.map((topic) => copy.topics[TOPICS.findIndex((item) => item.key === topic)]).join(', ')}.` : copy.result.openFit}</p>
               <p className="mt-3 break-words text-sm font-semibold [overflow-wrap:anywhere]">{copy.result.city}: {city.trim()}</p>
             </div>}
 
@@ -147,16 +153,14 @@ export default function OnboardingPreview() {
               {stage === 5 && <Button data-preview-submit onClick={nextFromPreference} className="min-h-12 rounded-xl">{mode === 'host' ? copy.skill.action : copy.interests.action}<ArrowRight size={18} aria-hidden="true" /></Button>}
               {stage === 6 && <button type="button" onClick={() => go(5)} className="min-h-12 rounded-xl px-3 font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone">{copy.result.edit}</button>}
             </div>
-            {stage < 2 && <p className="mt-4 rounded-xl border border-primary-200 bg-primary-50 p-3 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
-            {stage === 0 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.learn.topics}</p><div className="flex flex-wrap gap-2">{TOPICS.slice(0, 3).map((topic, index) => <button key={topic} type="button" onClick={() => toggleInterest(topic)} aria-pressed={interests.includes(topic)} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${interests.includes(topic) ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.topics[index]}</button>)}</div></div>}
+            {stage === 0 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.learn.topics}</p><div className="flex flex-wrap gap-2">{TOPICS.map((topic, index) => <button key={topic.key} type="button" onClick={() => toggleInterest(topic.key)} aria-pressed={interests.includes(topic.key)} className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${interests.includes(topic.key) ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}><topic.icon size={17} aria-hidden="true" />{copy.topics[index]}</button>)}</div></div>}
             {stage === 1 && <div className="mt-6"><p className="mb-3 text-sm font-semibold">{copy.teach.examples}</p><div className="flex flex-wrap gap-2">{HOST_OPTIONS.map((option, index) => <button key={option} type="button" onClick={() => setSkill(option)} aria-pressed={skill === option} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus dark:focus-visible:ring-bone ${skill === option ? 'border-action-primary bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-200' : 'border-control-border dark:border-bone/40'}`}>{copy.skill.options[index].title}</button>)}</div></div>}
           </div>
 
           <div>
             {stage === 2 && <div className="grid gap-3"><Choice selected={intent === 'learn'} onClick={() => chooseIntent('learn')} description={copy.choose.learnBody}>{copy.choose.learn}</Choice><Choice selected={intent === 'host'} onClick={() => chooseIntent('host')} description={copy.choose.hostBody}>{copy.choose.host}</Choice><Choice selected={intent === 'both'} onClick={() => chooseIntent('both')} description={copy.choose.bothBody}>{copy.choose.both}</Choice></div>}
             {stage < 3 && <div className={stage === 2 ? 'mt-5' : 'hidden lg:block'}><SceneArt scene={stage} /></div>}
-            {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20"><p className="text-base leading-7 text-content-secondary dark:text-content-darkSecondary">{copy.resetNotice}</p>{mode === 'host' && <p className="mt-4 text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{copy.result.hostBoundary}</p>}<div className="mt-5 flex flex-wrap gap-4">{mode !== 'host' && <Link to="/explore" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>}{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
-            {(stage === 3 || stage === 4 || stage === 5) && <p className="mt-6 rounded-xl border border-primary-200 bg-primary-50 p-4 text-sm leading-6 text-content-secondary dark:border-primary-800 dark:bg-primary-900/20 dark:text-content-darkSecondary">{copy.resetNotice}</p>}
+            {stage === 6 && <div className="rounded-2xl bg-primary-50 p-5 dark:bg-primary-900/20">{mode === 'host' && <p className="text-sm leading-6 text-content-secondary dark:text-content-darkSecondary">{copy.result.hostBoundary}</p>}<div className="mt-5 flex flex-wrap gap-4">{mode !== 'host' && <Link to="/explore" className="inline-flex min-h-11 items-center gap-2 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.explore}<ArrowRight size={17} aria-hidden="true" /></Link>}{intent === 'both' && mode === 'learn' && <button type="button" onClick={() => { setMode('host'); go(5); }} className="min-h-11 font-bold text-primary-700 underline underline-offset-4 dark:text-primary-300">{copy.result.bothAction}</button>}</div><button type="button" onClick={() => go(0)} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4"><RotateCcw size={16} aria-hidden="true" />{copy.replay}</button></div>}
           </div>
         </div>
       </main>

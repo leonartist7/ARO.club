@@ -1,6 +1,6 @@
 # ARO-RB17 — Reference-led first journey
 
-**Status:** IMPLEMENTED / PARTIAL VERIFICATION · version 1.0.0 · 2026-09-29. Founder authorization: six supplied visual references and request to execute. Branch `codex/rb17-reference-journey-20260929` starts at merged RB15 `28f0170` (PR #92). Target RB15; no `main` merge.
+**Status:** IMPLEMENTED / PARTIAL VERIFICATION · version 1.0.1 · 2026-09-30. Founder authorization: six supplied visual references and request to execute, followed by a direct request for more icon-led Learn tags, more Earn skills, and removal of the repeated refresh notice. Branch `codex/rb17-reference-journey-20260929` starts at merged RB15 `28f0170` (PR #92). Target RB15; no `main` merge.
 
 **Approval record:** The founder explicitly approved this visual direction by supplying six references and saying “execute.” I wrote this bounded presentation spec as **SPEC-READY v1.0.0 in the working tree before the first JSX edit**. The same branch commit records the later IMPLEMENTED / PARTIAL VERIFICATION state, so the intermediate working-tree state is not a separate Git commit. This approval covers visual hierarchy and existing local preview paths only; it is not privacy, Trust, Auth, money or release approval.
 
@@ -16,6 +16,8 @@ Reorder and simplify presentation, copy and existing navigation in `/`, `/app`, 
 
 Onboarding persistence, personal tags, real location, supply, checkout and credits are separately SPEC-REQUIRED and require privacy, Trust, security and money reviews. Image 6's social proof and member count cannot appear as live evidence. Rollback reverts this presentation branch without migration.
 
+The founder's 2026-09-30 onboarding follow-up expands the **local example choices only**: nine illustrated Learn interests and six adult public-place language activities for Earn, with matching EN/FR/ES copy. It removes the repeated refresh paragraph from each scene; the entry still says this is an interactive preview without an account, and the details step briefly states that answers are not saved. This does not expand eligible teaching categories, real profile tags, account state or host permissions.
+
 ## UX, accessibility and performance
 
 At 320/390/768/1440 widths, hero → human story → three concise paths → optional formation explainer should have one dominant action in each section. App Home should disclose fixture context before cards; Explore should show example cards and plain limitations without live controls. Create should let users choose Learn/Share/Gather and understand the selected example with a clear return path. Preserve 44px controls, 16px body copy, semantic headings, visible focus, reduced motion, dark support and zero horizontal overflow. No new font requests; compare first viewport and transferred image bytes against RB16 evidence.
@@ -28,5 +30,6 @@ At 320/390/768/1440 widths, hero → human story → three concise paths → opt
 | RB17-2 | App Home, Explore and Create show a coherent, truthful next step | Browser walkthrough and route assertions |
 | RB17-3 | EN/FR/ES and theme remain usable; short phone and keyboard work | Focused browser checks, unit suite |
 | RB17-4 | Build, lint, types, relevant tests and final-head CI pass | Exact commands and PR checks in `artifacts/ARO-RB17/VERIFICATION.md` |
+| RB17-5 | Learn/Earn choices are richer and localized without implying live eligibility; no repeated refresh paragraph | Onboarding route and short-phone selection check |
 
 Independent design/accessibility, privacy, Trust and protected release reviews are still required. Mark IMPLEMENTED / PARTIAL VERIFICATION after local checks; never infer production readiness from this package.
