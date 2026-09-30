@@ -28,7 +28,7 @@ This package enables account entry on the existing ARO project by explicit produ
 
 1. The enabled `/login` and `/signup` screens offer Google and email actions. A disabled backend keeps all account actions unavailable with an explanatory message.
 2. Google starts OAuth; the provider returns to `/auth/callback`; the server exchanges the code, writes a cookie session and returns to `/explore`. Invalid/expired callbacks land on `/auth/error`.
-3. Email sign-up sends a confirmation link to the same callback. Password login redirects locally. Recovery uses the existing reset route. Provider errors remain visible and retryable.
+3. Email sign-up sends a confirmation link to the same callback. Password login redirects locally. Recovery supplies a query-free callback URL so the email template can append its token, and the callback routes verified recovery tokens to the reset form. Provider errors remain visible and retryable.
 4. Controls remain keyboard accessible with visible focus and existing responsive/light/dark behavior. The Google button has a descriptive accessible name and disabled state while pending.
 5. No new client dependency or network request occurs until the user selects an account action. Existing account boundaries must remain fail closed if any production variable mismatches.
 

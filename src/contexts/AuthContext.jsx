@@ -233,7 +233,9 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/callback?next=/auth/reset-password`,
+        // The email template appends token_hash/type with ?, so the base must
+        // have no query. The callback routes recovery tokens to the reset form.
+        redirectTo: `${window.location.origin}/auth/callback`,
       });
 
       if (error) throw error;
