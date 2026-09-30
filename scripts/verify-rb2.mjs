@@ -181,11 +181,12 @@ try {
     let hostBoundarySafe = null;
     if (path === 'host' || path === 'both') {
       hostBoundarySafe = await page.getByText(copy.result.hostBoundary).count() === 1 && await page.locator('a[href="/for-teachers"]').count() === 0;
-    } else {
-      await page.getByRole('link', { name: copy.result.explore }).click();
-      await page.waitForURL((url) => url.pathname === '/explore');
-      navigationWorks = new URL(page.url()).pathname === '/explore';
     }
+    const appEntry = page.getByRole('link', { name: copy.result.enterApp });
+    const noDetailsInDestination = await appEntry.getAttribute('href') === '/app';
+    await appEntry.click();
+    await page.waitForURL((url) => url.pathname === '/app');
+    navigationWorks = noDetailsInDestination && new URL(page.url()).pathname === '/app';
     results.push({ slug, status: response?.status(), introDisclosureVisible, teachDisclosureVisible, detailsDisclosureVisible, validation, detailsAlertCount, minorBlocked, correctedDetailsClear, correctedAlertTexts, correctedAgeInvalid, cityAlertCount, preferenceAlertCount, preferenceViewport, preferenceLastChoiceReachable, learnerChoiceBeforeAction, shortHeightCtaVisible, overflow, pageErrors, requests, storageBefore, storageUnchanged, selectedIntentRestored, editRetained, navigationWorks, hostBoundarySafe, resetOnRefresh, bothCanSwitchToHost, result: body.slice(-700) });
     await context.close();
   }
