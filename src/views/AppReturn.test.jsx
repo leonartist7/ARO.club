@@ -13,6 +13,7 @@ import AppInsightsPage from './AppInsightsPage'
 import AppLibraryPage from './AppLibraryPage'
 import AppPassportPage from './AppPassportPage'
 import AppSettingsPage from './AppSettingsPage'
+import { ThemeProvider } from '../contexts/ThemeContext'
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
 function renderReturn(route, language = 'en') {
   localStorage.setItem('conversa-language', language)
   const router = createMemoryRouter(routes, { initialEntries: [route] })
-  const view = render(<RouterProvider router={router} />)
+  const view = render(<ThemeProvider><RouterProvider router={router} /></ThemeProvider>)
   return { router, ...view }
 }
 
@@ -71,9 +72,9 @@ async function resolveBrowserExecutable() {
 
 async function startF6BrowserServer() { return startProductionServer(4182) }
 
-// The accepted FV-1 shell has no working theme preference UI; F6 explicitly keeps
-// Appearance informational. This helper renders both existing token states for visual
-// acceptance only and does not claim a user-facing theme control exists.
+// F6 visual evidence still renders both token states directly so its frozen visual
+// matrix stays deterministic. RB14 adds a real local theme control separately; this
+// helper is evidence setup rather than a claim that the control is absent.
 async function applyVisualThemeForEvidence(page, theme) {
   await page.evaluate((selectedTheme) => document.documentElement.classList.toggle('dark', selectedTheme === 'dark'), theme)
   expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(theme === 'dark')
@@ -191,7 +192,8 @@ describe('FV-1 F6 return truthfulness', () => {
     const hero = screen.getByAltText(fv1ReturnCopy.en.insights.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-season-discovery-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-season-discovery-v1-640.webp 640w')
-    expect(hero.className).toContain('object-[62%_center]')
+    expect(hero.className).toContain('object-contain')
+    expect(view.container.querySelector('[data-fv1-insights-scene]')?.className).toContain('aspect-video')
   })
 
   it('qualifies Passport as fictional and uses F1 responsive hero and thumbnail derivatives', () => {
@@ -204,7 +206,8 @@ describe('FV-1 F6 return truthfulness', () => {
     const hero = screen.getByAltText(fv1ReturnCopy.en.passport.heroAlt)
     expect(hero.getAttribute('src')).toContain('/fv1/aro-passport-life-map-v1-1440.webp')
     expect(hero.getAttribute('srcset')).toContain('/fv1/aro-passport-life-map-v1-640.webp 640w')
-    expect(hero.className).toContain('object-[69%_center]')
+    expect(hero.className).toContain('object-contain')
+    expect(view.container.querySelector('[data-fv1-passport-scene]')?.className).toContain('aspect-video')
 
     const entries = [...view.container.querySelectorAll('[data-fv1-passport-entry]')]
     expect(entries).toHaveLength(3)
@@ -216,17 +219,19 @@ describe('FV-1 F6 return truthfulness', () => {
     }
   })
 
-  it('makes every Settings row visibly unavailable and non-actionable', () => {
+  it('keeps future Settings rows non-actionable while offering real device preferences', () => {
     const view = renderReturn('/app/settings')
     expect(view.container.querySelector('[data-fv1-direct-entry="settings"]')).toBeTruthy()
     const rows = [...view.container.querySelectorAll('[data-fv1-setting-row]')]
-    expect(rows).toHaveLength(6)
+    expect(rows).toHaveLength(4)
     for (const row of rows) {
       expect(row.querySelector('button')).toBeNull()
       expect(row.querySelector('a')).toBeNull()
       expect(row.textContent).toContain('Not available in this preview.')
     }
-    expect(screen.getByText(/does not create accounts, stored preferences or editable privacy controls/)).toBeTruthy()
+    expect(screen.getAllByRole('button', { name: 'Language: English', exact: true }).length).toBeGreaterThanOrEqual(1)
+    expect(screen.getAllByRole('button', { name: 'Switch to dark mode', exact: true }).length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText(/Language and appearance work on this device/)).toBeTruthy()
   })
 })
 
@@ -237,7 +242,7 @@ describe('FV-1 F6 localization and media evidence', () => {
 
     const french = renderReturn('/app/insights', 'fr')
     expect(french.container.querySelector('[lang="fr"]')).toBeTruthy()
-    expect(screen.getByText('Aperçus')).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'Aperçus' })).toBeTruthy()
     expect(screen.getByAltText(fv1ReturnCopy.fr.insights.heroAlt)).toBeTruthy()
     french.unmount()
 
@@ -274,8 +279,8 @@ describe('FV-1 F6 browser acceptance evidence', () => {
     const widths = [360, 390, 430, 768, 1440]
     const themes = ['light', 'dark']
     const routeCases = [
-      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights.heroAlt, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '62%' },
-      { route: '/app/passport', directEntry: 'passport', heroAlt: fv1ReturnCopy.en.passport.heroAlt, mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '69%' },
+      { route: '/app/insights', directEntry: 'insights', heroAlt: fv1ReturnCopy.en.insights.heroAlt, mobileAsset: 'aro-season-discovery-v1-640.webp', desktopAsset: 'aro-season-discovery-v1-1440.webp', position: '50%' },
+      { route: '/app/passport', directEntry: 'passport', heroAlt: fv1ReturnCopy.en.passport.heroAlt, mobileAsset: 'aro-passport-life-map-v1-640.webp', desktopAsset: 'aro-passport-life-map-v1-1440.webp', position: '50%' },
       { route: '/app/library', directEntry: 'library' },
       { route: '/app/settings', directEntry: 'settings' },
     ]
@@ -285,7 +290,7 @@ describe('FV-1 F6 browser acceptance evidence', () => {
       browser: executablePath,
       widths,
       themes,
-      themeEvidence: 'FV-1 has no implemented Appearance preference; light/dark token states rendered directly for visual acceptance',
+      themeEvidence: 'RB14 provides a local sun/moon theme toggle; F6 still renders light/dark token states directly for deterministic visual acceptance',
       observations: 0,
       zoomObservations: 0,
       minTargetWidth: Number.POSITIVE_INFINITY,
@@ -341,7 +346,7 @@ describe('FV-1 F6 browser acceptance evidence', () => {
               const image = await readImageEvidence(page.getByAltText(routeCase.heroAlt))
               expect(image.naturalWidth).toBeGreaterThan(0)
               expect(image.naturalHeight).toBeGreaterThan(0)
-              expect(image.objectFit).toBe('cover')
+              expect(image.objectFit).toBe('contain')
               expect(image.objectPosition).toContain(routeCase.position)
               if (width <= 430) expect(image.currentSrc).toContain(routeCase.mobileAsset)
               if (width === 1440) expect(image.currentSrc).toContain(routeCase.desktopAsset)

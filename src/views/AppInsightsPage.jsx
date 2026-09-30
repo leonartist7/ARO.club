@@ -14,7 +14,7 @@ export default function AppInsightsPage() {
 
   return (
     <div lang={language} className="px-4 py-6 sm:px-8 sm:py-10">
-      <AppSectionHeading eyebrow={copy.insights.eyebrow} title={copy.insights.title}>
+      <AppSectionHeading level={1} eyebrow={copy.insights.eyebrow} title={copy.insights.title}>
         <Link to="/app/passport" className="inline-flex min-h-11 items-center gap-2 text-base font-bold text-primary-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-primary-500 dark:text-primary-300">
           {copy.insights.passportLink} <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -32,10 +32,11 @@ export default function AppInsightsPage() {
         </div>
       </div>
 
-      <AppPanel className="relative mt-6 min-h-[330px] overflow-hidden bg-ink text-bone dark:bg-plum">
-        <AppImage src="/aro-season-discovery-v1.png" alt={copy.insights.heroAlt} variant="hero" cropClass="object-[62%_center]" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,25,33,0.94)_0%,rgba(18,25,33,0.82)_35%,rgba(18,25,33,0.28)_70%,rgba(18,25,33,0.12)_100%),linear-gradient(0deg,rgba(18,25,33,0.55),transparent_56%)]" />
-        <div className="relative flex min-h-[330px] max-w-xl flex-col p-6 sm:p-8">
+      <AppPanel className="relative mt-6 overflow-hidden bg-ink text-bone dark:bg-plum">
+        <div data-fv1-insights-scene className="relative aspect-video overflow-hidden bg-[#182127]">
+          <AppImage src="/aro-season-discovery-v1.png" alt={copy.insights.heroAlt} variant="hero" className="absolute inset-0 h-full w-full object-contain" />
+        </div>
+        <div className="relative flex max-w-xl flex-col p-6 sm:p-8">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-secondary-300">{copy.insights.seasonLabel}</p>
           <h1 className="mt-5 font-display text-5xl leading-[0.9]">{copy.insights.seasonTitle}</h1>
           <p data-fv1-essential-copy className="mt-5 max-w-md text-base leading-6 text-bone/80">{copy.insights.seasonProgress}</p>

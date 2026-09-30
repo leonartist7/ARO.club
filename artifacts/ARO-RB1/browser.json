@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "home-320-light-en",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 2535,
+    "errors": []
+  },
+  {
+    "slug": "home-390-light-fr",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 2893,
+    "errors": []
+  },
+  {
+    "slug": "home-1440-light-en",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 2571,
+    "errors": []
+  },
+  {
+    "slug": "home-1440-dark-es",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 2881,
+    "errors": []
+  },
+  {
+    "slug": "app-360-light-en",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 866,
+    "errors": []
+  },
+  {
+    "slug": "app-1440-dark-fr",
+    "status": 200,
+    "title": "ARO — Life opens up",
+    "bodyLength": 957,
+    "errors": []
+  }
+]

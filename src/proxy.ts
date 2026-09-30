@@ -1,8 +1,24 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { accountsEnabled, supabaseUrl, supabaseKey } from "./lib/auth/config";
+import legacyExperiences from "./data/experiences.json";
+import legacyTeachers from "./data/teachers.json";
+
+const legacyExperienceIds = new Set(legacyExperiences.map(({ id }) => id));
+const legacyTeacherIds = new Set(legacyTeachers.map(({ id }) => id));
+const teacherAccountRoutes = new Set(["application", "dashboard"]);
 
 export async function proxy(request: NextRequest) {
+  const legacyPath = request.nextUrl.pathname.match(/^\/(experience|teacher)\/([^/]+)\/?$/);
+  if (legacyPath) {
+    const [, kind, id] = legacyPath;
+    const known = kind === "experience"
+      ? legacyExperienceIds.has(id)
+      : legacyTeacherIds.has(id) || teacherAccountRoutes.has(id);
+    if (!known) {
+      return NextResponse.rewrite(new URL("/__aro_unknown_legacy", request.url), { status: 404 });
+    }
+  }
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set(
     "x-aro-return-path",

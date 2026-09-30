@@ -10,7 +10,7 @@ export const translations = {
       getStarted: 'Get Started',
       signIn: 'Sign in',
       signUp: 'Sign up',
-      findExperience: 'Find an experience',
+      findExperience: 'Find a class',
       startTeaching: 'Start teaching',
       adminConsole: 'Admin console',
       home: 'Home',
@@ -86,7 +86,7 @@ export const translations = {
           title: 'Tell the field what matters.',
           highlight: 'Watch a way to gather take shape.',
           subtitle: 'Choose one signal from each human anchor. ARO will compose one transparent prototype possibility — immediately, locally and without pretending anyone is waiting.',
-          cta: 'Shape a possibility',
+          cta: 'How it works',
         },
         instructions: 'Choose one from each anchor. The field responds as you move.',
         editingHint: 'Change any signal. A valid set will form again automatically.',
@@ -370,7 +370,9 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'AI for a more human world. ARO helps meaningful opportunity form around real people and real life.',
+      description: 'Life opens up. Explore what you could learn, share and make together.',
+      links: { title: 'Explore ARO' },
+      legal: { title: 'Legal' },
       company: {
         title: 'Company',
         aboutUs: 'About Us',
@@ -380,7 +382,7 @@ export const translations = {
       },
       explore: {
         title: 'Explore',
-        browseExperiences: 'Browse Experiences',
+        browseExperiences: 'Find a class',
         mapView: 'Map View',
         leaderboard: 'Leaderboard',
       },
@@ -390,7 +392,7 @@ export const translations = {
         helpCenter: 'Help Center',
       },
       copyright: 'All rights reserved.',
-      trustVerified: 'Hand-verified teachers',
+      trustVerified: 'Teacher verification before publishing',
       trustAntiShame: 'Anti-shame guarantee',
       privacyPolicy: 'Privacy Policy',
       termsOfService: 'Terms of Service',
@@ -554,7 +556,7 @@ export const translations = {
       getStarted: 'Commencer',
       signIn: 'Se connecter',
       signUp: "S'inscrire",
-      findExperience: 'Trouver une expérience',
+      findExperience: 'Trouver un cours',
       startTeaching: 'Commencer à enseigner',
       adminConsole: 'Console admin',
       home: 'Accueil',
@@ -630,7 +632,7 @@ export const translations = {
           title: 'Dites au champ ce qui compte.',
           highlight: 'Regardez une façon de se réunir prendre forme.',
           subtitle: 'Choisissez un signal pour chaque ancrage humain. ARO composera immédiatement une possibilité prototype transparente, en local, sans prétendre que quelqu’un attend.',
-          cta: 'Façonner une possibilité',
+          cta: 'Comment ça marche',
         },
         instructions: 'Choisissez un élément par ancrage. Le champ réagit à chaque choix.',
         editingHint: 'Modifiez un signal. Un ensemble valide se reformera automatiquement.',
@@ -905,7 +907,9 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'L’IA pour un monde plus humain. ARO aide de vraies opportunités à se former dans la vie réelle.',
+      description: 'La vie s’ouvre. Découvrez ce que vous pourriez apprendre, partager et créer ensemble.',
+      links: { title: 'Découvrir ARO' },
+      legal: { title: 'Informations légales' },
       company: {
         title: 'Entreprise',
         aboutUs: 'À Propos',
@@ -915,7 +919,7 @@ export const translations = {
       },
       explore: {
         title: 'Explorer',
-        browseExperiences: 'Parcourir les Expériences',
+        browseExperiences: 'Trouver un cours',
         mapView: 'Vue Carte',
         leaderboard: 'Classement',
       },
@@ -925,7 +929,7 @@ export const translations = {
         helpCenter: 'Centre d\'Aide',
       },
       copyright: 'Tous droits réservés.',
-      trustVerified: 'Enseignants vérifiés à la main',
+      trustVerified: 'Vérification des enseignants avant publication',
       trustAntiShame: 'Garantie anti-honte',
       privacyPolicy: 'Politique de Confidentialité',
       termsOfService: 'Conditions d\'Utilisation',
@@ -1087,6 +1091,16 @@ export const translations = {
       forTeachers: 'Para Profesores',
       leaderboard: 'Clasificación',
       getStarted: 'Comenzar',
+      signIn: 'Iniciar sesión',
+      signUp: 'Registrarse',
+      findExperience: 'Encontrar una clase',
+      startTeaching: 'Empezar a enseñar',
+      adminConsole: 'Consola de administración',
+      play: 'Jugar',
+      bookings: 'Reservas',
+      profile: 'Perfil',
+      studentDashboard: 'Mi panel',
+      favorites: 'Favoritos',
       backToHome: 'Volver al Inicio',
       myProfile: 'Mi Perfil',
       teacherDashboard: 'Panel de Profesor',
@@ -1155,7 +1169,7 @@ export const translations = {
           title: 'Dile al campo qué importa.',
           highlight: 'Mira cómo toma forma una manera de reunirse.',
           subtitle: 'Elige una señal de cada ancla humana. ARO compondrá al instante una posibilidad prototipo transparente y local, sin fingir que hay alguien esperando.',
-          cta: 'Dar forma a una posibilidad',
+          cta: 'Cómo funciona',
         },
         instructions: 'Elige una opción de cada ancla. El campo responde a cada cambio.',
         editingHint: 'Cambia cualquier señal. Un conjunto válido volverá a formarse automáticamente.',
@@ -1430,7 +1444,9 @@ export const translations = {
 
     // Footer
     footer: {
-      description: 'IA para un mundo más humano. ARO ayuda a que oportunidades reales se formen en la vida real.',
+      description: 'La vida se abre. Explora lo que podrías aprender, compartir y crear con otras personas.',
+      links: { title: 'Explorar ARO' },
+      legal: { title: 'Información legal' },
       company: {
         title: 'Empresa',
         aboutUs: 'Sobre Nosotros',
@@ -1440,7 +1456,7 @@ export const translations = {
       },
       explore: {
         title: 'Explorar',
-        browseExperiences: 'Explorar Experiencias',
+        browseExperiences: 'Encontrar una clase',
         mapView: 'Vista de Mapa',
         leaderboard: 'Clasificación',
       },
@@ -1450,7 +1466,7 @@ export const translations = {
         helpCenter: 'Centro de Ayuda',
       },
       copyright: 'Todos los derechos reservados.',
-      trustVerified: 'Profesores verificados a mano',
+      trustVerified: 'Verificación de docentes antes de publicar',
       trustAntiShame: 'Garantía anti-vergüenza',
       privacyPolicy: 'Política de Privacidad',
       termsOfService: 'Términos de Servicio',

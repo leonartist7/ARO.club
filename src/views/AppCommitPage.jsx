@@ -84,7 +84,7 @@ export default function AppCommitPage() {
               <div className="flex items-center gap-2 text-xs leading-5 text-bone/60"><MapPin className="h-4 w-4 shrink-0 text-secondary-200" aria-hidden="true" />{opportunity.place} · {copy.examplePlaceOnly}</div>
             </div>
 
-            <button type="button" onClick={tryJoin} disabled={isFull || hasJoinedExample} className="relative mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 text-sm font-bold text-ink transition hover:bg-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 disabled:cursor-not-allowed disabled:bg-bone/15 disabled:text-bone/50">{copy.tryJoin} <ArrowRight className="h-4 w-4" aria-hidden="true" /></button>
+            <button type="button" onClick={tryJoin} disabled={isFull || hasJoinedExample} className="relative mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-orange px-4 text-sm font-bold text-ink transition hover:bg-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-300 disabled:cursor-not-allowed disabled:bg-bone/15 disabled:text-bone/50">{copy.tryJoin} <ArrowRight className="h-4 w-4" aria-hidden="true" /></button>
 
             {isFull && <p className="relative mt-3 text-center text-sm font-bold text-secondary-200" role="status">{copy.full}</p>}
 

@@ -8,37 +8,42 @@ export default {
   theme: {
     extend: {
       colors: {
-        bone: '#F6F0E6',
-        ink: '#282420',
-        moss: '#68735A',
+        bone: '#FFF8EE',
+        ink: '#252420',
+        moss: '#27834A',
+        brand: { orange: '#F05A28', yellow: '#FFD447', green: '#27834A' },
+        action: { primary: '#C94320' },
+        surface: { canvas: '#FFF8EE', card: '#FFFFFF', dark: '#1E201C', darkCard: '#292C25' },
+        content: { primary: '#252420', secondary: '#6B635B', green: '#206D3D', dark: '#FFF8EE', darkSecondary: '#C9C5BA' },
+        control: { border: '#8B7F73', focus: '#252420' },
         clay: '#B86D4B',
         sky: '#7699A8',
         plum: '#302331',
-        // PRIMARY — ARO Yellow; deep shades keep small text readable.
+        // Compatibility scale: primary controls use accessible action orange.
         primary: {
-          50: '#FFFDEB',
-          100: '#FFF8BD',
-          200: '#FFF08A',
-          300: '#FFE654',
-          400: '#FFDC28',
-          500: '#F4D000',
-          600: '#806300',
-          700: '#695000',
-          800: '#554100',
-          900: '#463600',
+          50: '#FFF1E9',
+          100: '#FFDDCC',
+          200: '#FFBDA3',
+          300: '#FA9471',
+          400: '#F05A28',
+          500: '#C94320',
+          600: '#A9361B',
+          700: '#8D2C17',
+          800: '#702313',
+          900: '#521A0F',
         },
-        // SECONDARY — ARO Orange
+        // Compatibility scale: yellow supports discovery emphasis.
         secondary: {
-          50: '#FFF5EB',
-          100: '#FFE7CC',
-          200: '#FFCA99',
-          300: '#FFAD66',
-          400: '#FF963D',
-          500: '#F58220',
-          600: '#B74D08',
-          700: '#943D0B',
-          800: '#78330F',
-          900: '#632D10',
+          50: '#FFFBE6',
+          100: '#FFF4BD',
+          200: '#FFE985',
+          300: '#FFD447',
+          400: '#F2BD26',
+          500: '#D59F13',
+          600: '#8B6500',
+          700: '#6F5000',
+          800: '#573F00',
+          900: '#3F2E00',
         },
         
         // ACCENT — Gold for gamification only
@@ -61,7 +66,7 @@ export default {
       },
       fontFamily: {
         sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Noise Order', 'Manrope', 'Arial', 'sans-serif'],
+        display: ['Manrope', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

@@ -11,7 +11,7 @@ const PUBLIC_ROUTES = [
 
 const PROTECTED_ROUTES = [
   '/student-dashboard', '/profile', '/games', '/shop', '/chat',
-  '/character-builder', '/teacher/dashboard', '/dashboard', '/passport',
+  '/character-builder', '/teacher/dashboard', '/teacher/application', '/dashboard', '/passport',
   '/onboarding/student', '/onboarding/teacher',
 ];
 
@@ -27,46 +27,53 @@ export default async function sweep() {
 
   /** External images/fonts are blocked in CI sandboxes; that's not a failure. */
   const isNetworkNoise = (text) =>
-    /ERR_TUNNEL_CONNECTION_FAILED|ERR_CONNECTION_RESET|ERR_NAME_NOT_RESOLVED|Failed to load resource|Failed to fetch/i.test(
+    /ERR_TUNNEL_CONNECTION_FAILED|ERR_CONNECTION_RESET|ERR_NAME_NOT_RESOLVED|Failed to load resource|Failed to fetch|WebSocket connection to .*\/_next\/hmr/i.test(
       text
     );
 
   const visit = async (routes, { seed = null, label }) => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
-    const page = await context.newPage();
-
     const crashes = [];
-    let current = '';
-    page.on('pageerror', (error) => crashes.push({ route: current, text: String(error).slice(0, 180) }));
-    page.on('console', (msg) => {
-      if (msg.type() !== 'error') return;
-      const text = msg.text();
-      if (!isNetworkNoise(text)) crashes.push({ route: current, text: text.slice(0, 180) });
-    });
-
     if (seed) {
-      await navigate(page, BASE, { waitUntil: 'domcontentloaded' });
-      await page.evaluate(
-        (data) => localStorage.setItem('conversa-player', JSON.stringify(data)),
-        seed
-      );
+      await context.addInitScript((data) => localStorage.setItem('conversa-player', JSON.stringify(data)), seed);
     }
 
     const blank = [];
     const redirects = [];
 
     for (const route of routes) {
-      current = route;
-      await navigate(page, BASE + route, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      // Isolate each visit: a delayed client redirect from one route must not
+      // abort the next route's document request in the shared page.
+      const page = await context.newPage();
+      page.on('pageerror', (error) => crashes.push({ route, text: String(error).slice(0, 180) }));
+      page.on('console', (msg) => {
+        if (msg.type() !== 'error') return;
+        const text = msg.text();
+        if (!isNetworkNoise(text)) crashes.push({ route, text: text.slice(0, 180) });
+      });
+      try {
+        await navigate(page, BASE + route, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      } catch (error) {
+        // A client transition or server-side Auth redirect can abort the
+        // original document request. Accept it only after the expected page lands.
+        if (!String(error).includes('ERR_ABORTED')) throw error;
+        const expected = PROTECTED_ROUTES.includes(route) || route === '/choose-role' ? '/login' : route;
+        await page.waitForURL((url) => url.pathname === expected, { timeout: 5000 })
+          .catch(() => { throw new Error(`SWEEP_REDIRECT_DESTINATION_${route.replaceAll('/', '_')}_${expected.replaceAll('/', '_')}`); });
+      }
+      if (PROTECTED_ROUTES.includes(route)) {
+        await page.waitForURL((url) => url.pathname === '/login', { timeout: 5000 }).catch(() => undefined);
+      }
       await page
-        .waitForFunction(() => document.body.innerText.trim().length >= 30, null, { timeout: 3000 })
+        .waitForFunction(() => document.body.innerText.trim().length >= 30 && !document.body.innerText.includes('Opening ARO…'), null, { timeout: 3000 })
         .catch(() => undefined);
 
       const body = (await page.locator('body').innerText().catch(() => '')).trim();
-      if (body.length < 30) blank.push(`${route} (${body.length} chars)`);
+      if (body.length < 30 || body.includes('Opening ARO…')) blank.push(`${route} (${body.length} chars or still loading)`);
 
       const landed = new URL(page.url()).pathname;
       if (landed !== route) redirects.push({ route, landed });
+      await page.close();
     }
 
     await context.close();

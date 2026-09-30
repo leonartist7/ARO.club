@@ -1,5 +1,7 @@
 # ARO — Design and Experience Direction
 
+> **2026-09-27 approved direction:** ADR-031 adopts orange-led ARO, Manrope UI, conditional licensed Polymath Display and the single-dot open-O identity. This supersedes R2's yellow-primary/Noise Order styling for ARO platform surfaces. See RB0/RB1 specs; Tonguee and Coco's intentional vertical identity remains.
+
 > **2026-09-27 R2 candidate:** Founder-authorized yellow/orange and Noise Order identity is implemented on the R2 review branch. See `specs/ARO-R2-YELLOW-BRAND.md`; final visual approval remains open.
 
 ## Authority and scope

@@ -1,0 +1,93 @@
+# RB16 visual coherence evidence
+
+Status: IMPLEMENTED / PARTIAL VERIFICATION. Unmerged; no production-ready or release claim.
+
+## Source and boundary
+
+Remote RB15 was verified through `git ls-remote` at `a0cef112380f34f9c47c2a7e160fbbe4561fcf2e`; PR #90 was open/draft with the same head. An isolated scoped worktree branches directly from that combined head. No main-based reconstruction, owner-branch rewrite, dependency/lockfile change, provider/data/Auth/Trust/payment change or F7 evidence edit.
+
+Spec: [ARO-RB16-VISUAL-COHERENCE.md](../../specs/ARO-RB16-VISUAL-COHERENCE.md), version 1.0.0. The approved reference was visually inspected at `docs/rebrand/reference/ARO-approved.png`.
+
+## Rendered findings and corrections
+
+| Surface | Before | Correction / comparison with reference |
+| --- | --- | --- |
+| Create | Full dark canvas in light mode; long heading; ingredient labels overlap diagram intro; vertically stacked modes | Warm ivory canvas, readable dark text, shorter English heading above actions, three compact mode choices, flowing ingredient grid and yellow possibility circle; dark variants retained |
+| App Home | Greeting/location panels and dark gradients cover portal artwork; large dark container | Labels above complete artwork, ivory opening card and white stage; orange first-action field retained |
+| Opportunity list | Desktop image column stretches to text height, leaving huge gray bands; step numbers split | Intrinsic 3:2, top-aligned complete image, rounded cards/tags, nonshrinking step markers |
+| Opportunity detail | Dark hero in daylight; tight heading; 11–12px logistics/disclosures | Ivory/white hero, complete unobstructed art, readable heading, 16px logistics/preview terms; fictional host label immediately next to fixture identity |
+| Shared app | Inconsistent primary heading scale; narrow central exit wraps below its allocated label area | Larger primary headings and compact centered exit label; existing navigation destinations retained |
+| Preferences | Motion ignores reduced-motion request; no arrow menu navigation | Motion-safe transforms; Up/Down wrap, Home/End focus, Tab exit and Escape focus return; existing persistence retained |
+| Public/onboarding/account | Existing RB13/RB15 visual hierarchy is already close to reference | Inspected and retained, including full 4:3 onboarding art, orange/ivory public entry, compact footer and disabled account entry |
+
+## Before / after gallery
+
+All 28 baseline and 28 final core-route renders are retained at four viewports: 320×620, 390×844, 768×900 and 1440×900. Full-page screenshots include the fixed bottom navigation at its initial viewport position; scrolling moves page content behind that fixed bar normally. These captures are browser evidence, not native-device certification.
+
+| Route | Phone before / after | Desktop before / after |
+| --- | --- | --- |
+| Public Home | [Before](before/public-home-320.png) · [After](after/public-home-320.png) | [Before](before/public-home-1440.png) · [After](after/public-home-1440.png) |
+| Onboarding | [Before](before/onboarding-320.png) · [After](after/onboarding-320.png) | [Before](before/onboarding-1440.png) · [After](after/onboarding-1440.png) |
+| App Home | [Before](before/home-390.png) · [After](after/home-390.png) | [Before](before/home-1440.png) · [After](after/home-1440.png) |
+| Explore | [Before](before/explore-320.png) · [After](after/explore-320.png) | [Before](before/explore-1440.png) · [After](after/explore-1440.png) |
+| Opportunity list | [Before](before/opportunities-390.png) · [After](after/opportunities-390.png) | [Before](before/opportunities-1440.png) · [After](after/opportunities-1440.png) |
+| Create | [Before](before/create-320.png) · [After](after/create-320.png) | [Before](before/create-1440.png) · [After](after/create-1440.png) |
+| Opportunity detail | [Before](before/detail-390.png) · [After](after/detail-390.png) | [Before](before/detail-1440.png) · [After](after/detail-1440.png) |
+
+## Local verification
+
+- `npm ci --no-audit --no-fund` used the frozen lockfile. Node 24.11.0 emits the existing jsdom engine warning (its declared floor is 24.15.0); no dependencies were changed.
+- Ordinary `npm run build` (Turbopack) passed. Earlier baseline/changed webpack builds also passed. Existing Browserslist age notice retained.
+- `npm run lint -- --max-warnings=0` passed; the first attempt caught an unused import after removing the fictional greeting and it was removed.
+- `npm run type-check` passed.
+- Full unit suite via supported Vitest runner config loader: 190 passed, 3 existing browser-gated skips, 22 files.
+- Existing F4/F5/F6 browser suite: 32 passed; 80 F4, 20 F5 + 4 zoom, 40 F6 + 8 zoom observations. F4 selected system Chrome; F5/F6 used installed Playwright Chromium revision 1234. These are visual regression checks, not F7 controlled measurement.
+- Full existing E2E: all 25 checks passed, including disabled accounts, local-identity rejection, public/protected sweeps, responsive and dark mode.
+- RB14 ordinary preferences browser matrix: all 17 paths passed, including FR/ES, theme persistence, 200% text scaling and keyboard focus. Copied results: [preferences-browser.json](preferences-browser.json).
+- RB16 baseline and final ordinary-build matrix: each passed 28 core screenshots plus 36 supporting routes. Zero recorded page exceptions, non-GET requests or horizontal overflow. Final keyboard checks include arrow focus, End, Escape, Tab exit and theme toggle. [Before results](before/browser.json), [after results](after/browser.json), [dark Create](after/create-dark-390.png).
+- New captures reuse existing image/font assets; first mobile onboarding exports remain 65,630 bytes (connect), 62,540 bytes (learn), 54,702 bytes (teach-language), below the existing 250KB target. No Core Web Vitals improvement or full accessibility certification is claimed.
+
+The final exact-head hosted workflow also reruns the complete acceptance suites and RB16 captures. English/light local build/check and hosted results are recorded below once observed.
+
+## Inherited CodeRabbit findings from PR #90
+
+1. RB13 stale retry statement: corrected to recorded historical pass, without replacing old results.
+2. RB15 status drift: append-only exact-head reconciliation records Quality `36593625126` and isolated `36593625117` success on `a0cef112`; chooser passed only after rerun, root cause remains open.
+3. Reduced motion: valid; hover translation and chevron rotation now motion-safe.
+4. Language menu arrows: valid; wrapped navigation and Home/End added, unit and browser checks cover focus/exit behavior.
+
+These fixes are scoped here; PR #90 conversations were not self-resolved. RB16 CodeRabbit review and final-head CI must be examined separately.
+
+## Remaining issues and release decisions
+
+1. Independent design/accessibility approval of this combined result is still required, including screen-reader, native mobile browser zoom and full-route contrast/focus review. Small nonessential eyebrow/status text remains in supporting fixtures.
+2. The signed-out sweep verifies protected redirects. The existing isolated CI lane supplied synthetic host-application mobile/desktop renders on the first RB16 head, inspected below; it does not cover the complete authenticated host/admin UI. Full coverage and independent acceptance remain open. The inherited submitted-application copy promises review in under 48 hours; Trust must approve or replace that promise before release.
+3. App fixture content still contains English-only descriptions and legacy synthetic qualification/price/demand wording. It remains explicitly fictional; broader Trust/content acceptance and complete FR/ES/dark polish are open.
+4. Polymath licensed web assets are absent; approved Manrope fallback remains. Existing artwork differs from the reference's exact four-person composition; no raster reference logo or fabricated human evidence was introduced.
+5. RB0 open conversations, RB2 independent privacy/eligibility/security/Trust, RB4 Trust/persisted-fixture review, RB5 Contact draft retention/deletion specification and review remain blocking release-stack decisions.
+6. Platform document-chooser intermittency remains unresolved from RB15, even when a rerun passes. F7, production Auth/SMTP, live inventory/bookings/payments, native packaging and production smoke/release gates remain separate and open.
+
+CodeRabbit is defect review, not any of the independent decisions above. This PR is ready for code review but must remain unmerged.
+
+
+### Local English/light build
+
+`NEXT_PUBLIC_ARO_RELEASE_SCOPE=english-light npm run build` passed with the existing Browserslist notice. The ordinary build and 17-path preference matrix passed separately.
+
+### Final local refinement
+
+The final 320px render exposed a mid-word mode eyebrow break. Mobile mode eyebrows now use sentence case and normal tracking; desktop treatment is retained. English Create boundary copy uses plain preview language rather than internal P2/P3 package names. The RB16 verifier now requires 200 responses on every route and checks exact signed-out destinations for protected entries. Refreshed 28 renders / 36 supporting routes pass, with ordinary build, zero-warning lint and 11 relevant unit tests (1 existing browser-gated skip). The English/light RB11 verifier and all 24 autonomy core tests also passed locally. Hosted results and actual CodeRabbit dispositions will be attached to PR #92 after review completes; pending or skipped reviews are not accepted as passes.
+
+### Actual review and first-head hosted evidence
+
+CodeRabbit reviewed `dcf1bf89610570d30fa470c4d401d6459c9f1f29` on ready PR #92 at 20:58 UTC: two actionable findings, both valid. Checked-in output is now cleared immediately after browser-job checkout, with upload still always collecting partial diagnostics and missing output treated as an error. Supporting routes now require 200 and their exact intended destination, including `/admin` login redirection.
+
+The repository's Codex review added three valid findings. Menu tab stops now follow focus and both Tab directions close the menu; the browser matrix exercises 3 selected languages x 3 focused positions x 2 exit directions. Formation status is moved outside the absolute orbit avatars. Seed choices stack below 390px; compact sentence-case eyebrows remain readable, including French/Spanish captures. No business state changes.
+
+First-head Quality run [36629385051](https://github.com/leonartist7/ARO.club/actions/runs/36629385051) and isolated run [36629385322](https://github.com/leonartist7/ARO.club/actions/runs/36629385322) both passed without a rerun. This is historical first-head evidence, not acceptance of the corrective commit. Existing chooser intermittency is not declared fixed.
+
+The isolated run's `i0-2-authenticated-baseline` artifact (ID 11061587410; SHA-256 9e7c8cf221b0fce68938d492550ee55f5dc587d61959fc82e8f35cd969e170c4) supplied synthetic application captures inspected at [360px draft](authenticated-first-head/host-application-360-light.png) and [1440px submitted](authenticated-first-head/host-submitted-1440-light.png). Header/footer use the same ARO mark and ivory/action-orange hierarchy; the inherited application body remains white and uses compact system cards. Complete host/admin coverage and the unsupported under-48-hours review promise remain open. These samples were generated only by the disposable CI lane; no live accounts were enabled.
+
+All five review findings receive fixes in the corrective commit. Final-head CI and CodeRabbit disposition will be posted to PR #92 after they finish; no skipped review or earlier-head pass will be substituted.
+
+The added localized capture harness initially reset the language to English on navigation. It was corrected to use separate French/Spanish contexts and to assert `document.documentElement.lang` before each capture. Regenerated [French Create](after/create-320-fr.png), [Spanish Create](after/create-320-es.png), [French detail](after/detail-320-fr.png) and [Spanish detail](after/detail-320-es.png) now verify the actual language at 320px. The full ordinary matrix and 18 menu exit combinations pass after this correction.

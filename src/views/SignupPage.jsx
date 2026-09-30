@@ -1,12 +1,14 @@
 'use client';
 import { useState } from 'react';
 import { Link } from '../lib/navigation';
-import { motion } from 'framer-motion';
-import { UserPlus, Mail, Lock, User, AlertCircle, CheckCircle, Chrome } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Mail, Lock, User, AlertCircle, CheckCircle, Chrome } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import { accountEntryCopy } from '../i18n/accountEntry';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -19,6 +21,9 @@ export default function SignupPage() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const { signUp, signInWithGoogle, isBackendConfigured } = useAuth();
+  const { language } = useLanguage();
+  const { common, signup: copy } = accountEntryCopy[language] ?? accountEntryCopy.en;
+  const reduceMotion = useReducedMotion();
 
   const handleChange = (e) => {
     setFormData({
@@ -29,22 +34,22 @@ export default function SignupPage() {
 
   const validateForm = () => {
     if (formData.name.trim().length < 2) {
-      setError('Name must be at least 2 characters long');
+      setError(copy.invalidName);
       return false;
     }
 
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      setError('Please enter a valid email address');
+      setError(common.invalidEmail);
       return false;
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
+      setError(copy.shortPassword);
       return false;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError(copy.mismatch);
       return false;
     }
 
@@ -76,7 +81,7 @@ export default function SignupPage() {
 
       }
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError(common.unexpected);
     } finally {
       setLoading(false);
     }
@@ -95,7 +100,7 @@ export default function SignupPage() {
       }
       // Note: Google sign-in will redirect, so we don't set loading to false here
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError(common.unexpected);
       setLoading(false);
     }
   };
@@ -103,36 +108,35 @@ export default function SignupPage() {
   const passwordStrength = () => {
     const password = formData.password;
     if (password.length === 0) return null;
-    if (password.length < 6) return { label: 'Weak', color: 'bg-red-500', width: '33%' };
-    if (password.length < 10) return { label: 'Medium', color: 'bg-yellow-500', width: '66%' };
-    return { label: 'Strong', color: 'bg-green-500', width: '100%' };
+    if (password.length < 6) return { label: copy.weak, tone: 'weak', color: 'bg-red-500', width: '33%' };
+    if (password.length < 10) return { label: copy.medium, tone: 'medium', color: 'bg-yellow-500', width: '66%' };
+    return { label: copy.strong, tone: 'strong', color: 'bg-green-500', width: '100%' };
   };
 
   const strength = passwordStrength();
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      lang={language}
+      initial={reduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      transition={{ duration: 0.25 }}
+      className="min-h-screen bg-bone dark:bg-gray-950 flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-md w-full">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={reduceMotion ? false : { y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1, duration: 0.25 }}
         >
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <UserPlus className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
-              Join ARO
+            <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300">{common.promise}</p>
+            <h1 className="text-3xl font-display font-bold text-ink mb-2 dark:text-bone">
+              {copy.title}
             </h1>
-            <p className="text-gray-600">
-              Start learning languages through real experiences
+            <p className="text-content-secondary dark:text-content-darkSecondary">
+              {copy.subtitle}
             </p>
           </div>
 
@@ -140,24 +144,22 @@ export default function SignupPage() {
           <Card>
             <CardBody>
               {!isBackendConfigured && (
-                <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink">
-                  Account creation is not active in this preview yet. You can still explore the public ARO experience.
+                <div className="mb-4 rounded-lg border border-secondary-300 bg-secondary-50 p-3 text-sm text-ink dark:border-secondary-700 dark:bg-secondary-900/20 dark:text-bone">
+                  {copy.unavailable}
                 </div>
               )}
 
               {/* Success Message */}
               {success && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2"
                 >
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-green-800">Account created successfully!</p>
-                    <p className="text-xs text-green-600 mt-1">
-                      Check your email to confirm your account, then return to sign in.
-                    </p>
+                    <p className="text-sm font-medium text-green-800 dark:text-green-200">{copy.successTitle}</p>
+                    <p className="text-xs text-green-700 mt-1 dark:text-green-200">{copy.successBody}</p>
                   </div>
                 </motion.div>
               )}
@@ -165,12 +167,12 @@ export default function SignupPage() {
               {/* Error Message */}
               {error && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
                 >
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-700">{error}</p>
+                  <p className="text-sm text-red-700 dark:text-red-200" role="alert">{error}</p>
                 </motion.div>
               )}
 
@@ -184,16 +186,16 @@ export default function SignupPage() {
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >
-                Continue with Google
+                {common.google}
               </Button>
 
               {/* Divider */}
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300"></div>
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or sign up with email</span>
+                  <span className="px-2 bg-white text-gray-500 dark:bg-gray-900 dark:text-gray-300">{copy.emailDivider}</span>
                 </div>
               </div>
 
@@ -202,8 +204,8 @@ export default function SignupPage() {
                 <Input
                   type="text"
                   name="name"
-                  label="Full Name"
-                  placeholder="John Doe"
+                  label={copy.name}
+                  placeholder={copy.namePlaceholder}
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -214,12 +216,12 @@ export default function SignupPage() {
                 <Input
                   type="email"
                   name="email"
-                  label="Email Address"
-                  placeholder="you@example.com"
+                  label={common.email}
+                  placeholder={common.emailPlaceholder}
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  disabled={loading || success}
+                  disabled={loading || success || !isBackendConfigured}
                   icon={<Mail className="w-5 h-5" />}
                 />
 
@@ -227,8 +229,8 @@ export default function SignupPage() {
                   <Input
                     type="password"
                     name="password"
-                    label="Password"
-                    placeholder="Create a strong password"
+                    label={common.password}
+                    placeholder={copy.passwordPlaceholder}
                     value={formData.password}
                     onChange={handleChange}
                     required
@@ -238,11 +240,11 @@ export default function SignupPage() {
                   {strength && (
                     <div className="mt-2">
                       <div className="flex items-center justify-between text-xs mb-1">
-                        <span className="text-gray-600">Password strength:</span>
+                        <span className="text-gray-600 dark:text-gray-300">{copy.strength}</span>
                         <span className={`font-medium ${
-                          strength.label === 'Weak' ? 'text-red-600' :
-                          strength.label === 'Medium' ? 'text-yellow-600' :
-                          'text-green-600'
+                          strength.tone === 'weak' ? 'text-red-700 dark:text-red-300' :
+                          strength.tone === 'medium' ? 'text-yellow-700 dark:text-yellow-300' :
+                          'text-green-700 dark:text-green-300'
                         }`}>
                           {strength.label}
                         </span>
@@ -260,8 +262,8 @@ export default function SignupPage() {
                 <Input
                   type="password"
                   name="confirmPassword"
-                  label="Confirm Password"
-                  placeholder="Re-enter your password"
+                  label={copy.confirm}
+                  placeholder={copy.confirmPlaceholder}
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
@@ -270,13 +272,13 @@ export default function SignupPage() {
                 />
 
                 <div className="text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg dark:bg-gray-800 dark:text-gray-300">
-                  <p className="font-medium text-gray-700 mb-1 dark:text-gray-200">Password requirements:</p>
+                  <p className="font-medium text-gray-700 mb-1 dark:text-gray-200">{copy.requirements}</p>
                   <ul className="space-y-1 list-disc list-inside">
-                    <li className={formData.password.length >= 6 ? 'text-green-600' : ''}>
-                      At least 6 characters
+                    <li className={formData.password.length >= 6 ? 'text-green-700 dark:text-green-300' : ''}>
+                      {copy.minLength}
                     </li>
-                    <li className={formData.password === formData.confirmPassword && formData.password ? 'text-green-600' : ''}>
-                      Passwords match
+                    <li className={formData.password === formData.confirmPassword && formData.password ? 'text-green-700 dark:text-green-300' : ''}>
+                      {copy.match}
                     </li>
                   </ul>
                 </div>
@@ -288,32 +290,32 @@ export default function SignupPage() {
                   disabled={loading || success || !isBackendConfigured}
                   loading={loading}
                 >
-                  {loading ? 'Creating account...' : 'Create Account'}
+                  {loading ? copy.pending : copy.submit}
                 </Button>
               </form>
 
               {/* Sign In Link */}
               <div className="mt-6 text-center text-sm">
-                <span className="text-gray-600">Already have an account? </span>
+                <span className="text-gray-600 dark:text-gray-300">{copy.hasAccount}{' '}</span>
                 <Link
                   to="/login"
-                  className="text-primary-600 hover:text-primary-700 font-medium"
+                  className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
                 >
-                  Sign in
+                  {copy.signin}
                 </Link>
               </div>
             </CardBody>
           </Card>
 
           {/* Footer */}
-          <div className="mt-6 text-center text-xs text-gray-500">
-            By signing up, you agree to our{' '}
-            <Link to="/terms" className="text-primary-600 hover:text-primary-700">
-              Terms of Service
+          <div className="mt-6 text-center text-xs text-gray-600 dark:text-gray-300">
+            {copy.legalPrefix}{' '}
+            <Link to="/terms" className="text-primary-700 hover:text-primary-500 dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">
+              {common.terms}
             </Link>{' '}
-            and{' '}
-            <Link to="/privacy" className="text-primary-600 hover:text-primary-700">
-              Privacy Policy
+            {common.and}{' '}
+            <Link to="/privacy" className="text-primary-700 hover:text-primary-500 dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus">
+              {common.privacy}
             </Link>
           </div>
         </motion.div>

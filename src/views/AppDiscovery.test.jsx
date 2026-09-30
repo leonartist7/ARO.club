@@ -9,8 +9,14 @@ import AppShell from '../components/app/AppShell'
 import { fv1DiscoveryCopy, getDiscoveryFormationStatus } from '../i18n/fv1/discovery'
 import AppCreatePage from './AppCreatePage'
 import AppHomePage from './AppHomePage'
+import AppCircleRoomPage from './AppCircleRoomPage'
+import AppInsightsPage from './AppInsightsPage'
+import AppOpportunityDetailPage from './AppOpportunityDetailPage'
 import AppOpportunitiesPage from './AppOpportunitiesPage'
+import AppPassportPage from './AppPassportPage'
 import AppWorldPage from './AppWorldPage'
+import { getFv1JourneyCopy } from '../i18n/fv1/journey'
+import { getFv1ReturnCopy } from '../i18n/fv1/return'
 
 const routes = [
   {
@@ -21,9 +27,11 @@ const routes = [
       { path: 'world', element: <AppWorldPage /> },
       { path: 'opportunities', element: <AppOpportunitiesPage /> },
       { path: 'create', element: <AppCreatePage /> },
-      { path: 'opportunities/:id', element: <p>Example detail target</p> },
+      { path: 'opportunities/:id', element: <AppOpportunityDetailPage /> },
+      { path: 'circles/:id', element: <AppCircleRoomPage /> },
       { path: 'profile', element: <p>Profile target</p> },
-      { path: 'insights', element: <p>Insights target</p> },
+      { path: 'insights', element: <AppInsightsPage /> },
+      { path: 'passport', element: <AppPassportPage /> },
       { path: 'library', element: <p>Library target</p> },
     ],
   },
@@ -159,9 +167,9 @@ afterEach(() => {
 })
 
 describe('FV-1 F4 Create exits and local Seed Studio', () => {
-  it('routes the shell Close and both Create World-return affordances to /app/world', () => {
+  it('keeps the central World exit and explicit Studio exits available', () => {
     renderDiscovery('/app/create')
-    expect(screen.getByRole('link', { name: 'Back to World' }).getAttribute('href')).toBe('/app/world')
+    expect(screen.getAllByRole('link', { name: 'Back to World' }).some((link) => link.getAttribute('href') === '/app/world')).toBe(true)
     expect(screen.getByRole('link', { name: 'Close Seed Studio and return to World' }).getAttribute('href')).toBe('/app/world')
     expect(screen.getByRole('link', { name: 'Return to World' }).getAttribute('href')).toBe('/app/world')
   })
@@ -208,7 +216,7 @@ describe('FV-1 F4 truthful discovery', () => {
     expect(screen.queryByRole('tab')).toBeNull()
     expect(screen.getAllByRole('img', { name: 'Search preview. Not available in this preview.' }).length).toBeGreaterThanOrEqual(2)
     expect(screen.getByRole('img', { name: 'Status filters preview. Not available in this preview.' })).toBeTruthy()
-    expect(screen.getAllByText('Not available in this preview.').length).toBeGreaterThanOrEqual(2)
+    expect(screen.getByText('Explore three fictional examples. Search and filters are not active.')).toBeTruthy()
   })
 
   it('keeps discovery links pointed at existing intended routes', () => {
@@ -226,6 +234,8 @@ describe('FV-1 F4 truthful discovery', () => {
     const home = renderDiscovery('/app')
     const homeHero = screen.getByAltText('A person standing beside an illuminated portal overlooking a river at sunset')
     expect(homeHero.getAttribute('src')).toBe('/fv1/aro-portal-home-v1-1440.webp')
+    expect(homeHero.className).toContain('object-contain')
+    expect(home.container.querySelector('[data-fv1-home-scene]')?.className).toContain('aspect-video')
     expect(homeHero.getAttribute('srcset')).toContain('/fv1/aro-portal-home-v1-640.webp 640w')
     expect(homeHero.getAttribute('srcset')).toContain('/fv1/aro-portal-home-v1-1440.webp 1440w')
     expect(homeHero.getAttribute('sizes')).toBe('(max-width: 767px) 100vw, 1440px')
@@ -234,6 +244,7 @@ describe('FV-1 F4 truthful discovery', () => {
     const opportunitiesView = renderDiscovery('/app/opportunities')
     const riverCard = screen.getByAltText('A small photography group gathering beside a river at golden hour')
     expect(riverCard.getAttribute('src')).toBe('/fv1/aro-river-light-circle-v1-1440.webp')
+    expect(riverCard.className).toContain('object-contain')
     expect(riverCard.getAttribute('srcset')).toContain('/fv1/aro-river-light-circle-v1-640.webp 640w')
     expect(riverCard.getAttribute('sizes')).toBe('(max-width: 767px) 100vw, 640px')
     opportunitiesView.unmount()
@@ -241,6 +252,8 @@ describe('FV-1 F4 truthful discovery', () => {
     const world = renderDiscovery('/app/world')
     const miniature = world.container.querySelector('img[src*="aro-living-miniature-calgary-v1"]')
     expect(miniature).toBeTruthy()
+    expect(miniature.className).toContain('object-contain')
+    expect(miniature.parentElement?.className).toContain('aspect-[3/2]')
     expect(miniature.getAttribute('srcset')).toContain('/fv1/aro-living-miniature-calgary-v1-640.webp 640w')
     expect(miniature.getAttribute('srcset')).toContain('/fv1/aro-living-miniature-calgary-v1-1440.webp 1440w')
   })
@@ -270,7 +283,7 @@ describe('FV-1 F4 language parity', () => {
 const browserEvidenceIt = process.env.FV1_BROWSER_EVIDENCE === 'true' ? it : it.skip
 
 describe('FV-1 F4 browser acceptance evidence', () => {
-  browserEvidenceIt('verifies responsive routes, targets, crops, contrast and local-only Create behavior', async () => {
+  browserEvidenceIt('verifies responsive routes, image fit, targets, contrast and local-only Create behavior', async () => {
     const { base, server, output } = await startF4BrowserServer()
     const executablePath = resolveBrowserExecutable()
     let browser
@@ -280,7 +293,11 @@ describe('FV-1 F4 browser acceptance evidence', () => {
     const routeCases = [
       { route: '/app', essential: fv1DiscoveryCopy.en.home.seedPrompt, image: 'home' },
       { route: '/app/world', essential: fv1DiscoveryCopy.en.world.instruction, image: 'world' },
-      { route: '/app/opportunities', essential: fv1DiscoveryCopy.en.unavailable, image: 'opportunities' },
+      { route: '/app/opportunities', essential: fv1DiscoveryCopy.en.opportunities.intro, image: 'opportunities' },
+      { route: '/app/opportunities/river-photo-walk', essential: 'River light photo walk', image: 'detail' },
+      { route: '/app/circles/river-photo-walk', essential: getFv1JourneyCopy('en').unsentChat, image: 'circle' },
+      { route: '/app/insights', essential: getFv1ReturnCopy('en').insights.noticeTitle, image: 'insights' },
+      { route: '/app/passport', essential: getFv1ReturnCopy('en').passport.noticeTitle, image: 'passport' },
       { route: '/app/create', essential: fv1DiscoveryCopy.en.create.intro, image: null },
     ]
     const evidence = {
@@ -364,14 +381,28 @@ describe('FV-1 F4 browser acceptance evidence', () => {
             } else if (routeCase.image === 'opportunities') {
               imageEvidence = await readImageEvidence(page.getByAltText('A small photography group gathering beside a river at golden hour'))
               expect(imageEvidence.currentSrc).toContain('aro-river-light-circle-v1-640.webp')
+            } else if (routeCase.image === 'detail') {
+              imageEvidence = await readImageEvidence(page.locator('[data-fv1-opportunity-image] img'))
+              expect(imageEvidence.currentSrc).toContain('aro-river-light-circle-v1')
+            } else if (routeCase.image === 'circle') {
+              imageEvidence = await readImageEvidence(page.locator('[data-fv1-circle-scene] img'))
+              expect(imageEvidence.currentSrc).toContain('aro-river-light-circle-v1')
+            } else if (routeCase.image === 'insights') {
+              imageEvidence = await readImageEvidence(page.locator('[data-fv1-insights-scene] img'))
+              expect(imageEvidence.currentSrc).toContain('aro-season-discovery-v1')
+            } else if (routeCase.image === 'passport') {
+              imageEvidence = await readImageEvidence(page.locator('[data-fv1-passport-scene] img'))
+              expect(imageEvidence.currentSrc).toContain('aro-passport-life-map-v1')
             }
 
             if (imageEvidence) {
               expect(imageEvidence.naturalWidth).toBeGreaterThan(0)
               expect(imageEvidence.naturalHeight).toBeGreaterThan(0)
-              expect(imageEvidence.objectFit).toBe('cover')
+              expect(imageEvidence.objectFit).toBe('contain')
               expect(imageEvidence.width).toBeGreaterThan(0)
               expect(imageEvidence.height).toBeGreaterThan(0)
+              expect(imageEvidence.parentWidth).toBeGreaterThan(0)
+              expect(imageEvidence.parentHeight).toBeGreaterThan(0)
               if (theme === 'light' && (width === 360 || width === 1440)) evidence.imageSamples[`${routeCase.image}-${width}`] = imageEvidence
             }
 
@@ -387,7 +418,8 @@ describe('FV-1 F4 browser acceptance evidence', () => {
             if (routeCase.route === '/app/opportunities') {
               expect(await page.locator('main#app-main').getByRole('textbox').count()).toBe(0)
               expect(await page.locator('main#app-main').getByRole('tab').count()).toBe(0)
-              expect(await page.locator('main#app-main').getByText(fv1DiscoveryCopy.en.unavailable, { exact: true }).count()).toBeGreaterThanOrEqual(2)
+              expect(await page.locator('main#app-main').getByRole('img', { name: `${fv1DiscoveryCopy.en.opportunities.searchPreview}. ${fv1DiscoveryCopy.en.unavailable}` }).count()).toBe(1)
+              expect(await page.locator('main#app-main').getByRole('img', { name: `${fv1DiscoveryCopy.en.opportunities.filterPreview}. ${fv1DiscoveryCopy.en.unavailable}` }).count()).toBe(1)
             }
 
             expect(pageErrors, `${routeCase.route} page errors at ${width}px/${theme}: ${pageErrors.join(' | ')}`).toEqual([])
@@ -419,7 +451,7 @@ describe('FV-1 F4 browser acceptance evidence', () => {
       evidence.createNetworkSideEffects = serviceRequests.length - beforeInteraction
       await createContext.close()
 
-      expect(evidence.observations).toBe(40)
+      expect(evidence.observations).toBe(80)
       expect(evidence.createNetworkSideEffects).toBe(0)
       process.stdout.write(`F4_BROWSER_EVIDENCE ${JSON.stringify(evidence)}\n`)
     } catch (error) {

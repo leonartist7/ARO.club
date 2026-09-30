@@ -4,21 +4,21 @@ import { Suspense } from "react";
 import Providers from "./providers";
 import "../index.css";
 export const metadata: Metadata = {
-  title: "ARO — The Human Opportunity Network",
+  metadataBase: new URL("https://aro-club.vercel.app"),
+  title: "ARO — Life opens up",
   description:
-    "ARO helps human intent, capability, people, place and time form into meaningful real-world opportunities.",
+    "Discover opportunities. Share your skills. Meet your people.",
   openGraph: {
     type: "website",
-    title: "ARO — The Human Opportunity Network",
-    description: "AI for a more human world.",
-    images: ["https://aro.club/og-image.jpg"],
+    siteName: "ARO",
+    title: "ARO — Life opens up",
+    description: "Discover opportunities. Share your skills. Meet your people.",
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://aro.club/twitter-image.jpg"],
   },
 };
-export const viewport: Viewport = { themeColor: "#F4D000" };
+export const viewport: Viewport = { themeColor: "#F05A28" };
 export default function RootLayout({
   children,
 }: {

@@ -323,7 +323,26 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           stage = `ONBOARDING_LANGUAGE_CHOOSE_${width}_${theme.toUpperCase()}`;
           await languageControls.click();
           stage = `ONBOARDING_LANGUAGE_SKIP_${width}_${theme.toUpperCase()}`;
-          await page.getByRole('button', { name: 'Skip remaining' }).click();
+          try {
+            await page.getByRole('button', { name: 'Skip remaining' }).click();
+          } catch (error) {
+            // Geometry only: never log DOM text, account data or service errors.
+            const layout = await page.getByRole('button', { name: 'Skip remaining' }).evaluateAll(elements => elements.map(element => {
+              const rect = element.getBoundingClientRect();
+              const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+              return {
+                button: rect.toJSON(),
+                main: document.querySelector('main')?.getBoundingClientRect().toJSON(),
+                footer: document.querySelector('footer')?.getBoundingClientRect().toJSON(),
+                receivesPointer: hit === element || element.contains(hit),
+                interceptedByFooter: Boolean(hit?.closest('footer')),
+              };
+            }));
+            console.info('RB7_ONBOARDING_LAYOUT', JSON.stringify({ caseId, layout }));
+            requireCondition(await page.locator('input[type="email"], input[type="password"]').count() === 0, 'JOURNEY_CAPTURE_CREDENTIAL_INPUT_PRESENT');
+            await page.screenshot({ path: `${screenshotDir}/rb7-${caseId}-language-skip-failure.png`, animations: 'disabled', fullPage: true });
+            throw error;
+          }
           stage = `ONBOARDING_EXPERIENCE_TRANSITION_${width}_${theme.toUpperCase()}`;
           const experienceControls = page.getByRole('button', { name: 'Choose experience', exact: true });
           stage = `ONBOARDING_EXPERIENCE_CHOOSE_${width}_${theme.toUpperCase()}`;

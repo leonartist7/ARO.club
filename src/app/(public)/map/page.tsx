@@ -1,4 +1,4 @@
-import Page from "../../../views/MapViewPage";
+import LegacyFixtureState from "../../../components/features/LegacyFixtureState";
 export default function RoutePage() {
-  return <Page />;
+  return <LegacyFixtureState kind="map" />;
 }

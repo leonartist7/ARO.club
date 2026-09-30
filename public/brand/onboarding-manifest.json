@@ -1,0 +1,69 @@
+{
+  "version": "1.1.0",
+  "created": "2026-09-27",
+  "tool": "OpenAI image_gen imagegen",
+  "mode": "generated from approved reference and previous accepted scene references",
+  "exportScript": "scripts/export-onboarding-art.py --check",
+  "exportProfile": {"python": "3.12.14", "pillow": "12.3.0", "libwebp": "1.6.0", "resize": "LANCZOS", "webpQuality": 84, "webpMethod": 6},
+  "reference": "docs/rebrand/reference/ARO-approved.png (art direction only; SHA-256 5F49515ECBC942C22C1375AA8A8858809D2E8A04177115B58D188E33EE5475E1)",
+  "rights": "Generated for the founder-approved ARO rebrand; retain provenance and review commercial usage with the project's asset policy before release.",
+  "direction": "Warm optimistic adult activity scenes, natural golden light, tactile wood and fabric, yellow open circular portal with one detached dot, diverse believable people, consistent rust sweater and green knit cap across related scenes. No text, buttons, prices or inventory claims in artwork. The active teaching scene is adult language/community practice in a public room.",
+  "assets": [
+    {
+      "id": "learn",
+      "original": "artifacts/ARO-RB2/originals/learn.png",
+      "generationReference": "exec-b11f41b2-e847-47f5-9b4f-d477096c1c50.png",
+      "promptSummary": "Adult beginner learning guitar with a helpful adult mentor in a warm tactile room; yellow portal in the background; match approved ARO palette and human proportions; no UI text.",
+      "placement": "/onboarding/preview scene 1; /explore honest no-supply state; How it Works",
+      "exports": ["/brand/onboarding-learn-640.webp", "/brand/onboarding-learn-1280.webp"],
+      "dimensions": ["640x480", "1280x960"],
+      "bytes": [62540, 157776],
+      "focalPoint": "mentor and learner hands at center",
+      "crop": "4:3 with central subject safe at mobile width",
+      "theme": "same warm illustration in light and dark UI",
+      "accessibility": "decorative; adjacent live text communicates the scene"
+    },
+    {
+      "id": "teach",
+      "original": "artifacts/ARO-RB2/originals/teach.png",
+      "generationReference": "exec-9c8622a8-1a9b-4b25-a6eb-91c2db258ffa.png",
+      "promptSummary": "Continue the same adult characters, clothing, materials and light in a beginner skill teaching moment; believable hands and tools; yellow portal; no UI text or earnings claim.",
+      "placement": "Superseded scene-2 original, retained for provenance; not used in the interface because pottery is outside the approved teaching preview category",
+      "exports": ["/brand/onboarding-teach-640.webp", "/brand/onboarding-teach-1280.webp"],
+      "dimensions": ["640x480", "1280x960"],
+      "bytes": [52242, 126268],
+      "focalPoint": "adult teacher and learner activity at center",
+      "crop": "4:3 with central subject safe at mobile width",
+      "theme": "same warm illustration in light and dark UI",
+      "accessibility": "decorative; adjacent live text communicates the scene"
+    },
+    {
+      "id": "teach-language-v2",
+      "original": "artifacts/ARO-RB2/originals/teach-language-v2.png",
+      "generationReference": "exec-8ac1effd-9fa0-4218-831a-24a29ce1bfdf.png",
+      "promptSummary": "Same adult characters and warm portal art direction in a public-room conversational language practice with blank cards; no text, prices, pottery, food, childcare or verified-class claim.",
+      "placement": "/onboarding/preview scene 2; For Teachers",
+      "exports": ["/brand/onboarding-teach-language-v2-640.webp", "/brand/onboarding-teach-language-v2-1280.webp"],
+      "dimensions": ["640x480", "1280x960"],
+      "bytes": [54702, 123024],
+      "focalPoint": "adult teacher and learners' faces and blank conversation cards at center",
+      "crop": "4:3 with central faces safe at mobile width",
+      "theme": "same warm illustration in light and dark UI",
+      "accessibility": "decorative; adjacent live text communicates the scene"
+    },
+    {
+      "id": "connect",
+      "original": "artifacts/ARO-RB2/originals/connect.png",
+      "generationReference": "exec-8930b8fb-2654-427d-9cfc-9abe20cdb8fc.png",
+      "promptSummary": "Continue the same visual world with several diverse adults meeting around a believable creative activity, warm light and yellow open portal; no UI text or fabricated class listing.",
+      "placement": "/onboarding/preview scene 3; public Home hero; RB4 legacy deep-link recovery; About, FAQ, Contact; RB6 public bookings and leaderboard future states",
+      "exports": ["/brand/onboarding-connect-640.webp", "/brand/onboarding-connect-1280.webp"],
+      "dimensions": ["640x480", "1280x960"],
+      "bytes": [65630, 163214],
+      "focalPoint": "group and activity centered for narrow crop",
+      "crop": "4:3 with 176px short-phone and 256px desktop crop in choice scene",
+      "theme": "same warm illustration in light and dark UI",
+      "accessibility": "decorative; adjacent live text communicates the scene"
+    }
+  ]
+}

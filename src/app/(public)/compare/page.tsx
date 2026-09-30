@@ -1,4 +1,4 @@
-import Page from "../../../views/ComparePage";
+import LegacyFixtureState from "../../../components/features/LegacyFixtureState";
 export default function RoutePage() {
-  return <Page />;
+  return <LegacyFixtureState kind="compare" />;
 }

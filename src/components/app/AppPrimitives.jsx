@@ -32,12 +32,13 @@ export function StatusPill({ children, tone = 'neutral' }) {
   );
 }
 
-export function AppSectionHeading({ eyebrow, title, children, className }) {
+export function AppSectionHeading({ eyebrow, title, children, className, level = 2 }) {
+  const Heading = level === 1 ? 'h1' : 'h2';
   return (
     <div className={cn('flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between', className)}>
       <div>
         {eyebrow && <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-600 dark:text-primary-300">{eyebrow}</p>}
-        <h2 className="font-display text-3xl leading-none tracking-[-0.025em] text-ink dark:text-bone">{title}</h2>
+        <Heading className={cn('text-balance font-display leading-tight tracking-[-0.025em] text-ink dark:text-bone', level === 1 ? 'text-4xl sm:text-5xl' : 'text-3xl')}>{title}</Heading>
       </div>
       {children}
     </div>
@@ -48,7 +49,7 @@ export function AppAvatar({ initials, size = 'md' }) {
   const sizes = { sm: 'h-8 w-8 text-[10px]', md: 'h-10 w-10 text-xs', lg: 'h-14 w-14 text-sm' };
 
   return (
-    <span className={cn('inline-flex shrink-0 items-center justify-center rounded-full bg-primary-500 font-bold tracking-wide text-ink', sizes[size] ?? sizes.md)} aria-hidden="true">
+    <span className={cn('inline-flex shrink-0 items-center justify-center rounded-full bg-brand-orange font-bold tracking-wide text-ink', sizes[size] ?? sizes.md)} aria-hidden="true">
       {initials}
     </span>
   );

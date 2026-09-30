@@ -1,17 +1,19 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '../i18n/translations';
+import { englishLightRelease } from '../lib/releaseScope';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
   const [language,setLanguage]=useState('en');
   const [ready,setReady]=useState(false);
-  useEffect(()=>{try{const saved=localStorage.getItem('conversa-language');if(translations[saved])setLanguage(saved);}catch{ /* Storage may be disabled. */ }setReady(true);},[]);
+  useEffect(()=>{if (!englishLightRelease) try{const saved=localStorage.getItem('conversa-language');if(translations[saved])setLanguage(saved);}catch{ /* Storage may be disabled. */ }setReady(true);},[]);
 
   useEffect(() => {
     // Save to localStorage whenever language changes
-    if(ready)try{localStorage.setItem('conversa-language', language);}catch{ /* Storage may be disabled. */ }
+    if(ready && !englishLightRelease)try{localStorage.setItem('conversa-language', language);}catch{ /* Storage may be disabled. */ }
+    if (ready) document.documentElement.lang = language;
   }, [language, ready]);
 
   const t = (key) => {
@@ -30,7 +32,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const changeLanguage = (lang) => {
-    if (translations[lang]) {
+    if (!englishLightRelease && translations[lang]) {
       setLanguage(lang);
     }
   };
@@ -49,3 +51,5 @@ export const useLanguage = () => {
   }
   return context;
 };
+
+export const useOptionalLanguage = () => useContext(LanguageContext);

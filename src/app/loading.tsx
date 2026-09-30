@@ -1,7 +1,5 @@
+import { LoadingState } from "../components/brand/SupportState";
+
 export default function Loading() {
-  return (
-    <p role="status" className="p-8">
-      Loading ARO…
-    </p>
-  );
+  return <LoadingState />;
 }

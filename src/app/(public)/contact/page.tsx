@@ -1,4 +1,4 @@
-import Page from "../../../views/ContactPage";
+import ContactDraftPage from "../../../views/ContactDraftPage";
 export default function RoutePage() {
-  return <Page />;
+  return <ContactDraftPage />;
 }

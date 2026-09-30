@@ -30,6 +30,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Clear checked-in RB16 output before verification
+        run: |
+          node -e "require('node:fs').rmSync('artifacts/ARO-RB16/after', { recursive: true, force: true })"
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -37,7 +40,81 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
+      - name: RB13 compact footer browser check
+        run: node scripts/verify-rb13-footer.mjs
+      - name: Retain RB13 footer screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb13-footer
+          path: artifacts/ARO-RB13/footer
+          retention-days: 7
+      - name: RB16 visual coherence browser check
+        run: node scripts/verify-rb16.mjs
+      - name: Retain RB16 visual coherence screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb16-visual-coherence
+          path: artifacts/ARO-RB16/after
+          if-no-files-found: error
+          retention-days: 7
       - run: npm test -- src/views/AppDiscovery.test.jsx src/views/AppPersonal.test.jsx src/views/AppReturn.test.jsx
         env:
           FV1_BROWSER_EVIDENCE: 'true'
+      - name: RB7 preferences browser regression
+        run: node scripts/verify-rb7.mjs
+      - name: Retain RB7 synthetic preferences evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb7-preferences
+          path: artifacts/ARO-RB7/cloud-continuation
+          retention-days: 7
       - run: npm run test:e2e
+
+  english-light-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_ARO_RELEASE_SCOPE: english-light
+      - run: node scripts/verify-rb11.mjs
+      - name: Retain release-scope screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb11-english-light
+          path: artifacts/ARO-RB11/hosted
+          retention-days: 7
+
+  public-website-redesign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_ARO_RELEASE_SCOPE: english-light
+      - run: node scripts/verify-rb12.mjs
+      - name: Retain public website screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb12-public-website
+          path: artifacts/ARO-RB12/hosted
+          retention-days: 7

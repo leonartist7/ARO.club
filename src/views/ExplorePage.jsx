@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { Link } from '../lib/navigation';
-import { Search, Filter, SlidersHorizontal, Map, X } from 'lucide-react';
+import { Search, Filter, SlidersHorizontal, Map, X, ArrowRight } from 'lucide-react';
 import ExperienceCard from '../components/features/ExperienceCard';
 import Input from '../components/ui/Input';
 import Select from '../components/ui/Select';
@@ -16,9 +16,11 @@ import { usePlayerStore } from '../store/usePlayerStore';
 import { LANGUAGES, CITIES, SKILL_LEVELS } from '../data/constants';
 import { useLanguage } from '../contexts/LanguageContext';
 import { cn } from '../utils/cn';
+import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 
 export default function ExplorePage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const journey = rebrandJourneyCopy[language] ?? rebrandJourneyCopy.en;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -49,6 +51,7 @@ export default function ExplorePage() {
     () => createdExperiences.filter((experience) => experience.status !== 'draft'),
     [createdExperiences]
   );
+  const hasVerifiedSupply = [...experiencesData, ...publishedByPlayer].some((experience) => experience.source === 'verified-live');
 
   const filteredExperiences = useMemo(() => {
     // Experiences the signed-in teacher published show up alongside the seed
@@ -56,7 +59,7 @@ export default function ExplorePage() {
     let results = [
       ...experiencesData,
       ...publishedByPlayer,
-    ];
+    ].filter((experience) => experience.source === 'verified-live');
 
     // Search filter
     if (searchQuery) {
@@ -178,6 +181,22 @@ export default function ExplorePage() {
     { key: 'buddy', label: t('explore.chips.buddy') },
     { key: 'brave', label: t('explore.chips.brave') },
   ];
+
+  if (!hasVerifiedSupply) {
+    return <div className="min-h-screen bg-bone text-ink dark:bg-surface-dark dark:text-bone">
+      <section className="bg-brand-orange text-ink dark:bg-primary-800 dark:text-bone" aria-labelledby="explore-preview-title">
+        <div className="mx-auto grid max-w-[90rem] lg:min-h-[35rem] lg:grid-cols-[52%_48%]">
+          <div className="flex flex-col justify-center px-4 pb-0 pt-9 sm:px-8 sm:pt-14 lg:px-12 lg:py-16 xl:px-16">
+            <p className="text-sm font-extrabold uppercase tracking-[0.1em]">{journey.benefits}</p>
+            <h1 id="explore-preview-title" className="mt-5 max-w-[12ch] font-display text-[2.65rem] font-extrabold leading-[1.03] tracking-[-0.035em] text-bone sm:text-6xl">{journey.find}</h1>
+            <p className="mt-5 max-w-xl text-base font-semibold leading-7 sm:text-lg sm:leading-8">{journey.exploreNote}</p>
+            <div className="mt-6 flex flex-wrap gap-3"><Link to="/onboarding/preview" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-bone px-6 font-extrabold text-ink transition-colors hover:bg-brand-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-brand-orange">{journey.start}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><Link to="/for-teachers" className="inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-ink px-5 font-bold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:border-bone dark:text-bone">{journey.teach}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+          </div>
+          <picture className="mt-7 block h-60 overflow-hidden bg-brand-yellow sm:mt-10 sm:h-96 lg:mt-0 lg:h-full"><source srcSet="/brand/onboarding-learn-640.webp 640w, /brand/onboarding-learn-1280.webp 1280w" sizes="(min-width: 1024px) 48vw, 100vw" type="image/webp" /><img src="/brand/onboarding-learn-640.webp" alt="" width="640" height="480" decoding="async" className="h-full w-full object-cover object-[center_43%]" /></picture>
+        </div>
+      </section>
+    </div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">

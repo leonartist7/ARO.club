@@ -52,25 +52,34 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@font-face {
-  font-family: 'Noise Order';
-  src: url('/fonts/noise-order/NoiseOrder.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Keep legacy primary text readable in dark UI while action backgrounds retain primary-500. */
+  .dark :where(.text-primary-500),
+  .dark :where(.hover\:text-primary-500:hover),
+  .dark .dark\:text-primary-400,
+  .dark .group:hover .group-hover\:text-primary-500 {
+    color: #FA9471 !important;
+  }
+}
+
+:root {
+  --aro-orange-rgb: 240 90 40;
+  --aro-yellow-rgb: 255 212 71;
+  --aro-ivory-rgb: 255 248 238;
+  --aro-charcoal-rgb: 37 36 32;
+}
+
 @layer base {
   body {
-    @apply bg-bone font-sans text-ink antialiased dark:bg-gray-950 dark:text-bone;
+    @apply bg-bone font-sans text-ink antialiased dark:bg-surface-dark dark:text-bone;
   }
 
   h1, h2 {
-    @apply font-display font-normal;
+    @apply font-display font-bold;
     font-synthesis: none;
   }
 
@@ -96,7 +105,7 @@
   }
 
   .aro-wordmark {
-    @apply font-display text-3xl font-normal leading-none tracking-normal;
+    @apply font-display text-3xl font-bold leading-none tracking-tight;
     font-synthesis: none;
   }
 
@@ -122,61 +131,61 @@
 
   .aro-grid {
     background-image:
-      linear-gradient(to right, rgb(40 36 32 / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(40 36 32 / 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgb(var(--aro-charcoal-rgb) / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--aro-charcoal-rgb) / 0.055) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 
   .dark .aro-grid {
     background-image:
-      linear-gradient(to right, rgb(246 240 230 / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(246 240 230 / 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgb(var(--aro-ivory-rgb) / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--aro-ivory-rgb) / 0.055) 1px, transparent 1px);
   }
 
   .aro-ambient-field {
     background:
-      radial-gradient(circle at 88% 5%, rgb(244 208 0 / 0.16), transparent 27rem),
-      radial-gradient(circle at 5% 54%, rgb(245 130 32 / 0.12), transparent 25rem),
-      linear-gradient(to right, rgb(40 36 32 / 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(40 36 32 / 0.045) 1px, transparent 1px);
+      radial-gradient(circle at 88% 5%, rgb(var(--aro-yellow-rgb) / 0.16), transparent 27rem),
+      radial-gradient(circle at 5% 54%, rgb(var(--aro-orange-rgb) / 0.12), transparent 25rem),
+      linear-gradient(to right, rgb(var(--aro-charcoal-rgb) / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--aro-charcoal-rgb) / 0.045) 1px, transparent 1px);
     background-size: auto, auto, 56px 56px, 56px 56px;
     mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
   }
 
   .dark .aro-ambient-field {
     background:
-      radial-gradient(circle at 88% 5%, rgb(244 208 0 / 0.18), transparent 27rem),
-      radial-gradient(circle at 5% 54%, rgb(245 130 32 / 0.1), transparent 25rem),
-      linear-gradient(to right, rgb(246 240 230 / 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(246 240 230 / 0.045) 1px, transparent 1px);
+      radial-gradient(circle at 88% 5%, rgb(var(--aro-yellow-rgb) / 0.18), transparent 27rem),
+      radial-gradient(circle at 5% 54%, rgb(var(--aro-orange-rgb) / 0.1), transparent 25rem),
+      linear-gradient(to right, rgb(var(--aro-ivory-rgb) / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--aro-ivory-rgb) / 0.045) 1px, transparent 1px);
     background-size: auto, auto, 56px 56px, 56px 56px;
   }
 
   .aro-field-grid {
     background:
-      radial-gradient(circle at center, rgb(245 130 32 / 0.18), transparent 31%),
-      linear-gradient(to right, rgb(246 240 230 / 0.065) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(246 240 230 / 0.065) 1px, transparent 1px);
+      radial-gradient(circle at center, rgb(var(--aro-orange-rgb) / 0.18), transparent 31%),
+      linear-gradient(to right, rgb(var(--aro-ivory-rgb) / 0.065) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--aro-ivory-rgb) / 0.065) 1px, transparent 1px);
     background-size: auto, 40px 40px, 40px 40px;
   }
 
   .aro-signal-path {
     fill: none;
-    stroke: rgb(246 240 230 / 0.12);
+    stroke: rgb(var(--aro-ivory-rgb) / 0.12);
     stroke-width: 2;
     stroke-dasharray: 5 9;
     transition: stroke 180ms ease, stroke-width 180ms ease, stroke-dashoffset 500ms ease;
   }
 
   .aro-signal-path.is-active {
-    stroke: rgb(245 130 32 / 0.9);
+    stroke: rgb(var(--aro-orange-rgb) / 0.9);
     stroke-width: 3;
     stroke-dashoffset: -28;
   }
 
   .aro-aperture {
     box-shadow:
-      0 0 0 12px rgb(246 240 230 / 0.05),
+      0 0 0 12px rgb(var(--aro-ivory-rgb) / 0.05),
       0 24px 60px rgb(0 0 0 / 0.28);
     transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, transform 220ms ease;
   }
@@ -187,7 +196,7 @@
 
   .aro-aperture.is-formed {
     box-shadow:
-      0 0 0 12px rgb(245 130 32 / 0.16),
+      0 0 0 12px rgb(var(--aro-orange-rgb) / 0.16),
       0 24px 60px rgb(0 0 0 / 0.3);
   }
 }

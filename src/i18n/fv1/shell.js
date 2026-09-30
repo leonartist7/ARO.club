@@ -1,5 +1,8 @@
 export const fv1ShellCopy = {
   en: {
+    create: 'Create',
+    appHome: 'ARO app home', yourWorld: 'Your world', searchPreview: 'Search preview.', notificationsPreview: 'Notifications preview.', profile: 'profile', skipMain: 'Skip to main content', primaryNavigation: 'Primary app navigation',
+    nav: { home: 'Home', world: 'World', insights: 'Insights', library: 'Library' },
     notice: 'Fictional preview. No live accounts, reservations or payments.',
     unavailable: 'Not available in this preview.',
     unavailableTitle: 'Example unavailable',
@@ -7,6 +10,9 @@ export const fv1ShellCopy = {
     backToWorld: 'Back to World',
   },
   fr: {
+    create: 'Créer',
+    appHome: 'Accueil de l’application ARO', yourWorld: 'Votre monde', searchPreview: 'Aperçu de la recherche.', notificationsPreview: 'Aperçu des notifications.', profile: 'profil', skipMain: 'Aller au contenu principal', primaryNavigation: 'Navigation principale de l’application',
+    nav: { home: 'Accueil', world: 'Monde', insights: 'Aperçus', library: 'Bibliothèque' },
     notice: 'Aperçu fictif. Aucun compte, réservation ni paiement réel.',
     unavailable: 'Indisponible dans cet aperçu.',
     unavailableTitle: 'Exemple indisponible',
@@ -14,6 +20,9 @@ export const fv1ShellCopy = {
     backToWorld: 'Retour au Monde',
   },
   es: {
+    create: 'Crear',
+    appHome: 'Inicio de la aplicación ARO', yourWorld: 'Tu mundo', searchPreview: 'Vista previa de búsqueda.', notificationsPreview: 'Vista previa de notificaciones.', profile: 'perfil', skipMain: 'Saltar al contenido principal', primaryNavigation: 'Navegación principal de la aplicación',
+    nav: { home: 'Inicio', world: 'Mundo', insights: 'Ideas', library: 'Biblioteca' },
     notice: 'Vista previa ficticia. No hay cuentas, reservas ni pagos reales.',
     unavailable: 'No disponible en esta vista previa.',
     unavailableTitle: 'Ejemplo no disponible',

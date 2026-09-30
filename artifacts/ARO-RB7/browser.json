@@ -1,0 +1,40 @@
+[
+  {
+    "scenario": "mobile public",
+    "status": 200,
+    "headerHasAlwaysVisibleToggles": false,
+    "escapeRestoredFocus": true,
+    "storedTheme": "dark",
+    "storedLanguage": "fr",
+    "hasBottomTabBar": false,
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "desktop system preference",
+    "status": 200,
+    "opensAtChoice": true,
+    "escapeRestoredFocus": true,
+    "storedTheme": "system",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "onboarding",
+    "status": 200,
+    "storedLanguage": "es",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "scenario": "app settings",
+    "status": 200,
+    "storedTheme": "dark",
+    "overflow": false,
+    "errors": [],
+    "writes": []
+  }
+]

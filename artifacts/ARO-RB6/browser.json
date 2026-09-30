@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "leaderboard-320-light-en",
+    "status": 200,
+    "heading": "Every path is personal.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  },
+  {
+    "slug": "leaderboard-1440-dark-fr",
+    "status": 200,
+    "heading": "Chaque parcours est personnel.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  },
+  {
+    "slug": "leaderboard-390-light-es",
+    "status": 200,
+    "heading": "Cada camino es personal.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  },
+  {
+    "slug": "bookings-360-dark-en",
+    "status": 200,
+    "heading": "Your next table starts with a real opportunity.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  },
+  {
+    "slug": "bookings-768-light-fr",
+    "status": 200,
+    "heading": "Votre prochaine rencontre commence par une vraie occasion.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  },
+  {
+    "slug": "bookings-1440-dark-es",
+    "status": 200,
+    "heading": "Tu próxima mesa empieza con una oportunidad real.",
+    "mainLandmarks": 1,
+    "horizontalOverflow": false,
+    "hasFakeRank": false,
+    "hasCheckoutPromise": false,
+    "errors": [],
+    "writes": [],
+    "exploreNavigation": true,
+    "previewNavigation": true
+  }
+]
