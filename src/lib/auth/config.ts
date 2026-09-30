@@ -2,7 +2,7 @@ export function allowedAuthTarget(
   url: string,
   enabled: string | undefined,
   deployment?: string,
-  production?: { enabled?: string; projectRef?: string },
+  production?: { enabled?: string; projectRef?: string; promoteExistingAro?: string },
 ) {
   try {
     const target = new URL(url);
@@ -10,14 +10,17 @@ export function allowedAuthTarget(
       return false;
     if (deployment === "production") {
       const ref = production?.projectRef || "";
-      // Existing staging and quarantined/unrelated projects are never production targets.
+      // Promotion of the existing ARO backend requires a separate explicit switch.
+      const existingAro = "mibydnerayobemhnlfyl";
       const excluded = [
-        "mibydnerayobemhnlfyl", "jjgccfrwjkwknyjtbtxa", "ybhecubqnhukgpvchjay",
+        "jjgccfrwjkwknyjtbtxa", "ybhecubqnhukgpvchjay",
         "aqhsjyvophxmxgbdgjtl", "gymigzfkkjcfcmunkkzh", "bbqdhqcbjkuszfjalkcn",
         "rztxxajwpcszbgsitnup", "ugppbaavzevmdkblniim",
       ];
       return production?.enabled === "true" && /^[a-z]{20}$/.test(ref) &&
-        !excluded.includes(ref) && target.origin === `https://${ref}.supabase.co`;
+        !excluded.includes(ref) &&
+        (ref !== existingAro || production?.promoteExistingAro === "true") &&
+        target.origin === `https://${ref}.supabase.co`;
     }
     if (enabled !== "true") return false;
     return (
@@ -45,6 +48,7 @@ export const accountsEnabled =
     {
       enabled: process.env.NEXT_PUBLIC_ENABLE_PRODUCTION_ACCOUNTS,
       projectRef: process.env.NEXT_PUBLIC_PRODUCTION_SUPABASE_REF,
+      promoteExistingAro: process.env.NEXT_PUBLIC_PROMOTE_EXISTING_ARO,
     },
   );
 
