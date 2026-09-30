@@ -48,7 +48,7 @@ const DOCUMENTS = {
     sections: [
       {
         heading: 'What is stored on your device',
-        body: 'Your theme, language preference, and some prototype progress are saved in your browser. Clearing site data removes these local preferences and progress, but does not delete your account or data stored on ARO’s servers.',
+        body: 'Your theme, language preference, and some prototype progress are saved in your browser. When you sign in, first-party session cookies also hold authentication tokens and account information such as your email and provider details. Clearing site data removes these local items and signs you out, but does not delete your account or data stored on ARO’s servers.',
       },
       {
         heading: 'What leaves your device',
