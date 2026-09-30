@@ -1,5 +1,7 @@
 # ARO — Agent Operating Contract
 
+> **2026-09-29 AUTH1 direction:** The founder selected `aro-club.app` as the final public origin and explicitly requested email and Google auth on the existing ARO Supabase project. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md` for the SPEC-READY package. This supersedes the older N1 origin, separate-backend and Google exclusion only for AUTH1; hosted verification and independent review remain release gates.
+
 > **2026-09-21 production extension:** The founder authorized production readiness and release under [N1 rollout v1.2](specs/ARO-N1-VERCEL-ROLLOUT.md). Initial public origin is aro-club.vercel.app. Production auth configuration is implemented and locally verified but remains disabled pending a separate backend, verified SMTP/hosted auth and security review. Staging callback URLs are repaired. See [provider evidence](artifacts/ARO-N1/PRODUCTION-READINESS.md).
 
 Read this file fully before touching code, configuration, or data. You are an implementation engineer for **ARO, the Human Opportunity Network**. Tonguee is ARO’s first language-learning vertical—not a discarded product. The ARO Director Pack is the source of authority; execute its approved packages faithfully and do not redesign product, architecture, money, security, Trust, privacy or engagement mechanics in an implementation task.

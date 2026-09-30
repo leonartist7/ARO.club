@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- **Status:** IN-PROGRESS; production release BLOCKED pending hosted verification and independent security review
+- **Status:** SPEC-READY (founder approval 2026-09-29); implementation review in progress; production release BLOCKED pending hosted verification and independent security review
 - **Spec version:** 1.0.0
 - **Owner/director:** ARO founder, explicit account and production request on 2026-09-29
 - **Implementation branch:** `codex/aro-auth-production-20260929`
@@ -12,7 +12,7 @@
 
 ## 1–5. Problem, outcome, timing, goals and non-goals
 
-The public account screen currently disables Google sign-in even though the existing ARO Supabase project advertises Google and email providers. Production account access also fails closed because the project was registered as staging. Users must be able to start Google OAuth or use email/password, receive confirmation/recovery links, and reach an authenticated session on the public origin.
+The public account screen currently disables Google sign-in even though the existing ARO Supabase project advertises Google and email providers. Production account access also fails closed because the project was registered as staging. Users must be able to start Google OAuth or use email/password, receive confirmation/recovery links, and reach an authenticated session on the public origin. The founder chose `aro-club.app` as the final production domain in the 2026-09-29 account setup conversation; it supersedes N1's initial `aro-club.vercel.app` origin for this account release. Include both origins in the Supabase allowlist if the Vercel origin remains reachable, and test the canonical `aro-club.app` journey.
 
 This package enables account entry on the existing ARO project by explicit production environment switches. It does not create another backend, add a new dependency, change schema/RLS/Trust, copy accounts, introduce payments, or release fictional experiences as live supply. The founder's 2026-09-29 request explicitly expands N1's earlier Google exclusion for this package.
 
