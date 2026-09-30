@@ -59,6 +59,10 @@ function Ingredient({ ingredient }) {
   );
 }
 
+/**
+ * Render the selected mode's illustration, example outcome and ingredients.
+ * The supplied config, localized mode and copy describe a local preview.
+ */
 function CompositionField({ config, mode, copy }) {
   const Icon = config.icon;
 
@@ -82,6 +86,10 @@ function CompositionField({ config, mode, copy }) {
   );
 }
 
+/**
+ * Render the local Learn, Share or Gather example selected by the mode query.
+ * Keep subsequent selections in component state and focus the composition.
+ */
 export default function AppCreatePage() {
   const language = useLanguage().language;
   const location = useLocation();

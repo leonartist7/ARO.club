@@ -5,18 +5,18 @@ import { createMemoryRouter, RouterProvider } from '../test/next-router';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import OnboardingPreview from './OnboardingPreview';
 
-afterEach(() => {
+afterEach(/** Reset the rendered tree, local storage and stubbed globals after each case. */ () => {
   cleanup();
   localStorage.clear();
   vi.unstubAllGlobals();
 });
 
-describe('onboarding app handoff', () => {
+describe('onboarding app handoff', /** Cover the learner, host and combined paths into the app. */ () => {
   it.each([
     ['Find a class', 'Photography', 'See my first idea'],
     ['Teach a skill', 'Conversation practice', 'Preview my class draft'],
     ['Explore both', 'Photography', 'See my first idea'],
-  ])('takes the %s path into the app without putting answers in the URL', (intent, choice, action) => {
+  ])('takes the %s path into the app without putting answers in the URL', /** Verify the supplied intent and preference reach the app through an answer-free URL. */ (intent, choice, action) => {
     vi.stubGlobal('React', React);
     const router = createMemoryRouter([
       { path: '/onboarding/preview', element: <OnboardingPreview /> },

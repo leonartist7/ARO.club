@@ -7,6 +7,10 @@ import { onboardingPreviewCopy } from '../i18n/onboardingPreview';
 import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 import { AroWordmark } from '../components/brand/AroMark';
 
+/**
+ * Render the localized public journey from the hero and human story to the
+ * learning, teaching and gathering paths, followed by the formation preview.
+ */
 export default function HomePage() {
   const { t, language } = useLanguage();
   const onboarding = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;

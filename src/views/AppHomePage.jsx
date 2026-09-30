@@ -11,6 +11,10 @@ import { rebrandJourneyCopy } from '../i18n/rebrandJourney';
 const homeOpportunityIds = ['river-photo-walk', 'shared-stories', 'repair-table'];
 const homeOpportunities = homeOpportunityIds.map((id) => opportunities.find((opportunity) => opportunity.id === id)).filter(Boolean);
 
+/**
+ * Render an opportunity fixture with localized capacity and formation labels
+ * and a link to its example detail page.
+ */
 function OpeningCard({ opportunity, copy }) {
   const formationStatus = getDiscoveryFormationStatus(copy, opportunity);
 
@@ -88,6 +92,10 @@ function LivingWorldStage({ activeOpportunity, onSelect, copy }) {
   );
 }
 
+/**
+ * Render the app introduction, class and creation links, and fixture world view.
+ * Keep the selected example opportunity in component state.
+ */
 export default function AppHomePage() {
   const language = useLanguage().language;
   const copy = getFv1DiscoveryCopy(language);

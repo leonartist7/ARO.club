@@ -31,6 +31,10 @@ function SceneArt({ scene }) {
   );
 }
 
+/**
+ * Render a controlled choice button with a label, optional icon and description.
+ * Expose selected state through aria-pressed and delegate clicks to onClick.
+ */
 function Choice({ selected, onClick, children, description, icon: Icon }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={selected}
@@ -41,6 +45,10 @@ function Choice({ selected, onClick, children, description, icon: Icon }) {
   );
 }
 
+/**
+ * Guide learners and hosts through validated, in-memory onboarding examples.
+ * Link each result to /app without saving answers or adding them to the URL.
+ */
 export default function OnboardingPreview() {
   const { language } = useLanguage();
   const copy = onboardingPreviewCopy[language] ?? onboardingPreviewCopy.en;
