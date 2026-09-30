@@ -1,0 +1,38 @@
+# ARO-RB17 — Reference-led first journey
+
+**Status:** IMPLEMENTED / PARTIAL VERIFICATION · version 1.0.2 · 2026-09-30. Founder authorization: six supplied visual references and request to execute, followed by direct requests for richer onboarding choices and a clear path from onboarding into the app. Branch `codex/rb17-reference-journey-20260929` starts at merged RB15 `28f0170` (PR #92). Target RB15; no `main` merge.
+
+**Approval record:** The founder explicitly approved this visual direction by supplying six references and saying “execute.” I wrote this bounded presentation spec as **SPEC-READY v1.0.0 in the working tree before the first JSX edit**. The same branch commit records the later IMPLEMENTED / PARTIAL VERIFICATION state, so the intermediate working-tree state is not a separate Git commit. This approval covers visual hierarchy and existing local preview paths only; it is not privacy, Trust, Auth, money or release approval.
+
+## Outcome and authority
+
+The English/light public Home, app Home, Explore and Create first steps should read as one warm, human journey. The website must move from its hero to a human outcome and concise steps, with the detailed opportunity prototype lower on the page. App previews should put the next action and image-led class context before diagrams or fictional metrics. Existing onboarding and detail routes remain connected and clearly labelled. The supplied images are visual direction, not proof of actual inventory, cities, hosts, conversations or payments.
+
+Governing: `AGENTS.md`, `ARO_MASTER_DELIVERY_PLAN.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO_DESIGN_SYSTEM.md`, `ARO_EXPERIENCE_SYSTEM.md`, RB0–RB16 specs, `docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md`, and the six founder references. Existing licensed ARO logo, typography, imagery and tokens govern implementation.
+
+## Scope and boundaries
+
+Reorder and simplify presentation, copy and existing navigation in `/`, `/app`, `/app/opportunities` and `/app/create`. Preserve EN/FR/ES and theme controls, browser history, routes, F7 evidence and existing fixture semantics. No dependency or newly generated image, schema, RLS, Auth, eligibility, personal data persistence, geolocation, map, host publishing, real search, booking, coins, payment, analytics or external write. Create may reuse an existing onboarding image and must measure the added request. This package has no new entity, permission, API, AI or money state. Fictional examples remain explicitly identified at point of use. Existing read-only and local preview interactions remain local. All roles retain current permissions.
+
+Onboarding persistence, personal tags, real location, supply, checkout and credits are separately SPEC-REQUIRED and require privacy, Trust, security and money reviews. Image 6's social proof and member count cannot appear as live evidence. Rollback reverts this presentation branch without migration.
+
+The founder's 2026-09-30 onboarding follow-up expands the **local example choices only**: nine illustrated Learn interests and six adult public-place language activities for Earn, with matching EN/FR/ES copy. It removes the repeated refresh paragraph from each scene; the entry still says this is an interactive preview without an account, and the details step briefly states that answers are not saved. This does not expand eligible teaching categories, real profile tags, account state or host permissions.
+
+The final onboarding result has one primary localized Continue to app action that opens `/app` for Learn, Earn and Both. Edit and Replay remain available, as does Both's optional class sketch. The destination contains no entered answer in the URL or persisted profile. The app's own preview disclosure and existing navigation continue to govern the next step; this link does not activate live accounts or personalize fixtures.
+
+## UX, accessibility and performance
+
+At 320/390/768/1440 widths, hero → human story → three concise paths → optional formation explainer should have one dominant action in each section. App Home should disclose fixture context before cards; Explore should show example cards and plain limitations without live controls. Create should let users choose Learn/Share/Gather and understand the selected example with a clear return path. Preserve 44px controls, 16px body copy, semantic headings, visible focus, reduced motion, dark support and zero horizontal overflow. No new font requests; compare first viewport and transferred image bytes against RB16 evidence.
+
+## Acceptance and release
+
+| ID | Requirement | Evidence |
+| --- | --- | --- |
+| RB17-1 | Public Home hierarchy and primary path match reference intent | Before/after mobile and desktop browser captures |
+| RB17-2 | App Home, Explore and Create show a coherent, truthful next step | Browser walkthrough and route assertions |
+| RB17-3 | EN/FR/ES and theme remain usable; short phone and keyboard work | Focused browser checks, unit suite |
+| RB17-4 | Build, lint, types, relevant tests and final-head CI pass | Exact commands and PR checks in `artifacts/ARO-RB17/VERIFICATION.md` |
+| RB17-5 | Learn/Earn choices are richer and localized without implying live eligibility; no repeated refresh paragraph | Onboarding route and short-phone selection check |
+| RB17-6 | Every onboarding result has a primary path into the app without transmitting entered answers | RB2 browser path matrix and rendered destination check |
+
+Independent design/accessibility, privacy, Trust and protected release reviews are still required. Mark IMPLEMENTED / PARTIAL VERIFICATION after local checks; never infer production readiness from this package.

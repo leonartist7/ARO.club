@@ -44,12 +44,12 @@ try {
     const primary = await page.getByRole('link', { name: route === '/' ? /get started/i : /explore the introduction/i }).count();
     const explore = await page.locator('a[href="/explore"]').count();
     const host = route === '/' ? await page.locator('a[href="/for-teachers"]').count() : undefined;
-    const formation = route === '/' ? await page.locator('a[href="#formation"]').count() : undefined;
+    const storyLink = route === '/' ? await page.locator('a[href="#how-it-works"]').count() : undefined;
     const faq = route === '/faq' ? await page.locator('main details').count() : undefined;
     if (route === '/faq') await page.locator('main details summary').first().click();
     const faqExpanded = route === '/faq' ? await page.locator('main details').first().evaluate(element => element.open) : undefined;
     await page.screenshot({ path: join(out, `${name}.png`), fullPage: false });
-    results.push({ route, width, height, status: response?.status(), ...state, image, preview, primary, explore, host, formation, faq, faqExpanded, errors, writes });
+    results.push({ route, width, height, status: response?.status(), ...state, image, preview, primary, explore, host, storyLink, faq, faqExpanded, errors, writes });
     await context.close();
   }
 } finally {
@@ -57,4 +57,4 @@ try {
   await browser?.close();
   if (server.exitCode === null) server.kill('SIGTERM');
 }
-if (results.length !== 9 || results.some(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || !item.image.loaded || !item.preview || !item.primary || !item.explore || item.errors.length || item.writes.length || (item.route === '/' && (!item.host || !item.formation || (item.width === 320 && item.image.top >= item.height))) || (item.route === '/faq' && (item.faq !== 5 || !item.faqExpanded)))) process.exitCode = 1;
+if (results.length !== 9 || results.some(item => item.status !== 200 || item.language !== 'en' || item.theme !== 'light' || item.storedLanguage !== 'es' || item.storedTheme !== 'dark' || item.overflow || !item.image.loaded || !item.preview || !item.primary || !item.explore || item.errors.length || item.writes.length || (item.route === '/' && (!item.host || !item.storyLink || (item.width === 320 && item.image.top >= item.height))) || (item.route === '/faq' && (item.faq !== 5 || !item.faqExpanded)))) process.exitCode = 1;

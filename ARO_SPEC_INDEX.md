@@ -1,4 +1,5 @@
 # ARO — Canonical Spec Index
+> **2026-09-29 RB17:** The founder’s six reference images drive a scoped Home/app first-journey presentation package on merged RB15 `28f0170` (PR #92). Website story order, app Home action hierarchy and Create imagery/navigation are IMPLEMENTED / PARTIAL VERIFICATION. Local lint, types, 190 tests, build and bounded production browser checks pass; one broad development E2E `/choose-role` timing failure remains recorded. No live account, map, supply or money behavior is enabled. See `specs/ARO-RB17-REFERENCE-JOURNEY.md`, `artifacts/ARO-RB17/VERIFICATION.md` and `docs/rebrand/PRODUCTION-PATH-20260929.md`. Independent reviews and exact-head CI remain open.
 
 > **2026-09-29 AUTH1:** Founder authorized email and Google account entry using the existing ARO Supabase project. `specs/ARO-AUTH1-ACCOUNT-ENTRY.md` is SPEC-READY; implementation is under review on `codex/aro-auth-production-20260929`. Local and provider-start evidence is in `artifacts/ARO-AUTH1/VERIFICATION.md`; hosted email/Google completion, production Vercel configuration and independent security review remain BLOCKED/PENDING. No production account release is verified.
 

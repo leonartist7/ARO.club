@@ -298,3 +298,7 @@ Second PR #90 Quality run 36592645997 passed static, English/light, public redes
 **2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
 
 Inherited PR #90 CodeRabbit findings were checked and corrected here: historical evidence-status drift, reduced-motion controls and language-menu keyboard navigation. Original package history, cloud controls, full-image onboarding and F7 evidence remain preserved. This does not resolve privacy/Trust/design/accessibility or release gates.
+
+## 2026-09-29 — RB17 reference-led first journey
+
+Remote RB15 advanced from `a0cef112` to `28f017092608f2ce159927b9e52bd9eb77ca914c` by merging PR #92. RB17 starts from that exact newer head; PR #91 remains separate. Six new founder references inform the visual presentation but do not authorize new Auth, location, supply or money mechanics. Home now leads to a human story, app Home and Create are simplified, and existing preview labels remain. Evidence and remaining issues: `artifacts/ARO-RB17/VERIFICATION.md`; production path: `docs/rebrand/PRODUCTION-PATH-20260929.md`. Status IMPLEMENTED / PARTIAL VERIFICATION, not `main` merge or release.
