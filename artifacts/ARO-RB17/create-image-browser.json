@@ -1,0 +1,98 @@
+[
+  {
+    "width": 320,
+    "mode": "learn",
+    "selected": "/brand/onboarding-learn-640.webp",
+    "bytes": 62540,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "mode": "share",
+    "selected": "/brand/onboarding-teach-language-v2-640.webp",
+    "bytes": 54702,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "mode": "gather",
+    "selected": "/brand/onboarding-connect-640.webp",
+    "bytes": 65630,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "mode": "learn",
+    "selected": "/brand/onboarding-learn-640.webp",
+    "bytes": 62540,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "mode": "share",
+    "selected": "/brand/onboarding-teach-language-v2-640.webp",
+    "bytes": 54702,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "mode": "gather",
+    "selected": "/brand/onboarding-connect-640.webp",
+    "bytes": 65630,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "mode": "learn",
+    "selected": "/brand/onboarding-learn-1280.webp",
+    "bytes": 157776,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "mode": "share",
+    "selected": "/brand/onboarding-teach-language-v2-1280.webp",
+    "bytes": 123024,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "mode": "gather",
+    "selected": "/brand/onboarding-connect-1280.webp",
+    "bytes": 163214,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "mode": "learn",
+    "selected": "/brand/onboarding-learn-1280.webp",
+    "bytes": 157776,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "mode": "share",
+    "selected": "/brand/onboarding-teach-language-v2-1280.webp",
+    "bytes": 123024,
+    "focused": 1,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "mode": "gather",
+    "selected": "/brand/onboarding-connect-1280.webp",
+    "bytes": 163214,
+    "focused": 1,
+    "overflow": false
+  }
+]
