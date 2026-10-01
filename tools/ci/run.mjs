@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { createResetDiagnostic, exerciseAuth, waitForLocalAuthReady } from './auth.mjs';
 import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
+import { exerciseDeletion } from './deletion.mjs';
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -122,6 +123,7 @@ try {
         exerciseAuthenticatedBrowser,
         browserVerificationPhase
       );
+      await exerciseDeletion(status.ANON_KEY, status.SERVICE_ROLE_KEY, phase);
       await phase('synthetic-account-count', () => userCount(5));
       await phase('reset-removes-accounts', async () => {
         const diagnostic = createResetDiagnostic();
