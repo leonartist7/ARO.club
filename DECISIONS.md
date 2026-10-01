@@ -234,3 +234,20 @@ This file records durable choices. Package-specific implementation details belon
 
 ## 2026-09-21 — N1 Vercel rollout
 The founder authorized replacing Vite/React Router with Next.js, isolated staging accounts and verification of GitHub/Vercel/Supabase plus AI Gateway readiness. Both local checkouts share leonartist7/ARO.club; integrate once on current main while retaining its newer F1–F6 work. Production backend/domain decisions remain pending. No paid AI activation, new product AI behavior, schema/Trust changes or synthetic-to-live product conversion is implied.
+
+
+## ADR-CB-001 — Category mascots for Circle Builder preparation
+
+**Status:** Accepted product direction from the founder's 2026-10-01 written request; runtime remains SPEC-REQUIRED.
+
+**Decision:** Prepare an easy, clear and beautiful guided Circle Builder with Tonguee the chameleon for Languages, Squilly the squirrel for Skills, and Rockatoo the white cockatoo for Music. Guides provide brief contextual help while the person shapes the experience. Additional guides may follow through scoped packages. Preserve ARO's Opportunity/Circle distinction and existing Tonguee/Coco assets and identifiers.
+
+**Consequences:** `specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md` proposes a four-screen Choose / Shape / Details / Review flow and optional curated guidance. CB0 is documentation preparation only. The local preview needs its own SPEC-READY package, reviewed assets, privacy/Trust boundary review and measured performance budget; authenticated drafts, AI and publishing need separate specifications and dependencies. Category pills are not live category approval. The supplied Markdown attachment remains unreadable; this record is based on the founder's explicit written requirements, not inferred attachment contents.
+
+## ADR-CB-PHASES — Sequential Circle Builder delivery and main checkpoints
+
+**Status:** Accepted from founder's explicit continuation request, 2026-10-01.
+
+**Decision:** Execute the recovered Circle Builder in small sequential phases, maintain durable plan/status/evidence records and integrate each accepted phase into main. Phase 1 repairs the existing unconnected foundation's unknown guidance-step behavior, adds regressions and reconciles verification. Merge documentation parent #99 before retargeting/merging foundation #100. Preserve normal ancestry and newer authentication/rebrand work.
+
+**Consequences:** `docs/circle-builder/EXECUTION-PLAN.md` is the executable recovery map. F1 v1.0.1 is SPEC-READY for this narrow correction before source edits. Founder authorization supersedes earlier no-main-delivery wording for the accepted Phase 1 foundation; it does not waive required checks, reviews, CB1 screen/asset/privacy/Trust/performance preparation or CB2/CB3/AI authority. The first main checkpoint contains reusable logic, not an editable app screen. Later phase contracts and evidence must be committed and accepted individually.

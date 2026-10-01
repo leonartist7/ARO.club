@@ -1,5 +1,10 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-01 — Circle Builder mascot and flow preparation
+
+The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.
+
+
 > **2026-09-29 AUTH1 decision:** The founder requested Google and email login for `aro-club.app` using the already configured ARO Supabase project and authorized production work. AUTH1 provides a separately switched production promotion path for that existing project, preserving exact URL/ref matching and denying quarantined projects. This intentionally supersedes N1's earlier exclusion of Google OAuth for this narrowly scoped package. Hosted authentication, provider delivery and independent security review remain release gates. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`.
 
 > **Purpose:** append-only record of meaningful ARO evolution. This is not implementation authority by itself; it records when the current direction changed and points to the documents that now define it.
@@ -1077,3 +1082,10 @@ Inherited PR #90 CodeRabbit findings were checked and corrected here: historical
 ## 2026-09-29 — RB17 reference-led first journey
 
 The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.
+
+## 2026-10-01 — Circle Builder sequential recovery plan and preparation review repair
+
+- Founder requested one phase at a time, durable updates and accepted main integration; ADR-CB-PHASES and the execution plan record that decision in the preparation tree.
+- Canonical records now identify the active unmerged CB1-F1 v1.0.1 owner (#100), source 094818d, guidance-step correction and actual hosted/pending verification. No runtime is included in this preparation PR.
+- CB0 v0.1.1 clarifies that confirmed reset/category discard has no undo/history; Back/Edit and cancelled confirmations preserve input. This resolves a contradictory reversibility promise without expanding scope.
+- Historical browser failure and later unchanged-fixture success remain recorded. Required checks and CB1 asset/privacy/Trust/design/performance, live-draft/AI/publishing gates remain open.
