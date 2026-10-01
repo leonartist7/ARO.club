@@ -67,7 +67,7 @@ select throws_ok($$select * from api.account_deletion_objects((select (payload->
 reset role;
 update app_private.account_deletion_jobs set lease_until=now()+interval '10 minutes';
 set local role service_role;
-select lives_ok($select api.mark_account_deletion_storage_clean((select (payload->>'request_id')::uuid from auth3_claim),(select (payload->>'lease_token')::uuid from auth3_claim))$,'empty inventory records durable cleanup stage');
+select lives_ok($$select api.mark_account_deletion_storage_clean((select (payload->>'request_id')::uuid from auth3_claim),(select (payload->>'lease_token')::uuid from auth3_claim))$$,'empty inventory records durable cleanup stage');
 reset role;
 delete from auth.users where id='00000000-0000-4000-8000-000000000031';
 set local role service_role;

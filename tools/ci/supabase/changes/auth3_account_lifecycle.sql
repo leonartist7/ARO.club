@@ -185,7 +185,7 @@ begin
 end;
 $$;
 create function app_private.auth3_mark_storage_clean(target_request uuid,token uuid) returns void
-language plpgsql security definer set search_path = '' as $
+language plpgsql security definer set search_path = '' as $$
 begin
   -- Inventory verifies the lease and must find no remaining owned objects.
   if exists(select 1 from app_private.auth3_deletion_objects(target_request,token)) then
@@ -194,15 +194,15 @@ begin
   update app_private.account_deletion_jobs set storage_cleaned_at=statement_timestamp()
     where request_id=target_request and lease_token=token and lease_until>statement_timestamp();
 end;
-$;
+$$;
 create function app_private.auth3_owner_status() returns jsonb
-language sql stable security definer set search_path = '' as $
+language sql stable security definer set search_path = '' as $$
   select jsonb_build_object('status',r.status,'requested_at',r.requested_at,
     'processed_at',r.processed_at,'needs_confirmation',not j.receipt_ready)
   from public.account_deletion_requests r join app_private.account_deletion_jobs j on j.request_id=r.id
   where r.user_id=(select auth.uid()) and r.status in ('pending','processing')
     and app_private.auth3_current_session();
-$;
+$$;
 create function app_private.auth3_finish_deletion(target_request uuid,token uuid) returns void
 language plpgsql security definer set search_path = '' as $$
 begin
@@ -256,8 +256,8 @@ end;
 $$;
 
 -- Publicly exposed API wrappers are invoker functions; privileged logic stays private.
-create function api.account_deletion_owner_status() returns jsonb language sql security invoker set search_path='' as $ select app_private.auth3_owner_status(); $;
-create function api.mark_account_deletion_storage_clean(target_request uuid,token uuid) returns void language sql security invoker set search_path='' as $ select app_private.auth3_mark_storage_clean(target_request,token); $;
+create function api.account_deletion_owner_status() returns jsonb language sql security invoker set search_path='' as $$ select app_private.auth3_owner_status(); $$;
+create function api.mark_account_deletion_storage_clean(target_request uuid,token uuid) returns void language sql security invoker set search_path='' as $$ select app_private.auth3_mark_storage_clean(target_request,token); $$;
 create function api.account_access_status() returns jsonb language sql security invoker set search_path='' as $$ select app_private.auth3_access_status(); $$;
 create function api.confirm_adult_eligibility(birth_date date) returns void language sql security invoker set search_path='' as $$ select app_private.auth3_confirm_adult(birth_date); $$;
 create function api.request_account_deletion(receipt_hash text) returns uuid language sql security invoker set search_path='' as $$ select app_private.auth3_request_deletion(receipt_hash); $$;
