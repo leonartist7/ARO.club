@@ -28,7 +28,8 @@ create policy account_deletion_requests_owner_insert
     and processed_at is null
   );
 
-revoke all on public.account_deletion_requests from public, anon, authenticated;
+revoke all on public.account_deletion_requests from public, anon, authenticated, service_role;
 grant select on public.account_deletion_requests to authenticated;
 grant insert (user_id) on public.account_deletion_requests to authenticated;
-grant select, update on public.account_deletion_requests to service_role;
+grant select on public.account_deletion_requests to service_role;
+grant update (status, processed_at) on public.account_deletion_requests to service_role;

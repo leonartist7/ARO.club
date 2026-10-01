@@ -1,12 +1,16 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
-select plan(11);
+select plan(12);
 
 select has_table('public','account_deletion_requests','deletion request table exists');
 select ok((select relrowsecurity from pg_class where oid='public.account_deletion_requests'::regclass),'RLS is enabled');
 select ok(not has_table_privilege('anon','public.account_deletion_requests','SELECT'),'anonymous read is denied');
 select ok(not has_table_privilege('authenticated','public.account_deletion_requests','UPDATE'),'client cannot process a request');
+select ok(has_column_privilege('service_role','public.account_deletion_requests','status','UPDATE')
+  and not has_column_privilege('service_role','public.account_deletion_requests','user_id','UPDATE')
+  and not has_column_privilege('service_role','public.account_deletion_requests','requested_at','UPDATE'),
+  'processor can update lifecycle state but not request identity or timestamp');
 
 insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_confirmed_at,
   raw_app_meta_data,raw_user_meta_data,created_at,updated_at)

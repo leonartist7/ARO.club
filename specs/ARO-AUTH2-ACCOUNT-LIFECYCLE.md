@@ -38,7 +38,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 | G2 | Actual deletion processing | A privileged worker and operator must resolve bookings, teacher/Storage files, audit/legal retention, revocation, retry, and completion notification. `bookings.student_id ON DELETE RESTRICT` prevents naive deletion. |
 | G3 | Operations | A monitored request queue and published processing timeframe must exist before releasing this UI to production. The current contact page saves an unsent draft only. |
 | G4 | Store builds | Identify the iOS/Android application; verify native OAuth callback, deletion path, store metadata, and Apple's equivalent login requirement for iOS Google sign-in. |
-| G5 | AUTH1 | Complete hosted email confirmation/recovery and Google callback tests and independent security review. |
+| G5 | AUTH1 and OAuth return | Complete hosted email confirmation/recovery and Google callback tests and independent security review. Allowlist the exact production `/auth/callback?next=%2Faccount%2Fdelete` redirect in Supabase before relying on Google return to this page. |
 
 ## 5. Security and reliability acceptance
 

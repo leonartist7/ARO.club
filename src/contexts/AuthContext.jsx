@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { isSupabaseConfigured, supabase, supabaseConfigError } from '../lib/supabase';
+import { safeReturnPath } from '../lib/auth/config';
 
 import {useRouter} from 'next/navigation';
 import {usePlayerStore} from '../store/usePlayerStore';
@@ -167,15 +168,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signInWithGoogle = async () => {
+  const signInWithGoogle = async (returnTo = '/explore') => {
     if (!isSupabaseConfigured) {
       return { data: null, error: supabaseConfigError };
     }
 
     try {
+      const callback = `${window.location.origin}/auth/callback`;
+      const next = safeReturnPath(returnTo);
       return await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: `${window.location.origin}/auth/callback` },
+        options: { redirectTo: next === '/explore' ? callback : `${callback}?next=${encodeURIComponent(next)}` },
       });
     } catch (error) {
       return { data: null, error };

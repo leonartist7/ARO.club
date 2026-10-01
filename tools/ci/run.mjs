@@ -63,8 +63,8 @@ function userCount(expected) {
 }
 function sqlTests() {
   const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=102\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 102/102 (transactions rolled back)\n');
+  requireCondition(/Tests=103\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write('PASS pgTAP 103/103 (transactions rolled back)\n');
 }
 function cleanup() {
   if (!names('network').includes(network)) {
