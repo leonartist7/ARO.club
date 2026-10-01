@@ -1,13 +1,17 @@
 # ARO-CB1-F1 — Unconnected Circle Builder logic foundation
 
-> Delivery: IMPLEMENTED / PARTIAL VERIFICATION on source `6ccf4eb`. Hosted lint/types/build and 218 tests (22 builder cases), public/English-light and isolated database checks pass. Browser-smoke and final-head acceptance remain pending. See `artifacts/ARO-CB1-F1/VERIFICATION.md`.
+> Delivery: Phase 1 continuation is IMPLEMENTATION-IN-PROGRESS. The recovered head `550bb95` passes all five main CI jobs; the v1.0.1 correction needs fresh exact-head verification. See `artifacts/ARO-CB1-F1/VERIFICATION.md` and `docs/circle-builder/EXECUTION-PLAN.md`.
 
 ## Authority and scope
-Version 1.0.0, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
+Version 1.0.1, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
 
 Preparation parent: PR #99, `e9b61701d64db052684f853c99cb739c2c397fae`, based on main `97d9086b1bfb6946653f6ee6baea481cbdc894c5`. Implementation branch: `codex/circle-builder-foundation-20261001`. Governing: AGENTS.md, ARO master delivery plan/playbook, architecture/data/design/Trust documents, ADR-CB-001 and CB0 sections 6, 8-15, 23-24. Durable scope record: ADR-CB-F1 in DECISIONS.md.
 
 This first slice supplies reusable JavaScript values/functions and their tests. No application screen, route or provider consumes these files. It adds no dependency and changes no legacy fixture/state machine. Runtime connections are not authorized by this narrower specification.
+
+The founder's 2026-10-01 continuation requests one phase at a time, durable updates and accepted main integration. ADR-CB-PHASES authorizes Phase 1 foundation correction and dependency-ordered main integration after required checks. It supersedes this package's earlier no-main-delivery instruction only for the accepted unconnected foundation. It does not waive CB1 screen or live gates. This amendment is committed before v1.0.1 source edits.
+
+Version 1.0.1 corrects the existing unknown-step contract: getGuidance must accept only string step names that are own keys of the selected category's prompt dictionary. Inherited names (including constructor, __proto__, toString, valueOf and hasOwnProperty), non-string values and object-coercion attempts return null without conversion or mutation. Add focused regressions across all three categories; preserve valid localized prompts and English fallback.
 
 ## Problem and output
 Create has no reusable category-to-guide mapping or editable builder transition model. Add:
@@ -46,7 +50,7 @@ No UI or asset implementation in F1. Existing app routes, themes, language prefe
 | F1-01 | Exact category/mascot/species mapping, EN/FR/ES indoor examples and localized search | registry cases |
 | F1-02 | Four-step validation and manual paths across all categories | reducer cases |
 | F1-03 | No lost manual input on example/category/back/reset operations | preservation/confirmation cases |
-| F1-04 | Unknown/prototype fields, invalid numeric values and category answers handled | negative cases |
+| F1-04 | Unknown/prototype fields and guidance steps, non-string/coercion steps, invalid numeric values and category answers handled | negative cases |
 | F1-05 | Immutable transitions, optional help and truthful normalized summaries | frozen-state/summary cases |
 | F1-06 | No runtime consumers, dependencies, UI, schema or external writes | complete diff + consumer scan |
 | F1-07 | Existing repository quality and new Vitest cases pass | hosted exact-head Quality and platform checks |
@@ -54,7 +58,7 @@ No UI or asset implementation in F1. Existing app routes, themes, language prefe
 The local shell remains unavailable. Direct V8 source execution of the test cases with a small assertion adapter is supplemental evidence, explicitly not installed Vitest/build/lint/browser evidence. Hosted CI must provide the latter. F1 remains partially verified until those results are recorded.
 
 ## Rollout, recovery and review
-A scoped draft PR targets the CB0 preparation branch while #99 is open. Recheck/retarget in dependency order once the parent merges. No main update or release from F1. Rollback removes only the unconnected new modules/spec/evidence and status additions; it changes no data. Self-review covers exact scope, immutable state and tests; any high findings remain blockers.
+The scoped PR targets the CB0 preparation branch while #99 is open. Merge preparation #99 only after its checks pass; retarget foundation #100 to current main after the parent merges, then merge only its accepted exact head. Use normal merge ancestry, expected-head checks and current-main reconciliation. The founder authorized this Phase 1 main integration on 2026-10-01. No user-facing release or runtime connection is included. Rollback removes only the unconnected new modules/spec/evidence and status additions; it changes no data. Self-review covers exact scope, immutable state and tests; any high findings remain blockers.
 
 ## Delivery vocabulary
 After code creation: IMPLEMENTED / PARTIAL VERIFICATION. VERIFIED requires all F1 acceptance evidence and required CI. F1 completion does not make CB1 UI SPEC-READY or implemented, and does not authorize assets, publishing, live drafts, AI or store readiness.
