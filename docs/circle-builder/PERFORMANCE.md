@@ -2,7 +2,7 @@
 Version 1.0.0 · ARO-CB1-P · 2026-10-01
 
 ## Observed baseline
-Unchanged runtime from main 2f06fa3ddaae0020d4bca7cd040669bb9ac42346. Measurement source 6b5a0052310c05112c85d7fa5117f8ef6b3ff2b9; [Quality run36909429501/job110528094934](https://github.com/leonartist7/ARO.club/actions/runs/36909429501/job/110528094934). All 18 samples passed route200, EN/light, no overflow/pageerrors/writes, and loaded visible artwork.
+Unchanged runtime from main 2f06fa3ddaae0020d4bca7cd040669bb9ac42346. Measurement source 6b5a0052310c05112c85d7fa5117f8ef6b3ff2b9; [Quality run36909429501/job110528094934](https://github.com/leonartist7/ARO.club/actions/runs/36909429501/job/110528094934). All 18 samples passed route200, EN/light, no overflow/pageerrors/writes. The original viewport-only image list could be empty on phones; final instrumentation separately requires loaded, displayed artwork across the page.
 Production Next/Chromium; 360x740 and1440x900; learn/share/gather; three fresh browser contexts per case; reducedmotion; no network/CPU throttling; one server started before measurement, no explicit route/asset warmup. Recordings end500ms after networkidle. First sample may include server/cache warmup. These are CI lab snapshots, not field WebVitals/slowphone/INP evidence.
 The timing called renderedReadyMs includes networkidle's quiet window and two frames after fonts/heading readiness; it is not a user-perceived render metric.
 The cls field sums non-recent-input shifts in the short observation window; it is a conservative shift budget, not full-session Web Vital CLS.
@@ -39,4 +39,6 @@ These relative budgets are useful for regression, not a claim that163214 imageby
 
 ## Instrumentation review correction
 
-Final PR review strengthened the harness: existing fixture artwork must include exactly one visible loaded image, not an empty collection. Image budgets classify network responses by image Content-Type, including preload/link and CSS initiators. A real two-image synthetic preload/CSS probe verifies both request/byte accounting; it collects no user input. Generated exports, raw baseline and PNG/JSON fixture output are excluded from routine commits; selected durable WebPs/summary/manifest remain versioned.
+Final PR review strengthened the harness: existing fixture artwork must include exactly one rendered loaded image, not an empty collection. Image budgets classify network responses by image Content-Type, including preload/link and CSS initiators. A real two-image synthetic preload/CSS probe verifies both request/byte accounting; it collects no user input. Generated exports, raw baseline and PNG/JSON fixture output are excluded from routine commits; selected durable WebPs/summary/manifest remain versioned.
+
+The unchanged phone layout puts its illustration below the initial fold. Rendered-image validation therefore checks nonzero geometry/display/visibility/opacity across the document and a nonempty expected count. It preserves the original scroll position for the performance snapshot; this is not a promise of above-fold artwork. Raw report schema v2 records renderedImages and the preload/CSS probe.

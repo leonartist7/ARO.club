@@ -36,7 +36,10 @@ const readMetrics = (imageUrls) => {
             resourceRequests: resources.length,
             zeroTransferResources: resources.filter(entry => entry.transferBytes === 0).length,
             resources,
-            visibleImages: [...document.images].filter(img => img.getBoundingClientRect().width && img.getBoundingClientRect().top < innerHeight).map(img => ({
+            renderedImages: [...document.images].filter(img => {
+              const box = img.getBoundingClientRect(), style = getComputedStyle(img);
+              return box.width > 0 && box.height > 0 && style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity) > 0;
+            }).map(img => ({
               path: new URL(img.currentSrc).pathname, loaded: img.complete && img.naturalWidth > 0,
               fit: getComputedStyle(img).objectFit,
             })),
@@ -93,8 +96,8 @@ try {
         assert(metrics.jsRequests > 0 && metrics.jsEncodedBytes > 0, 'JS entries must be observable');
         assert.deepEqual(errors, []);
         assert.deepEqual(writes, []);
-        assert.equal(metrics.visibleImages.length, 1, 'Existing Create must expose one visible illustration');
-        assert(metrics.visibleImages.every(img => img.loaded));
+        assert.equal(metrics.renderedImages.length, 1, 'Existing Create must expose one rendered illustration');
+        assert(metrics.renderedImages.every(img => img.loaded));
         await context.close();
       }
     }
@@ -106,7 +109,11 @@ try {
   await probePage.goto(base + '/app/create', { waitUntil: 'networkidle' });
   probeImages.clear();
   await probePage.evaluate(() => performance.clearResourceTimings());
-  await probePage.setContent('<!doctype html><html><head><link rel="preload" as="image" href="' + base + '/brand/circle-builder/tonguee-welcome-192.webp"><style>div{width:64px;height:64px;background-image:url("' + base + '/brand/circle-builder/squilly-welcome-192.webp")}</style></head><body><div></div></body></html>', { waitUntil: 'networkidle' });
+  await probePage.route(base + '/cb1-image-probe.css', route => route.fulfill({
+    status: 200, contentType: 'text/css',
+    body: 'div{width:64px;height:64px;background-image:url("' + base + '/brand/circle-builder/squilly-welcome-192.webp")}',
+  }));
+  await probePage.setContent('<!doctype html><html><head><link rel="preload" as="image" href="' + base + '/brand/circle-builder/tonguee-welcome-192.webp"><link rel="stylesheet" href="' + base + '/cb1-image-probe.css"></head><body><div></div></body></html>', { waitUntil: 'networkidle' });
   const probe = await probePage.evaluate(readMetrics, [...probeImages]);
   imageInitiatorProbe = {
     imageRequests: probe.imageRequests,
@@ -119,7 +126,7 @@ try {
   await probeContext.close();
 } finally {
   await writeFile(join(output, 'baseline.json'), JSON.stringify({
-    schemaVersion: 1,
+    schemaVersion: 2,
     measuredCommit: process.env.GITHUB_SHA ?? 'local',
     baselineReference: '2f06fa3ddaae0020d4bca7cd040669bb9ac42346',
     method: 'production Next; Chromium; EN/light; reduced motion; single running server without explicit route/asset warmup; new cold-browser context per sample; no throttling; observation 500ms after networkidle',

@@ -39,4 +39,6 @@ BrowserBack/reload/mobile-loss protection is best-effort as disclosed; no recove
 
 ## Final PR tooling review
 
-Four findings addressed: P-03 approval status reconciled; visible-art assertion rejects an empty list; image accounting includes response-MIME preload/CSS resources with a real two-image probe; generated local export/raw/PNG outputs excluded while selected durable evidence remains tracked. These strengthen synthetic verification only and require fresh final-head CI. Source7bae/5f4e716 full green runs remain historical evidence; #102 carries the corrected exact-head receipt.
+Four findings addressed: P-03 approval status reconciled; rendered-art assertion rejects an empty list; image accounting includes response-MIME preload/CSS resources with a real two-image probe; generated local export/raw/PNG outputs excluded while selected durable evidence remains tracked. These strengthen synthetic verification only and require fresh final-head CI. Source7bae/5f4e716 full green runs remain historical evidence; #102 carries the corrected exact-head receipt.
+
+Instrumentation failure d4e1f64 / Quality36914988498: the new above-fold-only assertion found zero images at360px. Actual unchanged AppCreatePage places its composition illustration after its stacked chooser. Corrected the harness to require one displayed/loaded page illustration without scrolling the performance snapshot. The count is retained, not weakened to a vacuous every(). Probe stylesheet uses a same-origin synthetic response to respect production CSP.
