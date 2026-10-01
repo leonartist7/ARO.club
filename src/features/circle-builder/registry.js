@@ -88,8 +88,8 @@ export function getExample(categoryId, exampleId, locale = 'en') {
 }
 export function getGuidance(categoryId, step, locale = 'en') {
   const category = getCategory(categoryId);
-  const prompt = category?.prompts[step];
-  if (!prompt) return null;
+  if (!category || typeof step !== 'string' || !Object.hasOwn(category.prompts, step)) return null;
+  const prompt = category.prompts[step];
   return { guide: getGuide(categoryId), prompt: prompt[builderLocale(locale)] };
 }
 export function searchCategories(query = '', locale = 'en') {

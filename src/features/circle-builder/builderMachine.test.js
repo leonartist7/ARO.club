@@ -53,6 +53,22 @@ describe('Circle Builder category and guide foundation', () => {
     expect(searchCategories('', 'en').length).toBe(3);
     expect(searchCategories(null).length).toBe(0);
   });
+  it('rejects inherited guidance step names for every category', () => {
+    for (const category of CATEGORY_REGISTRY) {
+      for (const step of ['constructor', '__proto__', 'toString', 'valueOf', 'hasOwnProperty']) {
+        expect(getGuidance(category.id, step)).toBeNull();
+      }
+      expect(getGuidance(category.id, 'review').prompt.length > 0).toBe(true);
+    }
+  });
+  it('rejects non-string steps without invoking object conversion', () => {
+    const coercionAttempt = { toString() { throw new Error('Step conversion must not run'); } };
+    for (const category of CATEGORY_REGISTRY) {
+      for (const step of [null, undefined, 42, {}, ['shape'], coercionAttempt]) {
+        expect(getGuidance(category.id, step)).toBeNull();
+      }
+    }
+  });
   it('falls back to English and rejects unknown examples/steps', () => {
     expect(getExample('languages', 'coffee-conversation', 'de')).toEqual(getExample('languages', 'coffee-conversation', 'en'));
     expect(getExample('music', 'coffee-conversation')).toBeNull();
