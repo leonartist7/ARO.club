@@ -69,11 +69,11 @@ No new product analytics. Baseline is synthetic measurement only; CI artifacts e
 |---|---|---|---|---|
 | P-01 | Current main/ownership and Phase 1 integration pinned | GitHub branch/PR metadata | VERIFICATION.md | PASS: 2f06fa3; concurrent ORG1 #101 preserved |
 | P-02 | Original brief reconciled field by field | Immutable Page-reference copy; mapping review | SOURCE-RECONCILIATION.md | PASS: source mapping independently reviewed |
-| P-03 | Exact field/navigation and privacy/Trust contract | Independent specialist review | SCREEN-CONTRACT.md; REVIEWS.md | IN REVIEW |
+| P-03 | Exact field/navigation and privacy/Trust contract | Independent specialist review | SCREEN-CONTRACT.md; REVIEWS.md | PASS: bounded independent review at 8e72703; runtime verification excluded |
 | P-04 | Consistent art/provenance/manifest reviewed | Full silhouettes/theme/mobile review | manifest; ARTWORK.md; art-review captures | PASS: independent review at 279462e6 |
 | P-05 | Existing route measured and budget derived | Production Playwright 18 samples | BASELINE-SUMMARY.json; PERFORMANCE.md | PASS: 6b5a005, reviewed budget |
 | P-06 | Existing regression gates unchanged and exact head passes | Quality/platform jobs | VERIFICATION.md; live #102 | PASS at 7bae9a94; final delivery-head checks required |
-| P-07 | Durable next package gates and status synchronized | Final diff/readback | ledgers; execution plan; #102 | Recorded; final readback/diff gate enforced in delivery |
+| P-07 | Durable next package gates and status synchronized | Final diff/readback | ledgers; execution plan; #102 | PASS at 5f4e716: 18 exact payload/six binary readbacks and 35-file scope audit; corrected-head readback/CI enforced in #102 |
 SPEC-READY screen handoff requires P-02–P-07 accepted, including artwork and independent boundary/design review. Green CI alone is insufficient.
 
 ## 25–26. Rollout and recovery
