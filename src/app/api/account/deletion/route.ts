@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import { NextRequest, NextResponse } from 'next/server';
+import { after, NextRequest, NextResponse } from 'next/server';
 import { serverSupabase } from '../../../../lib/auth/server';
 import { deletionAdmin } from '../../../../lib/auth/admin';
 import { DELETION_RECEIPT_COOKIE } from '../../../../lib/auth/lifecycle';
@@ -61,14 +61,15 @@ export async function POST(request: NextRequest) {
     const receipt = randomBytes(32).toString('hex');
     const queued = await client!.schema('api').rpc('request_account_deletion', { receipt_hash: hash(receipt) });
     if (queued.error) return response({ error: queued.error.code === '42501' ? 'reauthenticate' : 'submit_failed' }, queued.error.code === '42501' ? 401 : 503);
-    // The receipt must survive worker/network failures. A committed request is
-    // still accepted and the scheduled worker retries it.
-    let state = 'pending';
+    // Deliver the durable receipt before slow erasure starts. The platform
+    // keeps this best-effort attempt alive; cron resumes an interrupted lease.
     try {
-      const outcome = await processAccountDeletion(admin, queued.data);
-      state = outcome === 'completed' ? 'completed' : outcome === 'retry' ? 'processing' : 'pending';
-    } catch { /* Durable queue remains available to the cron worker. */ }
-    const result = response({ accepted: true, status: state }, 202);
+      after(async () => {
+        try { await processAccountDeletion(admin, queued.data); }
+        catch { /* Durable queue remains available to the cron worker. */ }
+      });
+    } catch { /* Scheduling failure cannot discard an accepted request. */ }
+    const result = response({ accepted: true, status: 'pending' }, 202);
     result.cookies.set(DELETION_RECEIPT_COOKIE, receipt, {
       httpOnly: true, secure: request.nextUrl.protocol === 'https:', sameSite: 'strict',
       path: '/', maxAge: 60 * 60 * 24 * 30,

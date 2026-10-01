@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 import { createHash } from 'node:crypto';
-const state = vi.hoisted(() => ({ admin: null as any, client: null as any, process: vi.fn() }));
+const state = vi.hoisted(() => ({ admin: null as any, client: null as any, process: vi.fn(), after: vi.fn() }));
+vi.mock('next/server', async importOriginal => ({ ...await importOriginal<typeof import('next/server')>(), after: state.after }));
 vi.mock('../../../../lib/auth/admin', () => ({ deletionAdmin: () => state.admin }));
 vi.mock('../../../../lib/auth/server', () => ({ serverSupabase: async () => state.client }));
 vi.mock('../../../../lib/auth/deletion-worker', () => ({ processAccountDeletion: state.process }));
@@ -15,6 +16,7 @@ describe('deletion confirmation and receipts', () => {
     state.client = { auth: { getUser: vi.fn(async () => ({ data: { user: { id: 'user-a' } }, error: null })) }, schema: () => ({ rpc }) };
     state.admin = { schema: () => ({ rpc: vi.fn(async () => ({ data: { status: 'completed' }, error: null })) }) };
     state.process.mockReset().mockResolvedValue('completed');
+    state.after.mockReset();
   });
   it('rejects cross-origin confirmation before touching the worker', async () => {
     expect((await POST(post({ confirm: true, expectedUserId: 'user-a' }, 'https://evil.invalid'))).status).toBe(403);
@@ -36,12 +38,21 @@ describe('deletion confirmation and receipts', () => {
     state.process.mockRejectedValueOnce(new Error('network unavailable'));
     const result = await POST(post({ confirm: true, expectedUserId: 'user-a' }));
     expect(result.status).toBe(202);
+    expect(state.process).not.toHaveBeenCalled();
+    await state.after.mock.calls[0][0]();
+    expect(state.process).toHaveBeenCalledWith(state.admin, 'request-id');
     const cookie = result.cookies.get('aro-deletion-receipt');
     expect(cookie?.value).toMatch(/^[0-9a-f]{64}$/);
     expect(result.headers.get('set-cookie')).toContain('HttpOnly');
     expect(result.headers.get('set-cookie')).toContain('SameSite=strict');
     expect(result.headers.get('set-cookie')).toContain('Secure');
     expect(await result.json()).toEqual({ accepted: true, status: 'pending' });
+  });
+  it('returns the committed receipt even when background scheduling fails', async () => {
+    state.after.mockImplementation(() => { throw new Error('scheduler unavailable'); });
+    const result = await POST(post({ confirm: true, expectedUserId: 'user-a' }));
+    expect(result.status).toBe(202);
+    expect(result.cookies.get('aro-deletion-receipt')?.value).toMatch(/^[0-9a-f]{64}$/);
   });
   it('does not expose another account receipt to a newly signed-in user', async () => {
     const query: any = { select: () => query, in: () => query, eq: vi.fn(() => query), maybeSingle: async () => ({ data: null, error: null }) };

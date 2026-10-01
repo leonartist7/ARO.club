@@ -62,7 +62,7 @@ Requests have 10-second network timeouts; worker inventory pages at 100 objects 
 
 ## 25–30. Rollout, recovery, review and delivery
 
-Apply AUTH2 then append-only AUTH3 in a disposable database. Run full Trust/RLS regression, then independent security/privacy review. Only then apply the same migrations to the selected existing backend. Deploy with matching public lifecycle and server worker flags, server-only Supabase service-role key/ref and CRON_SECRET. Keep worker and lifecycle UI disabled until the migration, cron invocation, purge, exception monitoring and hosted synthetic deletion are verified.
+Apply AUTH2 then append-only AUTH3 in a disposable database. Run full Trust/RLS regression, then independent security/privacy review. The request returns its durable receipt before a best-effort response-triggered worker attempt; cron retries interrupted leases. Only then apply the same migrations to the selected existing backend. Deploy with matching public lifecycle and server worker flags, server-only Supabase service-role key/ref and CRON_SECRET. Keep worker and lifecycle UI disabled until the migration, cron invocation, purge, exception monitoring and hosted synthetic deletion are verified.
 
 Rollback disables worker/UI flags and restores the last verified frontend; it never drops requests or restores erased personal data. Partial Storage cleanup must be resumed, not falsely reversed. Monitor failed and blocked jobs and oldest pending age daily; an unstaffed queue is a release blocker. No deletion of existing personal accounts is authorized as a test.
 
