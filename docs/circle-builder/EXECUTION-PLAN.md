@@ -1,6 +1,6 @@
 # Circle Builder phased execution plan
 
-Version 1.0.0 · 2026-10-01 · Owner: ARO founder
+Version 1.0.1 · 2026-10-01 · Owner: ARO founder
 Status: ACTIVE. Current phase: 1 — foundation recovery.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
@@ -32,7 +32,7 @@ Phase 1 integrates reusable foundation code. It does not switch the Create inter
 - [x] Inspect source, specs, original tests and current CI; confirm app routes do not consume builder modules.
 - [x] Reproduce inherited guidance-key defect in actual registry source.
 - [x] Verify foundation head's static/browser-smoke/platform/public-website-redesign/english-light-release jobs pass.
-- [ ] Commit phase authority, foundation correction and additional regression coverage.
+- [x] Commit phase authority, foundation correction and additional regression coverage on PR #100; source 094818d55ecbddab86255dbbf7d84b0be0c6a4e9.
 - [ ] Verify fresh parent/foundation checks and synchronize evidence.
 - [ ] Merge preparation first and foundation second, without bypassing required checks.
 - [ ] Verify main contains the accepted foundation and record its SHA and next phase.
@@ -55,3 +55,9 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
 Current next task: complete Phase 1 foundation correction and hosted verification. After its accepted main integration, Phase 2 starts with the Create baseline and the precise screen/asset contract.
+
+## Preparation review dispositions
+
+- Durable phase decision: ADR-CB-PHASES now exists in this preparation tree; the plan no longer depends on a descendant-only record.
+- Active owner/status: current-state, spec-index and implementation-status records identify PR #100, v1.0.1 source, the reproduced/corrected defect, actual CI results, pending checks and next task. This tree does not contain or claim merged runtime code.
+- Destructive actions: CB0 v0.1.1 distinguishes preserving navigation/edits from explicit confirmed discard. There is no undo/history promise; cancellation preserves input. Foundation source remains unchanged by this clarification.

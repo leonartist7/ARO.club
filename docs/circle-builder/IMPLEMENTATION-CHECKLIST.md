@@ -1,6 +1,6 @@
 # Circle Builder implementation checklist
 
-Prepared 2026-10-01. Authority: `../../specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md`, version 0.1.0. This is a preparation checklist, not implemented runtime or an instruction to bypass package gates.
+Prepared 2026-10-01. Authority: `../../specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md`, version 0.1.1. This is a preparation checklist, not implemented runtime or an instruction to bypass package gates.
 
 ## Milestones
 

@@ -1082,3 +1082,10 @@ Inherited PR #90 CodeRabbit findings were checked and corrected here: historical
 ## 2026-09-29 — RB17 reference-led first journey
 
 The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.
+
+## 2026-10-01 — Circle Builder sequential recovery plan and preparation review repair
+
+- Founder requested one phase at a time, durable updates and accepted main integration; ADR-CB-PHASES and the execution plan record that decision in the preparation tree.
+- Canonical records now identify the active unmerged CB1-F1 v1.0.1 owner (#100), source 094818d, guidance-step correction and actual hosted/pending verification. No runtime is included in this preparation PR.
+- CB0 v0.1.1 clarifies that confirmed reset/category discard has no undo/history; Back/Edit and cancelled confirmations preserve input. This resolves a contradictory reversibility promise without expanding scope.
+- Historical browser failure and later unchanged-fixture success remain recorded. Required checks and CB1 asset/privacy/Trust/design/performance, live-draft/AI/publishing gates remain open.
