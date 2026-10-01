@@ -6,5 +6,9 @@ export const supabaseConfigError = new Error(
   "Account access is not active in this ARO preview yet. You can still explore the public experience.",
 );
 export const supabase = accountsEnabled
-  ? createBrowserClient(supabaseUrl, supabaseKey)
+  ? createBrowserClient(supabaseUrl, supabaseKey, {
+      global: { fetch: (input, init) => fetch(input, {
+        ...init, signal: init?.signal ?? AbortSignal.timeout(10_000),
+      }) },
+    })
   : null;

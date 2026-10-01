@@ -2,9 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const state = vi.hoisted(() => ({
   client: null as any,
   enabled: true,
+  lifecycle: false,
   returnPath: "/profile?tab=saved",
 }));
 vi.mock("server-only", () => ({}));
+vi.mock("./lifecycle", () => ({ get lifecycleEnabled() { return state.lifecycle; } }));
 vi.mock("@supabase/ssr", () => ({ createServerClient: () => state.client }));
 vi.mock("./config", () => ({
   get accountsEnabled() {
@@ -30,6 +32,7 @@ import { requireUser } from "./server";
 describe("server access enforcement", () => {
   beforeEach(() => {
     state.enabled = true;
+    state.lifecycle = false;
     state.client = {
       auth: {
         getUser: vi
@@ -72,5 +75,25 @@ describe("server access enforcement", () => {
     };
     state.client.schema = () => ({ from: () => query });
     await expect(requireUser("/admin", "admin")).rejects.toThrow("not-found");
+  });
+
+  it('denies a valid identity whose signed session was revoked', async () => {
+    state.lifecycle = true;
+    state.client.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-a' } }, error: null });
+    state.client.schema = () => ({ rpc: async () => ({ data: { active: false }, error: null }) });
+    await expect(requireUser('/profile')).rejects.toThrow('redirect:/login');
+  });
+  it('requires eligibility for existing authenticated accounts but permits recovery', async () => {
+    state.lifecycle = true;
+    state.client.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-a' } }, error: null });
+    state.client.schema = () => ({ rpc: async () => ({ data: { active: true, eligible: false }, error: null }) });
+    await expect(requireUser('/profile')).rejects.toThrow('redirect:/account/eligibility');
+    expect(await requireUser('/auth/reset-password')).toEqual({ id: 'user-a' });
+  });
+  it('fails closed when the access-status query fails', async () => {
+    state.lifecycle = true;
+    state.client.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-a' } }, error: null });
+    state.client.schema = () => ({ rpc: async () => { throw new Error('unavailable'); } });
+    await expect(requireUser('/profile')).rejects.toThrow('redirect:/login');
   });
 });
