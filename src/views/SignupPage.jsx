@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from '../lib/navigation';
 import { safeReturnPath } from '../lib/auth/config';
 import { MIN_PASSWORD_LENGTH } from '../lib/auth/lifecycle';
@@ -11,6 +11,7 @@ import { Card, CardBody } from '../components/ui/Card';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { accountEntryCopy } from '../i18n/accountEntry';
+import { accountLifecycleCopy } from '../i18n/accountLifecycle';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -22,9 +23,28 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signUp, signInWithGoogle, isBackendConfigured } = useAuth();
+  const { signUp, resendConfirmation, signInWithGoogle, isBackendConfigured } = useAuth();
   const { language } = useLanguage();
   const { common, signup: copy } = accountEntryCopy[language] ?? accountEntryCopy.en;
+  const lifecycle = accountLifecycleCopy[language] ?? accountLifecycleCopy.en;
+  const [cooldown, setCooldown] = useState(0);
+  const [resendMessage, setResendMessage] = useState('');
+  const cooldownActive = cooldown > 0;
+  useEffect(() => {
+    if (!cooldownActive) return;
+    const timer = window.setInterval(() => setCooldown(value => Math.max(0,value-1)),1000);
+    return () => window.clearInterval(timer);
+  }, [cooldownActive]);
+  async function resend() {
+    if (loading || cooldownActive || !success) return;
+    setLoading(true); setError(''); setResendMessage(''); setCooldown(60);
+    try {
+      const result = await resendConfirmation(formData.email,next);
+      if (result.error) setError(lifecycle.confirmationRetry);
+      else setResendMessage(lifecycle.confirmationSent);
+    } catch { setError(lifecycle.confirmationRetry); }
+    finally { setLoading(false); }
+  }
   const reduceMotion = useReducedMotion();
   const location = useLocation();
   const next = safeReturnPath(new URLSearchParams(location.search).get('next'));
@@ -76,13 +96,14 @@ export default function SignupPage() {
         email: formData.email,
         password: formData.password,
         name: formData.name,
+        returnTo: next,
       });
 
       if (error) {
         setError(error.message);
       } else {
         if (session) window.location.replace(next);
-        else setSuccess(true);
+        else { setSuccess(true); setCooldown(60); setFormData(value => ({ ...value, password: '', confirmPassword: '' })); }
 
       }
     } catch {
@@ -168,6 +189,14 @@ export default function SignupPage() {
                   </div>
                 </motion.div>
               )}
+
+              {success && <div className="mb-4 space-y-3">
+                <button type="button" onClick={resend} disabled={loading || cooldownActive} className="min-h-11 font-bold text-primary-700 underline disabled:opacity-50 dark:text-primary-300">
+                  {cooldownActive ? `${lifecycle.confirmationWait} ${cooldown}s` : lifecycle.confirmationResend}
+                </button>
+                <button type="button" disabled={loading} onClick={() => { setSuccess(false); setError(''); setResendMessage(''); setCooldown(0); setFormData(value => ({ ...value,email: '' })); }} className="block min-h-11 font-bold text-primary-700 underline dark:text-primary-300">{lifecycle.differentEmail}</button>
+                {resendMessage && <p role="status" className="text-sm text-primary-700 dark:text-primary-300">{resendMessage}</p>}
+              </div>}
 
               {/* Error Message */}
               {error && (

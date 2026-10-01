@@ -7,6 +7,10 @@ import { AUTH_RETURN_COOKIE, lifecycleEnabled, MIN_PASSWORD_LENGTH } from '../li
 import {useRouter} from 'next/navigation';
 import {usePlayerStore} from '../store/usePlayerStore';
 import {useStore} from '../store/useStore';
+function rememberAuthReturn(returnTo) {
+  const next = safeReturnPath(returnTo);
+  document.cookie = `${AUTH_RETURN_COOKIE}=${encodeURIComponent(next)}; Path=/auth/callback; Max-Age=600; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`;
+}
 function clearAccountState() {
   usePlayerStore.getState().signOut();
   useStore.setState({currentUser: null, isTeacher: false, bookings: [], teacherExperiences: [], notifications: []});
@@ -21,6 +25,7 @@ const prototypeAuthValue = {
   loading: false,
   isBackendConfigured: false,
   signUp: prototypeBlocked,
+  resendConfirmation: prototypeBlocked,
   signIn: prototypeBlocked,
   signInWithGoogle: prototypeBlocked,
   signOut: async () => undefined,
@@ -165,13 +170,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUp = async ({ email, password, name, photo = '' }) => {
+  const signUp = async ({ email, password, name, photo = '', returnTo = '/explore' }) => {
     if (!isSupabaseConfigured) {
       return { user: null, error: supabaseConfigError };
     }
 
     try {
       if (password.length < MIN_PASSWORD_LENGTH) throw new Error('Use at least eight characters.');
+      rememberAuthReturn(returnTo);
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -191,6 +197,17 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { user: null, error };
     }
+  };
+
+  const resendConfirmation = async (email, returnTo = '/explore') => {
+    if (!isSupabaseConfigured) return { data: null, error: supabaseConfigError };
+    try {
+      rememberAuthReturn(returnTo);
+      return await supabase.auth.resend({
+        type: 'signup', email,
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      });
+    } catch (error) { return { data: null, error }; }
   };
 
   const signIn = async ({ email, password }) => {
@@ -218,8 +235,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const callback = `${window.location.origin}/auth/callback`;
-      const next = safeReturnPath(returnTo);
-      document.cookie = `${AUTH_RETURN_COOKIE}=${encodeURIComponent(next)}; Path=/auth/callback; Max-Age=600; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`;
+      rememberAuthReturn(returnTo);
       return await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: { redirectTo: callback },
@@ -312,6 +328,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     isBackendConfigured: isSupabaseConfigured,
     signUp,
+    resendConfirmation,
     signIn,
     signInWithGoogle,
     signOut,

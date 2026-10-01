@@ -1,5 +1,7 @@
 export const accountLifecycleCopy = {
   en: {
+    confirmationResend: 'Resend confirmation email', confirmationWait: 'You can resend in', confirmationSent: 'If confirmation is still needed, a new email is on its way. Check your inbox and spam folder.',
+    confirmationRetry: 'We could not resend the confirmation. Wait a minute and try again.', differentEmail: 'Use a different email',
     title: 'Before you join ARO', intro: 'ARO is for adults aged 18 and over. Confirm your date of birth to continue. Your date of birth is checked and then discarded.',
     birthDate: 'Date of birth', consent: 'This is my date of birth. I accept the terms and privacy policy.', terms: 'Terms', privacy: 'Privacy',
     submit: 'Confirm and continue', pending: 'Confirming...', invalid: 'ARO is currently for adults aged 18 and over. Please check your date of birth.',
@@ -16,6 +18,8 @@ export const accountLifecycleCopy = {
     cleanupError: 'Your password was updated, but sign-out could not be confirmed. Try signing out again.', retrySignOut: 'Try signing out again', login: 'Sign in',
   },
   fr: {
+    confirmationResend: 'Renvoyer la confirmation', confirmationWait: 'Nouvel envoi dans', confirmationSent: 'Si la confirmation est encore nécessaire, un nouvel e-mail arrive. Vérifiez aussi les courriers indésirables.',
+    confirmationRetry: 'Le nouvel envoi a échoué. Attendez une minute et réessayez.', differentEmail: 'Utiliser un autre e-mail',
     title: 'Avant de rejoindre ARO', intro: 'ARO est réservé aux adultes de 18 ans et plus. Confirmez votre date de naissance pour continuer. Elle est vérifiée puis supprimée.',
     birthDate: 'Date de naissance', consent: "C’est ma date de naissance. J’accepte les conditions et la politique de confidentialité.", terms: 'Conditions', privacy: 'Confidentialité',
     submit: 'Confirmer et continuer', pending: 'Vérification...', invalid: 'ARO est actuellement réservé aux adultes de 18 ans et plus. Vérifiez votre date de naissance.',
@@ -32,6 +36,8 @@ export const accountLifecycleCopy = {
     cleanupError: 'Le mot de passe a été modifié, mais la déconnexion n’a pas été confirmée. Réessayez.', retrySignOut: 'Réessayer la déconnexion', login: 'Se connecter',
   },
   es: {
+    confirmationResend: 'Reenviar confirmación', confirmationWait: 'Puedes reenviar en', confirmationSent: 'Si aún necesitas confirmar, recibirás otro correo. Revisa también la carpeta de spam.',
+    confirmationRetry: 'No pudimos reenviar la confirmación. Espera un minuto e inténtalo de nuevo.', differentEmail: 'Usar otro correo',
     title: 'Antes de unirte a ARO', intro: 'ARO es para personas de 18 años o más. Confirma tu fecha de nacimiento para continuar. Se comprueba y luego se descarta.',
     birthDate: 'Fecha de nacimiento', consent: 'Esta es mi fecha de nacimiento. Acepto los términos y la política de privacidad.', terms: 'Términos', privacy: 'Privacidad',
     submit: 'Confirmar y continuar', pending: 'Confirmando...', invalid: 'ARO es por ahora para personas de 18 años o más. Comprueba tu fecha de nacimiento.',
