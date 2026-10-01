@@ -639,3 +639,8 @@ RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with
 ### 2026-09-28 — RB6 1184639 mobile preference repair propagated
 
 RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with conflict-free ancestry. Bounded scrollable mobile choices, sticky CTA and stronger viewport/separation/focus assertions propagate without losing cloud work. Corrected provenance: old pottery WebPs remain public but unused, not removed. Prior RB7/RB9/RB10/#84 heads pass both hosted workflows; RB8's document-chooser failure stays recorded. Fresh merge-head checks and independent privacy/Trust/contact-retention/review/release gates remain required. PR #84 stays with its owner for the next reconciliation. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, results and limits.
+
+
+### 2026-10-01 - Account production work continues from PR97 in PR98
+
+PR #97 supplies deletion initiation; PR #98 supplies live-session enforcement, server-checked adult eligibility, erasure, completion receipts and recovery/session regression coverage. The selected existing backend remains `mibydnerayobemhnlfyl`; do not switch to another project based on its display name. Production lifecycle flags remain off pending reviewed migrations, worker/cron setup, exception ownership and hosted provider evidence. Supabase live SQL access requires approval unavailable in this session. Existing personal accounts were not deleted or used as erasure fixtures. All erasure verification uses disposable CI data. Independent security/privacy review and native store evidence remain open. Details: `artifacts/ARO-AUTH3/VERIFICATION.md`.

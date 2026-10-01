@@ -397,3 +397,8 @@ RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with
 ### 2026-09-28 — RB6 1184639 mobile preference repair propagated
 
 RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with conflict-free ancestry. Bounded scrollable mobile choices, sticky CTA and stronger viewport/separation/focus assertions propagate without losing cloud work. Corrected provenance: old pottery WebPs remain public but unused, not removed. Prior RB7/RB9/RB10/#84 heads pass both hosted workflows; RB8's document-chooser failure stays recorded. Fresh merge-head checks and independent privacy/Trust/contact-retention/review/release gates remain required. PR #84 stays with its owner for the next reconciliation. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, results and limits.
+
+
+### 2026-10-01 - AUTH3 implemented; release gated
+
+PR #98 adds database-enforced live sessions/adult declarations, localized lifecycle screens, reliable recovery/global logout, private deletion receipts and a real Storage-before-Auth erasure worker. Pending/failed/protected-record cases are leased and monitored; resolved receipts retain AUTH2's 30-day purge. Local 221 tests and webpack build passed; hosted regression later passed 236 tests. Original AUTH3 isolated CI passed 149 assertions twice plus password/refresh/recovery/logout/Trust/browser checks; later public-visibility regression passed 150 assertions. Actual worker and enabled locale-screen evidence are being collected on the continuation head. See `artifacts/ARO-AUTH3/VERIFICATION.md` for precise provenance and gates. Lifecycle and worker activation default false; no live migration or native release has been completed.

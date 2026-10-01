@@ -153,3 +153,12 @@ The lead returns proposed status corrections only. A separately authorized docum
 ## AUTO0 dispatcher implementation
 
 Use `ARO_AUTONOMY.md` and `tools/autonomy/README.md` to provision worker paths and validate report bundles. ChatGPT cloud workers may consume verified GitHub browser captures when their own browser runtime is unavailable; they must identify coverage gaps and may not promote source inspection into browser acceptance. The collector is not an AI worker or an audit-completion signal. Schedules and complete report retrieval remain coordinator-verified.
+
+
+### 2026-10-01 - AUTH3 handoff
+
+- Package: AUTH3; spec `specs/ARO-AUTH3-PRODUCTION-LIFECYCLE.md`; ADR-033; PR #98, stacked on #97.
+- Implementation: live sessions, adult declaration, account entry/recovery/logout, deletion worker/receipts/queue monitor. No existing migration rewritten.
+- Validation: local unit/lint/build and isolated DB/browser regression passed on recorded code heads; final worker/locale evidence tracked in `artifacts/ARO-AUTH3/VERIFICATION.md`.
+- Remaining: independent security/privacy review; live AUTH2/AUTH3 migration and exact provider settings; staffed booking/Trust disposition; hosted confirmation/Google/recovery/erasure; native store path/metadata.
+- Release remains blocked. Do not turn a deletion request, self-declared age, CI mock, or web build into a compliance/identity/store approval claim.

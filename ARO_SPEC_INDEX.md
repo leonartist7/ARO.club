@@ -434,3 +434,8 @@ RB7–RB10 incorporate exact RB6 `9eb4e15d2435eb08787a0b8db10ae601987f5053` with
 ### 2026-09-28 — RB6 1184639 mobile preference repair propagated
 
 RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with conflict-free ancestry. Bounded scrollable mobile choices, sticky CTA and stronger viewport/separation/focus assertions propagate without losing cloud work. Corrected provenance: old pottery WebPs remain public but unused, not removed. Prior RB7/RB9/RB10/#84 heads pass both hosted workflows; RB8's document-chooser failure stays recorded. Fresh merge-head checks and independent privacy/Trust/contact-retention/review/release gates remain required. PR #84 stays with its owner for the next reconciliation. See docs/rebrand/IMPLEMENTATION-LEDGER-20260928.md for exact sources, results and limits.
+
+
+### 2026-10-01 - AUTH3 production lifecycle continuation
+
+AUTH3 v1.0.0 is SPEC-READY for implementation under the founder's request to finish signup, login, logout and deletion. Spec: `specs/ARO-AUTH3-PRODUCTION-LIFECYCLE.md`; decision: ADR-033; continuation: PR #98 stacked on PR #97. Verification is PARTIAL until hosted provider, live rollout, operational disposition and independent review gates pass. Neither AUTH2 nor AUTH3 is store-certified.

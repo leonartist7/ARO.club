@@ -20,8 +20,8 @@ Adult eligibility is a self-declared birth date evaluated by the database, not p
 
 - app_private.account_eligibility: user_id cascading to Auth, server timestamp and accepted terms version. Only the checked RPC may create it; no client table grant. Purged with the account.
 - app_private.account_deletion_jobs: request_id cascading to AUTH2, SHA-256 receipt hash, lease time, bounded attempt counter and enumerated error code. No email, reason, credentials or raw birth date. Purged with the resolved request after 30 days.
-- Authenticated RLS access requires a live auth.sessions row matching the signed session_id and user_id. Eligibility additionally protects account/marketplace data; recovery and deletion use only the live-session rule. Public profile/teacher/experience presentation excludes ineligible owners.
-- Deletion initiation requires a session created within 15 minutes and an explicit confirmation. Same-origin POST, server getUser, validated opaque receipt cookie and no cached responses.
+- Authenticated RLS access requires a live auth.sessions row matching the signed session_id and user_id. Eligibility additionally protects account/marketplace data; recovery and deletion use only the live-session rule. Public profile/teacher/experience presentation excludes ineligible and processing owners.
+- Deletion initiation requires a session created within 15 minutes and an explicit confirmation. Same-origin POST, expectedUserId cross-tab assertion, server getUser, validated opaque receipt cookie and no cached responses.
 - Worker claims use row locks and a 10-minute lease. A claim revokes existing sessions; access remains denied throughout processing. A privileged Auth ban stops new sign-ins while processing. Storage erasure uses the Storage API, never raw metadata deletion.
 - Any booking involving the account, protected verification history, or account-associated audit entry blocks automatic erasure. These records need a reviewed disposition/retention decision; the worker must not invent it or delete money/Trust history. These exceptions require an internal monitored operator before public rollout. Users must never be required to contact support to initiate deletion.
 - Account rows are erased by the Auth admin API only after Storage cleanup. Existing cascade behavior removes profile and unreviewed content. Failed/ambiguous calls stay retryable; a missing Auth row reconciles completion. Completion is recorded only after Auth deletion succeeds or absence is verified.
@@ -38,7 +38,7 @@ No money, subscription, refund or AI behavior. Financial/Trust exceptions remain
 | POST /api/account/deletion | signed-in same-origin owner | confirm=true; receipt cookie | recent session; one open request per user |
 | GET /api/account/deletion | receipt holder or signed-in owner | status/timestamps only | receipt required for signed-out access |
 | GET /api/internal/account-deletions | cron | exact bearer CRON_SECRET | off by default; server-only key/ref/environment validation |
-| service-only deletion RPCs | service role | claim, inventory, finish/error, purge | ten-minute lease, bounded pages and retries |
+| service-only deletion RPCs | service role | claim, inventory, finish/error, queue health, purge | ten-minute lease, bounded pages and retries |
 
 ## 17–22. Experience, reliability and budgets
 
@@ -46,7 +46,7 @@ Use existing light/dark primitives and EN/FR/ES copy. Include loading, eligibili
 
 OAuth uses the existing query-free allowlisted callback. A ten-minute, same-origin return cookie carries a validated relative path; the callback validates again and deletes it. Recovery takes priority over any return cookie. No redirect allowlist expansion is needed.
 
-Requests have 10-second network timeouts; worker inventory pages at 100 objects and at most five pages per account per run. Retry unfinished work using the lease; never mark partial cleanup completed. Cron works on at most five accounts within a 40-second start budget, daily in the initial limited pilot. More than five requests/day or unmonitored exceptions blocks public rollout. No performance improvement is claimed without measurement.
+Requests have 10-second network timeouts; worker inventory pages at 100 objects and at most five pages per account per run. Retry unfinished work using the lease; never mark partial cleanup completed. Cron works on at most five accounts within a 40-second start budget, daily in the initial limited pilot; queue health returns a failure signal while exceptions or near-overdue work persist. More than five requests/day or unmonitored exceptions blocks public rollout. No performance improvement is claimed without measurement.
 
 ## 23–24. Acceptance and evidence
 
@@ -66,4 +66,4 @@ Apply AUTH2 then append-only AUTH3 in a disposable database. Run full Trust/RLS 
 
 Rollback disables worker/UI flags and restores the last verified frontend; it never drops requests or restores erased personal data. Partial Storage cleanup must be resumed, not falsely reversed. Monitor failed and blocked jobs and oldest pending age daily; an unstaffed queue is a release blocker. No deletion of existing personal accounts is authorized as a test.
 
-Native iOS/Android binaries, equivalent iOS login, Google production audience, SMTP inbox proofs and required store metadata must be verified before a store-ready claim. A web build is insufficient. Record actual test results and unresolved gates in artifacts/ARO-AUTH3/VERIFICATION.md and the canonical ledgers. Implementation approval is not release certification.
+Native iOS/Android binaries, equivalent iOS login, Google production audience, SMTP inbox proofs and required store metadata must be verified before a store-ready claim. A web build is insufficient. Operational setup: artifacts/ARO-AUTH3/RUNBOOK.md. Record actual test results and unresolved gates in artifacts/ARO-AUTH3/VERIFICATION.md and the canonical ledgers. Implementation approval is not release certification.
