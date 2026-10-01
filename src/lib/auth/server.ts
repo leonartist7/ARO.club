@@ -8,6 +8,7 @@ import {
   supabaseKey,
   supabaseUrl,
 } from "./config";
+import { lifecycleEnabled } from './lifecycle';
 
 export async function serverSupabase() {
   if (
@@ -45,6 +46,13 @@ export async function requireUser(returnTo: string, role?: string) {
     redirect(
       "/login?next=" + encodeURIComponent(safeReturnPath(requestedPath)),
     );
+  if (lifecycleEnabled) {
+    const access = await Promise.resolve(client!.schema('api').rpc('account_access_status')).catch(() => null);
+    if (access?.error || !access?.data?.active)
+      redirect('/login?next=' + encodeURIComponent(safeReturnPath(requestedPath)));
+    if (!access.data.eligible && !['/auth/reset-password', '/account/delete', '/account/eligibility'].includes(returnTo))
+      redirect('/account/eligibility?next=' + encodeURIComponent(safeReturnPath(requestedPath)));
+  }
   if (role) {
     const { data, error } = await client!
       .schema("api")

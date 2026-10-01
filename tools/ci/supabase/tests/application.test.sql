@@ -39,6 +39,9 @@ values
   'other@aro.invalid',crypt('Synthetic-pass-002',gen_salt('bf')),now(),'{}','{"name":"Other"}',now(),now()),
  (null,'00000000-0000-4000-8000-000000000003','authenticated','authenticated',
   'admin@aro.invalid',crypt('Synthetic-pass-003',gen_salt('bf')),now(),'{}','{"name":"Admin"}',now(),now());
+-- Synthetic live sessions and adult declarations preserve the original Trust assertions.
+insert into auth.sessions(id,user_id,created_at,updated_at) select id,id,now(),now() from auth.users on conflict (id) do nothing;
+insert into app_private.account_eligibility(user_id) select id from auth.users on conflict (user_id) do nothing;
 update app_private.user_roles set role='admin'
   where user_id='00000000-0000-4000-8000-000000000003';
 
@@ -49,7 +52,7 @@ select is((select count(*) from app_private.user_roles),3::bigint,'19 signup cre
 
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 
 -- 20-31: owner privacy, column authority and application transitions.
 select is((select count(*) from public.profiles),1::bigint,'20 owner reads own profile');
@@ -73,10 +76,10 @@ select throws_ok($$insert into public.teachers(id,user_id,name,rating,total_revi
   '42501',null,'27 owner cannot insert fabricated teacher reputation');
 select is((select count(*) from public.teacher_applications),1::bigint,'28 owner sees own application');
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000002","session_id":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
 select is((select count(*) from public.teacher_applications),0::bigint,'29 other user sees no application');
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select lives_ok($$update public.teacher_applications
   set bio='Synthetic bio',agreed_to_standards=true
   where id='10000000-0000-4000-8000-000000000001'$$,'30 draft edit works');
@@ -93,7 +96,7 @@ select results_eq($$with changed as (
 
 -- 32-41: legitimate reviewer performs one atomic, audited approval.
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000003","session_id":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
 select is((select count(*) from public.teacher_applications),1::bigint,'34 admin sees application');
 select throws_ok($$update public.teacher_applications set agreed_to_standards=false
   where id='10000000-0000-4000-8000-000000000001'$$,'42501',null,
@@ -122,7 +125,7 @@ select is((select role from app_private.user_roles
 select is((select count(*) from app_private.admin_audit_log),1::bigint,'44 approval is audited');
 select ok((select app_private.is_admin()),'45 server-derived admin is true');
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select is((select count(*) from app_private.teacher_application_reviews),0::bigint,
   '46 applicant cannot read reviewer-private row');
 
@@ -139,7 +142,7 @@ set local request.jwt.claims='{}';
 select is((select count(*) from public.experiences),1::bigint,'49 anon sees eligible publication');
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000002","session_id":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
 select lives_ok($$insert into public.teachers(id,user_id,name)
   values('30000000-0000-4000-8000-000000000002',
   '00000000-0000-4000-8000-000000000002','Unverified')$$,'50 user can prepare teacher draft');
@@ -148,7 +151,7 @@ set local request.jwt.claims='{}';
 select is((select count(*) from public.teachers),1::bigint,'51 public sees only verified teacher');
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000002","session_id":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
 select lives_ok($$insert into public.experiences(
   id,teacher_id,title,language,city)
   values('20000000-0000-4000-8000-000000000002',
@@ -168,7 +171,7 @@ values('40000000-0000-4000-8000-000000000001',
 -- 54-60: booking visibility/authority and suspension.
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000002","session_id":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
 select is((select count(*) from public.bookings),1::bigint,'54 participant reads own booking');
 select throws_ok($$insert into public.bookings(experience_id,student_id,total_minor,currency)
   values('20000000-0000-4000-8000-000000000001',
@@ -178,10 +181,10 @@ select throws_ok($$update public.bookings set payment_status='paid'
   where id='40000000-0000-4000-8000-000000000001'$$,'42501',null,
   '56 participant cannot self-assert payment');
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select is((select count(*) from public.bookings),1::bigint,'57 host reads booking for own experience');
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000003","session_id":"00000000-0000-4000-8000-000000000003","role":"authenticated"}';
 select lives_ok($$update app_private.teacher_verifications
   set verified=false,status='suspended'
   where application_id='10000000-0000-4000-8000-000000000001'$$,'58 admin can suspend');
@@ -193,7 +196,7 @@ select is((select count(*) from public.teachers),0::bigint,'60 suspension hides 
 -- 61-65: document relationship and storage boundary.
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000002","session_id":"00000000-0000-4000-8000-000000000002","role":"authenticated"}';
 select lives_ok($$insert into public.teacher_applications(id,user_id,display_name)
   values('10000000-0000-4000-8000-000000000002',
   '00000000-0000-4000-8000-000000000002','Other Teacher')$$,'61 second owner creates draft');
@@ -222,9 +225,12 @@ insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_co
 values
  (null,'00000000-0000-4000-8000-000000000004','authenticated','authenticated',
   'unreviewed@aro.invalid',crypt('Synthetic-pass-004',gen_salt('bf')),now(),'{}','{"name":"Unreviewed"}',now(),now());
+-- Synthetic live sessions and adult declarations preserve the original Trust assertions.
+insert into auth.sessions(id,user_id,created_at,updated_at) select id,id,now(),now() from auth.users on conflict (id) do nothing;
+insert into app_private.account_eligibility(user_id) select id from auth.users on conflict (user_id) do nothing;
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000004","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000004","session_id":"00000000-0000-4000-8000-000000000004","role":"authenticated"}';
 insert into public.teachers(id,user_id,name)
 values('30000000-0000-4000-8000-000000000004',
   '00000000-0000-4000-8000-000000000004','Unreviewed teacher');
@@ -242,7 +248,7 @@ set verified=true,status='active'
 where application_id='10000000-0000-4000-8000-000000000001';
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select results_eq($$with deleted as (
   delete from public.teachers
   where user_id='00000000-0000-4000-8000-000000000001'
@@ -257,7 +263,7 @@ set verified=false,status='suspended'
 where application_id='10000000-0000-4000-8000-000000000001';
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select results_eq($$with deleted as (
   delete from public.teachers
   where user_id='00000000-0000-4000-8000-000000000001'
@@ -272,7 +278,7 @@ set verified=false,status='banned'
 where application_id='10000000-0000-4000-8000-000000000001';
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000001","session_id":"00000000-0000-4000-8000-000000000001","role":"authenticated"}';
 select results_eq($$with deleted as (
   delete from public.teachers
   where user_id='00000000-0000-4000-8000-000000000001'

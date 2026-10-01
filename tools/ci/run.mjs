@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { createResetDiagnostic, exerciseAuth, waitForLocalAuthReady } from './auth.mjs';
@@ -63,8 +63,20 @@ function userCount(expected) {
 }
 function sqlTests() {
   const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=108\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 108/108 (transactions rolled back)\n');
+  const testsDir = fileURLToPath(new URL('supabase/tests/', import.meta.url));
+  const expected = readdirSync(testsDir).filter(name => name.endsWith('.test.sql'))
+    .reduce((sum,name) => sum + Number(readFileSync(`${testsDir}/${name}`,'utf8').match(/select plan\((\d+)\)/i)?.[1] ?? 0),0);
+  requireCondition(new RegExp(`Tests=${expected}\\b`).test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write(`PASS pgTAP ${expected}/${expected} (transactions rolled back)\n`);
+}
+function prepareLifecycleMigration() {
+  const directory = fileURLToPath(new URL('supabase/migrations/', import.meta.url));
+  const before = new Set(readdirSync(directory));
+  cli(['migration', 'new', '--help']);
+  cli(['migration', 'new', 'auth3_account_lifecycle']);
+  const added = readdirSync(directory).filter(name => !before.has(name));
+  requireCondition(added.length === 1 && added[0].endsWith('_auth3_account_lifecycle.sql'), 'LIFECYCLE_MIGRATION_NOT_CREATED');
+  writeFileSync(`${directory}/${added[0]}`,readFileSync(new URL('supabase/changes/auth3_account_lifecycle.sql',import.meta.url)));
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -94,6 +106,7 @@ try {
       run('docker', ['network', 'create', '--driver', 'bridge', '--opt', 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1', '--label', `aro.i0.owner=${ownership}`, network]);
     });
     try {
+      await phase('generate-auth3-append-only-migration', prepareLifecycleMigration);
       await phase('start-and-loopback-bindings', () => {
         cli(['start', '--exclude', 'realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'], 600000);
         checkBindings();

@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { Link } from '../lib/navigation';
+import { Link, useLocation } from '../lib/navigation';
+import { safeReturnPath } from '../lib/auth/config';
+import { MIN_PASSWORD_LENGTH } from '../lib/auth/lifecycle';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, Lock, User, AlertCircle, CheckCircle, Chrome } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -24,6 +26,8 @@ export default function SignupPage() {
   const { language } = useLanguage();
   const { common, signup: copy } = accountEntryCopy[language] ?? accountEntryCopy.en;
   const reduceMotion = useReducedMotion();
+  const location = useLocation();
+  const next = safeReturnPath(new URLSearchParams(location.search).get('next'));
 
   const handleChange = (e) => {
     setFormData({
@@ -43,7 +47,7 @@ export default function SignupPage() {
       return false;
     }
 
-    if (formData.password.length < 6) {
+    if (formData.password.length < MIN_PASSWORD_LENGTH) {
       setError(copy.shortPassword);
       return false;
     }
@@ -68,7 +72,7 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const { error } = await signUp({
+      const { error, session } = await signUp({
         email: formData.email,
         password: formData.password,
         name: formData.name,
@@ -77,7 +81,8 @@ export default function SignupPage() {
       if (error) {
         setError(error.message);
       } else {
-        setSuccess(true);
+        if (session) window.location.replace(next);
+        else setSuccess(true);
 
       }
     } catch {
@@ -92,7 +97,7 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const { error } = await signInWithGoogle();
+      const { error } = await signInWithGoogle(next);
 
       if (error) {
         setError(error.message);
@@ -108,7 +113,7 @@ export default function SignupPage() {
   const passwordStrength = () => {
     const password = formData.password;
     if (password.length === 0) return null;
-    if (password.length < 6) return { label: copy.weak, tone: 'weak', color: 'bg-red-500', width: '33%' };
+    if (password.length < MIN_PASSWORD_LENGTH) return { label: copy.weak, tone: 'weak', color: 'bg-red-500', width: '33%' };
     if (password.length < 10) return { label: copy.medium, tone: 'medium', color: 'bg-yellow-500', width: '66%' };
     return { label: copy.strong, tone: 'strong', color: 'bg-green-500', width: '100%' };
   };
@@ -210,7 +215,8 @@ export default function SignupPage() {
                   onChange={handleChange}
                   required
                   disabled={loading || success || !isBackendConfigured}
-                  icon={<User className="w-5 h-5" />}
+                  leftIcon={<User className="w-5 h-5" />}
+                  autoComplete="name"
                 />
 
                 <Input
@@ -222,7 +228,8 @@ export default function SignupPage() {
                   onChange={handleChange}
                   required
                   disabled={loading || success || !isBackendConfigured}
-                  icon={<Mail className="w-5 h-5" />}
+                  leftIcon={<Mail className="w-5 h-5" />}
+                  autoComplete="email"
                 />
 
                 <div>
@@ -235,7 +242,9 @@ export default function SignupPage() {
                     onChange={handleChange}
                     required
                     disabled={loading || success || !isBackendConfigured}
-                    icon={<Lock className="w-5 h-5" />}
+                    leftIcon={<Lock className="w-5 h-5" />}
+                    minLength={MIN_PASSWORD_LENGTH}
+                    autoComplete="new-password"
                   />
                   {strength && (
                     <div className="mt-2">
@@ -268,13 +277,14 @@ export default function SignupPage() {
                   onChange={handleChange}
                   required
                   disabled={loading || success || !isBackendConfigured}
-                  icon={<Lock className="w-5 h-5" />}
+                  leftIcon={<Lock className="w-5 h-5" />}
+                  autoComplete="new-password"
                 />
 
                 <div className="text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg dark:bg-gray-800 dark:text-gray-300">
                   <p className="font-medium text-gray-700 mb-1 dark:text-gray-200">{copy.requirements}</p>
                   <ul className="space-y-1 list-disc list-inside">
-                    <li className={formData.password.length >= 6 ? 'text-green-700 dark:text-green-300' : ''}>
+                    <li className={formData.password.length >= MIN_PASSWORD_LENGTH ? 'text-green-700 dark:text-green-300' : ''}>
                       {copy.minLength}
                     </li>
                     <li className={formData.password === formData.confirmPassword && formData.password ? 'text-green-700 dark:text-green-300' : ''}>
@@ -298,7 +308,7 @@ export default function SignupPage() {
               <div className="mt-6 text-center text-sm">
                 <span className="text-gray-600 dark:text-gray-300">{copy.hasAccount}{' '}</span>
                 <Link
-                  to="/login"
+                  to={'/login?next=' + encodeURIComponent(next)}
                   className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
                 >
                   {copy.signin}

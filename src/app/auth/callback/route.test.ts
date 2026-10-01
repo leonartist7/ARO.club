@@ -62,6 +62,21 @@ describe("authentication callback", () => {
       ).headers.get("location"),
     ).toBe("https://preview.example/auth/error");
   });
+  it('preserves a cookie destination without expanding the provider allowlist and clears it', async () => {
+    state.client = { auth: { exchangeCodeForSession: vi.fn().mockResolvedValue({ error: null }) } };
+    const response = await GET(new NextRequest('https://preview.example/auth/callback?code=one-time', {
+      headers: { cookie: 'aro-auth-return=%2Faccount%2Fdelete' },
+    }));
+    expect(response.headers.get('location')).toBe('https://preview.example/account/delete');
+    expect(response.cookies.get('aro-auth-return')?.value).toBe('');
+  });
+  it('rejects a tampered external return cookie', async () => {
+    state.client = { auth: { exchangeCodeForSession: vi.fn().mockResolvedValue({ error: null }) } };
+    const response = await GET(new NextRequest('https://preview.example/auth/callback?code=one-time', {
+      headers: { cookie: 'aro-auth-return=https%3A%2F%2Fevil.invalid' },
+    }));
+    expect(response.headers.get('location')).toBe('https://preview.example/explore');
+  });
   it("verifies recovery tokens before showing the password form", async () => {
     const verifyOtp = vi.fn().mockResolvedValue({ error: null });
     state.client = { auth: { verifyOtp } };

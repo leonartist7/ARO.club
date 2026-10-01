@@ -143,7 +143,8 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={loading || !isBackendConfigured}
-                  icon={<Mail className="w-5 h-5" />}
+                  leftIcon={<Mail className="w-5 h-5" />}
+                  autoComplete="email"
                 />
 
                 <Input
@@ -156,7 +157,8 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={loading || !isBackendConfigured}
-                  icon={<Lock className="w-5 h-5" />}
+                  leftIcon={<Lock className="w-5 h-5" />}
+                  autoComplete="current-password"
                 />
 
                 <div className="flex items-center justify-end text-sm">
@@ -183,7 +185,7 @@ export default function LoginPage() {
               <div className="mt-6 text-center text-sm">
                 <span className="text-gray-600 dark:text-gray-300">{copy.noAccount}{' '}</span>
                 <Link
-                  to="/signup"
+                  to={'/signup?next=' + encodeURIComponent(from)}
                   className="text-primary-700 hover:text-primary-500 font-medium dark:text-primary-300 dark:hover:text-primary-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-control-focus"
                 >
                   {copy.signup}

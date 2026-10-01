@@ -32,6 +32,14 @@ jobs:
       - name: Confirm cleanup even after cancellation or failure
         if: always()
         run: node tools/ci/run.mjs --cleanup
+      - name: Retain CLI-generated AUTH3 migration for reviewed rollout
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auth3-generated-migration
+          path: tools/ci/supabase/migrations/*_auth3_account_lifecycle.sql
+          if-no-files-found: error
+          retention-days: 30
       - name: Retain synthetic authenticated screenshots
         if: always()
         uses: actions/upload-artifact@v4
