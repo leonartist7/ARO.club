@@ -1,6 +1,6 @@
 # ARO-CB1-F1 — Unconnected Circle Builder logic foundation
 
-> Delivery: v1.0.2 review repair is IMPLEMENTATION-IN-PROGRESS. Source 094818d passes its CI, but review found loss of a compatible category answer, so package acceptance is reopened until corrected source and exact-head checks pass. Main preparation #99 merged at b9a6347; foundation #100 remains unmerged.
+> Delivery: v1.0.2 source VERIFIED at `8b72790543707a634f532cb65bf2d95050ade8f6`; all five main jobs pass, including 27 builder cases/223 tests. Both foundation review corrections are accepted by their regression evidence. Final documentation-head checks/main integration are controlled by #100. No UI or live capability is included.
 
 ## Authority and scope
 Version 1.0.2, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
@@ -55,7 +55,7 @@ No UI or asset implementation in F1. Existing app routes, themes, language prefe
 | F1-06 | No runtime consumers, dependencies, UI, schema or external writes | complete diff + consumer scan |
 | F1-07 | Existing repository quality and new Vitest cases pass | hosted exact-head Quality and platform checks |
 
-The local shell remains unavailable. Direct V8 source execution of the test cases with a small assertion adapter is supplemental evidence, explicitly not installed Vitest/build/lint/browser evidence. Hosted CI must provide the latter. Those hosted results are now recorded for source 094818d. The final delivery documentation head must also pass required checks before main integration.
+The local shell remains unavailable. Direct V8 source execution of the test cases with a small assertion adapter is supplemental evidence, explicitly not installed Vitest/build/lint/browser evidence. Hosted CI must provide the latter. Hosted v1.0.2 results are recorded for source 8b72790, covering both review corrections. The final delivery documentation head must also pass required checks before main integration.
 
 ## Rollout, recovery and review
 The scoped PR targets the CB0 preparation branch while #99 is open. Merge preparation #99 only after its checks pass; retarget foundation #100 to current main after the parent merges, then merge only its accepted exact head. Use normal merge ancestry, expected-head checks and current-main reconciliation. The founder authorized this Phase 1 main integration on 2026-10-01. No user-facing release or runtime connection is included. Rollback removes only the unconnected new modules/spec/evidence and status additions; it changes no data. Self-review covers exact scope, immutable state and tests; any high findings remain blockers.

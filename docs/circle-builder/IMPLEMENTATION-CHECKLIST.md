@@ -32,7 +32,7 @@ CB1 can validate the experience without enabling CB2/CB3. Category choice and gu
   Acceptance: correct mapping, indoor examples, explicit custom-idea boundary, unknown-ID recovery.
   Verify: category/guide mapping and suggestion tests.
 
-- [ ] **4. Implement local builder reducer — compatible-answer review repair pending**
+- [x] **4. Implement local builder reducer — unconnected F1 v1.0.2 source VERIFIED**
   Spec ref: CB0 sections 8-10, 12, 21.
   Build: four editable steps plus sketch-ready state; validation, back/edit, preserve compatible fields, category-change confirmation and reset.
   Acceptance: edits survive transitions, optional logistics stay undecided and no data is persisted/transmitted.
@@ -94,4 +94,4 @@ Implement only after the relevant package becomes SPEC-READY. Start by recheckin
 
 ## Phase 1 checkpoint
 
-Items 3–4 are verified as unconnected foundation modules at source 094818d (CB1-F1 v1.0.1, 24 builder tests). These checks do not claim user-facing CB1 acceptance. Items 1–2 and 5–10 remain the screen/artwork/privacy/design/performance work, followed by separate live packages. Follow EXECUTION-PLAN.md and current #99/#100 merge state to resume without repeating the foundation.
+Items 3–4 are verified as unconnected foundation modules at source 8b72790 (CB1-F1 v1.0.2, 27 builder tests). These checks do not claim user-facing CB1 acceptance. Items 1–2 and 5–10 remain the screen/artwork/privacy/design/performance work, followed by separate live packages. Follow EXECUTION-PLAN.md and current #99/#100 merge state to resume without repeating the foundation.
