@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public,extensions;
-select plan(38);
+select plan(39);
 select has_table('app_private','account_eligibility','adult declarations are private');
 select has_table('app_private','account_deletion_jobs','deletion receipts and leases are private');
 select ok(not has_table_privilege('authenticated','app_private.account_eligibility','INSERT'),'client cannot forge eligibility');
@@ -60,6 +60,7 @@ select throws_ok($$select api.finish_account_deletion((select (payload->>'reques
   (select (payload->>'lease_token')::uuid from auth3_claim))$$,'23514',null,'completion denied while Auth account exists');
 reset role;
 select is((select count(*) from auth.sessions where user_id='00000000-0000-4000-8000-000000000031'),0::bigint,'claim revokes every session');
+select is(app_private.auth3_eligible('00000000-0000-4000-8000-000000000031'),false,'processing account disappears from public presentation');
 update app_private.account_deletion_jobs set lease_until=now()-interval '1 second';
 set local role service_role;
 select throws_ok($$select * from api.account_deletion_objects((select (payload->>'request_id')::uuid from auth3_claim),(select (payload->>'lease_token')::uuid from auth3_claim))$$,'42501',null,'expired inventory lease fails instead of appearing empty');

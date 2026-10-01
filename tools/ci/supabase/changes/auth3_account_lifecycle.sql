@@ -33,12 +33,13 @@ language sql stable security definer set search_path = '' as $$
 $$;
 create function app_private.auth3_eligible(target_user uuid) returns boolean
 language sql stable security definer set search_path = '' as $$
-  select exists (select 1 from app_private.account_eligibility e where e.user_id = target_user);
+  select exists (select 1 from app_private.account_eligibility e where e.user_id = target_user)
+    and not exists (select 1 from public.account_deletion_requests r where r.user_id=target_user and r.status='processing');
 $$;
 create function app_private.auth3_teacher_eligible(target_teacher uuid) returns boolean
 language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.teachers t join app_private.account_eligibility e
-    on e.user_id = t.user_id where t.id = target_teacher);
+    on e.user_id = t.user_id where t.id = target_teacher and app_private.auth3_eligible(t.user_id));
 $$;
 create function app_private.auth3_access_status() returns jsonb
 language sql stable security definer set search_path = '' as $$
