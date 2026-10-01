@@ -234,3 +234,12 @@ This file records durable choices. Package-specific implementation details belon
 
 ## 2026-09-21 — N1 Vercel rollout
 The founder authorized replacing Vite/React Router with Next.js, isolated staging accounts and verification of GitHub/Vercel/Supabase plus AI Gateway readiness. Both local checkouts share leonartist7/ARO.club; integrate once on current main while retaining its newer F1–F6 work. Production backend/domain decisions remain pending. No paid AI activation, new product AI behavior, schema/Trust changes or synthetic-to-live product conversion is implied.
+
+
+## ADR-CB-001 — Category mascots for Circle Builder preparation
+
+**Status:** Accepted product direction from the founder's 2026-10-01 written request; runtime remains SPEC-REQUIRED.
+
+**Decision:** Prepare an easy, clear and beautiful guided Circle Builder with Tonguee the chameleon for Languages, Squilly the squirrel for Skills, and Rockatoo the white cockatoo for Music. Guides provide brief contextual help while the person shapes the experience. Additional guides may follow through scoped packages. Preserve ARO's Opportunity/Circle distinction and existing Tonguee/Coco assets and identifiers.
+
+**Consequences:** `specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md` proposes a four-screen Choose / Shape / Details / Review flow and optional curated guidance. CB0 is documentation preparation only. The local preview needs its own SPEC-READY package, reviewed assets, privacy/Trust boundary review and measured performance budget; authenticated drafts, AI and publishing need separate specifications and dependencies. Category pills are not live category approval. The supplied Markdown attachment remains unreadable; this record is based on the founder's explicit written requirements, not inferred attachment contents.
