@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FileText, ShieldCheck, Cookie, AlertCircle } from 'lucide-react';
 import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { isSupabaseConfigured } from '../lib/supabase';
 
 /**
  * Terms, Privacy and Cookie pages.
@@ -140,7 +141,9 @@ export default function LegalPage({ document: documentKey }) {
                   {section.heading}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {section.body}
+                  {key === 'privacy' && section.heading === 'Getting your data removed' && !isSupabaseConfigured
+                    ? 'Signing out ends the browser session but does not delete a server account. Account deletion requests are unavailable while account access is disabled in this preview. When accounts are enabled, sign in at /account/delete to start a request. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing it.'
+                    : section.body}
                 </p>
               </section>
             ))}

@@ -14,6 +14,24 @@ create unique index account_deletion_requests_open_user_idx
   on public.account_deletion_requests(user_id)
   where status in ('pending', 'processing');
 
+-- The processor may purge only resolved records after the bounded retention
+-- period. The scheduled cleanup belongs to the separate processing package.
+create function public.account_deletion_request_guard_delete()
+returns trigger language plpgsql set search_path = '' as $$
+begin
+  if old.status not in ('completed', 'rejected')
+    or old.processed_at is null
+    or old.processed_at > now() - interval '30 days' then
+    raise exception 'deletion request is not eligible for purge';
+  end if;
+  return old;
+end;
+$$;
+
+create trigger account_deletion_request_guard_delete
+before delete on public.account_deletion_requests
+for each row execute function public.account_deletion_request_guard_delete();
+
 alter table public.account_deletion_requests enable row level security;
 
 create policy account_deletion_requests_owner_select
@@ -33,3 +51,4 @@ grant select on public.account_deletion_requests to authenticated;
 grant insert (user_id) on public.account_deletion_requests to authenticated;
 grant select on public.account_deletion_requests to service_role;
 grant update (status, processed_at) on public.account_deletion_requests to service_role;
+grant delete on public.account_deletion_requests to service_role;

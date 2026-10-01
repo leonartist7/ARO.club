@@ -178,7 +178,7 @@ export const AuthProvider = ({ children }) => {
       const next = safeReturnPath(returnTo);
       return await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: next === '/explore' ? callback : `${callback}?next=${encodeURIComponent(next)}` },
+        options: { redirectTo: next === '/account/delete' ? `${callback}?next=${encodeURIComponent(next)}` : callback },
       });
     } catch (error) {
       return { data: null, error };

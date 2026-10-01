@@ -6,7 +6,7 @@
 - **Spec version:** 1.0.0, 2026-10-01
 - **Owner:** ARO founder
 - **Depends on:** AUTH1 hosted email and Google verification; existing I0 Auth/RLS baseline
-- **Governing documents:** `AGENTS.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO_TRUST_SAFETY.md`, `ARO_DATA_MODEL.md`, `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`
+- **Governing documents:** `AGENTS.md`, `DECISIONS.md` ADR-032, `ARO_BUILD_PLAYBOOK.md`, `ARO_TRUST_SAFETY.md`, `ARO_DATA_MODEL.md`, `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`
 - **Required review:** independent security/privacy review before implementation merge and production migration
 
 ## 1. Problem and outcome
@@ -27,7 +27,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 1. A public `/account/delete` page explains the request and links an unauthenticated visitor to sign-in. A signed-in user checks a confirmation box, submits once, and can return to read the open request's status. The account settings page links to it. It must never claim that account data has already been erased.
 2. A new `public.account_deletion_requests` row contains only a generated request ID, user ID, status, request time and optional processing time. No free-text reason, date of birth, email copy, analytics event, or new client dependency. A partial unique index permits at most one pending/processing request per user.
-3. RLS permits authenticated owners to insert their own pending request and select their own rows. Column grants prevent client-supplied status/timestamps. Other users and anonymous callers cannot read, update, or process a request. Only a privileged server operator can change its status. Auth user deletion must not be blocked by the request row.
+3. RLS permits authenticated owners to insert their own pending request and select their own rows. Column grants prevent client-supplied status/timestamps. Other users and anonymous callers cannot read, update, or process a request. Only a privileged server operator can change its status. Auth user deletion must not be blocked by the request row. A privileged operator may purge resolved records only after 30 days; the processing package must schedule and monitor that purge. Any legal retention exception needs a separate approved basis and controlled archive, not indefinite retention in this table.
 4. The public privacy notice accurately describes request initiation and possible dependency/retention review. A request is not a deletion guarantee. No production schema or public promise is released until processing ownership and independent review are in place.
 
 ## 4. Explicit next packages and release gates
@@ -35,7 +35,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 | ID | Decision | Proposed default | Why it matters |
 |---|---|---|---|
 | G1 | Adult eligibility | A separate server-enforced email and Google eligibility package must specify pre/post-OAuth behavior and existing-user migration. A browser checkbox alone is insufficient. |
-| G2 | Actual deletion processing | A privileged worker and operator must resolve bookings, teacher/Storage files, audit/legal retention, revocation, retry, and completion notification. `bookings.student_id ON DELETE RESTRICT` prevents naive deletion. |
+| G2 | Actual deletion processing | A privileged worker and operator must resolve bookings, teacher/Storage files, audit/legal retention, revocation, retry, completion notification, and a monitored purge of resolved request rows after 30 days. `bookings.student_id ON DELETE RESTRICT` prevents naive deletion. |
 | G3 | Operations | A monitored request queue and published processing timeframe must exist before releasing this UI to production. The current contact page saves an unsent draft only. |
 | G4 | Store builds | Identify the iOS/Android application; verify native OAuth callback, deletion path, store metadata, and Apple's equivalent login requirement for iOS Google sign-in. |
 | G5 | AUTH1 and OAuth return | Complete hosted email confirmation/recovery and Google callback tests and independent security review. Allowlist the exact production `/auth/callback?next=%2Faccount%2Fdelete` redirect in Supabase before relying on Google return to this page. |
@@ -44,7 +44,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 | ID | Requirement and test evidence | Status |
 |---|---|---|
-| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, and Auth user deletion compatibility in disposable database | CI VERIFIED: 12 pgTAP assertions in isolated platform run `36843716541` |
+| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, Auth user deletion compatibility and purge guard in disposable database | 16 assertions locally added; exact-head isolated CI pending |
 | AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | IMPLEMENTED; local unit/build and Quality run `36843716537` pass; hosted authenticated journey pending |
 | AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | IMPLEMENTED; independent privacy acceptance pending |
 | AUTH2-04 | Production queue owner, processing path and timeframe, hosted request test, independent review | PENDING |

@@ -84,6 +84,16 @@ describe('Google account entry', () => {
     }));
   });
 
+  it('uses the configured query-free callback for other protected routes', async () => {
+    mocks.signInWithOAuth.mockResolvedValue({ data: { url: 'https://accounts.google.com/' }, error: null });
+    render(<AuthProvider><GoogleAction returnTo="/profile" /></AuthProvider>);
+    fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
+    await waitFor(() => expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
+    }));
+  });
+
   it('uses a query-free callback so the email template can append a recovery token', async () => {
     mocks.resetPasswordForEmail.mockResolvedValue({ data: {}, error: null });
     render(<AuthProvider><RecoveryAction /></AuthProvider>);
