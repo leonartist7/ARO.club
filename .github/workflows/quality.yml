@@ -40,6 +40,18 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
+      - name: Circle Builder guide web exports
+        run: node scripts/export-cb1-guides.mjs
+        env:
+          ARO_CB1_EXPORT_RECEIPTS: 'true'
+      - name: Retain Circle Builder guide web exports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-guide-exports
+          path: artifacts/ARO-CB1-P/exports
+          if-no-files-found: error
+          retention-days: 14
       - name: Circle Builder unchanged Create baseline
         run: node scripts/measure-cb1-create.mjs
       - name: Retain Circle Builder baseline

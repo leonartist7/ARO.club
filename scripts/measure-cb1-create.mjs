@@ -49,7 +49,7 @@ try {
             decodedBytes: entry.decodedBodySize,
             durationMs: entry.duration,
           }));
-          const js = resources.filter(entry => /\\.js$/.test(entry.path));
+          const js = resources.filter(entry => /\.js$/.test(entry.path));
           const images = resources.filter(entry => entry.initiatorType === 'img');
           const sum = (entries, key) => entries.reduce((total, entry) => total + entry[key], 0);
           return {
@@ -112,4 +112,4 @@ for (const width of [360, 1440]) for (const mode of ['learn', 'share', 'gather']
   summary.push({ width, mode, samples: group.length, metrics });
 }
 await writeFile(join(output, 'summary.json'), JSON.stringify(summary, null, 2));
-process.stdout.write('CB1_BASELINE_SUMMARY=' + JSON.stringify(summary) + '\\n');
+process.stdout.write('CB1_BASELINE_SUMMARY=' + JSON.stringify(summary) + '\n');
