@@ -36,3 +36,7 @@ This constrains later implementation; it is not a claim the builder is already m
 
 Paired case must keep viewport, initial entry mode, release flag, locale/theme, reducedmotion, Chromium revision, context/cache and observation window consistent. Do not compare a warm reused browser to this cold-context baseline. Record renderer/version/host and repeat three samples, retaining failures and outliers; do not discard an inconvenient first sample. If an unrelated main change alters baseline, name it and approve a revised budget; never relabel a regression as PASS.
 These relative budgets are useful for regression, not a claim that163214 imagebytes or327KiBJS is globally optimal. Release performance additionally requires real route/focus/input tests at the specified phone widths. A low-end/throttled or field performance assertion needs its own evidence.
+
+## Instrumentation review correction
+
+Final PR review strengthened the harness: existing fixture artwork must include exactly one visible loaded image, not an empty collection. Image budgets classify network responses by image Content-Type, including preload/link and CSS initiators. A real two-image synthetic preload/CSS probe verifies both request/byte accounting; it collects no user input. Generated exports, raw baseline and PNG/JSON fixture output are excluded from routine commits; selected durable WebPs/summary/manifest remain versioned.

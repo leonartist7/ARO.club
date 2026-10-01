@@ -36,3 +36,7 @@ These are synthetic artwork fixtures, not screenshots of completed Create screen
 No input-collecting route connected. Reviewed four-screen authority is SPEC-READY; future F2/F3/F4 need their narrower source specs and runtime acceptance.
 Phase 3 F2 implements isolated Choose/Shape/dictionary/examples/manual/guide components; Phase 4 F3 completes Details/Review/recovery; Phase 5 F4 integrates the whole local flow only after full verification. Full-source catalog/content/persistence/eligibility/evidence/cohost/publishing/booking/outcome packages remain explicitly mapped.
 BrowserBack/reload/mobile-loss protection is best-effort as disclosed; no recovery/autosave promise. Existing F1group bound1–50 is narrowed to1–4 only under futureF3 authority before connection.
+
+## Final PR tooling review
+
+Four findings addressed: P-03 approval status reconciled; visible-art assertion rejects an empty list; image accounting includes response-MIME preload/CSS resources with a real two-image probe; generated local export/raw/PNG outputs excluded while selected durable evidence remains tracked. These strengthen synthetic verification only and require fresh final-head CI. Source7bae/5f4e716 full green runs remain historical evidence; #102 carries the corrected exact-head receipt.
