@@ -10,13 +10,15 @@ Status: PARTIAL; production/store release BLOCKED. PR #98 is stacked on PR #97; 
 | Original full hosted Quality | Passed all four jobs | d180af7; [Quality 36862527545](https://github.com/leonartist7/ARO.club/actions/runs/36862527545) |
 | Expanded context/screens/server regression | 236 passed, 3 existing skips; static checks/build passed | 9b2fc79; [Quality 36863466964](https://github.com/leonartist7/ARO.club/actions/runs/36863466964) |
 | Processing-account listing regression | Isolated run passed; 150 SQL assertions | 9b2fc79; [Isolated database 36863466669](https://github.com/leonartist7/ARO.club/actions/runs/36863466669) |
-| Actual worker removes Storage then Auth | Verification added; final run pending | tools/ci/deletion.mjs uses disposable API clients and the real TypeScript worker, with no credentials persisted |
-| Enabled account screens at 360/1440, light/dark, EN/FR/ES | Verification added; final run pending | Disposable authenticated browser matrix captures empty eligibility and deletion confirmation states |
+| Actual worker removes Storage then Auth | Passed on 1285ae2 and bae3873; final review-fix run pending | [Isolated worker 36863720434](https://github.com/leonartist7/ARO.club/actions/runs/36863720434); no credentials persisted |
+| Enabled account screens at 360/1440, light/dark, EN/FR/ES | Passed on bae3873; final review-fix run pending | [Enabled browser matrix 36864035556](https://github.com/leonartist7/ARO.club/actions/runs/36864035556); 24 account-screen captures |
 | Real hosted SMTP confirmation/recovery and Google consent | Not verified | Existing provider configuration evidence is not an inbox/provider journey |
 | Live migration, worker credentials/cron and staffed exception review | Not performed | Live SQL tool requires approval unavailable under this session's policy; independent review pending |
 | Native iOS/Android and store acceptance | Not verified | Repository supplies a web application; native/provider/store evidence remains necessary |
 
 The local checkout recovered all 41 changed text blobs at PR97 head 48bd618 exactly. Seven unrelated RB17 binary screenshots were retained by the remote base tree, not reconstructed locally. Remote commits preserve normal ancestry on 48bd618; no branch was force-pushed. Synced project files were untouched. After local command execution became unavailable, subsequent changes were written to the isolated GitHub branch and verified by hosted CI; the scratch checkout is not the final authoritative head.
+
+Review corrections under test: committed CLI migration provenance, capacity exhaustion signals, preserved cleanup targets/stages after external Auth deletion, owner-held receipt handoff for AUTH2 requests, in-progress applicant review protection and accurate irreversible-erasure consent. CI caught and corrected SQL dollar-quote corruption in the follow-up payload and a mock-order assertion error; earlier passing results do not certify these later changes.
 
 Changes under test: no client authority from editable age/admin metadata; recent sign-in/explicit confirmation; cross-tab owner assertion; live session/RLS denial; asynchronous account-state isolation; global logout failure; recovery cleanup retry; leased worker refusal/retry/reconciliation; private completion receipts; resolved 30-day purge. Every migration test rolls back, and the isolated runner resets synthetic accounts and removes its owned containers/network/volumes.
 
