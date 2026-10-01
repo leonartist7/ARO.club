@@ -1,14 +1,14 @@
 # Circle Builder phased execution plan
 
-Version 1.0.3 · 2026-10-01 · Owner: ARO founder
-Status: ACTIVE. Phase 1 source VERIFIED at 8b72790. Preparation #99 merged at b9a6347. The live merged state of foundation #100 is the delivery checkpoint; Phase 2 is next after that checkpoint.
+Version 1.1.0 · 2026-10-01 · Owner: ARO founder
+Status: ACTIVE. Phase 1 integrated at 2f06fa3. Phase 2 preparation is accepted at its source/evidence checkpoint; #102 live exact-head checks and merge state control main integration. Phase 3 Choose/Shape is next after that checkpoint.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
 
 Work one phase at a time. Before each phase, recheck remote main, the active branch, open authentication/design ownership and the governing package. Commit its scoped SPEC-READY authority before runtime edits. Keep one package/branch/PR, preserve ancestor work, map criteria to evidence and update the canonical status records. Every integrated phase must pass its exact-head required checks and applicable reviews; founder main-integration authorization does not turn missing evidence into PASS.
 
-The written mascot requirements remain Tonguee/chameleon for Languages, Squilly/squirrel for Skills and Rockatoo/white cockatoo for Music. The uploaded MVP attachment remains inaccessible and must be reconciled when available; do not invent its requirements.
+The written mascot requirements remain Tonguee/chameleon for Languages, Squilly/squirrel for Skills and Rockatoo/white cockatoo for Music. The source brief is recovered from its original Page sequence 0 and ORG1 reference at 7614cc7; SOURCE-RECONCILIATION.md maps every major requirement into this preview and later owning packages.
 
 ## Phases and main checkpoints
 
@@ -18,7 +18,7 @@ The written mascot requirements remain Tonguee/chameleon for Languages, Squilly/
 | 2 | CB1 preparation: exact field/navigation contract, mascot assets/manifest, existing Create baseline, route/media budget, product/design/accessibility and privacy/Trust review | Versioned CB1 screen authority is SPEC-READY; reviewed consistent art; measured budget; attachment limitation retained/reconciled | Documentation/assets only within approved package; no input-collecting route until review accepts the boundary |
 | 3 | CB1-F2 Choose/Shape screen modules and UI dictionary; category search, example/manual paths, compact optional guide, explicit suggestion acceptance | Each category works with keyboard; user edits survive; components verified in isolation; current Create remains usable | Scoped screen modules may land without changing the active route |
 | 4 | CB1-F3 Details/Review/completion modules; People/Place/Time groups, live sketch, targeted Edit/return-to-review, undecided logistics | Complete in-memory flow; truthful completion; category/reset/exit dialogs preserve edits; no saved/published claim | Integrate complete screen modules under approved CB1 authority |
-| 5 | CB1-F4 route/shell integration and release verification | 320/360/390/768/1440 widths; short-phone/focus/safe areas; accessible/reduced-motion states; asset failure; locales/themes; no input in URL/storage/network; regression/performance/required reviews pass | Connect /app/create only when the complete local flow is accepted; preserve legacy mode query compatibility |
+| 5 | CB1-F4 route/shell integration and release verification | 320/360/390/768/1440px widths; short phone/focus/safe areas; accessible/reduced-motion states; asset failure; locales/themes; no input in URL/storage/network; regression/performance/required reviews pass | Connect /app/create only when the complete local flow is accepted; preserve legacy mode query compatibility |
 | 6 | CB2 authenticated owner-only private drafts | Dedicated SPEC-READY data/privacy package; server validation; hostile RLS matrix; revisions/conflicts; save/resume/edit/delete/retry/session recovery; export/retention/account deletion integration | Separate reviewed migration/runtime package; coordinate with AUTH2/AUTH3 readiness |
 | 7 | CB3 publishing | Dedicated SPEC-READY publishing package; Opportunity/Experience/Circle mapping; server host/category eligibility; explicit approval; idempotency; moderation/operations; truthful pending/error/success | Publish only eligible approved categories; do not infer Skills/Music live launch from their preview pills |
 | Optional 8 | CB-AI after A1: generative mascot suggestions | Minimal consented inputs, structured output, evaluation/cost/latency/failure controls, manual fallback, explicit acceptance | Separate package; never autonomous publishing, booking, contact, location exposure or payment |
@@ -35,8 +35,8 @@ Phase 1 integrates reusable foundation code. It does not switch the Create inter
 - [x] Commit package amendments before both source corrections; guidance and compatible-answer repairs include five new regression cases.
 - [x] Verify preparation head 8f78f76 and corrected foundation source 8b72790: all five main jobs pass; 223 unit tests/27 builder cases pass on current source. Synchronize evidence; final documentation-head checks are still enforced.
 - [x] Merge reviewed preparation #99 first at b9a6347fa911188786942ec06f9a4d16931272be.
-- [ ] Accept final documentation-head checks and merge foundation #100 second, without bypassing required checks. Read its live PR state; if already merged, do not repeat this work.
-- [ ] Verify main contains the accepted foundation and record its SHA and next phase.
+- [x] Accept final documentation-head checks and merge foundation #100: merged at 2f06fa3; all five jobs passed, identical accepted delivery tree 901c646.
+- [x] Verify main 2f06fa3 contains accepted source 8b72790 and delivery 98fc5fc; Phase 2 starts from this integrated checkpoint.
 
 Historical preparation CI failure: run 36887604608 failed BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_DARK; English/light was cancelled. Preserve this failure. Foundation run 36893719678 subsequently passed the unchanged platform fixture; fresh preparation evidence is required before its merge. No assertion is weakened and no unrelated auth/browser change is authorized by Phase 1.
 
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: read #100's live state. If open, accept its current exact-head checks and merge the reviewed foundation; if merged, Phase 1 is complete and Phase 2 starts from actual main with the Create baseline and precise screen/asset contract.
+Current next task: read #102's live state. If open, accept final exact-head checks/review and merge; if merged, begin Phase 3 F2 from actual main, committing its narrowed SPEC-READY authority before source edits.
 
 ## Phase 1 verification and review checkpoint
 
@@ -68,4 +68,26 @@ Preparation #99 is merged at b9a6347 after all five checks pass and three docume
 
 The final evidence/status reconciliation contains no source change; it requires its own exact-head checks before #100 merges. Main integration truth is #100's live merge state. The next phase records the resulting main SHA and marks the remaining integration rows after observing that state. This avoids inventing a future merge SHA or repeating accepted work.
 
-Next Phase 2 tasks: inspect actual main and active ownership; reconcile the attached brief if accessible; baseline current /app/create; define exact screen/navigation/field contracts and mascot asset manifest; complete the required privacy/Trust/design/accessibility review and measurable budget before input-collecting UI work.
+Phase 2 completion authority: specs/ARO-CB1-P-PREPARATION.md and specs/ARO-CB1-LOCAL-PREVIEW.md. Source/review/budget/asset evidence: artifacts/ARO-CB1-P/VERIFICATION.md. Phase 2 adds no input-collecting app route.
+
+## Phase 2 checkpoint and recovery
+- [x] Main and Phase 1 accepted integration pinned; ORG1 #101 ownership preserved.
+- [x] Recovered source brief reconciled; 16 subjects, six content stages and later live policy retained explicitly.
+- [x] Exact screen fields, navigation/focus/edit/return/exit and transient privacy/Trust contracts reviewed.
+- [x] Three original static welcome assets and 192/384 WebP exports with provenance/dimensions/bytes/hash manifest.
+- [x] Existing Create 18 cold browser-context samples and committed numeric baseline/budget.
+- [x] Independent privacy/Trust and product/design/a11y review; external exit loss finding corrected.
+- [ ] Accept final #102 exact-head CI and normal protected merge; verifylive main SHA. Never repeat an already observed merge.
+No app/reducer/schema/auth/dependency/provider/inputdata edit. Future F2/F3/F4 source requires its own narrowing and verification.
+
+## Full-source follow-up packages
+Four-screen preview is an incremental delivery. Before claiming the recovered full MVP, retain:
+1. CB-TAX:16 subjectcatalog, tags, templates, availability and Other review intake.
+2. CB-CONTENT: realisticprerequisites, timed welcome/demo, practice and recap, materials provided/brought, private uploads, bounded quizzes/reflection, accessibility/setup/weather backup.
+3. CB2:authenticated owner-only saved drafts, resume/revisions/conflict/delete/export/retention and AUTH3 lifecycle.
+4. Eligibility/evidence/review: approved attendance/capacity policy, founding-host decision, private evidence, versioned human review/reasons/appeal.
+5. Cohost:one accepted eligible teaching partner, lead permissions/audit; no capacity increase/split payouts.
+6. CB3/P4:approved version and host/category eligibility, server capacity/idempotency, actual booking/payment/cancellation configuration.
+7. P5:verified attendance/outcomes, permitted materials/history/feedback/manual next Experience.
+8. Optional A1/CB-AI:consented bounded assistance/manual fallback and explicit approval, no autonomous consequential actions.
+These are separate packages/branches/reviews, not extra work silently included in Phase 3. Policy proposals are not launch authority.

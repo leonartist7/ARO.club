@@ -21,6 +21,8 @@ for (const guideId of ['tonguee', 'squilly', 'rockatoo']) {
     assert.equal(info.width, size); assert.equal(info.height, size);
     assert(data.byteLength <= (size === 192 ? 40 : 96) * 1024);
     const path = guideId + '-welcome-' + size + '.webp';
+    const committed = await readFile(join(process.cwd(), 'public', 'brand', 'circle-builder', path));
+    assert.deepEqual(data, committed, 'Committed guide differs from deterministic export: ' + path);
     await writeFile(join(output, path), data);
     const receipt = { guideId, pose: 'welcome', path, width: info.width, height: info.height,
       bytes: data.byteLength, sha256: createHash('sha256').update(data).digest('hex'),

@@ -93,8 +93,8 @@ try {
   await writeFile(join(output, 'baseline.json'), JSON.stringify({
     schemaVersion: 1,
     measuredCommit: process.env.GITHUB_SHA ?? 'local',
-    runtimeUnchangedFrom: '2f06fa3ddaae0020d4bca7cd040669bb9ac42346',
-    method: 'production Next; Chromium; EN/light; reduced motion; warm server; new cold-browser context per sample; no throttling; observation 500ms after networkidle',
+    baselineReference: '2f06fa3ddaae0020d4bca7cd040669bb9ac42346',
+    method: 'production Next; Chromium; EN/light; reduced motion; single running server without explicit route/asset warmup; new cold-browser context per sample; no throttling; observation 500ms after networkidle',
     samples,
   }, null, 2));
   await browser?.close();

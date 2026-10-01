@@ -39,7 +39,7 @@ try {
     const receipt = { width, theme, cssSize: size, path, geometry, previewBytes: preview.byteLength,
       previewSha256: createHash('sha256').update(preview).digest('hex') };
     receipts.push(receipt);
-    process.stdout.write('CB1_ART_REVIEW=' + JSON.stringify({ ...receipt, base64: preview.toString('base64') }) + '\n');
+    process.stdout.write('CB1_ART_REVIEW=' + JSON.stringify(receipt) + '\n');
     await context.close();
   }
 } finally {

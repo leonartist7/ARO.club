@@ -1,8 +1,8 @@
 # ARO-CB1-P — Circle Builder Phase 2 preparation
 
 ## 0. Metadata
-- Status: SPEC-READY for preparation tooling/documents/assets only. CB1 screen implementation authority remains SPEC-REQUIRED until the gates below are accepted.
-- Spec version: 1.0.0
+- Status: SPEC-READY for preparation tooling/documents/assets only. Reviewed screen authority is recorded in ARO-CB1-LOCAL-PREVIEW.md v1.0.0; F2/F3/F4 still need narrowed source specs and their own verification. Preparation source/evidence is accepted; final #102 delivery-head CI/main integration is enforced by its live PR state.
+- Spec version: 1.0.1
 - Owner/director: ARO founder; execution requested 2026-10-01.
 - Branch: codex/circle-builder-phase2-preparation-20261001
 - Depends on: CB0 v0.1.1; CB1-F1 v1.0.2 integrated through #99/#100.
@@ -53,7 +53,7 @@ Verify 320/360/390/768/1440; short-height phone and keyboard; persistent shell f
 
 ## 20. Performance
 Measure current unchanged Create before final thresholds. Script uses installed Playwright and production-server helper, no dependency.
-For 360x740 and 1440x900, take three new-context cold-browser samples each of learn/share/gather at EN/light. This is a warm-server/cold-browser unthrottled CI lab baseline, not field Web Vitals or a low-end device claim.
+For 360x740 and 1440x900, take three new-context cold-browser samples each of learn/share/gather at EN/light. This is a single-running-server/cold-browser unthrottled CI lab baseline (no explicit route/asset warmup), not field Web Vitals or a low-end device claim.
 Record same-origin/all resource counts and transferred/encoded JS and image bytes, DOMContentLoaded/load, FCP/LCP observed by 500ms after network idle, CLS, rendered readiness, errors/writes and screenshot. Count non-resource navigation separately; record entries rather than treating transferSize=0 as absent resources. No INP claim from an unedited fixture.
 Same harness/settings required for F4 before/after comparison. Final thresholds and measurement limitations go in PERFORMANCE.md after baseline exists.
 No video/3D/new font/remote avatar/animation runtime. Inactive guides not fetched eagerly; reserve art dimensions.
@@ -68,12 +68,12 @@ No new product analytics. Baseline is synthetic measurement only; CI artifacts e
 | ID | Requirement | Verification | Evidence | Status |
 |---|---|---|---|---|
 | P-01 | Current main/ownership and Phase 1 integration pinned | GitHub branch/PR metadata | VERIFICATION.md | PASS: 2f06fa3; concurrent ORG1 #101 preserved |
-| P-02 | Original brief reconciled field by field | Immutable Page-reference copy; mapping review | SOURCE-RECONCILIATION.md | IN REVIEW |
+| P-02 | Original brief reconciled field by field | Immutable Page-reference copy; mapping review | SOURCE-RECONCILIATION.md | PASS: source mapping independently reviewed |
 | P-03 | Exact field/navigation and privacy/Trust contract | Independent specialist review | SCREEN-CONTRACT.md; REVIEWS.md | IN REVIEW |
-| P-04 | Consistent art/provenance/manifest reviewed | Full silhouettes/theme/mobile review | guide manifest; ARTWORK.md | PENDING |
-| P-05 | Existing route measured and budget derived | Production Playwright 18 samples | baseline.json; PERFORMANCE.md | PENDING |
-| P-06 | Existing regression gates unchanged and exact head passes | Quality/platform jobs | VERIFICATION.md | PENDING |
-| P-07 | Durable next package gates and status synchronized | Final diff/readback | ledgers; execution plan | PENDING |
+| P-04 | Consistent art/provenance/manifest reviewed | Full silhouettes/theme/mobile review | manifest; ARTWORK.md; art-review captures | PASS: independent review at 279462e6 |
+| P-05 | Existing route measured and budget derived | Production Playwright 18 samples | BASELINE-SUMMARY.json; PERFORMANCE.md | PASS: 6b5a005, reviewed budget |
+| P-06 | Existing regression gates unchanged and exact head passes | Quality/platform jobs | VERIFICATION.md; live #102 | PASS at 7bae9a94; final delivery-head checks required |
+| P-07 | Durable next package gates and status synchronized | Final diff/readback | ledgers; execution plan; #102 | Recorded; final readback/diff gate enforced in delivery |
 SPEC-READY screen handoff requires P-02–P-07 accepted, including artwork and independent boundary/design review. Green CI alone is insufficient.
 
 ## 25–26. Rollout and recovery
@@ -81,7 +81,7 @@ One preparation branch/PR into main after checks/review. Current Create remains 
 F2 can implement isolated Choose/Shape after authority is accepted. F3 completes Details/Review/recovery. F4 alone connects the fully verified route.
 
 ## 27–28. Required review
-Independent privacy/Trust and product/design/accessibility review must inspect the final contract/assets and source reconciliation. Record reviewer, source/spec version, findings, dispositions and approval explicitly. Pending review remains pending; founder direction is not approval of unseen artwork.
+Independent privacy/Trust and product/design/accessibility review must inspect the final contract/assets and source reconciliation. Review receipts are recorded in artifacts/ARO-CB1-P/REVIEWS.md: privacy/Trust at 8e72703; complete design/art/compact-theme/budget at 279462e6. Approval is bounded preparation acceptance; actual runtime, accessibility, navigation and input boundary remain later verification. Founder direction is not approval of unseen artwork.
 AGENTS self-review item 8 requires specialist review before merge of privacy/Trust work.
 
 ## 29–30. Delivery

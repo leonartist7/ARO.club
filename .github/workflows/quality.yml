@@ -43,7 +43,7 @@ jobs:
       - name: Circle Builder guide web exports
         run: node scripts/export-cb1-guides.mjs
         env:
-          ARO_CB1_EXPORT_RECEIPTS: 'true'
+          ARO_CB1_EXPORT_RECEIPTS: 'false'
       - name: Retain Circle Builder guide web exports
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,7 +62,7 @@ jobs:
           path: artifacts/ARO-CB1-P/art-review
           if-no-files-found: error
           retention-days: 14
-      - name: Circle Builder unchanged Create baseline
+      - name: Circle Builder Create measurement
         run: node scripts/measure-cb1-create.mjs
       - name: Retain Circle Builder baseline
         if: always()
