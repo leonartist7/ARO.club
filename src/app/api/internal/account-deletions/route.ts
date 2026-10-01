@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     const health = await admin.schema('api').rpc('account_deletion_queue_health');
     if (health.error || !health.data) throw new Error('queue health unavailable');
     return NextResponse.json({ ...counts, purged: purge.data, queue: health.data }, {
-      status: counts.blocked || counts.retry || health.data.blocked || health.data.failed || health.data.overdue ? 503 : 200, headers,
+      status: counts.blocked || counts.retry || health.data.waiting || health.data.blocked || health.data.failed || health.data.overdue ? 503 : 200, headers,
     });
   } catch { return NextResponse.json({ error: 'worker_failed', ...counts }, { status: 503, headers }); }
 }

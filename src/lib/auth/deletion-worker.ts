@@ -15,12 +15,17 @@ export async function processAccountDeletion(admin: SupabaseClient, targetReques
   try {
     // Ban before cleanup; revocation alone cannot prevent a fresh sign-in.
     const banned = await admin.auth.admin.updateUserById(job.user_id, { ban_duration: '876000h' });
-    if (banned.error) throw new Error('account ban failed');
+    if (banned.error) {
+      const identity = await admin.auth.admin.getUserById(job.user_id);
+      if (identity.error?.status !== 404 || identity.data.user) throw new Error('account ban failed');
+    }
     stage = 'storage_error';
     for (let page = 0; page < 5; page += 1) {
       const inventory = await api.rpc('account_deletion_objects', args);
       if (inventory.error || !Array.isArray(inventory.data)) throw new Error('storage inventory failed');
       if (inventory.data.length === 0) {
+        const marked = await api.rpc('mark_account_deletion_storage_clean', args);
+        if (marked.error) throw new Error('storage completion could not be recorded');
         stage = 'auth_error';
         const removed = await admin.auth.admin.deleteUser(job.user_id, false);
         if (removed.error) {

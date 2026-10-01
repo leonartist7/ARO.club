@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
@@ -77,7 +78,9 @@ function prepareLifecycleMigration() {
   cli(['migration', 'new', 'auth3_account_lifecycle']);
   const added = readdirSync(directory).filter(name => !before.has(name));
   requireCondition(added.length === 1 && added[0].endsWith('_auth3_account_lifecycle.sql'), 'LIFECYCLE_MIGRATION_NOT_CREATED');
-  writeFileSync(`${directory}/${added[0]}`,readFileSync(new URL('supabase/changes/auth3_account_lifecycle.sql',import.meta.url)));
+  const payload = readFileSync(new URL('supabase/changes/auth3_account_lifecycle.sql',import.meta.url));
+  writeFileSync(`${directory}/${added[0]}`,payload);
+  process.stdout.write(`AUTH3_MIGRATION ${added[0]} ${createHash('sha256').update(payload).digest('hex')}\n`);
 }
 function cleanup() {
   if (!names('network').includes(network)) {

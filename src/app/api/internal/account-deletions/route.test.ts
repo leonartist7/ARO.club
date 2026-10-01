@@ -22,6 +22,12 @@ describe('privileged scheduled deletion', () => {
     state.process.mockResolvedValueOnce('blocked');
     expect((await GET(new NextRequest('https://aro.example/api/internal/account-deletions', { headers: { authorization: 'Bearer synthetic' } }))).status).toBe(503);
   });
+  it('signals capacity exhaustion when requests remain after the bounded batch', async () => {
+    state.process.mockResolvedValue('completed');
+    state.admin = { schema: () => ({ rpc: async () => ({ data: { waiting: 1 }, error: null }) }) };
+    expect((await GET(new NextRequest('https://aro.example/api/internal/account-deletions', { headers: { authorization: 'Bearer synthetic' } }))).status).toBe(503);
+    expect(state.process).toHaveBeenCalledTimes(5);
+  });
   it('keeps alerting while a blocked request waits for its next lease', async () => {
     state.admin = { schema: () => ({ rpc: async () => ({ data: { blocked: 1 }, error: null }) }) };
     expect((await GET(new NextRequest('https://aro.example/api/internal/account-deletions', { headers: { authorization: 'Bearer synthetic' } }))).status).toBe(503);

@@ -22,7 +22,7 @@ describe('account deletion worker', () => {
     const f = fixture();
     expect(await processAccountDeletion(f.admin, 'request')).toBe('completed');
     expect(f.deleteUser).toHaveBeenCalledWith('user', false);
-    expect(f.calls).toEqual(['claim_account_deletion', 'ban', 'account_deletion_objects', 'remove-storage', 'account_deletion_objects', 'delete-auth', 'finish_account_deletion']);
+    expect(f.calls).toEqual(['claim_account_deletion', 'ban', 'account_deletion_objects', 'remove-storage', 'account_deletion_objects', 'mark_account_deletion_storage_clean', 'delete-auth', 'finish_account_deletion']);
   });
   it('never erases a blocked marketplace or Trust account', async () => {
     const f = fixture();
@@ -42,6 +42,7 @@ describe('account deletion worker', () => {
   it('stops before any erasure when ban or inventory fails', async () => {
     const f = fixture();
     f.updateUserById.mockResolvedValueOnce({ error: new Error('provider unavailable') } as any);
+    f.getUserById.mockResolvedValueOnce({ data: { user: null }, error: { status: 503 } });
     expect(await processAccountDeletion(f.admin)).toBe('retry');
     expect(f.remove).not.toHaveBeenCalled();
     expect(f.deleteUser).not.toHaveBeenCalled();
@@ -59,11 +60,19 @@ describe('account deletion worker', () => {
     expect(await processAccountDeletion(f.admin)).toBe('retry');
     expect(f.calls).not.toContain('finish_account_deletion');
   });
-  it('reconciles an already removed Auth row without another erasure', async () => {
+  it('reconciles an already removed Auth row only after recorded cleanup', async () => {
     const f = fixture();
     f.rpc.mockResolvedValueOnce({ data: { completed: true } as any, error: null });
     expect(await processAccountDeletion(f.admin)).toBe('completed');
     expect(f.deleteUser).not.toHaveBeenCalled();
+  });
+  it('cleans orphaned objects before reconciling an externally deleted account', async () => {
+    const f = fixture();
+    f.updateUserById.mockResolvedValueOnce({ error: new Error('missing identity') } as any);
+    f.deleteUser.mockResolvedValueOnce({ error: new Error('missing identity') } as any);
+    expect(await processAccountDeletion(f.admin)).toBe('completed');
+    expect(f.remove).toHaveBeenCalledOnce();
+    expect(f.calls.indexOf('mark_account_deletion_storage_clean')).toBeLessThan(f.calls.indexOf('delete-auth'));
   });
   it('fails visibly when a retry cannot be recorded', async () => {
     const f = fixture();

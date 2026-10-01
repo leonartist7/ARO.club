@@ -25,9 +25,7 @@ export async function GET(request: NextRequest) {
       ? await client!.schema('api').rpc('account_access_status') : null;
     if (access?.error) return response({ error: 'lookup_failed' }, 503);
     if (identity?.data.user && !identity.error && access?.data?.active) {
-      const result = await client!.from('account_deletion_requests')
-        .select('status,requested_at,processed_at').in('status', ['pending', 'processing'])
-        .eq('user_id', identity.data.user.id).maybeSingle();
+      const result = await client!.schema('api').rpc('account_deletion_owner_status');
       if (result.error) return response({ error: 'lookup_failed' }, 503);
       return response({ request: result.data });
     }

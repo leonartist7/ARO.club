@@ -12,7 +12,7 @@ const post = (body: object, origin = 'https://aro.example') => new NextRequest('
 });
 describe('deletion confirmation and receipts', () => {
   beforeEach(() => {
-    const rpc = vi.fn(async (name: string) => ({ data: name === 'account_access_status' ? { active: true } : 'request-id', error: null }));
+    const rpc = vi.fn(async (name: string) => ({ data: name === 'account_access_status' ? { active: true } : name === 'account_deletion_owner_status' ? null : 'request-id', error: null }));
     state.client = { auth: { getUser: vi.fn(async () => ({ data: { user: { id: 'user-a' } }, error: null })) }, schema: () => ({ rpc }) };
     state.admin = { schema: () => ({ rpc: vi.fn(async () => ({ data: { status: 'completed' }, error: null })) }) };
     state.process.mockReset().mockResolvedValue('completed');
@@ -55,12 +55,11 @@ describe('deletion confirmation and receipts', () => {
     expect(result.cookies.get('aro-deletion-receipt')?.value).toMatch(/^[0-9a-f]{64}$/);
   });
   it('does not expose another account receipt to a newly signed-in user', async () => {
-    const query: any = { select: () => query, in: () => query, eq: vi.fn(() => query), maybeSingle: async () => ({ data: null, error: null }) };
-    state.client.from = () => query;
+    const ownerRpc = state.client.schema().rpc;
     const receiptRpc = vi.fn();
     state.admin.schema = () => ({ rpc: receiptRpc });
     const result = await GET(new NextRequest('https://aro.example/api/account/deletion', { headers: { cookie: 'aro-deletion-receipt=' + 'a'.repeat(64) } }));
-    expect(query.eq).toHaveBeenCalledWith('user_id', 'user-a');
+    expect(ownerRpc).toHaveBeenCalledWith('account_deletion_owner_status');
     expect(receiptRpc).not.toHaveBeenCalled();
     expect(await result.json()).toEqual({ request: null });
   });
