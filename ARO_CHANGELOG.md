@@ -1096,3 +1096,9 @@ The founder supplied six visual references and prioritized a clearer, more human
 - getGuidance now rejects inherited names and non-string/coercion step values. Both new cases fail against the earlier registry and pass after correction; manual editing/reducer behavior is unchanged.
 - Current final documentation retains the preparation review repairs, source evidence and normal ancestry. Final delivery-head checks and dependency-ordered main merge are enforced through #99/#100; their live merge state is the integration source of truth.
 - No route, mascot art, input collection, schema, provider, dependency, AI or publishing changes. Phase 2 follows the main checkpoint and starts with the precise screen/artwork contract and measured existing Create baseline.
+
+## 2026-10-01 — Circle Builder compatibility review reopens Phase 1 acceptance
+
+- #99 preparation merged at b9a6347. Foundation #100 remains unmerged.
+- Review found the existing category-switch reducer discards experienceLevel even though Skills and Music both support it. F1 v1.0.2 records the narrow destination-allowlist/touched-marker correction and three regression requirements before source edits.
+- Earlier passing CI is retained as historical source evidence; acceptance remains open until this review finding and fresh corrected-source/final-head checks pass. No screen, schema, data, provider, Auth or dependency change is authorized.

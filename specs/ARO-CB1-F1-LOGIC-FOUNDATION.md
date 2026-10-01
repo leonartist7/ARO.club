@@ -1,9 +1,9 @@
 # ARO-CB1-F1 — Unconnected Circle Builder logic foundation
 
-> Delivery: Phase 1 continuation is IMPLEMENTATION-IN-PROGRESS. The recovered head `550bb95` passes all five main CI jobs; the v1.0.1 correction needs fresh exact-head verification. See `artifacts/ARO-CB1-F1/VERIFICATION.md` and `docs/circle-builder/EXECUTION-PLAN.md`.
+> Delivery: v1.0.2 review repair is IMPLEMENTATION-IN-PROGRESS. Source 094818d passes its CI, but review found loss of a compatible category answer, so package acceptance is reopened until corrected source and exact-head checks pass. Main preparation #99 merged at b9a6347; foundation #100 remains unmerged.
 
 ## Authority and scope
-Version 1.0.1, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
+Version 1.0.2, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
 
 Preparation parent: PR #99, `e9b61701d64db052684f853c99cb739c2c397fae`, based on main `97d9086b1bfb6946653f6ee6baea481cbdc894c5`. Implementation branch: `codex/circle-builder-foundation-20261001`. Governing: AGENTS.md, ARO master delivery plan/playbook, architecture/data/design/Trust documents, ADR-CB-001 and CB0 sections 6, 8-15, 23-24. Durable scope record: ADR-CB-F1 in DECISIONS.md.
 
@@ -30,7 +30,7 @@ Caller constructs ephemeral state via createBuilderState; reducer takes current 
 
 Title/outcome required before Details: trimmed 1-80 / 1-240 characters. Optional audience/place description and category answers max 160 trimmed characters. Optional group size 1-50 and duration minutes 1-240 whole decimal numbers; empty means undecided. These are local example bounds, not live capacity/date/payment authority. Non-public venue identifiers fail validation. No date/time fields in F1; those need the screen/package contract.
 
-Unknown actions, fields, category IDs, example IDs and non-string values are ignored. Category answers are allowlisted per category. Nonempty category answers trigger confirmation before changing category. Shared manual edits survive; incompatible category answers and untouched old example defaults are cleared only through the defined category-change path. Pending dialogs block navigation/data edits. Reset of meaningful state requires request/confirmation; cancellation preserves fields.
+Unknown actions, fields, category IDs, example IDs and non-string values are ignored. Category answers are allowlisted per category. Only nonempty answers unsupported by the destination category trigger category-change confirmation and appear in affectedFields. Answers and answer-touched markers supported by the destination category survive, including explicitly cleared compatible fields. Shared manual edits survive; incompatible category answers/touched markers and untouched old example defaults are cleared through the defined category-change path. Pending dialogs block navigation/data edits. Reset of meaningful state requires request/confirmation; cancellation preserves fields.
 
 USE_EXAMPLE is an explicit acceptance action, not a remote recommendation. It fills untouched empty fields only, including a curated venue type. User-cleared fields remain touched and empty. Example data never contains a real host, attendee, venue availability or demand count.
 
@@ -62,3 +62,7 @@ The scoped PR targets the CB0 preparation branch while #99 is open. Merge prepar
 
 ## Delivery vocabulary
 After code creation: IMPLEMENTED / PARTIAL VERIFICATION. VERIFIED requires all F1 acceptance evidence and required CI. F1 completion does not make CB1 UI SPEC-READY or implemented, and does not authorize assets, publishing, live drafts, AI or store readiness.
+
+## Version 1.0.2 review repair authority
+
+The original loss-aware contract requires preserving compatible manual answers. Review found Skills/Music both allowlist experienceLevel but the reducer clears it. Before source correction, v1.0.2 explicitly defines destination-allowlist filtering, confirmation for incompatible nonempty fields only, and retention of compatible cleared/touched entries. Add tests for compatible-only switching, confirmed mixed-answer switching and explicitly cleared compatible answers. This repairs the existing category-preservation criterion without adding a new input, UI, data or permission. The founder's Phase 1/main authorization remains applicable. Earlier source CI remains historical evidence, not acceptance of this review repair.

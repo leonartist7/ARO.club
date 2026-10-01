@@ -2,7 +2,7 @@
 
 ## Current Phase 1 continuation — v1.0.1
 
-Source status: VERIFIED at 094818d55ecbddab86255dbbf7d84b0be0c6a4e9, 2026-10-01. This final reconciliation changes documentation/evidence only and retains the preparation parent's review fixes. Its own exact-head checks remain a required main merge gate. Founder main integration authorization is recorded in ADR-CB-PHASES; actual integration is the live merged state of #99 then #100.
+Source 094818d55ecbddab86255dbbf7d84b0be0c6a4e9 passes the recorded CI, 2026-10-01. Package acceptance is reopened for the v1.0.2 compatible-category-answer review finding; the new correction/regressions require fresh source verification. This final reconciliation changes documentation/evidence only and retains the preparation parent's review fixes. Its own exact-head checks remain a required main merge gate. Founder main integration authorization is recorded in ADR-CB-PHASES; actual integration is the live merged state of #99 then #100.
 
 - [Quality 36898469817](https://github.com/leonartist7/ARO.club/actions/runs/36898469817): static, browser-smoke, public-website-redesign and english-light-release PASS. Installed Vitest passes 220 tests, including all 24 builder cases; 3 existing skips. Zero-warning lint, type-check and production build PASS.
 - [Platform 36898469893](https://github.com/leonartist7/ARO.club/actions/runs/36898469893): PASS. Existing disposable Auth/Trust/RLS/Storage/browser/reset/cleanup fixture is unchanged. This is regression evidence, not new live-draft or category authorization.
@@ -14,7 +14,7 @@ Source status: VERIFIED at 094818d55ecbddab86255dbbf7d84b0be0c6a4e9, 2026-10-01.
 |---|---|---|
 | F1-01 category/guide/species/locales/indoor examples | Registry, locale, search and mapping cases | PASS |
 | F1-02 four-step manual paths/validation | All-category progression and validation cases | PASS |
-| F1-03 manual/cleared-field/back/reset/category preservation | Example acceptance, confirmation and edit cases | PASS |
+| F1-03 manual/cleared-field/back/reset/category preservation | Existing cases pass; Skills/Music compatible-answer regression/correction required | OPEN |
 | F1-04 unknown/prototype/numeric/category inputs | Existing negatives plus both guidance-step regressions | PASS |
 | F1-05 immutability/optional help/truthful summary | Frozen-state, minimize-guide and undecided-summary cases | PASS |
 | F1-06 no consumers/dependency/UI/schema/external writes | Complete diff, unchanged route tree and payload readback | PASS |
@@ -55,4 +55,4 @@ Connect a separately approved CB1 interface with category pills, guide rendering
 - [Quality run 36892903177](https://github.com/leonartist7/ARO.club/actions/runs/36892903177): static PASS, including lint with zero warnings, type-check, production build, 218 unit tests passed and 3 existing skips. The new builder file passed all 22 cases in installed Vitest. Public website redesign and English/light release jobs PASS. Browser-smoke is still running at Chromium installation; it is not accepted as passed.
 - [Isolated database run 36892903391](https://github.com/leonartist7/ARO.club/actions/runs/36892903391): platform PASS, including 91 SQL assertions, repeated isolation, Auth/Storage/browser baseline and reset/cleanup.
 - Complete compare against preparation parent: exactly 11 files, with three new source/test files and documentation/evidence. All three source files were read back from GitHub and matched the tested payload.
-- This subsequent evidence update changes documentation only; source remains identical to 6ccf4eb. Newly triggered final-head checks remain a merge gate. No main merge or user-facing implementation is claimed.
+- The original evidence-only commit 550bb95 changed documentation only and retained the source from 6ccf4eb. Later v1.0.1 and v1.0.2 corrections have distinct source/test payloads and require their own verification. Newly triggered final-head checks remain a merge gate. No main merge or user-facing implementation is claimed.

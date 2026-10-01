@@ -32,7 +32,7 @@ CB1 can validate the experience without enabling CB2/CB3. Category choice and gu
   Acceptance: correct mapping, indoor examples, explicit custom-idea boundary, unknown-ID recovery.
   Verify: category/guide mapping and suggestion tests.
 
-- [x] **4. Implement local builder reducer — unconnected F1 source VERIFIED**
+- [ ] **4. Implement local builder reducer — compatible-answer review repair pending**
   Spec ref: CB0 sections 8-10, 12, 21.
   Build: four editable steps plus sketch-ready state; validation, back/edit, preserve compatible fields, category-change confirmation and reset.
   Acceptance: edits survive transitions, optional logistics stay undecided and no data is persisted/transmitted.

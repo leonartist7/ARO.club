@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
-Version 1.0.1 · 2026-10-01 · Owner: ARO founder
-Status: ACTIVE. Phase 1 source VERIFIED; delivery checkpoint is the live merge state of PR #99 then PR #100. Phase 2 is next after #100 merges.
+Version 1.0.2 · 2026-10-01 · Owner: ARO founder
+Status: ACTIVE. Phase 1 review repair active; #99 merged at b9a6347 and #100 remains the foundation delivery checkpoint. Phase 2 is next after #100 merges.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -67,3 +67,7 @@ Current next task: complete Phase 1 foundation correction and hosted verificatio
 Source 094818d55ecbddab86255dbbf7d84b0be0c6a4e9 is VERIFIED by Quality 36898469817 and platform 36898469893. All five main jobs pass. The final documentation-only reconciliation must pass its own required checks before merging; do not treat the source result as permission to bypass those checks.
 
 Live #99/#100 merge state is authoritative for the remaining integration checkboxes. Once #100 is merged, Phase 1 is complete and the next executable task is Phase 2: baseline current /app/create and commit the exact field/navigation/mascot-asset contract with its review and performance evidence. The next phase updates the merge SHAs and checks these remaining integration rows; it must not repeat completed foundation work.
+
+## Active review repair checkpoint
+
+Preparation #99 merged at b9a6347fa911188786942ec06f9a4d16931272be. Foundation v1.0.2 fixes compatible category-answer preservation: keep destination-allowlisted answers/touched markers and confirm only nonempty incompatible answers. Source 094818d's passing 24-test CI does not verify this repair. Implement three regressions and the reducer correction, then require corrected exact-head checks before #100 merges. The authority commit reconciles current main ancestry before source edits. Next Phase 2 still waits for accepted foundation integration.
