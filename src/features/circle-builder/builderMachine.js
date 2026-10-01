@@ -42,6 +42,7 @@ export function validateSketch(state) {
 
 function changeCategory(state, categoryId) {
   const changed = categoryId !== state.categoryId;
+  const destinationFields = getCategory(categoryId).answerFields;
   const fields = { ...state.fields };
   if (changed && state.ideaSource === 'example') {
     for (const field of ['title', 'outcome', 'venueType']) {
@@ -50,8 +51,8 @@ function changeCategory(state, categoryId) {
   }
   return {
     ...state, categoryId, fields,
-    categoryAnswers: changed ? {} : state.categoryAnswers,
-    touched: Object.fromEntries(Object.entries(state.touched).filter(([key]) => !key.startsWith('answer:'))),
+    categoryAnswers: changed ? Object.fromEntries(Object.entries(state.categoryAnswers).filter(([field]) => destinationFields.includes(field))) : state.categoryAnswers,
+    touched: Object.fromEntries(Object.entries(state.touched).filter(([key]) => !key.startsWith('answer:') || destinationFields.includes(key.slice(7)))),
     errors: {}, pendingCategory: null, ideaSource: changed ? 'own' : state.ideaSource,
   };
 }
@@ -73,7 +74,8 @@ export function builderReducer(state, action) {
   switch (action.type) {
     case 'SELECT_CATEGORY': {
       if (locked(state) || !getCategory(action.categoryId) || action.categoryId === state.categoryId) return state;
-      const affectedFields = Object.entries(state.categoryAnswers).filter(([, value]) => value.trim() !== '').map(([key]) => key);
+      const destinationFields = getCategory(action.categoryId).answerFields;
+      const affectedFields = Object.entries(state.categoryAnswers).filter(([field, value]) => !destinationFields.includes(field) && value.trim() !== '').map(([key]) => key);
       if (affectedFields.length) return { ...state, pendingCategory: { categoryId: action.categoryId, affectedFields } };
       return changeCategory(state, action.categoryId);
     }

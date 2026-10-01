@@ -150,6 +150,40 @@ describe('Circle Builder local state foundation', () => {
     expect(changed.fields.title).toBe(initial.fields.title);
     expect(changed.fields.outcome).toBe(initial.fields.outcome);
   });
+  it('keeps a shared experience answer without a destructive confirmation', () => {
+    const initial = frozen(dispatch(filled('skills'), 'SET_ANSWER', { field: 'experienceLevel', value: 'beginner' }));
+    const changed = dispatch(initial, 'SELECT_CATEGORY', { categoryId: 'music' });
+    expect(changed.categoryId).toBe('music');
+    expect(changed.pendingCategory).toBeNull();
+    expect(changed.categoryAnswers).toEqual({ experienceLevel: 'beginner' });
+    expect(changed.touched['answer:experienceLevel']).toBe(true);
+    expect(changed.fields).toEqual(initial.fields);
+  });
+  it('confirms only incompatible answers and retains compatible answers', () => {
+    let initial = dispatch(filled('skills'), 'SET_ANSWER', { field: 'skill', value: 'portrait drawing' });
+    initial = frozen(dispatch(initial, 'SET_ANSWER', { field: 'experienceLevel', value: 'beginner' }));
+    const pending = dispatch(initial, 'SELECT_CATEGORY', { categoryId: 'music' });
+    expect(pending.pendingCategory).toEqual({ categoryId: 'music', affectedFields: ['skill'] });
+    expect(dispatch(pending, 'CANCEL_CATEGORY').categoryAnswers).toEqual(initial.categoryAnswers);
+    const changed = dispatch(pending, 'CONFIRM_CATEGORY');
+    expect(changed.categoryAnswers).toEqual({ experienceLevel: 'beginner' });
+    expect(changed.touched['answer:experienceLevel']).toBe(true);
+    expect(changed.touched['answer:skill']).toBeUndefined();
+  });
+  it('keeps a cleared compatible answer and its touched marker through switches', () => {
+    let state = dispatch(filled('skills'), 'SET_ANSWER', { field: 'experienceLevel', value: '' });
+    state = dispatch(state, 'SET_ANSWER', { field: 'materials', value: 'pencils' });
+    state = dispatch(state, 'SELECT_CATEGORY', { categoryId: 'music' });
+    expect(state.pendingCategory.affectedFields).toEqual(['materials']);
+    state = dispatch(state, 'CONFIRM_CATEGORY');
+    expect(state.categoryAnswers).toEqual({ experienceLevel: '' });
+    expect(state.touched['answer:experienceLevel']).toBe(true);
+    expect(state.touched['answer:materials']).toBeUndefined();
+    state = dispatch(state, 'SELECT_CATEGORY', { categoryId: 'skills' });
+    expect(state.pendingCategory).toBeNull();
+    expect(state.categoryAnswers).toEqual({ experienceLevel: '' });
+    expect(state.touched['answer:experienceLevel']).toBe(true);
+  });
   it('locks editing/navigation during category confirmation', () => {
     const state = dispatch(dispatch(filled(), 'SET_ANSWER', { field: 'targetLanguage', value: 'French' }), 'SELECT_CATEGORY', { categoryId: 'music' });
     expect(dispatch(state, 'NEXT')).toBe(state);
