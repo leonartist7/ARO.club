@@ -1089,3 +1089,23 @@ The founder supplied six visual references and prioritized a clearer, more human
 - Canonical records now identify the active unmerged CB1-F1 v1.0.1 owner (#100), source 094818d, guidance-step correction and actual hosted/pending verification. No runtime is included in this preparation PR.
 - CB0 v0.1.1 clarifies that confirmed reset/category discard has no undo/history; Back/Edit and cancelled confirmations preserve input. This resolves a contradictory reversibility promise without expanding scope.
 - Historical browser failure and later unchanged-fixture success remain recorded. Required checks and CB1 asset/privacy/Trust/design/performance, live-draft/AI/publishing gates remain open.
+
+## 2026-10-01 — Circle Builder Phase 1 v1.0.1 source verification
+
+- Unconnected category/mascot/guidance/state foundation is VERIFIED at 094818d55ecbddab86255dbbf7d84b0be0c6a4e9. Quality run 36898469817 and platform run 36898469893 pass all required jobs, including 220 tests (24 builder cases; 3 existing skips), lint, TypeScript, production build and unchanged browser/Auth/Trust/SQL fixtures.
+- getGuidance now rejects inherited names and non-string/coercion step values. Both new cases fail against the earlier registry and pass after correction; manual editing/reducer behavior is unchanged.
+- Current final documentation retains the preparation review repairs, source evidence and normal ancestry. Final delivery-head checks and dependency-ordered main merge are enforced through #99/#100; their live merge state is the integration source of truth.
+- No route, mascot art, input collection, schema, provider, dependency, AI or publishing changes. Phase 2 follows the main checkpoint and starts with the precise screen/artwork contract and measured existing Create baseline.
+
+## 2026-10-01 — Circle Builder compatibility review reopens Phase 1 acceptance
+
+- #99 preparation merged at b9a6347. Foundation #100 remains unmerged.
+- Review found the existing category-switch reducer discards experienceLevel even though Skills and Music both support it. F1 v1.0.2 records the narrow destination-allowlist/touched-marker correction and three regression requirements before source edits.
+- Earlier passing CI is retained as historical source evidence; acceptance remains open until this review finding and fresh corrected-source/final-head checks pass. No screen, schema, data, provider, Auth or dependency change is authorized.
+
+## 2026-10-01 — Circle Builder Phase 1 v1.0.2 verification and main checkpoint
+
+- Both foundation corrections are VERIFIED at 8b72790543707a634f532cb65bf2d95050ade8f6: invalid guidance-step rejection and preservation of destination-compatible category answers/touched markers.
+- Quality 36901014899 and platform 36901014997 pass all five main jobs. Installed Vitest passes 223 tests, including 27 builder cases, with 3 existing skips; lint/types/build and unchanged browser/isolated platform fixtures pass.
+- Preparation #99 merged at b9a6347 after all five checks and three corrected review findings. Both foundation findings have corrections and resolved threads. Final evidence/status reconciliation changes Markdown/JSON only and requires exact-head checks before #100 main integration.
+- The execution plan/canonical ledgers record source truth, live PR integration state and Phase 2's next screen/artwork/baseline task. No UI, asset, provider, data, Auth, dependency or publishing behavior is enabled.

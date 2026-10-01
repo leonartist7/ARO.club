@@ -1,0 +1,93 @@
+{
+  "runtime": "V8 direct source execution; module imports/exports removed only for evaluation; assertion adapter supplies Object.is, recursive object equality, null/undefined checks. Not installed Vitest.",
+  "cases": [
+    {
+      "name": "keeps founder names/species and unique mappings",
+      "status": "PASS"
+    },
+    {
+      "name": "freezes nested public registry data",
+      "status": "PASS"
+    },
+    {
+      "name": "fails closed for unknown and prototype-like IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "provides indoor examples and guidance in EN/FR/ES",
+      "status": "PASS"
+    },
+    {
+      "name": "searches local labels with accents and empty results",
+      "status": "PASS"
+    },
+    {
+      "name": "falls back to English and rejects unknown examples/steps",
+      "status": "PASS"
+    },
+    {
+      "name": "requires category then meaningful title/outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "completes all four steps for each category without publishing",
+      "status": "PASS"
+    },
+    {
+      "name": "represents undecided logistics without invented numbers",
+      "status": "PASS"
+    },
+    {
+      "name": "trims review text and validates length without truncating",
+      "status": "PASS"
+    },
+    {
+      "name": "rejects invalid size/duration including numeric-looking text",
+      "status": "PASS"
+    },
+    {
+      "name": "blocks review on invalid numeric or private venue values",
+      "status": "PASS"
+    },
+    {
+      "name": "ignores unknown/prototype fields and non-string input",
+      "status": "PASS"
+    },
+    {
+      "name": "scopes category answers and bounds their length",
+      "status": "PASS"
+    },
+    {
+      "name": "confirms incompatible category changes without losing shared edits",
+      "status": "PASS"
+    },
+    {
+      "name": "locks editing/navigation during category confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "applies examples only to untouched empty fields",
+      "status": "PASS"
+    },
+    {
+      "name": "removes obsolete example defaults on category switch while preserving edits",
+      "status": "PASS"
+    },
+    {
+      "name": "preserves answers through Back and edit from Review/Ready",
+      "status": "PASS"
+    },
+    {
+      "name": "minimizes guidance without altering the sketch",
+      "status": "PASS"
+    },
+    {
+      "name": "confirms reset and supports cancellation without lost edits",
+      "status": "PASS"
+    },
+    {
+      "name": "keeps state immutable and ignores unknown actions",
+      "status": "PASS"
+    }
+  ]
+}
