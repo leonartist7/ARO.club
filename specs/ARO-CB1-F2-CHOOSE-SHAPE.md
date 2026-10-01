@@ -1,5 +1,7 @@
 # ARO-CB1-F2 — Choose and Shape components
 Version 1.0.0 · 2026-10-01 · Owner: ARO founder · Status: SPEC-READY
+> Delivery: isolated source VERIFIED at`ed6ddcb1989b3697536f19d3d3079bd13429bafb` with bounded specialist reviews and all five source jobs. [PR#103](https://github.com/leonartist7/ARO.club/pull/103) records final-head checks and actual main integration. Evidence: ../artifacts/ARO-CB1-F2/VERIFICATION.md. No connected-route/full-CB1 claim.
+
 Branch: codex/circle-builder-phase3-choose-shape-20261001
 
 ## 0–5. Authority, problem, outcome and scope
@@ -29,13 +31,13 @@ Missing asset shows stable fallback; unsupported locale defaults English; invali
 ## 23–24. Acceptance/evidence matrix
 | ID | Requirement | Verification | Initial status |
 |---|---|---|---|
-| F2-01 | Three groups, localized accent search, empty reset, examples/manual | component and real keyboard/browser cases | NOT IMPLEMENTED |
-| F2-02 | Title/outcome/category constraints, validation focus and preserved edits | reducer/component/browser boundary cases | NOT IMPLEMENTED |
-| F2-03 | Explicit suggestions, touched/cleared protection, cancel/confirm category | reducer/component/native-dialog browser cases | NOT IMPLEMENTED |
-| F2-04 | Optional guides, one optimized active image/full silhouette/fallback | phone/desktop light/dark captures and requests | NOT IMPLEMENTED |
-| F2-05 | Locale/theme/reduced motion, labels/targets/focus/no overflow | EN/FR/ES, 320/360/390/768/1440 browser checks | NOT IMPLEMENTED |
-| F2-06 | No input storage/transport/logging, no runtime consumer or app regression | synthetic canaries + consumer/diff scan + production baseline | NOT IMPLEMENTED |
-| F2-07 | Existing/new quality and exact-head required CI | lint/types/tests/build, browser/platform checks | NOT IMPLEMENTED |
+| F2-01 | Three groups, localized accent search, empty reset, examples/manual | component and real keyboard/browser cases | Accepted ated6ddcb; final#103 gate |
+| F2-02 | Title/outcome/category constraints, validation focus and preserved edits | reducer/component/browser boundary cases | Accepted ated6ddcb; final#103 gate |
+| F2-03 | Explicit suggestions, touched/cleared protection, cancel/confirm category | reducer/component/native-dialog browser cases | Accepted ated6ddcb; final#103 gate |
+| F2-04 | Optional guides, one optimized active image/full silhouette/fallback | phone/desktop light/dark captures and requests | Accepted ated6ddcb; final#103 gate |
+| F2-05 | Locale/theme/reduced motion, labels/targets/focus/no overflow | EN/FR/ES, 320/360/390/768/1440 browser checks | Accepted ated6ddcb; final#103 gate |
+| F2-06 | No input storage/transport/logging, no runtime consumer or app regression | synthetic canaries + consumer/diff scan + production baseline | Accepted ated6ddcb; final#103 gate |
+| F2-07 | Existing/new quality and exact-head required CI | lint/types/tests/build, browser/platform checks | Accepted ated6ddcb; final#103 gate |
 
 ## 25–30. Delivery, recovery and review
 No feature flag/rollout percentage: modules remain unconnected. Revert only this package if required, preserving newer main and all data. One package/branch/PR. Independent privacy/Trust and product/design/accessibility reviews required before merge under AGENTS self-review #8 and parent CB1 authority; no self-approval. Commit canonical specs/status/checklist/plan and append changelog/decision. VERIFIED requires all F2 rows and exact-head checks; integration truth is live PR merge receipt. F3 starts only on founder request after observed F2 merge. No claim CB1 whole flow or stores are production-ready.

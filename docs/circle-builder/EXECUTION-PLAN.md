@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
 Version 1.1.0 · 2026-10-01 · Owner: ARO founder
-Status: ACTIVE. Phase 1 integrated at 2f06fa3. Phase 2 preparation is accepted at its source/evidence checkpoint; #102 live exact-head checks and merge state control main integration. Phase 3 Choose/Shape is next after that checkpoint.
+Status: ACTIVE. Phase 1 integrated at2f06fa3; Phase 2 integrated at742cb422 (#102). Phase3 isolated Choose/Shape source is VERIFIED; #103 live exact-head checks and merge state control final main integration. Phase4 Details/Review is next after observed integration and founder request.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: read #102's live state. If open, accept final exact-head checks/review and merge; if merged, begin Phase 3 F2 from actual main, committing its narrowed SPEC-READY authority before source edits.
+Current next task: read #103's live state. If open, accept final exact-head checks/review and merge; if merged, Phase3 is integrated. On founder request begin Phase4 F3 from actual main, committing its narrowed SPEC-READY authority before source edits.
 
 ## Phase 1 verification and review checkpoint
 
@@ -77,7 +77,7 @@ Phase 2 completion authority: specs/ARO-CB1-P-PREPARATION.md and specs/ARO-CB1-L
 - [x] Three original static welcome assets and 192/384 WebP exports with provenance/dimensions/bytes/hash manifest.
 - [x] Existing Create 18 cold browser-context samples and committed numeric baseline/budget.
 - [x] Independent privacy/Trust and product/design/a11y review; external exit loss finding corrected.
-- [ ] Accept final #102 exact-head CI and normal protected merge; verifylive main SHA. Never repeat an already observed merge.
+- [x] #102 merged normally at742cb422; remote main/PR readback verified identical tested delivery tree47a637a. Phase2 checkpoint accepted.
 No app/reducer/schema/auth/dependency/provider/inputdata edit. Future F2/F3/F4 source requires its own narrowing and verification.
 
 ## Full-source follow-up packages
@@ -91,3 +91,12 @@ Four-screen preview is an incremental delivery. Before claiming the recovered fu
 7. P5:verified attendance/outcomes, permitted materials/history/feedback/manual next Experience.
 8. Optional A1/CB-AI:consented bounded assistance/manual fallback and explicit approval, no autonomous consequential actions.
 These are separate packages/branches/reviews, not extra work silently included in Phase 3. Policy proposals are not launch authority.
+
+## Phase 3 checkpoint and recovery
+- [x] Recheck main742cb422 and open ORG1#101/AUTH3#98 ownership; preserve both.
+- [x] Commit narrowed F2 v1.0.0 SPEC-READY authority ata2a134f before source.
+- [x] Build isolated Choose/Shape/dictionary/manual/example/optionalguide and cancellation-safe proposal/category paths.
+- [x] Local lint/types/build/239tests;43buildercases. Hosted30layout/theme/locale cases,3manualkeyboardpaths,12screenshots,artfailure,canary/contrast/focus checks accepted ated6ddcb.
+- [x] Independent privacy/Trust and design/a11y review; scoped Inputborder finding corrected; source/artwork accepted.
+- [ ] Accept final#103 exact-head checks and normal protected merge; verify actual main tree. Read livePR before repeating any delivery action.
+Authority: ../../specs/ARO-CB1-F2-CHOOSE-SHAPE.md. Evidence: ../../artifacts/ARO-CB1-F2/VERIFICATION.md. New screens remain unconnected; whole route/shell/privacy/performance release staysF4. NextPhase4 F3 Details/Review/ready; 1–4/date/time/zone/reviewreturn deltas are not silently included inF2.

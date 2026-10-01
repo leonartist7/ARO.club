@@ -75,7 +75,7 @@ jobs:
       - name: Circle Builder Choose and Shape isolation checks
         run: node scripts/verify-cb1-f2.mjs
         env:
-          ARO_CB1_F2_RECEIPTS: 'true'
+          ARO_CB1_F2_RECEIPTS: 'false'
       - name: Retain Circle Builder Choose and Shape evidence
         if: always()
         uses: actions/upload-artifact@v4

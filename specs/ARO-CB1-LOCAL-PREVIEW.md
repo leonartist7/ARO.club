@@ -44,7 +44,7 @@ No criterion is PASS without its implementation evidence.
 ## Acceptance matrix and phased implementation
 | ID | Requirement | Package | Evidence required | Current runtime status |
 |---|---|---|---|---|
-| CB1-01 | Choose/Shape, category search/examples/manual, optional guide and dictionary | F2 | component+keyboard+3groupcases | NOT IMPLEMENTED |
+| CB1-01 | Choose/Shape, category search/examples/manual, optional guide and dictionary | F2 | component+keyboard+3groupcases | Isolated source VERIFIED ated6ddcb; #103 final integration/F4 connection remain gated |
 | CB1-02 | Detailsfields, 1–4, dates/zone, live actual sketch | F3 | transition/validation/partialplan/mobile | NOT IMPLEMENTED |
 | CB1-03 | Reviewtarget/return, ready, reset and category dialogs | F3 | complete/edit/cancel/confirmcases | NOT IMPLEMENTED |
 | CB1-04 | Whole flow/shell guard/legacy query, responsive/themes/locales | F4 | fullproductionbrowser/lightdark/phone/desktop | NOT IMPLEMENTED |

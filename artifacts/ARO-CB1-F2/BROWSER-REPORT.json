@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "source": "dd313f1cc24f1f5e8364e215df6bd97fb2c11c7f",
+  "fixture": "isolated production Vite build; not a Next route",
+  "browser": "151.0.7922.34",
+  "cases": [
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 96,
+        "height": 96
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "art": {
+        "loaded": true,
+        "fit": "contain",
+        "width": 160,
+        "height": 160
+      },
+      "manualEditsPreserved": true
+    }
+  ],
+  "manualKeyboardGroups": 3,
+  "captures": [
+    {
+      "name": "languages-360-light",
+      "width": 360,
+      "theme": "light",
+      "category": "languages",
+      "bytes": 36722
+    },
+    {
+      "name": "skills-360-light",
+      "width": 360,
+      "theme": "light",
+      "category": "skills",
+      "bytes": 36418
+    },
+    {
+      "name": "music-360-light",
+      "width": 360,
+      "theme": "light",
+      "category": "music",
+      "bytes": 37354
+    },
+    {
+      "name": "languages-360-dark",
+      "width": 360,
+      "theme": "dark",
+      "category": "languages",
+      "bytes": 36938
+    },
+    {
+      "name": "skills-360-dark",
+      "width": 360,
+      "theme": "dark",
+      "category": "skills",
+      "bytes": 36642
+    },
+    {
+      "name": "music-360-dark",
+      "width": 360,
+      "theme": "dark",
+      "category": "music",
+      "bytes": 37350
+    },
+    {
+      "name": "languages-1440-light",
+      "width": 1440,
+      "theme": "light",
+      "category": "languages",
+      "bytes": 14492
+    },
+    {
+      "name": "skills-1440-light",
+      "width": 1440,
+      "theme": "light",
+      "category": "skills",
+      "bytes": 14278
+    },
+    {
+      "name": "music-1440-light",
+      "width": 1440,
+      "theme": "light",
+      "category": "music",
+      "bytes": 14748
+    },
+    {
+      "name": "languages-1440-dark",
+      "width": 1440,
+      "theme": "dark",
+      "category": "languages",
+      "bytes": 14752
+    },
+    {
+      "name": "skills-1440-dark",
+      "width": 1440,
+      "theme": "dark",
+      "category": "skills",
+      "bytes": 14602
+    },
+    {
+      "name": "music-1440-dark",
+      "width": 1440,
+      "theme": "dark",
+      "category": "music",
+      "bytes": 14630
+    }
+  ],
+  "artworkFailure": true,
+  "errors": [],
+  "leakage": [],
+  "posts": [],
+  "deliveryHead": "ed6ddcb1989b3697536f19d3d3079bd13429bafb",
+  "testedTree": "418922f4b3cd2235ecac90c342d61e4ed98bb684",
+  "captureDescription": "Actual isolated Shape components; not Choose screenshots or connected app. 1440px desktop previews resized to720px; full PNGs in CI.",
+  "captureHashes": {
+    "languages-360-light.webp": {
+      "bytes": 36722,
+      "sha256": "93d630f743f47d89e3bd83a9394ce8f269f18e4de7c74497c39a14cb17f8dba7"
+    },
+    "languages-360-dark.webp": {
+      "bytes": 36938,
+      "sha256": "ece4519df82374d4717146e2b2730d1b5e2b93d84a35c4176c8feed96dc722b9"
+    },
+    "skills-1440-dark.webp": {
+      "bytes": 14602,
+      "sha256": "439124e0f5698dac8105cd118f575f13968ad48086b5a900f931d4d756f21d37"
+    },
+    "languages-1440-light.webp": {
+      "bytes": 14492,
+      "sha256": "88756c2bd39f00ce68539bc05bd4f1db04bff5dde5de2da0cd195b936b0fd21b"
+    },
+    "music-360-dark.webp": {
+      "bytes": 37350,
+      "sha256": "1a365741bab1716b1a125530f0c7c3f29723f9f2d36400a7a82af80e98311571"
+    },
+    "music-360-light.webp": {
+      "bytes": 37354,
+      "sha256": "e88df6b0b29a513196398379a9921fd94918a367e0d99ece3a9e3d6fda66acb7"
+    },
+    "languages-1440-dark.webp": {
+      "bytes": 14752,
+      "sha256": "e6969280b4acd7fcbc3553a26959556bc6ba245fd8dd46e7e28c92a425beb6d8"
+    },
+    "music-1440-light.webp": {
+      "bytes": 14748,
+      "sha256": "98a7bd3939418d35ff6740eb550aa608943b910e3922c4bfb50330f4f374ce03"
+    },
+    "music-1440-dark.webp": {
+      "bytes": 14630,
+      "sha256": "2d30bed185afcc2176a18a164da18b9301c09ccc7a959ee81ca0986ae8f9b460"
+    },
+    "skills-360-dark.webp": {
+      "bytes": 36642,
+      "sha256": "2eee591a85b29fd8218b3c05f0a59ac495a82dec2f0825f5d75dd404b7077b7f"
+    },
+    "skills-360-light.webp": {
+      "bytes": 36418,
+      "sha256": "575b8e0219d9491c978c0766769f983df642481429fd53a993b333b1ab252088"
+    },
+    "skills-1440-light.webp": {
+      "bytes": 14278,
+      "sha256": "8ea1d858bb0b436b6f01285abb184a0da26c539c6e57799db6c5bc5956720430"
+    }
+  }
+}\n
