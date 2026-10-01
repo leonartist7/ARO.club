@@ -46,6 +46,11 @@ export default function AppSettingsPage() {
       </AppPanel>
 
       <AppPanel className="mt-6 flex items-start gap-4 bg-secondary-50 p-5 dark:bg-secondary-900/15"><ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-moss" aria-hidden="true" /><div><h2 className="text-base font-bold">{copy.settings.trustTitle}</h2><p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.settings.trustBody}</p></div></AppPanel>
+      <AppPanel className="mt-6 p-5 sm:p-6">
+        <h2 className="font-display text-xl font-bold">Account deletion</h2>
+        <p className="mt-2 text-base leading-7 text-ink/70 dark:text-bone/75">Request deletion of your ARO account and see the status of your request.</p>
+        <Link to="/account/delete" className="mt-4 inline-flex min-h-11 items-center font-bold text-primary-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-4 dark:text-primary-300">Manage account deletion</Link>
+      </AppPanel>
       <p className="mt-8 text-center text-sm text-ink/70 dark:text-bone/75">{copy.settings.version}</p>
     </div>
   );

@@ -60,7 +60,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'Getting your data removed',
-        body: 'Signing out ends the browser session but does not delete your account. Account deletion requests are not yet available through this site. ARO must publish a working request channel before opening public account creation.',
+        body: 'Signing out ends the browser session but does not delete your account. You can sign in and start an account deletion request at /account/delete. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing the request. Submitting a request does not erase your account immediately.',
       },
     ],
   },

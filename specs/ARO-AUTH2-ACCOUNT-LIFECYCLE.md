@@ -1,19 +1,19 @@
-# ARO-AUTH2 — Account eligibility and deletion (proposal)
+# ARO-AUTH2 — Account deletion request entry
 
 ## 0. Metadata
 
-- **Status:** SPEC-REQUIRED; founder decisions and independent security/privacy review pending. No runtime or production configuration change is authorized by this draft.
-- **Spec version:** 0.1.0, 2026-09-30
+- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; implementation and independent security/privacy review pending. Production release blocked.
+- **Spec version:** 1.0.0, 2026-10-01
 - **Owner:** ARO founder
 - **Depends on:** AUTH1 hosted email and Google verification; existing I0 Auth/RLS baseline
 - **Governing documents:** `AGENTS.md`, `ARO_BUILD_PLAYBOOK.md`, `ARO_TRUST_SAFETY.md`, `ARO_DATA_MODEL.md`, `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`
-- **Required review:** founder for decisions below; independent security/privacy review before implementation merge
+- **Required review:** independent security/privacy review before implementation merge and production migration
 
 ## 1. Problem and outcome
 
-Production web signup exists, but the site offers no account deletion request, no effective adult eligibility control, and no verified end-to-end email or Google journey. A store app would also need a discoverable in-app deletion path and a public deletion web resource. The repository presently contains a Next.js web app, with no iOS or Android application to test.
+Production web signup exists, but the site offers no account deletion request. A store app needs a discoverable in-app deletion path and a public deletion web resource. The repository presently contains a Next.js web app, with no iOS or Android application to test.
 
-The desired outcome is an adult user who can create and use an email or Google account, revoke it through a clear in-app flow, and understand any data retained for a stated reason. A store submission must be verified on the actual mobile build; web readiness alone does not certify it.
+The outcome for this bounded package is that a signed-in user can initiate one account deletion request and see its status from a public web entry point or account settings. This is the initiation step, not automatic erasure or an assertion of store readiness.
 
 ## 2. Baseline evidence (read-only, 2026-09-30)
 
@@ -23,35 +23,32 @@ The desired outcome is an adult user who can create and use an email or Google a
 - Supabase security advisor warns that leaked-password protection is disabled. The dashboard setting requires separate configuration and verification.
 - AUTH1-04 through AUTH1-06 remain pending hosted journey and independent review evidence.
 
-## 3. Proposed bounded behavior for approval
+## 3. Locked scope, permissions and behavior
 
-1. Present an explicit 18+ self-declaration before either signup path. A browser checkbox alone is insufficient: the server must enforce the eligibility decision for email and OAuth entry and for protected account routes. Do not store date of birth unless a reviewed purpose and retention rule requires it. Existing users need a migration/eligibility decision before protected access.
-2. Provide a discoverable account deletion path from the authenticated account UI and a public web resource that can initiate the request without reinstalling an app. Reauthenticate for a destructive action. Show what will be deleted, what may be retained, timing, and an acknowledgement.
-3. Use a server-only privileged deletion worker after authorization. It must inventory bookings, owned Storage files, teacher documents, and references before attempting `auth.admin.deleteUser`. Prevent retries from duplicating destructive work. Revoke active sessions as far as the platform permits and ensure any remaining JWT cannot access ARO protected data.
-4. Keep public deletion contact/request handling operational and verifiable, with no fictional email address. Update the privacy disclosure and store metadata to match implementation.
-5. Complete hosted synthetic email signup, confirmation, login, recovery, logout and deletion tests; complete Google consent/callback with a designated test account; test both paths in the actual store builds. For an iOS build using Google as primary social login, review and implement the equivalent login option required by Apple's current guideline.
+1. A public `/account/delete` page explains the request and links an unauthenticated visitor to sign-in. A signed-in user checks a confirmation box, submits once, and can return to read the open request's status. The account settings page links to it. It must never claim that account data has already been erased.
+2. A new `public.account_deletion_requests` row contains only a generated request ID, user ID, status, request time and optional processing time. No free-text reason, date of birth, email copy, analytics event, or new client dependency. A partial unique index permits at most one pending/processing request per user.
+3. RLS permits authenticated owners to insert their own pending request and select their own rows. Column grants prevent client-supplied status/timestamps. Other users and anonymous callers cannot read, update, or process a request. Only a privileged server operator can change its status. Auth user deletion must not be blocked by the request row.
+4. The public privacy notice accurately describes request initiation and possible dependency/retention review. A request is not a deletion guarantee. No production schema or public promise is released until processing ownership and independent review are in place.
 
-## 4. Decisions required before SPEC-READY
+## 4. Explicit next packages and release gates
 
 | ID | Decision | Proposed default | Why it matters |
 |---|---|---|---|
-| D1 | Adult eligibility method and jurisdictions | 18+ self-declaration, enforced server-side for both entry methods | Google OAuth does not supply ARO's age declaration; a pre-OAuth checkbox can be bypassed unless the callback/session boundary enforces it. Age verification requirements vary by market. |
-| D2 | Active/completed bookings and financial records upon deletion | Freeze self-service completion when a booking, dispute or lawful retention obligation exists; accept and track the request, resolve obligations, then erase or de-identify on a documented schedule | `bookings.student_id ON DELETE RESTRICT` prevents naive user deletion. Financial/legal retention periods need review. |
-| D3 | Teacher credentials and moderation/audit evidence | Remove published personal data and Storage files, preserve only explicitly reviewed audit/legal records with access and retention limits | Cascades, shared experiences and audit references have different consequences. |
-| D4 | Request handling and timing | Self-service for accounts without dependencies; a monitored request queue with a stated completion window for exceptions | The current contact page is a local draft, and no working deletion inbox or queue was verified. |
-| D5 | Mobile distribution architecture | Identify the actual iOS/Android project and decide native login/deep-link handling before store claim | No mobile build or Apple developer provider configuration is present in this repository. |
+| G1 | Adult eligibility | A separate server-enforced email and Google eligibility package must specify pre/post-OAuth behavior and existing-user migration. A browser checkbox alone is insufficient. |
+| G2 | Actual deletion processing | A privileged worker and operator must resolve bookings, teacher/Storage files, audit/legal retention, revocation, retry, and completion notification. `bookings.student_id ON DELETE RESTRICT` prevents naive deletion. |
+| G3 | Operations | A monitored request queue and published processing timeframe must exist before releasing this UI to production. The current contact page saves an unsent draft only. |
+| G4 | Store builds | Identify the iOS/Android application; verify native OAuth callback, deletion path, store metadata, and Apple's equivalent login requirement for iOS Google sign-in. |
+| G5 | AUTH1 | Complete hosted email confirmation/recovery and Google callback tests and independent security review. |
 
 ## 5. Security and reliability acceptance
 
 | ID | Requirement and test evidence | Status |
 |---|---|---|
-| AUTH2-01 | Email and Google creation cannot reach a protected session without approved adult eligibility; bypass/replay tests and existing-user migration test | PENDING |
-| AUTH2-02 | Owner only may request deletion; CSRF, fresh-auth, rate-limit, duplicate and other-user tests | PENDING |
-| AUTH2-03 | Deletion succeeds for an account without dependencies; removes profile and owned Storage; stale JWT is denied protected reads | PENDING |
-| AUTH2-04 | Booking/teacher/audit dependencies follow the approved retention rule; failed or partial attempts reconcile without losing the request | PENDING |
-| AUTH2-05 | In-app and public web deletion paths work; privacy/store disclosures match the actual handling | PENDING |
-| AUTH2-06 | Hosted email and Google tests, mobile device tests, Supabase advisor review, independent security/privacy review | PENDING |
+| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, and Auth user deletion compatibility in disposable database | PENDING |
+| AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | PENDING |
+| AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | PENDING |
+| AUTH2-04 | Production queue owner, processing path and timeframe, hosted request test, independent review | PENDING |
 
 ## 6. Rollout boundary
 
-Keep AUTH1 and AUTH2 statuses separate. Build in an isolated branch with disposable Supabase data, append-only migrations, and explicit production rollback/forward-recovery notes. Do not apply a live migration, publish a deletion promise, or claim store readiness until D1–D5 are approved and all acceptance evidence passes. If public signup is paused as a temporary safety measure, record its exact setting, effect on new Google/email users, and restoration gate; it does not replace the deletion implementation.
+Keep AUTH1 and AUTH2 statuses separate. Build in this isolated branch with disposable Supabase data and an append-only migration. Apply the migration before releasing the UI. On failure, roll back the UI and keep submitted requests for processing; never drop the table to roll back. Do not apply a live migration or claim store readiness until AUTH2-04 and G1–G5 are resolved. A temporary public-signup pause, if approved and applied, does not replace these requirements.
