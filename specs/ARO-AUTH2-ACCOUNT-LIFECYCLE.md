@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; PR #97 implementation and isolated CI are verified, independent security/privacy follow-up pending. Production release blocked.
+- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; PR #97 is implemented with partial CI verification and exact-head security/privacy review pending. Production release blocked.
 - **Spec version:** 1.0.0, 2026-10-01
 - **Owner:** ARO founder
 - **Depends on:** AUTH1 hosted email and Google verification; existing I0 Auth/RLS baseline
