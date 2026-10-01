@@ -9,3 +9,5 @@ One medium finding: inherited Input border contrast below3:1. Scoped controltoke
 
 
 Privacy/Trust final bounded approval ated6ddcb after hosted canary/native-dialog and allfive checks pass. Tested syntheticmerge dd313f1 tree418922f4 equals sourcehead. Scoped focus/border changes introduce no boundary change. Full exit/transport audit/F3/F4/saving/publishing remain separate.
+
+Final automated review caught eligibility disclosure ordering missed by the earlier independent review. Corrected at3f848858: both memory and eligibility notices precede Choose search/group controls; group described-by association retained. Privacy/Trust independently rechecked and approved this correction and DOM-order unit/30-case browser assertions, acknowledging the earlier missed finding. Fresh exact-head CI remains required; unchanged Shape screenshots retain their bounded validity. The separate canonical-status finding is corrected by the delivery snapshots.
