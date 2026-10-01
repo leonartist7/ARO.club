@@ -93,4 +93,22 @@ describe("authentication callback", () => {
       "https://preview.example/auth/reset-password",
     );
   });
+  it('prioritizes a verified PKCE recovery flow over a stale navigation cookie', async () => {
+    state.client = { auth: { exchangeCodeForSession: vi.fn().mockResolvedValue({
+      data: { redirectType: 'recovery' }, error: null,
+    }) } };
+    const response = await GET(new NextRequest('https://preview.example/auth/callback?code=recovery', {
+      headers: { cookie: 'aro-auth-return=%2Fprofile' },
+    }));
+    expect(response.headers.get('location')).toBe('https://preview.example/auth/reset-password');
+    expect(response.cookies.get('aro-auth-return')?.value).toBe('');
+  });
+  it('discards a malformed return cookie without rejecting a valid sign-in', async () => {
+    state.client = { auth: { exchangeCodeForSession: vi.fn().mockResolvedValue({ error: null }) } };
+    const response = await GET(new NextRequest('https://preview.example/auth/callback?code=valid', {
+      headers: { cookie: 'aro-auth-return=%E0%A4%A' },
+    }));
+    expect(response.headers.get('location')).toBe('https://preview.example/explore');
+  });
+
 });

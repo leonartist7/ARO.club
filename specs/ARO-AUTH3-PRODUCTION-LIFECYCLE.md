@@ -3,7 +3,7 @@
 ## 0. Metadata
 
 - Status: IMPLEMENTED and verified in disposable CI; production verification PARTIAL and release BLOCKED. Spec remains SPEC-READY under the founder's 2026-10-01 instruction to finish signup, login, logout and account deletion. Release requires the evidence below.
-- Version: 1.0.0; owner: ARO founder; durable decision: DECISIONS.md ADR-033.
+- Version: 1.0.1; owner: ARO founder; durable decision: DECISIONS.md ADR-033.
 - Base: PR #97, 48bd61893ba68e86ef25c3ddd7ba9f3656d5bd5c. Branch: codex/aro-auth-production-20261001.
 - Governing documents: AGENTS.md, ARO_BUILD_PLAYBOOK.md, ARO_ARCHITECTURE.md, ARO_DATA_MODEL.md, ARO_TRUST_SAFETY.md, AUTH1, AUTH2.
 - Independent security/privacy review remains mandatory before merge or live migration.
@@ -44,7 +44,7 @@ No money, subscription, refund or AI behavior. Financial/Trust exceptions remain
 
 Use existing light/dark primitives and EN/FR/ES copy. Include loading, eligibility rejection, validation, submission, status, retry and reauthentication states. Preserve one main landmark, labels, visible focus and 44px targets at 360px and 1440px. Publish a 30-day processing maximum only when a staffed queue and deployment are verified. Show completed receipt after the account session disappears.
 
-Email signup/confirmation retry and OAuth use the existing query-free allowlisted callback. A ten-minute, same-origin return cookie carries a validated relative path; the callback validates again and deletes it. Recovery takes priority over any return cookie. No redirect allowlist expansion is needed.
+Email signup/confirmation retry and OAuth use the existing query-free allowlisted callback. A ten-minute, same-origin return cookie carries a validated relative path; the callback validates again and deletes it. Both verified token-hash recovery and the SDK's verified PKCE recovery redirect type take priority over any return cookie. A malformed navigation cookie is discarded without rejecting a valid account exchange. Profile reads carry a generation as well as an account ID, so late results cannot restore an older profile or newly ineligible data for the same account. Signup/recovery success copy remains neutral when the provider conceals whether an email is already registered. No redirect allowlist expansion is needed.
 
 Requests have 10-second network timeouts; worker inventory pages at 100 objects and at most five pages per account per run. Retry unfinished work using the lease; never mark partial cleanup completed. Cron works on at most five accounts within a 40-second start budget, daily in the initial limited pilot; queue health returns a failure signal while any work remains after the bounded run, including awaiting-receipt, blocked, failed and near-overdue requests. More than five requests/day or unmonitored exceptions blocks public rollout. No performance improvement is claimed without measurement.
 

@@ -45,6 +45,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const router=useRouter();
   const activeUser=useRef(null);
+  const profileRevision=useRef(0);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -63,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     let revision = 0;
     const applySession = async (session) => {
       const version = ++revision;
+      const profileVersion = ++profileRevision.current;
       if (activeUser.current !== (session?.user?.id ?? null)) {
         clearAccountState();
         setProfile(null);
@@ -89,7 +91,7 @@ export const AuthProvider = ({ children }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
         setLoading(false);
-        queueMicrotask(()=>{void loadProfile(session.user.id);});
+        queueMicrotask(()=>{void loadProfile(session.user.id, profileVersion);});
       } else {
         setProfile(null);
         setLoading(false);
@@ -115,6 +117,8 @@ export const AuthProvider = ({ children }) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       authEventRevision += 1;
+      revision += 1;
+      profileRevision.current += 1;
       // Supabase auth callbacks must return before a query asks for its token.
       queueMicrotask(() => { if (!disposed) void applySession(session); });
       if (_event === 'SIGNED_OUT') {
@@ -136,6 +140,7 @@ export const AuthProvider = ({ children }) => {
     return () => {
       disposed = true;
       revision += 1;
+      profileRevision.current += 1;
       activeUser.current = null;
       subscription.unsubscribe();
       window.clearInterval(interval);
@@ -144,7 +149,8 @@ export const AuthProvider = ({ children }) => {
     };
   }, [router]);
 
-  const loadProfile = async (userId) => {
+  const loadProfile = async (userId, version) => {
+    if (activeUser.current !== userId || profileRevision.current !== version) return;
     try {
       const [profileResult, roleResult] = await Promise.all([
         supabase.from('profiles').select('*').eq('id', userId).single(),
@@ -154,7 +160,7 @@ export const AuthProvider = ({ children }) => {
       if (profileResult.error) throw profileResult.error;
       if (roleResult.error) throw roleResult.error;
       const role = roleResult.data.role === 'participant' ? 'student' : roleResult.data.role;
-      if(activeUser.current!==userId)return;
+      if(activeUser.current!==userId || profileRevision.current !== version)return;
       setProfile({ ...profileResult.data, role, is_teacher: role === 'teacher' });
       usePlayerStore.getState().signIn({
         id: userId,
@@ -164,9 +170,9 @@ export const AuthProvider = ({ children }) => {
         isTeacher: role === 'teacher',
       });
     } catch {
-      if(activeUser.current===userId) { setProfile(null); clearAccountState(); }
+      if(activeUser.current===userId && profileRevision.current === version) { setProfile(null); clearAccountState(); }
     } finally {
-      if (activeUser.current === userId) setLoading(false);
+      if (activeUser.current === userId && profileRevision.current === version) setLoading(false);
     }
   };
 
@@ -179,12 +185,12 @@ export const AuthProvider = ({ children }) => {
       if (password.length < MIN_PASSWORD_LENGTH) throw new Error('Use at least eight characters.');
       rememberAuthReturn(returnTo);
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: email.trim(),
         password,
         options: {
           emailRedirectTo: window.location.origin+'/auth/callback',
           data: {
-            name,
+            name: name.trim(),
             photo,
           },
         },
@@ -204,7 +210,7 @@ export const AuthProvider = ({ children }) => {
     try {
       rememberAuthReturn(returnTo);
       return await supabase.auth.resend({
-        type: 'signup', email,
+        type: 'signup', email: email.trim(),
         options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
       });
     } catch (error) { return { data: null, error }; }
@@ -255,6 +261,7 @@ export const AuthProvider = ({ children }) => {
     const { error } = await supabase.auth.signOut({ scope: 'global' });
     if (error) throw error;
     activeUser.current=null;
+    profileRevision.current += 1;
     setUser(null);
     setProfile(null);
     clearAccountState();
@@ -291,7 +298,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
         // The email template appends token_hash/type with ?, so the base must
         // have no query. The callback routes recovery tokens to the reset form.
         redirectTo: `${window.location.origin}/auth/callback`,

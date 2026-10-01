@@ -44,4 +44,11 @@ describe('signup confirmation retry', () => {
     expect(screen.getByLabelText('Email Address').disabled).toBe(false);
     expect(screen.getByLabelText('Password').value).toBe('');
   });
+  it('does not claim creation when Supabase conceals an existing account', async () => {
+    state.signUp.mockResolvedValue({ user: { identities: [] }, session: null, error: null });
+    await create();
+    expect(screen.getByText('Check your email')).toBeTruthy();
+    expect(screen.getByText(/If this address can be registered/)).toBeTruthy();
+    expect(screen.queryByText('Account created successfully!')).toBeNull();
+  });
 });

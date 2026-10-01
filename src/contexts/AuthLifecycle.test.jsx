@@ -87,4 +87,28 @@ describe('live sessions and cross-account state', () => {
     await act(async () => resolveInitial(session('a')));
     expect(screen.getByText('b|b')).toBeTruthy();
   });
+  it('does not restore a late profile after the same account becomes ineligible', async () => {
+    let resolveProfile;
+    state.profile.mockImplementation(() => new Promise(resolve => { resolveProfile = resolve; }));
+    render(<AuthProvider><Probe /></AuthProvider>);
+    await screen.findByText('guest|none');
+    await emit('a'); await waitFor(() => expect(resolveProfile).toBeDefined());
+    state.rpc.mockResolvedValue({ data: { active: true, eligible: false }, error: null });
+    await emit('a');
+    await act(async () => resolveProfile({ data: { name: 'stale-private-profile' }, error: null }));
+    expect(screen.getByText('a|none')).toBeTruthy();
+    expect(state.signInStore).not.toHaveBeenCalled();
+  });
+  it('keeps the newest profile when older reads finish for the same account', async () => {
+    let resolveOld;
+    state.profile.mockImplementationOnce(() => new Promise(resolve => { resolveOld = resolve; }))
+      .mockResolvedValue({ data: { name: 'current-profile' }, error: null });
+    render(<AuthProvider><Probe /></AuthProvider>);
+    await screen.findByText('guest|none');
+    await emit('a'); await waitFor(() => expect(resolveOld).toBeDefined());
+    await emit('a'); await screen.findByText('a|current-profile');
+    await act(async () => resolveOld({ data: { name: 'old-profile' }, error: null }));
+    expect(screen.getByText('a|current-profile')).toBeTruthy();
+  });
+
 });

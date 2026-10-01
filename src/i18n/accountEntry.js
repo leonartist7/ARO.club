@@ -15,7 +15,7 @@ export const accountEntryCopy = {
     signup: {
       title: 'Join ARO', subtitle: 'Explore what you could learn, share and make together.',
       unavailable: 'Account creation is not active in this preview yet. You can still explore the public ARO experience.',
-      successTitle: 'Account created successfully!', successBody: 'Check your email to confirm your account, then return to sign in.',
+      successTitle: 'Check your email', successBody: 'If this address can be registered, you will receive a confirmation link. Already have an account? Sign in or reset your password.',
       emailDivider: 'Or sign up with email', name: 'Full Name', namePlaceholder: 'Your name',
       passwordPlaceholder: 'Create a strong password', confirm: 'Confirm Password', confirmPlaceholder: 'Re-enter your password',
       strength: 'Password strength:', weak: 'Weak', medium: 'Medium', strong: 'Strong',
@@ -27,7 +27,7 @@ export const accountEntryCopy = {
     recovery: {
       back: 'Back to login', title: 'Forgot Password?', subtitle: 'Enter your email to request password reset instructions.',
       unavailable: 'Password recovery is not active in this preview yet. Account access will return when the secure ARO backend is connected.',
-      successTitle: 'Check your email!', successIntro: "We've sent password reset instructions to", successOutro: 'Please check your inbox and spam folder.',
+      successTitle: 'Check your email!', successIntro: "If an account exists, we will send reset instructions to", successOutro: 'Please check your inbox and spam folder.',
       submit: 'Send Reset Instructions', pending: 'Sending...', another: 'Try another email', return: 'Return to Login',
       remember: 'Remember your password?', signin: 'Sign in',
     },
@@ -48,7 +48,7 @@ export const accountEntryCopy = {
     signup: {
       title: 'Rejoignez ARO', subtitle: 'Explorez ce que vous pourriez apprendre, partager et créer ensemble.',
       unavailable: 'La création de compte n’est pas encore active dans cet aperçu. Vous pouvez toujours explorer ARO en accès public.',
-      successTitle: 'Compte créé !', successBody: 'Consultez votre e-mail pour confirmer le compte, puis revenez vous connecter.',
+      successTitle: 'Consultez votre e-mail', successBody: 'Si cette adresse peut être inscrite, vous recevrez un lien de confirmation. Vous avez déjà un compte ? Connectez-vous ou réinitialisez votre mot de passe.',
       emailDivider: 'Ou par e-mail', name: 'Nom complet', namePlaceholder: 'Votre nom',
       passwordPlaceholder: 'Créez un mot de passe sûr', confirm: 'Confirmer le mot de passe', confirmPlaceholder: 'Saisissez-le à nouveau',
       strength: 'Robustesse du mot de passe :', weak: 'Faible', medium: 'Moyenne', strong: 'Forte',
@@ -60,7 +60,7 @@ export const accountEntryCopy = {
     recovery: {
       back: 'Retour à la connexion', title: 'Mot de passe oublié ?', subtitle: 'Saisissez votre e-mail pour demander des instructions de réinitialisation.',
       unavailable: 'La récupération du mot de passe n’est pas encore active dans cet aperçu. L’accès au compte reviendra quand le service ARO sécurisé sera connecté.',
-      successTitle: 'Consultez votre e-mail !', successIntro: 'Nous avons envoyé les instructions de réinitialisation à', successOutro: 'Vérifiez votre boîte de réception et les courriers indésirables.',
+      successTitle: 'Consultez votre e-mail !', successIntro: 'Si un compte existe, nous enverrons les instructions à', successOutro: 'Vérifiez votre boîte de réception et les courriers indésirables.',
       submit: 'Envoyer les instructions', pending: 'Envoi…', another: 'Essayer un autre e-mail', return: 'Retour à la connexion',
       remember: 'Vous connaissez votre mot de passe ?', signin: 'Se connecter',
     },
@@ -81,7 +81,7 @@ export const accountEntryCopy = {
     signup: {
       title: 'Únete a ARO', subtitle: 'Explora lo que podrías aprender, compartir y crear con otras personas.',
       unavailable: 'La creación de cuentas aún no está activa en esta vista previa. Puedes seguir explorando la experiencia pública de ARO.',
-      successTitle: '¡Cuenta creada!', successBody: 'Revisa tu correo para confirmar la cuenta y luego vuelve a iniciar sesión.',
+      successTitle: 'Revisa tu correo', successBody: 'Si esta dirección puede registrarse, recibirás un enlace de confirmación. ¿Ya tienes cuenta? Inicia sesión o restablece tu contraseña.',
       emailDivider: 'O con correo', name: 'Nombre completo', namePlaceholder: 'Tu nombre',
       passwordPlaceholder: 'Crea una contraseña segura', confirm: 'Confirmar contraseña', confirmPlaceholder: 'Vuelve a escribirla',
       strength: 'Seguridad de la contraseña:', weak: 'Débil', medium: 'Media', strong: 'Fuerte',
@@ -93,7 +93,7 @@ export const accountEntryCopy = {
     recovery: {
       back: 'Volver al inicio de sesión', title: '¿Olvidaste tu contraseña?', subtitle: 'Introduce tu correo para solicitar instrucciones de restablecimiento.',
       unavailable: 'La recuperación de contraseñas aún no está activa en esta vista previa. El acceso volverá cuando se conecte el servicio seguro de ARO.',
-      successTitle: '¡Revisa tu correo!', successIntro: 'Enviamos instrucciones de restablecimiento a', successOutro: 'Revisa la bandeja de entrada y la carpeta de spam.',
+      successTitle: '¡Revisa tu correo!', successIntro: 'Si existe una cuenta, enviaremos instrucciones a', successOutro: 'Revisa la bandeja de entrada y la carpeta de spam.',
       submit: 'Enviar instrucciones', pending: 'Enviando…', another: 'Probar otro correo', return: 'Volver al inicio de sesión',
       remember: '¿Recuerdas tu contraseña?', signin: 'Iniciar sesión',
     },

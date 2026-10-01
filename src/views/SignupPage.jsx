@@ -39,7 +39,7 @@ export default function SignupPage() {
     if (loading || cooldownActive || !success) return;
     setLoading(true); setError(''); setResendMessage(''); setCooldown(60);
     try {
-      const result = await resendConfirmation(formData.email,next);
+      const result = await resendConfirmation(formData.email.trim(),next);
       if (result.error) setError(lifecycle.confirmationRetry);
       else setResendMessage(lifecycle.confirmationSent);
     } catch { setError(lifecycle.confirmationRetry); }
@@ -93,9 +93,9 @@ export default function SignupPage() {
 
     try {
       const { error, session } = await signUp({
-        email: formData.email,
+        email: formData.email.trim(),
         password: formData.password,
-        name: formData.name,
+        name: formData.name.trim(),
         returnTo: next,
       });
 
@@ -246,6 +246,7 @@ export default function SignupPage() {
                   disabled={loading || success || !isBackendConfigured}
                   leftIcon={<User className="w-5 h-5" />}
                   autoComplete="name"
+                  maxLength={100}
                 />
 
                 <Input

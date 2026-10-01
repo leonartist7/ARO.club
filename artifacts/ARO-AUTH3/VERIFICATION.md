@@ -1,6 +1,6 @@
 # AUTH3 verification - 2026-10-01
 
-Status: IMPLEMENTED and verified in disposable CI; production verification PARTIAL and production/store release BLOCKED. PR #98 is stacked on PR #97; ADR-033 and AUTH3 v1.0.0 authorize implementation, not release certification.
+Status: IMPLEMENTED and verified in disposable CI; production verification PARTIAL and production/store release BLOCKED. PR #98 is stacked on PR #97; ADR-033 and AUTH3 v1.0.1 authorize implementation, not release certification.
 
 | Evidence | Result | Provenance |
 |---|---|---|
@@ -34,3 +34,15 @@ Committed migration provenance: the pinned CLI generated `20261001130907_auth3_a
 Live migration inventory (read-only): only application_trust_baseline and lock_public_default_privileges are listed. Reconcile/apply the existing I0.2 corrective/verification-history migrations before AUTH2/AUTH3. Production flags, credentials, cron and exception disposition remain gated. Seven original PR98 review findings have implementation corrections; independent acceptance of the final head remains pending.
 
 Final runtime verification: `97103eea4ffd34e9b92b372865497baa1a5b1b49` passed all four Quality jobs in run [36869057559](https://github.com/leonartist7/ARO.club/actions/runs/36869057559), including 244 unit tests (3 existing skips), lint, types, production build and browser regressions. Isolated run [36869057740](https://github.com/leonartist7/ARO.club/actions/runs/36869057740) passed 165 SQL assertions twice, authenticated locale/theme/size screens, real Storage/Auth erasure, recovery/logout, stale JWT denial, reset and cleanup. This final evidence update changes documentation only; runtime and migration are identical to that verified head. Exact-head checks on the documentation commit are tracked on PR #98.
+
+## 2026-10-01 continuation from c9ab6ef
+
+Recovered PR #97 and the newer PR #98 before publishing any repair. PR #99 Circle Builder preparation is a separate lane; none of its files are modified.
+
+Baseline exact head c9ab6ef passed all four Quality jobs in [36870505325](https://github.com/leonartist7/ARO.club/actions/runs/36870505325). Isolated [36870505482](https://github.com/leonartist7/ARO.club/actions/runs/36870505482) failed at BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_DARK. This is the observed stage, not proof of a root cause. No assertion, timeout or file chooser interaction is weakened.
+
+AUTH3 v1.0.1 defect repairs: verified PKCE recovery metadata overrides stale navigation; malformed navigation cookies cannot reject valid account exchanges; profile responses match both account and request generation, including same-account eligibility changes; neutral signup/recovery copy avoids claiming an account/email action the provider deliberately conceals. Focused regression cases cover those boundaries. No dependency, SQL, migration, worker, retention or payment change.
+
+Local exec still cannot start (sandbox provisioning failed). Verification therefore uses repository CI. New-head results are PENDING until the resulting Actions jobs finish. Production erasure was not invoked. Read-only table/advisor tools confirm the selected backend is healthy with RLS and no booking/teacher records at inspection; leaked-password protection remains disabled. Arbitrary SQL inspection was rejected because approval is unavailable; table/advisor inspection worked. This does not authorize bypassing live migration review.
+
+Official requirements reviewed on 2026-10-01: [Apple account deletion](https://developer.apple.com/support/offering-account-deletion-in-your-app/), [Google Play account deletion](https://support.google.com/googleplay/android-developer/answer/13327111?hl=en), and [Apple login services](https://developer.apple.com/app-store/review/guidelines/#login-services). Both account deletion completion/associated data and native/provider/store evidence remain applicable release gates.

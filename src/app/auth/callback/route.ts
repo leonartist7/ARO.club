@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
           : null;
       if (result && !result.error)
         destination =
-          type === "recovery"
+          (type === "recovery" || (code && result.data && "redirectType" in result.data && result.data.redirectType === "recovery"))
             ? "/auth/reset-password"
-            : safeReturnPath(params.get('next') ?? decodeURIComponent(request.cookies.get(AUTH_RETURN_COOKIE)?.value ?? ''));
+            : safeReturnPath(params.get('next') ?? request.cookies.get(AUTH_RETURN_COOKIE)?.value);
     } catch {
       /* Invalid or unavailable provider: show a recoverable error. */
     }
