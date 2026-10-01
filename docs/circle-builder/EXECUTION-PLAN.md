@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
-Version 1.0.0 · 2026-10-01 · Owner: ARO founder
-Status: ACTIVE. Current phase: 1 — foundation recovery.
+Version 1.0.1 · 2026-10-01 · Owner: ARO founder
+Status: ACTIVE. Phase 1 source VERIFIED; delivery checkpoint is the live merge state of PR #99 then PR #100. Phase 2 is next after #100 merges.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -32,8 +32,8 @@ Phase 1 integrates reusable foundation code. It does not switch the Create inter
 - [x] Inspect source, specs, original tests and current CI; confirm app routes do not consume builder modules.
 - [x] Reproduce inherited guidance-key defect in actual registry source.
 - [x] Verify foundation head's static/browser-smoke/platform/public-website-redesign/english-light-release jobs pass.
-- [ ] Commit phase authority, foundation correction and additional regression coverage.
-- [ ] Verify fresh parent/foundation checks and synchronize evidence.
+- [x] Commit phase authority, foundation correction and additional regression coverage on PR #100; source 094818d55ecbddab86255dbbf7d84b0be0c6a4e9.
+- [x] Verify foundation source 094818d: all five main CI jobs pass; synchronize its criteria/evidence. Final delivery-head checks remain a merge gate.
 - [ ] Merge preparation first and foundation second, without bypassing required checks.
 - [ ] Verify main contains the accepted foundation and record its SHA and next phase.
 
@@ -55,3 +55,15 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
 Current next task: complete Phase 1 foundation correction and hosted verification. After its accepted main integration, Phase 2 starts with the Create baseline and the precise screen/asset contract.
+
+## Preparation review dispositions
+
+- Durable phase decision: ADR-CB-PHASES now exists in this preparation tree; the plan no longer depends on a descendant-only record.
+- Active owner/status: current-state, spec-index and implementation-status records identify PR #100, v1.0.1 source, the reproduced/corrected defect, actual CI results, pending checks and next task. This tree does not contain or claim merged runtime code.
+- Destructive actions: CB0 v0.1.1 distinguishes preserving navigation/edits from explicit confirmed discard. There is no undo/history promise; cancellation preserves input. Foundation source remains unchanged by this clarification.
+
+## Source checkpoint and next phase
+
+Source 094818d55ecbddab86255dbbf7d84b0be0c6a4e9 is VERIFIED by Quality 36898469817 and platform 36898469893. All five main jobs pass. The final documentation-only reconciliation must pass its own required checks before merging; do not treat the source result as permission to bypass those checks.
+
+Live #99/#100 merge state is authoritative for the remaining integration checkboxes. Once #100 is merged, Phase 1 is complete and the next executable task is Phase 2: baseline current /app/create and commit the exact field/navigation/mascot-asset contract with its review and performance evidence. The next phase updates the merge SHAs and checks these remaining integration rows; it must not repeat completed foundation work.

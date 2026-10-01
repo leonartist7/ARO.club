@@ -1,0 +1,123 @@
+{
+  "package": "ARO-CB1-F1",
+  "version": "1.0.1",
+  "source_commit": "094818d55ecbddab86255dbbf7d84b0be0c6a4e9",
+  "method": "Supplemental V8 execution of actual source and test bodies with assertion adapter; not installed Vitest or repository/browser evidence",
+  "before": {
+    "passed": 22,
+    "failed": [
+      {
+        "name": "rejects inherited guidance step names for every category",
+        "status": "FAIL",
+        "error": "Error: toBeNull failed"
+      },
+      {
+        "name": "rejects non-string steps without invoking object conversion",
+        "status": "FAIL",
+        "error": "Error: toBeNull failed"
+      }
+    ]
+  },
+  "after": {
+    "passed": 24,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "keeps founder names/species and unique mappings",
+        "status": "PASS"
+      },
+      {
+        "name": "freezes nested public registry data",
+        "status": "PASS"
+      },
+      {
+        "name": "fails closed for unknown and prototype-like IDs",
+        "status": "PASS"
+      },
+      {
+        "name": "provides indoor examples and guidance in EN/FR/ES",
+        "status": "PASS"
+      },
+      {
+        "name": "searches local labels with accents and empty results",
+        "status": "PASS"
+      },
+      {
+        "name": "rejects inherited guidance step names for every category",
+        "status": "PASS"
+      },
+      {
+        "name": "rejects non-string steps without invoking object conversion",
+        "status": "PASS"
+      },
+      {
+        "name": "falls back to English and rejects unknown examples/steps",
+        "status": "PASS"
+      },
+      {
+        "name": "requires category then meaningful title/outcome",
+        "status": "PASS"
+      },
+      {
+        "name": "completes all four steps for each category without publishing",
+        "status": "PASS"
+      },
+      {
+        "name": "represents undecided logistics without invented numbers",
+        "status": "PASS"
+      },
+      {
+        "name": "trims review text and validates length without truncating",
+        "status": "PASS"
+      },
+      {
+        "name": "rejects invalid size/duration including numeric-looking text",
+        "status": "PASS"
+      },
+      {
+        "name": "blocks review on invalid numeric or private venue values",
+        "status": "PASS"
+      },
+      {
+        "name": "ignores unknown/prototype fields and non-string input",
+        "status": "PASS"
+      },
+      {
+        "name": "scopes category answers and bounds their length",
+        "status": "PASS"
+      },
+      {
+        "name": "confirms incompatible category changes without losing shared edits",
+        "status": "PASS"
+      },
+      {
+        "name": "locks editing/navigation during category confirmation",
+        "status": "PASS"
+      },
+      {
+        "name": "applies examples only to untouched empty fields",
+        "status": "PASS"
+      },
+      {
+        "name": "removes obsolete example defaults on category switch while preserving edits",
+        "status": "PASS"
+      },
+      {
+        "name": "preserves answers through Back and edit from Review/Ready",
+        "status": "PASS"
+      },
+      {
+        "name": "minimizes guidance without altering the sketch",
+        "status": "PASS"
+      },
+      {
+        "name": "confirms reset and supports cancellation without lost edits",
+        "status": "PASS"
+      },
+      {
+        "name": "keeps state immutable and ignores unknown actions",
+        "status": "PASS"
+      }
+    ]
+  }
+}

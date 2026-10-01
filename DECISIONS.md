@@ -244,6 +244,13 @@ The founder authorized replacing Vite/React Router with Next.js, isolated stagin
 
 **Consequences:** `specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md` proposes a four-screen Choose / Shape / Details / Review flow and optional curated guidance. CB0 is documentation preparation only. The local preview needs its own SPEC-READY package, reviewed assets, privacy/Trust boundary review and measured performance budget; authenticated drafts, AI and publishing need separate specifications and dependencies. Category pills are not live category approval. The supplied Markdown attachment remains unreadable; this record is based on the founder's explicit written requirements, not inferred attachment contents.
 
+## ADR-CB-PHASES — Sequential Circle Builder delivery and main checkpoints
+
+**Status:** Accepted from founder's explicit continuation request, 2026-10-01.
+
+**Decision:** Execute the recovered Circle Builder in small sequential phases, maintain durable plan/status/evidence records and integrate each accepted phase into main. Phase 1 repairs the existing unconnected foundation's unknown guidance-step behavior, adds regressions and reconciles verification. Merge documentation parent #99 before retargeting/merging foundation #100. Preserve normal ancestry and newer authentication/rebrand work.
+
+**Consequences:** `docs/circle-builder/EXECUTION-PLAN.md` is the executable recovery map. F1 v1.0.1 is SPEC-READY for this narrow correction before source edits. Founder authorization supersedes earlier no-main-delivery wording for the accepted Phase 1 foundation; it does not waive required checks, reviews, CB1 screen/asset/privacy/Trust/performance preparation or CB2/CB3/AI authority. The first main checkpoint contains reusable logic, not an editable app screen. Later phase contracts and evidence must be committed and accepted individually.
 
 ## ADR-CB-F1 — Start the unconnected builder logic foundation
 
@@ -252,11 +259,3 @@ The founder authorized replacing Vite/React Router with Next.js, isolated stagin
 **Decision:** Begin the category/mascot registry, curated localized examples and pure builder state logic with unit tests on a separate branch. This first slice has no runtime consumer, input collection, UI, new dependency or external operation. `specs/ARO-CB1-F1-LOGIC-FOUNDATION.md` is SPEC-READY for that bounded foundation before source edits.
 
 **Consequences:** CB0's proposed four-screen experience and exact mascot mapping are preserved. F1 does not make the user-facing preview SPEC-READY or waive reviewed artwork, privacy/Trust/design review, a measured performance budget, account work, live category policy, AI or publishing requirements. Integration requires its own scoped authority and evidence. Hosted quality checks remain required; local execution provisioning is unavailable.
-
-## ADR-CB-PHASES — Sequential Circle Builder delivery and main checkpoints
-
-**Status:** Accepted from founder's explicit continuation request, 2026-10-01.
-
-**Decision:** Execute the recovered Circle Builder in small sequential phases, maintain durable plan/status/evidence records and integrate each accepted phase into main. Phase 1 repairs the existing unconnected foundation's unknown guidance-step behavior, adds regressions and reconciles verification. Merge documentation parent #99 before retargeting/merging foundation #100. Preserve normal ancestry and newer authentication/rebrand work.
-
-**Consequences:** `docs/circle-builder/EXECUTION-PLAN.md` is the executable recovery map. F1 v1.0.1 is SPEC-READY for this narrow correction before source edits. Founder authorization supersedes earlier no-main-delivery wording for the accepted Phase 1 foundation; it does not waive required checks, reviews, CB1 screen/asset/privacy/Trust/performance preparation or CB2/CB3/AI authority. The first main checkpoint contains reusable logic, not an editable app screen. Later phase contracts and evidence must be committed and accepted individually.

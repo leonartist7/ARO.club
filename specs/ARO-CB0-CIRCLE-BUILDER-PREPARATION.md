@@ -3,7 +3,7 @@
 ## 0. Metadata
 
 - Status: **SPEC-REQUIRED — preparation only; runtime not implemented**.
-- Spec version: 0.1.0, 2026-10-01.
+- Spec version: 0.1.1, 2026-10-01.
 - Owner/director: ARO founder.
 - Preparation branch: `codex/circle-builder-preparation-20261001`.
 - Reviewed baseline: `97d9086b1bfb6946653f6ee6baea481cbdc894c5`.
@@ -89,7 +89,7 @@ States: CHOOSE, SHAPE, DETAILS, REVIEW, SKETCH_READY. Back returns to the preced
 
 A local reducer controls transitions and validation. REVIEW requires a category, trimmed title and outcome. Date/venue may remain "To decide" in a sketch; do not invent a schedule, availability, attendance or booking. The Details screen distinguishes undecided logistics from explicitly entered ones.
 
-Every transition is visitor-initiated, synchronous, local, reversible and without an external side effect. Invalid transitions preserve input and point to the relevant field. There is no fake saving spinner or publication state.
+Every transition is visitor-initiated, synchronous, local and without an external side effect. Back/Edit navigation and ordinary field changes preserve the existing sketch. Confirmed category changes that clear incompatible answers, confirmed reset/discard and Start another deliberately discard the stated fields; they have no undo/history in this preview. Explain the affected fields and require explicit confirmation before a destructive transition. Cancelling the confirmation preserves the sketch. Invalid transitions preserve input and point to the relevant field. There is no fake saving spinner or publication state.
 
 ## 10. Data specification
 
@@ -252,3 +252,7 @@ Source review: Create, AppShell, CocoMascot, UX2, current package scripts and go
 Implementation tests: not run; no runtime edited; local exec workspace provisioning failed.
 Attachment: unreadable; written founder requirements captured with source limitation.
 Status: SPEC-REQUIRED, preparation draft.
+
+## 31. Phase 1 documentation continuation
+
+Version 0.1.1 records the founder's sequential/main-checkpoint direction and clarifies confirmed destructive actions without introducing undo/history or changing the existing foundation implementation. ADR-CB-PHASES and the execution plan govern sequencing; CB0 remains SPEC-REQUIRED preparation and CB1 screen gates stay open. The unmerged foundation owner/status and source CI evidence are recorded in the canonical ledgers. No runtime or release acceptance is inferred from these documentation repairs.

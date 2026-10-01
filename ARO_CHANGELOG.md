@@ -1,10 +1,5 @@
 # ARO — Product & Architecture Changelog
 
-## 2026-10-01 — Circle Builder logic foundation
-
-The founder asked to start building. ADR-CB-F1 and the SPEC-READY F1 foundation specification were committed before source edits. An unconnected registry and pure reducer implement the three named guides, EN/FR/ES indoor examples, local four-step validation, edit/back/reset/category confirmation and explicit example acceptance without overwriting manual edits. The 22 Vitest-format cases pass through supplemental direct V8 source execution. Hosted source lint/types/build, 218 tests (including the 22 builder cases), public/English-light and isolated database checks pass; browser-smoke/final-head acceptance remains pending. No route consumes these modules; there is no user-input collection, asset/UI, Auth, storage, schema, AI, money, publishing or category-launch change. CB1 screens and their review/performance prerequisites remain separate.
-
-
 ## 2026-10-01 — Circle Builder mascot and flow preparation
 
 The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.
@@ -1087,3 +1082,17 @@ Inherited PR #90 CodeRabbit findings were checked and corrected here: historical
 ## 2026-09-29 — RB17 reference-led first journey
 
 The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.
+
+## 2026-10-01 — Circle Builder sequential recovery plan and preparation review repair
+
+- Founder requested one phase at a time, durable updates and accepted main integration; ADR-CB-PHASES and the execution plan record that decision in the preparation tree.
+- Canonical records now identify the active unmerged CB1-F1 v1.0.1 owner (#100), source 094818d, guidance-step correction and actual hosted/pending verification. No runtime is included in this preparation PR.
+- CB0 v0.1.1 clarifies that confirmed reset/category discard has no undo/history; Back/Edit and cancelled confirmations preserve input. This resolves a contradictory reversibility promise without expanding scope.
+- Historical browser failure and later unchanged-fixture success remain recorded. Required checks and CB1 asset/privacy/Trust/design/performance, live-draft/AI/publishing gates remain open.
+
+## 2026-10-01 — Circle Builder Phase 1 v1.0.1 source verification
+
+- Unconnected category/mascot/guidance/state foundation is VERIFIED at 094818d55ecbddab86255dbbf7d84b0be0c6a4e9. Quality run 36898469817 and platform run 36898469893 pass all required jobs, including 220 tests (24 builder cases; 3 existing skips), lint, TypeScript, production build and unchanged browser/Auth/Trust/SQL fixtures.
+- getGuidance now rejects inherited names and non-string/coercion step values. Both new cases fail against the earlier registry and pass after correction; manual editing/reducer behavior is unchanged.
+- Current final documentation retains the preparation review repairs, source evidence and normal ancestry. Final delivery-head checks and dependency-ordered main merge are enforced through #99/#100; their live merge state is the integration source of truth.
+- No route, mascot art, input collection, schema, provider, dependency, AI or publishing changes. Phase 2 follows the main checkpoint and starts with the precise screen/artwork contract and measured existing Create baseline.
