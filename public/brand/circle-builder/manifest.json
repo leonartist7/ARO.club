@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "family": "aro-circle-builder-welcome",
+  "generatedAt": "2026-10-01",
+  "sourceCommit": "088ae57d66dfae7860b8c21b4fc194241884f577",
+  "exportEvidenceCommit": "6b5a0052310c05112c85d7fa5117f8ef6b3ff2b9",
+  "exportRun": "https://github.com/leonartist7/ARO.club/actions/runs/36909429501",
+  "rights": "Original project ImageGen outputs; no third-party source reproduced; project usage subject to service terms; no exclusive copyright claim.",
+  "render": {
+    "fit": "contain",
+    "mobileCssSize": 96,
+    "desktopCssSize": 160,
+    "reserveAspectRatio": "1/1",
+    "altWhenAdjacentLabel": "",
+    "load": "active guide only; no inactive preload",
+    "failure": "stable labelled lucide category icon; all controls remain usable"
+  },
+  "guides": [
+    {
+      "id": "tonguee",
+      "categoryId": "languages",
+      "name": "Tonguee",
+      "species": "chameleon",
+      "poses": [
+        "welcome"
+      ],
+      "stepPose": {
+        "choose": "welcome",
+        "shape": "welcome",
+        "details": "welcome",
+        "review": "welcome",
+        "ready": "welcome"
+      },
+      "original": {
+        "path": "artifacts/ARO-CB1-P/originals/tonguee-welcome.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 835895,
+        "sha256": "9c4f6c3afd771c1345ec6d6193f6662c67d2e8fbeb0e264ec7cbb5af0108b3b5"
+      },
+      "sources": [
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/tonguee-welcome-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 14302,
+          "sha256": "9f3172a9794afc1955bc46cef302937616ba6de5940cbcff1a3554f745a93622",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        },
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/tonguee-welcome-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 33770,
+          "sha256": "af850971086b67376a5c8d3f1bac5f340df5878c77eeb6301a44b7887e0f87e7",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        }
+      ]
+    },
+    {
+      "id": "squilly",
+      "categoryId": "skills",
+      "name": "Squilly",
+      "species": "squirrel",
+      "poses": [
+        "welcome"
+      ],
+      "stepPose": {
+        "choose": "welcome",
+        "shape": "welcome",
+        "details": "welcome",
+        "review": "welcome",
+        "ready": "welcome"
+      },
+      "original": {
+        "path": "artifacts/ARO-CB1-P/originals/squilly-welcome.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 939138,
+        "sha256": "cacb94e45a728aea4acb7d281b10d221e5666b606bb72d4c2d11d1cf32572a95"
+      },
+      "sources": [
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/squilly-welcome-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 13126,
+          "sha256": "ab4139f72138ce167f22b62c251f2a0960b867c1b6a4122355656daf9bc5686f",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        },
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/squilly-welcome-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 31382,
+          "sha256": "dfaa971833891bfc082eacb6fea0277df64ccf6f8729800fccae20710c97e795",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        }
+      ]
+    },
+    {
+      "id": "rockatoo",
+      "categoryId": "music",
+      "name": "Rockatoo",
+      "species": "white cockatoo",
+      "poses": [
+        "welcome"
+      ],
+      "stepPose": {
+        "choose": "welcome",
+        "shape": "welcome",
+        "details": "welcome",
+        "review": "welcome",
+        "ready": "welcome"
+      },
+      "original": {
+        "path": "artifacts/ARO-CB1-P/originals/rockatoo-welcome.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 831275,
+        "sha256": "86597b4d0b40b5ade33c0c2f73d2e021d91986f9d4be076faa4e8b70dbc5b810"
+      },
+      "sources": [
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/rockatoo-welcome-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 12174,
+          "sha256": "cc889524a7873492f2a1357f46ea58ba5ecd749ac135d9c2f766e09c3beea739",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        },
+        {
+          "pose": "welcome",
+          "path": "/brand/circle-builder/rockatoo-welcome-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 28474,
+          "sha256": "13b9bbc1552c75e416ac7ec5b507e237d3d99df80bae6d9ef48155f30baf4ba3",
+          "hasAlpha": true,
+          "encoder": "Next dependency sharp; resize inside; webp quality84 alpha100"
+        }
+      ]
+    }
+  ]
+}
