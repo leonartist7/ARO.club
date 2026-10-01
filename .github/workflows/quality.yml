@@ -72,6 +72,18 @@ jobs:
           path: artifacts/ARO-CB1-P/baseline
           if-no-files-found: error
           retention-days: 14
+      - name: Circle Builder Choose and Shape isolation checks
+        run: node scripts/verify-cb1-f2.mjs
+        env:
+          ARO_CB1_F2_RECEIPTS: 'true'
+      - name: Retain Circle Builder Choose and Shape evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-f2-isolation
+          path: artifacts/ARO-CB1-F2/browser
+          if-no-files-found: error
+          retention-days: 14
       - name: RB13 compact footer browser check
         run: node scripts/verify-rb13-footer.mjs
       - name: Retain RB13 footer screenshots

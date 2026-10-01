@@ -51,3 +51,7 @@ tools/ci/supabase/.branches/
 /artifacts/ARO-CB1-P/baseline/
 /artifacts/ARO-CB1-P/art-review/*.png
 /artifacts/ARO-CB1-P/art-review/review.json
+
+# CB1-F2 generated isolation verification output
+/.cb1-f2-fixture/
+/artifacts/ARO-CB1-F2/browser/
