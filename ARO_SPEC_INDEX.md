@@ -439,3 +439,8 @@ RB7–RB10 incorporate exact RB6 `1184639f47eeaecebcb6a5b754ad7f7974d9d144` with
 ### 2026-10-01 - AUTH3 production lifecycle continuation
 
 AUTH3 v1.0.0 is SPEC-READY for implementation under the founder's request to finish signup, login, logout and deletion. Spec: `specs/ARO-AUTH3-PRODUCTION-LIFECYCLE.md`; decision: ADR-033; continuation: PR #98 stacked on PR #97. Verification is PARTIAL until hosted provider, live rollout, operational disposition and independent review gates pass. Neither AUTH2 nor AUTH3 is store-certified.
+
+
+### 2026-10-01 - AUTH3 reviewed implementation verification
+
+PR #98's ec6c641 committed migration passed isolated run 36867759956: 165/165 SQL assertions twice, real Storage/Auth erasure, stale JWT denial, recovery and the enabled EN/FR/ES account-screen matrix at 360/1440 in light/dark. Quality 36867759902 passed all four jobs and 240 unit tests (3 existing skips). Migration 20261001130907_auth3_account_lifecycle.sql is now deployable source, with CLI provenance and SHA-256 in artifacts/ARO-AUTH3/VERIFICATION.md. Legacy receipt handoff, orphan cleanup stages, in-progress Trust review protection, capacity alerts and immediate-erasure disclosure address the original review findings. Confirmation resend/correction/password clearance is added and awaiting its final expanded run. Live migration inventory lists only baseline/default-privilege migrations, so the I0.2 repairs must be reconciled before AUTH2/AUTH3 activation. Independent review, hosted provider/cron/exception evidence and native/store gates remain OPEN; release stays blocked.

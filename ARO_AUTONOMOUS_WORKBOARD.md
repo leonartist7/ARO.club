@@ -162,3 +162,8 @@ Use `ARO_AUTONOMY.md` and `tools/autonomy/README.md` to provision worker paths a
 - Validation: local unit/lint/build and isolated DB/browser regression passed on recorded code heads; final worker/locale evidence tracked in `artifacts/ARO-AUTH3/VERIFICATION.md`.
 - Remaining: independent security/privacy review; live AUTH2/AUTH3 migration and exact provider settings; staffed booking/Trust disposition; hosted confirmation/Google/recovery/erasure; native store path/metadata.
 - Release remains blocked. Do not turn a deletion request, self-declared age, CI mock, or web build into a compliance/identity/store approval claim.
+
+
+### 2026-10-01 - AUTH3 reviewed implementation verification
+
+PR #98's ec6c641 committed migration passed isolated run 36867759956: 165/165 SQL assertions twice, real Storage/Auth erasure, stale JWT denial, recovery and the enabled EN/FR/ES account-screen matrix at 360/1440 in light/dark. Quality 36867759902 passed all four jobs and 240 unit tests (3 existing skips). Migration 20261001130907_auth3_account_lifecycle.sql is now deployable source, with CLI provenance and SHA-256 in artifacts/ARO-AUTH3/VERIFICATION.md. Legacy receipt handoff, orphan cleanup stages, in-progress Trust review protection, capacity alerts and immediate-erasure disclosure address the original review findings. Confirmation resend/correction/password clearance is added and awaiting its final expanded run. Live migration inventory lists only baseline/default-privilege migrations, so the I0.2 repairs must be reconciled before AUTH2/AUTH3 activation. Independent review, hosted provider/cron/exception evidence and native/store gates remain OPEN; release stays blocked.
