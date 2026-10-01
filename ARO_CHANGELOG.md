@@ -1087,3 +1087,8 @@ The founder supplied six visual references and prioritized a clearer, more human
 ## 2026-10-01 — AUTH3 account lifecycle continuation
 
 AUTH3 v1.0.1 continues PR #98 from c9ab6ef after recovering PR #97 and inspecting newer work. It repairs verified PKCE recovery routing, malformed navigation cookies, same-account late profile results and signup/recovery success copy. No SQL, worker, dependency or product scope changes. Predecessor runtime 97103ee has complete disposable evidence; exact-head c9ab6ef isolated verification failed at the document chooser. New-head CI and independent acceptance remain pending. Live migrations, deployment configuration, queue operations, hosted provider tests and native store evidence remain BLOCKED. See artifacts/ARO-AUTH3/VERIFICATION.md.
+
+
+### 2026-10-01 — AUTH3 v1.0.1 verification recorded
+
+Runtime `526774b` passed Quality `36894695807` (249 unit tests, 3 existing skips, lint/types/build and all browser jobs) and isolated database `36894695790` (165 SQL assertions twice, actual Storage/Auth erasure, authenticated matrix, reset/cleanup). Documentation-only follow-up records these results. Independent final-head acceptance and live migration/configuration/provider/native rollout gates remain pending; no live erasure or store-ready claim.
