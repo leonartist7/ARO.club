@@ -120,7 +120,7 @@ try {
       const confirmReset = await exerciseAuth(
         status.ANON_KEY,
         phase,
-        exerciseAuthenticatedBrowser,
+        credentials => exerciseAuthenticatedBrowser({ ...credentials, serviceKey: status.SERVICE_ROLE_KEY }),
         browserVerificationPhase
       );
       await exerciseDeletion(status.ANON_KEY, status.SERVICE_ROLE_KEY, phase);

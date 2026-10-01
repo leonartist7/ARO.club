@@ -154,7 +154,7 @@ async function captureJourney(page, caseId, state) {
   await page.screenshot({ path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-${state}.png`, animations: 'disabled', fullPage: true, timeout: 10000 });
 }
 
-export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }) {
+export async function exerciseAuthenticatedBrowser({ anonKey, serviceKey, emails, password }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
   requireCondition(Array.isArray(emails) && emails.length === 4 && new Set(emails).size === 4, 'FOUR_DISTINCT_APPLICANTS_REQUIRED');
   mkdirSync(screenshotDir, { recursive: true });
@@ -165,6 +165,10 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
     NEXT_PUBLIC_VERCEL_ENV: '',
     NEXT_PUBLIC_SUPABASE_URL: API,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: anonKey,
+    NEXT_PUBLIC_ENABLE_ACCOUNT_LIFECYCLE: 'true',
+    ENABLE_ACCOUNT_DELETION_WORKER: 'true',
+    SUPABASE_SERVICE_ROLE_KEY: serviceKey,
+    SUPABASE_SERVER_PROJECT_REF: 'local-disposable',
   };
   const build = spawnSync(process.execPath, [nextCli, 'build'], {
     cwd: root,
@@ -522,6 +526,28 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
           fullPage: false,
           timeout: 10000,
         });
+
+        stage = `AUTH3_ACCOUNT_SCREENS_${width}_${theme.toUpperCase()}`;
+        for (const language of ['en','fr','es']) {
+          await page.evaluate(value => localStorage.setItem('conversa-language',value), language);
+          await page.goto(`${base}/account/delete`, { waitUntil: 'networkidle' });
+          const checkbox = page.getByRole('checkbox');
+          await checkbox.waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.locator('main').count() === 1, 'AUTH3_MAIN_LANDMARK');
+          const confirm = page.locator('main').getByRole('button');
+          requireCondition(await confirm.isDisabled(), 'AUTH3_CONFIRMATION_NOT_REQUIRED');
+          requireCondition(await checkbox.evaluate(element => !element.checked), 'AUTH3_CONSENT_PRESELECTED');
+          const height = await confirm.evaluate(element => element.getBoundingClientRect().height);
+          requireCondition(height >= 44, 'AUTH3_CONFIRM_TARGET');
+          requireCondition(await page.locator('[lang]').filter({ has: page.locator('h1') }).count() > 0, 'AUTH3_LANGUAGE_MISSING');
+          await captureJourney(page,caseId,`auth3-${language}-deletion`);
+          await page.goto(`${base}/account/eligibility`, { waitUntil: 'networkidle' });
+          await page.locator('input[type="date"]').waitFor({ timeout: uiReadyTimeout });
+          requireCondition(await page.locator('main').count() === 1, 'AUTH3_ELIGIBILITY_MAIN');
+          requireCondition(await page.locator('input[type="date"]').inputValue() === '', 'AUTH3_BIRTH_DATE_RETAINED');
+          requireCondition(await page.locator('form button[type="submit"]').isDisabled(), 'AUTH3_ELIGIBILITY_CONSENT_REQUIRED');
+          await captureJourney(page,caseId,`auth3-${language}-eligibility`);
+        }
         const report = await timing.finish();
         requireCondition(report.auth.count > 0 && report.data.count > 0, 'DATA_TIMINGS_MISSING');
         writeFileSync(`${screenshotDir}/authenticated-synthetic-journey-${caseId}-timings.json`, JSON.stringify({ caseId, budgetMs: 1000, ...report }, null, 2));
