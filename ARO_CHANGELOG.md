@@ -1083,3 +1083,17 @@ Inherited PR #90 CodeRabbit findings were checked and corrected here: historical
 ## 2026-09-29 — RB17 reference-led first journey
 
 The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.
+
+## 2026-10-01 — AUTH3 account lifecycle continuation
+
+AUTH3 v1.0.1 continues PR #98 from c9ab6ef after recovering PR #97 and inspecting newer work. It repairs verified PKCE recovery routing, malformed navigation cookies, same-account late profile results and signup/recovery success copy. No SQL, worker, dependency or product scope changes. Predecessor runtime 97103ee has complete disposable evidence; exact-head c9ab6ef isolated verification failed at the document chooser. New-head CI and independent acceptance remain pending. Live migrations, deployment configuration, queue operations, hosted provider tests and native store evidence remain BLOCKED. See artifacts/ARO-AUTH3/VERIFICATION.md.
+
+
+### 2026-10-01 — AUTH3 v1.0.1 verification recorded
+
+Runtime `526774b` passed Quality `36894695807` (249 unit tests, 3 existing skips, lint/types/build and all browser jobs) and isolated database `36894695790` (165 SQL assertions twice, actual Storage/Auth erasure, authenticated matrix, reset/cleanup). Documentation-only follow-up records these results. Independent final-head acceptance and live migration/configuration/provider/native rollout gates remain pending; no live erasure or store-ready claim.
+
+
+### 2026-10-01 — AUTH3 hosted build configuration correction
+
+Automatic Vercel preview failed with `STATIC_BUILD_NO_OUT_DIR` because inherited Vite project settings expected `dist` after a successful Next.js build. Pin the Next.js framework and `.next` output in `vercel.json`, preserving the daily deletion cron. Preview/exact-head results are tracked on PR #98; no production migration or flag activation.

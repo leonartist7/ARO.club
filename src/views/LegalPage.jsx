@@ -5,6 +5,7 @@ import { FileText, ShieldCheck, Cookie, AlertCircle } from 'lucide-react';
 import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { isSupabaseConfigured } from '../lib/supabase';
+import { lifecycleEnabled } from '../lib/auth/lifecycle';
 
 /**
  * Terms, Privacy and Cookie pages.
@@ -53,7 +54,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'What leaves your device',
-        body: 'Supabase processes your email, sign-in information, account profile and role for ARO. If you choose Google, Google shares your name, profile picture and email with Supabase for sign-in. Account-related data, such as your profile, may be stored on ARO’s servers. Some features can send additional information when you use them.',
+        body: lifecycleEnabled ? 'Supabase processes your email, sign-in information, profile and role. Google shares your name, profile picture and email when you choose Google sign-in. ARO checks a date of birth to require adults aged 18 and over; the date is discarded. A minimal adult declaration stores your account ID, confirmation time and accepted terms version, and is erased with the account. This declaration does not verify identity or age.' : 'Supabase processes your email, sign-in information, account profile and role for ARO. If you choose Google, Google shares your name, profile picture and email with Supabase for sign-in. Account-related data, such as your profile, may be stored on ARO’s servers. Some features can send additional information when you use them.',
       },
       {
         heading: 'What we do not do',
@@ -61,7 +62,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'Getting your data removed',
-        body: 'Signing out ends the browser session but does not delete your account. You can sign in and start an account deletion request at /account/delete. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing the request. Submitting a request does not erase your account immediately.',
+        body: lifecycleEnabled ? 'Global sign-out revokes your ARO sessions but does not delete the account. You can confirm account deletion at /account/delete. Confirmation may permanently erase an eligible account and its associated personal data immediately. Requests involving bookings, in-progress or protected teacher reviews and other required records are reviewed internally. Processing revokes sessions and prevents sign-in. A private receipt lets this browser check completion after deletion; its hash and minimal cleanup identifier are retained with the resolved request for 30 days, then purged. Clearing site data removes your receipt but does not cancel an accepted request.' : 'Signing out ends the browser session but does not delete your account. You can sign in and start an account deletion request at /account/delete. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing the request. Submitting a request does not erase your account immediately.',
       },
     ],
   },
@@ -72,7 +73,7 @@ const DOCUMENTS = {
     sections: [
       {
         heading: 'What we use',
-        body: 'Supabase uses first-party cookies to keep you signed in. ARO also uses browser storage for preferences such as theme and language, and for some prototype progress. These are different from advertising cookies.',
+        body: lifecycleEnabled ? 'Supabase uses first-party cookies for account sessions. ARO uses an essential, private account-deletion receipt cookie for up to 30 days and a short-lived OAuth return cookie. A receipt contains a random secret, not your email. Browser storage keeps preferences such as theme and language and some prototype progress. These are not advertising cookies.' : 'Supabase uses first-party cookies to keep you signed in. ARO also uses browser storage for preferences such as theme and language, and for some prototype progress. These are different from advertising cookies.',
       },
       {
         heading: 'What we do not use',

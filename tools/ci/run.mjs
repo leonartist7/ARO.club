@@ -1,9 +1,11 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { createResetDiagnostic, exerciseAuth, waitForLocalAuthReady } from './auth.mjs';
 import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
+import { exerciseDeletion } from './deletion.mjs';
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -17,6 +19,16 @@ function run(command, args, timeout = 120000) {
     env: { ...process.env, DO_NOT_TRACK: '1', SUPABASE_TELEMETRY_DISABLED: '1' },
   });
   // CLI output can contain local signing keys. Never print it, even on failure.
+  if (result.error || result.status !== 0) {
+    // Emit only an allowlisted category/SQLSTATE, never service output or keys.
+    const diagnostic = String(result.stdout ?? '') + String(result.stderr ?? '');
+    const state = diagnostic.match(/SQLSTATE[ :]+([0-9A-Z]{5})/);
+    const categories = [['syntax error','SQL_SYNTAX'],['does not exist','SQL_OBJECT_MISSING'],
+      ['permission denied','PERMISSION'],['already exists','OBJECT_EXISTS'],
+      ['Too Many Requests','REGISTRY_RATE'],['failed to pull','IMAGE_PULL'],['timeout','TIMEOUT']];
+    const category = categories.find(([phrase]) => diagnostic.toLowerCase().includes(phrase.toLowerCase()))?.[1] ?? 'UNKNOWN';
+    process.stderr.write(`PROCESS_DIAGNOSTIC ${category} ${state?.[1] ?? 'NO_SQLSTATE'}\n`);
+  }
   requireCondition(!result.error && result.status === 0, 'PROCESS_FAILED');
   return result.stdout;
 }
@@ -62,9 +74,35 @@ function userCount(expected) {
   requireCondition(value.trim() === String(expected), 'AUTH_COUNT_MISMATCH');
 }
 function sqlTests() {
-  const output = cli(['test', 'db', '--local']);
-  requireCondition(/Tests=108\b/.test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
-  process.stdout.write('PASS pgTAP 108/108 (transactions rolled back)\n');
+  const result = spawnSync('supabase', ['test','db','--local','--workdir',workdir,'--network-id',network], {
+    cwd: workdir, encoding: 'utf8', timeout: 120000, maxBuffer: 64 * 1024 * 1024,
+    env: { ...process.env, DO_NOT_TRACK: '1', SUPABASE_TELEMETRY_DISABLED: '1' },
+  });
+  const output = String(result.stdout ?? '');
+  if (result.error || result.status !== 0) {
+    const diagnostic = output + String(result.stderr ?? '');
+    // Only source-controlled filenames and integer line/assertion numbers.
+    for (const line of diagnostic.split('\n')) {
+      const location = line.match(/([a-z_]+\.test\.sql):(\d+):/);
+      if (location) process.stderr.write(`SQL_TEST_LOCATION ${location[1]} ${location[2]}\n`);
+      const failed = line.match(/not ok (\d+)/);
+      if (failed) process.stderr.write(`SQL_TEST_ASSERTION ${failed[1]}\n`);
+    }
+  }
+  requireCondition(!result.error && result.status === 0, 'SQL_TEST_PROCESS_FAILED');
+  const testsDir = fileURLToPath(new URL('supabase/tests/', import.meta.url));
+  const expected = readdirSync(testsDir).filter(name => name.endsWith('.test.sql'))
+    .reduce((sum,name) => sum + Number(readFileSync(`${testsDir}/${name}`,'utf8').match(/select plan\((\d+)\)/i)?.[1] ?? 0),0);
+  requireCondition(new RegExp(`Tests=${expected}\\b`).test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
+  process.stdout.write(`PASS pgTAP ${expected}/${expected} (transactions rolled back)\n`);
+}
+function verifyLifecycleMigration() {
+  const directory = fileURLToPath(new URL('supabase/migrations/', import.meta.url));
+  const files = readdirSync(directory).filter(name => name.endsWith('_auth3_account_lifecycle.sql'));
+  requireCondition(files.length === 1, 'LIFECYCLE_MIGRATION_NOT_COMMITTED');
+  const payload = readFileSync(new URL('supabase/changes/auth3_account_lifecycle.sql',import.meta.url));
+  requireCondition(readFileSync(`${directory}/${files[0]}`).equals(payload), 'LIFECYCLE_PAYLOAD_MISMATCH');
+  process.stdout.write(`AUTH3_MIGRATION ${files[0]} ${createHash('sha256').update(payload).digest('hex')}\n`);
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -94,6 +132,7 @@ try {
       run('docker', ['network', 'create', '--driver', 'bridge', '--opt', 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1', '--label', `aro.i0.owner=${ownership}`, network]);
     });
     try {
+      await phase('verify-auth3-committed-migration', verifyLifecycleMigration);
       await phase('start-and-loopback-bindings', () => {
         cli(['start', '--exclude', 'realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'], 600000);
         checkBindings();
@@ -106,9 +145,10 @@ try {
       const confirmReset = await exerciseAuth(
         status.ANON_KEY,
         phase,
-        exerciseAuthenticatedBrowser,
+        credentials => exerciseAuthenticatedBrowser({ ...credentials, serviceKey: status.SERVICE_ROLE_KEY }),
         browserVerificationPhase
       );
+      await exerciseDeletion(status.ANON_KEY, status.SERVICE_ROLE_KEY, phase);
       await phase('synthetic-account-count', () => userCount(5));
       await phase('reset-removes-accounts', async () => {
         const diagnostic = createResetDiagnostic();

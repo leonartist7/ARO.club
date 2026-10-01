@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; PR #97 is implemented with partial CI verification and exact-head security/privacy review pending. Production release blocked.
+- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; PR #97 is implemented; exact-head Quality and isolated CI passed at 48bd618, with independent security/privacy review pending. AUTH3 in PR #98 adds processing; its release gates remain open. Production release blocked.
 - **Spec version:** 1.0.0, 2026-10-01
 - **Owner:** ARO founder
 - **Depends on:** AUTH1 hosted email and Google verification; existing I0 Auth/RLS baseline
@@ -44,8 +44,8 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 | ID | Requirement and test evidence | Status |
 |---|---|---|
-| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, Auth user deletion compatibility and purge guard in disposable database | 17 assertions locally added; exact-head isolated CI pending |
-| AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | IMPLEMENTED; local unit/build and Quality run `36843716537` pass; hosted authenticated journey pending |
+| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, Auth user deletion compatibility and purge guard in disposable database | 17 AUTH2 assertions passed at 48bd618 in isolated run 36848051720 (108 total); AUTH3 adds the recent processed_at assertion and checked-RPC contract |
+| AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | IMPLEMENTED; local unit/build and exact-head Quality run `36848051783` pass at 48bd618; hosted authenticated request journey pending |
 | AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | IMPLEMENTED; independent privacy acceptance pending |
 | AUTH2-04 | Production queue owner, processing path and timeframe, hosted request test, independent review | PENDING |
 

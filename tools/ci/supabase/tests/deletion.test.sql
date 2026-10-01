@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
-select plan(17);
+select plan(20);
 
 select has_table('public','account_deletion_requests','deletion request table exists');
 select ok((select relrowsecurity from pg_class where oid='public.account_deletion_requests'::regclass),'RLS is enabled');
@@ -19,24 +19,32 @@ insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_co
   raw_app_meta_data,raw_user_meta_data,created_at,updated_at)
 values (null,'00000000-0000-4000-8000-000000000011','authenticated','authenticated',
   'deletion@aro.invalid',crypt('Synthetic-pass-011',gen_salt('bf')),now(),'{}','{}',now(),now());
+-- Synthetic live sessions and adult declarations preserve the original Trust assertions.
+insert into auth.sessions(id,user_id,created_at,updated_at) select id,id,now(),now() from auth.users on conflict (id) do nothing;
+insert into app_private.account_eligibility(user_id) select id from auth.users on conflict (user_id) do nothing;
 
 set local role authenticated;
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000011","role":"authenticated"}';
-select lives_ok($$insert into public.account_deletion_requests(user_id)
-  values ('00000000-0000-4000-8000-000000000011')$$,'owner can start a request');
-select is((select count(*) from public.account_deletion_requests),1::bigint,'owner sees own request');
+  '{"sub":"00000000-0000-4000-8000-000000000011","session_id":"00000000-0000-4000-8000-000000000011","role":"authenticated"}';
 select throws_ok($$insert into public.account_deletion_requests(user_id)
-  values ('00000000-0000-4000-8000-000000000011')$$,'23505',null,'duplicate open request is denied');
+  values ('00000000-0000-4000-8000-000000000011')$$,'42501',null,'direct insert cannot bypass recent-login confirmation');
+select lives_ok($$select api.request_account_deletion(repeat('a',64))$$,'owner can start a checked request');
+select is((select count(*) from public.account_deletion_requests),1::bigint,'owner sees own request');
+select lives_ok($$select api.request_account_deletion(repeat('b',64))$$,'repeat submission reuses the open request');
 select throws_ok($$insert into public.account_deletion_requests(user_id)
   values ('00000000-0000-4000-8000-000000000012')$$,'42501',null,'other user request is denied');
 select throws_ok($$insert into public.account_deletion_requests(user_id,status)
   values ('00000000-0000-4000-8000-000000000011','completed')$$,'42501',null,'client cannot forge completed status');
 
 set local request.jwt.claims =
-  '{"sub":"00000000-0000-4000-8000-000000000012","role":"authenticated"}';
+  '{"sub":"00000000-0000-4000-8000-000000000012","session_id":"00000000-0000-4000-8000-000000000012","role":"authenticated"}';
 select is((select count(*) from public.account_deletion_requests),0::bigint,'other user cannot see request');
 
+reset role;
+update auth.sessions set created_at=now()-interval '1 hour';
+set local role authenticated;
+set local request.jwt.claims = '{"sub":"00000000-0000-4000-8000-000000000011","session_id":"00000000-0000-4000-8000-000000000011","role":"authenticated"}';
+select throws_ok($$select api.request_account_deletion(repeat('c',64))$$,'42501',null,'old session must reauthenticate');
 reset role;
 delete from auth.users where id='00000000-0000-4000-8000-000000000011';
 select ok((select user_id is null from public.account_deletion_requests),
@@ -47,6 +55,8 @@ select throws_ok($$delete from public.account_deletion_requests
 update public.account_deletion_requests
   set status='completed'
   where user_id is null;
+select ok((select processed_at is not null and processed_at between now()-interval '1 minute' and now()
+  from public.account_deletion_requests where user_id is null),'terminal transition stamps a recent processing time');
 select throws_ok($$delete from public.account_deletion_requests
   where user_id is null$$,'P0001',null,'recently resolved request cannot be purged');
 reset role;

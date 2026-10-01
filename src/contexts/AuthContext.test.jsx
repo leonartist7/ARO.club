@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const mocks = vi.hoisted(() => ({
   signInWithOAuth: vi.fn(),
   resetPasswordForEmail: vi.fn(),
+  resend: vi.fn(),
   refresh: vi.fn(),
 }));
 
@@ -18,6 +19,7 @@ vi.mock('../lib/supabase', () => ({
       onAuthStateChange: () => ({ data: { subscription: { unsubscribe: vi.fn() } } }),
       signInWithOAuth: mocks.signInWithOAuth,
       resetPasswordForEmail: mocks.resetPasswordForEmail,
+      resend: mocks.resend,
     },
   },
 }));
@@ -40,6 +42,10 @@ function GoogleAction({ returnTo }) {
   </>;
 }
 
+function ConfirmationAction() {
+  const { resendConfirmation } = useAuth();
+  return <button onClick={() => void resendConfirmation('test@example.com','/profile')}>Resend confirmation</button>;
+}
 function RecoveryAction() {
   const { resetPassword } = useAuth();
   return <button onClick={() => void resetPassword('test@example.com')}>Reset password</button>;
@@ -50,6 +56,7 @@ describe('Google account entry', () => {
     vi.stubGlobal('React', React);
     mocks.signInWithOAuth.mockReset();
     mocks.resetPasswordForEmail.mockReset();
+    mocks.resend.mockReset();
   });
   afterEach(() => {
     cleanup();
@@ -80,7 +87,7 @@ describe('Google account entry', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
     await waitFor(() => expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback?next=%2Faccount%2Fdelete` },
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     }));
   });
 
@@ -94,6 +101,15 @@ describe('Google account entry', () => {
     }));
   });
 
+  it('resends signup confirmation through the exact query-free callback', async () => {
+    mocks.resend.mockResolvedValue({ data: {}, error: null });
+    render(<AuthProvider><ConfirmationAction /></AuthProvider>);
+    fireEvent.click(screen.getByRole('button', { name: 'Resend confirmation' }));
+    await waitFor(() => expect(mocks.resend).toHaveBeenCalledWith({
+      type: 'signup', email: 'test@example.com',
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+    }));
+  });
   it('uses a query-free callback so the email template can append a recovery token', async () => {
     mocks.resetPasswordForEmail.mockResolvedValue({ data: {}, error: null });
     render(<AuthProvider><RecoveryAction /></AuthProvider>);

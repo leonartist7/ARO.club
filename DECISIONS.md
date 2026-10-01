@@ -242,3 +242,9 @@ This file records durable choices. Package-specific implementation details belon
 
 ## 2026-09-21 — N1 Vercel rollout
 The founder authorized replacing Vite/React Router with Next.js, isolated staging accounts and verification of GitHub/Vercel/Supabase plus AI Gateway readiness. Both local checkouts share leonartist7/ARO.club; integrate once on current main while retaining its newer F1–F6 work. Production backend/domain decisions remain pending. No paid AI activation, new product AI behavior, schema/Trust changes or synthetic-to-live product conversion is implied.
+
+## ADR-033 — Complete the production account lifecycle (2026-10-01)
+
+The founder explicitly requested continuation from PR #97 and completion of signup, login, logout, session handling and account deletion for production and store submission. AUTH3 v1.0.0 records the concrete implementation: live-session RLS, server-evaluated adult declaration, consistent recovery/password behavior, query-free OAuth callbacks with validated return cookies, recent-login deletion confirmation, a leased privileged processor, Storage-before-Auth erasure, opaque completion receipts and the existing 30-day purge. No dependency or payment behavior changes.
+
+Automatic deletion must stop on bookings, protected Trust history or associated audit records until a reviewed retention/disposition exists. The operator must resolve exceptions internally; users need no support interaction to initiate deletion. Independent security/privacy review, disposable database tests, live migration/deployment/monitoring, hosted email/Google evidence and native store verification remain release gates. The founder's request authorizes implementation and review preparation; it does not supply evidence for those gates.
