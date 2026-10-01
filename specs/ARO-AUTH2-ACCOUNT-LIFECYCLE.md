@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; implementation and independent security/privacy review pending. Production release blocked.
+- **Status:** SPEC-READY for the request-entry scope only under the founder's 2026-10-01 approval; PR #97 implementation and isolated CI are verified, independent security/privacy follow-up pending. Production release blocked.
 - **Spec version:** 1.0.0, 2026-10-01
 - **Owner:** ARO founder
 - **Depends on:** AUTH1 hosted email and Google verification; existing I0 Auth/RLS baseline
@@ -44,9 +44,9 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 | ID | Requirement and test evidence | Status |
 |---|---|---|
-| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, and Auth user deletion compatibility in disposable database | PENDING |
-| AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | PENDING |
-| AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | PENDING |
+| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, and Auth user deletion compatibility in disposable database | CI VERIFIED: 12 pgTAP assertions in isolated platform run `36843716541` |
+| AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | IMPLEMENTED; local unit/build and Quality run `36843716537` pass; hosted authenticated journey pending |
+| AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | IMPLEMENTED; independent privacy acceptance pending |
 | AUTH2-04 | Production queue owner, processing path and timeframe, hosted request test, independent review | PENDING |
 
 ## 6. Rollout boundary
