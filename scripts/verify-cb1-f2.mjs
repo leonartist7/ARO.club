@@ -47,8 +47,16 @@ async function open(width, locale = 'en', theme = 'light', failure = false) {
 async function layout(page) {
   const result = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > innerWidth,
     text: [...document.querySelectorAll('input,textarea,p,label,button')].filter(el => el.getBoundingClientRect().height && getComputedStyle(el).display !== 'none').every(el => parseFloat(getComputedStyle(el).fontSize) >= 16),
+    borders: [...document.querySelectorAll('input,textarea')].map(el => {
+      const rgb = color => color.match(/[\d.]+/g).slice(0,3).map(Number).map(value => { const c = value / 255; return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; }).reduce((sum, c, i) => sum + c * [.2126,.7152,.0722][i], 0);
+      const style = getComputedStyle(el), border = rgb(style.borderTopColor);
+      let parent = el.parentElement; while (parent && getComputedStyle(parent).backgroundColor === 'rgba(0, 0, 0, 0)') parent = parent.parentElement;
+      const inside = rgb(style.backgroundColor), outside = rgb(getComputedStyle(parent ?? document.body).backgroundColor);
+      const ratio = bg => (Math.max(bg,border)+.05)/(Math.min(bg,border)+.05);
+      return Math.min(ratio(inside), ratio(outside));
+    }),
     targets: [...document.querySelectorAll('button,input,summary')].filter(el => el.getBoundingClientRect().height).every(el => el.getBoundingClientRect().height >= 44) }));
-  assert.equal(result.overflow, false); assert(result.text); assert(result.targets);
+  assert.equal(result.overflow, false); assert(result.text); assert(result.targets); assert(result.borders.every(ratio => ratio >= 3), 'Input borders must contrast >=3:1 against interior and exterior');
 }
 async function privacy(page) {
   assert(!page.url().includes(canary));
