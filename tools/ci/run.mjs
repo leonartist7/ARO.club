@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { createResetDiagnostic, exerciseAuth, waitForLocalAuthReady } from './auth.mjs';
@@ -96,16 +96,13 @@ function sqlTests() {
   requireCondition(new RegExp(`Tests=${expected}\\b`).test(output) && /Result: PASS/.test(output), 'SQL_TEST_COUNT_OR_RESULT');
   process.stdout.write(`PASS pgTAP ${expected}/${expected} (transactions rolled back)\n`);
 }
-function prepareLifecycleMigration() {
+function verifyLifecycleMigration() {
   const directory = fileURLToPath(new URL('supabase/migrations/', import.meta.url));
-  const before = new Set(readdirSync(directory));
-  cli(['migration', 'new', '--help']);
-  cli(['migration', 'new', 'auth3_account_lifecycle']);
-  const added = readdirSync(directory).filter(name => !before.has(name));
-  requireCondition(added.length === 1 && added[0].endsWith('_auth3_account_lifecycle.sql'), 'LIFECYCLE_MIGRATION_NOT_CREATED');
+  const files = readdirSync(directory).filter(name => name.endsWith('_auth3_account_lifecycle.sql'));
+  requireCondition(files.length === 1, 'LIFECYCLE_MIGRATION_NOT_COMMITTED');
   const payload = readFileSync(new URL('supabase/changes/auth3_account_lifecycle.sql',import.meta.url));
-  writeFileSync(`${directory}/${added[0]}`,payload);
-  process.stdout.write(`AUTH3_MIGRATION ${added[0]} ${createHash('sha256').update(payload).digest('hex')}\n`);
+  requireCondition(readFileSync(`${directory}/${files[0]}`).equals(payload), 'LIFECYCLE_PAYLOAD_MISMATCH');
+  process.stdout.write(`AUTH3_MIGRATION ${files[0]} ${createHash('sha256').update(payload).digest('hex')}\n`);
 }
 function cleanup() {
   if (!names('network').includes(network)) {
@@ -135,7 +132,7 @@ try {
       run('docker', ['network', 'create', '--driver', 'bridge', '--opt', 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1', '--label', `aro.i0.owner=${ownership}`, network]);
     });
     try {
-      await phase('generate-auth3-append-only-migration', prepareLifecycleMigration);
+      await phase('verify-auth3-committed-migration', verifyLifecycleMigration);
       await phase('start-and-loopback-bindings', () => {
         cli(['start', '--exclude', 'realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'], 600000);
         checkBindings();
