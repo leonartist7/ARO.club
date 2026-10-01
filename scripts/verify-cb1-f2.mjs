@@ -68,6 +68,11 @@ try {
     const { page, context } = await open(width, locale, theme), copy = circleBuilderCopy[locale];
     const category = CATEGORY_REGISTRY[['en', 'fr', 'es'].indexOf(locale)];
     await layout(page);
+    assert(await page.evaluate(disclosure => {
+      const search = document.getElementById('builder-search');
+      const memory = [...document.querySelectorAll('p')].find(el => el.textContent === disclosure);
+      return [memory, document.getElementById('builder-group-boundary')].every(el => el && (el.compareDocumentPosition(search) & Node.DOCUMENT_POSITION_FOLLOWING));
+    }, copy.disclosure), 'Memory and eligibility disclosures must precede the first editable input');
     await button(page, category.label[locale]).click();
     await button(page, copy.useExample).click();
     await button(page, copy.chooseNext).click();

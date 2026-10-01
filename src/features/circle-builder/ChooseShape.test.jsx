@@ -28,6 +28,10 @@ describe('Choose and Shape', () => {
   it('starts with disclosure and no selected group; validates/focuses selection', () => {
     render(<Harness />);
     expect(screen.getByText(circleBuilderCopy.en.disclosure)).toBeTruthy();
+    const search = screen.getByLabelText(circleBuilderCopy.en.search);
+    for (const text of [circleBuilderCopy.en.disclosure, circleBuilderCopy.en.boundary]) {
+      expect(screen.getByText(text).compareDocumentPosition(search) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    }
     expect(screen.queryAllByRole('button', { pressed: true })).toHaveLength(0);
     click('Shape my idea');
     expect(document.activeElement.textContent).toBe('Languages');

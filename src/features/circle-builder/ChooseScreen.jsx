@@ -30,12 +30,12 @@ export default function ChooseScreen({ state, dispatch, locale, focusHeading = f
     <p className="mt-3">{copy.chooseBody}</p>
     <form onSubmit={continueSketch} noValidate className="mt-6 space-y-5 [&_label]:text-base [&_p]:text-base">
       <fieldset className="min-w-0 space-y-5">
+        <p id="builder-group-boundary" className="text-content-secondary dark:text-content-darkSecondary">{copy.boundary}</p>
         <Input className="border-control-border hover:border-control-border focus:border-control-border dark:border-control-border dark:hover:border-control-border dark:focus:border-control-border" id="builder-search" label={copy.search} value={query} onChange={event => setQuery(event.target.value)} autoComplete="off" />
         <fieldset ref={groups} aria-describedby="builder-group-boundary builder-group-error" className="min-w-0">
           <legend className="mb-3 font-semibold">{copy.groups}</legend>
           <div className="flex flex-wrap gap-3">{results.map(item => <Button key={item.id} type="button" variant={state.categoryId === item.id ? 'primary' : 'outline'} aria-pressed={state.categoryId === item.id} onClick={() => dispatch({ type: 'SELECT_CATEGORY', categoryId: item.id })} className="motion-reduce:transition-none">{item.label[language]}</Button>)}</div>
           {!results.length && <div className="mt-3"><p role="status">{copy.noResults}</p><Button type="button" variant="outline" onClick={() => { setQuery(''); document.getElementById('builder-search').focus(); }} className="mt-3 motion-reduce:transition-none">{copy.clearSearch}</Button></div>}
-          <p id="builder-group-boundary" className="mt-3 text-content-secondary dark:text-content-darkSecondary">{copy.boundary}</p>
           <p id="builder-group-error" role="status" className="mt-2 text-danger-700 dark:text-primary-200">{state.errors.categoryId ? copy.categoryError : ''}</p>
         </fieldset>
         {example && <div className="rounded-2xl border border-control-border bg-surface-card p-5 dark:bg-surface-darkCard">
