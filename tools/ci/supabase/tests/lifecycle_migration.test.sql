@@ -31,13 +31,10 @@ select api.request_account_deletion(repeat('e',64));
 reset role;
 insert into storage.objects(bucket_id,name,owner_id) values('verification-docs','00000000-0000-4000-8000-000000000033/orphan.png','00000000-0000-4000-8000-000000000033');
 delete from auth.users where id='00000000-0000-4000-8000-000000000033';
+create temporary table orphan_claim as
+  select api.claim_account_deletion((select id from public.account_deletion_requests where user_id is null)) as payload;
+grant select on orphan_claim to service_role;
 set local role service_role;
-create temporary table orphan_claim as select api.claim_account_deletion((select (api.account_deletion_receipt_status(repeat('e',64))->>'unused')::uuid)) as payload;
--- Explicitly select the orphan request via its private receipt, rather than the older live request.
-reset role;
-delete from orphan_claim;
-set local role service_role;
-insert into orphan_claim select api.claim_account_deletion((select r.id from public.account_deletion_requests r where r.user_id is null));
 select is((select payload->>'user_id' from orphan_claim),'00000000-0000-4000-8000-000000000033','durable target survives external identity deletion');
 select is(api.account_deletion_receipt_status(repeat('e',64))->>'status','processing','missing Auth does not imply completed cleanup');
 select is((select count(*) from api.account_deletion_objects((select (payload->>'request_id')::uuid from orphan_claim),(select (payload->>'lease_token')::uuid from orphan_claim))),1::bigint,'orphaned objects remain discoverable');
