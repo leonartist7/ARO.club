@@ -49,7 +49,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { error } = await signInWithGoogle();
+      const { error } = await signInWithGoogle(from);
 
       if (error) {
         setError(error.message);

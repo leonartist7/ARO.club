@@ -28,12 +28,12 @@ vi.mock('../store/useStore', () => ({ useStore: { setState: vi.fn() } }));
 
 import { AuthProvider, useAuth } from './AuthContext';
 
-function GoogleAction() {
+function GoogleAction({ returnTo }) {
   const { signInWithGoogle } = useAuth();
   const [result, setResult] = React.useState('');
   return <>
     <button onClick={async () => {
-      const { error } = await signInWithGoogle();
+      const { error } = await signInWithGoogle(returnTo);
       setResult(error?.message || 'started');
     }}>Continue with Google</button>
     <output>{result}</output>
@@ -72,6 +72,26 @@ describe('Google account entry', () => {
     render(<AuthProvider><GoogleAction /></AuthProvider>);
     fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
     expect(await screen.findByText('Provider unavailable')).toBeTruthy();
+  });
+
+  it('preserves a validated deletion return path in the OAuth callback', async () => {
+    mocks.signInWithOAuth.mockResolvedValue({ data: { url: 'https://accounts.google.com/' }, error: null });
+    render(<AuthProvider><GoogleAction returnTo="/account/delete" /></AuthProvider>);
+    fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
+    await waitFor(() => expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/auth/callback?next=%2Faccount%2Fdelete` },
+    }));
+  });
+
+  it('uses the configured query-free callback for other protected routes', async () => {
+    mocks.signInWithOAuth.mockResolvedValue({ data: { url: 'https://accounts.google.com/' }, error: null });
+    render(<AuthProvider><GoogleAction returnTo="/profile" /></AuthProvider>);
+    fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
+    await waitFor(() => expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
+    }));
   });
 
   it('uses a query-free callback so the email template can append a recovery token', async () => {

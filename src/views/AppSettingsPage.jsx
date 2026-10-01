@@ -7,6 +7,8 @@ import { getFv1ReturnCopy } from '../i18n/fv1/return';
 import { PreferencesControls } from '../components/ui/Preferences';
 import { preferencesCopy } from '../i18n/preferences';
 import { englishLightRelease } from '../lib/releaseScope';
+import { isSupabaseConfigured } from '../lib/supabase';
+import { accountDeletionCopy } from '../i18n/accountDeletion';
 
 const icons = {
   account: UserRound,
@@ -19,6 +21,8 @@ export default function AppSettingsPage() {
   const language = useLanguage().language;
   const copy = getFv1ReturnCopy(language);
   const preferences = preferencesCopy[language] ?? preferencesCopy.en;
+  const deletion = accountDeletionCopy[language] ?? accountDeletionCopy.en;
+  const isBackendConfigured = isSupabaseConfigured;
 
   return (
     <div lang={language} className="px-4 py-6 sm:px-8 sm:py-10">
@@ -27,7 +31,7 @@ export default function AppSettingsPage() {
 
       <aside data-fv1-direct-entry="settings" className="mt-6 border border-secondary-500/35 bg-secondary-50 p-4 dark:bg-secondary-900/15">
         <p className="text-base font-bold">{copy.settings.noticeTitle}</p>
-        <p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{englishLightRelease ? 'Account, privacy and notification controls shown below are examples in this preview. No account data is changed here.' : copy.settings.notice}</p>
+        <p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{isBackendConfigured ? deletion.liveNotice : englishLightRelease ? deletion.previewNotice : copy.settings.notice}</p>
       </aside>
 
       <AppPanel className="mt-7 p-5 sm:p-6"><h2 className="mb-3 font-display text-xl">{preferences.title}</h2>{englishLightRelease ? <p className="text-base leading-7 text-ink/70 dark:text-bone/75">This preview is available in English with a light appearance. Language and appearance controls are unavailable in this release.</p> : <PreferencesControls />}</AppPanel>
@@ -45,7 +49,12 @@ export default function AppSettingsPage() {
         })}
       </AppPanel>
 
-      <AppPanel className="mt-6 flex items-start gap-4 bg-secondary-50 p-5 dark:bg-secondary-900/15"><ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-moss" aria-hidden="true" /><div><h2 className="text-base font-bold">{copy.settings.trustTitle}</h2><p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.settings.trustBody}</p></div></AppPanel>
+      {!isBackendConfigured && <AppPanel className="mt-6 flex items-start gap-4 bg-secondary-50 p-5 dark:bg-secondary-900/15"><ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-moss" aria-hidden="true" /><div><h2 className="text-base font-bold">{copy.settings.trustTitle}</h2><p data-fv1-essential-copy className="mt-2 text-base leading-6 text-ink/70 dark:text-bone/75">{copy.settings.trustBody}</p></div></AppPanel>}
+      <AppPanel className="mt-6 p-5 sm:p-6">
+        <h2 className="font-display text-xl font-bold">{deletion.settingsTitle}</h2>
+        <p className="mt-2 text-base leading-7 text-ink/70 dark:text-bone/75">{deletion.settingsBody}</p>
+        <Link to="/account/delete" className="mt-4 inline-flex min-h-11 items-center font-bold text-primary-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-4 dark:text-primary-300">{deletion.settingsAction}</Link>
+      </AppPanel>
       <p className="mt-8 text-center text-sm text-ink/70 dark:text-bone/75">{copy.settings.version}</p>
     </div>
   );

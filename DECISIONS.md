@@ -6,6 +6,14 @@
 
 This file records durable choices. Package-specific implementation details belong in their specifications.
 
+## ADR-032 — Account deletion request entry for store preparation
+
+**Status:** Accepted under the founder's 2026-10-01 authorization to complete app submission compliance; production release remains gated.
+
+**Decision:** ARO will expose a signed-in, owner-only account deletion request and status entry on the web, linked from settings and a public URL. The request is initiation, not erasure. A minimal request record may contain an account ID, state and timestamps. A privileged processor must resolve account dependencies and notify the user before removing the account. Resolved request records are purged after 30 days unless a separately approved legal retention obligation applies; the request table is not an indefinite audit archive.
+
+**Consequences:** AUTH2 v1.0.0 implements only initiation and the database retention guard. It cannot be released until a monitored queue/operator, scheduled purge, actual deletion and completion notification, hosted tests, adult eligibility, AUTH1 callback evidence and independent privacy/security review are complete. Native iOS/Android clients and store metadata require separate evidence. See `specs/ARO-AUTH2-ACCOUNT-LIFECYCLE.md`.
+
 ## ADR-031 — Orange-led ARO identity and brief onboarding
 
 **Status:** Accepted by founder, 2026-09-27, for scoped implementation; independent reviews and release gates remain open.

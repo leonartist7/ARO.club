@@ -73,6 +73,7 @@ test('application baseline is append-only and isolated in the disposable workdir
     '20260903074000_lock_public_default_privileges.sql',
     '20260916103000_i02_corrective_repairs.sql',
     '20260916113000_i02_protect_teacher_verification_history.sql',
+    '20261001090000_auth2_deletion_requests.sql',
   ]);
   for (const migration of migrations) {
     const sql = readFileSync(`${migrationDir}/${migration}`, 'utf8');
