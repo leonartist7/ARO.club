@@ -1,5 +1,10 @@
 # ARO — Autonomous Workboard
 
+> **Current reconciliation — 2026-10-01.** Audited `main` is `97d9086b1bfb6946653f6ee6baea481cbdc894c5`; Vercel production `dpl_B2n4puRQh8v2zccjrhibKhAUj51x` is READY at that SHA. N1/Next.js, the orange rebrand and AUTH1 wiring are integrated; older “unmerged”, Vite-runtime and disabled-account statements below are dated history where superseded. Main's platform run 36749032673 failed at `BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_LIGHT` after 91 SQL assertions passed; a failed-job-only rerun also failed at `BROWSER_DOCUMENT_INITIAL_CHOOSER_360_LIGHT` (attempt 2); SQL 91/91 and cleanup passed in both attempts. The recurring browser defect is unresolved. AUTH2/AUTH3 (#97/#98) and Circle Builder (#99/#100) are separate, unintegrated stacks. AUTH3 checks pass at 706ebb4; independent acceptance, live migrations/worker/operations and hosted/native evidence remain open. Foundation checks passed at 550bb956; #100 has newer work requiring fresh evidence. P1→P5 and production/store readiness remain gated. See [project dashboard](docs/project-status/README.md), [phase plan](docs/project-status/EXECUTION-PHASES.md) and [editable hub](https://chatgpt.com/space/page_e183afa357bc8191af53919f781309c9).
+
+> **History rule:** retained older dated entries record what was true then. Integration status does not grant missing specialist acceptance or release certification. Re-fetch active heads before implementation.
+
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 

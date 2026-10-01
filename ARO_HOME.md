@@ -15,6 +15,8 @@ aliases:
 
 ## Start here
 
+- [Project status and production roadmap](docs/project-status/README.md) — 2026-10-01 integration map, missing MVP/store capabilities, PR cleanup and executable phases
+
 - [[ARO_MASTER_DELIVERY_PLAN]] — **canonical cross-package delivery objective and cloud-task handoff**
 - [[ARO_CURRENT_STATE]] — **what is true right now; current strategy, implementation state, blocker and latest ideas**
 - [[ARO_MASTER]] — recovered and optimized master vision
