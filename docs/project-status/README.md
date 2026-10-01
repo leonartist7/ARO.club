@@ -44,7 +44,7 @@ All 100 returned PR records were inventoried. Starting snapshot: 53 merged, 46 o
 
 | ID | Evidence | Resolution lane |
 |---|---|---|
-| ORG-B01 | Main [platform 36749032673](https://github.com/leonartist7/ARO.club/actions/runs/36749032673) failed authenticated document chooser at 1440/light after 91/91 SQL and account boundary checks passed; cleanup passed | I0.2/Q0: one failed-job-only rerun requested; investigate recurring browser defect, preserve assertion and failure history |
+| ORG-B01 | Main [platform 36749032673](https://github.com/leonartist7/ARO.club/actions/runs/36749032673) failed authenticated document chooser at 1440/light after 91/91 SQL and account boundary checks passed; cleanup passed | I0.2/Q0: failed-job-only attempt 2 also failed at 360/light; investigate recurring browser defect, preserve assertion and both failures |
 | ORG-B02 | #98 seven earlier review findings are still unresolved/outdated threads despite implementation corrections | AUTH3: independent final-head acceptance; do not equate outdated thread or green CI with approval |
 | ORG-B03 | AUTH3 evidence records live backend with baseline/default-privilege migrations only | AUTH3/I0: inspect current live inventory, backup, reviewed ordered migrations, worker credentials/flags, cron/purge and staffed exceptions; no live account erasure in this audit |
 | ORG-B04 | AUTH1 evidence records SMTP/domain/provider setup but lacks completed real hosted inbox/Google journeys | AUTH3: synthetic owned test identity; signup/confirmation/correction/recovery/Google callback/global logout/refresh/revocation/account switching/deletion |
@@ -84,3 +84,7 @@ The [original brief](https://chatgpt.com/space/page_45144b8be2b48191a8abb6b60895
 Use [execution phases](EXECUTION-PHASES.md) for task IDs and exit evidence. Each delivery updates this dashboard and the canonical state/spec/status/changelog in its own scoped PR. Record exact source/integration/deployment SHAs separately. Preserve failure history. Consolidate older proposals through links and successor decisions; do not delete unique work merely to lower PR count.
 
 Audit limits: local shell cannot provision, so no new local build, lint or browser suite ran. Provider read access verifies Vercel metadata/deployment alignment; live database/session/inbox/device journeys were not rerun. Graphify output is absent from the audited tree and the local CLI is unavailable. No current production certification, independent review or compliance sign-off is implied.
+
+## ORG1 delivery evidence
+
+Documentation source commit 827fab2: all 14 files fetched back exactly, JSON count/uniqueness and new local Markdown links pass, immutable-base compare has only Markdown/JSON additions/modifications and no deletions. [Delivery PR #101](https://github.com/leonartist7/ARO.club/pull/101) carries hosted checks. Local shell cannot provision. Page creation/readback succeeded; subsequent Page edits are unavailable under this session's approval policy, so the repository dashboard records newer source/failure evidence. The Page remains its creation-time snapshot.

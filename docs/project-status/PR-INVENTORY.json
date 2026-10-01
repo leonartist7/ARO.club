@@ -1898,5 +1898,13 @@
       "ancestry": null,
       "head_changed_since_ancestry": false
     }
-  ]
+  ],
+  "main_platform": {
+    "run_id": 36749032673,
+    "attempt_1": "FAIL BROWSER_DOCUMENT_INITIAL_CHOOSER_1440_LIGHT",
+    "attempt_2": "FAIL BROWSER_DOCUMENT_INITIAL_CHOOSER_360_LIGHT",
+    "sql": "91/91 PASS both",
+    "cleanup": "PASS both",
+    "resolution": "scoped investigation required"
+  }
 }
