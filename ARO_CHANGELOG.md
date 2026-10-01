@@ -1,5 +1,10 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-01 — Circle Builder logic foundation
+
+The founder asked to start building. ADR-CB-F1 and the SPEC-READY F1 foundation specification were committed before source edits. An unconnected registry and pure reducer implement the three named guides, EN/FR/ES indoor examples, local four-step validation, edit/back/reset/category confirmation and explicit example acceptance without overwriting manual edits. The 22 Vitest-format cases pass through supplemental direct V8 source execution. Installed repository tests/build/lint and hosted CI remain pending. No route consumes these modules; there is no user-input collection, asset/UI, Auth, storage, schema, AI, money, publishing or category-launch change. CB1 screens and their review/performance prerequisites remain separate.
+
+
 ## 2026-10-01 — Circle Builder mascot and flow preparation
 
 The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.
