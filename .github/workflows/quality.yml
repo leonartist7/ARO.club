@@ -40,6 +40,16 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
+      - name: Circle Builder unchanged Create baseline
+        run: node scripts/measure-cb1-create.mjs
+      - name: Retain Circle Builder baseline
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-create-baseline
+          path: artifacts/ARO-CB1-P/baseline
+          if-no-files-found: error
+          retention-days: 14
       - name: RB13 compact footer browser check
         run: node scripts/verify-rb13-footer.mjs
       - name: Retain RB13 footer screenshots
