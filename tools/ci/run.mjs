@@ -74,7 +74,22 @@ function userCount(expected) {
   requireCondition(value.trim() === String(expected), 'AUTH_COUNT_MISMATCH');
 }
 function sqlTests() {
-  const output = cli(['test', 'db', '--local']);
+  const result = spawnSync('supabase', ['test','db','--local','--workdir',workdir,'--network-id',network], {
+    cwd: workdir, encoding: 'utf8', timeout: 120000, maxBuffer: 64 * 1024 * 1024,
+    env: { ...process.env, DO_NOT_TRACK: '1', SUPABASE_TELEMETRY_DISABLED: '1' },
+  });
+  const output = String(result.stdout ?? '');
+  if (result.error || result.status !== 0) {
+    const diagnostic = output + String(result.stderr ?? '');
+    // Only source-controlled filenames and integer line/assertion numbers.
+    for (const line of diagnostic.split('\n')) {
+      const location = line.match(/([a-z_]+\.test\.sql):(\d+):/);
+      if (location) process.stderr.write(`SQL_TEST_LOCATION ${location[1]} ${location[2]}\n`);
+      const failed = line.match(/not ok (\d+)/);
+      if (failed) process.stderr.write(`SQL_TEST_ASSERTION ${failed[1]}\n`);
+    }
+  }
+  requireCondition(!result.error && result.status === 0, 'SQL_TEST_PROCESS_FAILED');
   const testsDir = fileURLToPath(new URL('supabase/tests/', import.meta.url));
   const expected = readdirSync(testsDir).filter(name => name.endsWith('.test.sql'))
     .reduce((sum,name) => sum + Number(readFileSync(`${testsDir}/${name}`,'utf8').match(/select plan\((\d+)\)/i)?.[1] ?? 0),0);
