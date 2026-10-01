@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
-select plan(16);
+select plan(17);
 
 select has_table('public','account_deletion_requests','deletion request table exists');
 select ok((select relrowsecurity from pg_class where oid='public.account_deletion_requests'::regclass),'RLS is enabled');
@@ -9,6 +9,7 @@ select ok(not has_table_privilege('anon','public.account_deletion_requests','SEL
 select ok(not has_table_privilege('authenticated','public.account_deletion_requests','UPDATE'),'client cannot process a request');
 select ok(has_column_privilege('service_role','public.account_deletion_requests','status','UPDATE')
   and not has_column_privilege('service_role','public.account_deletion_requests','user_id','UPDATE')
+  and not has_column_privilege('service_role','public.account_deletion_requests','processed_at','UPDATE')
   and not has_column_privilege('service_role','public.account_deletion_requests','requested_at','UPDATE'),
   'processor can update lifecycle state but not request identity or timestamp');
 select ok(has_table_privilege('service_role','public.account_deletion_requests','DELETE'),
@@ -44,8 +45,15 @@ set local role service_role;
 select throws_ok($$delete from public.account_deletion_requests
   where user_id is null$$,'P0001',null,'pending request cannot be purged');
 update public.account_deletion_requests
-  set status='completed', processed_at=now()-interval '31 days'
+  set status='completed'
   where user_id is null;
+select throws_ok($$delete from public.account_deletion_requests
+  where user_id is null$$,'P0001',null,'recently resolved request cannot be purged');
+reset role;
+-- Simulate the passage of 31 days in this disposable transaction only.
+update public.account_deletion_requests
+  set processed_at=now()-interval '31 days' where user_id is null;
+set local role service_role;
 select lives_ok($$delete from public.account_deletion_requests
   where user_id is null$$,'processor can purge a resolved aged request');
 select is((select count(*) from public.account_deletion_requests),0::bigint,

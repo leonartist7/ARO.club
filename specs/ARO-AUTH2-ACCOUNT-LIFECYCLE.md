@@ -27,7 +27,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 1. A public `/account/delete` page explains the request and links an unauthenticated visitor to sign-in. A signed-in user checks a confirmation box, submits once, and can return to read the open request's status. The account settings page links to it. It must never claim that account data has already been erased.
 2. A new `public.account_deletion_requests` row contains only a generated request ID, user ID, status, request time and optional processing time. No free-text reason, date of birth, email copy, analytics event, or new client dependency. A partial unique index permits at most one pending/processing request per user.
-3. RLS permits authenticated owners to insert their own pending request and select their own rows. Column grants prevent client-supplied status/timestamps. Other users and anonymous callers cannot read, update, or process a request. Only a privileged server operator can change its status. Auth user deletion must not be blocked by the request row. A privileged operator may purge resolved records only after 30 days; the processing package must schedule and monitor that purge. Any legal retention exception needs a separate approved basis and controlled archive, not indefinite retention in this table.
+3. RLS permits authenticated owners to insert their own pending request and select their own rows. Column grants prevent client-supplied status/timestamps. Other users and anonymous callers cannot read, update, or process a request. Only a privileged server operator can change its status; the database stamps terminal processing time. Auth user deletion must not be blocked by the request row. A privileged operator may purge resolved records only after 30 days; the processing package must schedule and monitor that purge. Any legal retention exception needs a separate approved basis and controlled archive, not indefinite retention in this table.
 4. The public privacy notice accurately describes request initiation and possible dependency/retention review. A request is not a deletion guarantee. No production schema or public promise is released until processing ownership and independent review are in place.
 
 ## 4. Explicit next packages and release gates
@@ -44,7 +44,7 @@ The outcome for this bounded package is that a signed-in user can initiate one a
 
 | ID | Requirement and test evidence | Status |
 |---|---|---|
-| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, Auth user deletion compatibility and purge guard in disposable database | 16 assertions locally added; exact-head isolated CI pending |
+| AUTH2-01 | Owner insert/select, duplicate, forged owner/status, anonymous/other-user denial, Auth user deletion compatibility and purge guard in disposable database | 17 assertions locally added; exact-head isolated CI pending |
 | AUTH2-02 | Public route and settings link show loading, signed-out, confirmation, pending, and recoverable error states | IMPLEMENTED; local unit/build and Quality run `36843716537` pass; hosted authenticated journey pending |
 | AUTH2-03 | Privacy copy matches actual request behavior and makes no immediate erasure promise | IMPLEMENTED; independent privacy acceptance pending |
 | AUTH2-04 | Production queue owner, processing path and timeframe, hosted request test, independent review | PENDING |

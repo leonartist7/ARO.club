@@ -32,6 +32,23 @@ create trigger account_deletion_request_guard_delete
 before delete on public.account_deletion_requests
 for each row execute function public.account_deletion_request_guard_delete();
 
+create function public.account_deletion_request_stamp_resolution()
+returns trigger language plpgsql set search_path = '' as $$
+begin
+  if old.status in ('completed', 'rejected') and new.status <> old.status then
+    raise exception 'resolved deletion request cannot change status';
+  end if;
+  if new.status in ('completed', 'rejected') and old.status not in ('completed', 'rejected') then
+    new.processed_at := now();
+  end if;
+  return new;
+end;
+$$;
+
+create trigger account_deletion_request_stamp_resolution
+before update of status on public.account_deletion_requests
+for each row execute function public.account_deletion_request_stamp_resolution();
+
 alter table public.account_deletion_requests enable row level security;
 
 create policy account_deletion_requests_owner_select
@@ -50,5 +67,5 @@ revoke all on public.account_deletion_requests from public, anon, authenticated,
 grant select on public.account_deletion_requests to authenticated;
 grant insert (user_id) on public.account_deletion_requests to authenticated;
 grant select on public.account_deletion_requests to service_role;
-grant update (status, processed_at) on public.account_deletion_requests to service_role;
+grant update (status) on public.account_deletion_requests to service_role;
 grant delete on public.account_deletion_requests to service_role;
