@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "source": "7bae9a94b0eb029b3fb738aa0481967869445398",
+  "qualityRun": 36910633034,
+  "browserJob": 110532096424,
+  "kind": "synthetic artwork fixture, not builder UI",
+  "captures": [
+    {
+      "width": 360,
+      "theme": "light",
+      "cssSize": 96,
+      "path": "guides-360-light.png",
+      "geometry": [
+        {
+          "guideId": "tonguee",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        },
+        {
+          "guideId": "squilly",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        },
+        {
+          "guideId": "rockatoo",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        }
+      ],
+      "previewBytes": 16626,
+      "previewSha256": "03a106dd47f6ecb63c211069031529a286ba92b70d507b3681309b940d064d06",
+      "committedPreviewPath": "art-review/guides-360-light.webp"
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "cssSize": 96,
+      "path": "guides-360-dark.png",
+      "geometry": [
+        {
+          "guideId": "tonguee",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        },
+        {
+          "guideId": "squilly",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        },
+        {
+          "guideId": "rockatoo",
+          "loaded": true,
+          "width": 96,
+          "height": 96,
+          "fit": "contain"
+        }
+      ],
+      "previewBytes": 15898,
+      "previewSha256": "23c06d7001f88b3b87774539422b2ad7da93e49b3d1d0dc717f6a519f7617767",
+      "committedPreviewPath": "art-review/guides-360-dark.webp"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "cssSize": 160,
+      "path": "guides-1440-light.png",
+      "geometry": [
+        {
+          "guideId": "tonguee",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        },
+        {
+          "guideId": "squilly",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        },
+        {
+          "guideId": "rockatoo",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        }
+      ],
+      "previewBytes": 24372,
+      "previewSha256": "d8460ce07abe0dab0edaccff942817e847a286cb86cd6eb680408d3544da3290",
+      "committedPreviewPath": "art-review/guides-1440-light.webp"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "cssSize": 160,
+      "path": "guides-1440-dark.png",
+      "geometry": [
+        {
+          "guideId": "tonguee",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        },
+        {
+          "guideId": "squilly",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        },
+        {
+          "guideId": "rockatoo",
+          "loaded": true,
+          "width": 160,
+          "height": 160,
+          "fit": "contain"
+        }
+      ],
+      "previewBytes": 22734,
+      "previewSha256": "51a03d27ec2e52cc560644119a9e4574b17ea676f70e436a47b9cf73a6924208",
+      "committedPreviewPath": "art-review/guides-1440-dark.webp"
+    }
+  ]
+}

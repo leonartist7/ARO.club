@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "measuredSource": "6b5a0052310c05112c85d7fa5117f8ef6b3ff2b9",
+  "unchangedRuntimeBaseline": "2f06fa3ddaae0020d4bca7cd040669bb9ac42346",
+  "qualityRun": 36909429501,
+  "browserJob": 110528094934,
+  "method": "Chromium production; EN/light; reduced motion; cold browser context per sample; running server with no explicit route/asset warmup; no CPU/network throttle; observations500ms after networkidle",
+  "samples": 18,
+  "cases": [
+    {
+      "width": 360,
+      "mode": "learn",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 62840,
+          "median": 62840,
+          "max": 62840
+        },
+        "imageEncodedBytes": {
+          "min": 62540,
+          "median": 62540,
+          "max": 62540
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 52,
+          "median": 84,
+          "max": 188
+        },
+        "lcpMs": {
+          "min": 84,
+          "median": 160,
+          "max": 216
+        },
+        "cls": {
+          "min": 0.0008994799275626979,
+          "median": 0.004598528110035712,
+          "max": 0.004598528110035712
+        },
+        "domContentLoadedMs": {
+          "min": 30.69999999999709,
+          "median": 49.5,
+          "max": 231
+        },
+        "loadMs": {
+          "min": 99.5,
+          "median": 109.09999999999127,
+          "max": 247.8000000000029
+        },
+        "renderedReadyMs": {
+          "min": 746.0999999999913,
+          "median": 747.1999999999971,
+          "max": 919.6999999999971
+        }
+      }
+    },
+    {
+      "width": 360,
+      "mode": "share",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 55002,
+          "median": 55002,
+          "max": 55002
+        },
+        "imageEncodedBytes": {
+          "min": 54702,
+          "median": 54702,
+          "max": 54702
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 40,
+          "median": 52,
+          "max": 104
+        },
+        "lcpMs": {
+          "min": 104,
+          "median": 148,
+          "max": 152
+        },
+        "cls": {
+          "min": 0.0008994799275626979,
+          "median": 0.0008994799275626979,
+          "max": 0.004598528110035712
+        },
+        "domContentLoadedMs": {
+          "min": 39,
+          "median": 51,
+          "max": 82.19999999998254
+        },
+        "loadMs": {
+          "min": 90.39999999999418,
+          "median": 93.89999999999418,
+          "max": 120.29999999998836
+        },
+        "renderedReadyMs": {
+          "min": 714.5,
+          "median": 715,
+          "max": 764.6999999999825
+        }
+      }
+    },
+    {
+      "width": 360,
+      "mode": "gather",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 65930,
+          "median": 65930,
+          "max": 65930
+        },
+        "imageEncodedBytes": {
+          "min": 65630,
+          "median": 65630,
+          "max": 65630
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 76,
+          "median": 80,
+          "max": 104
+        },
+        "lcpMs": {
+          "min": 76,
+          "median": 80,
+          "max": 104
+        },
+        "cls": {
+          "min": 0.004598528110035712,
+          "median": 0.004598528110035712,
+          "max": 0.004598528110035712
+        },
+        "domContentLoadedMs": {
+          "min": 44.90000000002328,
+          "median": 61.5,
+          "max": 65.60000000000582
+        },
+        "loadMs": {
+          "min": 98.80000000001746,
+          "median": 105.39999999999418,
+          "max": 119.40000000002328
+        },
+        "renderedReadyMs": {
+          "min": 727.9000000000233,
+          "median": 733.6000000000058,
+          "max": 750.3000000000175
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "learn",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 158076,
+          "median": 158076,
+          "max": 158076
+        },
+        "imageEncodedBytes": {
+          "min": 157776,
+          "median": 157776,
+          "max": 157776
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 60,
+          "median": 96,
+          "max": 128
+        },
+        "lcpMs": {
+          "min": 156,
+          "median": 164,
+          "max": 188
+        },
+        "cls": {
+          "min": 0.00011123649691358023,
+          "median": 0.0034118546850887346,
+          "max": 0.0034118546850887346
+        },
+        "domContentLoadedMs": {
+          "min": 33.30000000001746,
+          "median": 56.5,
+          "max": 92.19999999998254
+        },
+        "loadMs": {
+          "min": 107.10000000000582,
+          "median": 127.10000000000582,
+          "max": 132.79999999998836
+        },
+        "renderedReadyMs": {
+          "min": 746.7999999999884,
+          "median": 761.2999999999884,
+          "max": 793.4000000000233
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "share",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 123324,
+          "median": 123324,
+          "max": 123324
+        },
+        "imageEncodedBytes": {
+          "min": 123024,
+          "median": 123024,
+          "max": 123024
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 48,
+          "median": 64,
+          "max": 92
+        },
+        "lcpMs": {
+          "min": 136,
+          "median": 148,
+          "max": 172
+        },
+        "cls": {
+          "min": 0.00011123649691358023,
+          "median": 0.0034118546850887346,
+          "max": 0.0034118546850887346
+        },
+        "domContentLoadedMs": {
+          "min": 23.79999999998836,
+          "median": 40.39999999999418,
+          "max": 117.09999999997672
+        },
+        "loadMs": {
+          "min": 92.39999999999418,
+          "median": 103.19999999998254,
+          "max": 136.5
+        },
+        "renderedReadyMs": {
+          "min": 725.1999999999825,
+          "median": 727.8999999999942,
+          "max": 763.6999999999825
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "mode": "gather",
+      "samples": 3,
+      "metrics": {
+        "jsTransferBytes": {
+          "min": 340715,
+          "median": 340715,
+          "max": 340715
+        },
+        "jsEncodedBytes": {
+          "min": 335015,
+          "median": 335015,
+          "max": 335015
+        },
+        "imageTransferBytes": {
+          "min": 163514,
+          "median": 163514,
+          "max": 163514
+        },
+        "imageEncodedBytes": {
+          "min": 163214,
+          "median": 163214,
+          "max": 163214
+        },
+        "resourceRequests": {
+          "min": 34,
+          "median": 34,
+          "max": 34
+        },
+        "jsRequests": {
+          "min": 19,
+          "median": 19,
+          "max": 19
+        },
+        "imageRequests": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "fcpMs": {
+          "min": 44,
+          "median": 64,
+          "max": 72
+        },
+        "lcpMs": {
+          "min": 100,
+          "median": 172,
+          "max": 180
+        },
+        "cls": {
+          "min": 0.00011123649691358023,
+          "median": 0.00011123649691358023,
+          "max": 0.00011123649691358023
+        },
+        "domContentLoadedMs": {
+          "min": 38.89999999999418,
+          "median": 63.89999999999418,
+          "max": 106.69999999998254
+        },
+        "loadMs": {
+          "min": 85.70000000001164,
+          "median": 107.29999999998836,
+          "max": 113.89999999999418
+        },
+        "renderedReadyMs": {
+          "min": 726,
+          "median": 747.6000000000058,
+          "max": 769.6999999999825
+        }
+      }
+    }
+  ],
+  "futureBudget": {
+    "encodedJsMax": 367783,
+    "encodedJsDelta": 32768,
+    "transferJsMax": 389867,
+    "transferJsDelta": 49152,
+    "initialResourcesMax": 38,
+    "resourceDelta": 4,
+    "imageDelta": 49152,
+    "guide192Max": 40960,
+    "guide384Max": 98304,
+    "clsMax": 0.01,
+    "medianTimingRelativeDelta": 0.25,
+    "medianTimingAbsoluteFloorMs": 100
+  }
+}

@@ -1,6 +1,6 @@
 # Circle Builder implementation checklist
 
-Prepared 2026-10-01. Authority: `../../specs/ARO-CB0-CIRCLE-BUILDER-PREPARATION.md`, version 0.1.1. This is a preparation checklist, not implemented runtime or an instruction to bypass package gates.
+Prepared 2026-10-01. Authority: CB0 v0.1.1; reviewed CB1-P v1.0.1 and CB1 local-preview v1.0.0. This checklist distinguishes accepted preparation/foundation from later implemented runtime.
 
 ## Milestones
 
@@ -14,13 +14,13 @@ CB1 can validate the experience without enabling CB2/CB3. Category choice and gu
 
 ## CB1 build sequence
 
-- [ ] **1. Reconcile exact source and package authority**
+- [x] **1. Reconcile exact source and package authority — Phase 2 contract accepted**
   Spec ref: CB0 sections 0, 25, 28.
   Build: inspect current remote main/active owner branches, read governing chain, reconcile the original brief when accessible, register a CB1 package and its durable decision.
   Acceptance: correct current base, approved field/boundary review, versioned SPEC-READY spec before runtime edits.
   Verify: source SHA and dependency/evidence table.
 
-- [ ] **2. Confirm guide assets and performance budget**
+- [x] **2. Confirm guide assets and performance budget — Phase 2 evidence accepted**
   Spec ref: CB0 sections 6, 19, 20.
   Build: original/licensed Tonguee chameleon, Squilly squirrel, Rockatoo white cockatoo assets in one visual family; record dimensions/rights/poses; measure existing Create.
   Acceptance: reviewed source assets and measurable route/media budget; no legacy Coco rename.
@@ -94,4 +94,10 @@ Implement only after the relevant package becomes SPEC-READY. Start by recheckin
 
 ## Phase 1 checkpoint
 
-Items 3–4 are verified as unconnected foundation modules at source 8b72790 (CB1-F1 v1.0.2, 27 builder tests). These checks do not claim user-facing CB1 acceptance. Items 1–2 and 5–10 remain the screen/artwork/privacy/design/performance work, followed by separate live packages. Follow EXECUTION-PLAN.md and current #99/#100 merge state to resume without repeating the foundation.
+Items 3–4 are verified as unconnected foundation modules at source 8b72790 (CB1-F1 v1.0.2, 27 builder tests). These checks do not claim user-facing CB1 acceptance. Items 1–2 have accepted Phase 2 contracts/assets/baseline/review evidence under CB1-P; #102 controls final checks/main integration. Items 5–10 remain the actual screen/connection/release implementation, followed by explicit full-source/live packages. Follow EXECUTION-PLAN.md and current #99/#100 merge state to resume without repeating the foundation.
+
+## Phase 2 checkpoint
+
+Phase 1 main:2f06fa3. Source brief recovered and mapped in SOURCE-RECONCILIATION.md. Exact SCREEN-CONTRACT, ARTWORK, PERFORMANCE and local-preview authority versioned. Three originals, six 192/384 WebPs and four 96/160 ivory/dark fixtures retained; independent privacy/Trust and design reviews accepted. Eighteen baseline samples and numeric budgets recorded. Preparation source 7bae9a94 passes all five jobs; final delivery-head/readback/merge state is live #102. No new builder screen is connected.
+
+Next: Phase 3 F2, commit a narrowed SPEC-READY Choose/Shape spec before source changes. Keep full 16 subject taxonomy, lesson/content/uploads/quiz, owner drafts, eligibility/evidence/capacity/cohost, publishing/booking/outcomes and optionalAI in their owning packages; no requirement disappears because the preview has four screens.

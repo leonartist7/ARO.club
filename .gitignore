@@ -45,3 +45,9 @@ tools/ci/supabase/.branches/
 *.tsbuildinfo
 
 .vercel/
+
+# Circle Builder reproducible verification outputs; selected durable evidence is committed separately
+/artifacts/ARO-CB1-P/exports/
+/artifacts/ARO-CB1-P/baseline/
+/artifacts/ARO-CB1-P/art-review/*.png
+/artifacts/ARO-CB1-P/art-review/review.json
