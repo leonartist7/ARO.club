@@ -2,7 +2,7 @@
 
 ## 0. Metadata
 
-- Status: SPEC-READY for implementation under the founder's 2026-10-01 instruction to finish signup, login, logout and account deletion. Release requires the evidence below.
+- Status: IMPLEMENTED and verified in disposable CI; production verification PARTIAL and release BLOCKED. Spec remains SPEC-READY under the founder's 2026-10-01 instruction to finish signup, login, logout and account deletion. Release requires the evidence below.
 - Version: 1.0.0; owner: ARO founder; durable decision: DECISIONS.md ADR-033.
 - Base: PR #97, 48bd61893ba68e86ef25c3ddd7ba9f3656d5bd5c. Branch: codex/aro-auth-production-20261001.
 - Governing documents: AGENTS.md, ARO_BUILD_PLAYBOOK.md, ARO_ARCHITECTURE.md, ARO_DATA_MODEL.md, ARO_TRUST_SAFETY.md, AUTH1, AUTH2.

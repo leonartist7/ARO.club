@@ -1,6 +1,6 @@
 # AUTH3 verification - 2026-10-01
 
-Status: PARTIAL; production/store release BLOCKED. PR #98 is stacked on PR #97; ADR-033 and AUTH3 v1.0.0 authorize implementation, not release certification.
+Status: IMPLEMENTED and verified in disposable CI; production verification PARTIAL and production/store release BLOCKED. PR #98 is stacked on PR #97; ADR-033 and AUTH3 v1.0.0 authorize implementation, not release certification.
 
 | Evidence | Result | Provenance |
 |---|---|---|
@@ -14,7 +14,7 @@ Status: PARTIAL; production/store release BLOCKED. PR #98 is stacked on PR #97; 
 | Enabled account screens at 360/1440, light/dark, EN/FR/ES | Passed on ec6c641 with reviewed corrections | [Enabled browser matrix 36867759956](https://github.com/leonartist7/ARO.club/actions/runs/36867759956); 24 account-screen captures |
 | Committed migration after review fixes | Passed: 165/165 assertions before and after reset, actual worker, enabled browser matrix and cleanup | ec6c641; [Isolated database 36867759956](https://github.com/leonartist7/ARO.club/actions/runs/36867759956) |
 | Full Quality after review fixes | Passed all four jobs; 240 unit tests plus 3 existing skips | ec6c641; [Quality 36867759902](https://github.com/leonartist7/ARO.club/actions/runs/36867759902) |
-| Confirmation resend/correction and password clearance | Added; final expanded run pending | Query-free callback, validated return cookie, 60-second UI cooldown; hosted inbox still unverified |
+| Confirmation resend/correction and password clearance | Passed at 97103ee: 244 tests, 3 existing skips; all Quality jobs and isolated DB run passed | [Quality 36869057559](https://github.com/leonartist7/ARO.club/actions/runs/36869057559), [Isolated database 36869057740](https://github.com/leonartist7/ARO.club/actions/runs/36869057740); hosted inbox still unverified |
 | Real hosted SMTP confirmation/recovery and Google consent | Not verified | Existing provider configuration evidence is not an inbox/provider journey |
 | Live migration, worker credentials/cron and staffed exception review | Not performed | Live SQL tool requires approval unavailable under this session's policy; independent review pending |
 | Native iOS/Android and store acceptance | Not verified | Repository supplies a web application; native/provider/store evidence remains necessary |
@@ -32,3 +32,5 @@ Supabase security advisor still reports disabled leaked-password protection. No 
 Committed migration provenance: the pinned CLI generated `20261001130907_auth3_account_lifecycle.sql` in isolated run 36866297763. Payload SHA-256: `ad62d13af058052f733657a246dc315e6c12a0d6ac42d25364451db04efc5166`. Commit ec6c641 includes this exact file in the deployment chain; CI now verifies the committed migration matches the review payload and never generates a deployment file transiently. The source-controlled migration outlives the 30-day artifact copy.
 
 Live migration inventory (read-only): only application_trust_baseline and lock_public_default_privileges are listed. Reconcile/apply the existing I0.2 corrective/verification-history migrations before AUTH2/AUTH3. Production flags, credentials, cron and exception disposition remain gated. Seven original PR98 review findings have implementation corrections; independent acceptance of the final head remains pending.
+
+Final runtime verification: `97103eea4ffd34e9b92b372865497baa1a5b1b49` passed all four Quality jobs in run [36869057559](https://github.com/leonartist7/ARO.club/actions/runs/36869057559), including 244 unit tests (3 existing skips), lint, types, production build and browser regressions. Isolated run [36869057740](https://github.com/leonartist7/ARO.club/actions/runs/36869057740) passed 165 SQL assertions twice, authenticated locale/theme/size screens, real Storage/Auth erasure, recovery/logout, stale JWT denial, reset and cleanup. This final evidence update changes documentation only; runtime and migration are identical to that verified head. Exact-head checks on the documentation commit are tracked on PR #98.
