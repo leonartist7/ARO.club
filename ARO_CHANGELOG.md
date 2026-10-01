@@ -1,5 +1,10 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-01 — Circle Builder mascot and flow preparation
+
+The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.
+
+
 > **2026-09-29 AUTH1 decision:** The founder requested Google and email login for `aro-club.app` using the already configured ARO Supabase project and authorized production work. AUTH1 provides a separately switched production promotion path for that existing project, preserving exact URL/ref matching and denying quarantined projects. This intentionally supersedes N1's earlier exclusion of Google OAuth for this narrowly scoped package. Hosted authentication, provider delivery and independent security review remain release gates. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`.
 
 > **Purpose:** append-only record of meaningful ARO evolution. This is not implementation authority by itself; it records when the current direction changed and points to the documents that now define it.
