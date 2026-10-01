@@ -10,7 +10,7 @@ import { circleBuilderCopy } from '../src/i18n/circleBuilder.js';
 import { CATEGORY_REGISTRY, getExample } from '../src/features/circle-builder/registry.js';
 
 const root = process.cwd(), output = join(root, 'artifacts/ARO-CB1-F2/browser');
-const dist = join(root, '.cb1-f2-fixture');
+const dist = join(root, 'dist/cb1-f2-fixture');
 await mkdir(output, { recursive: true });
 // Existing Vite is test tooling only. No fixture is a Next route or production bundle.
 await build({ configFile: false, root, plugins: [react()], logLevel: 'warn',
@@ -129,6 +129,7 @@ try {
   }
   const { page, context } = await open(320, 'en', 'dark', true);
   await button(page, 'Music').click(); await button(page, circleBuilderCopy.en.chooseNext).click();
+  await page.getByRole('img', { name: /Rockatoo/ }).waitFor({ state: 'visible', timeout: 5000 });
   assert.equal(await page.getByRole('img', { name: /Rockatoo/ }).count(), 1);
   await page.getByLabel('Title', { exact: true }).fill(canary); await privacy(page); await layout(page); await context.close();
   assert.deepEqual(errors, []); assert.deepEqual(leakage, []); assert.deepEqual(posts, []);
