@@ -19,6 +19,16 @@ function run(command, args, timeout = 120000) {
     env: { ...process.env, DO_NOT_TRACK: '1', SUPABASE_TELEMETRY_DISABLED: '1' },
   });
   // CLI output can contain local signing keys. Never print it, even on failure.
+  if (result.error || result.status !== 0) {
+    // Emit only an allowlisted category/SQLSTATE, never service output or keys.
+    const diagnostic = String(result.stdout ?? '') + String(result.stderr ?? '');
+    const state = diagnostic.match(/SQLSTATE[ :]+([0-9A-Z]{5})/);
+    const categories = [['syntax error','SQL_SYNTAX'],['does not exist','SQL_OBJECT_MISSING'],
+      ['permission denied','PERMISSION'],['already exists','OBJECT_EXISTS'],
+      ['Too Many Requests','REGISTRY_RATE'],['failed to pull','IMAGE_PULL'],['timeout','TIMEOUT']];
+    const category = categories.find(([phrase]) => diagnostic.toLowerCase().includes(phrase.toLowerCase()))?.[1] ?? 'UNKNOWN';
+    process.stderr.write(`PROCESS_DIAGNOSTIC ${category} ${state?.[1] ?? 'NO_SQLSTATE'}\n`);
+  }
   requireCondition(!result.error && result.status === 0, 'PROCESS_FAILED');
   return result.stdout;
 }

@@ -72,7 +72,8 @@ describe('account deletion worker', () => {
     f.deleteUser.mockResolvedValueOnce({ error: new Error('missing identity') } as any);
     expect(await processAccountDeletion(f.admin)).toBe('completed');
     expect(f.remove).toHaveBeenCalledOnce();
-    expect(f.calls.indexOf('mark_account_deletion_storage_clean')).toBeLessThan(f.calls.indexOf('delete-auth'));
+    const marker = f.rpc.mock.calls.findIndex(([name]) => name === 'mark_account_deletion_storage_clean');
+    expect(f.rpc.mock.invocationCallOrder[marker]).toBeLessThan(f.deleteUser.mock.invocationCallOrder[0]);
   });
   it('fails visibly when a retry cannot be recorded', async () => {
     const f = fixture();
