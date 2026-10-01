@@ -76,7 +76,7 @@ function AccountDeletionContent({ user, authLoading, isBackendConfigured, signOu
       {!configured ? <p className="mt-8 border border-ink/20 p-5" role="status">{copy.unavailable}</p>
         : authLoading || loading ? <p className="mt-8" role="status">{copy.checking}</p>
         : lookupFailed ? <button type="button" onClick={retryLookup} className="mt-8 min-h-11 font-bold text-primary-700 underline focus-visible:outline focus-visible:outline-4 dark:text-primary-300">{copy.retry}</button>
-        : request ? <div className="mt-8 border border-primary-500 p-5" role="status" aria-live="polite">
+        : request && !request.needs_confirmation ? <div className="mt-8 border border-primary-500 p-5" role="status" aria-live="polite">
           <h2 className="font-display text-xl font-bold">{request.status === 'completed' ? lifecycle.completed : request.status === 'processing' ? lifecycle.processing : copy.status(copy.statusNames[request.status] ?? request.status)}</h2>
           <p className="mt-2">{copy.submitted(new Date(request.requested_at).toLocaleDateString(language))}</p>
         </div>
@@ -85,9 +85,10 @@ function AccountDeletionContent({ user, authLoading, isBackendConfigured, signOu
           <Link to="/login?next=%2Faccount%2Fdelete" className="mt-4 inline-flex min-h-11 items-center font-bold text-primary-700 underline dark:text-primary-300">{copy.login}</Link>
         </div>
         : <div className="mt-8 border border-ink/20 p-5">
+          {request?.needs_confirmation && <p className="mb-4" role="status">{lifecycle.legacyReceipt}</p>}
           <label className="flex min-h-11 items-start gap-3 text-base leading-6">
             <input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={pending} className="mt-1 h-5 w-5 accent-primary-700" />
-            <span>{copy.consent}</span>
+            <span>{lifecycle.deletionConsent}</span>
           </label>
           <button type="button" onClick={submit} disabled={!confirmed || pending} className="mt-5 min-h-11 rounded-lg bg-primary-700 px-5 py-3 font-bold text-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-primary-500">{pending ? copy.submitting : copy.submit}</button>
           {needsReauth && <Link to="/login?next=%2Faccount%2Fdelete" className="mt-4 inline-flex min-h-11 items-center font-bold text-primary-700 underline dark:text-primary-300">{lifecycle.reauthenticate}</Link>}

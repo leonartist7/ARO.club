@@ -51,6 +51,13 @@ describe('account lifecycle screens', () => {
     state.user = { id: 'user-b' }; result.rerender(<Deletion />);
     expect((await screen.findByRole('checkbox')).checked).toBe(false);
   });
+  it('lets a legacy request obtain a usable receipt before processing', async () => {
+    fetch.mockImplementation(() => reply({ request: { status: 'pending', requested_at: '2026-10-01T00:00:00Z', needs_confirmation: true } }));
+    render(<Deletion />);
+    expect(await screen.findByText('Confirm your earlier request again to receive a private receipt before deletion begins.')).toBeTruthy();
+    expect(screen.getByRole('checkbox')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Request account deletion' }).disabled).toBe(true);
+  });
   it('reports database rejection of an underage declaration', async () => {
     state.rpc.mockResolvedValue({ error: { code: '22023' } });
     render(<Eligibility />);
