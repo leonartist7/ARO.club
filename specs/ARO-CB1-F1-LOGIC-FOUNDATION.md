@@ -1,5 +1,7 @@
 # ARO-CB1-F1 — Unconnected Circle Builder logic foundation
 
+> Delivery: IMPLEMENTED / PARTIAL VERIFICATION on source `6ccf4eb`. Hosted lint/types/build and 218 tests (22 builder cases), public/English-light and isolated database checks pass. Browser-smoke and final-head acceptance remain pending. See `artifacts/ARO-CB1-F1/VERIFICATION.md`.
+
 ## Authority and scope
 Version 1.0.0, 2026-10-01. Status: **SPEC-READY for pure, unconnected foundation code only** under the founder's explicit "Can you start building it up?" request. This specification is written before repository source edits. User-facing CB1 remains SPEC-REQUIRED; CB0's asset/privacy/design/performance prerequisites are preserved.
 

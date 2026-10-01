@@ -14,8 +14,15 @@ Only new unconnected JavaScript modules and tests plus package/governance/eviden
 
 ## Pending verification
 
-Local `exec_command` fails before process creation because workspace provisioning is unavailable. npm build/lint/type-check/Vitest and browser verification have not run locally. The draft PR will trigger existing exact-head hosted checks. Do not mark VERIFIED or merge on supplemental V8 evidence alone. Update this record with actual run IDs/results once available.
+Local `exec_command` fails before process creation because workspace provisioning is unavailable. npm build/lint/type-check/Vitest and browser verification have not run locally. Hosted checks provide the source evidence recorded below. Do not mark VERIFIED or merge on supplemental V8 evidence alone. Update this record with actual run IDs/results once available.
 
 ## Next screen work
 
 Connect a separately approved CB1 interface with category pills, guide rendering, the four-screen flow and responsive preview. Original/licensed mascot artwork, privacy/Trust/design boundary review and measured route budget remain open. Live draft saving, AI and publishing stay separately specified.
+
+## Hosted evidence on source commit 6ccf4eb
+
+- [Quality run 36892903177](https://github.com/leonartist7/ARO.club/actions/runs/36892903177): static PASS, including lint with zero warnings, type-check, production build, 218 unit tests passed and 3 existing skips. The new builder file passed all 22 cases in installed Vitest. Public website redesign and English/light release jobs PASS. Browser-smoke is still running at Chromium installation; it is not accepted as passed.
+- [Isolated database run 36892903391](https://github.com/leonartist7/ARO.club/actions/runs/36892903391): platform PASS, including 91 SQL assertions, repeated isolation, Auth/Storage/browser baseline and reset/cleanup.
+- Complete compare against preparation parent: exactly 11 files, with three new source/test files and documentation/evidence. All three source files were read back from GitHub and matched the tested payload.
+- This subsequent evidence update changes documentation only; source remains identical to 6ccf4eb. Newly triggered final-head checks remain a merge gate. No main merge or user-facing implementation is claimed.

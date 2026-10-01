@@ -2,7 +2,7 @@
 
 ## 2026-10-01 — Circle Builder logic foundation
 
-The founder asked to start building. ADR-CB-F1 and the SPEC-READY F1 foundation specification were committed before source edits. An unconnected registry and pure reducer implement the three named guides, EN/FR/ES indoor examples, local four-step validation, edit/back/reset/category confirmation and explicit example acceptance without overwriting manual edits. The 22 Vitest-format cases pass through supplemental direct V8 source execution. Installed repository tests/build/lint and hosted CI remain pending. No route consumes these modules; there is no user-input collection, asset/UI, Auth, storage, schema, AI, money, publishing or category-launch change. CB1 screens and their review/performance prerequisites remain separate.
+The founder asked to start building. ADR-CB-F1 and the SPEC-READY F1 foundation specification were committed before source edits. An unconnected registry and pure reducer implement the three named guides, EN/FR/ES indoor examples, local four-step validation, edit/back/reset/category confirmation and explicit example acceptance without overwriting manual edits. The 22 Vitest-format cases pass through supplemental direct V8 source execution. Hosted source lint/types/build, 218 tests (including the 22 builder cases), public/English-light and isolated database checks pass; browser-smoke/final-head acceptance remains pending. No route consumes these modules; there is no user-input collection, asset/UI, Auth, storage, schema, AI, money, publishing or category-launch change. CB1 screens and their review/performance prerequisites remain separate.
 
 
 ## 2026-10-01 — Circle Builder mascot and flow preparation
