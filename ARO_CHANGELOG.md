@@ -1,5 +1,9 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-01 — Account deletion request scope
+
+The founder authorized work needed for app submission compliance. AUTH2 v1.0.0 limits its first package to a discoverable owner-only deletion request and status path, with an append-only RLS-protected table. PR #97 is CI verified but unmerged and unshipped. A request is not erasure; processing operations, adult eligibility, AUTH1 hosted evidence, independent review and mobile builds remain separate release gates. See `specs/ARO-AUTH2-ACCOUNT-LIFECYCLE.md`.
+
 > **2026-09-29 AUTH1 decision:** The founder requested Google and email login for `aro-club.app` using the already configured ARO Supabase project and authorized production work. AUTH1 provides a separately switched production promotion path for that existing project, preserving exact URL/ref matching and denying quarantined projects. This intentionally supersedes N1's earlier exclusion of Google OAuth for this narrowly scoped package. Hosted authentication, provider delivery and independent security review remain release gates. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`.
 
 > **Purpose:** append-only record of meaningful ARO evolution. This is not implementation authority by itself; it records when the current direction changed and points to the documents that now define it.
