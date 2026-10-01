@@ -106,20 +106,24 @@ try {
   const probePage = await probeContext.newPage();
   const probeImages = new Set();
   probePage.on('response', collectImage(probeImages));
-  await probePage.goto(base + '/app/create', { waitUntil: 'networkidle' });
-  probeImages.clear();
-  await probePage.evaluate(() => performance.clearResourceTimings());
   await probePage.route(base + '/cb1-image-probe.css', route => route.fulfill({
     status: 200, contentType: 'text/css',
     body: 'div{width:64px;height:64px;background-image:url("' + base + '/brand/circle-builder/squilly-welcome-192.webp")}',
   }));
-  await probePage.setContent('<!doctype html><html><head><link rel="preload" as="image" href="' + base + '/brand/circle-builder/tonguee-welcome-192.webp"><link rel="stylesheet" href="' + base + '/cb1-image-probe.css"></head><body><div></div></body></html>', { waitUntil: 'networkidle' });
+  await probePage.route(base + '/cb1-image-probe.html', route => route.fulfill({
+    status: 200, contentType: 'text/html',
+    headers: { 'Content-Security-Policy': "default-src 'self'; img-src 'self'; style-src 'self'" },
+    body: '<!doctype html><html><head><link rel="preload" as="image" href="' + base + '/brand/circle-builder/tonguee-welcome-192.webp"><link rel="stylesheet" href="' + base + '/cb1-image-probe.css"></head><body><div></div></body></html>',
+  }));
+  await probePage.goto(base + '/cb1-image-probe.html', { waitUntil: 'networkidle' });
+  await probePage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const probe = await probePage.evaluate(readMetrics, [...probeImages]);
   imageInitiatorProbe = {
     imageRequests: probe.imageRequests,
     imageEncodedBytes: probe.imageEncodedBytes,
     initiators: probe.resources.filter(resource => resource.imageResponse).map(resource => resource.initiatorType).sort(),
   };
+  process.stdout.write('CB1_IMAGE_INITIATOR_PROBE=' + JSON.stringify(imageInitiatorProbe) + '\n');
   assert.equal(imageInitiatorProbe.imageRequests, 2);
   assert(imageInitiatorProbe.imageEncodedBytes > 0);
   assert.deepEqual(imageInitiatorProbe.initiators, ['css', 'link']);
