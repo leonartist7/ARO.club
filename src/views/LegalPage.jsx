@@ -4,15 +4,13 @@ import Link from 'next/link';
 import { FileText, ShieldCheck, Cookie, AlertCircle } from 'lucide-react';
 import { Card, CardBody } from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { isSupabaseConfigured } from '../lib/supabase';
 
 /**
  * Terms, Privacy and Cookie pages.
  *
- * These were `to="#"` in the footer and `/terms` / `/privacy` links from the
- * auth forms pointed at routes that didn't exist, so agreeing to terms led
- * to a 404. Real policy text needs a lawyer, so rather than invent
- * authoritative-sounding legal copy these state plainly what the product
- * currently does with your data and mark themselves as not yet reviewed.
+ * Plain-language descriptions of current product behavior. Formal legal
+ * review is still pending.
  */
 
 const DOCUMENTS = {
@@ -51,11 +49,11 @@ const DOCUMENTS = {
     sections: [
       {
         heading: 'What is stored on your device',
-        body: 'Almost everything. Your profile, points, streak, badges, inventory, bookings, saved searches, favourites, theme and language preference are all held in your browser’s local storage. Clearing your browser data clears them.',
+        body: 'Your theme, language preference, and some prototype progress are saved in your browser. When you sign in, first-party session cookies also hold authentication tokens and account information such as your email and provider details. Clearing site data removes these local items and signs you out, but does not delete your account or data stored on ARO’s servers.',
       },
       {
         heading: 'What leaves your device',
-        body: 'If you create an account, your email and profile details are stored with our authentication provider so you can sign back in. Nothing else is transmitted at present.',
+        body: 'Supabase processes your email, sign-in information, account profile and role for ARO. If you choose Google, Google shares your name, profile picture and email with Supabase for sign-in. Account-related data, such as your profile, may be stored on ARO’s servers. Some features can send additional information when you use them.',
       },
       {
         heading: 'What we do not do',
@@ -63,18 +61,18 @@ const DOCUMENTS = {
       },
       {
         heading: 'Getting your data removed',
-        body: 'Signing out clears local session data. To request account deletion, email privacy@aro.club.',
+        body: 'Signing out ends the browser session but does not delete your account. You can sign in and start an account deletion request at /account/delete. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing the request. Submitting a request does not erase your account immediately.',
       },
     ],
   },
   cookies: {
     icon: Cookie,
     title: 'Cookie Policy',
-    intro: 'ARO uses browser storage rather than tracking cookies.',
+    intro: 'ARO uses essential session cookies and browser storage.',
     sections: [
       {
         heading: 'What we use',
-        body: 'Local storage, not cookies, for the things that make the app work: your session, your progress, your theme and your chosen language.',
+        body: 'Supabase uses first-party cookies to keep you signed in. ARO also uses browser storage for preferences such as theme and language, and for some prototype progress. These are different from advertising cookies.',
       },
       {
         heading: 'What we do not use',
@@ -82,7 +80,7 @@ const DOCUMENTS = {
       },
       {
         heading: 'Clearing it',
-        body: 'Clearing site data in your browser settings removes everything ARO has stored locally, including local progress.',
+        body: 'Clearing site data removes session cookies and locally saved preferences or progress from this browser. It does not delete your account or server-stored profile.',
       },
     ],
   },
@@ -143,7 +141,9 @@ export default function LegalPage({ document: documentKey }) {
                   {section.heading}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {section.body}
+                  {key === 'privacy' && section.heading === 'Getting your data removed' && !isSupabaseConfigured
+                    ? 'Signing out ends the browser session but does not delete a server account. Account deletion requests are unavailable while account access is disabled in this preview. When accounts are enabled, sign in at /account/delete to start a request. ARO must review any bookings, teacher records, and information it must keep for legal or safety reasons before processing it.'
+                    : section.body}
                 </p>
               </section>
             ))}

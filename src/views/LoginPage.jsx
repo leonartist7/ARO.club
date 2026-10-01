@@ -49,7 +49,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { error } = await signInWithGoogle();
+      const { error } = await signInWithGoogle(from);
 
       if (error) {
         setError(error.message);
@@ -114,7 +114,7 @@ export default function LoginPage() {
                 variant="outline"
                 fullWidth
                 onClick={handleGoogleSignIn}
-                disabled
+                disabled={loading || !isBackendConfigured}
                 icon={<Chrome className="w-5 h-5" />}
                 className="mb-4"
               >

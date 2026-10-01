@@ -1,5 +1,13 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-01 — Account deletion request scope
+
+The founder authorized work needed for app submission compliance. AUTH2 v1.0.0 limits its first package to a discoverable owner-only deletion request and status path, with an append-only RLS-protected table. PR #97 is CI verified but unmerged and unshipped. A request is not erasure; processing operations, adult eligibility, AUTH1 hosted evidence, independent review and mobile builds remain separate release gates. See `specs/ARO-AUTH2-ACCOUNT-LIFECYCLE.md`.
+
+Independent review on the later head identified callback allowlist, preview copy, durable decision and retention gaps. ADR-032 records the authorized bounded request and 30-day resolved-record purge rule. The processing package must operate and monitor that purge before release; the AUTH2 migration only enforces eligibility for it.
+
+> **2026-09-29 AUTH1 decision:** The founder requested Google and email login for `aro-club.app` using the already configured ARO Supabase project and authorized production work. AUTH1 provides a separately switched production promotion path for that existing project, preserving exact URL/ref matching and denying quarantined projects. This intentionally supersedes N1's earlier exclusion of Google OAuth for this narrowly scoped package. Hosted authentication, provider delivery and independent security review remain release gates. See `specs/ARO-AUTH1-ACCOUNT-ENTRY.md`.
+
 > **Purpose:** append-only record of meaningful ARO evolution. This is not implementation authority by itself; it records when the current direction changed and points to the documents that now define it.
 >
 > Do not rewrite history to make the project look cleaner. Add a new dated entry when a strategic, architectural, implementation-status, design, Trust, privacy, money or sequencing decision materially changes.
@@ -1071,3 +1079,7 @@ RB15 exact-head hosted Quality `36593625126` and isolated-database `36593625117`
 **2026-09-29 RB16:** English/light visual coherence is IMPLEMENTED / PARTIAL VERIFICATION on `codex/rb16-visual-coherence-20260929`, scoped directly to RB15 `a0cef112`. Create, app Home, opportunity list/detail and shared headings/preferences receive bounded presentation corrections. Before/after renders and local checks are in `artifacts/ARO-RB16/VERIFICATION.md`; exact-head hosted CI, CodeRabbit and independent release decisions remain required. No main merge or live transaction enablement.
 
 Inherited PR #90 CodeRabbit findings were checked and corrected here: historical evidence-status drift, reduced-motion controls and language-menu keyboard navigation. Original package history, cloud controls, full-image onboarding and F7 evidence remain preserved. This does not resolve privacy/Trust/design/accessibility or release gates.
+
+## 2026-09-29 — RB17 reference-led first journey
+
+The founder supplied six visual references and prioritized a clearer, more human website-to-app path. A bounded presentation package moves the Home human story before the prototype diagram and simplifies app Home/Create without claiming real inventory or account personalization. The production dependency lanes for Auth/profile, locality/discovery, host lifecycle and transactions are recorded in `docs/rebrand/PRODUCTION-PATH-20260929.md`. This does not change money, privacy, Trust or release authority. See `specs/ARO-RB17-REFERENCE-JOURNEY.md` and `artifacts/ARO-RB17/VERIFICATION.md`.

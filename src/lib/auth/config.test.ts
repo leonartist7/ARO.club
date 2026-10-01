@@ -38,6 +38,18 @@ describe("account boundaries", () => {
     expect(allowedAuthTarget(url, "true", "production", { ...production, enabled: "false" })).toBe(false);
     for (const ref of ["mibydnerayobemhnlfyl", "jjgccfrwjkwknyjtbtxa", "ybhecubqnhukgpvchjay"])
       expect(allowedAuthTarget(`https://${ref}.supabase.co`, "true", "production", { enabled: "true", projectRef: ref })).toBe(false);
+    expect(allowedAuthTarget(
+      "https://mibydnerayobemhnlfyl.supabase.co",
+      "false",
+      "production",
+      { enabled: "true", projectRef: "mibydnerayobemhnlfyl", promoteExistingAro: "true" },
+    )).toBe(true);
+    expect(allowedAuthTarget(
+      "https://jjgccfrwjkwknyjtbtxa.supabase.co",
+      "false",
+      "production",
+      { enabled: "true", projectRef: "jjgccfrwjkwknyjtbtxa", promoteExistingAro: "true" },
+    )).toBe(false);
     for (const bad of [url + ".evil.test", url + "/rest/v1", url + "?key=value", url.replace("https:", "http:"), url.replace("https://", "https://user:pass@")])
       expect(allowedAuthTarget(bad, "true", "production", production)).toBe(false);
   });

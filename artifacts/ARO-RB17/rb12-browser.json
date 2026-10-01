@@ -1,0 +1,201 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "height": 620,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 485,
+      "width": 320
+    },
+    "preview": 1,
+    "primary": 3,
+    "explore": 5,
+    "host": 4,
+    "storyLink": 1,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/",
+    "width": 360,
+    "height": 640,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 385,
+      "width": 360
+    },
+    "preview": 1,
+    "primary": 3,
+    "explore": 5,
+    "host": 4,
+    "storyLink": 1,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 465,
+      "width": 768
+    },
+    "preview": 1,
+    "primary": 3,
+    "explore": 5,
+    "host": 4,
+    "storyLink": 1,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 65,
+      "width": 748
+    },
+    "preview": 1,
+    "primary": 3,
+    "explore": 5,
+    "host": 4,
+    "storyLink": 1,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/about",
+    "width": 320,
+    "height": 620,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 440,
+      "width": 320
+    },
+    "preview": 2,
+    "primary": 1,
+    "explore": 5,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/about",
+    "width": 1440,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 65,
+      "width": 691
+    },
+    "preview": 2,
+    "primary": 1,
+    "explore": 5,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/how-it-works",
+    "width": 360,
+    "height": 640,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 396,
+      "width": 360
+    },
+    "preview": 2,
+    "primary": 1,
+    "explore": 5,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/for-teachers",
+    "width": 1440,
+    "height": 900,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 65,
+      "width": 691
+    },
+    "preview": 2,
+    "primary": 1,
+    "explore": 3,
+    "errors": [],
+    "writes": []
+  },
+  {
+    "route": "/faq",
+    "width": 320,
+    "height": 620,
+    "status": 200,
+    "language": "en",
+    "theme": "light",
+    "overflow": false,
+    "storedLanguage": "es",
+    "storedTheme": "dark",
+    "image": {
+      "loaded": true,
+      "top": 420,
+      "width": 320
+    },
+    "preview": 2,
+    "primary": 1,
+    "explore": 5,
+    "faq": 5,
+    "faqExpanded": true,
+    "errors": [],
+    "writes": []
+  }
+]
