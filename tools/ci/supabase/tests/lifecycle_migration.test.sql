@@ -29,11 +29,13 @@ set local role authenticated;
 set local request.jwt.claims='{"sub":"00000000-0000-4000-8000-000000000033","session_id":"00000000-0000-4000-8000-000000000033","role":"authenticated"}';
 select api.request_account_deletion(repeat('e',64));
 reset role;
+create temporary table orphan_claim(payload jsonb);
+insert into orphan_claim values(null);
+grant select on orphan_claim to service_role;
+savepoint orphan_storage_fixture;
 insert into storage.objects(bucket_id,name,owner_id) values('verification-docs','00000000-0000-4000-8000-000000000033/orphan.png','00000000-0000-4000-8000-000000000033');
 delete from auth.users where id='00000000-0000-4000-8000-000000000033';
-create temporary table orphan_claim as
-  select api.claim_account_deletion((select id from public.account_deletion_requests where user_id is null)) as payload;
-grant select on orphan_claim to service_role;
+update orphan_claim set payload=api.claim_account_deletion((select id from public.account_deletion_requests where user_id is null));
 set local role service_role;
 select is((select payload->>'user_id' from orphan_claim),'00000000-0000-4000-8000-000000000033','durable target survives external identity deletion');
 select is(api.account_deletion_receipt_status(repeat('e',64))->>'status','processing','missing Auth does not imply completed cleanup');
@@ -41,8 +43,10 @@ select is((select count(*) from api.account_deletion_objects((select (payload->>
 select throws_ok($$select api.mark_account_deletion_storage_clean((select (payload->>'request_id')::uuid from orphan_claim),(select (payload->>'lease_token')::uuid from orphan_claim))$$,'23514',null,'cannot stamp cleanup while files remain');
 select throws_ok($$select api.finish_account_deletion((select (payload->>'request_id')::uuid from orphan_claim),(select (payload->>'lease_token')::uuid from orphan_claim))$$,'23514',null,'missing identity cannot bypass cleanup stage');
 reset role;
--- Transaction-only SQL inventory fixture; no external Storage bytes exist here.
-delete from storage.objects where owner_id='00000000-0000-4000-8000-000000000033';
+-- Roll back the metadata-only fixture; never delete Storage metadata directly.
+rollback to savepoint orphan_storage_fixture;
+delete from auth.users where id='00000000-0000-4000-8000-000000000033';
+update orphan_claim set payload=api.claim_account_deletion((select id from public.account_deletion_requests where user_id is null));
 set local role service_role;
 select lives_ok($$select api.mark_account_deletion_storage_clean((select (payload->>'request_id')::uuid from orphan_claim),(select (payload->>'lease_token')::uuid from orphan_claim))$$,'empty orphan inventory records cleanup');
 select lives_ok($$select api.finish_account_deletion((select (payload->>'request_id')::uuid from orphan_claim),(select (payload->>'lease_token')::uuid from orphan_claim))$$,'completion follows verified orphan cleanup');
