@@ -38,7 +38,7 @@ CB1 can validate the experience without enabling CB2/CB3. Category choice and gu
   Acceptance: edits survive transitions, optional logistics stay undecided and no data is persisted/transmitted.
   Verify: meaningful transition/validation/loss-prevention tests.
 
-- [ ] **5. Build Choose and Shape screens**
+- [x] **5. Build Choose and Shape screens — isolated F2 source VERIFIED; F4 connection pending**
   Spec ref: CB0 sections 8, 15, 17.
   Build: wrapping searchable pills, curated ideas/manual start, compact guide, title/outcome inputs and explicit suggestion acceptance.
   Acceptance: one obvious action; manual path equivalent; suggestions never silently overwrite.
@@ -101,3 +101,6 @@ Items 3–4 are verified as unconnected foundation modules at source 8b72790 (CB
 Phase 1 main:2f06fa3. Source brief recovered and mapped in SOURCE-RECONCILIATION.md. Exact SCREEN-CONTRACT, ARTWORK, PERFORMANCE and local-preview authority versioned. Three originals, six 192/384 WebPs and four 96/160 ivory/dark fixtures retained; independent privacy/Trust and design reviews accepted. Eighteen baseline samples and numeric budgets recorded. Preparation source 7bae9a94 passes all five jobs; final delivery-head/readback/merge state is live #102. No new builder screen is connected.
 
 Next: Phase 3 F2, commit a narrowed SPEC-READY Choose/Shape spec before source changes. Keep full 16 subject taxonomy, lesson/content/uploads/quiz, owner drafts, eligibility/evidence/capacity/cohost, publishing/booking/outcomes and optionalAI in their owning packages; no requirement disappears because the preview has four screens.
+
+## Phase 3 checkpoint
+CB1-F2 v1.0.0 source ed6ddcb verifies isolated Choose/Shape, localized search/example/manual/optionalguide, cancellation-safe suggestions/category changes and boundary/accessibility checks. 239tests/43buildercases,30browsercases/3keyboardpaths/12component captures pass. Phase2main742cb422 is observed integrated; live#103 controls final F2 checks/main merge. Items6–7 are Phase4F3; item8 connects only a complete accepted F2/F3 flow underF4. Follow the livePR and executionplan to resume without repeating merged work.

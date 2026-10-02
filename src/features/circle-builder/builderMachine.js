@@ -61,7 +61,7 @@ function blockingErrors(state) {
   const errors = validateSketch(state);
   if (state.step === 'choose') return errors.categoryId ? { categoryId: errors.categoryId } : {};
   if (state.step === 'shape') {
-    const keys = ['categoryId', 'title', 'outcome'];
+    const keys = ['categoryId', 'title', 'outcome', ...(getCategory(state.categoryId)?.answerFields ?? [])];
     return Object.fromEntries(Object.entries(errors).filter(([key]) => keys.includes(key)));
   }
   return errors;
@@ -111,6 +111,18 @@ export function builderReducer(state, action) {
         }
       }
       return changed ? { ...state, fields, errors, ideaSource: 'example' } : state;
+    }
+    case 'START_OWN_IDEA':
+      return !locked(state) && state.step === 'choose' && getCategory(state.categoryId)
+        ? { ...state, ideaSource: 'own' } : state;
+    case 'ACCEPT_SUGGESTION': {
+      if (locked(state) || state.step !== 'shape' || !['title', 'outcome'].includes(action.field)) return state;
+      const example = getExample(state.categoryId, action.exampleId, action.locale);
+      if (!example) return state;
+      const errors = { ...state.errors };
+      delete errors[action.field];
+      return { ...state, fields: { ...state.fields, [action.field]: example[action.field] },
+        touched: { ...state.touched, [action.field]: true }, errors };
     }
     case 'NEXT': {
       if (locked(state)) return state;
