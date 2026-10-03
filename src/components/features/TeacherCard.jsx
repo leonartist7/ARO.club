@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+'use client';
+import { Link } from '../../lib/navigation';
 import { MapPin, Star, BookOpen } from 'lucide-react';
 import { Card } from '../ui/Card';
 import Avatar from '../ui/Avatar';

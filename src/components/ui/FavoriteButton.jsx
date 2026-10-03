@@ -1,3 +1,4 @@
+'use client';
 import { Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useFavorites } from '../../hooks/useFavorites';

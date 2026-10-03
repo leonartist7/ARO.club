@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const RecentlyViewedContext = createContext();
@@ -11,6 +12,7 @@ const MAX_ITEMS = 10;
  * Persists to localStorage
  */
 export function RecentlyViewedProvider({ children }) {
+  const [storageReady,setStorageReady]=useState(false);
   const [recentlyViewed, setRecentlyViewed] = useState([]);
 
   // Load from localStorage on mount
@@ -23,16 +25,18 @@ export function RecentlyViewedProvider({ children }) {
     } catch (error) {
       console.error('Failed to load recently viewed:', error);
     }
+    setStorageReady(true);
   }, []);
 
   // Save to localStorage whenever recentlyViewed changes
   useEffect(() => {
+    if(!storageReady)return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(recentlyViewed));
     } catch (error) {
       console.error('Failed to save recently viewed:', error);
     }
-  }, [recentlyViewed]);
+  }, [recentlyViewed, storageReady]);
 
   const addToRecentlyViewed = (experienceId) => {
     setRecentlyViewed((prev) => {

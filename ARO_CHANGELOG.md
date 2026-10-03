@@ -818,3 +818,7 @@ Founder explicitly approved merging PR #40 through normal checks, the proposed d
 ## 2026-09-09 — FV-1 F1/F2 progress synchronized to main
 
 FV-1 v0.2.2 records the founder-authorized, narrow 640,000-byte limit for the required 960px lossless persona derivative; all other F1 budgets and release gates remain unchanged. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298` after deterministic media checks, local validation and passing PR CI. F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`, adding truthful shell disclosure, non-actionable previews, navigation ownership, recovery and focus support. The founder authorized the current PR #41 progress to merge to GitHub `main` through normal checks. No release/deployment or full FV-1 verification is authorized; F3–F7, independent review, human NVDA testing and founder visual review remain pending.
+
+
+## 2026-09-20 — N1 Next.js and staging accounts
+Founder explicitly approved migration of both ARO.club and FV1-docs, incremental TypeScript, and live email/password accounts on isolated staging first. N1 is authorized before P1 for this bounded work. Production, schema/RLS, Google, payments and connecting synthetic features remain excluded. Evidence: artifacts/ARO-N1/VERIFICATION.md.

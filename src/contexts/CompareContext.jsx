@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useToastContext } from './ToastContext';
 
@@ -11,6 +12,7 @@ const STORAGE_KEY = 'conversa-compare';
  * Manages the comparison list for experiences
  */
 export function CompareProvider({ children }) {
+  const [storageReady,setStorageReady]=useState(false);
   const { addToast } = useToastContext();
   const [compareList, setCompareList] = useState([]);
 
@@ -25,16 +27,18 @@ export function CompareProvider({ children }) {
     } catch (error) {
       console.error('Failed to load compare list from localStorage:', error);
     }
+    setStorageReady(true);
   }, []);
 
   // Save to localStorage whenever compareList changes
   useEffect(() => {
+    if(!storageReady)return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(compareList));
     } catch (error) {
       console.error('Failed to save compare list to localStorage:', error);
     }
-  }, [compareList]);
+  }, [compareList, storageReady]);
 
   // Add experience to compare list
   const addToCompare = (experienceId) => {

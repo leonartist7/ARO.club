@@ -1,3 +1,4 @@
+'use client';
 import { useState, useRef, useEffect } from 'react';
 import { Share2, Link as LinkIcon, Facebook, Twitter, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,8 +21,10 @@ export default function ShareButton({ url, title, text, className }) {
   const { addToast } = useToastContext();
   const dropdownRef = useRef(null);
 
-  const shareUrl = url || window.location.href;
-  const shareTitle = title || document.title;
+  const [pageDetails, setPageDetails] = useState({ url: '', title: '' });
+  useEffect(() => setPageDetails({ url: window.location.href, title: document.title }), [url]);
+  const shareUrl = url || pageDetails.url;
+  const shareTitle = title || pageDetails.title;
   const shareText = text || shareTitle;
 
   // Close dropdown when clicking outside

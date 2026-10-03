@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "name": "email login enabled",
+      "passed": true
+    },
+    {
+      "name": "Google disabled",
+      "passed": true
+    },
+    {
+      "name": "staging rejects invalid credentials",
+      "passed": true
+    },
+    {
+      "name": "anonymous admin denied",
+      "passed": true
+    },
+    {
+      "name": "expired callback fails locally",
+      "passed": true
+    },
+    {
+      "name": "no session created",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

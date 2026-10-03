@@ -1,19 +1,18 @@
+'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '../i18n/translations';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    // Get from localStorage or default to English
-    const saved = localStorage.getItem('conversa-language');
-    return saved || 'en';
-  });
+  const [language,setLanguage]=useState('en');
+  const [ready,setReady]=useState(false);
+  useEffect(()=>{try{const saved=localStorage.getItem('conversa-language');if(translations[saved])setLanguage(saved);}catch{ /* Storage may be disabled. */ }setReady(true);},[]);
 
   useEffect(() => {
     // Save to localStorage whenever language changes
-    localStorage.setItem('conversa-language', language);
-  }, [language]);
+    if(ready)try{localStorage.setItem('conversa-language', language);}catch{ /* Storage may be disabled. */ }
+  }, [language, ready]);
 
   const t = (key) => {
     const keys = key.split('.');

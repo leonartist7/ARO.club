@@ -2,22 +2,23 @@ import js from '@eslint/js'
 import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  {files:['src/**/*.{ts,tsx}','next.config.ts'],extends:[tseslint.configs.recommended],rules:{'@typescript-eslint/no-explicit-any':'off'}},
+  globalIgnores(['dist', '.next', 'next-env.d.ts']),
   {
     files: ['**/*.{js,jsx}'],
     plugins: { react },
     extends: [
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
+
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {...globals.browser, process: 'readonly'},
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -28,18 +29,6 @@ export default defineConfig([
       // Mark identifiers referenced in JSX (e.g. `motion.div`, `<Icon/>`) as used,
       // so no-unused-vars stops false-flagging Framer Motion + component imports.
       'react/jsx-uses-vars': 'error',
-      'react-refresh/only-export-components': ['error', {
-        allowExportNames: [
-          'useAuth',
-          'useCompare',
-          'useFavoritesContext',
-          'useLanguage',
-          'useRecentlyViewedContext',
-          'useSavedSearchesContext',
-          'useTheme',
-          'useToastContext',
-        ],
-      }],
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^[A-Z_]' }],
     },
   },

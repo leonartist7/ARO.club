@@ -1,5 +1,6 @@
+'use client';
 import { useState, useEffect } from 'react';
-import { Outlet, NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from '../../lib/navigation';
 import {
   LayoutDashboard,
   Users,
@@ -66,7 +67,7 @@ function SidebarNav({ items, onClose }) {
   );
 }
 
-export default function AdminLayout() {
+export default function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [badges, setBadges] = useState({ bookings: 0, reviews: 0 });
   const location = useLocation();
@@ -166,7 +167,7 @@ export default function AdminLayout() {
         </header>
 
         <main className="p-4 lg:p-8">
-          <Outlet />
+          {children}
         </main>
       </div>
     </div>

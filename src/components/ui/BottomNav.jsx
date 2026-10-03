@@ -1,5 +1,6 @@
+'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from '../../lib/navigation';
 import { Home, Compass, Gamepad2, Ticket, User } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { useLanguage } from '../../contexts/LanguageContext';

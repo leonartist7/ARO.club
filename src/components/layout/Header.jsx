@@ -1,5 +1,6 @@
+'use client';
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from '../../lib/navigation';
 import {
   Menu,
   X,
@@ -19,7 +20,6 @@ import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
 import LanguageToggle from '../ui/LanguageToggle';
 import Avatar from '../ui/Avatar';
-import { useStore } from '../../store/useStore';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { cn } from '../../utils/cn';
@@ -41,28 +41,33 @@ export default function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const currentUser = useStore((state) => state.currentUser);
-  const setCurrentUser = useStore((state) => state.setCurrentUser);
   const { t } = useLanguage();
-  const { user, profile } = useAuth();
+  const { user, profile, signOut } = useAuth();
+  const [signOutError, setSignOutError] = useState('');
 
-  const isSignedIn = Boolean(user || currentUser);
-  const role = profile?.role || (currentUser?.isTeacher ? 'teacher' : currentUser ? 'student' : null);
+  const isSignedIn = Boolean(user);
+  const role = profile?.role;
   const isAdmin = role === 'admin';
-  const isTeacher = role === 'teacher' || currentUser?.isTeacher;
+  const isTeacher = role === 'teacher';
 
   const isActive = (path) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
-  const handleSignOut = () => {
-    setCurrentUser(null);
-    setUserMenuOpen(false);
-    navigate('/');
+  const handleSignOut = async () => {
+    setSignOutError('');
+    try {
+      await signOut();
+      setUserMenuOpen(false);
+      setMobileMenuOpen(false);
+      navigate('/', { replace: true });
+    } catch {
+      setSignOutError('We could not sign you out. Please try again.');
+    }
   };
 
-  const displayName = profile?.name || currentUser?.name || user?.email || 'User';
-  const displayEmail = profile?.email || currentUser?.email || user?.email || '';
-  const displayPhoto = profile?.photo || currentUser?.photo;
+  const displayName = profile?.name || user?.email || 'User';
+  const displayEmail = profile?.email || user?.email || '';
+  const displayPhoto = profile?.photo;
 
   const menuItem = (active) =>
     cn(
@@ -357,6 +362,7 @@ export default function Header() {
           </div>
         )}
       </nav>
+      {signOutError && <p role="alert" className="px-4 py-2 text-red-700 dark:text-red-300">{signOutError}</p>}
     </header>
   );
 }

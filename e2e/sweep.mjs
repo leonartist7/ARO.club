@@ -18,7 +18,7 @@ const PROTECTED_ROUTES = [
 /**
  * Visits every route and asserts nothing throws and nothing renders blank.
  *
- * This is the check that catches what `vite build` cannot: a page can compile
+ * This is the check that catches what `next build` cannot: a page can compile
  * perfectly and still ReferenceError at runtime on a variable that left scope.
  */
 export default async function sweep() {
@@ -65,7 +65,7 @@ export default async function sweep() {
       const body = (await page.locator('body').innerText().catch(() => '')).trim();
       if (body.length < 30) blank.push(`${route} (${body.length} chars)`);
 
-      const landed = page.url().replace(BASE, '');
+      const landed = new URL(page.url()).pathname;
       if (landed !== route) redirects.push({ route, landed });
     }
 

@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '../../utils/cn';
 
 export function AppPanel({ children, className, dark = false, ...props }) {

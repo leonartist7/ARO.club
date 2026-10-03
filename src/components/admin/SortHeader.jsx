@@ -1,3 +1,4 @@
+'use client';
 import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react';
 
 /**

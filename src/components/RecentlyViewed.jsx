@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+'use client';
+import { Link } from '../lib/navigation';
 import { Eye, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ExperienceCard from './features/ExperienceCard';

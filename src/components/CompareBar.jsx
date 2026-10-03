@@ -1,6 +1,7 @@
+'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/navigation';
 import { useCompare } from '../hooks/useCompare';
 import Button from './ui/Button';
 import experiencesData from '../data/experiences';

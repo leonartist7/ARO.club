@@ -1,3 +1,7 @@
+> **2026-09-20 N1 authorization:** Founder approved Next.js App Router migration and isolated staging email/password accounts in ARO.club and FV1-docs. N1 may run before P1 for this bounded migration. See specs/ARO-N1-NEXTJS-PLATFORM.md. Implementation/verification evidence is in artifacts/ARO-N1/VERIFICATION.md. No production, schema, Trust, money, Google or downstream product unlock is authorized. Historical stack/sequence statements below are superseded only within N1.
+
+> **N1 result:** Implementation complete locally; partial verification. Lint, type checks, unit tests, production builds and anonymous browser checks pass independently in both repositories. Hosted successful-account/inbox flows, disposable database CI, independent review and preview performance acceptance remain open. See [N1 evidence](artifacts/ARO-N1/VERIFICATION.md).
+
 # ARO — Implementation Status Ledger
 
 > **2026-09-09 FV-1 execution update:** [FV-1 v0.2.2](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) governs the ONE implementation PR #41. F1 is accepted at `c0813087f9f4f0b6d5b4dc6930030d5942457298`; F2 is IMPLEMENTED / CI-VERIFIED at `d1313f942b93ad50dbb0f244c71157eef03e571b`. The founder authorized merging this current progress to GitHub `main` through normal checks. This does not authorize release or deployment: independent review, human NVDA testing, founder visual review, F3–F7 and release approval remain pending. I0/P1 and later gates are unchanged.

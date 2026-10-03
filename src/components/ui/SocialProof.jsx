@@ -1,3 +1,4 @@
+'use client';
 import { Eye, Zap, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';

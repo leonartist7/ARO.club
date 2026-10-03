@@ -1,0 +1,15 @@
+{
+  "repository": "FV1-docs",
+  "revision": "d0c6fdb150b33d88b148bb4542a64b2815476e60",
+  "branch": "codex/nextjs-migration",
+  "framework": "Vite",
+  "lint": "pass",
+  "unitTests": 80,
+  "build": "pass",
+  "mainChunkKB": 605.3,
+  "mainChunkGzipKB": 193.88,
+  "cssKB": 129.43,
+  "browserBaseline": "Original production build reconstructed from recorded revision; see baseline-browser.log and baseline-performance.json.",
+  "browserChecks": 25,
+  "browserResult": "pass"
+}
