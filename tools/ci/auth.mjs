@@ -107,7 +107,8 @@ export async function exerciseAuth(
   anonKey,
   phase,
   browserCheck = async () => {},
-  browserPhase = 'authenticated-browser-matrix'
+  browserPhase = 'authenticated-browser-matrix',
+  afterMatrix = async () => {}
 ) {
   const request = authClient(anonKey);
   const email = `i0-${randomUUID()}@example.invalid`;
@@ -210,7 +211,9 @@ export async function exerciseAuth(
   });
   // The API owner's application is already submitted. Use the second isolated
   // account for a fresh browser draft; never weaken submitted-evidence RLS.
-  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password }));
+  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password,
+    afterMatrix: context => afterMatrix({ ...context, anonKey, emails: [email, ...browserEmails], password, phase }),
+  }));
   await phase('auth-recovery-password-change', async () => {
     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
     const link = recoveryLink(await recoveryMail(email));

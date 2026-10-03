@@ -154,7 +154,7 @@ async function captureJourney(page, caseId, state) {
   await page.screenshot({ path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-${state}.png`, animations: 'disabled', fullPage: true, timeout: 10000 });
 }
 
-export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }) {
+export async function exerciseAuthenticatedBrowser({ anonKey, emails, password, afterMatrix = async () => {} }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
   requireCondition(Array.isArray(emails) && emails.length === 4 && new Set(emails).size === 4, 'FOUR_DISTINCT_APPLICANTS_REQUIRED');
   mkdirSync(screenshotDir, { recursive: true });
@@ -510,6 +510,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
         await context.close();
       }
     }
+    stage = 'REMAINING_VERIFICATION';
+    await afterMatrix({ browser, base, screenshotDir });
   } catch (error) {
     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
     throw new Error(`BROWSER_${stage}`);

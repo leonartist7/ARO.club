@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
 import { createResetDiagnostic, exerciseAuth } from './auth.mjs';
 import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
+import { exerciseRemainingVerification } from './reliability.mjs';
 
 const workdir = fileURLToPath(new URL('.', import.meta.url));
 const project = 'aro-i0-ci';
@@ -107,9 +108,12 @@ try {
         status.ANON_KEY,
         phase,
         exerciseAuthenticatedBrowser,
-        browserVerificationPhase
+        browserVerificationPhase,
+        context => exerciseRemainingVerification({ ...context,
+          countFive: () => userCount(5), countSeven: () => userCount(7),
+        })
       );
-      await phase('synthetic-account-count', () => userCount(5));
+      await phase('synthetic-account-count', () => userCount(7));
       await phase('reset-removes-accounts', async () => {
         const diagnostic = createResetDiagnostic();
         try {
