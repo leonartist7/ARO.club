@@ -1,0 +1,123 @@
+Ship Kit Perks
+1. Registration 🚀
+
+Unlocked immediately when you sign up on Devpost and complete the participant form
+
+Sponsor	Perk	Info
+Replit	
+40% off Replit Pro
+($40 off)
+
+New to coding or want to vibe code your way to the App Store?
+
+Replit is the AI-powered platform that turns a plain English description into a fully functional mobile app – no development experience required.
+
+It's fully integrated with RevenueCat, so your subscriptions and paywalls work out of the box.
+
+Plus, Replit is sponsoring a $30,000 prize category for the best app built on their platform – so building with Replit gives you an extra shot at winning.
+
+OneSignal	100% off Growth Plan for up to 3 months	
+OneSignal helps developers turn great apps into engaging products through push notifications, in-app messaging, email, and SMS, all in one easy-to-integrate platform.
+
+It's fully integrated with RevenueCat so you can trigger campaigns based on lifecycle subscription events.
+
+Plus, OneSignal is sponsoring a $45,000 prize category for the best use of their SDK.
+
+JetBrains	Free access to Junie for 2 months
+(limited to 200 redemptions)	
+Junie is JetBrains' AI coding agent – it plans, writes, and tests code for you directly in your IDE, so you can ship faster.
+
+Plus, JetBrains is sponsoring a $30,000 prize category for the best cross-platform app built with Kotlin and Compose Multiplatform.
+
+Noise	$1,000 in matching credits	
+Noise helps apps achieve explosive growth by instantly connecting them with their army of 1.5M+ UGC creators.
+
+Noise is giving all apps $1,000 in matching credits on the platform. So for every $1 you spend on their creators, Noise will match your spend dollar-for-dollar.
+
+Plus, Noise is sponsoring a $30,000 prize category for the app that captures the most attention in their market niche.
+
+Layers	Free access for 2 months	
+Layers provides full-stack marketing automation for apps - it generates content, runs paid ads, manages social, and optimizes your App Store listing so you can focus on shipping.
+
+Plus, Layers is sponsoring a $30,000 prize category for the app that best uses Layers to create a successful 'growth loop'.
+
+Stripe	Earn $250 in Stripe credits	
+Sell subscriptions on the web and convert visitors into app subscribers. Stripe can handle the checkout for your Web-to-App funnel.
+
+Plus, Stripe is sponsoring a $30,000 prize category for the app that drives the highest amount of web payment volume via a Web-to-App funnel.
+
+Argent	Free access	An agentic toolkit that lets your AI coding assistant run your app, spot bugs, and fix issues. Works with Cursor, Claude, Copilot, and more.
+Bitrig	60% off Bitrig Pro	
+Build and ship native Swift apps by chatting with AI. App Store Connect and RevenueCat integration come built in. Made by the co-creators of SwiftUI.
+
+Codemagic	Free tier with 500 build minutes/month	
+Mobile CI/CD that handles your builds, code signing, and app store deployment so you can focus on building, not configuring pipelines. Plus a self-hosted OTA tool for React Native teams pushing instant updates without app store approval.
+
+Emergent	200 free credits (worth $40)	
+Emergent is an AI app builder: you describe what you want to build, and it gives you a working app. Emergent includes a RevenueCat integration so you can move quickly from idea to a monetizable app.
+
+Lance	Free access for 3 months
+(worth $180)	
+Ship to the App Store without Xcode or App Store Connect. Lance handles builds, signing, IAPs, and submission.
+
+lim.run	2000 credits ($100 value)	
+Limrun provides the mobile development infrastructure AI agents need to build, test, and demo apps across iOS and Android. With agent-optimized access to iOS simulators, Android emulators, and Xcode build environments, Limrun enables AI agents to manage the mobile development lifecycle end to end
+
+OpenRouter	$10 credit	
+Unified API that lets developers access and compare hundreds of leading AI models from multiple providers through a single integration.
+
+Tenjin	All-Inclusive Plan S free for 3 months
+(worth $600)	
+Mobile measurement and attribution platform. See exactly which ad campaigns are driving installs and revenue, so you stop guessing and scale what works.
+
+ 
+
+2. RevenueCat Project Created 🔧
+
+Unlocked when you set up a Project and App in your RevenueCat account
+
+Sponsor	Perk	Info
+Mobbin	3 months free	Mobbin is the world’s largest mobile & web app design reference library used by 2.6M+ designers and product teams. Hand-curated and updated weekly.
+Paddle	No fees on your first $100k in transaction volume	Paddle is the Merchant of Record platform that helps digital product companies sell globally, scale faster, and operate with confidence.
+Tminus	80% off Pro Plan for 3 months	Built your app but dreading the App Store submission process? Tminus automates the whole thing – compliance, metadata, screenshots, and resubmits automatically if you get rejected.
+ 
+
+3. First Test Purchase 🧪
+
+Unlocked when you've tested your monetization flow 
+
+Sponsor	Perk	Info
+AppScreens	50% off Pro or Scale	AppScreens turns real app screens into polished, localized, store-ready App Store and Google Play screenshots from one editable project. Create every required size, localize screenshots, build ASO variants, and export or upload store-ready assets without manually rebuilding files.
+Asapty	30-day free trial + dedicated Apple Search Ads specialist	Get installs from Apple Search Ads without becoming an ads expert – Asapty automates bidding, keywords, and optimization toward your target cost per install.
+Linearity	50% off entire suite	Linearity is the AI-native creative platform that generates editable marketing designs. One prompt creates on-brand social posts, ads, app store graphics, and campaign assets. Everything stays fully editable: text, layout, color, vectors. Resize, localize and adapt for every channel without starting over.
+Sentry	$100 in credits	
+Find and fix crashes before your users do. Sentry gives you error tracking, performance monitoring, and session replays – set up in one command. Spend Shipaton building, not debugging.
+
+ 
+
+4. First Store API Call 📡
+
+Unlocked when your app is connected to a real Store
+
+Sponsor	Perk	Info
+Airbridge	Airbridge GO: 2 months free
+(limited to 100 redemptions)
+
+Airbridge: Core plan free for 6 months (worth $240)	
+Never run paid ads before? Airbridge GO plans your campaigns, generates creatives, sets up tracking, and recommends your next move – so you can grow without hiring a UA team.
+
+As you scale, the Airbridge Core Plan gives you the full measurement stack: break down paywall funnels by ad creative, track UGC and paid channels together, and see which campaigns drive real subscriptions, not just installs.
+
+AppFollow	50% off for 6 months	
+Launch feedback moves fast, and how you handle it shapes your app’s ratings and rankings early on. AppFollow gives Shipaton participants the tools to track App Store Optimization (ASO) performance, catch issues before they hurt your rating, and reply to users without a team dedicated to it.
+
+AppTweak	50% off	The hard part isn't shipping – it's getting found. AppTweak gives you keyword research, competitor data, and ranking insights so your app shows up when users search.
+ 
+
+5. First Real Purchase 💰
+
+Unlocked when your app earns its first real revenue
+
+Sponsor	Perk	Info
+Appstack	Full access for free	Running paid ads? Appstack shows you which ones actually drive installs and revenue and lets you show different paywalls based on where each user came from.
+Fload	Full access for free	Connect your App Store, ad platforms, and RevenueCat data in one place – then ask an AI agent questions like "which campaign is driving the most revenue?" and get instant answers.

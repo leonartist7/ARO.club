@@ -1,0 +1,12 @@
+{
+  "caseId": "360-light",
+  "budgetMs": 1000,
+  "auth": {
+    "count": 1,
+    "p95Ms": 119.056
+  },
+  "data": {
+    "count": 38,
+    "p95Ms": 51.452
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "environment": "Local production server, desktop Chromium, no throttling; observational samples, not a release benchmark.",
+  "samples": [
+    {
+      "route": "/",
+      "sample": 0,
+      "ttfbMs": 6.200000017881393,
+      "domContentLoadedMs": 228.09999999403954,
+      "javascriptDecodedBytes": 629579,
+      "lcp": 1336,
+      "cls": 0.00010343035662615742
+    },
+    {
+      "route": "/",
+      "sample": 1,
+      "ttfbMs": 6.300000011920929,
+      "domContentLoadedMs": 207.90000000596046,
+      "javascriptDecodedBytes": 629579,
+      "lcp": 840,
+      "cls": 0.0018811112015335648
+    },
+    {
+      "route": "/",
+      "sample": 2,
+      "ttfbMs": 4.9000000059604645,
+      "domContentLoadedMs": 183.59999999403954,
+      "javascriptDecodedBytes": 629579,
+      "lcp": 832,
+      "cls": 0.00010343035662615742
+    },
+    {
+      "route": "/app",
+      "sample": 0,
+      "ttfbMs": 5.5,
+      "domContentLoadedMs": 193.09999999403954,
+      "javascriptDecodedBytes": 615393,
+      "lcp": 792,
+      "cls": 0.00016077467930169755
+    },
+    {
+      "route": "/app",
+      "sample": 1,
+      "ttfbMs": 4.5,
+      "domContentLoadedMs": 186.40000000596046,
+      "javascriptDecodedBytes": 615393,
+      "lcp": 676,
+      "cls": 0.00016077467930169755
+    },
+    {
+      "route": "/app",
+      "sample": 2,
+      "ttfbMs": 6,
+      "domContentLoadedMs": 185.5,
+      "javascriptDecodedBytes": 615393,
+      "lcp": 640,
+      "cls": 0.00016077467930169755
+    }
+  ]
+}

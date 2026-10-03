@@ -1,0 +1,9 @@
+{
+  "auditSha": "d58418b395db90ada6a7ee86f0bad1187b990b2a",
+  "framework": "next",
+  "freshBuild": true,
+  "accountsEnabled": false,
+  "providerConfiguration": false,
+  "localEnvironmentFiles": false,
+  "inheritedBuildUsed": false
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/leonartist7/ARO.club",
+  "auditSha": "14dc034c9751f4b86090ead79ef4dca0f7bc0097",
+  "createdAt": "2026-09-21T16:03:58.123Z",
+  "checkoutRoot": "C:\\Users\\leona\\Documents\\Web dev\\ARO\\ARO-merge-reconciliation-20260921",
+  "outputRoot": "C:\\Users\\leona\\Documents\\Web dev\\ARO\\shipaton-evidence\\MERGE1-14dc034-metadata",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1c769b3f97e4dace9df546539855b5b6f9f82c2105af25bcfe2568d69140fcec",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_MASTER_DELIVERY_PLAN.md",
+      "sha256": "663114a7057e9bdc3de263b600d3a584550194be808b7b3cc764f4b064d7470c",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_CURRENT_STATE.md",
+      "sha256": "ce11931badf48743584d472407102bc1a21c14dc8eade45316b23a3e3b84981e",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_INFRASTRUCTURE.md",
+      "sha256": "6c3eefee3b01adf07439d124bd65f9d9d6a1efff6aac96cd33f1d9908888915e",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_SPEC_INDEX.md",
+      "sha256": "39097eb5d28a6363b4b32e6acbd7056574e1b7689c8bec5e0d6cf3ebf38479f1",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_IMPLEMENTATION_STATUS.md",
+      "sha256": "5a946000013a67b3072a82c0dea21b3b4a51d247aef88340b7fe82c5587d01a3",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_AUTONOMOUS_WORKBOARD.md",
+      "sha256": "74af8d29898907e11b06050e18f16446b27d616e81f88e99fd506de28387dc31",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_BUILD_PLAYBOOK.md",
+      "sha256": "cc23894593eff1a89f538430bd1f7ea65507941718f58e95f9242544390fef70",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "DECISIONS.md",
+      "sha256": "c1f41424c54d7021197867e57061b1fa56133f450b6b34b2dc90e0c4eb9b6613",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_FRONTEND_VISUAL_CONTINUATION_PLAN.md",
+      "sha256": "6c775c6648ad6a367a16a640a0c4fae979c7cebfb6ac8b172f82991c0d892a8a",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "specs/ARO-UX0-OPPORTUNITY-FORMATION-PROTOTYPE.md",
+      "sha256": "751d827566c16f233598d862976ec2dceafc0b1ae8fbe051fa1ddf2bdc17f8ce",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "specs/ARO-UX1-PERSONAL-FIELD-VISUAL-PROTOTYPE.md",
+      "sha256": "02fce199cf3e11b4fd5b0fcea4b291a6a7685bf0612edad87b3dbae892be8a58",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "specs/ARO-UX2-SEED-STUDIO-VISUAL-PROTOTYPE.md",
+      "sha256": "96605f357e0729f6210e73504f6614d9741b1f8e4eef9aecb3925187d0e0a097",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "specs/ARO-UX3-LIVED-MOMENTS-ASSET-PROTOTYPE.md",
+      "sha256": "079c14312efa355c3ebb7913f51cc80224292919105017d4846d6938609fa052",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_CLOUD_HANDOFF.md",
+      "sha256": "c37adf7f063ed966e568c2a4a54f20f8bba9f20a4e7864a5792828c396cb897d",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_EXPERIENCE_SYSTEM.md",
+      "sha256": "8427d0053994cdbe02b0e2f1279105a6e7859b969880906e3c37eb0982384658",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_SHIPATON.md",
+      "sha256": "a95e604c556ad33291512c8c0f1d86f1587cde42cade7dea1c19d36a2c955c57",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "SHIPATON_MASTER_PLAN.md",
+      "sha256": "93623330a97e29857cc03b9a20d368aae422d1d2bdeadc024bb9464fed642f46",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "SHIPATON_METRICS.md",
+      "sha256": "55915c620e78f85902792b74ed68fba34a99b97ea4bee10a237477a815e4418e",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "DEVPOST_FINAL_SUBMISSION.md",
+      "sha256": "52266dafd137d2958baa9dfde589e397f2e6ac99b6c6ce6fb337a92ba36cf16b",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "SHIPATON_DEMO_SCRIPT.md",
+      "sha256": "ecf9170f24e6636863613c8df78718ab5e8ed444b2c500a0f5efba431ad666ec",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "BUILD_IN_PUBLIC_LOG.md",
+      "sha256": "3b75c6f077a11fec25aadcf5a910072606fade7dd5eeba2deeda2620bd4102bc",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "DESIGN_AWARD_EVIDENCE.md",
+      "sha256": "c91d8638e32a36046552282524165e09265efb9a27f1fd7856cc81b6e73206e2",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "HAMM_EVIDENCE.md",
+      "sha256": "d33a674c05d23377eba68cdb3d7fc5430e9d1f1799fc721eb1d2359975cee344",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ONESIGNAL_AWARD_EVIDENCE.md",
+      "sha256": "bea15f5858875a499252fb2620ef9f42624ebc5bdc60809810ff4b46b5267e6c",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "shipaton/AWARD_MATRIX.md",
+      "sha256": "d14ba03498457adda1abeb90faa6adf95129ed741978012b9e1ab11582f359bd",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "specs/PACKAGE_TEMPLATE.md",
+      "sha256": "e5bae847f5396c3c4857c02290686038db59d0e9c9ecdfc51da6793d107bb0d5",
+      "encoding": "utf8-lf"
+    },
+    {
+      "path": "ARO_CHANGELOG.md",
+      "sha256": "8dd176a83dcde01d8545ee38c08435e98208cbf8ca3c0e7489fd3ff3bf607f85",
+      "encoding": "utf8-lf"
+    }
+  ],
+  "authority": "audit-only",
+  "workerProvider": "existing-chatgpt-cloud",
+  "paidApiEnabled": false,
+  "implementationEligible": false
+}

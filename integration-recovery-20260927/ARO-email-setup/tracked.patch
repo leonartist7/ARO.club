@@ -1,0 +1,14 @@
+diff --git a/artifacts/ARO-EMAIL0/VERIFICATION.md b/artifacts/ARO-EMAIL0/VERIFICATION.md
+index 57ed3cf..e21f17d 100644
+--- a/artifacts/ARO-EMAIL0/VERIFICATION.md
++++ b/artifacts/ARO-EMAIL0/VERIFICATION.md
+@@ -49,3 +49,9 @@
+ ## Rollback
+ 
+ Preserve the baseline DNS records above. If Zoho delivery fails, inspect account-specific MX/SPF/DKIM and remove only newly added Zoho entries after recording them. If staging Auth fails, disable custom SMTP and restore the prior default templates. Keep production and Tonguee untouched.
++
++## 2026-09-26 staging Auth follow-up
++
++The founder created a staging account at `support@aro-club.app`. Supabase shows the email confirmed, the user signed in, and a profile row created. The original `{{ .ConfirmationURL }}` message confirmed the address but led to an app callback error, so the user could log in despite that message.
++
++The staging confirmation and recovery templates now use `{{ .RedirectTo }}?token_hash={{ .TokenHash }}` with `type=email` and `type=recovery`, respectively. The N1 app's recovery request now uses `/auth/callback` with no pre-existing query. Resend delivered a new recovery email to the Zoho alias. Its first use opened the reset-password form, and reuse was rejected. The initial local verification attempt failed because the shell sandbox blocked outbound Node requests; the callback worked after the local staging server was restarted with network access. No password was changed during this test. Fresh signup confirmation, a password-change/login cycle, hosted deployment, and role-aware app behavior remain open; see `artifacts/ARO-N1/AUTH-SETUP-20260926.md` in the N1 checkout for the detailed checkpoint.

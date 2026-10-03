@@ -1,0 +1,452 @@
+{
+  "classification": "observed-fact",
+  "limitation": "Source inventory only; no browser, design, performance-budget or eligibility acceptance",
+  "framework": "next",
+  "routeFramework": "next-app-router",
+  "pngs": [
+    {
+      "path": "public/aro-living-miniature-calgary-v1.png",
+      "bytes": 3235150,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "6ee86ef9b7066a5b483963be49a686d010165738648c678e0d018664378b8cc2"
+    },
+    {
+      "path": "public/aro-maya-expression-persona-v1.png",
+      "bytes": 1801362,
+      "width": 1024,
+      "height": 1536,
+      "sha256": "97ac6120dda09259e1293011aa71ff51235b3f677f9738f6dc9bcb647d1b1be5"
+    },
+    {
+      "path": "public/aro-maya-profile-portrait-v1.png",
+      "bytes": 1744986,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "62396e2cbb27ecfc10c44a224e379819a1be8b128437b0454177e3cb784d1267"
+    },
+    {
+      "path": "public/aro-passport-life-map-v1.png",
+      "bytes": 2036242,
+      "width": 1672,
+      "height": 941,
+      "sha256": "7b79cae453c6a05043ea9b372fed0932c89b26c8be5705e857022f660df2ea53"
+    },
+    {
+      "path": "public/aro-portal-home-v1.png",
+      "bytes": 2323174,
+      "width": 1672,
+      "height": 941,
+      "sha256": "5784e1b3147c4620821ef189aef3baf93bd7dc7640ea4f2bb962744b034c3eeb"
+    },
+    {
+      "path": "public/aro-repair-table-v1.png",
+      "bytes": 2325611,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "34da6d6f5c7863cd9ebb9825805006ab2414d1134c14427d60c7a3fd4fd5553f"
+    },
+    {
+      "path": "public/aro-river-light-circle-v1.png",
+      "bytes": 2670385,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "a7222f865c8a1895884523eccff825a4e046f0fff584b11e06d5fd1c88db8cda"
+    },
+    {
+      "path": "public/aro-season-discovery-v1.png",
+      "bytes": 1947005,
+      "width": 1672,
+      "height": 941,
+      "sha256": "8f1570572785b496bdc57d23d81ee2b7536499ba95050ed1fc33af73f46f700e"
+    },
+    {
+      "path": "public/aro-shared-stories-table-v1.png",
+      "bytes": 2285117,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "5284f38c939842ece4d072a07145a377b5f1aa3bd1b131c06d21beb1f518d0b9"
+    }
+  ],
+  "pngBytes": 20369032,
+  "routes": [
+    {
+      "declaredPath": "/about",
+      "source": "src/app/(public)/about/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/auth/error",
+      "source": "src/app/(public)/auth/error/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/auth/reset-password",
+      "source": "src/app/(public)/auth/reset-password/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/bookings",
+      "source": "src/app/(public)/bookings/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/character-builder",
+      "source": "src/app/(public)/character-builder/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/chat",
+      "source": "src/app/(public)/chat/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/choose-role",
+      "source": "src/app/(public)/choose-role/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/compare",
+      "source": "src/app/(public)/compare/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/contact",
+      "source": "src/app/(public)/contact/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/cookies",
+      "source": "src/app/(public)/cookies/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/dashboard",
+      "source": "src/app/(public)/dashboard/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/experience/[id]",
+      "source": "src/app/(public)/experience/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/explore",
+      "source": "src/app/(public)/explore/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/faq",
+      "source": "src/app/(public)/faq/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/favorites",
+      "source": "src/app/(public)/favorites/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/for-teachers",
+      "source": "src/app/(public)/for-teachers/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/forgot-password",
+      "source": "src/app/(public)/forgot-password/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/games",
+      "source": "src/app/(public)/games/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/how-it-works",
+      "source": "src/app/(public)/how-it-works/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/leaderboard",
+      "source": "src/app/(public)/leaderboard/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/login",
+      "source": "src/app/(public)/login/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/map",
+      "source": "src/app/(public)/map/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/onboarding/student",
+      "source": "src/app/(public)/onboarding/student/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/onboarding/teacher",
+      "source": "src/app/(public)/onboarding/teacher/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/",
+      "source": "src/app/(public)/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/passport",
+      "source": "src/app/(public)/passport/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/privacy",
+      "source": "src/app/(public)/privacy/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/profile",
+      "source": "src/app/(public)/profile/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/recently-viewed",
+      "source": "src/app/(public)/recently-viewed/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/shop",
+      "source": "src/app/(public)/shop/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/signup",
+      "source": "src/app/(public)/signup/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/student-dashboard",
+      "source": "src/app/(public)/student-dashboard/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/teacher/[id]",
+      "source": "src/app/(public)/teacher/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/teacher/application",
+      "source": "src/app/(public)/teacher/application/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/teacher/dashboard",
+      "source": "src/app/(public)/teacher/dashboard/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/terms",
+      "source": "src/app/(public)/terms/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/applications/[id]",
+      "source": "src/app/admin/applications/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/audit",
+      "source": "src/app/admin/audit/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/bookings",
+      "source": "src/app/admin/bookings/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/experiences",
+      "source": "src/app/admin/experiences/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin",
+      "source": "src/app/admin/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/reviews",
+      "source": "src/app/admin/reviews/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/teachers/[id]",
+      "source": "src/app/admin/teachers/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/teachers",
+      "source": "src/app/admin/teachers/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/users/[id]",
+      "source": "src/app/admin/users/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/admin/users",
+      "source": "src/app/admin/users/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/[...missing]",
+      "source": "src/app/app/[...missing]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/circles/[id]",
+      "source": "src/app/app/circles/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/circles",
+      "source": "src/app/app/circles/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/create",
+      "source": "src/app/app/create/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/express",
+      "source": "src/app/app/express/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/insights",
+      "source": "src/app/app/insights/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/library",
+      "source": "src/app/app/library/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/opportunities/[id]/commit",
+      "source": "src/app/app/opportunities/[id]/commit/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/opportunities/[id]",
+      "source": "src/app/app/opportunities/[id]/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/opportunities",
+      "source": "src/app/app/opportunities/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app",
+      "source": "src/app/app/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/passport",
+      "source": "src/app/app/passport/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/profile",
+      "source": "src/app/app/profile/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/settings",
+      "source": "src/app/app/settings/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/app/world",
+      "source": "src/app/app/world/page.tsx",
+      "line": 1,
+      "kind": "page"
+    },
+    {
+      "declaredPath": "/auth/callback",
+      "source": "src/app/auth/callback/route.ts",
+      "line": 1,
+      "kind": "route-handler"
+    }
+  ],
+  "brokenWikiLinks": [
+    {
+      "file": "tools/autonomy/README.md",
+      "target": "...slug"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+FV-1 now has an authoritative v0.2.0 specification, the five recovered audit-bundle records, seven ordered task packets and the founder's explicit approval record. This PR changes documentation only.
+
+The founder approved merging PR #40 and implementing F1–F7 sequentially on ONE isolated branch/PR, against candidate specification commit `a576640cc5b9828486d8bdd0f970636b3ff07138` (Git blob `e01d450bb41394b13763cf090bdf4fd63d4f8628`, also present at reviewed PR head `78005892071b7996917f8f10d04e5cd601f124d2`). Spec section 28 records the decision; status is SPEC-READY. Product merge and release approval remain WITHHELD. Full verification requires independent review, human NVDA testing and founder visual review.
+
+The actual merge commit of this PR will be both F1 TASK_BASE_SHA and APPROVED_SPEC_SHA. Later slices use accepted predecessor commits on the same implementation branch/PR. The Terra handoff binds this actual merged SHA; null fields in the committed packet metadata avoid a self-referential SHA and are not another approval request.
+
+Validation: relative links; seven packet sections and exclusive named allowlists; UTF-8/LF integrity manifest including the authoritative spec; git diff --check; unchanged product source/config/assets. Required CI must pass on the approval-record head before merging; no admin bypass. Cloud encoder preflight already passed. No audits rerun, product implementation, dependency installation, new infrastructure or I0/P1 gate changes.

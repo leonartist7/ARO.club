@@ -1,0 +1,27 @@
+{
+  "enter": {
+    "outcome": "completed",
+    "elapsedMs": 2
+  },
+  "chooser": {
+    "outcome": "timeout",
+    "errorType": "TimeoutError",
+    "elapsedMs": 20005
+  },
+  "before": {
+    "focused": true,
+    "connected": true,
+    "ariaDisabled": false,
+    "documentFocused": true,
+    "pairedInputPresent": true,
+    "pairedInputConnected": true
+  },
+  "events": {
+    "enter": true,
+    "enterTrusted": true,
+    "buttonClick": true,
+    "buttonClickTrusted": true,
+    "inputClick": true,
+    "inputClickTrusted": false
+  }
+}

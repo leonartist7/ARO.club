@@ -1,0 +1,74 @@
+diff --git a/tools/ci/auth.mjs b/tools/ci/auth.mjs
+index bf0878a..79e75ed 100644
+--- a/tools/ci/auth.mjs
++++ b/tools/ci/auth.mjs
+@@ -107,7 +107,8 @@ export async function exerciseAuth(
+   anonKey,
+   phase,
+   browserCheck = async () => {},
+-  browserPhase = 'authenticated-browser-matrix'
++  browserPhase = 'authenticated-browser-matrix',
++  afterMatrix = async () => {}
+ ) {
+   const request = authClient(anonKey);
+   const email = `i0-${randomUUID()}@example.invalid`;
+@@ -210,7 +211,9 @@ export async function exerciseAuth(
+   });
+   // The API owner's application is already submitted. Use the second isolated
+   // account for a fresh browser draft; never weaken submitted-evidence RLS.
+-  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password }));
++  await phase(browserPhase, () => browserCheck({ anonKey, emails: browserEmails, password,
++    afterMatrix: context => afterMatrix({ ...context, anonKey, emails: [email, ...browserEmails], password, phase }),
++  }));
+   await phase('auth-recovery-password-change', async () => {
+     await request(`recover?redirect_to=${encodeURIComponent(CALLBACK)}`, { method: 'POST', body: { email } });
+     const link = recoveryLink(await recoveryMail(email));
+diff --git a/tools/ci/browser.mjs b/tools/ci/browser.mjs
+index f13147b..531a4cb 100644
+--- a/tools/ci/browser.mjs
++++ b/tools/ci/browser.mjs
+@@ -154,7 +154,7 @@ async function captureJourney(page, caseId, state) {
+   await page.screenshot({ path: `${screenshotDir}/authenticated-synthetic-journey-${caseId}-${state}.png`, animations: 'disabled', fullPage: true, timeout: 10000 });
+ }
+ 
+-export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }) {
++export async function exerciseAuthenticatedBrowser({ anonKey, emails, password, afterMatrix = async () => {} }) {
+   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
+   requireCondition(Array.isArray(emails) && emails.length === 4 && new Set(emails).size === 4, 'FOUR_DISTINCT_APPLICANTS_REQUIRED');
+   mkdirSync(screenshotDir, { recursive: true });
+@@ -510,6 +510,8 @@ export async function exerciseAuthenticatedBrowser({ anonKey, emails, password }
+         await context.close();
+       }
+     }
++    stage = 'REMAINING_VERIFICATION';
++    await afterMatrix({ browser, base, screenshotDir });
+   } catch (error) {
+     if (/^[A-Z][A-Z0-9_]+$/.test(error.message)) throw error;
+     throw new Error(`BROWSER_${stage}`);
+diff --git a/tools/ci/run.mjs b/tools/ci/run.mjs
+index 88fb324..4e68585 100644
+--- a/tools/ci/run.mjs
++++ b/tools/ci/run.mjs
+@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
+ import { API, MAIL, requireCondition, requireHostedRunner, validateTarget } from './boundary.mjs';
+ import { createResetDiagnostic, exerciseAuth } from './auth.mjs';
+ import { browserVerificationPhase, exerciseAuthenticatedBrowser } from './browser.mjs';
++import { exerciseRemainingVerification } from './reliability.mjs';
+ 
+ const workdir = fileURLToPath(new URL('.', import.meta.url));
+ const project = 'aro-i0-ci';
+@@ -107,9 +108,12 @@ try {
+         status.ANON_KEY,
+         phase,
+         exerciseAuthenticatedBrowser,
+-        browserVerificationPhase
++        browserVerificationPhase,
++        context => exerciseRemainingVerification({ ...context,
++          countFive: () => userCount(5), countSeven: () => userCount(7),
++        })
+       );
+-      await phase('synthetic-account-count', () => userCount(5));
++      await phase('synthetic-account-count', () => userCount(7));
+       await phase('reset-removes-accounts', async () => {
+         const diagnostic = createResetDiagnostic();
+         try {
