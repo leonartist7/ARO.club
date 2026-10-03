@@ -54,3 +54,6 @@ tools/ci/supabase/.branches/
 
 # CB1-F2 generated isolation verification output
 /artifacts/ARO-CB1-F2/browser/
+
+# CB1-F3 generated isolation verification output
+/artifacts/ARO-CB1-F3/browser/

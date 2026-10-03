@@ -44,13 +44,13 @@ CB1 can validate the experience without enabling CB2/CB3. Category choice and gu
   Acceptance: one obvious action; manual path equivalent; suggestions never silently overwrite.
   Verify: example/manual paths for all three categories; minimized-guide and keyboard cases.
 
-- [ ] **6. Build progressive Details and live sketch**
+- [x] **6. Build progressive Details and live sketch — isolated F3 VERIFIED; F4 connection pending**
   Spec ref: CB0 sections 8, 17-19.
   Build: expandable People / Place / Time groups, category extras, indoor/public venue examples and responsive preview.
   Acceptance: no long mandatory form, no fabricated venue/time/participants; progress represents sketch completeness.
   Verify: short-phone keyboard, reduced-motion and undecided-details cases.
 
-- [ ] **7. Build Review and local completion**
+- [x] **7. Build Review and local completion — isolated F3 VERIFIED; F4 connection pending**
   Spec ref: CB0 sections 8, 9, 17.
   Build: readable summary with targeted Edit links, Finish my sketch, truthful completion, restart/discard controls.
   Acceptance: completion never claims saved or published; review edits preserve other answers.
@@ -104,3 +104,5 @@ Next: Phase 3 F2, commit a narrowed SPEC-READY Choose/Shape spec before source c
 
 ## Phase 3 checkpoint
 CB1-F2 v1.0.0 source ed6ddcb verifies isolated Choose/Shape, localized search/example/manual/optionalguide, cancellation-safe suggestions/category changes and boundary/accessibility checks. 239tests/43buildercases,30browsercases/3keyboardpaths/12component captures pass. Phase2main742cb422 is observed integrated; live#103 controls final F2 checks/main merge. Items6–7 are Phase4F3; item8 connects only a complete accepted F2/F3 flow underF4. Follow the livePR and executionplan to resume without repeating merged work.
+
+2026-10-03 Phase4 checkpoint: Phase3#103 integrated at1f3d403; isolated F3 verified atd8e5146 under d3b90c4 authority.258tests/62buildercases,lint/types/build,30production-browser cases/36actualcaptures and both independent reviews accepted; allfive source jobs PASS. Live#104 controls final delivery/main receipt. Items6–7 complete only in isolation; items8–10 retain Phase5 route/shell/release gates.

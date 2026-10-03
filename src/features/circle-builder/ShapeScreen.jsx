@@ -12,9 +12,10 @@ import BuilderConfirmation from './BuilderConfirmation';
 export default function ShapeScreen({ state, dispatch, locale, focusHeading = false, onContinue }) {
   const context = useOptionalLanguage();
   const language = builderLocale(locale ?? context?.language), copy = getCircleBuilderCopy(language);
-  const heading = useRef(null), form = useRef(null);
+  const heading = useRef(null), form = useRef(null), initialInvalid = useRef(Object.keys(state.errors)[0] ?? null);
   const [proposal, setProposal] = useState(null);
   useEffect(() => { if (focusHeading) heading.current.focus(); }, [focusHeading]);
+  useEffect(() => { if (initialInvalid.current) document.getElementById('builder-' + initialInvalid.current)?.focus(); initialInvalid.current = null; }, []);
   const category = getCategory(state.categoryId), example = getExample(category?.id, category?.examples[0]?.id, language);
   const error = field => state.errors[field] ? state.errors[field] === 'required' ? copy.required : copy.tooLong : undefined;
   function continueSketch(event) {
@@ -44,7 +45,7 @@ export default function ShapeScreen({ state, dispatch, locale, focusHeading = fa
           {category?.answerFields.map(field => <Input className="border-control-border hover:border-control-border focus:border-control-border dark:border-control-border dark:hover:border-control-border dark:focus:border-control-border" key={field} id={'builder-' + field} label={copy.fields[field]} value={state.categoryAnswers[field] ?? ''} error={error(field)} autoComplete="off" onChange={event => dispatch({ type: 'SET_ANSWER', field, value: event.target.value })} />)}
         </fieldset>
         <p role="status" className="text-danger-700 dark:text-primary-200">{Object.keys(state.errors).length ? copy.validation : ''}</p>
-        <div className="flex flex-wrap gap-3"><Button type="button" variant="ghost" onClick={() => dispatch({ type: 'BACK' })} className="motion-reduce:transition-none">{copy.back}</Button><Button type="submit" className="grow motion-reduce:transition-none">{copy.shapeNext}</Button></div>
+        <div className="flex flex-wrap gap-3"><Button type="button" variant="ghost" onClick={() => dispatch({ type: 'BACK' })} className="motion-reduce:transition-none">{state.reviewReturnTarget ? copy.backReview : copy.back}</Button><Button type="submit" className="grow motion-reduce:transition-none">{state.reviewReturnTarget ? copy.returnReview : copy.shapeNext}</Button></div>
         <BuilderGuide state={state} dispatch={dispatch} locale={language} copy={copy} />
         {example && <details className="rounded-2xl border border-control-border p-4"><summary className="flex min-h-11 cursor-pointer items-center font-semibold focus-visible:outline focus-visible:outline-2">{copy.exampleHelp}</summary><p className="mt-3">{copy.exampleHint}</p><h2 className="mt-3 text-xl font-bold">{example.title}</h2><p className="mt-2">{example.outcome}</p><div className="mt-4 flex flex-wrap gap-3"><Button type="button" variant="outline" onClick={() => suggest('title')} className="motion-reduce:transition-none">{copy.suggestTitle}</Button><Button type="button" variant="outline" onClick={() => suggest('outcome')} className="motion-reduce:transition-none">{copy.suggestOutcome}</Button></div></details>}
       </fieldset>

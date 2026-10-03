@@ -1117,3 +1117,11 @@ Founder requested execution of Phase 2 after accepted Phase 1 main 2f06fa3. Reco
 ## 2026-10-01 — CB1-F2 Phase 3 isolated Choose/Shape
 
 Phase2 observed merged#102 at742cb422. Founder requested Phase3; narrow F2authority committed ata2a134f before source. Added controlled Choose/Shape components with EN/FR/ES copy, case/accent search, example/manual paths, compact optional Tonguee/Squilly/Rockatoo and stable artfallback. Allowlisted curated suggestion replacement and incompatible-category changes require cancellation-safe confirmation. Shape validates supplied categoryanswers; typed/cleared/shared answers preserved. Independent reviews accepted after scoped inputborder correction. Sourceed6ddcb passes allfive jobs,239tests/43buildercases,30layouts/3manualkeyboardpaths/12componentcaptures/canary checks; retained failed-harness history. Final#103 head checks/main gate enforced. Active Create unconnected and unchanged; no auth/schema/dependency/provider edits. NextPhase4F3; F4 fullflow connection, drafts/publishing/fullMVP remain separate.
+
+## 2026-10-03 — Circle Builder Phase4
+Phase3#103 integration observed at1f3d403 with identical tested tree. Founder authorized Phase4. Narrow F3 authority committed before source; isolated People/Place/Time/live summary, targeted Review edits and truthful Ready/reset implemented. No production route, data, auth or dependency change. Verification gates tracked in artifacts/ARO-CB1-F3.
+
+### Phase4 verified isolated source checkpoint
+Source d8e5146 passes allfive jobs,258tests/62buildercases,lint/types/build,30production-browser cases and36actual captures. Both required specialists approved after four corrected findings. Durable local/hosted provenance and hashes retained under artifacts/ARO-CB1-F3. Final evidence-head CI/main integration controlled by#104; Phase5 connects Create only after accepted integration. Historical Windows fixture403 preserved and corrected without weakened assertions.
+
+Automated delivery review corrected stale dependent schedule errors, disappearing length limits and unresolved collapsed aria-controls IDs. Both specialists independently renewed approval; meaningful existing tests and browser assertions extended without weakening prior checks. Corrected delivery own-head checks remain mandatory in#104.

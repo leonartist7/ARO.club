@@ -1,4 +1,5 @@
 import { builderLocale } from '../features/circle-builder/registry.js';
+import { circleBuilderDetailsCopy } from './circleBuilderDetails.js';
 
 export const circleBuilderCopy = {
   en: {
@@ -50,4 +51,5 @@ export const circleBuilderCopy = {
     fields: { targetLanguage: 'Idioma a practicar', practiceLevel: 'Nivel inicial del idioma', activity: 'Actividad de conversación', skill: 'Habilidad a practicar', experienceLevel: 'Nivel inicial', materials: 'Materiales', instrument: 'Instrumento o voz', practiceFormat: 'Actividad musical', equipment: 'Equipo' },
   },
 };
+for (const locale of Object.keys(circleBuilderCopy)) Object.assign(circleBuilderCopy[locale], circleBuilderDetailsCopy[locale]);
 export const getCircleBuilderCopy = (locale) => circleBuilderCopy[builderLocale(locale)];
