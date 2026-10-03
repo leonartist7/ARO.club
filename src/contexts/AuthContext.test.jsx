@@ -80,7 +80,7 @@ describe('Google account entry', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Continue with Google' }));
     await waitFor(() => expect(mocks.signInWithOAuth).toHaveBeenCalledWith({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback?next=%2Faccount%2Fdelete` },
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     }));
   });
 

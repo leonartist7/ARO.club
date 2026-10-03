@@ -161,6 +161,16 @@ export async function exerciseAuth(
   const signIn = (candidate, statuses = [200], candidateEmail = email) => request('token?grant_type=password', {
     method: 'POST', body: { email: candidateEmail, password: candidate }, statuses,
   });
+  await phase('auth-five-server-checked-adult-declarations', async () => {
+    const platform = platformClient(anonKey);
+    for (const adultEmail of [email, ...browserEmails]) {
+      const adult = await signIn(password, [200], adultEmail);
+      await platform('rest/v1/rpc/confirm_adult_eligibility', {
+        method: 'POST', token: adult.access_token, body: { birth_date: '1990-01-01' },
+        headers: { 'Content-Profile': 'api', 'Accept-Profile': 'api' }, statuses: [200,204],
+      });
+    }
+  });
   let session;
   await phase('auth-password-and-refresh', async () => {
     const rejected = await signIn('wrong-password', [400]);
@@ -260,6 +270,8 @@ export async function exerciseAuth(
       method: 'POST', body: { refresh_token: session.refresh_token }, statuses: [400],
     });
     requireCondition(!rejected.access_token, 'REVOKED_REFRESH_ACCEPTED');
+    const profile = await platformClient(anonKey)(`rest/v1/profiles?id=eq.${userId}&select=id`, { token: session.access_token });
+    requireCondition(profile.length === 0, 'REVOKED_ACCESS_TOKEN_READ_ACCEPTED');
   });
   // Return only an in-memory check. Credentials are never written to evidence.
   return diagnostic => confirmRemovedAccount(request, email, newPassword, diagnostic);

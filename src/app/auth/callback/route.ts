@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { serverSupabase } from "../../../lib/auth/server";
 import { safeReturnPath } from "../../../lib/auth/config";
+import { AUTH_RETURN_COOKIE } from '../../../lib/auth/lifecycle';
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
@@ -20,12 +21,13 @@ export async function GET(request: NextRequest) {
         destination =
           type === "recovery"
             ? "/auth/reset-password"
-            : safeReturnPath(params.get("next"));
+            : safeReturnPath(params.get('next') ?? decodeURIComponent(request.cookies.get(AUTH_RETURN_COOKIE)?.value ?? ''));
     } catch {
       /* Invalid or unavailable provider: show a recoverable error. */
     }
   }
   const response = NextResponse.redirect(new URL(destination, request.url));
+  response.cookies.set(AUTH_RETURN_COOKIE, '', { path: '/auth/callback', maxAge: 0 });
   response.headers.set("Cache-Control", "private, no-store");
   response.headers.set("Referrer-Policy", "no-referrer");
   return response;
