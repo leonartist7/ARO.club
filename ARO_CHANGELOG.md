@@ -1120,3 +1120,8 @@ Phase2 observed merged#102 at742cb422. Founder requested Phase3; narrow F2author
 
 ## 2026-10-03 — Circle Builder Phase4
 Phase3#103 integration observed at1f3d403 with identical tested tree. Founder authorized Phase4. Narrow F3 authority committed before source; isolated People/Place/Time/live summary, targeted Review edits and truthful Ready/reset implemented. No production route, data, auth or dependency change. Verification gates tracked in artifacts/ARO-CB1-F3.
+
+### Phase4 verified isolated source checkpoint
+Source d8e5146 passes allfive jobs,258tests/62buildercases,lint/types/build,30production-browser cases and36actual captures. Both required specialists approved after four corrected findings. Durable local/hosted provenance and hashes retained under artifacts/ARO-CB1-F3. Final evidence-head CI/main integration controlled by#104; Phase5 connects Create only after accepted integration. Historical Windows fixture403 preserved and corrected without weakened assertions.
+
+Automated delivery review corrected stale dependent schedule errors, disappearing length limits and unresolved collapsed aria-controls IDs. Both specialists independently renewed approval; meaningful existing tests and browser assertions extended without weakening prior checks. Corrected delivery own-head checks remain mandatory in#104.

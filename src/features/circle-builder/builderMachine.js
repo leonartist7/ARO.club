@@ -107,7 +107,9 @@ export function builderReducer(state, action) {
       if (locked(state) || !SHARED_FIELDS.includes(action.field) || typeof action.value !== 'string') return state;
       const errors = { ...state.errors };
       delete errors[action.field];
-      return { ...state, fields: { ...state.fields, [action.field]: action.value }, touched: { ...state.touched, [action.field]: true }, errors };
+      const fields = { ...state.fields, [action.field]: action.value };
+      if (['date', 'time'].includes(action.field) && errors.timeZone === 'zone-required' && (!fields.date.trim() || !fields.time.trim())) delete errors.timeZone;
+      return { ...state, fields, touched: { ...state.touched, [action.field]: true }, errors };
     }
     case 'SET_ANSWER': {
       if (locked(state) || !getCategory(state.categoryId)?.answerFields.includes(action.field) || typeof action.value !== 'string') return state;

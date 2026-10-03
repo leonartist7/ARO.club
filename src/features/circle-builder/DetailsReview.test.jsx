@@ -53,6 +53,10 @@ describe('Phase 4 domain constraints', () => {
   it('allows individual partial schedule values but requires zone for date+time', () => {
     const date = set(filled(), 'date', '2026-10-03'); expect(validateSketch(date)).toEqual({});
     const pair = set(date, 'time', '10:30'); expect(validateSketch(pair).timeZone).toBe('zone-required');
+    const submitted = reduce(pair, 'NEXT');
+    for (const field of ['date', 'time']) expect(set(submitted, field, ' ').errors.timeZone).toBeUndefined();
+    const invalidZone = reduce(set(pair, 'timeZone', 'Missing/Zone'), 'NEXT');
+    expect(set(invalidZone, 'date', '').errors.timeZone).toBe('invalid-zone');
     const explicit = set(pair, 'timeZone', 'Europe/Paris'); expect(validateSketch(explicit)).toEqual({});
     expect(sketchSummary(explicit)).toMatchObject({ date: '2026-10-03', time: '10:30', timeZone: 'Europe/Paris' });
     expect(Object.keys(sketchSummary(explicit)).some(key => /instant|booking|capacity|published|saved/i.test(key))).toBe(false);
@@ -96,7 +100,18 @@ describe('Details, Review and Ready components', () => {
   });
   it.each(['en', 'fr', 'es'])('supports localized exact fields, venue labels and completion: %s', locale => {
     const local = getCircleBuilderCopy(locale); expect(Object.keys(local)).toEqual(Object.keys(copy));
-    render(<Harness locale={locale} />); type(local.detailFields.audience, 'Adult beginners'); click(local.place);
+    render(<Harness locale={locale} />);
+    for (const [name, group] of [[local.people, 'people'], [local.place, 'place'], [local.timeGroup, 'time']]) {
+      const toggle = screen.getByRole('button', { name, exact: true });
+      const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      expect(panel.id).toBe('builder-group-' + group); expect(panel.hidden).toBe(group !== 'people');
+    }
+    type(local.detailFields.audience, 'x'.repeat(161)); click(local.detailsNext);
+    expect(screen.getByRole('alert').textContent).toContain(local.peopleHint);
+    type(local.detailFields.audience, 'Adult beginners'); click(local.place);
+    type(local.detailFields.placeDescription, 'x'.repeat(161)); click(local.detailsNext);
+    expect(screen.getByRole('alert').textContent).toContain(local.placeHint);
+    type(local.detailFields.placeDescription, 'A public room');
     expect(screen.queryByLabelText(local.detailFields.audience, { exact: true })).toBeNull();
     type(local.detailFields.venueType, 'public-library'); click(local.detailsNext);
     expect(screen.getByText('Adult beginners')).toBeTruthy(); expect(screen.getByText(local.venueLabels['public-library'])).toBeTruthy(); click(local.finishSketch); expect(screen.getByText(local.readyBody)).toBeTruthy();
@@ -117,7 +132,8 @@ describe('Details, Review and Ready components', () => {
     render(<Harness />); click(copy.timeGroup); type(copy.detailFields.date, '2025-02-29'); type(copy.detailFields.time, '09:30'); click(copy.detailsNext);
     expect(document.activeElement.id).toBe('builder-date'); expect(screen.getByLabelText(copy.detailFields.date, { exact: true }).value).toBe('2025-02-29');
     type(copy.detailFields.date, '2024-02-29'); click(copy.detailsNext); expect(document.activeElement.id).toBe('builder-timeZone'); expect(screen.getByText(copy.zoneRequired)).toBeTruthy();
-    type(copy.detailFields.time, ''); click(copy.detailsNext); expect(screen.getByText('2024-02-29')).toBeTruthy(); expect(screen.getAllByText(copy.toDecide).length).toBeGreaterThan(0);
+    type(copy.detailFields.time, ''); expect(screen.queryByText(copy.zoneRequired)).toBeNull(); expect(screen.getByRole('status').textContent).toBe('');
+    click(copy.detailsNext); expect(screen.getByText('2024-02-29')).toBeTruthy(); expect(screen.getAllByText(copy.toDecide).length).toBeGreaterThan(0);
   });
   it('edits all named sections with direct return and summary focus; Back retains edits', () => {
     render(<Harness initial={filled('music', 'review')} />);

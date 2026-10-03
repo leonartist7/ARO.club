@@ -1,7 +1,7 @@
 # ARO-CB1-F3 — Details, Review and local completion
 
 ## 0. Metadata
-Status: SPEC-READY · version 1.0.0 · 2026-10-03 · owner: ARO founder.
+Status: VERIFIED isolated source; final delivery/main gate #104 · version 1.0.0 · 2026-10-03 · owner: ARO founder.
 Branch: codex/circle-builder-phase4-details-review-20261003. Depends on CB1-F1 v1.0.2, reviewed CB1-P and CB1-F2 v1.0.0, merged #103 at1f3d4038334c7d3f7b95e7a9dc389954fc121746/tree279ce458. Blocks CB1-F4/Phase5. Governing: AGENTS, master/build playbook, CB1-LOCAL-PREVIEW v1.0.0, docs/circle-builder SCREEN-CONTRACT/ARTWORK/PERFORMANCE/SOURCE-RECONCILIATION v1.0.0, architecture/data/design/experience/Trust. Reviews: privacy/Trust and product/design/accessibility. Founder explicitly requests Phase4 completion and phased main integration.
 
 ## 1. Problem
@@ -53,13 +53,13 @@ Preserve F1/F2 regression coverage; explicitly update historical F1 numeric50 ex
 ## 24. Acceptance
 |ID|Requirement|Verification/evidence|Status|
 |---|---|---|---|
-|F3-01|Exact optional fields,1–4,calendar/time/zone|domain/component/browser; artifacts/ARO-CB1-F3|PENDING|
-|F3-02|Single group/live actual sketch/undecided display|component/browser/captures|PENDING|
-|F3-03|Targeted edit/direct return/focus/preservation|domain/component/native keyboard|PENDING|
-|F3-04|Truthful ready/reset cancellation/confirmation|domain/component/native dialog|PENDING|
-|F3-05|Locales/themes/responsive/art/manual/a11y|30browser cases and light/dark phone/desktop captures|PENDING|
-|F3-06|No input I/O/Trust authority/route unchanged|canary/source/specialist/unchanged baseline|PENDING|
-|F3-07|Quality/regressions/reviews/evidence|lint/types/tests/build/allfive exact-head jobs and reviews|PENDING|
+|F3-01|Exact optional fields,1–4,calendar/time/zone|domain/component/browser; artifacts/ARO-CB1-F3|PASS at d8e5146; final delivery gate #104|
+|F3-02|Single group/live actual sketch/undecided display|component/browser/captures|PASS at d8e5146; final delivery gate #104|
+|F3-03|Targeted edit/direct return/focus/preservation|domain/component/native keyboard|PASS at d8e5146; final delivery gate #104|
+|F3-04|Truthful ready/reset cancellation/confirmation|domain/component/native dialog|PASS at d8e5146; final delivery gate #104|
+|F3-05|Locales/themes/responsive/art/manual/a11y|30browser cases and light/dark phone/desktop captures|PASS at d8e5146; final delivery gate #104|
+|F3-06|No input I/O/Trust authority/route unchanged|canary/source/specialist/unchanged baseline|PASS at d8e5146; final delivery gate #104|
+|F3-07|Quality/regressions/reviews/evidence|lint/types/tests/build/allfive exact-head jobs and reviews|PASS at d8e5146; final delivery gate #104|
 ## 25. Rollout
 One branch/PR, isolated modules only. Commit this authority before runtime. Connect route only Phase5 accepted complete-flow package. Normal expected-head protected merge after gates; no bypass.
 ## 26. Recovery
@@ -72,3 +72,5 @@ Required independent product/design/accessibility source/capture review before m
 All acceptance rows evidenced; meaningful regressions/full quality pass, exact-head five jobs and independent reviews accepted, no blockers/unrelated scope; canonical records and durable receipts updated. No connected-app/full CB1 certification.
 ## 30. Delivery
 Phase3 observed merge1f3d403/tree279ce458. Phase4 source/tests/captures/reviews/checks/main receipt recorded by its PR and artifacts/ARO-CB1-F3. NextPhase5 CB1-F4 route/shell/release verification; CB2/CB3/full-source packages remain separate.
+
+2026-10-03 observed checkpoint: authority d3b90c4 preceded runtime; d8e5146 passes allfive source checks/258tests/30browsercases/36captures and both specialists. Durable criterion/report/capture/review mapping in artifacts/ARO-CB1-F3. Final evidence-head checks and actual merge/tested-tree receipt live in#104. No F4/release certification.

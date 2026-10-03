@@ -1,0 +1,673 @@
+{
+  "schemaVersion": 1,
+  "source": "local",
+  "fixture": "isolated production Vite components, no Next app route",
+  "browser": "151.0.7922.34",
+  "cases": [
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "en",
+      "category": "languages",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "fr",
+      "category": "skills",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "locale": "es",
+      "category": "music",
+      "manual": false,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "en",
+      "category": "languages",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "fr",
+      "category": "skills",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "locale": "es",
+      "category": "music",
+      "manual": true,
+      "validationFocus": true,
+      "targetReturn": true,
+      "reset": true,
+      "privacy": true
+    }
+  ],
+  "captures": [
+    {
+      "name": "languages-360-light-details",
+      "width": 360,
+      "theme": "light",
+      "category": "languages",
+      "step": "details",
+      "bytes": 67922,
+      "sha256": "a3f6c29c728c13461fdcef7e34aa9a2ef81eb6d658c21643a88a0a6926407987"
+    },
+    {
+      "name": "languages-360-light-review",
+      "width": 360,
+      "theme": "light",
+      "category": "languages",
+      "step": "review",
+      "bytes": 56806,
+      "sha256": "1196420079d6d3fe16c44f3dc893a2d257c01c147112fd70a58dfb39f61d6aab"
+    },
+    {
+      "name": "languages-360-light-ready",
+      "width": 360,
+      "theme": "light",
+      "category": "languages",
+      "step": "ready",
+      "bytes": 52120,
+      "sha256": "f0e741eb3cd0aba7c30516606ae7de2ef87b93473b74d29ec07f1eec07fd9ab6"
+    },
+    {
+      "name": "skills-360-light-details",
+      "width": 360,
+      "theme": "light",
+      "category": "skills",
+      "step": "details",
+      "bytes": 66072,
+      "sha256": "e438d596fca5b5296a77e5dc23c0815aae3e06d5d4787635705bf8239a541bce"
+    },
+    {
+      "name": "skills-360-light-review",
+      "width": 360,
+      "theme": "light",
+      "category": "skills",
+      "step": "review",
+      "bytes": 56564,
+      "sha256": "fe784e7988b3a1bcfec06de4c39d44c3114747a43433dcf9978c3a0370ccc331"
+    },
+    {
+      "name": "skills-360-light-ready",
+      "width": 360,
+      "theme": "light",
+      "category": "skills",
+      "step": "ready",
+      "bytes": 51628,
+      "sha256": "79df62c720d2f2cf1593e62a557636b938d7300f3101152c657c57e482b17c51"
+    },
+    {
+      "name": "music-360-light-details",
+      "width": 360,
+      "theme": "light",
+      "category": "music",
+      "step": "details",
+      "bytes": 67656,
+      "sha256": "672c4807e318a631f26b667d5b5b44c76ac863655c4df9d10c0b38ac341c9499"
+    },
+    {
+      "name": "music-360-light-review",
+      "width": 360,
+      "theme": "light",
+      "category": "music",
+      "step": "review",
+      "bytes": 57506,
+      "sha256": "7a1d706010024f1d1b4df6405d1d9ff0d182c917fb2a21f8278d89f39a76ea33"
+    },
+    {
+      "name": "music-360-light-ready",
+      "width": 360,
+      "theme": "light",
+      "category": "music",
+      "step": "ready",
+      "bytes": 52516,
+      "sha256": "6c2c768b3730a1c834583741487beed2e7bf2bb4e03a9e0d628794a736e2cb21"
+    },
+    {
+      "name": "languages-360-dark-details",
+      "width": 360,
+      "theme": "dark",
+      "category": "languages",
+      "step": "details",
+      "bytes": 69724,
+      "sha256": "f982fa4b6b9a6bb8c726719893509845ad94deb4ba652019fee2363b20436465"
+    },
+    {
+      "name": "languages-360-dark-review",
+      "width": 360,
+      "theme": "dark",
+      "category": "languages",
+      "step": "review",
+      "bytes": 57810,
+      "sha256": "db3aa15f484b4adbf474855fbbd0e6fea093d988e4370eabeb1daeac3a3d434c"
+    },
+    {
+      "name": "languages-360-dark-ready",
+      "width": 360,
+      "theme": "dark",
+      "category": "languages",
+      "step": "ready",
+      "bytes": 53540,
+      "sha256": "c146108462036a576532bf2414222369dd04f3589dddc2aad810a43417538a06"
+    },
+    {
+      "name": "skills-360-dark-details",
+      "width": 360,
+      "theme": "dark",
+      "category": "skills",
+      "step": "details",
+      "bytes": 68752,
+      "sha256": "39c35354d32becb65bd19e6a825f5724836acbd5064ccce466df189ed30cce6d"
+    },
+    {
+      "name": "skills-360-dark-review",
+      "width": 360,
+      "theme": "dark",
+      "category": "skills",
+      "step": "review",
+      "bytes": 58652,
+      "sha256": "cdb8c0ead13f7e90f8a02b631be7ac49d4ae961865aec35bb519bd0b58708355"
+    },
+    {
+      "name": "skills-360-dark-ready",
+      "width": 360,
+      "theme": "dark",
+      "category": "skills",
+      "step": "ready",
+      "bytes": 53914,
+      "sha256": "11585abad0798ed6e7ddb28b71b710729f969d9acd0f25c9a35c6aa7a1291371"
+    },
+    {
+      "name": "music-360-dark-details",
+      "width": 360,
+      "theme": "dark",
+      "category": "music",
+      "step": "details",
+      "bytes": 69454,
+      "sha256": "fc7af564b23d9622d7af7796e22c6a99668e53b71692e5c27a743d9332ac6de9"
+    },
+    {
+      "name": "music-360-dark-review",
+      "width": 360,
+      "theme": "dark",
+      "category": "music",
+      "step": "review",
+      "bytes": 60132,
+      "sha256": "770f7f18f76b73e14afca394b2ebdb821b4b42bd8423375bbd60d6b6c158b282"
+    },
+    {
+      "name": "music-360-dark-ready",
+      "width": 360,
+      "theme": "dark",
+      "category": "music",
+      "step": "ready",
+      "bytes": 54418,
+      "sha256": "7c82923e2843558f1998dcc768204dfe1a922cd55c8f53557b888d07a5f02e83"
+    },
+    {
+      "name": "languages-1440-light-details",
+      "width": 1440,
+      "theme": "light",
+      "category": "languages",
+      "step": "details",
+      "bytes": 23122,
+      "sha256": "2efcbd0fd6b274f883e7958235c99944995663faa65b87768592659152d25a0b"
+    },
+    {
+      "name": "languages-1440-light-review",
+      "width": 1440,
+      "theme": "light",
+      "category": "languages",
+      "step": "review",
+      "bytes": 20066,
+      "sha256": "1f75383b4da54d559d5a173b5fa93cc1b9b5032595f1f092e5529c5bc738e91e"
+    },
+    {
+      "name": "languages-1440-light-ready",
+      "width": 1440,
+      "theme": "light",
+      "category": "languages",
+      "step": "ready",
+      "bytes": 18320,
+      "sha256": "24db3e16d173a8c5b2ce76b95be9b361771ce042934b92d36d7bdbdeae25a01c"
+    },
+    {
+      "name": "skills-1440-light-details",
+      "width": 1440,
+      "theme": "light",
+      "category": "skills",
+      "step": "details",
+      "bytes": 22856,
+      "sha256": "6601afc770fe2420c964a9c2c56c286d7e79ad9d33cdd8ee33fb38541703d335"
+    },
+    {
+      "name": "skills-1440-light-review",
+      "width": 1440,
+      "theme": "light",
+      "category": "skills",
+      "step": "review",
+      "bytes": 20088,
+      "sha256": "0b00f9e78bc33e169a32a460f70dbb6f55cc877a93a27173d649f8488e68d0c2"
+    },
+    {
+      "name": "skills-1440-light-ready",
+      "width": 1440,
+      "theme": "light",
+      "category": "skills",
+      "step": "ready",
+      "bytes": 18182,
+      "sha256": "7b62925daec103c49aa8f6ff6ac97517e62e3bbaa802bdcf28db3209d447fc4b"
+    },
+    {
+      "name": "music-1440-light-details",
+      "width": 1440,
+      "theme": "light",
+      "category": "music",
+      "step": "details",
+      "bytes": 23136,
+      "sha256": "17a9ac67589bade325c12e2d2fbb21ff0102073bf89323098885d1bdad0e92d1"
+    },
+    {
+      "name": "music-1440-light-review",
+      "width": 1440,
+      "theme": "light",
+      "category": "music",
+      "step": "review",
+      "bytes": 20328,
+      "sha256": "b085f70d23a76ffc88e01fdfb7f15879cde103a4cade820961c7bc1c33eaee26"
+    },
+    {
+      "name": "music-1440-light-ready",
+      "width": 1440,
+      "theme": "light",
+      "category": "music",
+      "step": "ready",
+      "bytes": 18398,
+      "sha256": "3b6c5f78b1576297fd2b47d4b48776e06cdd09797d36f95dcfcc1c3308ccf9bb"
+    },
+    {
+      "name": "languages-1440-dark-details",
+      "width": 1440,
+      "theme": "dark",
+      "category": "languages",
+      "step": "details",
+      "bytes": 24762,
+      "sha256": "a95bc3ecbbad449469002fd76dcbba0e2854d4f01bead9e4f4a87305c97f99b7"
+    },
+    {
+      "name": "languages-1440-dark-review",
+      "width": 1440,
+      "theme": "dark",
+      "category": "languages",
+      "step": "review",
+      "bytes": 21506,
+      "sha256": "ca779d8ea663947313d93fa46fae0b3f74c34dc5b03c59bcbaec097377bdfce5"
+    },
+    {
+      "name": "languages-1440-dark-ready",
+      "width": 1440,
+      "theme": "dark",
+      "category": "languages",
+      "step": "ready",
+      "bytes": 19500,
+      "sha256": "0cc6496b193064b6130b2110cc2ed46bf827d9b8011ef6b9f976c3dcc9058580"
+    },
+    {
+      "name": "skills-1440-dark-details",
+      "width": 1440,
+      "theme": "dark",
+      "category": "skills",
+      "step": "details",
+      "bytes": 24316,
+      "sha256": "e253fe659b5881af3fc51cfe7a452d0374c07776bfbc16276b82919432793328"
+    },
+    {
+      "name": "skills-1440-dark-review",
+      "width": 1440,
+      "theme": "dark",
+      "category": "skills",
+      "step": "review",
+      "bytes": 21360,
+      "sha256": "264f1630a5b396d395ff8c6e3340675f84ae4d0140b5d9d31571600866c2425b"
+    },
+    {
+      "name": "skills-1440-dark-ready",
+      "width": 1440,
+      "theme": "dark",
+      "category": "skills",
+      "step": "ready",
+      "bytes": 19284,
+      "sha256": "fcbd9a7fd853dfdb45de72d223219c404d3a9aae57db36b287006a0e1a054252"
+    },
+    {
+      "name": "music-1440-dark-details",
+      "width": 1440,
+      "theme": "dark",
+      "category": "music",
+      "step": "details",
+      "bytes": 24850,
+      "sha256": "b447fa3edd1366dbb34dabbc5d1fc8004495a8a97b62452b3ee3000efc9c541e"
+    },
+    {
+      "name": "music-1440-dark-review",
+      "width": 1440,
+      "theme": "dark",
+      "category": "music",
+      "step": "review",
+      "bytes": 21574,
+      "sha256": "171f4d4ef905fc5f1a0b040ddb3c97a398f6ef1f7c8b2489855d72611f95299e"
+    },
+    {
+      "name": "music-1440-dark-ready",
+      "width": 1440,
+      "theme": "dark",
+      "category": "music",
+      "step": "ready",
+      "bytes": 19514,
+      "sha256": "5a9c647114b477a245d8bbce341594e197593726d62fae0a9f965926c9b60bcf"
+    }
+  ],
+  "partialSchedule": true,
+  "artworkFailure": true,
+  "errors": [],
+  "leakage": [],
+  "writes": [],
+  "evidenceKind": "Local Windows production fixture, Node24.19, Playwright1.62/Chromium1234",
+  "deliveryParent": "d8e5146554a207e7766b22f76580e74b13bc6d36",
+  "verifiedWorkingTreeDelta": "Three automated P2 corrections with expanded domain/component/browser assertions",
+  "unchangedCaptureHashes": true
+}

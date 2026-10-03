@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
 Version 1.2.0 · 2026-10-03 · Owner: ARO founder
-Status: ACTIVE. Phases1–3 integrated; #103 merged at1f3d403/tree279ce458 after finalca05a50 allfive checks. Phase4 CB1-F3 v1.0.0 IMPLEMENTED / PARTIAL VERIFICATION; browser/review/final delivery gates remain. Phase5 route/shell integration is next after Phase4 acceptance.
+Status: ACTIVE. Phases1–3 integrated; #103 merged at1f3d403/tree279ce458 after finalca05a50 allfive checks. Phase4 CB1-F3 v1.0.0 isolated source VERIFIED atd8e5146;258tests/30browsercases/36captures and both reviews accepted; #104 controls exact final-head checks/main receipt. Phase5 route/shell integration is next after Phase4 acceptance.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: complete Phase4 CB1-F3 verification/reviews/evidence/final exact-head CI and normal protected merge. Then, on founder request, Phase5 CB1-F4 route/shell/release verification.
+Current next task: accept #104 final delivery-head five checks, normal protected merge and main/tested-tree readback. Then, on founder request, Phase5 CB1-F4 route/shell/release verification.
 
 ## Phase 1 verification and review checkpoint
 
@@ -106,6 +106,6 @@ Authority: ../../specs/ARO-CB1-F2-CHOOSE-SHAPE.md. Evidence: ../../artifacts/ARO
 - [x] Commit narrowed F3 v1.0.0 SPEC-READY authority atd3b90c4 before runtime.
 - [x] Build isolated Details/live sketch/Review/Ready and exact reducer/locale deltas.
 - [x] Local258tests/62buildercases and lint pass; reviews corrected focus-stealing, date/time keyboard separators, fixed-offset zones and cross-section invalid edit recovery.
-- [ ] Accept browser/captures/build/types and final independent reviews.
+- [x] Accept local/hosted30browsercases,36actualcaptures,258tests/lint/types/build and both final independent reviews; source d8e5146 allfive jobs PASS.
 - [ ] Pass exact final-head five jobs and merge normally; confirm actual main/tested tree.
 Authority: ../../specs/ARO-CB1-F3-DETAILS-REVIEW.md. Evidence: ../../artifacts/ARO-CB1-F3/VERIFICATION.md. All new screens remain unconnected; Phase5 owns Create route/shell/full exit audit/release. No drafts/publishing claim.

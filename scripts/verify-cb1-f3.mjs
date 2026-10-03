@@ -80,16 +80,23 @@ try {
   for (const width of [320, 360, 390, 768, 1440]) for (const theme of ['light', 'dark']) for (const locale of ['en', 'fr', 'es']) {
     const { page, context } = await open(width, locale, theme), copy = circleBuilderCopy[locale], category = CATEGORY_REGISTRY[['en', 'fr', 'es'].indexOf(locale)];
     await start(page, category, copy, theme === 'dark', locale); await layout(page);
+    for (const name of [copy.people, copy.place, copy.timeGroup]) {
+      const toggle = button(page, name), id = await toggle.getAttribute('aria-controls');
+      assert.equal(await page.locator('#' + id).count(), 1); assert.equal(await page.locator('#' + id).isVisible(), await toggle.getAttribute('aria-expanded') === 'true');
+    }
+    await input(page, copy.detailFields.audience).fill('x'.repeat(161)); await button(page, copy.detailsNext).click(); assert((await page.getByRole('alert').textContent()).includes(copy.peopleHint));
     await input(page, copy.detailFields.audience).fill(canary); await input(page, copy.detailFields.groupSize).fill('5');
     await button(page, copy.place).click(); assert.equal(await input(page, copy.detailFields.audience).count(), 0);
     await button(page, copy.detailsNext).click(); assert.equal(await page.evaluate(() => document.activeElement.id), 'builder-groupSize');
     await input(page, copy.detailFields.groupSize).fill('4'); await button(page, copy.place).click();
     await input(page, copy.detailFields.venueType).selectOption('public-library'); await input(page, copy.detailFields.placeDescription).fill(canary + ' public setting'); await layout(page);
+    await input(page, copy.detailFields.placeDescription).fill('x'.repeat(161)); await button(page, copy.detailsNext).click(); assert((await page.getByRole('alert').textContent()).includes(copy.placeHint)); await input(page, copy.detailFields.placeDescription).fill(canary + ' public setting');
     await button(page, copy.timeGroup).click();
     assert.equal(await input(page, copy.detailFields.date).getAttribute('inputmode'), 'text'); assert.equal(await input(page, copy.detailFields.time).getAttribute('inputmode'), 'text');
     await input(page, copy.detailFields.date).fill('2025-02-29'); await input(page, copy.detailFields.time).fill('10:30'); await button(page, copy.detailsNext).click();
     assert.equal(await page.evaluate(() => document.activeElement.id), 'builder-date'); await input(page, copy.detailFields.date).fill('2024-02-29');
     assert.equal(await page.evaluate(() => document.activeElement.id), 'builder-date'); await button(page, copy.detailsNext).click(); assert.equal(await page.evaluate(() => document.activeElement.id), 'builder-timeZone');
+    await input(page, copy.detailFields.time).fill(''); assert.equal(await page.getByText(copy.zoneRequired, { exact: true }).count(), 0); assert.equal(await page.getByRole('status').textContent(), ''); await input(page, copy.detailFields.time).fill('10:30'); await button(page, copy.detailsNext).click();
     await input(page, copy.detailFields.timeZone).fill('+01:00'); await button(page, copy.detailsNext).click(); assert.equal(await page.evaluate(() => document.activeElement.id), 'builder-timeZone');
     await input(page, copy.detailFields.timeZone).fill('Europe/Paris'); await layout(page);
     if (width < 1024) await button(page, copy.showSketch).click();

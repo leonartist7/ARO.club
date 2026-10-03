@@ -276,3 +276,5 @@ Specialist privacy/Trust/design reviews and actual responsive/theme/language/key
 
 ## ADR-CB-004 — Phase4 isolated Details/Review completion (2026-10-03)
 Accepted within CB1-LOCAL-PREVIEW/SCREEN-CONTRACT v1.0.0 and founder phased request: exact optional People/Place/Time fields; planned seats1–4 excluding hosts, explicit calendar/time/IANA zone with no booked instant; undecided omissions; named edit/direct Review return, cancellation preserving current edits, truthful unsaved/unpublished Ready and confirmed reset. F3 corrects historical F1 size50/Edit-Back behavior only as specified. Phase5 connects route/shell; privacy/data/eligibility/save/publish packages remain separate. No stack or new I/O authority.
+
+Phase4 ADR-CB-004 verification receipt: both specialist approvals and local/hosted30case/36capture evidence accepted atd8e5146 after focused corrections. Isolated source allfive jobs PASS. Normal#104 final-head/main gate remains mandatory; next Phase5 owns app connection and full exit/performance release certification.
