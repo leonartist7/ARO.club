@@ -44,9 +44,9 @@ No criterion is PASS without its implementation evidence.
 ## Acceptance matrix and phased implementation
 | ID | Requirement | Package | Evidence required | Current runtime status |
 |---|---|---|---|---|
-| CB1-01 | Choose/Shape, category search/examples/manual, optional guide and dictionary | F2 | component+keyboard+3groupcases | Isolated source VERIFIED ated6ddcb; #103 final integration/F4 connection remain gated |
-| CB1-02 | Detailsfields, 1–4, dates/zone, live actual sketch | F3 | transition/validation/partialplan/mobile | NOT IMPLEMENTED |
-| CB1-03 | Reviewtarget/return, ready, reset and category dialogs | F3 | complete/edit/cancel/confirmcases | NOT IMPLEMENTED |
+| CB1-01 | Choose/Shape, category search/examples/manual, optional guide and dictionary | F2 | component+keyboard+3groupcases | F2 integrated via#103 at1f3d403; exact finalca05a50 checks and tested tree accepted; F4 connection remains gated |
+| CB1-02 | Detailsfields, 1–4, dates/zone, live actual sketch | F3 | transition/validation/partialplan/mobile | VERIFIED isolated F3 at d8e5146; final delivery/main gate #104; F4 connection remains gated |
+| CB1-03 | Reviewtarget/return, ready, reset and category dialogs | F3 | complete/edit/cancel/confirmcases | VERIFIED isolated F3 at d8e5146; final delivery/main gate #104; F4 connection remains gated |
 | CB1-04 | Whole flow/shell guard/legacy query, responsive/themes/locales | F4 | fullproductionbrowser/lightdark/phone/desktop | NOT IMPLEMENTED |
 | CB1-05 | Privacy/Trust boundary and no-inputtransport | F4 | canary request/storage/log audit and specialist review | NOT IMPLEMENTED |
 | CB1-06 | Artifactfallback/a11y/reduced motion/performance | F4 | actual UI captures+keyboard+budget | NOT IMPLEMENTED |
@@ -55,4 +55,4 @@ F2/F3 may land isolated modules without changing Create. Before each source phas
 ## Rollout, recovery and delivery
 One branch/PR per subpackage, preserve concurrent auth/design, no database rollback. Revert only bounded UI integration to the existing Create if release regression; never revert unrelated newer main.
 Statusrecords+changelog+plan+source, test, review, CI and merge SHAs updated at each checkpoint. CB1 VERIFIED only with all implementation rows accepted, no unresolved high findings and exact-head checks. SHIPPED means accepted route integration on main, not private drafts/publication/store readiness.
-Next source package: F2 Choose/Shape; futureCB-TAX/CB-CONTENT/CB2/eligibility/evidence/cohost/CB3/P4/P5/A1 remain separatelygated.
+F3 isolated Details/Review/Ready source verified; #104 controls final delivery/main receipt. Next source package: F4 route/shell integration; futureCB-TAX/CB-CONTENT/CB2/eligibility/evidence/cohost/CB3/P4/P5/A1 remain separatelygated.
