@@ -99,7 +99,7 @@ Do not add Obsidian or Graphify to the product runtime bundle. They are reposito
 
 - One work package = one branch = one PR = one self-review. Run only the assigned package and respect dependencies/gates.
 - ARO-SEC0 is VERIFIED; preserve secret hygiene and keep environment configuration outside Git. P1 remains blocked by its I0 and independent-review gates.
-- Stack remains React 19, Vite 7, Tailwind v3, Supabase JS v2, React Router v7, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. Any dependency change needs director approval.
+- N1 stack change was explicitly approved on 2026-09-20: Next.js App Router, React 19, incremental TypeScript, Tailwind v3, Supabase JS v2 + SSR, Zustand, framer-motion, lucide-react, date-fns, and `cn()`. See specs/ARO-N1-NEXTJS-PLATFORM.md. Unrelated dependency changes still need director approval.
 - Reuse existing UI primitives, route patterns, dark mode, i18n, reduced-motion guards, keyboard access, and focus treatment.
 - Keep diffs minimal. Do not reformat, rename, move, or rewrite unrelated work.
 - Migrations are append-only. Never edit existing schema or Trust migrations in place.

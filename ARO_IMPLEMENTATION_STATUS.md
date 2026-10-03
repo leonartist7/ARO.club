@@ -1,3 +1,7 @@
+> **2026-09-20 N1 authorization:** Founder approved Next.js App Router migration and isolated staging email/password accounts in ARO.club and FV1-docs. N1 may run before P1 for this bounded migration. See specs/ARO-N1-NEXTJS-PLATFORM.md. Implementation/verification evidence is in artifacts/ARO-N1/VERIFICATION.md. No production, schema, Trust, money, Google or downstream product unlock is authorized. Historical stack/sequence statements below are superseded only within N1.
+
+> **N1 result:** Implementation complete locally; partial verification. Lint, type checks, unit tests, production builds and anonymous browser checks pass independently in both repositories. Hosted successful-account/inbox flows, disposable database CI, independent review and preview performance acceptance remain open. See [N1 evidence](artifacts/ARO-N1/VERIFICATION.md).
+
 # ARO — Implementation Status Ledger
 
 > **2026-09-08 FV-1 approval:** [FV-1 v0.2.0](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is **SPEC-READY**. Founder approved PR #40 documentation merge and F1–F7 sequential implementation on ONE isolated branch/PR, against candidate `a576640cc5b9828486d8bdd0f970636b3ff07138` (reviewed head `78005892071b7996917f8f10d04e5cd601f124d2`). Bind actual documentation merge SHA before F1; use accepted predecessor SHAs thereafter. No product implementation or full verification is claimed. Independent review, human NVDA testing and founder visual review remain pending; release/product merge approval is WITHHELD. I0/P1 and later gates are unchanged.
@@ -277,3 +281,7 @@ The existing local prototype and supporting plans are packaged under `specs/ARO-
 ## AUTO0 — autonomous execution foundation
 
 IMPLEMENTED / VERIFICATION IN PROGRESS. Repository tooling only; no product runtime, schema, dependency or paid model API changes. Specification: `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md`; execution map: `ARO_AUTONOMY.md`; evidence: `artifacts/ARO-AUTO0/VERIFICATION.md`. Cloud schedules are independently verified through the cloud coordinator.
+
+
+## 2026-09-26 — R2 yellow / orange brand
+Founder authorized yellow as the primary color, orange as secondary, and supplied Noise Order for main titles and ARO branding. See specs/ARO-R2-YELLOW-BRAND.md (v1.0.0) and artifacts/ARO-R2/VERIFICATION.md. Status: IMPLEMENTED locally; no deployment. Existing N1 work and downstream gates remain unchanged.

@@ -814,3 +814,11 @@ Prepared authoritative `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md` v0.2.0, still
 ## 2026-09-08 — Founder approves FV-1 documentation merge and implementation
 
 Founder explicitly approved merging PR #40 through normal checks, the proposed defaults and F1–F7 sequentially on ONE isolated branch/PR. Approval is recorded against FV-1 v0.2.0 candidate `a576640cc5b9828486d8bdd0f970636b3ff07138` (identical spec at reviewed head `78005892071b7996917f8f10d04e5cd601f124d2`). Package is SPEC-READY; actual documentation merge SHA governs F1 and the approved spec, followed by exact accepted predecessor SHAs. No product changes or audit reruns accompany this record. Release/product merge approval remains WITHHELD; independent review, human NVDA testing and founder visual review are required before full verification.
+
+
+## 2026-09-20 — N1 Next.js and staging accounts
+Founder explicitly approved migration of both ARO.club and FV1-docs, incremental TypeScript, and live email/password accounts on isolated staging first. N1 is authorized before P1 for this bounded work. Production, schema/RLS, Google, payments and connecting synthetic features remain excluded. Evidence: artifacts/ARO-N1/VERIFICATION.md.
+
+
+## 2026-09-26 — R2 yellow / orange brand
+Founder authorized yellow as the primary color, orange as secondary, and supplied Noise Order for main titles and ARO branding. See specs/ARO-R2-YELLOW-BRAND.md (v1.0.0) and artifacts/ARO-R2/VERIFICATION.md. Status: IMPLEMENTED locally; no deployment. Existing N1 work and downstream gates remain unchanged.

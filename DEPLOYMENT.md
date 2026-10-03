@@ -1,3 +1,17 @@
+# Next.js staging deployment
+
+Framework preset: Next.js. Build: npm run build. Clear the old dist output-directory override. Node.js 24. No static-export or SPA rewrite is required.
+
+Use .env.local for local values and scoped Preview variables in Vercel. Map VITE_SUPABASE_URL to NEXT_PUBLIC_SUPABASE_URL and the browser key to NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (legacy NEXT_PUBLIC_SUPABASE_ANON_KEY remains supported). Never copy server/service credentials into public variables. Set NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS=true only for verified isolated staging, and NEXT_PUBLIC_VERCEL_ENV=preview in Preview. Rebuild after public environment changes. VERCEL_ENV=production disables server accounts regardless of the public flag.
+
+The only hosted target accepted is mibydnerayobemhnlfyl.supabase.co. Tonguee and aro-platform are excluded. Keep synthetic /app features synthetic.
+
+## Auth configuration
+Allow the actual approved staging origin plus http://localhost:5173/auth/callback in Supabase redirect URLs. Set the staging Site URL to the approved staging deployment, not aro.club until domain ownership is resolved. PKCE signup/recovery use /auth/callback. For cross-device email confirmation, configure the confirmation template with {{ .RedirectTo }}?token_hash={{ .TokenHash }}&type=email; recovery token-hash links must target /auth/callback?token_hash={{ .TokenHash }}&type=recovery. Test both link expiry and single-use behavior with synthetic accounts. Google remains disabled.
+
+## Release and rollback
+No Production promotion is included in N1. Require hosted Auth/recovery evidence, independent security review and explicit release approval. Roll back by restoring the prior Vite deployment and its environment-name mapping; no schema/data rollback is needed. Keep the previous deployment available until staging verification completes.
+
 # 🚀 Langgie Deployment Guide
 
 ## ✅ What's Been Built

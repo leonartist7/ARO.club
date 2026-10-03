@@ -21,6 +21,7 @@ jobs:
       - run: npm ci
       - run: node --test tools/autonomy/core.test.mjs
       - run: npm run lint -- --max-warnings=0
+      - run: npm run type-check
       - run: npm test
       - run: npm run build
 

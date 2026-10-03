@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+'use client';
+import { Link, NavLink, useLocation } from '../../lib/navigation';
 import { BarChart3, Bell, BookOpen, Compass, Globe2, Home, Plus, Search } from 'lucide-react';
 import AroMark from '../brand/AroMark';
 import { AppAvatar } from './AppPrimitives';
@@ -31,7 +32,7 @@ function AppNavItem({ item }) {
   );
 }
 
-export default function AppShell() {
+export default function AppShell({ children }) {
   const location = useLocation();
   const isCreate = location.pathname === '/app/create';
 
@@ -41,7 +42,7 @@ export default function AppShell() {
         <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between px-4 sm:h-20 sm:px-8">
           <Link to="/app" className="flex items-center gap-2.5" aria-label="ARO app home">
             <AroMark size="sm" />
-            <span className="text-lg font-bold tracking-[0.22em]">ARO</span>
+            <span className="aro-wordmark">ARO</span>
           </Link>
 
           <div className="hidden items-center gap-2 text-xs font-semibold text-ink/50 dark:text-bone/50 md:flex">
@@ -58,7 +59,7 @@ export default function AppShell() {
       </header>
 
       <main className="mx-auto min-h-[calc(100vh-5rem)] max-w-[1180px] pb-28">
-        <Outlet />
+        {children}
       </main>
 
       <nav aria-label="Primary app navigation" className="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-bone/95 px-3 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl dark:border-bone/10 dark:bg-gray-950/95">
@@ -66,7 +67,7 @@ export default function AppShell() {
           <AppNavItem item={appNavItems[0]} />
           <AppNavItem item={appNavItems[1]} />
           <NavLink to="/app/create" aria-label="Create or find an opportunity" className={cn('flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-[10px] font-bold uppercase tracking-[0.12em] sm:text-[11px]', isCreate ? 'text-primary-600 dark:text-primary-300' : 'text-ink/45 dark:text-bone/45')}>
-            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-white shadow-[0_7px_24px_rgba(222,67,37,0.28)] dark:border-gray-950', isCreate && 'bg-ink dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
+            <span className={cn('flex h-12 w-12 items-center justify-center rounded-full border-4 border-bone bg-primary-500 text-ink shadow-[0_7px_24px_rgba(244,208,0,0.28)] dark:border-gray-950', isCreate && 'bg-ink text-primary-500 dark:bg-bone dark:text-ink')}><Plus className="h-6 w-6" aria-hidden="true" /></span>
             <span>{isCreate ? 'Close' : 'Create'}</span>
           </NavLink>
           <AppNavItem item={appNavItems[2]} />

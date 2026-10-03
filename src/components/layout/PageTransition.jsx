@@ -1,26 +1,23 @@
-import { Outlet, useLocation } from 'react-router-dom';
+'use client';
+import { useLocation } from '../../lib/navigation';
 import { motion, useReducedMotion } from 'framer-motion';
 
 /**
  * Subtle fade-in / slide-up on route change. Static when reduced-motion.
  */
-export default function PageTransition() {
+export default function PageTransition({ children }) {
   const location = useLocation();
   const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <Outlet />;
-  }
 
   return (
     <motion.div
       key={location.pathname}
-      initial={{ opacity: 0, y: 12 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28, ease: 'easeOut' }}
+      transition={{ duration: reduceMotion ? 0 : 0.28, ease: 'easeOut' }}
       className="animate-fade-in"
     >
-      <Outlet />
+      {children}
     </motion.div>
   );
 }

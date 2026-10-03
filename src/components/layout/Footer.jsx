@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+'use client';
+import { Link } from '../../lib/navigation';
 import { Facebook, Twitter, Instagram, Youtube, ShieldCheck, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import AroMark from '../brand/AroMark';
@@ -64,7 +65,7 @@ export default function Footer() {
               aria-label="ARO home"
             >
               <AroMark size="sm" label="" />
-              <span className="text-xl font-bold tracking-[0.18em] text-ink dark:text-bone">ARO</span>
+              <span className="aro-wordmark text-ink dark:text-bone">ARO</span>
             </Link>
             <p className="text-sm mb-6 max-w-xs text-gray-500 dark:text-gray-400">
               {t('footer.description')}

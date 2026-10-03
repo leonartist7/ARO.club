@@ -1,3 +1,4 @@
+'use client';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { cn } from '../../utils/cn';

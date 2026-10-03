@@ -14,31 +14,31 @@ export default {
         clay: '#B86D4B',
         sky: '#7699A8',
         plum: '#302331',
-        // PRIMARY — ARO Vermilion / Living Red
+        // PRIMARY — ARO Yellow; deep shades keep small text readable.
         primary: {
-          50: '#FFF1EB',
-          100: '#FFDED1',
-          200: '#FFBBA5',
-          300: '#FF8F70',
-          400: '#F45F3B',
-          500: '#DE4325',
-          600: '#BE3219',
-          700: '#992716',
-          800: '#7D2319',
-          900: '#671F19',
+          50: '#FFFDEB',
+          100: '#FFF8BD',
+          200: '#FFF08A',
+          300: '#FFE654',
+          400: '#FFDC28',
+          500: '#F4D000',
+          600: '#806300',
+          700: '#695000',
+          800: '#554100',
+          900: '#463600',
         },
-        // SECONDARY — Saffron / warm signal
+        // SECONDARY — ARO Orange
         secondary: {
-          50: '#FFF8E6',
-          100: '#FCECC2',
-          200: '#F7D982',
-          300: '#EFC14B',
-          400: '#DFA326',
-          500: '#C98A17',
-          600: '#A66B12',
-          700: '#815015',
-          800: '#693F18',
-          900: '#57351A',
+          50: '#FFF5EB',
+          100: '#FFE7CC',
+          200: '#FFCA99',
+          300: '#FFAD66',
+          400: '#FF963D',
+          500: '#F58220',
+          600: '#B74D08',
+          700: '#943D0B',
+          800: '#78330F',
+          900: '#632D10',
         },
         
         // ACCENT — Gold for gamification only
@@ -61,7 +61,7 @@ export default {
       },
       fontFamily: {
         sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['DM Serif Display', 'Georgia', 'serif'],
+        display: ['Noise Order', 'Manrope', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

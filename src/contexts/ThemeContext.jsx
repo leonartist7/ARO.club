@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext(undefined);
@@ -9,22 +10,12 @@ const ThemeContext = createContext(undefined);
  * - Provides toggleTheme function
  */
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    // Check localStorage first
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-
-    return 'light';
-  });
+  const [theme,setTheme]=useState('light');
+  const [ready,setReady]=useState(false);
+  useEffect(()=>{let saved;try{saved=localStorage.getItem('theme');}catch{ /* Storage may be disabled. */ } setTheme(saved==='dark'||saved==='light'?saved:window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light');setReady(true);},[]);
 
   useEffect(() => {
+    if (!ready) return;
     const root = window.document.documentElement;
 
     // Remove both classes first
@@ -34,8 +25,8 @@ export function ThemeProvider({ children }) {
     root.classList.add(theme);
 
     // Save to localStorage
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    try { localStorage.setItem('theme', theme); } catch { /* Storage may be disabled. */ }
+  }, [theme, ready]);
 
   // Listen for system theme changes
   useEffect(() => {

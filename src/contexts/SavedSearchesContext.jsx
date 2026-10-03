@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const SavedSearchesContext = createContext();
@@ -11,6 +12,7 @@ const MAX_SAVED_SEARCHES = 5;
  * Persists to localStorage
  */
 export function SavedSearchesProvider({ children }) {
+  const [storageReady,setStorageReady]=useState(false);
   const [savedSearches, setSavedSearches] = useState([]);
 
   // Load from localStorage on mount
@@ -23,16 +25,18 @@ export function SavedSearchesProvider({ children }) {
     } catch (error) {
       console.error('Failed to load saved searches:', error);
     }
+    setStorageReady(true);
   }, []);
 
   // Save to localStorage whenever savedSearches changes
   useEffect(() => {
+    if(!storageReady)return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(savedSearches));
     } catch (error) {
       console.error('Failed to save searches:', error);
     }
-  }, [savedSearches]);
+  }, [savedSearches, storageReady]);
 
   const saveSearch = (name, filters) => {
     // Check if we've reached the limit

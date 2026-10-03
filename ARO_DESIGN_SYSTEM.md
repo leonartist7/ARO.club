@@ -98,3 +98,7 @@ Keep Tonguee-specific until an approved migration package says otherwise:
 - Tonguee campaign messaging and vertical landing-page compositions.
 
 P1 must specify the smallest component and token changes it requires. No package may use this direction as permission to redesign every existing page.
+
+
+## 2026-09-26 — R2 yellow / orange brand
+Founder authorized yellow as the primary color, orange as secondary, and supplied Noise Order for main titles and ARO branding. See specs/ARO-R2-YELLOW-BRAND.md (v1.0.0) and artifacts/ARO-R2/VERIFICATION.md. Status: IMPLEMENTED locally; no deployment. Existing N1 work and downstream gates remain unchanged.

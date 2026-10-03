@@ -1,3 +1,4 @@
+'use client';
 import { AlertCircle, RefreshCw, WifiOff, FileQuestion } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import Button from './Button';

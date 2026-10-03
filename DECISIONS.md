@@ -219,3 +219,11 @@ This file records durable choices. Package-specific implementation details belon
 **Decision:** Adopt `specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md` v0.2.0 defaults, bounded fictional/local semantics, fixed lab budgets/profile and independent/human review requirements. Execute F1–F7 sequentially on `codex/fv1-visual-release-evidence` in ONE implementation PR after explicit approval. F1 starts from the actual main commit containing the approved SPEC-READY specification; later slices use accepted predecessor commits. The historical product baseline is not an executable F1 base.
 
 **Consequences:** Documentation merge, implementation approval and product merge/release approval remain distinct. Cloud encoder preflight passed; its locked Chromium test binary still requires scoped provisioning after approval. No completed audits rerun, product work dispatched, new planning infrastructure added or I0/P1 gate waived. ADR-028/029 continue to govern.
+
+
+## 2026-09-20 — N1 Next.js and staging accounts
+Founder explicitly approved migration of both ARO.club and FV1-docs, incremental TypeScript, and live email/password accounts on isolated staging first. N1 is authorized before P1 for this bounded work. Production, schema/RLS, Google, payments and connecting synthetic features remain excluded. Evidence: artifacts/ARO-N1/VERIFICATION.md.
+
+
+## 2026-09-26 — R2 yellow / orange brand
+Founder authorized yellow as the primary color, orange as secondary, and supplied Noise Order for main titles and ARO branding. See specs/ARO-R2-YELLOW-BRAND.md (v1.0.0) and artifacts/ARO-R2/VERIFICATION.md. Status: IMPLEMENTED locally; no deployment. Existing N1 work and downstream gates remain unchanged.

@@ -1,3 +1,5 @@
+> **2026-09-20 N1 authorization:** Founder approved Next.js App Router migration and isolated staging email/password accounts in ARO.club and FV1-docs. N1 may run before P1 for this bounded migration. See specs/ARO-N1-NEXTJS-PLATFORM.md. Implementation/verification evidence is in artifacts/ARO-N1/VERIFICATION.md. No production, schema, Trust, money, Google or downstream product unlock is authorized. Historical stack/sequence statements below are superseded only within N1.
+
 # ARO — Architecture Direction
 
 ## Scope and posture

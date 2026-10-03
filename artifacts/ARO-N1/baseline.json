@@ -1,0 +1,15 @@
+{
+  "repository": "ARO.club",
+  "revision": "606d06bcded8e0afde0f2f4eca35a4986650ce5d",
+  "branch": "codex/nextjs-migration",
+  "framework": "Vite",
+  "lint": "pass",
+  "unitTests": 73,
+  "build": "pass",
+  "mainChunkKB": 604.45,
+  "mainChunkGzipKB": 193.55,
+  "cssKB": 129.34,
+  "browserBaseline": "Original production build reconstructed from recorded revision; see baseline-browser.log and baseline-performance.json.",
+  "browserChecks": 25,
+  "browserResult": "pass"
+}

@@ -4,7 +4,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { API, requireCondition } from './boundary.mjs';
-import { UX0_PROTOTYPE_MODE } from '../../src/config/ux0.js';
+const UX0_PROTOTYPE_MODE = false; // N1 verifies real accounts on disposable local CI only.
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const base = 'http://127.0.0.1:5173';
@@ -34,20 +34,22 @@ async function waitForServer() {
 export async function exerciseAuthenticatedBrowser({ anonKey, email, password }) {
   requireCondition(process.env.CI === 'true', 'CI_ONLY_BROWSER');
   mkdirSync(screenshotDir, { recursive: true });
-  const vite = fileURLToPath(new URL('../../node_modules/vite/bin/vite.js', import.meta.url));
+  const nextCli = fileURLToPath(new URL('../../node_modules/next/dist/bin/next', import.meta.url));
   const appEnvironment = {
     ...process.env,
-    VITE_SUPABASE_URL: API,
-    VITE_SUPABASE_ANON_KEY: anonKey,
+    NEXT_PUBLIC_ENABLE_STAGING_ACCOUNTS: 'true',
+    NEXT_PUBLIC_VERCEL_ENV: '',
+    NEXT_PUBLIC_SUPABASE_URL: API,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: anonKey,
   };
-  const build = spawnSync(process.execPath, [vite, 'build'], {
+  const build = spawnSync(process.execPath, [nextCli, 'build'], {
     cwd: root,
     env: appEnvironment,
     stdio: 'ignore',
-    timeout: 120000,
+    timeout: 300000,
   });
   requireCondition(!build.error && build.status === 0, 'BROWSER_BUILD_FAILED');
-  const server = spawn(process.execPath, [vite, 'preview', '--host', '127.0.0.1', '--port', '5173'], {
+  const server = spawn(process.execPath, [nextCli, 'start', '--hostname', '127.0.0.1', '--port', '5173'], {
     cwd: root,
     stdio: 'ignore',
     detached: true,

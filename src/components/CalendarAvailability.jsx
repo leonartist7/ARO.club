@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -110,7 +111,7 @@ export default function CalendarAvailability({
           'aspect-square p-1 md:p-2 rounded-lg text-sm md:text-base font-medium transition-all relative group',
           {
             // Selected state
-            'bg-primary-500 text-white shadow-md': selected,
+            'bg-primary-500 text-ink shadow-md': selected,
             // Available state
             'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/30':
               available && !past && !selected,

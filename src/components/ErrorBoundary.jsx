@@ -1,3 +1,4 @@
+'use client';
 import { Component } from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import Button from './ui/Button';
@@ -49,7 +50,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      const isDev = import.meta.env.DEV;
+      const isDev = process.env.NODE_ENV === 'development';
 
       return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">

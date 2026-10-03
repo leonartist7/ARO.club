@@ -1,3 +1,15 @@
+# ARO — Next.js application
+
+Use Node.js 24.15 or newer and npm.
+
+`npm ci`, `npm run dev` (http://localhost:5173), `npm run build`, `npm start`.
+
+Staging accounts: create ignored `.env.staging.local` from `.env.example`, provide the isolated staging publishable key, then run `npm run dev:staging`. Default development leaves accounts unavailable. See [verification and remaining gates](artifacts/ARO-N1/VERIFICATION.md).
+
+Validation: `npm run lint`, `npm run type-check`, `npm test`, `npm run test:e2e`.
+
+See [N1 migration specification](specs/ARO-N1-NEXTJS-PLATFORM.md) and [deployment instructions](DEPLOYMENT.md). Existing design and product specifications remain authoritative outside the explicitly approved N1 stack/account scope.
+
 # ARO — The Human Opportunity Network
 
 **Learn languages through real experiences with local teachers in cities around the world.**

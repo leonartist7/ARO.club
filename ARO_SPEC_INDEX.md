@@ -1,3 +1,5 @@
+> **2026-09-20 N1 authorization:** Founder approved Next.js App Router migration and isolated staging email/password accounts in ARO.club and FV1-docs. N1 may run before P1 for this bounded migration. See specs/ARO-N1-NEXTJS-PLATFORM.md. Implementation/verification evidence is in artifacts/ARO-N1/VERIFICATION.md. No production, schema, Trust, money, Google or downstream product unlock is authorized. Historical stack/sequence statements below are superseded only within N1.
+
 # ARO — Canonical Spec Index
 
 > **2026-09-08 FV-1 approval:** [FV-1 v0.2.0](specs/ARO-FV-1-VISUAL-RELEASE-EVIDENCE.md) is **SPEC-READY**. Founder approved PR #40 documentation merge and F1–F7 sequential implementation on ONE isolated branch/PR, against candidate `a576640cc5b9828486d8bdd0f970636b3ff07138` (reviewed head `78005892071b7996917f8f10d04e5cd601f124d2`). Bind actual documentation merge SHA before F1; use accepted predecessor SHAs thereafter. No product implementation or full verification is claimed. Independent review, human NVDA testing and founder visual review remain pending; release/product merge approval is WITHHELD. I0/P1 and later gates are unchanged.
@@ -314,3 +316,7 @@ ARO-H0: snapshot publication and audit dispatch only. Specification: `specs/ARO-
 ## AUTO0 — repository autonomy enabling package
 
 `specs/ARO-AUTO0-AUTONOMY-FOUNDATION.md` v1.0.0: SPEC-READY for repository orchestration and memory under the September 8 founder request; implementation/evidence tracked in `ARO_IMPLEMENTATION_STATUS.md`. Does not authorize ARO-A1 AI runtime, FV-1 product writing or bypass I0/P1. `ARO_AUTONOMY.md` and `memory/HOME.md` are navigation/evidence, not higher authority.
+
+
+## 2026-09-26 — R2 yellow / orange brand
+Founder authorized yellow as the primary color, orange as secondary, and supplied Noise Order for main titles and ARO branding. See specs/ARO-R2-YELLOW-BRAND.md (v1.0.0) and artifacts/ARO-R2/VERIFICATION.md. Status: IMPLEMENTED locally; no deployment. Existing N1 work and downstream gates remain unchanged.
