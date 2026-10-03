@@ -12,10 +12,10 @@ function GuideArtwork({ guide, copy }) {
       : <img src={base + '192.webp'} srcSet={base + '192.webp 192w, ' + base + '384.webp 384w'} sizes="(min-width: 1024px) 160px, 96px" width="192" height="192" alt="" onError={() => setFailed(true)} className="h-full w-full object-contain" />}
   </div>;
 }
-export default function BuilderGuide({ state, dispatch, locale, copy }) {
+export default function BuilderGuide({ state, dispatch, locale, copy, step = 'shape' }) {
   const guide = getGuide(state.categoryId);
   if (!guide) return null;
-  const prompt = getGuidance(state.categoryId, 'shape', locale)?.prompt;
+  const prompt = getGuidance(state.categoryId, step, locale)?.prompt;
   return <aside aria-label={copy.guide} className="mt-6 rounded-2xl border border-control-border bg-surface-canvas p-4 dark:bg-surface-darkCard">
     <Button type="button" variant="ghost" aria-expanded={!state.guideMinimized} onClick={() => dispatch({ type: 'MINIMIZE_GUIDE', minimized: !state.guideMinimized })} className="motion-reduce:transition-none">{state.guideMinimized ? copy.showGuide : copy.hideGuide}</Button>
     {!state.guideMinimized && <div className="mt-3 flex items-center gap-4">

@@ -104,3 +104,5 @@ Next: Phase 3 F2, commit a narrowed SPEC-READY Choose/Shape spec before source c
 
 ## Phase 3 checkpoint
 CB1-F2 v1.0.0 source ed6ddcb verifies isolated Choose/Shape, localized search/example/manual/optionalguide, cancellation-safe suggestions/category changes and boundary/accessibility checks. 239tests/43buildercases,30browsercases/3keyboardpaths/12component captures pass. Phase2main742cb422 is observed integrated; live#103 controls final F2 checks/main merge. Items6–7 are Phase4F3; item8 connects only a complete accepted F2/F3 flow underF4. Follow the livePR and executionplan to resume without repeating merged work.
+
+2026-10-03 Phase4 checkpoint: Phase3#103 integrated at1f3d403; isolated F3 Details/Review/Ready IMPLEMENTED / PARTIAL VERIFICATION under d3b90c4 authority. Local258tests/62buildercases pass, three existing skips. Browser/capture/review/final CI/main gates remain; Phase5 connection remains separate. See F3 evidence and execution plan.

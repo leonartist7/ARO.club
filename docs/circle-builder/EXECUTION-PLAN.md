@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
-Version 1.1.0 · 2026-10-01 · Owner: ARO founder
-Status: ACTIVE. Phase 1 integrated at2f06fa3; Phase 2 integrated at742cb422 (#102). Phase3 isolated Choose/Shape source is VERIFIED; #103 live exact-head checks and merge state control final main integration. Phase4 Details/Review is next after observed integration and founder request.
+Version 1.2.0 · 2026-10-03 · Owner: ARO founder
+Status: ACTIVE. Phases1–3 integrated; #103 merged at1f3d403/tree279ce458 after finalca05a50 allfive checks. Phase4 CB1-F3 v1.0.0 IMPLEMENTED / PARTIAL VERIFICATION; browser/review/final delivery gates remain. Phase5 route/shell integration is next after Phase4 acceptance.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: read #103's live state. If open, accept final exact-head checks/review and merge; if merged, Phase3 is integrated. On founder request begin Phase4 F3 from actual main, committing its narrowed SPEC-READY authority before source edits.
+Current next task: complete Phase4 CB1-F3 verification/reviews/evidence/final exact-head CI and normal protected merge. Then, on founder request, Phase5 CB1-F4 route/shell/release verification.
 
 ## Phase 1 verification and review checkpoint
 
@@ -98,5 +98,14 @@ These are separate packages/branches/reviews, not extra work silently included i
 - [x] Build isolated Choose/Shape/dictionary/manual/example/optionalguide and cancellation-safe proposal/category paths.
 - [x] Local lint/types/build/239tests;43buildercases. Hosted30layout/theme/locale cases,3manualkeyboardpaths,12screenshots,artfailure,canary/contrast/focus checks accepted ated6ddcb.
 - [x] Independent privacy/Trust and design/a11y review; scoped Inputborder finding corrected; source/artwork accepted.
-- [ ] Accept final#103 exact-head checks and normal protected merge; verify actual main tree. Read livePR before repeating any delivery action.
+- [x] #103 finalca05a50 passed allfive checks; two findings corrected/resolved. Normal merge1f3d403 observed on main, identical tested tree279ce458.
 Authority: ../../specs/ARO-CB1-F2-CHOOSE-SHAPE.md. Evidence: ../../artifacts/ARO-CB1-F2/VERIFICATION.md. New screens remain unconnected; whole route/shell/privacy/performance release staysF4. NextPhase4 F3 Details/Review/ready; 1–4/date/time/zone/reviewreturn deltas are not silently included inF2.
+
+## Phase 4 checkpoint and recovery
+- [x] Observe Phase3 merge1f3d403/testedtree279ce458; preserve ORG1#101 and AUTH3#98 ownership.
+- [x] Commit narrowed F3 v1.0.0 SPEC-READY authority atd3b90c4 before runtime.
+- [x] Build isolated Details/live sketch/Review/Ready and exact reducer/locale deltas.
+- [x] Local258tests/62buildercases and lint pass; reviews corrected focus-stealing, date/time keyboard separators, fixed-offset zones and cross-section invalid edit recovery.
+- [ ] Accept browser/captures/build/types and final independent reviews.
+- [ ] Pass exact final-head five jobs and merge normally; confirm actual main/tested tree.
+Authority: ../../specs/ARO-CB1-F3-DETAILS-REVIEW.md. Evidence: ../../artifacts/ARO-CB1-F3/VERIFICATION.md. All new screens remain unconnected; Phase5 owns Create route/shell/full exit audit/release. No drafts/publishing claim.

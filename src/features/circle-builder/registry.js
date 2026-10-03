@@ -65,8 +65,10 @@ export const CATEGORY_REGISTRY = freeze([
 ]);
 
 export const VENUE_TYPES = freeze(['to-decide', 'indoor-cafe', 'public-studio', 'public-rehearsal-space', 'public-library', 'other-public-venue']);
-export const SHARED_FIELDS = freeze(['title', 'outcome', 'audience', 'placeDescription', 'venueType', 'groupSize', 'durationMinutes']);
-export const TEXT_LIMITS = freeze({ title: 80, outcome: 240, audience: 160, placeDescription: 160, categoryAnswer: 160 });
+export const DETAILS_GROUPS = freeze({ people: ['audience', 'groupSize'], place: ['venueType', 'placeDescription'], time: ['durationMinutes', 'date', 'time', 'timeZone'] });
+export const getDetailsGroupForField = field => Object.keys(DETAILS_GROUPS).find(group => DETAILS_GROUPS[group].includes(field)) ?? null;
+export const SHARED_FIELDS = freeze(['title', 'outcome', 'audience', 'placeDescription', 'venueType', 'groupSize', 'durationMinutes', 'date', 'time', 'timeZone']);
+export const TEXT_LIMITS = freeze({ title: 80, outcome: 240, audience: 160, placeDescription: 160, timeZone: 80, categoryAnswer: 160 });
 export const SUPPORTED_LOCALES = freeze(['en', 'fr', 'es']);
 
 export function builderLocale(locale) {

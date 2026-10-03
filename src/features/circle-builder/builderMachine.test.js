@@ -114,7 +114,7 @@ describe('Circle Builder local state foundation', () => {
       expect(validateSketch(set(filled(), 'groupSize', value)).groupSize).toBe('positive-whole-number');
     }
     expect(validateSketch(set(filled(), 'durationMinutes', '241')).durationMinutes).toBe('positive-whole-number');
-    expect(validateSketch(set(filled(), 'groupSize', '50')).groupSize).toBeUndefined();
+    expect(validateSketch(set(filled(), 'groupSize', '4')).groupSize).toBeUndefined();
     expect(validateSketch(set(filled(), 'durationMinutes', '240')).durationMinutes).toBeUndefined();
   });
   it('blocks review on invalid numeric or private venue values', () => {
@@ -209,7 +209,7 @@ describe('Circle Builder local state foundation', () => {
     let state = dispatch({ ...filled(), step: 'review' }, 'EDIT', { step: 'shape' });
     expect(state.fields.title).toBe('A shared moment');
     state = dispatch(state, 'BACK');
-    expect(state.step).toBe('choose');
+    expect(state.step).toBe('review');
     state = dispatch({ ...state, step: 'ready' }, 'EDIT', { step: 'details' });
     expect(state.step).toBe('details');
     expect(state.fields.outcome).toBe('Practice together.');
