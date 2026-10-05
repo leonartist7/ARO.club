@@ -1,0 +1,65 @@
+{
+  "base": "f37dc084d7172415f581a41e90d2edd9ba3738b9",
+  "source": [
+    {
+      "path": "src/lib/teacherApplications.js",
+      "gitBlob": "e310fb23f55e3cec1f102bef5d4a99e4f1b1c64c",
+      "sha256": "7ac002077b9c6c8a95eccb2236fed0f25946a5d4962b0fc52fa425ec0f661e9d"
+    },
+    {
+      "path": "src/lib/admin.js",
+      "gitBlob": "85afe03731c20c1ee10bb9e062999a3b9e4950bd",
+      "sha256": "8dd74bde99e3a4f086f4feb76ce53bd3450ad84635d13a1739b7d1fa2e48096a"
+    },
+    {
+      "path": "src/views/TeacherOnboarding.jsx",
+      "gitBlob": "3b20c4d2f71a32111ca50c10b5c44ecb2257f9d1",
+      "sha256": "99b3e453989dd9b2802a898c8d243292346eae3a89c5422de3e74a49afbb600b"
+    },
+    {
+      "path": "src/app/(public)/profile/page.tsx",
+      "gitBlob": "8459242e3f9abf5350446950ae9036835945e433",
+      "sha256": "d70b60aabbb1d2f95d6dcddcff1f4ebb51ee376c5064e44a017035839bf5abf4"
+    },
+    {
+      "path": "src/app/app/profile/page.tsx",
+      "gitBlob": "27c6861c81aa5426a8a7142a8fb7f458d317a339",
+      "sha256": "0528071d1bd08c3ec8ea0111596758a1b0d783edaaf832fa3bcf29e75c925f35"
+    },
+    {
+      "path": "src/lib/auth/config.ts",
+      "gitBlob": "b4baf6eaad530b231df7b5a74e9757aeadd6a231",
+      "sha256": "320f7e36c306d17914462f85f8dab76741a3e59d9ae86a59f6183d5484d5342f"
+    },
+    {
+      "path": "tools/ci/auth.mjs",
+      "gitBlob": "43e71287aefcc7fea7e013864e8a6bde791e567e",
+      "sha256": "a5c644e740dc29e69c8e24d5c44511edeb90a77e3b4165c223c952ee92d1d0ed"
+    },
+    {
+      "path": "tools/ci/browser.mjs",
+      "gitBlob": "f13147bcf519b5ffa3acddeee79292a85c3c35b4",
+      "sha256": "2e7d8f5ca3bbc600dc057e4557bf3106c27a59e09978326549c24fad45910d1e"
+    },
+    {
+      "path": "tools/ci/run.mjs",
+      "gitBlob": "fc2e8c2d203ff3b5649e1ae6d20beb4965bcd793",
+      "sha256": "7dc969606216a587aeef235a995c129003c12a82503293d564a82e5c53f97a7f"
+    },
+    {
+      "path": "tools/ci/supabase/migrations/20260916103000_i02_corrective_repairs.sql",
+      "gitBlob": "e8732358851d143eec93d477c9dca8ec3d45cd83",
+      "sha256": "728784b17218a67ae8362f2520c481f6321ca29bf7165541dcca138713e1a52c"
+    },
+    {
+      "path": "tools/ci/supabase/migrations/20260916113000_i02_protect_teacher_verification_history.sql",
+      "gitBlob": "96e6760d2b2c901736bdc9863c4d3582e6341687",
+      "sha256": "f1073b36c2819856fad0287feb5262a2666082be6b6c90251270bbb7cddb2513"
+    },
+    {
+      "path": "tools/ci/supabase/tests/application.test.sql",
+      "gitBlob": "d758e429731c5ac1188a29da87ada0f6de6fd076",
+      "sha256": "4314befac0eb07ccf960ba98b1816db0f76e24d2e7f7c47bc34d11a707dbbc8a"
+    }
+  ]
+}
