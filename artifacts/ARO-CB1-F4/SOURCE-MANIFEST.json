@@ -1,0 +1,18 @@
+{
+  "base": "f7adc10a40fa5388b8b1956bd80160b7f72cc990",
+  "spec_authority": "038881c73ded7e3fb20e6b4bfbf9fb85c72bb4ad",
+  "sha256": {
+    "src/views/AppCreatePage.jsx": "21a4fff627b27e5eb3b1cd62d3f4c660ecb93a89bac49b28e2960a387f489607",
+    "src/features/circle-builder/BuilderExitGuard.jsx": "a3c96343381dfcb478c60704f41448a3f09541cce8ae1b681075681c2c122416",
+    "src/lib/navigationGuard.ts": "bdac6700b5b201756cf722ced36e585f1a0a4060e071782c5a93803a7092a098",
+    "src/lib/navigation.tsx": "a447cfa23faadf8acd636cd31392ac49d0dd952726c02e826f28092256f373f4",
+    "src/i18n/circleBuilder.js": "0383d4bde37c1712142344f557243e68b57a5ca9c146a3107234ec20c8d6e84f",
+    "src/views/AppCreatePage.test.jsx": "c921badbc6ab249367b0e30b0bb3038f59dd3fd920ab5d13df3eb25515278ade",
+    "src/lib/navigationGuard.test.ts": "13c54834ef4bd2c53b3b2aa19439ed2fea1d40f57d48db699c0a5544a82320d4",
+    "src/views/AppDiscovery.test.jsx": "b6081a36508386189fa27cb69ba749df4b4c6c72be17dee0719602601fc09d44",
+    "scripts/verify-cb1-f4.mjs": "b99890199b762e3b62c1d5f5fb0c278cec1c7ce495cd45979d9174bcde0c011f",
+    "scripts/measure-cb1-create.mjs": "2be906e614c22176411746c3615e599819faafccf4644703bd09d0f1c6295766",
+    ".github/workflows/quality.yml": "6be62cd648a56c9128c5539469a8e1079e796353553372a3b9b96fb0fc7d3125",
+    ".gitignore": "d67a64f725dec32e89f94a210de70975b182380ead3ddf6d3a4a6afd1341e117"
+  }
+}

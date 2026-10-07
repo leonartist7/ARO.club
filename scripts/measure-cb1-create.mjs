@@ -96,7 +96,13 @@ try {
         assert(metrics.jsRequests > 0 && metrics.jsEncodedBytes > 0, 'JS entries must be observable');
         assert.deepEqual(errors, []);
         assert.deepEqual(writes, []);
-        assert.equal(metrics.renderedImages.length, 1, 'Existing Create must expose one rendered illustration');
+        const guided = process.env.ARO_CB1_GUIDED_CREATE === 'true';
+        assert.equal(metrics.renderedImages.length, guided && mode === 'gather' ? 0 : 1, 'Create must expose exactly its selected artwork');
+        if (guided) {
+          assert.equal(await page.locator('#builder-search').count(), 1, 'Guided mode must measure the connected builder');
+          const guide = mode === 'learn' ? 'tonguee' : mode === 'share' ? 'squilly' : null;
+          assert(metrics.renderedImages.every(img => img.path.startsWith('/brand/circle-builder/' + guide + '-welcome-')));
+        }
         assert(metrics.renderedImages.every(img => img.loaded));
         await context.close();
       }

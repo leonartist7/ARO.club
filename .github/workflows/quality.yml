@@ -64,6 +64,8 @@ jobs:
           retention-days: 14
       - name: Circle Builder Create measurement
         run: node scripts/measure-cb1-create.mjs
+        env:
+          ARO_CB1_GUIDED_CREATE: 'true'
       - name: Retain Circle Builder baseline
         if: always()
         uses: actions/upload-artifact@v4
@@ -86,6 +88,16 @@ jobs:
           retention-days: 14
       - name: Circle Builder Details and Review isolation checks
         run: node scripts/verify-cb1-f3.mjs
+      - name: Circle Builder connected route checks
+        run: node scripts/verify-cb1-f4.mjs
+      - name: Retain Circle Builder connected route evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-f4-route
+          path: artifacts/ARO-CB1-F4/browser
+          if-no-files-found: error
+          retention-days: 14
       - name: Retain Circle Builder Details and Review evidence
         if: always()
         uses: actions/upload-artifact@v4

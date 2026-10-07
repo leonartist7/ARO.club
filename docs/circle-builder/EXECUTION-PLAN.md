@@ -107,5 +107,8 @@ Authority: ../../specs/ARO-CB1-F2-CHOOSE-SHAPE.md. Evidence: ../../artifacts/ARO
 - [x] Build isolated Details/live sketch/Review/Ready and exact reducer/locale deltas.
 - [x] Local258tests/62buildercases and lint pass; reviews corrected focus-stealing, date/time keyboard separators, fixed-offset zones and cross-section invalid edit recovery.
 - [x] Accept local/hosted30browsercases,36actualcaptures,258tests/lint/types/build and both final independent reviews; source d8e5146 allfive jobs PASS.
-- [ ] Pass exact final-head five jobs and merge normally; confirm actual main/tested tree.
+- [x] Observed #104 merged at f7adc10a40fa5388b8b1956bd80160b7f72cc990 from delivery d376251a5b87490655d1d61146de06a11af76942 on 2026-10-07; main receipt confirms Phase4 integration.
 Authority: ../../specs/ARO-CB1-F3-DETAILS-REVIEW.md. Evidence: ../../artifacts/ARO-CB1-F3/VERIFICATION.md. All new screens remain unconnected; Phase5 owns Create route/shell/full exit audit/release. No drafts/publishing claim.
+
+## Phase5 ongoing checkpoint — 2026-10-07
+CB1-F4 v1.0.0 source is implemented on codex/cb1-f4-integration-20261007; connected flow, exit guard, legacy mapping and nine regressions. 267 tests PASS/3 skips; lint/types/build PASS. Required browser archive download failed, so hosted/full-route/canary/captures/paired-budget/independent/final-head gates remain pending. Resume same PR and artifacts/ARO-CB1-F4/VERIFICATION.md. Do not mark CB1 VERIFIED/SHIPPED from component tests. The scheduled build task resumes this checkpoint; daily quality is read-only.
