@@ -54,6 +54,8 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
   context.on('request', request => {
     if (!['GET', 'HEAD'].includes(request.method())) writes.push(request.method());
     const url = new URL(request.url());
+    const auditId = requestChecks.length + 1;
+    const auditLabel = `${auditId} ${request.resourceType()} ${url.origin}`;
     const intercepted = url.pathname === '/f4-download.txt' || (failGuide && url.pathname.startsWith('/brand/circle-builder/'));
     // Aborted/fulfilled fixtures send no outbound request and can lack Chromium's raw-header event.
     // Audit their provided headers plus the existing cookie canary check; all real requests use allHeaders.
@@ -61,7 +63,7 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
     requestChecks.push((intercepted ? Promise.resolve(request.headers()) : request.allHeaders()).then(headers => {
       if (intercepted) providedHeaderAudits++; else rawHeaderAudits++;
       if ([request.url(), request.postData(), JSON.stringify(headers)].some(text => text?.includes(canary))) leakage.push('request');
-    }).catch(error => failures.push('request audit: ' + error.message)));
+    }).catch(error => failures.push(`request audit ${auditLabel}: ${error.message}`)));
   });
   context.on('page', page => {
     page.on('pageerror', error => failures.push(error.message));
@@ -225,6 +227,7 @@ try {
       assert.equal(popup.url(), external); assert.equal(await popup.title(), 'Synthetic exit');
       popupAudits.push({ activation: target, url: popup.url(), title: await popup.title(), headerAudit: 'allHeaders' });
       assert.equal(await page.getByRole('dialog').count(), 0); assert.equal(await page.locator('#builder-title').inputValue(), canary);
+      await settleRequestChecks();
       await popup.close();
     }
     probe = await addLink(page, { href: base + '/f4-download.txt', download: true });
@@ -237,6 +240,7 @@ try {
     assert.equal(await page.getByRole('dialog').count(), 1, 'no nested exit during reset'); await page.keyboard.press('Escape');
     await audit(page, 'external-cancel-and-modified');
     await probe.click(); await button(page, copy.discardSketch).click(); await page.waitForURL(external);
+    await settleRequestChecks();
     extended.push({ externalCancelFocus: true, externalDiscard: true, fragment: true, newTab: true, controlModified: true, download: true, noNestedDialogs: true });
     await closeCase(context);
   }
@@ -248,8 +252,9 @@ try {
     assert.equal(await page.evaluate(() => window.__f4UnloadCount()), 0);
     await button(page, CATEGORY_REGISTRY[0].label.en).click(); await button(page, copy.chooseNext).click(); await page.locator('#builder-title').fill(canary);
     assert.equal(await page.evaluate(() => window.__f4UnloadCount()), 1);
-    if (action === 'reload') { await page.reload({ waitUntil: 'networkidle' }); await button(page, CATEGORY_REGISTRY[0].label.en).click(); await button(page, copy.chooseNext).click(); assert.equal(await page.locator('#builder-title').inputValue(), ''); }
-    else { await page.goBack({ waitUntil: 'networkidle' }); await page.waitForURL(base + '/app/world'); assert.equal(await page.getByRole('dialog').count(), 0); }
+    await settleRequestChecks();
+    if (action === 'reload') { await page.reload({ waitUntil: 'networkidle' }); await settleRequestChecks(); await button(page, CATEGORY_REGISTRY[0].label.en).click(); await button(page, copy.chooseNext).click(); assert.equal(await page.locator('#builder-title').inputValue(), ''); }
+    else { await page.goBack({ waitUntil: 'networkidle' }); await page.waitForURL(base + '/app/world'); await settleRequestChecks(); assert.equal(await page.getByRole('dialog').count(), 0); }
     await audit(page, action); extended.push({ action, memoryLossDisclosed: true, canary: true }); await closeCase(context);
   }
   await settleRequestChecks();
