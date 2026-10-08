@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: accept #104 final delivery-head five checks, normal protected merge and main/tested-tree readback. Then, on founder request, Phase5 CB1-F4 route/shell/release verification.
+Current next task: resume draft #105 CB1-F4 at the live remote head; #104 is merged at f7adc10. Resolve actual browser/paired-performance findings and obtain independent acceptance before normal exact-head integration. See the latest dated checkpoint below.
 
 ## Phase 1 verification and review checkpoint
 
@@ -112,3 +112,9 @@ Authority: ../../specs/ARO-CB1-F3-DETAILS-REVIEW.md. Evidence: ../../artifacts/A
 
 ## Phase5 ongoing checkpoint — 2026-10-07
 CB1-F4 v1.0.0 source is implemented on codex/cb1-f4-integration-20261007; connected flow, exit guard, legacy mapping and nine regressions. 267 tests PASS/3 skips; lint/types/build PASS. Required browser archive download failed, so hosted/full-route/canary/captures/paired-budget/independent/final-head gates remain pending. Resume same PR and artifacts/ARO-CB1-F4/VERIFICATION.md. Do not mark CB1 VERIFIED/SHIPPED from component tests. The scheduled build task resumes this checkpoint; daily quality is read-only.
+
+## Phase5 verification continuation — 2026-10-08
+Fresh isolated checkout, remote main f7adc10 and PR#105 ownership checked; no competing writer observed. Runtime source 0aec1dd passed Quality 37694022890/platform 37694022772, including the original 30 routecases. Desktop measured CLS 0.011363678355275847 exceeded the unchanged0.01 budget; collection success is not release acceptance.
+Spec v1.0.1 verification-only amendment published bcb17b9 before verification source 5bf38b1. Added extended real-route privacy/navigation/keyboard/guide-failure evidence and paired immutable-base/current performance comparison with provenance and no discarded outliers. Local267 tests/3existing skips,24autonomytests,4 comparator tests,lint/types/build/script syntax/diff pass. Pinned local browser install still fails invalid archives. Fresh CI37736878000/37736878009 pending. Independent review requested on the same draft PR; no acceptance or merge claimed. Exact paths and next action: ../../artifacts/ARO-CB1-F4/VERIFICATION.md.
+
+Measured repair: source 27a03a8/Quality 37737629252 pairedperformancePASS against actual basef7adc10, maximumCLS 0.004959506064341369. Prior0.011363678355275847 failures retained. BoundedCreatewrapper reserves desktop disclosure space, accepted shared components/contracts remain unchanged. Latestrouteverification source 186ced7/Quality 37737860191/platform 37737860312 pending. No VERIFIED/SHIPPED/merge claim; independent reviews still required.

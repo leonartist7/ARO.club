@@ -11,9 +11,9 @@ const output = join(process.cwd(), 'artifacts/ARO-CB1-F4/browser');
 await mkdir(output, { recursive: true });
 const { base, server, output: serverOutput } = await startProductionServer(3125);
 const canary = 'F4-PRIVATE-' + randomUUID(), cases = [], extended = [], failures = [], leakage = [], writes = [], audits = [];
-const requestChecks = [], inputToPaintMs = [];
+const requestChecks = [], inputToPaintMs = [], interceptedHeaderAudits = [];
 const initialStorage = new WeakMap();
-let browser;
+let browser, completed = false;
 const button = (page, name) => page.getByRole('button', { name, exact: true });
 async function check(page) {
   const builderRoute = new URL(page.url()).pathname === '/app/create';
@@ -25,7 +25,7 @@ async function check(page) {
   assert(!(await page.context().cookies()).some(cookie => cookie.value.includes(canary)));
   assert(!serverOutput().includes(canary), 'no canary in production server output');
 }
-async function newCase({ width = 360, height = 568, theme = 'light', locale = 'en', motion = 'reduce' } = {}) {
+async function newCase({ width = 360, height = 568, theme = 'light', locale = 'en', motion = 'reduce', failGuide = false } = {}) {
   const context = await browser.newContext({ viewport: { width, height }, reducedMotion: motion, acceptDownloads: true });
   await context.addInitScript(({ theme, locale }) => {
     if (!['http:', 'https:'].includes(location.protocol)) return;
@@ -38,7 +38,12 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
   }, { theme, locale });
   context.on('request', request => {
     if (!['GET', 'HEAD'].includes(request.method())) writes.push(request.method());
-    requestChecks.push(request.allHeaders().then(headers => {
+    const url = new URL(request.url());
+    const intercepted = url.hostname === 'cb1-f4.invalid' || url.pathname === '/f4-download.txt' || (failGuide && url.pathname.startsWith('/brand/circle-builder/'));
+    // Aborted/fulfilled fixtures send no outbound request and can lack Chromium's raw-header event.
+    // Audit their provided headers plus the existing cookie canary check; all real requests use allHeaders.
+    if (intercepted) interceptedHeaderAudits.push({ host: url.hostname, path: url.pathname, mode: 'provided headers; locally intercepted, no outbound transport' });
+    requestChecks.push((intercepted ? Promise.resolve(request.headers()) : request.allHeaders()).then(headers => {
       if ([request.url(), request.postData(), JSON.stringify(headers)].some(text => text?.includes(canary))) leakage.push('request');
     }).catch(error => failures.push('request audit: ' + error.message)));
   });
@@ -50,6 +55,11 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
   const page = await context.newPage();
   page.on('dialog', dialog => { assert.equal(dialog.type(), 'beforeunload'); void dialog.accept(); });
   return { context, page, copy: getCircleBuilderCopy(locale) };
+}
+async function closeCase(context) {
+  await Promise.all(context.pages().map(page => page.waitForLoadState('networkidle')));
+  await Promise.all(requestChecks);
+  await context.close();
 }
 async function audit(page, stage) {
   await check(page);
@@ -118,7 +128,7 @@ try {
     await button(page, category.label[locale]).click(); await shellExit.click(); await button(page, copy.discardSketch).click();
     await page.waitForURL(base + '/app/world'); await check(page);
     cases.push({ width, theme, locale, group: category.id, path: theme === 'light' ? 'example' : 'manual', targetedEdit: true, exitCancelFocus: true, discard: true, reset: true, canary: true });
-    await context.close();
+    await closeCase(context);
   }
   // Real legacy entries, including empty/invalid modes, never fill sketch answers.
   for (const [mode, category] of [['learn', 'languages'], ['share', 'skills'], ['gather', null], ['unknown', null], ['', null]]) {
@@ -128,11 +138,11 @@ try {
     assert.equal(await page.locator('nav a[href="/app/create"]').count(), 0);
     await button(page, CATEGORY_REGISTRY[0].label.en).click(); await button(page, copy.chooseNext).click();
     assert.equal(await page.locator('#builder-title').inputValue(), ''); assert.equal(await page.locator('#builder-outcome').inputValue(), '');
-    extended.push({ legacyMode: mode || 'absent', selected: category, unfilled: true }); await context.close();
+    extended.push({ legacyMode: mode || 'absent', selected: category, unfilled: true }); await closeCase(context);
   }
   // Every guide fails locally; all manual paths stay keyboard-operable on a short phone.
   for (const category of CATEGORY_REGISTRY) {
-    const { context, page, copy } = await newCase({ theme: 'dark', motion: 'no-preference' });
+    const { context, page, copy } = await newCase({ theme: 'dark', motion: 'no-preference', failGuide: true });
     let artRequests = 0;
     await context.route('**/brand/circle-builder/*.webp', route => { artRequests++; return route.abort(); });
     await page.goto(base + '/app/create', { waitUntil: 'networkidle' });
@@ -155,7 +165,8 @@ try {
     await activate(page, button(page, copy.hideGuide));
     await activate(page, button(page, copy.shapeNext));
     for (const [group, field] of [['people', 'audience'], ['place', 'placeDescription'], ['time', 'durationMinutes']]) {
-      await activate(page, button(page, group === 'time' ? copy.timeGroup : copy[group]));
+      const groupButton = button(page, group === 'time' ? copy.timeGroup : copy[group]);
+      if (await groupButton.getAttribute('aria-expanded') !== 'true') await activate(page, groupButton);
       await tabTo(page, page.locator('#builder-' + field)); await page.keyboard.type(field === 'durationMinutes' ? '45' : canary);
     }
     await activate(page, button(page, copy.detailsNext)); await audit(page, 'keyboard-review');
@@ -166,7 +177,7 @@ try {
     assert(artRequests >= 1 && artRequests <= 3, 'fallback must not enter a retry loop');
     await audit(page, 'keyboard-ready');
     extended.push({ category: category.id, keyboardManual: true, firstInvalidFocus: true, guideFailure: true, guideHidden: true, normalMotion: true, artRequests });
-    await context.close();
+    await closeCase(context);
   }
   // Synthetic owned anchors exercise the actual document capture guard; external traffic is intercepted.
   {
@@ -202,7 +213,7 @@ try {
     await audit(page, 'external-cancel-and-modified');
     await probe.click(); await button(page, copy.discardSketch).click(); await page.waitForURL(external);
     extended.push({ externalCancelFocus: true, externalDiscard: true, fragment: true, newTab: true, controlModified: true, download: true, noNestedDialogs: true });
-    await context.close();
+    await closeCase(context);
   }
   // Reload really drops memory; browser Back uses public browser semantics, without history traps.
   for (const action of ['reload', 'back']) {
@@ -214,12 +225,13 @@ try {
     assert.equal(await page.evaluate(() => window.__f4UnloadCount()), 1);
     if (action === 'reload') { await page.reload({ waitUntil: 'networkidle' }); await button(page, CATEGORY_REGISTRY[0].label.en).click(); await button(page, copy.chooseNext).click(); assert.equal(await page.locator('#builder-title').inputValue(), ''); }
     else { await page.goBack({ waitUntil: 'networkidle' }); await page.waitForURL(base + '/app/world'); assert.equal(await page.getByRole('dialog').count(), 0); }
-    await audit(page, action); extended.push({ action, memoryLossDisclosed: true, canary: true }); await context.close();
+    await audit(page, action); extended.push({ action, memoryLossDisclosed: true, canary: true }); await closeCase(context);
   }
   await Promise.all(requestChecks);
   assert.deepEqual(failures, []); assert.deepEqual(leakage, []); assert.deepEqual(writes, []);
+  completed = true;
 } finally {
-  const report = { source: process.env.GITHUB_SHA ?? 'local', browser: browser?.version() ?? null, cases, extended, audits, inputToPaintMs, failures, leakage, writes,
+  const report = { source: process.env.GITHUB_SHA ?? 'local', browser: browser?.version() ?? null, completed, cases, extended, audits, inputToPaintMs, interceptedHeaderAudits, failures, leakage, writes,
     limits: 'Synthetic input-to-two-frame latency is not field INP. Screen-reader/device/safe-area review and independent acceptance remain separate gates. Browser Back/reload/mobile termination are disclosed best-effort loss, never guaranteed preservation.' };
   await writeFile(join(output, 'report.json'), JSON.stringify(report, null, 2));
   process.stdout.write('CB1_F4_ROUTE_REPORT=' + JSON.stringify(report) + '\n');
