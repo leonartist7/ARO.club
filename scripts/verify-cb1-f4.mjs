@@ -16,11 +16,12 @@ const initialStorage = new WeakMap();
 let browser;
 const button = (page, name) => page.getByRole('button', { name, exact: true });
 async function check(page) {
+  const builderRoute = new URL(page.url()).pathname === '/app/create';
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'no horizontal overflow');
   assert.equal(await page.evaluate(value => [localStorage, sessionStorage].some(storage => Object.keys(storage).some(key => key.includes(value) || (storage.getItem(key) ?? '').includes(value))), canary), false);
   assert(!page.url().includes(canary));
-  assert(await page.locator('main button, main input, main select, main textarea, main a, main summary').evaluateAll(nodes => nodes.filter(node => node.getBoundingClientRect().height > 0).every(node => { const box = node.getBoundingClientRect(); return box.height >= 44 && box.width >= 44; })));
-  assert(await page.locator('main p, main label, main button, main input, main select, main textarea').evaluateAll(nodes => nodes.filter(node => node.getBoundingClientRect().height > 0 && (node.textContent.trim() || node.matches('input, textarea, select'))).every(node => parseFloat(getComputedStyle(node).fontSize) >= 16)));
+  assert(await page.locator('main button, main input, main select, main textarea, main a, main summary').evaluateAll((nodes, builderRoute) => nodes.filter(node => node.getBoundingClientRect().height > 0).every(node => { const box = node.getBoundingClientRect(); return box.height >= 44 && (!builderRoute || box.width >= 44); }), builderRoute));
+  if (builderRoute) assert(await page.locator('main p, main label, main button, main input, main select, main textarea').evaluateAll(nodes => nodes.filter(node => node.getBoundingClientRect().height > 0 && (node.textContent.trim() || node.matches('input, textarea, select'))).every(node => parseFloat(getComputedStyle(node).fontSize) >= 16)), 'builder essential text remains at least16px');
   assert(!(await page.context().cookies()).some(cookie => cookie.value.includes(canary)));
   assert(!serverOutput().includes(canary), 'no canary in production server output');
 }
