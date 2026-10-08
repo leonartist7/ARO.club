@@ -3,6 +3,7 @@ import { circleBuilderDetailsCopy } from './circleBuilderDetails.js';
 
 export const circleBuilderCopy = {
   en: {
+    exitTitle: 'Leave your sketch?', exitBody: 'Your sketch has not been saved. Leaving this page discards it.', discardSketch: 'Discard sketch',
     disclosure: 'A local sketch only. Nothing is saved or published. Leaving or reloading this page loses your sketch.',
     boundary: 'These are sketch groups, not permission to host or publish.',
     chooseTitle: 'What would you like to share?', chooseBody: 'Start with an example or an idea of your own. You can shape it as you go.',
@@ -19,6 +20,7 @@ export const circleBuilderCopy = {
     fields: { targetLanguage: 'Language to practice', practiceLevel: 'Starting language level', activity: 'Conversation activity', skill: 'Skill to practice', experienceLevel: 'Starting experience level', materials: 'Materials', instrument: 'Instrument or voice', practiceFormat: 'Music activity', equipment: 'Equipment' },
   },
   fr: {
+    exitTitle: 'Quitter votre esquisse ?', exitBody: 'Votre esquisse n’est pas enregistrée. Quitter cette page l’efface.', discardSketch: 'Effacer l’esquisse',
     disclosure: 'Une esquisse locale uniquement. Rien n’est enregistré ni publié. Quitter ou recharger cette page efface votre esquisse.',
     boundary: 'Ces groupes servent à esquisser une idée, pas à autoriser un cours ou une publication.',
     chooseTitle: 'Qu’aimeriez-vous partager ?', chooseBody: 'Partez d’un exemple ou de votre propre idée. Vous pourrez la préciser ensuite.',
@@ -35,6 +37,7 @@ export const circleBuilderCopy = {
     fields: { targetLanguage: 'Langue à pratiquer', practiceLevel: 'Niveau de langue initial', activity: 'Activité de conversation', skill: 'Compétence à pratiquer', experienceLevel: 'Niveau initial', materials: 'Matériel', instrument: 'Instrument ou voix', practiceFormat: 'Activité musicale', equipment: 'Équipement' },
   },
   es: {
+    exitTitle: '¿Salir de tu boceto?', exitBody: 'Tu boceto no se ha guardado. Salir de esta página lo borra.', discardSketch: 'Descartar boceto',
     disclosure: 'Solo un boceto local. Nada se guarda ni se publica. Salir o recargar esta página borra tu boceto.',
     boundary: 'Estos grupos sirven para esbozar ideas, no autorizan clases ni publicaciones.',
     chooseTitle: '¿Qué te gustaría compartir?', chooseBody: 'Empieza con un ejemplo o una idea tuya. Puedes darle forma poco a poco.',

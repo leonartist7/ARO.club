@@ -1,0 +1,1044 @@
+{
+  "package": "CB1-F4 v1.0.1",
+  "sourceHead": "ea26c0b22b98ec2ad810b863ce338f39d394601c",
+  "run": "https://github.com/leonartist7/ARO.club/actions/runs/37737225321",
+  "job": 113179421811,
+  "retrievedAt": "2026-10-08T06:24:29Z",
+  "evidenceOrigin": "Actual completed GitHub job log CB1_F4_PAIRED_PERFORMANCE; raw artifact not downloaded; all six cases and failed samples retained.",
+  "report": {
+    "schemaVersion": 1,
+    "baseline": "f7adc10a40fa5388b8b1956bd80160b7f72cc990",
+    "current": "07339c863e364045998c561f899cfb664a984562",
+    "browser": "151.0.7922.34",
+    "cases": [
+      {
+        "width": 360,
+        "mode": "learn",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 62540,
+              "median": 62540,
+              "max": 62540
+            },
+            "after": {
+              "min": 14302,
+              "median": 14302,
+              "max": 14302
+            },
+            "limit": 111692,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 104,
+              "median": 116,
+              "max": 228
+            },
+            "after": {
+              "min": 96,
+              "median": 120,
+              "max": 216
+            },
+            "limit": 216,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 104,
+              "median": 116,
+              "max": 228
+            },
+            "after": {
+              "min": 96,
+              "median": 120,
+              "max": 216
+            },
+            "limit": 216,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 729.3999999999942,
+              "median": 764.1999999999825,
+              "max": 905.3999999999942
+            },
+            "after": {
+              "min": 740.4000000000233,
+              "median": 767,
+              "max": 891
+            },
+            "limit": 955.2499999999782,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.004959506064341369,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.004959506064341369,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.004959506064341369,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 360,
+        "mode": "share",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 54702,
+              "median": 54702,
+              "max": 54702
+            },
+            "after": {
+              "min": 13126,
+              "median": 13126,
+              "max": 13126
+            },
+            "limit": 103854,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 60,
+              "median": 80,
+              "max": 92
+            },
+            "after": {
+              "min": 48,
+              "median": 84,
+              "max": 124
+            },
+            "limit": 180,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 80,
+              "median": 92,
+              "max": 164
+            },
+            "after": {
+              "min": 84,
+              "median": 124,
+              "max": 148
+            },
+            "limit": 192,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 729.9000000000233,
+              "median": 732.3999999999942,
+              "max": 741.1999999999825
+            },
+            "after": {
+              "min": 712.2000000000116,
+              "median": 733.2999999999884,
+              "max": 738.8000000000175
+            },
+            "limit": 915.4999999999927,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0049378316238535835,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.0008994799275626979,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 360,
+        "mode": "gather",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 32,
+              "median": 32,
+              "max": 32
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 65630,
+              "median": 65630,
+              "max": 65630
+            },
+            "after": {
+              "min": 0,
+              "median": 0,
+              "max": 0
+            },
+            "limit": 114782,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 56,
+              "median": 56,
+              "max": 100
+            },
+            "after": {
+              "min": 48,
+              "median": 56,
+              "max": 56
+            },
+            "limit": 156,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 100,
+              "median": 152,
+              "max": 160
+            },
+            "after": {
+              "min": 148,
+              "median": 160,
+              "max": 164
+            },
+            "limit": 252,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 717.7999999999884,
+              "median": 746,
+              "max": 779.7000000000116
+            },
+            "after": {
+              "min": 712.1999999999825,
+              "median": 714.2999999999884,
+              "max": 731.2999999999884
+            },
+            "limit": 932.5,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.0008994799275626979,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "learn",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 157776,
+              "median": 157776,
+              "max": 157776
+            },
+            "after": {
+              "min": 14302,
+              "median": 14302,
+              "max": 14302
+            },
+            "limit": 206928,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 92,
+              "median": 104,
+              "max": 112
+            },
+            "after": {
+              "min": 44,
+              "median": 60,
+              "max": 120
+            },
+            "limit": 204,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 120,
+              "median": 140,
+              "max": 144
+            },
+            "after": {
+              "min": 120,
+              "median": 172,
+              "max": 196
+            },
+            "limit": 240,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 745.2999999999884,
+              "median": 749,
+              "max": 768
+            },
+            "after": {
+              "min": 725.6999999999825,
+              "median": 756.3999999999942,
+              "max": 776.7000000000116
+            },
+            "limit": 936.25,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.00011123649691358023,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.011363678355275847,
+            "pass": false
+          },
+          {
+            "sample": 3,
+            "value": 0.00011123649691358023,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "share",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 123024,
+              "median": 123024,
+              "max": 123024
+            },
+            "after": {
+              "min": 13126,
+              "median": 13126,
+              "max": 13126
+            },
+            "limit": 172176,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 60,
+              "median": 92,
+              "max": 132
+            },
+            "after": {
+              "min": 60,
+              "median": 60,
+              "max": 96
+            },
+            "limit": 192,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 132,
+              "median": 136,
+              "max": 176
+            },
+            "after": {
+              "min": 96,
+              "median": 200,
+              "max": 292
+            },
+            "limit": 236,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 729.1999999999534,
+              "median": 746.7000000000116,
+              "max": 756.2000000000116
+            },
+            "after": {
+              "min": 731.3999999999942,
+              "median": 754.2999999999884,
+              "max": 1010.0999999999767
+            },
+            "limit": 933.3750000000146,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.011363678355275847,
+            "pass": false
+          },
+          {
+            "sample": 2,
+            "value": 0.00011123649691358023,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.00011123649691358023,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "gather",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348593,
+              "median": 348593,
+              "max": 348593
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354593,
+              "median": 354593,
+              "max": 354593
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 32,
+              "median": 32,
+              "max": 32
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 163214,
+              "median": 163214,
+              "max": 163214
+            },
+            "after": {
+              "min": 0,
+              "median": 0,
+              "max": 0
+            },
+            "limit": 212366,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 48,
+              "median": 56,
+              "max": 60
+            },
+            "after": {
+              "min": 56,
+              "median": 96,
+              "max": 116
+            },
+            "limit": 156,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 168,
+              "median": 176,
+              "max": 176
+            },
+            "after": {
+              "min": 96,
+              "median": 116,
+              "max": 176
+            },
+            "limit": 276,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 724.1000000000349,
+              "median": 728.3000000000466,
+              "max": 731.8000000000466
+            },
+            "after": {
+              "min": 709.7999999999884,
+              "median": 712.1000000000058,
+              "max": 748.5
+            },
+            "limit": 910.3750000000582,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.008661863727334105,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.00011123649691358023,
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "width": 1440,
+        "mode": "learn",
+        "sample": 2,
+        "metric": "cls",
+        "value": 0.011363678355275847,
+        "limit": 0.01,
+        "shifts": [
+          {
+            "value": 0.011363678355275847,
+            "startTime": 127.70000000001164,
+            "sources": [
+              {
+                "tag": "FORM",
+                "previousRect": {
+                  "x": 161,
+                  "y": 390,
+                  "width": 725,
+                  "height": 510,
+                  "top": 390,
+                  "right": 886,
+                  "bottom": 900,
+                  "left": 161
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 366,
+                  "width": 724,
+                  "height": 534,
+                  "top": 366,
+                  "right": 886,
+                  "bottom": 900,
+                  "left": 162
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 162,
+                  "y": 289,
+                  "width": 724,
+                  "height": 49,
+                  "top": 289,
+                  "right": 886,
+                  "bottom": 338,
+                  "left": 162
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 261,
+                  "width": 724,
+                  "height": 49,
+                  "top": 261,
+                  "right": 886,
+                  "bottom": 310,
+                  "left": 162
+                }
+              },
+              {
+                "tag": "P",
+                "previousRect": {
+                  "x": 162,
+                  "y": 342,
+                  "width": 724,
+                  "height": 24,
+                  "top": 342,
+                  "right": 886,
+                  "bottom": 366,
+                  "left": 162
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 318,
+                  "width": 724,
+                  "height": 24,
+                  "top": 318,
+                  "right": 886,
+                  "bottom": 342,
+                  "left": 162
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 0,
+                  "y": 90,
+                  "width": 1440,
+                  "height": 17,
+                  "top": 90,
+                  "right": 1440,
+                  "bottom": 107,
+                  "left": 0
+                },
+                "currentRect": {
+                  "x": 0,
+                  "y": 88,
+                  "width": 1440,
+                  "height": 17,
+                  "top": 88,
+                  "right": 1440,
+                  "bottom": 105,
+                  "left": 0
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 918,
+                  "y": 224,
+                  "width": 360,
+                  "height": 33,
+                  "top": 224,
+                  "right": 1278,
+                  "bottom": 257,
+                  "left": 918
+                },
+                "currentRect": {
+                  "x": 918,
+                  "y": 221,
+                  "width": 360,
+                  "height": 33,
+                  "top": 221,
+                  "right": 1278,
+                  "bottom": 254,
+                  "left": 918
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "share",
+        "sample": 1,
+        "metric": "cls",
+        "value": 0.011363678355275847,
+        "limit": 0.01,
+        "shifts": [
+          {
+            "value": 0.011363678355275847,
+            "startTime": 102.69999999998254,
+            "sources": [
+              {
+                "tag": "FORM",
+                "previousRect": {
+                  "x": 161,
+                  "y": 390,
+                  "width": 725,
+                  "height": 510,
+                  "top": 390,
+                  "right": 886,
+                  "bottom": 900,
+                  "left": 161
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 366,
+                  "width": 724,
+                  "height": 534,
+                  "top": 366,
+                  "right": 886,
+                  "bottom": 900,
+                  "left": 162
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 162,
+                  "y": 289,
+                  "width": 724,
+                  "height": 49,
+                  "top": 289,
+                  "right": 886,
+                  "bottom": 338,
+                  "left": 162
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 261,
+                  "width": 724,
+                  "height": 49,
+                  "top": 261,
+                  "right": 886,
+                  "bottom": 310,
+                  "left": 162
+                }
+              },
+              {
+                "tag": "P",
+                "previousRect": {
+                  "x": 162,
+                  "y": 342,
+                  "width": 724,
+                  "height": 24,
+                  "top": 342,
+                  "right": 886,
+                  "bottom": 366,
+                  "left": 162
+                },
+                "currentRect": {
+                  "x": 162,
+                  "y": 318,
+                  "width": 724,
+                  "height": 24,
+                  "top": 318,
+                  "right": 886,
+                  "bottom": 342,
+                  "left": 162
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 0,
+                  "y": 90,
+                  "width": 1440,
+                  "height": 17,
+                  "top": 90,
+                  "right": 1440,
+                  "bottom": 107,
+                  "left": 0
+                },
+                "currentRect": {
+                  "x": 0,
+                  "y": 88,
+                  "width": 1440,
+                  "height": 17,
+                  "top": 88,
+                  "right": 1440,
+                  "bottom": 105,
+                  "left": 0
+                }
+              },
+              {
+                "previousRect": {
+                  "x": 918,
+                  "y": 224,
+                  "width": 360,
+                  "height": 33,
+                  "top": 224,
+                  "right": 1278,
+                  "bottom": 257,
+                  "left": 918
+                },
+                "currentRect": {
+                  "x": 918,
+                  "y": 221,
+                  "width": 360,
+                  "height": 33,
+                  "top": 221,
+                  "right": 1278,
+                  "bottom": 254,
+                  "left": 918
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "pass": false,
+    "limits": "CI lab only; no field Web Vitals, throttled-phone or INP claim. Independent review and route accessibility remain separate gates."
+  }
+}

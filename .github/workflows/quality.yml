@@ -20,6 +20,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node --test tools/autonomy/core.test.mjs
+      - run: node --test scripts/compare-cb1-f4-performance.test.mjs
       - run: npm run lint -- --max-warnings=0
       - run: npm run type-check
       - run: npm test
@@ -64,6 +65,8 @@ jobs:
           retention-days: 14
       - name: Circle Builder Create measurement
         run: node scripts/measure-cb1-create.mjs
+        env:
+          ARO_CB1_GUIDED_CREATE: 'true'
       - name: Retain Circle Builder baseline
         if: always()
         uses: actions/upload-artifact@v4
@@ -86,6 +89,16 @@ jobs:
           retention-days: 14
       - name: Circle Builder Details and Review isolation checks
         run: node scripts/verify-cb1-f3.mjs
+      - name: Circle Builder connected route checks
+        run: node scripts/verify-cb1-f4.mjs
+      - name: Retain Circle Builder connected route evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-f4-route
+          path: artifacts/ARO-CB1-F4/browser
+          if-no-files-found: error
+          retention-days: 14
       - name: Retain Circle Builder Details and Review evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -172,3 +185,56 @@ jobs:
           name: rb12-public-website
           path: artifacts/ARO-RB12/hosted
           retention-days: 7
+
+  cb1-f4-performance:
+    if: github.event_name == 'pull_request' && github.head_ref == 'codex/cb1-f4-integration-20261007'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Measure connected Create with all raw samples
+        run: node scripts/measure-cb1-create.mjs
+        env:
+          ARO_CB1_GUIDED_CREATE: 'true'
+      - name: Retain current measurements before baseline build
+        run: |
+          mkdir -p artifacts/ARO-CB1-F4/performance/current
+          cp artifacts/ARO-CB1-P/baseline/*.json artifacts/ARO-CB1-F4/performance/current/
+      - uses: actions/checkout@v4
+        with:
+          ref: f7adc10a40fa5388b8b1956bd80160b7f72cc990
+          path: .cb1-f4-baseline
+          persist-credentials: false
+      - name: Same harness and dependency lock for immutable baseline
+        run: |
+          cmp package-lock.json .cb1-f4-baseline/package-lock.json
+          cp scripts/measure-cb1-create.mjs .cb1-f4-baseline/scripts/measure-cb1-create.mjs
+      - run: npm ci
+        working-directory: .cb1-f4-baseline
+      - run: npm run build
+        working-directory: .cb1-f4-baseline
+      - name: Measure unchanged Create on same runner and browser
+        run: node scripts/measure-cb1-create.mjs
+        working-directory: .cb1-f4-baseline
+        env:
+          ARO_CB1_GUIDED_CREATE: 'false'
+      - name: Enforce every unchanged absolute and paired performance budget
+        run: |
+          mkdir -p artifacts/ARO-CB1-F4/performance/baseline
+          cp .cb1-f4-baseline/artifacts/ARO-CB1-P/baseline/*.json artifacts/ARO-CB1-F4/performance/baseline/
+          node scripts/compare-cb1-f4-performance.mjs artifacts/ARO-CB1-F4/performance/baseline/baseline.json artifacts/ARO-CB1-F4/performance/current/baseline.json artifacts/ARO-CB1-F4/performance/comparison.json
+      - name: Retain paired evidence including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cb1-f4-paired-performance
+          path: artifacts/ARO-CB1-F4/performance
+          if-no-files-found: error
+          retention-days: 14

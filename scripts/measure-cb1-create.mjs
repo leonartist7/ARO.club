@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { arch, cpus, hostname, platform } from 'node:os';
 import { join } from 'node:path';
 import { chromium } from 'playwright';
 import { startProductionServer } from '../src/test/production-server.js';
@@ -50,6 +53,15 @@ const collectImage = (urls) => (response) => {
 };
 
 const output = join(process.cwd(), 'artifacts', 'ARO-CB1-P', 'baseline');
+const hash = async path => createHash('sha256').update(await readFile(path)).digest('hex');
+const provenance = {
+  measuredCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+  harnessSha256: await hash('scripts/measure-cb1-create.mjs'),
+  lockfileSha256: await hash('package-lock.json'),
+  host: { hostname: hostname(), platform: platform(), arch: arch(), cpu: cpus()[0]?.model },
+  releaseScope: process.env.NEXT_PUBLIC_ARO_RELEASE_SCOPE ?? null,
+  guided: process.env.ARO_CB1_GUIDED_CREATE === 'true',
+};
 await mkdir(output, { recursive: true });
 const { base, server } = await startProductionServer(3121);
 const samples = [];
@@ -64,12 +76,18 @@ try {
         await context.addInitScript(() => {
           localStorage.setItem('theme', 'light');
           localStorage.setItem('conversa-language', 'en');
-          window.__cbLab = { lcpMs: null, cls: 0 };
+          window.__cbLab = { lcpMs: null, cls: 0, shifts: [] };
           new PerformanceObserver(list => {
             for (const entry of list.getEntries()) window.__cbLab.lcpMs = entry.startTime;
           }).observe({ type: 'largest-contentful-paint', buffered: true });
           new PerformanceObserver(list => {
-            for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__cbLab.cls += entry.value;
+            for (const entry of list.getEntries()) if (!entry.hadRecentInput) {
+              window.__cbLab.cls += entry.value;
+              // Geometry only: never record text, attributes or form values.
+              window.__cbLab.shifts.push({ value: entry.value, startTime: entry.startTime,
+                sources: (entry.sources ?? []).map(source => ({ tag: source.node?.tagName,
+                  previousRect: source.previousRect.toJSON(), currentRect: source.currentRect.toJSON() })) });
+            }
           }).observe({ type: 'layout-shift', buffered: true });
         });
         const page = await context.newPage();
@@ -96,7 +114,13 @@ try {
         assert(metrics.jsRequests > 0 && metrics.jsEncodedBytes > 0, 'JS entries must be observable');
         assert.deepEqual(errors, []);
         assert.deepEqual(writes, []);
-        assert.equal(metrics.renderedImages.length, 1, 'Existing Create must expose one rendered illustration');
+        const guided = process.env.ARO_CB1_GUIDED_CREATE === 'true';
+        assert.equal(metrics.renderedImages.length, guided && mode === 'gather' ? 0 : 1, 'Create must expose exactly its selected artwork');
+        if (guided) {
+          assert.equal(await page.locator('#builder-search').count(), 1, 'Guided mode must measure the connected builder');
+          const guide = mode === 'learn' ? 'tonguee' : mode === 'share' ? 'squilly' : null;
+          assert(metrics.renderedImages.every(img => img.path.startsWith('/brand/circle-builder/' + guide + '-welcome-')));
+        }
         assert(metrics.renderedImages.every(img => img.loaded));
         await context.close();
       }
@@ -130,8 +154,9 @@ try {
   await probeContext.close();
 } finally {
   await writeFile(join(output, 'baseline.json'), JSON.stringify({
-    schemaVersion: 2,
-    measuredCommit: process.env.GITHUB_SHA ?? 'local',
+    schemaVersion: 3,
+    ...provenance,
+    browserVersion: browser?.version() ?? null,
     baselineReference: '2f06fa3ddaae0020d4bca7cd040669bb9ac42346',
     method: 'production Next; Chromium; EN/light; reduced motion; single running server without explicit route/asset warmup; new cold-browser context per sample; no throttling; observation 500ms after networkidle',
     samples,
@@ -154,3 +179,4 @@ for (const width of [360, 1440]) for (const mode of ['learn', 'share', 'gather']
 await writeFile(join(output, 'summary.json'), JSON.stringify(summary, null, 2));
 process.stdout.write('CB1_IMAGE_INITIATOR_PROBE=' + JSON.stringify(imageInitiatorProbe) + '\n');
 process.stdout.write('CB1_BASELINE_SUMMARY=' + JSON.stringify(summary) + '\n');
+process.stdout.write('CB1_LAYOUT_SHIFT_DIAGNOSTICS=' + JSON.stringify(samples.filter(sample => sample.cls > 0.01).map(({ width, mode, sample, cls, shifts }) => ({ width, mode, sample, cls, shifts }))) + '\n');

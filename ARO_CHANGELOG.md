@@ -1,5 +1,11 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-08 — CB1-F4 route and privacy harness completed
+
+Replaced the flaky fulfilled external-page probe with a real local cross-origin fixture and made raw-header audits settle across popup close, same-tab exit, reload and Back lifecycles. Source `8ec6979` completes the 30-case route matrix, legacy entries, keyboard/guide-failure paths, storage/privacy canary and paired performance gates without changing builder behavior or package limits. Exact captures are downloadable again. PR #105 remains draft because independent privacy/Trust and product/design/accessibility acceptance, including device/safe-area/screen-reader review, is still absent. No account, schema, provider, publishing, money, production or store behavior changed.
+
+---
+
 ## 2026-10-01 — Circle Builder mascot and flow preparation
 
 The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.
@@ -1125,3 +1131,14 @@ Phase3#103 integration observed at1f3d403 with identical tested tree. Founder au
 Source d8e5146 passes allfive jobs,258tests/62buildercases,lint/types/build,30production-browser cases and36actual captures. Both required specialists approved after four corrected findings. Durable local/hosted provenance and hashes retained under artifacts/ARO-CB1-F3. Final evidence-head CI/main integration controlled by#104; Phase5 connects Create only after accepted integration. Historical Windows fixture403 preserved and corrected without weakened assertions.
 
 Automated delivery review corrected stale dependent schedule errors, disappearing length limits and unresolved collapsed aria-controls IDs. Both specialists independently renewed approval; meaningful existing tests and browser assertions extended without weakening prior checks. Corrected delivery own-head checks remain mandatory in#104.
+
+## 2026-10-07 — CB1-F4 source integration and scheduled continuation
+
+Founder requested continued missing-work checks, implementation and schedules. Refreshed main f7adc10 and observed #104 merged; narrowed and committed F4 route contract before runtime. Connected accepted five-step modules, same-tab/programmatic discard confirmation and conditional unload; preserved local-only data and legacy entry routes. New scoped tests plus existing suite:267 PASS/3 skips, lint/types/build pass. Browser revision1234 download failed, so real UI/privacy/performance and independent/final-head acceptance remain pending; no release or live provider change. Added enabled twice-daily build and daily read-only quality tasks in Europe/Paris; preserved C1. See artifacts/ARO-CB1-F4/VERIFICATION.md and source manifest.
+
+
+## 2026-10-08 — CB1-F4 route verification and performance enforcement
+
+Continued the existing draft #105 from freshly observed main f7adc10 and branch head0aec1dd, preserving Phase1–4 and AUTH2/AUTH3/ORG1 ownership. Published verification-only F4 v1.0.1 authority before extending the production-route privacy/navigation/keyboard/guide-failure checks and adding immutable-base/current performance comparison on one pinned-browser runner. Earlier hosted collection passed30 routecases but desktop CLS 0.011363678355275847 exceeds0.01; this is recorded as a release blocker rather than hidden behind successful CI. A scoped Create-wrapper disclosure reservation resolves the measured initial text reflow: source 27a03a8 passes all paired budgets, maximumCLS 0.004959506064341369. Full extended route/exact-head evidence and independent acceptance remain pending. Shared accepted screens, schema/provider/auth/dependencies and budgets remain unchanged. See artifacts/ARO-CB1-F4/VERIFICATION.md for source/checkpoint and limitations.
+
+2026-10-08 final F4 readback: deliverye15313c passes paired budgets/static/platform/release/website and30route,5legacy,3keyboard/guidefailure paths; extended browser job remains failed at synthetic popup/raw-header completion. Full partial route receipt and explicit remaining gates retained; no independent acceptance or merge claimed.

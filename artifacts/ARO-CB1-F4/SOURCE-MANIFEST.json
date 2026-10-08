@@ -1,0 +1,25 @@
+{
+  "base": "f7adc10a40fa5388b8b1956bd80160b7f72cc990",
+  "spec_authority": "038881c73ded7e3fb20e6b4bfbf9fb85c72bb4ad",
+  "sha256": {
+    "src/views/AppCreatePage.jsx": "2589edd571d20713796e51384fe7646fa19656389a5e5ab5ffc7dae58b17ebda",
+    "src/features/circle-builder/BuilderExitGuard.jsx": "a3c96343381dfcb478c60704f41448a3f09541cce8ae1b681075681c2c122416",
+    "src/lib/navigationGuard.ts": "bdac6700b5b201756cf722ced36e585f1a0a4060e071782c5a93803a7092a098",
+    "src/lib/navigation.tsx": "a447cfa23faadf8acd636cd31392ac49d0dd952726c02e826f28092256f373f4",
+    "src/i18n/circleBuilder.js": "0383d4bde37c1712142344f557243e68b57a5ca9c146a3107234ec20c8d6e84f",
+    "src/views/AppCreatePage.test.jsx": "c921badbc6ab249367b0e30b0bb3038f59dd3fd920ab5d13df3eb25515278ade",
+    "src/lib/navigationGuard.test.ts": "13c54834ef4bd2c53b3b2aa19439ed2fea1d40f57d48db699c0a5544a82320d4",
+    "src/views/AppDiscovery.test.jsx": "b6081a36508386189fa27cb69ba749df4b4c6c72be17dee0719602601fc09d44",
+    "scripts/verify-cb1-f4.mjs": "da545962e5fa3afc542845ac4a85d44259424b8dbd36ac56baed8a72ed176dd2",
+    "scripts/measure-cb1-create.mjs": "219a8306ed5b12dc26986b2701640d651fa717e3479147b34f61fbeca33b2216",
+    ".github/workflows/quality.yml": "41c35811bfebb76e9f8733898cb8f27007de1bdff00d72c17eef4bd30dcf6527",
+    ".gitignore": "68a1debf75dc3a80ec87509b274682dd40613c3eb4ba3d204de021f31eeb5496",
+    "scripts/compare-cb1-f4-performance.mjs": "844e6b0091fc2e4d4dc5d6b08c343ba3d65cbff584e8901fbedddd3e22e7eb7f",
+    "scripts/compare-cb1-f4-performance.test.mjs": "d7ae8e9b97daf160d1ab089da3dc03384a2b50967a441d7a345bfcc9d8300497",
+    "specs/ARO-CB1-F4-ROUTE-INTEGRATION.md": "f02ca1d9acb9aa0ef371a885ea1ffe79ce0e2d729a00f65ad32d022a2eb25e5a"
+  },
+  "verification_authority": "bcb17b9753338d09a4890027668da71578c0f9b1",
+  "verification_source": "8ec6979c83ab988639372f1797844ebb558155d9",
+  "paired_performance_source": "27a03a8bb1d855412d4ef7bd14416f32c6d98bfe",
+  "delivery_note": "Source 8ec6979 completes the route/privacy harness and passes all exact-source hosted jobs. The subsequent documentation checkpoint is not a new runtime source and requires its own normal head checks before integration."
+}

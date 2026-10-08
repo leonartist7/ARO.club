@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
 Version 1.2.0 · 2026-10-03 · Owner: ARO founder
-Status: ACTIVE. Phases1–3 integrated; #103 merged at1f3d403/tree279ce458 after finalca05a50 allfive checks. Phase4 CB1-F3 v1.0.0 isolated source VERIFIED atd8e5146;258tests/30browsercases/36captures and both reviews accepted; #104 controls exact final-head checks/main receipt. Phase5 route/shell integration is next after Phase4 acceptance.
+Status: ACTIVE. Phases1–4 are integrated through #104/main `f7adc10`. Phase5 CB1-F4 source `8ec6979` passes the complete hosted route/privacy and paired-performance gates on draft #105; independent privacy/Trust and product/design/accessibility acceptance plus documentation-head checks remain before integration.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: accept #104 final delivery-head five checks, normal protected merge and main/tested-tree readback. Then, on founder request, Phase5 CB1-F4 route/shell/release verification.
+Current next task: require normal checks on the documentation checkpoint for draft #105, then obtain explicit independent privacy/Trust and product/design/accessibility acceptance, including device/safe-area/screen-reader review. Only then may normal protected integration proceed. See `artifacts/ARO-CB1-F4/VERIFICATION.md` for exact source/run/artifact receipts.
 
 ## Phase 1 verification and review checkpoint
 
@@ -107,5 +107,16 @@ Authority: ../../specs/ARO-CB1-F2-CHOOSE-SHAPE.md. Evidence: ../../artifacts/ARO
 - [x] Build isolated Details/live sketch/Review/Ready and exact reducer/locale deltas.
 - [x] Local258tests/62buildercases and lint pass; reviews corrected focus-stealing, date/time keyboard separators, fixed-offset zones and cross-section invalid edit recovery.
 - [x] Accept local/hosted30browsercases,36actualcaptures,258tests/lint/types/build and both final independent reviews; source d8e5146 allfive jobs PASS.
-- [ ] Pass exact final-head five jobs and merge normally; confirm actual main/tested tree.
+- [x] Observed #104 merged at f7adc10a40fa5388b8b1956bd80160b7f72cc990 from delivery d376251a5b87490655d1d61146de06a11af76942 on 2026-10-07; main receipt confirms Phase4 integration.
 Authority: ../../specs/ARO-CB1-F3-DETAILS-REVIEW.md. Evidence: ../../artifacts/ARO-CB1-F3/VERIFICATION.md. All new screens remain unconnected; Phase5 owns Create route/shell/full exit audit/release. No drafts/publishing claim.
+
+## Phase5 ongoing checkpoint — 2026-10-07
+CB1-F4 v1.0.0 source is implemented on codex/cb1-f4-integration-20261007; connected flow, exit guard, legacy mapping and nine regressions. 267 tests PASS/3 skips; lint/types/build PASS. Required browser archive download failed, so hosted/full-route/canary/captures/paired-budget/independent/final-head gates remain pending. Resume same PR and artifacts/ARO-CB1-F4/VERIFICATION.md. Do not mark CB1 VERIFIED/SHIPPED from component tests. The scheduled build task resumes this checkpoint; daily quality is read-only.
+
+## Phase5 verification continuation — 2026-10-08
+Fresh isolated checkout, remote main f7adc10 and PR#105 ownership checked; no competing writer observed. Runtime source 0aec1dd passed Quality 37694022890/platform 37694022772, including the original 30 routecases. Desktop measured CLS 0.011363678355275847 exceeded the unchanged0.01 budget; collection success is not release acceptance.
+Spec v1.0.1 verification-only amendment published bcb17b9 before verification source 5bf38b1. Added extended real-route privacy/navigation/keyboard/guide-failure evidence and paired immutable-base/current performance comparison with provenance and no discarded outliers. Local267 tests/3existing skips,24autonomytests,4 comparator tests,lint/types/build/script syntax/diff pass. Pinned local browser install still fails invalid archives. Fresh CI37736878000/37736878009 pending. Independent review requested on the same draft PR; no acceptance or merge claimed. Exact paths and next action: ../../artifacts/ARO-CB1-F4/VERIFICATION.md.
+
+Measured repair: source 27a03a8/Quality 37737629252 pairedperformancePASS against actual basef7adc10, maximumCLS 0.004959506064341369. Prior0.011363678355275847 failures retained. BoundedCreatewrapper reserves desktop disclosure space, accepted shared components/contracts remain unchanged. Latestrouteverification source 186ced7/Quality 37737860191/platform 37737860312 pending. No VERIFIED/SHIPPED/merge claim; independent reviews still required.
+
+Final sourcee15313c/Quality37738657958: static,paired,release,websitePASS; platform37738657947PASS. Route completed30width/theme/locale,5legacy,3keyboard+guidefailure paths,130inventories; failed synthetic popup load and5raw-header audits. Full report: ../../artifacts/ARO-CB1-F4/ROUTE-PARTIAL-20261008.json. Next bounded unit resolves popup/header lifecycle with actual evidence; independent acceptance and final-head normal checks remain open. Artifact inspection BLOCKED on fresh HTTP403. Ownership released after evidence-only publication; recheck live head before edits.

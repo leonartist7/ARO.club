@@ -1,5 +1,8 @@
 # ARO — Autonomous Workboard
 
+> **2026-10-07 continued build / CB1-F4:** Observed main f7adc10 (#104 merged, Phase4 delivery d376251). Guided Create integration is IMPLEMENTED / PARTIAL LOCAL VERIFICATION on `codex/cb1-f4-integration-20261007` under [F4 v1.0.0](specs/ARO-CB1-F4-ROUTE-INTEGRATION.md): five connected local steps, editable summaries, legacy entry mapping and unsaved-exit guard. 267 tests pass (3 existing skips), zero-warning lint/types/build pass. Required Chromium download failed; real route/privacy/captures, paired performance, independent reviews and exact-head CI remain open. No main/production/store readiness claim. [Evidence/restart](artifacts/ARO-CB1-F4/VERIFICATION.md). Two build sessions and one read-only quality pass per day are scheduled in Europe/Paris; existing C1 remains unchanged. Future saved drafts/publishing/account rollout/scanner remain separately gated.
+
+
 > **2026-09-21 reconciliation:** See [latest-work record](docs/merge-reconciliation-20260921/README.md) and the live controller-owned ledger on `codex/aro-overnight-controller-20260916`. N1 is merged at b44c82f; older Vite/infrastructure/ownership statements below are dated history where superseded. Hosted/human/F7/P1 and release gates remain open. MERGE1 only reconciles tooling and evidence.
 
 
