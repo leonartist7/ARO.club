@@ -9,7 +9,7 @@ import { CATEGORY_REGISTRY } from '../src/features/circle-builder/registry.js';
 
 const output = join(process.cwd(), 'artifacts/ARO-CB1-F4/browser');
 await mkdir(output, { recursive: true });
-const { base, server } = await startProductionServer(3125);
+const { base, server, output: serverOutput } = await startProductionServer(3125);
 const canary = 'F4-PRIVATE-' + randomUUID(), cases = [], extended = [], failures = [], leakage = [], writes = [], audits = [];
 const requestChecks = [], inputToPaintMs = [];
 const initialStorage = new WeakMap();
@@ -22,11 +22,12 @@ async function check(page) {
   assert(await page.locator('main button, main input, main select, main textarea, main a, main summary').evaluateAll(nodes => nodes.filter(node => node.getBoundingClientRect().height > 0).every(node => { const box = node.getBoundingClientRect(); return box.height >= 44 && box.width >= 44; })));
   assert(await page.locator('main p, main label, main button, main input, main select, main textarea').evaluateAll(nodes => nodes.filter(node => node.getBoundingClientRect().height > 0 && (node.textContent.trim() || node.matches('input, textarea, select'))).every(node => parseFloat(getComputedStyle(node).fontSize) >= 16)));
   assert(!(await page.context().cookies()).some(cookie => cookie.value.includes(canary)));
-  assert(!(server.output()).includes(canary), 'no canary in production server output');
+  assert(!serverOutput().includes(canary), 'no canary in production server output');
 }
 async function newCase({ width = 360, height = 568, theme = 'light', locale = 'en', motion = 'reduce' } = {}) {
   const context = await browser.newContext({ viewport: { width, height }, reducedMotion: motion, acceptDownloads: true });
   await context.addInitScript(({ theme, locale }) => {
+    if (!['http:', 'https:'].includes(location.protocol)) return;
     localStorage.setItem('theme', theme); localStorage.setItem('conversa-language', locale);
     // Test-only listener accounting delegates to the real browser APIs.
     const add = window.addEventListener, remove = window.removeEventListener, handlers = new Set();
