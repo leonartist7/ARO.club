@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { createServer } from 'node:http';
 import { join } from 'node:path';
 import { chromium } from 'playwright';
 import { startProductionServer } from '../src/test/production-server.js';
@@ -10,8 +11,22 @@ import { CATEGORY_REGISTRY } from '../src/features/circle-builder/registry.js';
 const output = join(process.cwd(), 'artifacts/ARO-CB1-F4/browser');
 await mkdir(output, { recursive: true });
 const { base, server, output: serverOutput } = await startProductionServer(3125);
+const externalRequests = [];
+const externalServer = createServer((request, response) => {
+  externalRequests.push({ method: request.method, path: request.url });
+  response.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+  response.end('<!doctype html><title>Synthetic exit</title><p>Exit destination</p>');
+});
+await new Promise((resolve, reject) => {
+  externalServer.once('error', reject);
+  externalServer.listen(0, '127.0.0.1', resolve);
+});
+const externalAddress = externalServer.address();
+assert(externalAddress && typeof externalAddress === 'object', 'synthetic external server must expose an address');
+const external = `http://127.0.0.1:${externalAddress.port}/exit`;
 const canary = 'F4-PRIVATE-' + randomUUID(), cases = [], extended = [], failures = [], leakage = [], writes = [], audits = [];
-const requestChecks = [], inputToPaintMs = [], interceptedHeaderAudits = [];
+const requestChecks = [], inputToPaintMs = [], interceptedHeaderAudits = [], popupAudits = [];
+let rawHeaderAudits = 0, providedHeaderAudits = 0;
 const initialStorage = new WeakMap();
 let browser, completed = false;
 const button = (page, name) => page.getByRole('button', { name, exact: true });
@@ -39,11 +54,12 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
   context.on('request', request => {
     if (!['GET', 'HEAD'].includes(request.method())) writes.push(request.method());
     const url = new URL(request.url());
-    const intercepted = url.hostname === 'cb1-f4.invalid' || url.pathname === '/f4-download.txt' || (failGuide && url.pathname.startsWith('/brand/circle-builder/'));
+    const intercepted = url.pathname === '/f4-download.txt' || (failGuide && url.pathname.startsWith('/brand/circle-builder/'));
     // Aborted/fulfilled fixtures send no outbound request and can lack Chromium's raw-header event.
     // Audit their provided headers plus the existing cookie canary check; all real requests use allHeaders.
     if (intercepted) interceptedHeaderAudits.push({ host: url.hostname, path: url.pathname, mode: 'provided headers; locally intercepted, no outbound transport' });
     requestChecks.push((intercepted ? Promise.resolve(request.headers()) : request.allHeaders()).then(headers => {
+      if (intercepted) providedHeaderAudits++; else rawHeaderAudits++;
       if ([request.url(), request.postData(), JSON.stringify(headers)].some(text => text?.includes(canary))) leakage.push('request');
     }).catch(error => failures.push('request audit: ' + error.message)));
   });
@@ -56,9 +72,17 @@ async function newCase({ width = 360, height = 568, theme = 'light', locale = 'e
   page.on('dialog', dialog => { assert.equal(dialog.type(), 'beforeunload'); void dialog.accept(); });
   return { context, page, copy: getCircleBuilderCopy(locale) };
 }
+async function settleRequestChecks() {
+  let observed = -1;
+  while (observed !== requestChecks.length) {
+    observed = requestChecks.length;
+    await Promise.all(requestChecks.slice(0, observed));
+    await new Promise(resolve => setImmediate(resolve));
+  }
+}
 async function closeCase(context) {
   await Promise.all(context.pages().map(page => page.waitForLoadState('networkidle')));
-  await Promise.all(requestChecks);
+  await settleRequestChecks();
   await context.close();
 }
 async function audit(page, stage) {
@@ -179,11 +203,9 @@ try {
     extended.push({ category: category.id, keyboardManual: true, firstInvalidFocus: true, guideFailure: true, guideHidden: true, normalMotion: true, artRequests });
     await closeCase(context);
   }
-  // Synthetic owned anchors exercise the actual document capture guard; external traffic is intercepted.
+  // Synthetic owned anchors exercise the actual document capture guard against a local cross-origin server.
   {
     const { context, page, copy } = await newCase();
-    const external = 'https://cb1-f4.invalid/exit';
-    await context.route(external, route => route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>Synthetic exit</title><p>Exit destination</p>' }));
     await context.route(base + '/f4-download.txt', route => route.fulfill({ status: 200, contentType: 'text/plain', body: 'Synthetic download' }));
     await page.goto(base + '/app/create', { waitUntil: 'networkidle' });
     await audit(page, 'initial');
@@ -198,7 +220,10 @@ try {
       probe = await addLink(page, { href: external, target: target === '_blank' ? '_blank' : undefined });
       const popupPromise = context.waitForEvent('page');
       await probe.click(target === 'control-modified' ? { modifiers: ['Control'] } : {});
-      const popup = await popupPromise; await popup.waitForLoadState();
+      const popup = await popupPromise;
+      await popup.waitForURL(external, { waitUntil: 'domcontentloaded' });
+      assert.equal(popup.url(), external); assert.equal(await popup.title(), 'Synthetic exit');
+      popupAudits.push({ activation: target, url: popup.url(), title: await popup.title(), headerAudit: 'allHeaders' });
       assert.equal(await page.getByRole('dialog').count(), 0); assert.equal(await page.locator('#builder-title').inputValue(), canary);
       await popup.close();
     }
@@ -227,14 +252,18 @@ try {
     else { await page.goBack({ waitUntil: 'networkidle' }); await page.waitForURL(base + '/app/world'); assert.equal(await page.getByRole('dialog').count(), 0); }
     await audit(page, action); extended.push({ action, memoryLossDisclosed: true, canary: true }); await closeCase(context);
   }
-  await Promise.all(requestChecks);
+  await settleRequestChecks();
+  assert(externalRequests.filter(request => request.method === 'GET' && request.path === '/exit').length >= 3, 'all external navigation probes reach the local cross-origin fixture');
   assert.deepEqual(failures, []); assert.deepEqual(leakage, []); assert.deepEqual(writes, []);
   completed = true;
 } finally {
+  await settleRequestChecks();
   const report = { source: process.env.GITHUB_SHA ?? 'local', browser: browser?.version() ?? null, completed, cases, extended, audits, inputToPaintMs, interceptedHeaderAudits, failures, leakage, writes,
+    popupAudits, requestHeaderAudits: { raw: rawHeaderAudits, providedForLocalInterceptions: providedHeaderAudits }, externalRequests,
     limits: 'Synthetic input-to-two-frame latency is not field INP. Screen-reader/device/safe-area review and independent acceptance remain separate gates. Browser Back/reload/mobile termination are disclosed best-effort loss, never guaranteed preservation.' };
   await writeFile(join(output, 'report.json'), JSON.stringify(report, null, 2));
   process.stdout.write('CB1_F4_ROUTE_REPORT=' + JSON.stringify(report) + '\n');
   await browser?.close(); server.kill('SIGTERM');
+  await new Promise((resolve, reject) => externalServer.close(error => error ? reject(error) : resolve()));
 }
 process.stdout.write('CB1_F4_ROUTE_CASES=' + cases.length + '\n');
