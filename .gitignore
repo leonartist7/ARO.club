@@ -60,3 +60,5 @@ tools/ci/supabase/.branches/
 
 # CB1-F4 generated production-route verification output
 /artifacts/ARO-CB1-F4/browser/
+/artifacts/ARO-CB1-F4/performance/
+/.cb1-f4-baseline/
