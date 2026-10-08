@@ -24,6 +24,13 @@ test('retains one over-budget CLS outlier rather than accepting its median', () 
   const result = comparePerformance(fixture(), current);
   assert(!result.pass); assert.equal(result.failures[0].metric, 'cls'); assert.equal(result.failures[0].sample, 1);
 });
+test('does not hide a single initial-payload outlier behind a passing median', () => {
+  for (const [metric, value] of [['jsEncodedBytes', 367784], ['jsTransferBytes', 389868], ['resourceRequests', 39], ['imageEncodedBytes', 70000]]) {
+    const current = fixture(true); current.samples[0][metric] = value;
+    const result = comparePerformance(fixture(), current);
+    assert(!result.pass); assert(result.failures.some(failure => failure.metric === metric && failure.sample === 1));
+  }
+});
 test('enforces both absolute and paired relative byte limits and timing medians', () => {
   const before = fixture(), after = fixture(true);
   for (const sample of after.samples) { sample.jsEncodedBytes = 367784; sample.jsTransferBytes = 389868; sample.resourceRequests = 39; sample.imageEncodedBytes = 70000; sample.fcpMs = 201; }

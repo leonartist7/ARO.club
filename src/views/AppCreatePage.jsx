@@ -30,7 +30,7 @@ export default function AppCreatePage() {
   const copy = getCircleBuilderCopy(language), discovery = getFv1DiscoveryCopy(language);
   const Screen = screens[state.step];
   const sideSketch = ['choose', 'shape'].includes(state.step);
-  return <div lang={language} className="min-h-[calc(100vh-5rem)] bg-bone px-4 py-5 text-ink dark:bg-plum dark:text-bone sm:px-8 sm:py-10">
+  return <div lang={language} className="min-h-[calc(100vh-5rem)] bg-bone px-4 py-5 text-ink dark:bg-plum dark:text-bone sm:px-8 sm:py-10 lg:[&>div>section>p:first-child]:min-h-12">
     <Link to="/app/world" aria-label={discovery.create.closeToWorld} className={linkClass}><ArrowLeft className="h-4 w-4" aria-hidden="true" />{discovery.create.backToWorld}</Link>
     <div className={'mt-6 grid min-w-0 gap-8 ' + (sideSketch ? 'lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)]' : '')}>
       <Screen key={state.step} state={state} dispatch={dispatch} locale={language} focusHeading />

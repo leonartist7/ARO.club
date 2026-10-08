@@ -62,6 +62,10 @@ export function comparePerformance(baseline, current) {
       if (!pass) failures.push({ width, mode, metric, value, limit });
       return { metric, before: { min: Math.min(...before.map(sample => sample[metric])), median: median(before.map(sample => sample[metric])), max: Math.max(...before.map(sample => sample[metric])) }, after: { min: Math.min(...values), median: value, max: Math.max(...values) }, limit, pass };
     });
+    // Timing uses the approved median; payload and request caps constrain every initial load.
+    for (const sample of after) for (const metric of ['jsEncodedBytes', 'jsTransferBytes', 'resourceRequests', 'imageEncodedBytes']) {
+      if (sample[metric] > limits[metric]) failures.push({ width, mode, sample: sample.sample, metric, value: sample[metric], limit: limits[metric] });
+    }
     for (const sample of after) if (sample.cls > 0.01) failures.push({ width, mode, sample: sample.sample, metric: 'cls', value: sample.cls, limit: 0.01, shifts: sample.shifts ?? [] });
     cases.push({ width, mode, rows, cls: after.map(sample => ({ sample: sample.sample, value: sample.cls, pass: sample.cls <= 0.01 })) });
   }
