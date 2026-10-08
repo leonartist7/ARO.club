@@ -19,7 +19,7 @@
     "specs/ARO-CB1-F4-ROUTE-INTEGRATION.md": "f02ca1d9acb9aa0ef371a885ea1ffe79ce0e2d729a00f65ad32d022a2eb25e5a"
   },
   "verification_authority": "bcb17b9753338d09a4890027668da71578c0f9b1",
-  "verification_source": "186ced7aac4b56b6181388a8e560d43197e91d65",
+  "verification_source": "e15313c0069c4895518642a8ac52c52cebab5dab",
   "paired_performance_source": "27a03a8bb1d855412d4ef7bd14416f32c6d98bfe",
-  "delivery_note": "Current payload checksums include subsequent harness setup repair; actual publication head is recorded on live PR105 and its durable continuation comment."
+  "delivery_note": "Final evidence-only publication retains this exact runtime/harness payload; live PR105 and closing continuation comment record the documentation head and pending exact-head checks."
 }
