@@ -1,5 +1,11 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-08 — CB1-F4 route and privacy harness completed
+
+Replaced the flaky fulfilled external-page probe with a real local cross-origin fixture and made raw-header audits settle across popup close, same-tab exit, reload and Back lifecycles. Source `8ec6979` completes the 30-case route matrix, legacy entries, keyboard/guide-failure paths, storage/privacy canary and paired performance gates without changing builder behavior or package limits. Exact captures are downloadable again. PR #105 remains draft because independent privacy/Trust and product/design/accessibility acceptance, including device/safe-area/screen-reader review, is still absent. No account, schema, provider, publishing, money, production or store behavior changed.
+
+---
+
 ## 2026-10-01 — Circle Builder mascot and flow preparation
 
 The founder specified Tonguee/chameleon (Languages), Squilly/squirrel (Skills) and Rockatoo/white cockatoo (Music) to help people shape experiences. ADR-CB-001 preserves those names/species and the preparation boundary. CB0 v0.1.0 proposes a four-screen local builder, curated optional guidance, a truthful developing sketch, indoor public-venue examples and an implementation checklist. This branch changes documentation only; CB1 remains SPEC-REQUIRED pending assets, boundary/design review and performance preparation. No account, draft, AI, category eligibility, schema, publishing, money or provider behavior is added. The original attachment was inaccessible; written founder requirements and inspected source govern this draft.

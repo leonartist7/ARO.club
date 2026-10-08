@@ -1,7 +1,7 @@
 # Circle Builder phased execution plan
 
 Version 1.2.0 · 2026-10-03 · Owner: ARO founder
-Status: ACTIVE. Phases1–3 integrated; #103 merged at1f3d403/tree279ce458 after finalca05a50 allfive checks. Phase4 CB1-F3 v1.0.0 isolated source VERIFIED atd8e5146;258tests/30browsercases/36captures and both reviews accepted; #104 controls exact final-head checks/main receipt. Phase5 route/shell integration is next after Phase4 acceptance.
+Status: ACTIVE. Phases1–4 are integrated through #104/main `f7adc10`. Phase5 CB1-F4 source `8ec6979` passes the complete hosted route/privacy and paired-performance gates on draft #105; independent privacy/Trust and product/design/accessibility acceptance plus documentation-head checks remain before integration.
 Authority: founder requested small sequential phases, durable progress records and integration into main on 2026-10-01. ADR-CB-PHASES records that request.
 
 ## Execution contract
@@ -55,7 +55,7 @@ If a chat stops, read this plan, AGENTS.md, the canonical current-state/spec/sta
 
 Every phase records: package/version, branch and source SHA, changed files, criteria/test/evidence matrix, CI run links, relevant screenshots/metrics/review dispositions, deviations, main merge SHA, remaining blockers and the next executable task.
 
-Current next task: resume draft #105 CB1-F4 at the live remote head; #104 is merged at f7adc10. Resolve actual browser/paired-performance findings and obtain independent acceptance before normal exact-head integration. See the latest dated checkpoint below.
+Current next task: require normal checks on the documentation checkpoint for draft #105, then obtain explicit independent privacy/Trust and product/design/accessibility acceptance, including device/safe-area/screen-reader review. Only then may normal protected integration proceed. See `artifacts/ARO-CB1-F4/VERIFICATION.md` for exact source/run/artifact receipts.
 
 ## Phase 1 verification and review checkpoint
 
