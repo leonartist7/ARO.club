@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { arch, cpus, hostname, platform } from 'node:os';
 import { join } from 'node:path';
 import { chromium } from 'playwright';
@@ -54,6 +55,7 @@ const collectImage = (urls) => (response) => {
 const output = join(process.cwd(), 'artifacts', 'ARO-CB1-P', 'baseline');
 const hash = async path => createHash('sha256').update(await readFile(path)).digest('hex');
 const provenance = {
+  measuredCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   harnessSha256: await hash('scripts/measure-cb1-create.mjs'),
   lockfileSha256: await hash('package-lock.json'),
   host: { hostname: hostname(), platform: platform(), arch: arch(), cpu: cpus()[0]?.model },
@@ -155,7 +157,6 @@ try {
     schemaVersion: 3,
     ...provenance,
     browserVersion: browser?.version() ?? null,
-    measuredCommit: process.env.GITHUB_SHA ?? 'local',
     baselineReference: '2f06fa3ddaae0020d4bca7cd040669bb9ac42346',
     method: 'production Next; Chromium; EN/light; reduced motion; single running server without explicit route/asset warmup; new cold-browser context per sample; no throttling; observation 500ms after networkidle',
     samples,
@@ -178,3 +179,4 @@ for (const width of [360, 1440]) for (const mode of ['learn', 'share', 'gather']
 await writeFile(join(output, 'summary.json'), JSON.stringify(summary, null, 2));
 process.stdout.write('CB1_IMAGE_INITIATOR_PROBE=' + JSON.stringify(imageInitiatorProbe) + '\n');
 process.stdout.write('CB1_BASELINE_SUMMARY=' + JSON.stringify(summary) + '\n');
+process.stdout.write('CB1_LAYOUT_SHIFT_DIAGNOSTICS=' + JSON.stringify(samples.filter(sample => sample.cls > 0.01).map(({ width, mode, sample, cls, shifts }) => ({ width, mode, sample, cls, shifts }))) + '\n');

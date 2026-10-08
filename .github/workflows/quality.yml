@@ -224,7 +224,6 @@ jobs:
         run: node scripts/measure-cb1-create.mjs
         working-directory: .cb1-f4-baseline
         env:
-          GITHUB_SHA: f7adc10a40fa5388b8b1956bd80160b7f72cc990
           ARO_CB1_GUIDED_CREATE: 'false'
       - name: Enforce every unchanged absolute and paired performance budget
         run: |
