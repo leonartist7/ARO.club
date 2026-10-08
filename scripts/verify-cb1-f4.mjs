@@ -79,7 +79,9 @@ async function settleRequestChecks() {
   while (observed !== requestChecks.length) {
     observed = requestChecks.length;
     await Promise.all(requestChecks.slice(0, observed));
-    await new Promise(resolve => setImmediate(resolve));
+    // Network-idle can resolve immediately for an already-idle page. Require a
+    // short stable interval so a queued real fetch is audited before teardown.
+    await new Promise(resolve => setTimeout(resolve, 250));
   }
 }
 async function closeCase(context) {
