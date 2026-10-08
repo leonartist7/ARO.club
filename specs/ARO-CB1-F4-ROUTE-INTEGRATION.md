@@ -1,7 +1,7 @@
 # ARO-CB1-F4 — Guided Create route integration
 
 ## Metadata and authority
-Version 1.0.0 · 2026-10-07 · Status: SPEC-READY for implementation; release acceptance pending.
+Version 1.0.1 · 2026-10-08 · Status: SPEC-READY for implementation; release acceptance pending.
 Owner: ARO founder. Branch: codex/cb1-f4-integration-20261007.
 The founder requested continued building and scheduled autonomous work on 2026-10-07. This narrows the already SPEC-READY CB1 local-preview contract, without adding data or product authority.
 Base: f7adc10a40fa5388b8b1956bd80160b7f72cc990; Phase 4 #104 is merged at this SHA (delivery d376251a5b87490655d1d61146de06a11af76942).
@@ -24,6 +24,8 @@ Render entered text as text. Never send/persist input in URLs, storage, requests
 ## Files and reliability
 Exclusive runtime paths: src/views/AppCreatePage.jsx, src/features/circle-builder/BuilderExitGuard.jsx, src/lib/navigationGuard.ts, src/lib/navigation.tsx, src/i18n/circleBuilder.js. Tests: new route/guard tests and scoped Create portions of AppDiscovery.test.jsx; scripts/verify-cb1-f4.mjs as a dedicated production-route browser harness; its Quality job step, generated-output ignore rule and an explicit guided-route mode in scripts/measure-cb1-create.mjs. The baseline measurement keeps its original count/loaded-image assertion when the flag is absent; guided mode requires exactly the selected guide or zero guides on an unselected entry. Existing app shell, field/reducer contracts, auth/Trust/RLS and dependencies stay unchanged.
 Navigation guard failures must preserve edits and block the attempted transition; completion performs no write. Reverting this package restores previous Create and navigation without reverting unrelated main work.
+
+Verification-only continuation: extend the existing production-route harness for the already-required external/modified/download/fragment, reload/back, guide-failure and keyboard criteria. Synthetic DOM links and intercepted external destinations belong only to browser tests, never product UI or external messages. Add scripts/compare-cb1-f4-performance.mjs and its Node regression tests; the Quality workflow builds the immutable f7adc10 baseline separately, copies the current measurement harness into that clean baseline, verifies identical lockfiles, and compares eighteen cold-context samples per source on the same runner/browser/settings. Preserve every absolute and relative PERFORMANCE bound, fail on missing/incompatible evidence, retain raw reports and disclose input-to-paint latency separately. No baseline-only measurements or green collection job constitute acceptance. This amendment grants no new runtime, data, provider or release authority.
 
 ## Acceptance and evidence
 | ID | Criterion | Required verification |
