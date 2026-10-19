@@ -31,4 +31,3 @@ Headless Chromium and static DOM assertions do not substitute for those checks. 
 ## Disposition
 
 CB1-F4 remains **IMPLEMENTED / PARTIAL VERIFICATION** and draft. Independent privacy/Trust acceptance is recorded; independent product/design/accessibility acceptance is partial. No merge, production, provider, migration, account, native or store action is authorized. Any runtime/harness change requires both specialist reviews again; a documentation-only publication still requires normal exact-head checks.
-
