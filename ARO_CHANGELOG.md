@@ -1,5 +1,11 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-19 — CB1-F4 independent review checkpoint
+
+Independent review of draft PR #105 head `02cfbfd5` accepted the bounded privacy/Trust implementation and found no source-level product/design/accessibility blocker. All 27 route captures and the completed route/privacy/performance evidence were inspected. Final product/design/accessibility acceptance remains blocked on physical iOS/Android safe-area/soft-keyboard testing and VoiceOver plus TalkBack or NVDA testing; headless evidence is not substituted. No runtime, schema, provider, account, dependency, production, native or store behavior changed.
+
+---
+
 ## 2026-10-08 — CB1-F4 route and privacy harness completed
 
 Replaced the flaky fulfilled external-page probe with a real local cross-origin fixture and made raw-header audits settle across popup close, same-tab exit, reload and Back lifecycles. Source `8ec6979` completes the 30-case route matrix, legacy entries, keyboard/guide-failure paths, storage/privacy canary and paired performance gates without changing builder behavior or package limits. Exact captures are downloadable again. PR #105 remains draft because independent privacy/Trust and product/design/accessibility acceptance, including device/safe-area/screen-reader review, is still absent. No account, schema, provider, publishing, money, production or store behavior changed.

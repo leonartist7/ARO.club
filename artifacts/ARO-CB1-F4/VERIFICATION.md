@@ -4,6 +4,14 @@ Status: IMPLEMENTED / PARTIAL VERIFICATION. The latest dated checkpoint below go
 Base: f7adc10a40fa5388b8b1956bd80160b7f72cc990. Prior Phase4 #104 is actually merged at this base; its head was d376251a5b87490655d1d61146de06a11af76942.
 Runtime authority was committed locally before source (cb6c416, then b1b6490 scope clarification) and published remotely before runtime at 038881c73ded7e3fb20e6b4bfbf9fb85c72bb4ad. Branch: codex/cb1-f4-integration-20261007. SOURCE-MANIFEST.json identifies exact local payloads; source/head integration and hosted checks must be read from the live PR.
 
+## Independent review checkpoint — 2026-10-19
+
+Fresh remote readback found main unchanged at `f7adc10a40fa5388b8b1956bd80160b7f72cc990` and draft PR #105 unchanged at reviewed head `02cfbfd5cd4bc244e91402acc90d837dfd2e05bc`; no newer writer, submitted GitHub review or review thread was present. Its normal exact-head Quality `37817859051`, isolated database `37817859112`, CodeRabbit and Vercel checks remain successful.
+
+Two independent specialist passes reviewed the exact runtime/evidence payload. Privacy/Trust is **ACCEPTED** with no remaining source blocker. Product/design/accessibility is **PARTIAL**: no source-level blocker was found after inspection of all 27 artifact captures, but physical iOS/Android safe-area/soft-keyboard testing and VoiceOver plus TalkBack or NVDA testing are still absent and cannot be inferred from headless evidence. Full receipts are in [REVIEWS.md](REVIEWS.md).
+
+Package status remains **IMPLEMENTED / PARTIAL VERIFICATION**. This publication changes evidence/status only; source `8ec6979c83ab988639372f1797844ebb558155d9`, its manifest, tests, route/privacy report and performance evidence are unchanged. The publication head must pass fresh normal exact-head checks. Merge remains blocked until the named real-device and screen-reader evidence yields explicit final product/design/accessibility acceptance. No dependent runtime package may start.
+
 ## Implemented behavior
 Connected Create reuses accepted Choose/Shape/Details/Review/Ready modules, optional guides and actual entered summaries. EN/FR/ES exit confirmation, component-only state, targeted edits and reset remain. Legacy learn→Languages/share→Skills; gather/unknown→unselected Choose. There is one existing central shell World exit. Selected group/input installs a navigation guard for owned same-tab anchors/shared programmatic navigation; cancel keeps data/focus, confirm releases before one navigation. Modified/new-tab/download/fragment behavior is preserved. Beforeunload is conditional and removed on reset/unmount. Browser Back/Forward/mobile termination remain disclosed best-effort loss.
 
