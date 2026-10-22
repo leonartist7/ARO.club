@@ -28,6 +28,12 @@ Release acceptance is still blocked on evidence this environment cannot produce:
 
 Headless Chromium and static DOM assertions do not substitute for those checks. The mobile captures visibly retain fixed app navigation across the long composition, so real-device clearance must be observed rather than inferred.
 
+## Completion handoff
+
+The remaining product/design/accessibility acceptance work is defined in [DEVICE-A11Y-ACCEPTANCE.md](DEVICE-A11Y-ACCEPTANCE.md). The packet makes the physical iOS Safari, physical Android Chrome, dynamic viewport/safe-area/soft-keyboard, VoiceOver, and TalkBack-or-NVDA criteria reproducible and provides an evidence table and exact-head/hash sign-off template.
+
+This receipt remains **partial** until completed device/AT evidence is attached and an independent product/design/accessibility reviewer explicitly accepts the exact PR head and evidence-package SHA-256. The packet itself is not an acceptance.
+
 ## Disposition
 
 CB1-F4 remains **IMPLEMENTED / PARTIAL VERIFICATION** and draft. Independent privacy/Trust acceptance is recorded; independent product/design/accessibility acceptance is partial. No merge, production, provider, migration, account, native or store action is authorized. Any runtime/harness change requires both specialist reviews again; a documentation-only publication still requires normal exact-head checks.

@@ -4,6 +4,14 @@ Status: IMPLEMENTED / PARTIAL VERIFICATION. The latest dated checkpoint below go
 Base: f7adc10a40fa5388b8b1956bd80160b7f72cc990. Prior Phase4 #104 is actually merged at this base; its head was d376251a5b87490655d1d61146de06a11af76942.
 Runtime authority was committed locally before source (cb6c416, then b1b6490 scope clarification) and published remotely before runtime at 038881c73ded7e3fb20e6b4bfbf9fb85c72bb4ad. Branch: codex/cb1-f4-integration-20261007. SOURCE-MANIFEST.json identifies exact local payloads; source/head integration and hosted checks must be read from the live PR.
 
+## Physical-device and AT handoff — 2026-10-22
+
+Live readback before this documentation update confirmed `main` at `f7adc10a40fa5388b8b1956bd80160b7f72cc990`, PR #105 at `41cba77740964de87416482252871cc92f05acc2`, no requested reviewer, no submitted GitHub review, and no inline review thread. No competing writer was observed after the prior checkpoint.
+
+The remaining manual gate is now specified in [DEVICE-A11Y-ACCEPTANCE.md](DEVICE-A11Y-ACCEPTANCE.md). It requires physical iOS Safari and Android Chrome coverage, dynamic viewport/safe-area/soft-keyboard evidence, VoiceOver plus TalkBack or NVDA, an evidence-package SHA-256, and explicit independent product/design/accessibility acceptance of the exact head.
+
+No physical-device or assistive-technology result is supplied by this documentation change. The release disposition remains blocked. After publication, normal exact-head repository checks must pass; any runtime or harness change prompted by device findings requires applicable specialist review again.
+
 ## Independent review checkpoint — 2026-10-19
 
 Fresh remote readback found main unchanged at `f7adc10a40fa5388b8b1956bd80160b7f72cc990` and draft PR #105 unchanged at reviewed head `02cfbfd5cd4bc244e91402acc90d837dfd2e05bc`; no newer writer, submitted GitHub review or review thread was present. Its normal exact-head Quality `37817859051`, isolated database `37817859112`, CodeRabbit and Vercel checks remain successful.

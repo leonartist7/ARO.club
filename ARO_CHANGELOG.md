@@ -1,5 +1,11 @@
 # ARO — Product & Architecture Changelog
 
+## 2026-10-22 — CB1-F4 physical-device and assistive-technology handoff
+
+- Added `artifacts/ARO-CB1-F4/DEVICE-A11Y-ACCEPTANCE.md`, a reproducible evidence and sign-off packet for the remaining physical iOS Safari, physical Android Chrome, safe-area/dynamic-viewport/soft-keyboard, VoiceOver, and TalkBack-or-NVDA checks.
+- Preserved the existing runtime and test evidence at source `8ec6979c83ab988639372f1797844ebb558155d9`; this change is documentation only.
+- PR #105 remains draft. No device result or independent final acceptance is claimed, and merge remains blocked on completed evidence, explicit acceptance of the exact head/evidence hash, and normal exact-head checks.
+
 ## 2026-10-19 — CB1-F4 independent review checkpoint
 
 Independent review of draft PR #105 head `02cfbfd5` accepted the bounded privacy/Trust implementation and found no source-level product/design/accessibility blocker. All 27 route captures and the completed route/privacy/performance evidence were inspected. Final product/design/accessibility acceptance remains blocked on physical iOS/Android safe-area/soft-keyboard testing and VoiceOver plus TalkBack or NVDA testing; headless evidence is not substituted. No runtime, schema, provider, account, dependency, production, native or store behavior changed.
