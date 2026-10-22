@@ -1,0 +1,787 @@
+{
+  "package": "CB1-F4 v1.0.1",
+  "sourceHead": "27a03a8bb1d855412d4ef7bd14416f32c6d98bfe",
+  "run": "https://github.com/leonartist7/ARO.club/actions/runs/37737629252",
+  "job": 113180692717,
+  "retrievedAt": "2026-10-08T06:30:01Z",
+  "evidenceOrigin": "Actual completed GitHub job log CB1_F4_PAIRED_PERFORMANCE; raw artifact not downloaded; all six cases and all18 current CLSsamples retained.",
+  "report": {
+    "schemaVersion": 1,
+    "baseline": "f7adc10a40fa5388b8b1956bd80160b7f72cc990",
+    "current": "94c6a4f5184f16023889e925f4a40d44e6930389",
+    "browser": "151.0.7922.34",
+    "cases": [
+      {
+        "width": 360,
+        "mode": "learn",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 62540,
+              "median": 62540,
+              "max": 62540
+            },
+            "after": {
+              "min": 14302,
+              "median": 14302,
+              "max": 14302
+            },
+            "limit": 111692,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 88,
+              "median": 112,
+              "max": 304
+            },
+            "after": {
+              "min": 60,
+              "median": 92,
+              "max": 216
+            },
+            "limit": 212,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 88,
+              "median": 112,
+              "max": 304
+            },
+            "after": {
+              "min": 92,
+              "median": 164,
+              "max": 236
+            },
+            "limit": 212,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 747.3000000000175,
+              "median": 755.1999999999825,
+              "max": 995.2999999999884
+            },
+            "after": {
+              "min": 734.3000000000029,
+              "median": 758.4000000000087,
+              "max": 897.1000000000058
+            },
+            "limit": 943.9999999999782,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.004959506064341369,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 360,
+        "mode": "share",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 54702,
+              "median": 54702,
+              "max": 54702
+            },
+            "after": {
+              "min": 13126,
+              "median": 13126,
+              "max": 13126
+            },
+            "limit": 103854,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 60,
+              "median": 72,
+              "max": 100
+            },
+            "after": {
+              "min": 60,
+              "median": 72,
+              "max": 88
+            },
+            "limit": 172,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 100,
+              "median": 152,
+              "max": 172
+            },
+            "after": {
+              "min": 88,
+              "median": 104,
+              "max": 168
+            },
+            "limit": 252,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 732.5,
+              "median": 741,
+              "max": 744.6000000000058
+            },
+            "after": {
+              "min": 732.8000000000175,
+              "median": 744.2000000000116,
+              "max": 772.2999999999884
+            },
+            "limit": 926.25,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0049378316238535835,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.0049378316238535835,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 360,
+        "mode": "gather",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 32,
+              "median": 32,
+              "max": 32
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 65630,
+              "median": 65630,
+              "max": 65630
+            },
+            "after": {
+              "min": 0,
+              "median": 0,
+              "max": 0
+            },
+            "limit": 114782,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 48,
+              "median": 108,
+              "max": 112
+            },
+            "after": {
+              "min": 52,
+              "median": 100,
+              "max": 112
+            },
+            "limit": 208,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 108,
+              "median": 112,
+              "max": 156
+            },
+            "after": {
+              "min": 100,
+              "median": 112,
+              "max": 160
+            },
+            "limit": 212,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 726.3999999999942,
+              "median": 733,
+              "max": 756.8999999999942
+            },
+            "after": {
+              "min": 727.3000000000175,
+              "median": 728.8999999999942,
+              "max": 758.1000000000058
+            },
+            "limit": 916.25,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.004903152519073127,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.0008994799275626979,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "learn",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 157776,
+              "median": 157776,
+              "max": 157776
+            },
+            "after": {
+              "min": 14302,
+              "median": 14302,
+              "max": 14302
+            },
+            "limit": 206928,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 64,
+              "median": 104,
+              "max": 108
+            },
+            "after": {
+              "min": 100,
+              "median": 132,
+              "max": 140
+            },
+            "limit": 204,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 116,
+              "median": 144,
+              "max": 148
+            },
+            "after": {
+              "min": 100,
+              "median": 132,
+              "max": 140
+            },
+            "limit": 244,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 760.8999999999942,
+              "median": 760.9000000000233,
+              "max": 782.3999999999942
+            },
+            "after": {
+              "min": 742.5,
+              "median": 753,
+              "max": 759.8999999999942
+            },
+            "limit": 951.1250000000291,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0030214014877507716,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.0030214014877507716,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.0030214014877507716,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "share",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 33,
+              "median": 33,
+              "max": 33
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 123024,
+              "median": 123024,
+              "max": 123024
+            },
+            "after": {
+              "min": 13126,
+              "median": 13126,
+              "max": 13126
+            },
+            "limit": 172176,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 92,
+              "median": 104,
+              "max": 128
+            },
+            "after": {
+              "min": 100,
+              "median": 120,
+              "max": 120
+            },
+            "limit": 204,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 140,
+              "median": 144,
+              "max": 196
+            },
+            "after": {
+              "min": 100,
+              "median": 120,
+              "max": 120
+            },
+            "limit": 244,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 772.3000000000175,
+              "median": 825.6000000000058,
+              "max": 879.5
+            },
+            "after": {
+              "min": 742.3999999999942,
+              "median": 772.5,
+              "max": 778.6000000000058
+            },
+            "limit": 1032.0000000000073,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.003016594027295525,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.003016594027295525,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.003016594027295525,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "mode": "gather",
+        "rows": [
+          {
+            "metric": "jsEncodedBytes",
+            "before": {
+              "min": 335015,
+              "median": 335015,
+              "max": 335015
+            },
+            "after": {
+              "min": 348616,
+              "median": 348616,
+              "max": 348616
+            },
+            "limit": 367783,
+            "pass": true
+          },
+          {
+            "metric": "jsTransferBytes",
+            "before": {
+              "min": 340715,
+              "median": 340715,
+              "max": 340715
+            },
+            "after": {
+              "min": 354616,
+              "median": 354616,
+              "max": 354616
+            },
+            "limit": 389867,
+            "pass": true
+          },
+          {
+            "metric": "resourceRequests",
+            "before": {
+              "min": 34,
+              "median": 34,
+              "max": 34
+            },
+            "after": {
+              "min": 32,
+              "median": 32,
+              "max": 32
+            },
+            "limit": 38,
+            "pass": true
+          },
+          {
+            "metric": "imageEncodedBytes",
+            "before": {
+              "min": 163214,
+              "median": 163214,
+              "max": 163214
+            },
+            "after": {
+              "min": 0,
+              "median": 0,
+              "max": 0
+            },
+            "limit": 212366,
+            "pass": true
+          },
+          {
+            "metric": "fcpMs",
+            "before": {
+              "min": 52,
+              "median": 76,
+              "max": 108
+            },
+            "after": {
+              "min": 60,
+              "median": 60,
+              "max": 104
+            },
+            "limit": 176,
+            "pass": true
+          },
+          {
+            "metric": "lcpMs",
+            "before": {
+              "min": 108,
+              "median": 192,
+              "max": 196
+            },
+            "after": {
+              "min": 104,
+              "median": 172,
+              "max": 176
+            },
+            "limit": 292,
+            "pass": true
+          },
+          {
+            "metric": "renderedReadyMs",
+            "before": {
+              "min": 741,
+              "median": 746.5,
+              "max": 760.5
+            },
+            "after": {
+              "min": 726.6000000000058,
+              "median": 729.8000000000175,
+              "max": 776.2000000000116
+            },
+            "limit": 933.125,
+            "pass": true
+          }
+        ],
+        "cls": [
+          {
+            "sample": 1,
+            "value": 0.0029968397352430555,
+            "pass": true
+          },
+          {
+            "sample": 2,
+            "value": 0.00011123649691358023,
+            "pass": true
+          },
+          {
+            "sample": 3,
+            "value": 0.00011123649691358023,
+            "pass": true
+          }
+        ]
+      }
+    ],
+    "failures": [],
+    "pass": true,
+    "limits": "CI lab only; no field Web Vitals, throttled-phone or INP claim. Independent review and route accessibility remain separate gates."
+  }
+}

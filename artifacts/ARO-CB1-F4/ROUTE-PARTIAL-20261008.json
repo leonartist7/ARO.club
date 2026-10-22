@@ -1,0 +1,2184 @@
+{
+  "package": "CB1-F4 v1.0.1",
+  "sourceHead": "e15313c0069c4895518642a8ac52c52cebab5dab",
+  "base": "f7adc10a40fa5388b8b1956bd80160b7f72cc990",
+  "qualityRun": 37738657958,
+  "browserJob": 113183964697,
+  "executionLogTime": "2026-10-08T06:43:06Z",
+  "artifact": {
+    "id": 11533460052,
+    "digest": "sha256:07e1b761ba31c4849a353acbcb32cdb8d9c4ac9587f4db1956bd3dc81c23b88d",
+    "files": 28
+  },
+  "outcome": "FAIL: synthetic popup load timeout at scripts/verify-cb1-f4.mjs:201; five raw-header audits interrupted. External/download/reset/reload/Back completion and zero-error full audit remain unverified.",
+  "report": {
+    "source": "3e8cfb79c6c40d2110352a09ecb221bf9f4d5598",
+    "browser": "151.0.7922.34",
+    "completed": false,
+    "cases": [
+      {
+        "width": 320,
+        "theme": "light",
+        "locale": "en",
+        "group": "languages",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 320,
+        "theme": "light",
+        "locale": "fr",
+        "group": "skills",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 320,
+        "theme": "light",
+        "locale": "es",
+        "group": "music",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 320,
+        "theme": "dark",
+        "locale": "en",
+        "group": "languages",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 320,
+        "theme": "dark",
+        "locale": "fr",
+        "group": "skills",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 320,
+        "theme": "dark",
+        "locale": "es",
+        "group": "music",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "light",
+        "locale": "en",
+        "group": "languages",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "light",
+        "locale": "fr",
+        "group": "skills",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "light",
+        "locale": "es",
+        "group": "music",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "dark",
+        "locale": "en",
+        "group": "languages",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "dark",
+        "locale": "fr",
+        "group": "skills",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 360,
+        "theme": "dark",
+        "locale": "es",
+        "group": "music",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "locale": "en",
+        "group": "languages",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "locale": "fr",
+        "group": "skills",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "locale": "es",
+        "group": "music",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "locale": "en",
+        "group": "languages",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "locale": "fr",
+        "group": "skills",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "locale": "es",
+        "group": "music",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "light",
+        "locale": "en",
+        "group": "languages",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "light",
+        "locale": "fr",
+        "group": "skills",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "light",
+        "locale": "es",
+        "group": "music",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "dark",
+        "locale": "en",
+        "group": "languages",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "dark",
+        "locale": "fr",
+        "group": "skills",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 768,
+        "theme": "dark",
+        "locale": "es",
+        "group": "music",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "locale": "en",
+        "group": "languages",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "locale": "fr",
+        "group": "skills",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "light",
+        "locale": "es",
+        "group": "music",
+        "path": "example",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "locale": "en",
+        "group": "languages",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "locale": "fr",
+        "group": "skills",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "locale": "es",
+        "group": "music",
+        "path": "manual",
+        "targetedEdit": true,
+        "exitCancelFocus": true,
+        "discard": true,
+        "reset": true,
+        "canary": true
+      }
+    ],
+    "extended": [
+      {
+        "legacyMode": "learn",
+        "selected": "languages",
+        "unfilled": true
+      },
+      {
+        "legacyMode": "share",
+        "selected": "skills",
+        "unfilled": true
+      },
+      {
+        "legacyMode": "gather",
+        "selected": null,
+        "unfilled": true
+      },
+      {
+        "legacyMode": "unknown",
+        "selected": null,
+        "unfilled": true
+      },
+      {
+        "legacyMode": "absent",
+        "selected": null,
+        "unfilled": true
+      },
+      {
+        "category": "languages",
+        "keyboardManual": true,
+        "firstInvalidFocus": true,
+        "guideFailure": true,
+        "guideHidden": true,
+        "normalMotion": true,
+        "artRequests": 2
+      },
+      {
+        "category": "skills",
+        "keyboardManual": true,
+        "firstInvalidFocus": true,
+        "guideFailure": true,
+        "guideHidden": true,
+        "normalMotion": true,
+        "artRequests": 2
+      },
+      {
+        "category": "music",
+        "keyboardManual": true,
+        "firstInvalidFocus": true,
+        "guideFailure": true,
+        "guideHidden": true,
+        "normalMotion": true,
+        "artRequests": 2
+      }
+    ],
+    "audits": [
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "shape",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "edited-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-review",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "keyboard-ready",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      },
+      {
+        "stage": "initial",
+        "indexedDB": [],
+        "caches": [],
+        "localStorage": [
+          "conversa-favorites",
+          "conversa-language",
+          "conversa-recently-viewed",
+          "conversa-saved-searches",
+          "theme"
+        ],
+        "sessionStorage": []
+      }
+    ],
+    "inputToPaintMs": [
+      20.20000000001164,
+      21.099999999976717,
+      28
+    ],
+    "interceptedHeaderAudits": [
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/tonguee-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/tonguee-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/squilly-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/squilly-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/rockatoo-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "127.0.0.1",
+        "path": "/brand/circle-builder/rockatoo-welcome-192.webp",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "cb1-f4.invalid",
+        "path": "/exit",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      },
+      {
+        "host": "cb1-f4.invalid",
+        "path": "/exit",
+        "mode": "provided headers; locally intercepted, no outbound transport"
+      }
+    ],
+    "failures": [
+      "request audit: request.allHeaders: Target page, context or browser has been closed",
+      "request audit: request.allHeaders: Target page, context or browser has been closed",
+      "request audit: request.allHeaders: Target page, context or browser has been closed",
+      "request audit: request.allHeaders: Target page, context or browser has been closed",
+      "request audit: request.allHeaders: Target page, context or browser has been closed"
+    ],
+    "leakage": [],
+    "writes": [],
+    "limits": "Synthetic input-to-two-frame latency is not field INP. Screen-reader/device/safe-area review and independent acceptance remain separate gates. Browser Back/reload/mobile termination are disclosed best-effort loss, never guaranteed preservation."
+  }
+}

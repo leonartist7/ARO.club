@@ -8,6 +8,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import AppShell from '../components/app/AppShell'
 import { fv1DiscoveryCopy, getDiscoveryFormationStatus } from '../i18n/fv1/discovery'
 import AppCreatePage from './AppCreatePage'
+import { getCircleBuilderCopy } from '../i18n/circleBuilder'
 import AppHomePage from './AppHomePage'
 import AppCircleRoomPage from './AppCircleRoomPage'
 import AppInsightsPage from './AppInsightsPage'
@@ -174,23 +175,23 @@ describe('FV-1 F4 Create exits and local Seed Studio', () => {
     expect(screen.getByRole('link', { name: 'Return to World' }).getAttribute('href')).toBe('/app/world')
   })
 
-  it('keeps Learn/Share/Gather local, reversible and free of network side effects', () => {
+  it('keeps sketch group selection local, reversible and free of network side effects', () => {
     const fetchSpy = vi.fn()
     vi.stubGlobal('fetch', fetchSpy)
     const first = renderDiscovery('/app/create')
-    const learn = screen.getByRole('button', { name: /Learn/ })
-    const share = screen.getByRole('button', { name: /Share/ })
-    expect(learn.getAttribute('aria-pressed')).toBe('true')
-    fireEvent.click(share)
-    expect(share.getAttribute('aria-pressed')).toBe('true')
-    expect(learn.getAttribute('aria-pressed')).toBe('false')
-    expect(screen.getByText('A light-seeking Circle could take shape.')).toBeTruthy()
+    const languages = screen.getByRole('button', { name: 'Languages', exact: true })
+    const skills = screen.getByRole('button', { name: 'Skills', exact: true })
+    expect(languages.getAttribute('aria-pressed')).toBe('false')
+    fireEvent.click(skills)
+    expect(skills.getAttribute('aria-pressed')).toBe('true')
+    fireEvent.click(languages)
+    expect(languages.getAttribute('aria-pressed')).toBe('true')
+    expect(skills.getAttribute('aria-pressed')).toBe('false')
     expect(fetchSpy).not.toHaveBeenCalled()
     first.unmount()
-
     renderDiscovery('/app/create')
-    expect(screen.getByRole('button', { name: /Learn/ }).getAttribute('aria-pressed')).toBe('true')
-    expect(screen.getByText('A shared table could begin to form.')).toBeTruthy()
+    expect(screen.queryAllByRole('button', { pressed: true })).toHaveLength(0)
+    expect(screen.getByText(getCircleBuilderCopy('en').disclosure)).toBeTruthy()
     expect(fetchSpy).not.toHaveBeenCalled()
   })
 })
@@ -298,7 +299,7 @@ describe('FV-1 F4 browser acceptance evidence', () => {
       { route: '/app/circles/river-photo-walk', essential: getFv1JourneyCopy('en').unsentChat, image: 'circle' },
       { route: '/app/insights', essential: getFv1ReturnCopy('en').insights.noticeTitle, image: 'insights' },
       { route: '/app/passport', essential: getFv1ReturnCopy('en').passport.noticeTitle, image: 'passport' },
-      { route: '/app/create', essential: fv1DiscoveryCopy.en.create.intro, image: null },
+      { route: '/app/create', essential: getCircleBuilderCopy('en').chooseBody, image: null },
     ]
     const evidence = {
       testedRef: process.env.GITHUB_SHA ?? null,
@@ -439,15 +440,16 @@ describe('FV-1 F4 browser acceptance evidence', () => {
       })
       await createPage.goto(`${base}/app/create`, { waitUntil: 'networkidle' })
       await applyTheme(createPage, 'light')
-      await createPage.getByRole('button', { name: /Share/ }).waitFor({ state: 'visible', timeout: 15000 })
+      await createPage.getByRole('button', { name: 'Skills', exact: true }).waitFor({ state: 'visible', timeout: 15000 })
       const beforeInteraction = serviceRequests.length
-      await createPage.getByRole('button', { name: /Share/ }).click()
-      await createPage.getByText('A light-seeking Circle could take shape.', { exact: true }).waitFor({ state: 'visible' })
+      await createPage.getByRole('button', { name: 'Skills', exact: true }).click()
+      expect(await createPage.getByRole('button', { name: 'Skills', exact: true }).getAttribute('aria-pressed')).toBe('true')
       expect(serviceRequests.length).toBe(beforeInteraction)
+      createPage.once('dialog', dialog => dialog.accept())
       await createPage.reload({ waitUntil: 'networkidle' })
-      const learnButton = createPage.getByRole('button', { name: /Learn/ })
+      const learnButton = createPage.getByRole('button', { name: 'Languages', exact: true })
       await learnButton.waitFor({ state: 'visible', timeout: 15000 })
-      expect(await learnButton.getAttribute('aria-pressed')).toBe('true')
+      expect(await learnButton.getAttribute('aria-pressed')).toBe('false')
       evidence.createNetworkSideEffects = serviceRequests.length - beforeInteraction
       await createContext.close()
 

@@ -7,6 +7,7 @@ import {
 } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import type { ComponentProps, ReactNode } from "react";
+import { requestNavigation } from "./navigationGuard";
 export { useParams } from "next/navigation";
 type LinkProps = Omit<ComponentProps<typeof NextLink>, "href"> & { to: string };
 export function Link({ to, ...props }: LinkProps) {
@@ -50,13 +51,15 @@ export function useNavigate() {
   const router = useRouter();
   return useCallback(
     (to: string | number, options?: { replace?: boolean; state?: unknown }) => {
-      if (typeof to === "number") {
-        if (to === -1) router.back();
-        else if (to === 1) router.forward();
-        return;
-      }
-      if (options?.replace) router.replace(to);
-      else router.push(to);
+      requestNavigation(to, () => {
+        if (typeof to === "number") {
+          if (to === -1) router.back();
+          else if (to === 1) router.forward();
+          return;
+        }
+        if (options?.replace) router.replace(to);
+        else router.push(to);
+      });
     },
     [router],
   );
@@ -75,10 +78,10 @@ export function Navigate({
 export function useSearchParams() {
   const params = useNextSearchParams();
   const pathname = usePathname();
-  const router = useRouter();
+  const navigate = useNavigate();
   return [
     params,
     (value: URLSearchParams | string | Record<string, string>) =>
-      router.push(pathname + "?" + new URLSearchParams(value).toString()),
+      navigate(pathname + "?" + new URLSearchParams(value).toString()),
   ] as const;
 }
